@@ -9,6 +9,8 @@ export default function Layout() {
 
   if (!isAuthenticated && location.pathname !== '/login') {
     return <Navigate to="/login" replace state={{ from: location }} />;
+  } else if (isAuthenticated && location.pathname === '/login') {
+    return <Navigate to="/" replace />;
   }
 
   return (
