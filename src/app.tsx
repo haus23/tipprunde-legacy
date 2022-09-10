@@ -5,10 +5,11 @@ import Dashboard from './app/dashboard';
 import Login from './app/login';
 import Error from './app/error';
 import { Suspense } from 'react';
+import SplashScreen from './components/splash-screen';
 
 export default function App() {
   return (
-    <Suspense fallback={<div>Loading ...</div>}>
+    <Suspense fallback={<SplashScreen />}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
