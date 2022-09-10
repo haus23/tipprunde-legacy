@@ -4,7 +4,7 @@ import { useAuth } from '@/hooks/use-auth';
 import Logo from '@/components/logo';
 
 export default function Layout() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, signOut } = useAuth();
   const location = useLocation();
 
   if (!isAuthenticated && location.pathname !== '/login') {
@@ -19,6 +19,7 @@ export default function Layout() {
         <>
           <div className="hidden">{/* Drawer sidebar for mobile */}</div>
           <div className="hidden">{/* Static sidebar for desktop */}</div>
+          <button onClick={signOut}>Log Out</button>
         </>
       )}
       {/* Content with header */}
