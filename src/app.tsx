@@ -1,5 +1,15 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Dashboard from './app/dashboard';
+import Layout from './app/layout';
+
 export default function App() {
   return (
-    <h1 className="text-2xl font-semibold mx-8 mt-4">Hinterhof - runde.tips</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
