@@ -8,7 +8,7 @@ export default function Layout() {
   const location = useLocation();
 
   if (!isAuthenticated && location.pathname !== '/login') {
-    return <Navigate to="/login" replace state={{ from: location }} />;
+    return <Navigate to="/login" replace />;
   } else if (isAuthenticated && location.pathname === '/login') {
     return <Navigate to="/" replace />;
   }
