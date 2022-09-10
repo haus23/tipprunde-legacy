@@ -1,11 +1,15 @@
+import { User } from 'firebase/auth';
 import { atom } from 'recoil';
-export const authState = atom<boolean>({
+
+import { auth } from '@/firebase/auth';
+
+export const authState = atom<User | null>({
   key: 'authState',
   effects: [
     ({ setSelf }) => {
-      setTimeout(() => {
-        setSelf(true);
-      }, 5000);
+      auth.onAuthStateChanged((user) => {
+        setSelf(user);
+      });
     },
   ],
 });
