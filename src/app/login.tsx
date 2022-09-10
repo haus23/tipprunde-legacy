@@ -1,4 +1,30 @@
+import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
+import { useAuth } from '@/hooks/use-auth';
+
+type LoginFormType = {
+  email: string;
+  password: string;
+};
+
 export default function Login() {
+  const navigate = useNavigate();
+  const { signIn } = useAuth();
+  const [error, setError] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormType>();
+
+  const onSubmit: SubmitHandler<LoginFormType> = ({ email, password }) => {
+    signIn(email, password)
+      .then(() => navigate('/', { replace: true }))
+      .catch(() => setError('Email und/oder Passwort falsch!'));
+  };
+
   return (
     <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -8,7 +34,7 @@ export default function Login() {
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div>
               <label
                 htmlFor="email"
@@ -18,6 +44,7 @@ export default function Login() {
               </label>
               <div className="mt-1">
                 <input
+                  {...register('email')}
                   id="email"
                   name="email"
                   type="email"
@@ -36,6 +63,7 @@ export default function Login() {
               </label>
               <div className="mt-1">
                 <input
+                  {...register('password')}
                   id="password"
                   name="password"
                   type="password"
@@ -53,6 +81,11 @@ export default function Login() {
                 Anmelden
               </button>
             </div>
+            {error && (
+              <div className="text-center text-red-500">
+                <p>{error}</p>
+              </div>
+            )}
           </form>
         </div>
       </div>
