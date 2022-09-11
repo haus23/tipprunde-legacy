@@ -1,5 +1,5 @@
 import { ForwardedRef, forwardRef, useId } from 'react';
-
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { classNames } from '@/utils/class-names';
 import { MergeElementProps } from '@/utils/merge-element-props';
 
@@ -30,7 +30,7 @@ function TextField(
       >
         {label} {required && '*'}
       </label>
-      <div className="mt-1">
+      <div className="relative mt-1">
         <input
           id={id}
           name={name}
@@ -44,6 +44,15 @@ function TextField(
               : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
           )}
         />
+        {hasError && (
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+            <ExclamationCircleIcon
+              data-testid="errorIcon"
+              className="h-5 w-5 text-red-500"
+              aria-hidden="true"
+            />
+          </div>
+        )}
       </div>
       {error && (
         <p className="mt-2 text-sm font-normal text-red-400">{error}</p>

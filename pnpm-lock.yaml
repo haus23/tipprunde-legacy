@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@heroicons/react': ^2.0.10
   '@tailwindcss/forms': ^0.5.3
   '@types/node': ^18.7.16
   '@types/react': ^18.0.18
@@ -19,6 +20,7 @@ specifiers:
   vite: ^3.1.0
 
 dependencies:
+  '@heroicons/react': 2.0.10_react@18.2.0
   firebase: 9.9.4
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -820,6 +822,14 @@ packages:
       long: 4.0.0
       protobufjs: 7.1.1
       yargs: 16.2.0
+    dev: false
+
+  /@heroicons/react/2.0.10_react@18.2.0:
+    resolution: {integrity: sha512-Ufr+pgAElNiRCSklnHGOR10bXb02BLlosvbDK7sCRUMOcQ3R/HCXTfXs4BUkYZ4dKpx6l5dUD06VSW1dTpTEDw==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@jridgewell/gen-mapping/0.1.1:
