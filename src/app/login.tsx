@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '@/hooks/use-auth';
+import Button from '@/components/button';
 
 type LoginFormType = {
   email: string;
@@ -74,12 +75,7 @@ export default function Login() {
               </div>
             </div>
             <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                Anmelden
-              </button>
+              <Button>Anmelden</Button>
             </div>
             {error && (
               <div className="text-center text-red-500">
