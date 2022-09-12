@@ -56,7 +56,9 @@ export default function Login() {
               {...register('password', { required: true })}
             />
             <div>
-              <Button>Anmelden</Button>
+              <Button primary type="submit" className="w-full justify-center">
+                Anmelden
+              </Button>
             </div>
             {error && (
               <div className="text-center text-red-500">
