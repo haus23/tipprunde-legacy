@@ -32,7 +32,6 @@ export default function PlayersView() {
   function handleNameChange() {
     if (!dirtyFields.slug) {
       setValue('slug', slug(getValues('name')));
-      setFocus('email');
     }
   }
 
@@ -55,6 +54,7 @@ export default function PlayersView() {
                   autoFocus
                   label="Name"
                   required
+                  error={errors.name?.message}
                   {...register('name', {
                     required: true,
                     onBlur: handleNameChange,
