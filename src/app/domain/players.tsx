@@ -68,7 +68,9 @@ export default function PlayersView() {
                 <TextField label="Email" {...register('email')} />
               </div>
               <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
-                <Disclosure.Button as={Button}>Abbrechen</Disclosure.Button>
+                <Disclosure.Button as={Button} onClick={() => reset()}>
+                  Abbrechen
+                </Disclosure.Button>
                 <Button primary type="submit">
                   Speichern
                 </Button>
