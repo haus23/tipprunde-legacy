@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { Player } from '@/model/domain/player';
 import { slug } from '@/utils/slug';
 import { emailValidator } from '@/utils/email-validator';
+import { trimProps } from '@/utils/trim-props';
 
 export default function PlayersView() {
   const { players, createPlayer } = usePlayers();
@@ -24,6 +25,7 @@ export default function PlayersView() {
   } = useForm<Player>({ defaultValues: { id: '' } });
 
   async function savePlayer(player: Player) {
+    player = trimProps(player);
     await createPlayer(player);
     setFocus('name');
     reset();
