@@ -10,6 +10,7 @@ import { Player } from '@/model/domain/player';
 import { slug } from '@/utils/slug';
 import { emailValidator } from '@/utils/email-validator';
 import { trimProps } from '@/utils/trim-props';
+import { toast } from 'react-hot-toast';
 
 export default function PlayersView() {
   const { players, createPlayer } = usePlayers();
@@ -26,7 +27,11 @@ export default function PlayersView() {
 
   async function savePlayer(player: Player) {
     player = trimProps(player);
-    await createPlayer(player);
+    await toast.promise(createPlayer(player), {
+      loading: 'Speichern',
+      success: (data) => `Spieler ${data.name} angelegt.`,
+      error: 'Hopply, etwas ist schief gelaufen.',
+    });
     setFocus('name');
     reset();
   }

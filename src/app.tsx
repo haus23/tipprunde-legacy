@@ -1,6 +1,8 @@
 import { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { Toaster } from 'react-hot-toast';
+
 import Layout from './app/layout';
 import SplashScreen from './components/splash-screen';
 import Dashboard from './app/dashboard';
@@ -19,6 +21,7 @@ import Error from './app/error';
 export default function App() {
   return (
     <Suspense fallback={<SplashScreen />}>
+      <Toaster containerClassName="-mt-2" position="top-right" />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
