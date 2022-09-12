@@ -8,6 +8,7 @@ import { usePlayers } from '@/hooks/domain/use-players';
 import { useForm } from 'react-hook-form';
 import { Player } from '@/model/domain/player';
 import { slug } from '@/utils/slug';
+import { emailValidator } from '@/utils/email-validator';
 
 export default function PlayersView() {
   const { players, createPlayer } = usePlayers();
@@ -67,9 +68,26 @@ export default function PlayersView() {
                 <TextField
                   label="Kennung"
                   required
-                  {...register('slug', { required: true })}
+                  error={errors.slug?.message}
+                  {...register('slug', {
+                    required: true,
+                    validate: {
+                      uniqueSlug: (slug) =>
+                        !players.some((p) => p.slug === slug) ||
+                        'Spieler mit dieser Kennung ist schon angelegt.',
+                    },
+                  })}
                 />
-                <TextField label="Email" {...register('email')} />
+                <TextField
+                  label="Email"
+                  error={errors.email?.message}
+                  {...register('email', {
+                    pattern: {
+                      value: emailValidator,
+                      message: 'Keine korrekte Email-Adresse.',
+                    },
+                  })}
+                />
               </div>
               <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
                 <Disclosure.Button as={Button} onClick={() => reset()}>
