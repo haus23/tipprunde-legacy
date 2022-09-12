@@ -6,8 +6,8 @@ import {
 } from 'firebase/firestore';
 import { db } from '@/firebase/db';
 
-import { BaseModel } from './base-model';
-import { converter } from './converter';
+import { BaseModel } from '../base-model';
+import { converter } from '../converter';
 
 export const collection = <T extends BaseModel>(
   path: string,

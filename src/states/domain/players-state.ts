@@ -1,4 +1,4 @@
-import { collection } from '@/firebase/db/collection';
+import { collection } from '@/firebase/db/repository/collection';
 import { Player } from '@/model/domain/player';
 import { atom } from 'recoil';
 
