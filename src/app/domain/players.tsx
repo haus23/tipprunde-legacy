@@ -5,9 +5,35 @@ import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
 import AppCard from '@/components/layout/app-card';
 import { usePlayers } from '@/hooks/domain/use-players';
+import { useForm } from 'react-hook-form';
+import { Player } from '@/model/domain/player';
+import { slug } from '@/utils/slug';
 
 export default function PlayersView() {
-  const { players } = usePlayers();
+  const { players, createPlayer } = usePlayers();
+
+  const {
+    getValues,
+    handleSubmit,
+    register,
+    reset,
+    setFocus,
+    setValue,
+    formState: { dirtyFields, errors },
+  } = useForm<Player>({ defaultValues: { id: '' } });
+
+  async function savePlayer(player: Player) {
+    await createPlayer(player);
+    setFocus('name');
+    reset();
+  }
+
+  function handleNameChange() {
+    if (!dirtyFields.slug) {
+      setValue('slug', slug(getValues('name')));
+    }
+  }
+
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold">Spieler</h2>
@@ -21,11 +47,23 @@ export default function PlayersView() {
             <ChevronDownIcon className="h-5 w-5 ui-open:rotate-180 ui-open:transform" />
           </Disclosure.Button>
           <Disclosure.Panel>
-            <form noValidate>
+            <form noValidate onSubmit={handleSubmit(savePlayer)}>
               <div className="space-y-4 p-4">
-                <TextField label="Name" required />
-                <TextField label="Kennung" required />
-                <TextField label="Email" />
+                <TextField
+                  autoFocus
+                  label="Name"
+                  required
+                  {...register('name', {
+                    required: true,
+                    onBlur: handleNameChange,
+                  })}
+                />
+                <TextField
+                  label="Kennung"
+                  required
+                  {...register('slug', { required: true })}
+                />
+                <TextField label="Email" {...register('email')} />
               </div>
               <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
                 <Disclosure.Button as={Button}>Abbrechen</Disclosure.Button>

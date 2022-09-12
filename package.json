@@ -11,7 +11,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.35.0",
     "react-router-dom": "^6.3.0",
-    "recoil": "^0.7.5"
+    "recoil": "^0.7.5",
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.1.1",
