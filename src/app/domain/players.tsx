@@ -1,29 +1,13 @@
 import { Disclosure } from '@headlessui/react';
-import {
-  ChevronDownIcon,
-  PencilSquareIcon,
-  PencilIcon,
-} from '@heroicons/react/24/outline';
+import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 
 import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
-import { Player } from '@/model/domain/player';
 import AppCard from '@/components/layout/app-card';
-
-const players: Player[] = [
-  { id: '1', name: 'Wolfgang', slug: 'wolfgang', email: '' },
-  { id: '2', name: 'Birgit', slug: 'Birgit', email: '' },
-  { id: '3', name: 'Marko', slug: 'Marko', email: '' },
-  { id: '4', name: 'Kerstin', slug: 'Kerstin', email: '' },
-  { id: '5', name: 'Christian', slug: 'wolfgang', email: '' },
-  { id: '6', name: 'Anna', slug: 'Anna', email: '' },
-  { id: '7', name: 'Thomas', slug: 'Thomas', email: '' },
-  { id: '8', name: 'Olli', slug: 'Olli', email: '' },
-  { id: '9', name: 'Chris', slug: 'Chris', email: '' },
-  { id: '10', name: 'Micha', slug: 'micha', email: 'micha@haus23.net' },
-];
+import { usePlayers } from '@/hooks/domain/use-players';
 
 export default function PlayersView() {
+  const { players } = usePlayers();
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold">Spieler</h2>
