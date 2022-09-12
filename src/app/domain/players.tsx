@@ -23,7 +23,6 @@ export default function PlayersView() {
   } = useForm<Player>({ defaultValues: { id: '' } });
 
   async function savePlayer(player: Player) {
-    player = { ...player, name: player.name.trim(), slug: slug(player.name) };
     await createPlayer(player);
     setFocus('name');
     reset();
@@ -58,6 +57,11 @@ export default function PlayersView() {
                   {...register('name', {
                     required: true,
                     onBlur: handleNameChange,
+                    validate: {
+                      uniqueName: (name) =>
+                        !players.some((p) => p.name === name) ||
+                        'Spieler mit diesem Namen ist schon angelegt.',
+                    },
                   })}
                 />
                 <TextField
