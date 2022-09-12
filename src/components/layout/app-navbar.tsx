@@ -4,12 +4,13 @@ import {
   UsersIcon,
   FolderIcon,
   CalendarIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline';
 
-import { useAuth } from '@/hooks/use-auth';
 import { classNames } from '@/utils/class-names';
 import AppTitle from './app-title';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { useProfile } from '@/hooks/use-profile';
 
 const navLinks: {
   to: string;
@@ -44,7 +45,8 @@ const navLinks: {
 ];
 
 export default function AppNavbar() {
-  const { signOut } = useAuth();
+  const { profile } = useProfile();
+
   return (
     <>
       <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
@@ -82,29 +84,32 @@ export default function AppNavbar() {
         </nav>
       </div>
       <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
-        <a
-          onClick={signOut}
-          href="#"
-          className="group block w-full flex-shrink-0"
-        >
-          <div className="flex items-center">
-            <div>
+        <div className="flex items-center">
+          <div>
+            {profile.photoURL ? (
               <img
+                src={profile.photoURL}
                 className="inline-block h-9 w-9 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
               />
-            </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                Tom Cook
-              </p>
-              <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                View profile
-              </p>
+            ) : (
+              <UserIcon className="inline-block h-9 w-9 rounded-full bg-gray-200 p-1 text-gray-500" />
+            )}
+          </div>
+          <div className="ml-3">
+            <p className="text-sm font-medium text-gray-700">
+              {profile.displayName ?? profile.email}
+            </p>
+            <div className="text-xs font-medium text-gray-500">
+              <Link to="./profil" className="hover:text-gray-900">
+                Profil
+              </Link>
+              {' / '}
+              <Link to="./logout" className="hover:text-gray-900">
+                Log Out
+              </Link>
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </>
   );
