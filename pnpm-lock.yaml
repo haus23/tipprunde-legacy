@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@headlessui/react': ^1.7.0
+  '@headlessui/tailwindcss': ^0.1.1
   '@heroicons/react': ^2.0.10
   '@tailwindcss/forms': ^0.5.3
   '@types/node': ^18.7.16
@@ -31,6 +32,7 @@ dependencies:
   recoil: 0.7.5_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
+  '@headlessui/tailwindcss': 0.1.1_tailwindcss@3.1.8
   '@tailwindcss/forms': 0.5.3_tailwindcss@3.1.8
   '@types/node': 18.7.16
   '@types/react': 18.0.18
@@ -836,6 +838,15 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
+
+  /@headlessui/tailwindcss/0.1.1_tailwindcss@3.1.8:
+    resolution: {integrity: sha512-MJbc/MG1iVDow0IQYdsZNVY2xiTa2fDpXLF01xIAyNH6M+Ks0c6X0k3x6PqAvwvKWKEFhS0MlMzrDUVTU6cXDA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      tailwindcss: ^3.0
+    dependencies:
+      tailwindcss: 3.1.8_postcss@8.4.16
+    dev: true
 
   /@heroicons/react/2.0.10_react@18.2.0:
     resolution: {integrity: sha512-Ufr+pgAElNiRCSklnHGOR10bXb02BLlosvbDK7sCRUMOcQ3R/HCXTfXs4BUkYZ4dKpx6l5dUD06VSW1dTpTEDw==}
