@@ -23,6 +23,7 @@ export default function PlayersView() {
   } = useForm<Player>({ defaultValues: { id: '' } });
 
   async function savePlayer(player: Player) {
+    player = { ...player, name: player.name.trim(), slug: slug(player.name) };
     await createPlayer(player);
     setFocus('name');
     reset();
@@ -31,6 +32,7 @@ export default function PlayersView() {
   function handleNameChange() {
     if (!dirtyFields.slug) {
       setValue('slug', slug(getValues('name')));
+      setFocus('email');
     }
   }
 
