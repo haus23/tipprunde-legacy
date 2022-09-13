@@ -1,4 +1,3 @@
-import { Disclosure } from '@headlessui/react';
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 
 import Button from '@/components/button';
