@@ -11,10 +11,10 @@ import { slug } from '@/utils/slug';
 import { emailValidator } from '@/utils/email-validator';
 import { trimProps } from '@/utils/trim-props';
 import { toast } from 'react-hot-toast';
+import { useState } from 'react';
+import { classNames } from '@/utils/class-names';
 
 export default function PlayersView() {
-  const { players, createPlayer } = usePlayers();
-
   const {
     getValues,
     handleSubmit,
@@ -25,15 +25,20 @@ export default function PlayersView() {
     formState: { dirtyFields, errors },
   } = useForm<Player>({ defaultValues: { id: '' } });
 
-  async function savePlayer(player: Player) {
-    player = trimProps(player);
-    await toast.promise(createPlayer(player), {
-      loading: 'Speichern',
-      success: (data) => `Spieler ${data.name} angelegt.`,
-      error: 'Hopply, etwas ist schief gelaufen.',
-    });
-    setFocus('name');
-    reset();
+  const { players, createPlayer, updatePlayer } = usePlayers();
+  const [isFormOpen, setFormOpen] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+
+  function beginEdit(player: Player) {
+    reset(player);
+    setEditMode(true);
+    setFormOpen(true);
+  }
+
+  function endEdit() {
+    reset({ id: '' });
+    setEditMode(false);
+    setFormOpen(false);
   }
 
   function handleNameChange() {
@@ -42,71 +47,98 @@ export default function PlayersView() {
     }
   }
 
+  async function savePlayer(player: Player) {
+    player = trimProps(player);
+    if (player.id === '') {
+      await toast.promise(createPlayer(player), {
+        loading: 'Speichern',
+        success: (data) => `${data.name} angelegt.`,
+        error: 'Hopply, das hat nicht geklappt.',
+      });
+      setFocus('name');
+      reset();
+    } else {
+      await toast.promise(updatePlayer(player), {
+        loading: 'Speichern',
+        success: (data) => `${data.name} geändert.`,
+        error: 'Hopply, das hat nicht geklappt.',
+      });
+      endEdit();
+    }
+  }
+
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold">Spieler</h2>
       <div className="mt-5">
-        <Disclosure
-          as="div"
-          className="shadow sm:overflow-hidden rounded-md bg-white"
-        >
-          <Disclosure.Button className="w-full flex items-center justify-between px-4 py-2 font-semibold">
-            <span>Neuer Spieler</span>
-            <ChevronDownIcon className="h-5 w-5 ui-open:rotate-180 ui-open:transform" />
-          </Disclosure.Button>
-          <Disclosure.Panel>
-            <form noValidate onSubmit={handleSubmit(savePlayer)}>
-              <div className="space-y-4 p-4">
-                <TextField
-                  autoFocus
-                  label="Name"
-                  required
-                  error={errors.name?.message}
-                  {...register('name', {
-                    required: true,
-                    onBlur: handleNameChange,
-                    validate: {
-                      uniqueName: (name) =>
-                        !players.some((p) => p.name === name) ||
-                        'Spieler mit diesem Namen ist schon angelegt.',
-                    },
-                  })}
-                />
-                <TextField
-                  label="Kennung"
-                  required
-                  error={errors.slug?.message}
-                  {...register('slug', {
-                    required: true,
-                    validate: {
-                      uniqueSlug: (slug) =>
-                        !players.some((p) => p.slug === slug) ||
-                        'Spieler mit dieser Kennung ist schon angelegt.',
-                    },
-                  })}
-                />
-                <TextField
-                  label="Email"
-                  error={errors.email?.message}
-                  {...register('email', {
-                    pattern: {
-                      value: emailValidator,
-                      message: 'Keine korrekte Email-Adresse.',
-                    },
-                  })}
-                />
-              </div>
-              <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
-                <Disclosure.Button as={Button} onClick={() => reset()}>
-                  Abbrechen
-                </Disclosure.Button>
-                <Button primary type="submit">
-                  Speichern
-                </Button>
-              </div>
-            </form>
-          </Disclosure.Panel>
-        </Disclosure>
+        <div className="shadow sm:overflow-hidden rounded-md bg-white">
+          <button
+            onClick={() => setFormOpen(!isFormOpen)}
+            className="w-full flex items-center justify-between px-4 py-2 font-semibold"
+          >
+            <span>{editMode ? 'Spieler bearbeiten' : 'Neuer Spieler'}</span>
+            <ChevronDownIcon
+              className={classNames(
+                'h-5 w-5 transition-transform',
+                isFormOpen && 'rotate-180 transform'
+              )}
+            />
+          </button>
+          {isFormOpen && (
+            <div>
+              <form noValidate onSubmit={handleSubmit(savePlayer)}>
+                <div className="space-y-4 p-4">
+                  <TextField
+                    autoFocus
+                    label="Name"
+                    required
+                    error={errors.name?.message}
+                    {...register('name', {
+                      required: true,
+                      onBlur: handleNameChange,
+                      validate: {
+                        uniqueName: (name) =>
+                          editMode ||
+                          !players.some((p) => p.name === name) ||
+                          'Spieler mit diesem Namen ist schon angelegt.',
+                      },
+                    })}
+                  />
+                  <TextField
+                    label="Kennung"
+                    required
+                    error={errors.slug?.message}
+                    {...register('slug', {
+                      required: true,
+                      validate: {
+                        uniqueSlug: (slug) =>
+                          editMode ||
+                          !players.some((p) => p.slug === slug) ||
+                          'Spieler mit dieser Kennung ist schon angelegt.',
+                      },
+                    })}
+                  />
+                  <TextField
+                    label="Email"
+                    error={errors.email?.message}
+                    {...register('email', {
+                      pattern: {
+                        value: emailValidator,
+                        message: 'Keine korrekte Email-Adresse.',
+                      },
+                    })}
+                  />
+                </div>
+                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
+                  <Button onClick={endEdit}>Abbrechen</Button>
+                  <Button primary type="submit">
+                    Speichern
+                  </Button>
+                </div>
+              </form>
+            </div>
+          )}
+        </div>
       </div>
       <AppCard>
         <div className="overflow-x-auto">
@@ -160,7 +192,7 @@ export default function PlayersView() {
                       {p.email}
                     </td>
                     <td className="text-right pr-3">
-                      <Button>
+                      <Button onClick={() => beginEdit(p)}>
                         <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
                       </Button>
                     </td>
