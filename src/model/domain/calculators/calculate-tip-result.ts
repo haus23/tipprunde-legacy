@@ -57,7 +57,7 @@ export function calculateTipResult(
     tip = { ...tip, joker: false };
   }
 
-  if (tip.tip.length > 0) {
+  if (tip.tip.length > 0 && result.length > 0) {
     const tipGoals = toGoalTuple(tip.tip);
     const resultGoals = toGoalTuple(result);
     const tipToto = toTotoResult(tipGoals);

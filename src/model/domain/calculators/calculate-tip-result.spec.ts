@@ -119,6 +119,13 @@ describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[0].rule, () => {
     expect(calculatedTip.joker).toBeFalsy();
     expect(calculatedTip).not.toBe(tip);
   });
+
+  test('nullt die Punkte bei leerem Match', () => {
+    const tip = makeTipMock('2:1', false, 3);
+    const calculatedTip = calculateTipResult(tip, '', rule);
+    expect(calculatedTip.points).toBe(0);
+    expect(calculatedTip).not.toBe(tip);
+  });
 });
 
 describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[1].rule, () => {
@@ -159,6 +166,13 @@ describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[1].rule, () => {
     const tip = makeTipMock('', true, 0);
     const calculatedTip = calculateTipResult(tip, '2:1', rule);
     expect(calculatedTip.joker).toBeFalsy();
+    expect(calculatedTip).not.toBe(tip);
+  });
+
+  test('nullt die Punkte bei leerem Match', () => {
+    const tip = makeTipMock('2:1', false, 3);
+    const calculatedTip = calculateTipResult(tip, '', rule);
+    expect(calculatedTip.points).toBe(0);
     expect(calculatedTip).not.toBe(tip);
   });
 });
