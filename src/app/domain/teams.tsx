@@ -9,8 +9,6 @@ import { trimProps } from '@/utils/trim-props';
 import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 import { classNames } from '@/utils/class-names';
-import { League } from '@/model/domain/league';
-import { useLeagues } from '@/hooks/domain/use-leagues';
 import { Team } from '@/model/domain/team';
 import { useTeams } from '@/hooks/domain/use-teams';
 
@@ -50,8 +48,8 @@ export default function TeamsView() {
 
   function handleShortnameChange() {
     const sluggedName = slug(getValues('shortname'));
-    if (!editMode && sluggedName && !dirtyFields.slug) {
-      setValue('slug', sluggedName, { shouldValidate: true });
+    if (!editMode && sluggedName && !dirtyFields.id) {
+      setValue('id', sluggedName, { shouldValidate: true });
     }
   }
 
@@ -60,7 +58,7 @@ export default function TeamsView() {
     if (team.id === '') {
       await toast.promise(createTeam(team), {
         loading: 'Speichern',
-        success: (data) => `${data.name} angelegt.`,
+        success: `${team.name} angelegt.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
       setFocus('name');
@@ -109,7 +107,7 @@ export default function TeamsView() {
                       validate: {
                         uniqueName: (name) =>
                           editMode ||
-                          !teams.some((p) => p.name === name) ||
+                          !teams.some((team) => team.name === name) ||
                           'Mannschaft mit diesem Namen ist schon angelegt.',
                       },
                     })}
@@ -132,13 +130,14 @@ export default function TeamsView() {
                   <TextField
                     label="Kennung"
                     required
-                    error={errors.slug?.message}
-                    {...register('slug', {
+                    disabled={editMode}
+                    error={errors.id?.message}
+                    {...register('id', {
                       required: true,
                       validate: {
-                        uniqueSlug: (slug) =>
+                        uniqueId: (id) =>
                           editMode ||
-                          !teams.some((p) => p.slug === slug) ||
+                          !teams.some((team) => team.id === id) ||
                           'Mannschaft mit dieser Kennung ist schon angelegt.',
                       },
                     })}
@@ -162,13 +161,7 @@ export default function TeamsView() {
               <tr>
                 <th
                   scope="col"
-                  className="w-12 pl-4 pr-3 py-3.5 text-right text-sm font-semibold text-gray-900"
-                >
-                  Nr
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="pl-4 pr-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
                   Name
                 </th>
@@ -178,41 +171,27 @@ export default function TeamsView() {
                 >
                   Kürzel
                 </th>
-                <th
-                  scope="col"
-                  className="hidden sm:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
-                >
-                  Kennung
-                </th>
                 <th scope="col" className="py-3.5 pl-3 sm:pl-6 lg:pl-8">
                   <span className="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white pr-1">
-              {[...teams]
-                .sort((a, b) => Number(a.id) - Number(b.id))
-                .map((team) => (
-                  <tr key={team.id}>
-                    <td className="whitespace-nowrap text-right pr-3 py-4 text-sm font-medium text-gray-900">
-                      {team.id}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {team.name}
-                    </td>
-                    <td className="hidden sm:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {team.shortname}
-                    </td>
-                    <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-3 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
-                      {team.slug}
-                    </td>
-                    <td className="text-right pr-3">
-                      <Button onClick={() => beginEdit(team)}>
-                        <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+              {teams.map((team) => (
+                <tr key={team.id}>
+                  <td className="whitespace-nowrap pl-4 pr-3 py-4 text-sm text-gray-500">
+                    {team.name}
+                  </td>
+                  <td className="hidden sm:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    {team.shortname}
+                  </td>
+                  <td className="text-right pr-3">
+                    <Button onClick={() => beginEdit(team)}>
+                      <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

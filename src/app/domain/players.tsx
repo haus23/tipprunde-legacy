@@ -42,8 +42,8 @@ export default function PlayersView() {
 
   function handleNameChange() {
     const sluggedName = slug(getValues('name'));
-    if (!editMode && sluggedName && !dirtyFields.slug) {
-      setValue('slug', sluggedName, { shouldValidate: true });
+    if (!editMode && sluggedName && !dirtyFields.id) {
+      setValue('id', sluggedName, { shouldValidate: true });
     }
   }
 
@@ -52,7 +52,7 @@ export default function PlayersView() {
     if (player.id === '') {
       await toast.promise(createPlayer(player), {
         loading: 'Speichern',
-        success: (data) => `${data.name} angelegt.`,
+        success: `${player.name} angelegt.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
       setFocus('name');
@@ -99,7 +99,7 @@ export default function PlayersView() {
                       validate: {
                         uniqueName: (name) =>
                           editMode ||
-                          !players.some((p) => p.name === name) ||
+                          !players.some((player) => player.name === name) ||
                           'Spieler mit diesem Namen ist schon angelegt.',
                       },
                     })}
@@ -107,13 +107,14 @@ export default function PlayersView() {
                   <TextField
                     label="Kennung"
                     required
-                    error={errors.slug?.message}
-                    {...register('slug', {
+                    disabled={editMode}
+                    error={errors.id?.message}
+                    {...register('id', {
                       required: true,
                       validate: {
-                        uniqueSlug: (slug) =>
+                        uniqueId: (id) =>
                           editMode ||
-                          !players.some((p) => p.slug === slug) ||
+                          !players.some((player) => player.id === id) ||
                           'Spieler mit dieser Kennung ist schon angelegt.',
                       },
                     })}
@@ -147,21 +148,9 @@ export default function PlayersView() {
               <tr>
                 <th
                   scope="col"
-                  className="w-12 pl-4 pr-3 py-3.5 text-right text-sm font-semibold text-gray-900"
-                >
-                  Nr
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="pl-4 pr-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
                   Name
-                </th>
-                <th
-                  scope="col"
-                  className="hidden sm:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Kennung
                 </th>
                 <th
                   scope="col"
@@ -175,29 +164,21 @@ export default function PlayersView() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white pr-1">
-              {[...players]
-                .sort((a, b) => Number(a.id) - Number(b.id))
-                .map((p) => (
-                  <tr key={p.id}>
-                    <td className="whitespace-nowrap text-right pr-3 py-4 text-sm font-medium text-gray-900">
-                      {p.id}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {p.name}
-                    </td>
-                    <td className="hidden sm:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {p.slug}
-                    </td>
-                    <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-3 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
-                      {p.email}
-                    </td>
-                    <td className="text-right pr-3">
-                      <Button onClick={() => beginEdit(p)}>
-                        <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+              {players.map((p) => (
+                <tr key={p.id}>
+                  <td className="whitespace-nowrap pl-4 pr-3 py-4 text-sm text-gray-500">
+                    {p.name}
+                  </td>
+                  <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-3 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                    {p.email}
+                  </td>
+                  <td className="text-right pr-3">
+                    <Button onClick={() => beginEdit(p)}>
+                      <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
