@@ -112,7 +112,7 @@ export default function RulesetsView() {
                       validate: {
                         uniqueName: (name) =>
                           editMode ||
-                          !rulesets.some((p) => p.name === name) ||
+                          !rulesets.some((ruleset) => ruleset.name === name) ||
                           'Regelwerk mit diesem Namen ist schon angelegt.',
                       },
                     })}
@@ -127,7 +127,7 @@ export default function RulesetsView() {
                       validate: {
                         uniqueId: (id) =>
                           editMode ||
-                          !rulesets.some((p) => p.id === id) ||
+                          !rulesets.some((ruleset) => ruleset.id === id) ||
                           'Regelwerk mit dieser Kennung ist schon angelegt.',
                       },
                     })}

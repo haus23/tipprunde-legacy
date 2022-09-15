@@ -97,7 +97,7 @@ export default function LeaguesView() {
                       validate: {
                         uniqueName: (name) =>
                           editMode ||
-                          !leagues.some((p) => p.name === name) ||
+                          !leagues.some((league) => league.name === name) ||
                           'Liga mit diesem Namen ist schon angelegt.',
                       },
                     })}
