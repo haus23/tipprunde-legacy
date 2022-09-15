@@ -15,6 +15,7 @@ import { useRulesets } from '@/hooks/domain/use-rulesets';
 import { tipRuleDescriptions } from '@/model/domain/calculators/calculate-tip-result';
 import { matchRuleDescriptions } from '@/model/domain/calculators/calculate-match-results';
 import { roundRuleDescriptions } from '@/model/domain/calculators/calculate-round-results';
+import { slug } from '@/utils/slug';
 
 const initialFormState: Ruleset = {
   id: '',
@@ -28,10 +29,12 @@ const initialFormState: Ruleset = {
 export default function RulesetsView() {
   const {
     control,
+    getValues,
     handleSubmit,
     register,
     reset,
-    formState: { errors },
+    setValue,
+    formState: { dirtyFields, errors },
   } = useForm<Ruleset>({
     defaultValues: initialFormState,
   });
@@ -57,7 +60,7 @@ export default function RulesetsView() {
     if (ruleset.id === '') {
       await toast.promise(createRuleset(ruleset), {
         loading: 'Speichern',
-        success: (data) => `${data.name} angelegt.`,
+        success: `${ruleset.name} angelegt.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
     } else {
@@ -68,6 +71,13 @@ export default function RulesetsView() {
       });
     }
     endEdit();
+  }
+
+  function handleNameChange() {
+    const sluggedName = slug(getValues('name'));
+    if (!editMode && sluggedName && !dirtyFields.id) {
+      setValue('id', sluggedName, { shouldValidate: true });
+    }
   }
 
   return (
@@ -98,11 +108,27 @@ export default function RulesetsView() {
                     error={errors.name?.message}
                     {...register('name', {
                       required: true,
+                      onBlur: handleNameChange,
                       validate: {
                         uniqueName: (name) =>
                           editMode ||
                           !rulesets.some((p) => p.name === name) ||
                           'Regelwerk mit diesem Namen ist schon angelegt.',
+                      },
+                    })}
+                  />
+                  <TextField
+                    label="Kennung"
+                    required
+                    disabled={editMode}
+                    error={errors.id?.message}
+                    {...register('id', {
+                      required: true,
+                      validate: {
+                        uniqueId: (id) =>
+                          editMode ||
+                          !rulesets.some((p) => p.id === id) ||
+                          'Regelwerk mit dieser Kennung ist schon angelegt.',
                       },
                     })}
                   />
@@ -168,15 +194,15 @@ export default function RulesetsView() {
               <tr>
                 <th
                   scope="col"
-                  className="w-12 pl-4 pr-3 py-3.5 text-right text-sm font-semibold text-gray-900"
+                  className="pl-4 pr-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
-                  Nr
+                  Name
                 </th>
                 <th
                   scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="hidden sm:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
-                  Name
+                  Kennung
                 </th>
                 <th scope="col" className="py-3.5 pl-3 sm:pl-6 lg:pl-8">
                   <span className="sr-only">Edit</span>
@@ -184,23 +210,21 @@ export default function RulesetsView() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white pr-1">
-              {[...rulesets]
-                .sort((a, b) => Number(a.id) - Number(b.id))
-                .map((ruleset) => (
-                  <tr key={ruleset.id}>
-                    <td className="whitespace-nowrap text-right pr-3 py-4 text-sm font-medium text-gray-900">
-                      {ruleset.id}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {ruleset.name}
-                    </td>
-                    <td className="text-right pr-3">
-                      <Button onClick={() => beginEdit(ruleset)}>
-                        <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+              {rulesets.map((ruleset) => (
+                <tr key={ruleset.id}>
+                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    {ruleset.name}
+                  </td>
+                  <td className="hidden sm:table-cell text-ellipsis px-3 py-4 text-sm text-gray-500">
+                    {ruleset.description}
+                  </td>
+                  <td className="text-right pr-3">
+                    <Button onClick={() => beginEdit(ruleset)}>
+                      <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
