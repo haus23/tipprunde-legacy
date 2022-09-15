@@ -43,14 +43,14 @@ export default function TeamsView() {
 
   function handleNameChange() {
     const name = getValues('name').trim();
-    if (name && !dirtyFields.shortname) {
+    if (!editMode && name && !dirtyFields.shortname) {
       setValue('shortname', name, { shouldValidate: true });
     }
   }
 
   function handleShortnameChange() {
     const sluggedName = slug(getValues('shortname'));
-    if (sluggedName && !dirtyFields.slug) {
+    if (!editMode && sluggedName && !dirtyFields.slug) {
       setValue('slug', sluggedName, { shouldValidate: true });
     }
   }

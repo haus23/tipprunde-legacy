@@ -42,7 +42,7 @@ export default function PlayersView() {
 
   function handleNameChange() {
     const sluggedName = slug(getValues('name'));
-    if (sluggedName && !dirtyFields.slug) {
+    if (!editMode && sluggedName && !dirtyFields.slug) {
       setValue('slug', sluggedName, { shouldValidate: true });
     }
   }

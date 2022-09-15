@@ -41,7 +41,7 @@ export default function LeaguesView() {
 
   function handleShortnameChange() {
     const sluggedName = slug(getValues('shortname'));
-    if (sluggedName && !dirtyFields.slug) {
+    if (!editMode && sluggedName && !dirtyFields.slug) {
       setValue('slug', sluggedName, { shouldValidate: true });
     }
   }
