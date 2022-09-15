@@ -1,10 +1,35 @@
-import { doc, runTransaction } from 'firebase/firestore';
+import {
+  doc,
+  DocumentReference,
+  runTransaction,
+  setDoc,
+} from 'firebase/firestore';
 
 import { db } from '@/firebase/db';
 
 import { BaseModel } from '../base-model';
 import { converter } from '../converter';
 import { SequenceModel } from '../sequence-model';
+
+/**
+ * Creates entity. If entity.id is falsy (empty), an id is created.
+ *
+ * @param path
+ * @param entity
+ */
+export const createEntity = async <T extends BaseModel>(
+  path: string,
+  entity: T
+): Promise<void> => {
+  let entityRef: DocumentReference<T>;
+
+  if (entity.id) {
+    entityRef = doc(db, path, entity.id).withConverter(converter<T>());
+  } else {
+    entityRef = doc(db, path).withConverter(converter<T>());
+  }
+  await setDoc(entityRef, entity);
+};
 
 /**
  * Creates an entity with generated sequencer id. An existing id prop will be overwritten.
