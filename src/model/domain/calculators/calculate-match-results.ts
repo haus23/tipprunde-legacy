@@ -7,16 +7,16 @@ export type MatchRule =
   | 'KeineBesonderheiten'
   | 'AlleinigerTrefferGibtDreiPunkte';
 
-export const matchRuleDescriptions: { rule: MatchRule; description: string }[] =
+export const matchRuleDescriptions: { name: MatchRule; description: string }[] =
   [
     {
-      rule: 'KeineBesonderheiten',
+      name: 'KeineBesonderheiten',
       description: `
       Es gibt keine Sonderregeln für einzelne Spiele.
     `,
     },
     {
-      rule: 'AlleinigerTrefferGibtDreiPunkte',
+      name: 'AlleinigerTrefferGibtDreiPunkte',
       description: `
       Falls ein Spieler als einziger für ein Spiel Punkte erhält bekommt er drei zusätzliche Punkte.
     `,

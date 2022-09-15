@@ -6,6 +6,7 @@ import { TipRule } from './calculators/calculate-tip-result';
 
 export interface Ruleset extends BaseModel {
   name: string;
+  description: string;
   tipRule: TipRule;
   matchRule: MatchRule;
   roundRule: RoundRule;

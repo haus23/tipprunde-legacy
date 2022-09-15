@@ -83,7 +83,7 @@ const mockData = [
   },
 ];
 
-describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[0].rule, () => {
+describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[0].name, () => {
   const rule: TipRule =
     'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt';
 
@@ -128,7 +128,7 @@ describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[0].rule, () => {
   });
 });
 
-describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[1].rule, () => {
+describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[1].name, () => {
   const rule: TipRule =
     'KorrekterAusgangGibtEinenPunktKorrekteTordifferenzZweiGenauerTrefferDreiJokerVerdoppelt';
 

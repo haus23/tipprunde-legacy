@@ -1,9 +1,9 @@
 export type RoundRule = 'KeineBesonderheiten';
 
-export const matchRuleDescriptions: { rule: RoundRule; description: string }[] =
+export const roundRuleDescriptions: { name: RoundRule; description: string }[] =
   [
     {
-      rule: 'KeineBesonderheiten',
+      name: 'KeineBesonderheiten',
       description: `
       Es gibt keine Sonderregeln zum Abschluss einer Runde.
     `,

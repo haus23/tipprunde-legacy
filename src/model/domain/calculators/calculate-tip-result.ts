@@ -4,16 +4,16 @@ export type TipRule =
   | 'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt'
   | 'KorrekterAusgangGibtEinenPunktKorrekteTordifferenzZweiGenauerTrefferDreiJokerVerdoppelt';
 
-export const tipRuleDescriptions: { rule: TipRule; description: string }[] = [
+export const tipRuleDescriptions: { name: TipRule; description: string }[] = [
   {
-    rule: 'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt',
+    name: 'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt',
     description: `
       Für einen genauen Tipp gibt es drei Punkte, für den richtigen Spielausgang einen Punkt.
       Ein Joker verdoppelt die Punktzahl.
     `,
   },
   {
-    rule: 'KorrekterAusgangGibtEinenPunktKorrekteTordifferenzZweiGenauerTrefferDreiJokerVerdoppelt',
+    name: 'KorrekterAusgangGibtEinenPunktKorrekteTordifferenzZweiGenauerTrefferDreiJokerVerdoppelt',
     description: `
       Für einen genauen Tipp gibt es drei Punkte. Bei einem Unentschieden bringt jedes andere
       Unentschieden zwei Punkte, bei anderen Spielausgängen gibt es zwei Punkte bei korrekter

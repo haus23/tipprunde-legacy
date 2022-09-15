@@ -34,11 +34,12 @@ function makeTipMock(
 const tipStrings = ['2:1', '3:1', '4:1', '2:2', '0:3', '5:0', '3:2'];
 
 describe(
-  'Spielberechnung nach Regeln: ' + matchRuleDescriptions[0].rule,
+  'Spielberechnung nach Regeln: ' + matchRuleDescriptions[0].name,
   () => {
     const ruleset: Ruleset = {
       id: '',
       name: '',
+      description: '',
       tipRule:
         'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt',
       matchRule: 'KeineBesonderheiten',
@@ -124,11 +125,12 @@ describe(
 );
 
 describe(
-  'Spielberechnung nach Regeln: ' + matchRuleDescriptions[1].rule,
+  'Spielberechnung nach Regeln: ' + matchRuleDescriptions[1].name,
   () => {
     const ruleset: Ruleset = {
       id: '',
       name: '',
+      description: '',
       tipRule:
         'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt',
       matchRule: 'AlleinigerTrefferGibtDreiPunkte',
