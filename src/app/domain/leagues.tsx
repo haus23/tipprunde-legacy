@@ -59,7 +59,7 @@ export default function LeaguesView() {
     } else {
       await toast.promise(updateLeague(league), {
         loading: 'Speichern',
-        success: (data) => `${data.name} geändert.`,
+        success: `${league.name} geändert.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
       endEdit();

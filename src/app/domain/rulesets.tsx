@@ -66,7 +66,7 @@ export default function RulesetsView() {
     } else {
       await toast.promise(updateRuleset(ruleset), {
         loading: 'Speichern',
-        success: (data) => `${data.name} geändert.`,
+        success: `${ruleset.name} geändert.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
     }

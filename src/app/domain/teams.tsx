@@ -68,7 +68,7 @@ export default function TeamsView() {
     } else {
       await toast.promise(updateTeam(team), {
         loading: 'Speichern',
-        success: (data) => `${data.name} geändert.`,
+        success: `${team.name} geändert.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
       endEdit();

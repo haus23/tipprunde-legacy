@@ -60,7 +60,7 @@ export default function PlayersView() {
     } else {
       await toast.promise(updatePlayer(player), {
         loading: 'Speichern',
-        success: (data) => `${data.name} geändert.`,
+        success: `${player.name} geändert.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
       endEdit();
