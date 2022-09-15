@@ -41,8 +41,8 @@ export default function LeaguesView() {
 
   function handleShortnameChange() {
     const sluggedName = slug(getValues('shortname'));
-    if (!editMode && sluggedName && !dirtyFields.slug) {
-      setValue('slug', sluggedName, { shouldValidate: true });
+    if (!editMode && sluggedName && !dirtyFields.id) {
+      setValue('id', sluggedName, { shouldValidate: true });
     }
   }
 
@@ -51,7 +51,7 @@ export default function LeaguesView() {
     if (league.id === '') {
       await toast.promise(createLeague(league), {
         loading: 'Speichern',
-        success: (data) => `${data.name} angelegt.`,
+        success: `${league.name} angelegt.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
       setFocus('name');
@@ -120,13 +120,14 @@ export default function LeaguesView() {
                   <TextField
                     label="Kennung"
                     required
-                    error={errors.slug?.message}
-                    {...register('slug', {
+                    disabled={editMode}
+                    error={errors.id?.message}
+                    {...register('id', {
                       required: true,
                       validate: {
-                        uniqueSlug: (slug) =>
+                        uniqueId: (id) =>
                           editMode ||
-                          !leagues.some((p) => p.slug === slug) ||
+                          !leagues.some((league) => league.id === id) ||
                           'Liga mit dieser Kennung ist schon angelegt.',
                       },
                     })}
@@ -150,13 +151,7 @@ export default function LeaguesView() {
               <tr>
                 <th
                   scope="col"
-                  className="w-12 pl-4 pr-3 py-3.5 text-right text-sm font-semibold text-gray-900"
-                >
-                  Nr
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="pl-4 pr-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                 >
                   Name
                 </th>
@@ -166,41 +161,27 @@ export default function LeaguesView() {
                 >
                   Kürzel
                 </th>
-                <th
-                  scope="col"
-                  className="hidden sm:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
-                >
-                  Kennung
-                </th>
                 <th scope="col" className="py-3.5 pl-3 sm:pl-6 lg:pl-8">
                   <span className="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white pr-1">
-              {[...leagues]
-                .sort((a, b) => Number(a.id) - Number(b.id))
-                .map((league) => (
-                  <tr key={league.id}>
-                    <td className="whitespace-nowrap text-right pr-3 py-4 text-sm font-medium text-gray-900">
-                      {league.id}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {league.name}
-                    </td>
-                    <td className="hidden sm:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {league.shortname}
-                    </td>
-                    <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-3 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
-                      {league.slug}
-                    </td>
-                    <td className="text-right pr-3">
-                      <Button onClick={() => beginEdit(league)}>
-                        <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+              {leagues.map((league) => (
+                <tr key={league.id}>
+                  <td className="whitespace-nowrap pl-4 pr-3 py-4 text-sm text-gray-500">
+                    {league.name}
+                  </td>
+                  <td className="hidden sm:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    {league.shortname}
+                  </td>
+                  <td className="text-right pr-3">
+                    <Button onClick={() => beginEdit(league)}>
+                      <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
