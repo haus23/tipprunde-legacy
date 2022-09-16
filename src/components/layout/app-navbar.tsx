@@ -38,15 +38,15 @@ const navLinks: {
     visible: () => true,
   },
   {
-    to: './tipps',
-    icon: PencilSquareIcon,
-    label: 'Tipps',
-    visible: () => true,
-  },
-  {
     to: './spiele',
     icon: CalendarIcon,
     label: 'Spiele',
+    visible: () => true,
+  },
+  {
+    to: './tipps',
+    icon: PencilSquareIcon,
+    label: 'Tipps',
     visible: () => true,
   },
 ];
