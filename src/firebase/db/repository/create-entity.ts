@@ -8,7 +8,7 @@ import {
 import { db } from '@/firebase/db';
 
 import { BaseModel } from '../base-model';
-import { converter } from '../converter';
+import { baseModelConverter } from '../converter';
 import { SequenceModel } from '../sequence-model';
 
 /**
@@ -24,9 +24,9 @@ export const createEntity = async <T extends BaseModel>(
   let entityRef: DocumentReference<T>;
 
   if (entity.id) {
-    entityRef = doc(db, path, entity.id).withConverter(converter<T>());
+    entityRef = doc(db, path, entity.id).withConverter(baseModelConverter<T>());
   } else {
-    entityRef = doc(db, path).withConverter(converter<T>());
+    entityRef = doc(db, path).withConverter(baseModelConverter<T>());
   }
   await setDoc(entityRef, entity);
 };

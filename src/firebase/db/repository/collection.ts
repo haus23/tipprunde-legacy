@@ -7,14 +7,14 @@ import {
 import { db } from '@/firebase/db';
 
 import { BaseModel } from '../base-model';
-import { converter } from '../converter';
+import { baseModelConverter } from '../converter';
 
 export const collection = <T extends BaseModel>(
   path: string,
   ...constraints: QueryConstraint[]
 ) => {
   const q = query(firestoreCollection(db, path), ...constraints).withConverter(
-    converter<T>()
+    baseModelConverter<T>()
   );
 
   return {
