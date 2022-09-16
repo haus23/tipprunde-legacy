@@ -10,7 +10,7 @@ import TextareaField from '@/components/form/textarea-field';
 import SelectField from '@/components/form/select-field';
 import { trimProps } from '@/utils/trim-props';
 import { classNames } from '@/utils/class-names';
-import { Ruleset } from '@/model/domain/ruleset';
+import { extraQuestionDescriptions, Ruleset } from '@/model/domain/ruleset';
 import { useRulesets } from '@/hooks/domain/use-rulesets';
 import { tipRuleDescriptions } from '@/model/domain/calculators/calculate-tip-result';
 import { matchRuleDescriptions } from '@/model/domain/calculators/calculate-match-results';
@@ -57,6 +57,10 @@ export default function RulesetsView() {
 
   async function saveRuleset(ruleset: Ruleset) {
     ruleset = trimProps(ruleset);
+    // Add default values
+    ruleset.extraQuestionRule ||
+      (ruleset.extraQuestionRule = extraQuestionDescriptions[0].name);
+
     if (ruleset.id === '') {
       await toast.promise(createRuleset(ruleset), {
         loading: 'Speichern',
@@ -172,6 +176,18 @@ export default function RulesetsView() {
                         onChange={onChange}
                         label="Rundenregel"
                         options={roundRuleDescriptions}
+                      />
+                    )}
+                  />
+                  <Controller
+                    control={control}
+                    name="extraQuestionRule"
+                    render={({ field: { value, onChange } }) => (
+                      <SelectField
+                        value={value || extraQuestionDescriptions[0].name}
+                        onChange={onChange}
+                        label="Zusatzfragen"
+                        options={extraQuestionDescriptions}
                       />
                     )}
                   />
