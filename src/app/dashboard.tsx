@@ -36,15 +36,15 @@ const items: {
   },
   {
     title: 'Neue Runde',
-    description: 'Lege eine neue (Monats-) Runde mit Spielansetzungen an',
+    description: 'Lege eine neue (Monats-) Runde an',
     icon: CalendarIcon,
     background: 'bg-green-500',
     route: './neue-runde',
     visible: () => true,
   },
   {
-    title: 'Neue Spielansetzungen',
-    description: 'Lege die neuen Ansetzungen einer Runde fest.',
+    title: 'Spielansetzungen',
+    description: 'Bearbeite die Ansetzungen einer Runde',
     icon: MegaphoneIcon,
     background: 'bg-blue-500',
     route: './spiele-anlegen',

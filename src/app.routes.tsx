@@ -12,6 +12,7 @@ import Login from './app/login';
 import Logout from './app/logout';
 import MatchesView from './app/matches';
 import ProfileView from './app/profile';
+import TipsView from './app/tips';
 
 const appRoutes: RouteObject[] = [
   {
@@ -21,6 +22,7 @@ const appRoutes: RouteObject[] = [
       { index: true, element: <Dashboard /> },
       { path: 'turnier', element: <ChampionshipView /> },
       { path: 'mitspieler', element: <ChampionshipPlayersView /> },
+      { path: 'tipps', element: <TipsView /> },
       { path: 'spiele', element: <MatchesView /> },
       { path: 'profil', element: <ProfileView /> },
       { path: 'domain/spieler', element: <PlayersView /> },

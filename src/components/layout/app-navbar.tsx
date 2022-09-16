@@ -6,6 +6,7 @@ import {
   FolderIcon,
   CalendarIcon,
   UserIcon,
+  PencilSquareIcon,
 } from '@heroicons/react/24/outline';
 
 import { useProfile } from '@/hooks/use-profile';
@@ -34,6 +35,12 @@ const navLinks: {
     to: './mitspieler',
     icon: UsersIcon,
     label: 'Mitspieler',
+    visible: () => true,
+  },
+  {
+    to: './tipps',
+    icon: PencilSquareIcon,
+    label: 'Tipps',
     visible: () => true,
   },
   {
