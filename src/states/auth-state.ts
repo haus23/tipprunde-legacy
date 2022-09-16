@@ -9,8 +9,8 @@ export const authState = atom<User | null>({
     ({ setSelf }) => {
       auth.onAuthStateChanged((user) => {
         if (user) {
-          const { email, displayName, photoURL } = user;
-          setSelf({ email, displayName, photoURL });
+          const { uid, email, displayName, photoURL } = user;
+          setSelf({ uid, email, displayName, photoURL });
         } else {
           setSelf(null);
         }
