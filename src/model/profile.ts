@@ -1,7 +1,7 @@
 import { BaseModel } from '@/firebase/db/base-model';
 import { User } from './user';
 
-export const ROLES = <const>['Admin', 'Manager', 'Player'];
+export const ROLES = <const>['Admin', 'Manager'];
 
 export type Role = typeof ROLES[number];
 
