@@ -148,7 +148,7 @@ export default function AppNavbar() {
           </div>
           <div className="ml-3">
             <p className="text-sm font-medium text-gray-700">
-              {profile.displayName ?? profile.email}
+              {profile.displayName || profile.email}
             </p>
             <div className="text-xs font-medium text-gray-500">
               <Link to="./profil" className="hover:text-gray-900">
