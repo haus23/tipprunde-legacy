@@ -19,13 +19,3 @@ export const baseModelConverter = <
       ...snapshot.data(),
     } as T),
 });
-
-export const plainConverter = <
-  T extends Record<string, any>
->(): FirestoreDataConverter<T> => ({
-  toFirestore: (modelObject: PartialWithFieldValue<T>): DocumentData => {
-    const doc = { ...modelObject };
-    return doc;
-  },
-  fromFirestore: (snapshot) => ({ ...snapshot.data() } as T),
-});

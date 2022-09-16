@@ -8,7 +8,7 @@ import {
 import { db } from '@/firebase/db';
 
 import { BaseModel } from '../base-model';
-import { baseModelConverter } from '../converter';
+import { baseModelConverter } from '../base-model-converter';
 import { SequenceModel } from '../sequence-model';
 
 /**

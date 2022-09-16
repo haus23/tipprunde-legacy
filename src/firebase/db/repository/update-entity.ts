@@ -2,7 +2,7 @@ import { doc, setDoc } from 'firebase/firestore';
 
 import { db } from '@/firebase/db';
 import { BaseModel } from '../base-model';
-import { baseModelConverter } from '../converter';
+import { baseModelConverter } from '../base-model-converter';
 
 export const updateEntity = async <T extends BaseModel>(
   path: string,
