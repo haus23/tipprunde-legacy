@@ -7,7 +7,7 @@ import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
 import AppCard from '@/components/layout/app-card';
 import TextareaField from '@/components/form/textarea-field';
-import SelectField from '@/components/form/select-field';
+import SelectField from '@/components/form/ruleset-select-field';
 import { trimProps } from '@/utils/trim-props';
 import { classNames } from '@/utils/class-names';
 import { extraQuestionDescriptions, Ruleset } from '@/model/domain/ruleset';
