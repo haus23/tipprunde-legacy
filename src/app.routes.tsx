@@ -7,7 +7,6 @@ import PlayersView from './app/domain/players';
 import RulesetsView from './app/domain/rulesets';
 import TeamsView from './app/domain/teams';
 import UsersView from './app/domain/users';
-import ErrorBoundary from './app/error-boundary';
 import Layout from './app/layout';
 import Login from './app/login';
 import Logout from './app/logout';
@@ -31,7 +30,6 @@ const appRoutes: RouteObject[] = [
       { path: 'domain/benutzer', element: <UsersView /> },
       { path: 'login', element: <Login /> },
       { path: 'logout', element: <Logout /> },
-      { errorElement: <ErrorBoundary /> },
     ],
   },
 ];
