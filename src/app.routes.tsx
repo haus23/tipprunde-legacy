@@ -6,6 +6,7 @@ import LeaguesView from './app/domain/leagues';
 import PlayersView from './app/domain/players';
 import RulesetsView from './app/domain/rulesets';
 import TeamsView from './app/domain/teams';
+import UsersView from './app/domain/users';
 import ErrorBoundary from './app/error-boundary';
 import Layout from './app/layout';
 import Login from './app/login';
@@ -27,6 +28,7 @@ const appRoutes: RouteObject[] = [
       { path: 'domain/teams', element: <TeamsView /> },
       { path: 'domain/ligen', element: <LeaguesView /> },
       { path: 'domain/regelwerke', element: <RulesetsView /> },
+      { path: 'domain/benutzer', element: <UsersView /> },
       { path: 'login', element: <Login /> },
       { path: 'logout', element: <Logout /> },
       { errorElement: <ErrorBoundary /> },

@@ -64,6 +64,10 @@ const domainLinks: {
     to: './domain/regelwerke',
     label: 'Regelwerke',
   },
+  {
+    to: './domain/benutzer',
+    label: 'Benutzer',
+  },
 ];
 
 export default function AppNavbar() {
