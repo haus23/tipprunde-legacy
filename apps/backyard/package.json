@@ -17,7 +17,8 @@
     "react-hot-toast": "^2.4.0",
     "react-router-dom": "^6.4.1",
     "recoil": "^0.7.5",
-    "slugify": "^1.6.5"
+    "slugify": "^1.6.5",
+    "ui": "workspace:*"
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.1.1",
