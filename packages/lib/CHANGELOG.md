@@ -1,5 +1,11 @@
 # lib
 
+## 0.0.3
+
+### Patch Changes
+
+- Fix tsconfig (include option).
+
 ## 0.0.2
 
 ### Patch Changes
