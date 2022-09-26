@@ -1,6 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import ChampionshipView from './app/championship';
 import ChampionshipPlayersView from './app/championship-players';
+import ChampionshipCreateView from './app/championship/create';
 import Dashboard from './app/dashboard';
 import LeaguesView from './app/domain/leagues';
 import PlayersView from './app/domain/players';
@@ -21,6 +22,7 @@ const appRoutes: RouteObject[] = [
     children: [
       { index: true, element: <Dashboard /> },
       { path: 'turnier', element: <ChampionshipView /> },
+      { path: 'neues-turnier', element: <ChampionshipCreateView /> },
       { path: 'mitspieler', element: <ChampionshipPlayersView /> },
       { path: 'tipps', element: <TipsView /> },
       { path: 'spiele', element: <MatchesView /> },
