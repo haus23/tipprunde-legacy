@@ -1,9 +1,10 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import appRoutes from './app.routes';
+const router = createBrowserRouter(appRoutes);
+
 function App() {
-  return (
-    <div className="min-h-full">
-      <h1 className="mx-4 py-4 text-3xl font-semibold">runde.tips</h1>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
