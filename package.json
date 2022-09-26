@@ -1,3 +1,10 @@
 {
-  "name": "runde.tips"
+  "name": "runde.tips",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev"
+  },
+  "devDependencies": {
+    "turbo": "^1.5.3"
+  }
 }

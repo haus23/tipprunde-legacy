@@ -6,3 +6,6 @@ dist/
 
 # Sensible data
 *.local
+
+# Turbo cache
+.turbo/
