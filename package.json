@@ -5,6 +5,7 @@
     "dev": "turbo run dev"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.24.4",
     "turbo": "^1.5.3"
   }
 }
