@@ -2,7 +2,8 @@ import { Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Toaster } from 'react-hot-toast';
-import SplashScreen from './components/splash-screen';
+
+import { SplashScreen } from 'ui';
 
 import appRoutes from './app.routes';
 const router = createBrowserRouter(appRoutes);
