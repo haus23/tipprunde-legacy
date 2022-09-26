@@ -1,5 +1,5 @@
 {
-  "name": "foh",
+  "name": "backyard",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

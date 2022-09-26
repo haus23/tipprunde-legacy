@@ -5,7 +5,7 @@ importers:
   .:
     specifiers: {}
 
-  apps/foh:
+  apps/backyard:
     specifiers:
       '@headlessui/react': ^1.7.2
       '@headlessui/tailwindcss': ^0.1.1
