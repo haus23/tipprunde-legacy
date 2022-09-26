@@ -1,5 +1,11 @@
 # foh
 
+## 0.0.4
+
+### Patch Changes
+
+- Add lib package.
+
 ## 0.0.3
 
 ### Patch Changes
