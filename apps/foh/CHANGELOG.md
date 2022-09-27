@@ -1,5 +1,13 @@
 # foh
 
+## 0.0.8
+
+### Patch Changes
+
+- Create the app layout with top navbar
+- Updated dependencies
+  - ui@0.0.1
+
 ## 0.0.7
 
 ### Patch Changes
