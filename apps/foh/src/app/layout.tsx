@@ -1,14 +1,29 @@
 import { Fragment } from 'react';
-import { Link, Outlet } from '@tanstack/react-location';
+import { Link, LoaderFn, Outlet } from '@tanstack/react-location';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { AppTitle, classNames } from 'ui';
+import { LocationGenerics } from '@/app.routes';
+import { Championship, collection, filter, orderByDesc } from 'lib';
 
 const navigation = [
   { name: 'Tabelle', route: '/tabelle' },
   { name: 'Spieler', route: '/spieler' },
   { name: 'Spiele', route: '/spiele' },
 ];
+
+export const rootLoader: LoaderFn<LocationGenerics> = async () => {
+  const championships = await collection<Championship>(
+    'championships',
+    filter('published', '==', true),
+    orderByDesc('nr')
+  ).get();
+
+  return {
+    championships,
+    currentChampionship: championships.at(0) || null,
+  };
+};
 
 export default function Layout() {
   return (
