@@ -19,7 +19,7 @@ export const collection = <T extends BaseModel>(
   );
 
   return {
-    getAll: async () => {
+    get: async () => {
       const snapshot = await getDocs(q);
       return snapshot.docs.map((d) => d.data());
     },

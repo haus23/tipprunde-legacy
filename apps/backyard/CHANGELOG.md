@@ -1,5 +1,11 @@
 # backyard
 
+## 0.0.4
+
+### Patch Changes
+
+- Adjust tailwind config to parse ui lib as well.
+
 ## 0.0.3
 
 ### Patch Changes

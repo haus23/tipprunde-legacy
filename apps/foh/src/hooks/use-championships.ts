@@ -1,8 +1,7 @@
-import { championshipsState } from '@/state/championships';
-import { useRecoilValueLoadable } from 'recoil';
+import { championshipsState } from '@/state/championships-state';
+import { useAtomValue } from 'jotai';
 
 export function useChampionships() {
-  const championships = useRecoilValueLoadable(championshipsState);
-
+  const championships = useAtomValue(championshipsState);
   return { championships };
 }

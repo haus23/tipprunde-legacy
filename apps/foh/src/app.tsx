@@ -1,14 +1,18 @@
+import { Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
+import { Provider } from 'jotai';
+import { SplashScreen } from 'ui';
 
 import appRoutes from './app.routes';
 const router = createBrowserRouter(appRoutes);
 
 function App() {
   return (
-    <RecoilRoot>
-      <RouterProvider router={router} />
-    </RecoilRoot>
+    <Provider>
+      <Suspense fallback={<SplashScreen />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </Provider>
   );
 }
 
