@@ -1,5 +1,13 @@
 # foh
 
+## 0.0.9
+
+### Patch Changes
+
+- Add collection constraints.
+- Updated dependencies
+  - lib@0.0.5
+
 ## 0.0.8
 
 ### Patch Changes
