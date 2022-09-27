@@ -1,5 +1,14 @@
 # foh
 
+## 0.0.11
+
+### Patch Changes
+
+- Hide nav with no championship.
+- Handle wrong championshipId
+- Render an empty home page with no championship.
+- Update routing to match future archive routing.
+
 ## 0.0.10
 
 ### Patch Changes
