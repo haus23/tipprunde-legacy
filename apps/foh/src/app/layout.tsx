@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, Outlet } from '@tanstack/react-location';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { AppTitle, classNames } from 'ui';
@@ -14,32 +14,36 @@ export default function Layout() {
   return (
     <div className="min-h-full">
       <Disclosure as="nav" className="bg-white shadow-sm">
-        {({ open }) => (
+        {({ open, close }) => (
           <>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <div className="flex flex-shrink-0 items-center">
-                    <Disclosure.Button as={Link} to="/">
+                    <Link onClick={() => close()} to="/">
                       <AppTitle />
-                    </Disclosure.Button>
+                    </Link>
                   </div>
                   <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                     {navigation.map((item) => (
-                      <NavLink
+                      <Link
                         key={item.name}
                         to={item.route}
-                        className={({ isActive }) =>
-                          classNames(
-                            isActive
-                              ? 'border-indigo-500 text-gray-900'
-                              : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                            'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
-                          )
-                        }
+                        className="inline-flex pt-1 text-sm font-medium items-stretch"
                       >
-                        {item.name}
-                      </NavLink>
+                        {({ isActive }) => (
+                          <span
+                            className={classNames(
+                              isActive
+                                ? 'border-indigo-500 text-gray-900'
+                                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
+                              'inline-flex items-center px-2 border-b-2'
+                            )}
+                          >
+                            {item.name}
+                          </span>
+                        )}
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -58,20 +62,28 @@ export default function Layout() {
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 pt-2 pb-3">
                 {navigation.map((item) => (
-                  <Disclosure.Button as={Fragment} key={item.name}>
-                    <NavLink
+                  <Disclosure.Button
+                    as={Fragment}
+                    key={item.name}
+                    refName="_ref"
+                  >
+                    <Link
                       to={item.route}
-                      className={({ isActive }) =>
-                        classNames(
-                          isActive
-                            ? 'bg-indigo-50 border-indigo-500 text-indigo-700'
-                            : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800',
-                          'block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
-                        )
-                      }
+                      className="block  text-base font-medium"
                     >
-                      {item.name}
-                    </NavLink>
+                      {({ isActive }) => (
+                        <span
+                          className={classNames(
+                            isActive
+                              ? 'bg-indigo-50 border-indigo-500 text-indigo-700'
+                              : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800',
+                            'block pl-3 pr-4 py-2 border-l-4'
+                          )}
+                        >
+                          {item.name}
+                        </span>
+                      )}
+                    </Link>
                   </Disclosure.Button>
                 ))}
               </div>

@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import { Route } from '@tanstack/react-location';
 
 import Layout from '@/app/layout';
 
@@ -7,12 +7,11 @@ import PlayersPage from '@/app/players/page';
 import RankingPage from '@/app/ranking/page';
 import MatchesPage from '@/app/matches/page';
 
-const appRoutes: RouteObject[] = [
+const appRoutes: Route[] = [
   {
-    path: '/',
     element: <Layout />,
     children: [
-      { index: true, element: <HomePage /> },
+      { path: '/', element: <HomePage /> },
       { path: 'tabelle', element: <RankingPage /> },
       { path: 'spieler', element: <PlayersPage /> },
       { path: 'spiele', element: <MatchesPage /> },
