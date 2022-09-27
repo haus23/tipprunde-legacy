@@ -1,14 +1,17 @@
-import { useChampionships } from '@/hooks/use-championships';
+import { LocationGenerics } from '@/app.routes';
+import { useMatch } from '@tanstack/react-location';
 
 export default function HomePage() {
-  const { championships } = useChampionships();
+  const {
+    data: { currentChampionship },
+  } = useMatch<LocationGenerics>();
 
   return (
     <div>
       <header>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">
-            {championships[0].title}
+            {currentChampionship?.title}
           </h1>
         </div>
       </header>

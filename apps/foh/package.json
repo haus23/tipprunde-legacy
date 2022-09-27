@@ -1,6 +1,6 @@
 {
   "name": "foh",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
@@ -10,11 +10,10 @@
   "dependencies": {
     "@headlessui/react": "^1.7.2",
     "@heroicons/react": "^2.0.11",
-    "jotai": "^1.8.4",
+    "@tanstack/react-location": "^3.7.4",
     "lib": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.1",
     "ui": "workspace:*"
   },
   "devDependencies": {

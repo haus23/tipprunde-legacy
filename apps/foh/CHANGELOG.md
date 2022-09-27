@@ -1,5 +1,13 @@
 # foh
 
+## 0.0.10
+
+### Patch Changes
+
+- Swap out react-router for react-location.
+- Drop jotai and handle state with route loaders.
+- Adapt new react-location api.
+
 ## 0.0.9
 
 ### Patch Changes

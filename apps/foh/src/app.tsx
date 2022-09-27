@@ -1,19 +1,10 @@
-import { Suspense } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Provider } from 'jotai';
-import { SplashScreen } from 'ui';
+import { ReactLocation, Router } from '@tanstack/react-location';
+import { appRoutes, LocationGenerics } from './app.routes';
 
-import appRoutes from './app.routes';
-const router = createBrowserRouter(appRoutes);
+const location = new ReactLocation<LocationGenerics>();
 
 function App() {
-  return (
-    <Provider>
-      <Suspense fallback={<SplashScreen />}>
-        <RouterProvider router={router} />
-      </Suspense>
-    </Provider>
-  );
+  return <Router location={location} routes={appRoutes} />;
 }
 
 export default App;
