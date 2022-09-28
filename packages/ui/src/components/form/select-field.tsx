@@ -7,7 +7,7 @@ import {
   useController,
 } from 'react-hook-form';
 import { Listbox, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { classNames } from '../../utils/class-names';
 
 export type SelectFieldProps<
@@ -55,16 +55,14 @@ export function SelectField<
           </Listbox.Label>
           <div className="relative mt-1">
             <div className="inline-flex w-full rounded-md border border-gray-300 shadow-sm">
-              <Listbox.Button
-                as="div"
-                className="inline-flex divide-x w-full divide-gray-200 rounded-md shadow-sm"
-              >
-                <div className="inline-flex items-center w-full rounded-l-md border border-transparent py-2 pl-3 pr-4 shadow-sm">
-                  <p className="text-sm">{value}</p>
-                </div>
-                <button className="inline-flex items-center rounded-l-none rounded-r-md p-2 text-sm font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
-                  <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
-                </button>
+              <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+                <span className="block truncate">{value}</span>
+                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                  <ChevronUpDownIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                </span>
               </Listbox.Button>
             </div>
             <Transition
