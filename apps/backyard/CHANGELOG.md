@@ -1,5 +1,12 @@
 # backyard
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  - ui@0.0.3
+
 ## 0.0.7
 
 ### Patch Changes

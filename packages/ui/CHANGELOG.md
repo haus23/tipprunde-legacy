@@ -1,5 +1,11 @@
 # ui
 
+## 0.0.3
+
+### Patch Changes
+
+- Update deps (incl typo) and tsconfig.
+
 ## 0.0.2
 
 ### Patch Changes
