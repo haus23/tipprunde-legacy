@@ -1,5 +1,12 @@
 # foh
 
+## 0.0.12
+
+### Patch Changes
+
+- Add a championship switcher.
+- Add tailwind forms plugin.
+
 ## 0.0.11
 
 ### Patch Changes

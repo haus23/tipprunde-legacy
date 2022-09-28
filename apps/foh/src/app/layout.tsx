@@ -6,6 +6,7 @@ import { AppTitle, classNames } from 'ui';
 import { LocationGenerics } from '@/app.routes';
 import { Championship, collection, filter, orderByDesc } from 'lib';
 import ErrorPage from './error/page';
+import ChampionshipSwitcher from '@/components/championship-switcher';
 
 const navigation = [
   { name: 'Turnier', route: '.' },
@@ -42,7 +43,7 @@ export const rootLoader: LoaderFn<LocationGenerics> = async ({
 
 export default function Layout() {
   const {
-    data: { currentChampionship },
+    data: { championships, currentChampionship },
   } = useMatch<LocationGenerics>();
 
   return (
@@ -84,6 +85,9 @@ export default function Layout() {
                     </div>
                   )}
                 </div>
+                {championships && championships.length > 1 && (
+                  <ChampionshipSwitcher />
+                )}
                 {currentChampionship && (
                   <div className="-mr-2 flex items-center sm:hidden">
                     <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
