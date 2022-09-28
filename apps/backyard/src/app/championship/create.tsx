@@ -1,9 +1,17 @@
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, FieldValues, useForm } from 'react-hook-form';
 
 import { useRulesets } from '@/hooks/domain/use-rulesets';
 import { Championship } from '@/model/domain/championship';
 import TextField from '@/components/form/text-field';
-import SelectField from '@/components/form/ruleset-select-field';
+
+import { SelectField } from 'ui';
+
+type FormFelder = FieldValues & {
+  id: string;
+  title: string;
+  nr: number;
+  rulesetId: string;
+};
 
 export default function ChampionshipCreateView() {
   const { rulesets } = useRulesets();
@@ -15,9 +23,16 @@ export default function ChampionshipCreateView() {
     register,
     setValue,
     formState: { dirtyFields, errors },
-  } = useForm<Championship>();
+  } = useForm<FormFelder>({
+    defaultValues: {
+      id: '',
+      title: '',
+      nr: 1,
+      rulesetId: rulesets.at(-1)?.id,
+    },
+  });
 
-  function saveChampionship(championship: Championship) {}
+  function saveChampionship(championship: FormFelder) {}
 
   return (
     <div className="space-y-4">
@@ -34,17 +49,14 @@ export default function ChampionshipCreateView() {
                 min="1"
                 {...register('nr')}
               />
-              <Controller
+              <SelectField
+                label="Regelwerk"
                 control={control}
                 name="rulesetId"
-                render={({ field: { value, onChange } }) => (
-                  <SelectField
-                    value={value}
-                    onChange={onChange}
-                    label="Regelwerk"
-                    options={rulesets}
-                  />
-                )}
+                options={rulesets}
+                valueField="id"
+                displayField="name"
+                descriptionField="description"
               />
             </div>
           </form>

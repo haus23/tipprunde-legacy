@@ -1,5 +1,11 @@
 # ui
 
+## 0.0.4
+
+### Patch Changes
+
+- Create a new streamlined multi-purpose select-field
+
 ## 0.0.3
 
 ### Patch Changes
