@@ -40,8 +40,7 @@ describe(
       id: '',
       name: '',
       description: '',
-      tipRule:
-        'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt',
+      tipRule: 'DreiOderEinPunktJokerVerdoppelt',
       matchRule: 'KeineBesonderheiten',
       roundRule: 'KeineBesonderheiten',
     };
@@ -131,8 +130,7 @@ describe(
       id: '',
       name: '',
       description: '',
-      tipRule:
-        'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt',
+      tipRule: 'DreiOderEinPunktJokerVerdoppelt',
       matchRule: 'AlleinigerTrefferGibtDreiPunkte',
       roundRule: 'KeineBesonderheiten',
     };

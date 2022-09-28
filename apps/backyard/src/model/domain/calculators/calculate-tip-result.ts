@@ -1,19 +1,19 @@
 import { Tip } from '../tip';
 
 export type TipRule =
-  | 'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt'
-  | 'KorrekterAusgangGibtEinenPunktKorrekteTordifferenzZweiGenauerTrefferDreiJokerVerdoppelt';
+  | 'DreiOderEinPunktJokerVerdoppelt'
+  | 'DreiZweiOderEinPunktJokerVerdoppelt';
 
 export const tipRuleDescriptions: { name: TipRule; description: string }[] = [
   {
-    name: 'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt',
+    name: 'DreiOderEinPunktJokerVerdoppelt',
     description: `
       Für einen genauen Tipp gibt es drei Punkte, für den richtigen Spielausgang einen Punkt.
       Ein Joker verdoppelt die Punktzahl.
     `,
   },
   {
-    name: 'KorrekterAusgangGibtEinenPunktKorrekteTordifferenzZweiGenauerTrefferDreiJokerVerdoppelt',
+    name: 'DreiZweiOderEinPunktJokerVerdoppelt',
     description: `
       Für einen genauen Tipp gibt es drei Punkte. Bei einem Unentschieden bringt jedes andere
       Unentschieden zwei Punkte, bei anderen Spielausgängen gibt es zwei Punkte bei korrekter
@@ -66,12 +66,12 @@ export function calculateTipResult(
     const resultDiff = resultGoals[0] - resultGoals[1];
 
     switch (rule) {
-      case 'KorrekterAusgangGibtEinenPunktGenauerTrefferDreiJokerVerdoppelt':
+      case 'DreiOderEinPunktJokerVerdoppelt':
         if (tipToto === resultToto) {
           points = 1;
         }
         break;
-      case 'KorrekterAusgangGibtEinenPunktKorrekteTordifferenzZweiGenauerTrefferDreiJokerVerdoppelt':
+      case 'DreiZweiOderEinPunktJokerVerdoppelt':
         if (tipToto === resultToto) {
           points = 1;
           if (tipDiff === resultDiff) {

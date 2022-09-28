@@ -18,7 +18,7 @@ export const matchRuleDescriptions: { name: MatchRule; description: string }[] =
     {
       name: 'AlleinigerTrefferGibtDreiPunkte',
       description: `
-      Falls ein Spieler als einziger für ein Spiel Punkte erhält bekommt er drei zusätzliche Punkte.
+      Falls ein Spieler als einziger für ein Spiel Punkte erhält, bekommt er drei zusätzliche Punkte.
     `,
     },
   ];
