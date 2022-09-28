@@ -1,5 +1,13 @@
 # foh
 
+## 0.0.13
+
+### Patch Changes
+
+- Small layout changes for mobile devices.
+- Updated dependencies
+  - ui@0.0.2
+
 ## 0.0.12
 
 ### Patch Changes

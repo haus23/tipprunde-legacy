@@ -53,7 +53,7 @@ export default function ChampionshipSwitcher() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="flex gap-x-2 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="flex sm:gap-x-2 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
           <span>Turnier</span>
