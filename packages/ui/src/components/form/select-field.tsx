@@ -12,7 +12,7 @@ import { classNames } from '../../utils/class-names';
 
 export type SelectFieldProps<
   T extends FieldValues,
-  TPath extends FieldPathByValue<T, Date>,
+  TPath extends FieldPathByValue<T, string>,
   TOption extends Record<string, unknown>
 > = {
   label: string;
@@ -26,7 +26,7 @@ export type SelectFieldProps<
 
 export function SelectField<
   T extends FieldValues,
-  TPath extends FieldPathByValue<T, Date>,
+  TPath extends FieldPathByValue<T, string>,
   TOption extends Record<string, any>
 >({
   label,
