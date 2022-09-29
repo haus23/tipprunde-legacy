@@ -54,9 +54,6 @@ export default function ChampionshipCreateView() {
                 control={control}
                 name="rulesetId"
                 options={rulesets}
-                valueField="id"
-                displayField="name"
-                descriptionField="description"
               />
             </div>
           </form>

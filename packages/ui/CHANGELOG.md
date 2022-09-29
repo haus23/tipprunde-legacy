@@ -1,5 +1,11 @@
 # ui
 
+## 0.0.7
+
+### Patch Changes
+
+- Simplify select-field with default prop values.
+
 ## 0.0.6
 
 ### Patch Changes
@@ -10,7 +16,7 @@
 
 ### Patch Changes
 
-- Update focus on select field.
+- Update focus styling on select field.
 
 ## 0.0.4
 

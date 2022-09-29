@@ -10,6 +10,10 @@ import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { classNames } from '../../utils/class-names';
 
+type SelectFieldOption = Record<string, unknown> & {
+  id?: string;
+};
+
 export type SelectFieldProps<
   T extends FieldValues,
   TPath extends FieldPathByValue<T, string>,
@@ -19,9 +23,9 @@ export type SelectFieldProps<
   control: Control<T>;
   name: TPath;
   options: TOption[];
-  valueField: Path<TOption>;
-  displayField: Path<TOption>;
-  descriptionField?: Path<TOption>;
+  valueField?: keyof TOption;
+  displayField?: keyof TOption;
+  descriptionField?: keyof TOption;
 };
 
 export function SelectField<
@@ -33,9 +37,9 @@ export function SelectField<
   control,
   name,
   options,
-  valueField,
-  displayField,
-  descriptionField,
+  valueField = 'id',
+  displayField = 'name',
+  descriptionField = 'description',
 }: SelectFieldProps<T, TPath, TOption>) {
   const {
     field: { value, onChange },
@@ -105,7 +109,7 @@ export function SelectField<
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
                           </span>
                         ) : null}
-                        {descriptionField && (
+                        {descriptionField && option[descriptionField] && (
                           <p
                             className={classNames(
                               active

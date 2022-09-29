@@ -1,10 +1,10 @@
 import Button from '@/components/button';
-import SimpleSelectField from '@/components/form/simple-select-field';
 import TextField from '@/components/form/text-field';
 import { useProfile } from '@/hooks/use-profile';
 import { Profile, ROLES } from '@/model/profile';
 import { notify } from '@/utils/notify';
 import { useForm, Controller } from 'react-hook-form';
+import { SelectField } from 'ui';
 
 export default function ProfileView() {
   /* TODO: disable or remove role editing here! */
@@ -16,6 +16,8 @@ export default function ProfileView() {
     register,
     formState: { isDirty, dirtyFields, errors },
   } = useForm<Profile>({ defaultValues: profile });
+
+  const roleOptions = ROLES.map((role) => ({ id: role, name: role }));
 
   async function saveProfile(profile: Profile) {
     if (dirtyFields.displayName) {
@@ -56,17 +58,11 @@ export default function ProfileView() {
                   },
                 })}
               />
-              <Controller
+              <SelectField
+                label="Rolle"
                 control={control}
                 name="role"
-                render={({ field: { value, onChange } }) => (
-                  <SimpleSelectField
-                    value={value}
-                    onChange={onChange}
-                    label="Rolle"
-                    options={ROLES}
-                  />
-                )}
+                options={roleOptions}
               />
             </div>
             <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">

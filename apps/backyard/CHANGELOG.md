@@ -1,5 +1,13 @@
 # backyard
 
+## 0.0.12
+
+### Patch Changes
+
+- Simplify select-field with default prop values.
+- Updated dependencies
+  - ui@0.0.7
+
 ## 0.0.11
 
 ### Patch Changes
