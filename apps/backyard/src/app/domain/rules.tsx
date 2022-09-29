@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 
@@ -17,7 +17,7 @@ import AppCard from '@/components/layout/app-card';
 import TextareaField from '@/components/form/textarea-field';
 import { trimProps } from '@/utils/trim-props';
 import { classNames } from '@/utils/class-names';
-import { useRulesets } from '@/hooks/domain/use-rulesets';
+import { useRules } from '@/hooks/domain/use-rules';
 import { slug } from '@/utils/slug';
 import { SelectField } from 'ui';
 
@@ -31,7 +31,7 @@ const initialFormState: ChampionshipRules = {
   extraQuestionRuleId: extraQuestionRuleDescriptions[0].id,
 };
 
-export default function RulesetsView() {
+export default function RulesView() {
   const {
     control,
     getValues,
@@ -44,7 +44,7 @@ export default function RulesetsView() {
     defaultValues: initialFormState,
   });
 
-  const { rulesets, createRuleset, updateRuleset } = useRulesets();
+  const { rules, createRules, updateRules } = useRules();
   const [isFormOpen, setFormOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
@@ -60,17 +60,17 @@ export default function RulesetsView() {
     setFormOpen(false);
   }
 
-  async function saveRuleset(rules: ChampionshipRules) {
+  async function saveRules(rules: ChampionshipRules) {
     rules = trimProps(rules);
 
     if (!editMode) {
-      await toast.promise(createRuleset(rules), {
+      await toast.promise(createRules(rules), {
         loading: 'Speichern',
         success: `${rules.name} angelegt.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
     } else {
-      await toast.promise(updateRuleset(rules), {
+      await toast.promise(updateRules(rules), {
         loading: 'Speichern',
         success: `${rules.name} geändert.`,
         error: 'Hopply, das hat nicht geklappt.',
@@ -105,7 +105,7 @@ export default function RulesetsView() {
           </button>
           {isFormOpen && (
             <div>
-              <form noValidate onSubmit={handleSubmit(saveRuleset)}>
+              <form noValidate onSubmit={handleSubmit(saveRules)}>
                 <div className="space-y-4 p-4">
                   <TextField
                     autoFocus
@@ -118,7 +118,7 @@ export default function RulesetsView() {
                       validate: {
                         uniqueName: (name) =>
                           editMode ||
-                          !rulesets.some((ruleset) => ruleset.name === name) ||
+                          !rules.some((rules) => rules.name === name) ||
                           'Regelwerk mit diesem Namen ist schon angelegt.',
                       },
                     })}
@@ -133,7 +133,7 @@ export default function RulesetsView() {
                       validate: {
                         uniqueId: (id) =>
                           editMode ||
-                          !rulesets.some((ruleset) => ruleset.id === id) ||
+                          !rules.some((rules) => rules.id === id) ||
                           'Regelwerk mit dieser Kennung ist schon angelegt.',
                       },
                     })}
@@ -204,16 +204,16 @@ export default function RulesetsView() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white pr-1">
-              {rulesets.map((ruleset) => (
-                <tr key={ruleset.id}>
+              {rules.map((rules) => (
+                <tr key={rules.id}>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                    {ruleset.name}
+                    {rules.name}
                   </td>
                   <td className="hidden sm:table-cell text-ellipsis px-3 py-4 text-sm text-gray-500">
-                    {ruleset.description}
+                    {rules.description}
                   </td>
                   <td className="text-right pr-3">
-                    <Button onClick={() => beginEdit(ruleset)}>
+                    <Button onClick={() => beginEdit(rules)}>
                       <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
                     </Button>
                   </td>

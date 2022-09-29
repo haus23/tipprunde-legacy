@@ -5,7 +5,7 @@ import ChampionshipCreateView from './app/championship/create';
 import Dashboard from './app/dashboard';
 import LeaguesView from './app/domain/leagues';
 import PlayersView from './app/domain/players';
-import RulesetsView from './app/domain/rulesets';
+import RulesView from './app/domain/rules';
 import TeamsView from './app/domain/teams';
 import UsersView from './app/domain/users';
 import Layout from './app/layout';
@@ -30,7 +30,7 @@ const appRoutes: RouteObject[] = [
       { path: 'domain/spieler', element: <PlayersView /> },
       { path: 'domain/teams', element: <TeamsView /> },
       { path: 'domain/ligen', element: <LeaguesView /> },
-      { path: 'domain/regelwerke', element: <RulesetsView /> },
+      { path: 'domain/regelwerke', element: <RulesView /> },
       { path: 'domain/benutzer', element: <UsersView /> },
       { path: 'login', element: <Login /> },
       { path: 'logout', element: <Logout /> },

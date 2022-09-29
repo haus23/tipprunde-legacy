@@ -1,5 +1,11 @@
 # lib
 
+## 0.0.9
+
+### Patch Changes
+
+- Change wording: ruleset -> rules
+
 ## 0.0.8
 
 ### Patch Changes

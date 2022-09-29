@@ -34,13 +34,14 @@ const tipStrings = ['2:1', '3:1', '4:1', '2:2', '0:3', '5:0', '3:2'];
 describe(
   'Spielberechnung nach Regeln: ' + matchRuleDescriptions[0].name,
   () => {
-    const ruleset: ChampionshipRules = {
+    const rules: ChampionshipRules = {
       id: '',
       name: '',
       description: '',
       tipRuleId: 'drei-oder-ein-punkt-joker-verdoppelt',
       matchRuleId: 'keine-besonderheiten',
       roundRuleId: 'keine-besonderheiten',
+      extraQuestionRuleId: 'keine-zusatzfragen',
     };
 
     test('Berechnung summiert korrekt die erzielten Punkte', () => {
@@ -63,7 +64,7 @@ describe(
       const { match: calculatedMatch } = calculateMatchResults(
         match,
         tips,
-        ruleset
+        rules
       );
       expect(calculatedMatch.points).toBe(7);
       expect(calculatedMatch).not.toBe(match);
@@ -89,7 +90,7 @@ describe(
       const { match: calculatedMatch } = calculateMatchResults(
         match,
         tips,
-        ruleset
+        rules
       );
       expect(calculatedMatch.points).toBe(7);
       expect(calculatedMatch).toBe(match);
@@ -113,7 +114,7 @@ describe(
         date: Timestamp.fromDate(new Date()),
       };
       const { match: calculatedMatch, tips: updatedTips } =
-        calculateMatchResults(match, tips, ruleset);
+        calculateMatchResults(match, tips, rules);
       expect(calculatedMatch.points).toBe(1);
       expect(calculatedMatch).toBe(match);
       expect(updatedTips[4].points).toBe(1);
@@ -124,13 +125,14 @@ describe(
 describe(
   'Spielberechnung nach Regeln: ' + matchRuleDescriptions[1].name,
   () => {
-    const ruleset: ChampionshipRules = {
+    const rules: ChampionshipRules = {
       id: '',
       name: '',
       description: '',
       tipRuleId: 'drei-oder-ein-punkt-joker-verdoppelt',
       matchRuleId: 'alleiniger-treffer-drei-punkte',
       roundRuleId: 'keine-besonderheiten',
+      extraQuestionRuleId: 'keine-zusatzfragen',
     };
 
     test('Berechnung summiert korrekt die erzielten Punkte', () => {
@@ -153,7 +155,7 @@ describe(
       const { match: calculatedMatch } = calculateMatchResults(
         match,
         tips,
-        ruleset
+        rules
       );
       expect(calculatedMatch.points).toBe(7);
       expect(calculatedMatch).not.toBe(match);
@@ -178,7 +180,7 @@ describe(
       const { match: calculatedMatch } = calculateMatchResults(
         match,
         tips,
-        ruleset
+        rules
       );
       expect(calculatedMatch.points).toBe(7);
       expect(calculatedMatch).toBe(match);
@@ -202,7 +204,7 @@ describe(
         date: Timestamp.fromDate(new Date()),
       };
       const { match: calculatedMatch, tips: updatedTips } =
-        calculateMatchResults(match, tips, ruleset);
+        calculateMatchResults(match, tips, rules);
       expect(calculatedMatch.points).toBe(5);
       expect(calculatedMatch).not.toBe(match);
       expect(updatedTips[4].points).toBe(5);

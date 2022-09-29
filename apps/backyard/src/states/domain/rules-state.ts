@@ -1,8 +1,8 @@
 import { atom } from 'recoil';
 import { ChampionshipRules, collection } from 'lib';
 
-export const rulesetsState = atom<ChampionshipRules[]>({
-  key: 'rulesetsState',
+export const rulesState = atom<ChampionshipRules[]>({
+  key: 'rulesState',
   effects: [
     ({ setSelf }) => collection<ChampionshipRules>('rules').subscribe(setSelf),
   ],

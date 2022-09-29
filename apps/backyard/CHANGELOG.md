@@ -1,5 +1,13 @@
 # backyard
 
+## 0.0.16
+
+### Patch Changes
+
+- Change wording: ruleset -> rules
+- Updated dependencies
+  - lib@0.0.9
+
 ## 0.0.15
 
 ### Patch Changes
@@ -69,7 +77,7 @@
 
 ### Patch Changes
 
-- Simplify ruleset names.
+- Simplify rule names.
   - ui@0.0.2
 
 ## 0.0.6
