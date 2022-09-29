@@ -1,5 +1,11 @@
 # backyard
 
+## 0.0.17
+
+### Patch Changes
+
+- Fix for issue #8: crash if no user profile for firebase user.
+
 ## 0.0.16
 
 ### Patch Changes
