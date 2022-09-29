@@ -1,27 +1,5 @@
-import { Tip } from '../tip';
-
-export type TipRule =
-  | 'DreiOderEinPunktJokerVerdoppelt'
-  | 'DreiZweiOderEinPunktJokerVerdoppelt';
-
-export const tipRuleDescriptions: { name: TipRule; description: string }[] = [
-  {
-    name: 'DreiOderEinPunktJokerVerdoppelt',
-    description: `
-      Für einen genauen Tipp gibt es drei Punkte, für den richtigen Spielausgang einen Punkt.
-      Ein Joker verdoppelt die Punktzahl.
-    `,
-  },
-  {
-    name: 'DreiZweiOderEinPunktJokerVerdoppelt',
-    description: `
-      Für einen genauen Tipp gibt es drei Punkte. Bei einem Unentschieden bringt jedes andere
-      Unentschieden zwei Punkte, bei anderen Spielausgängen gibt es zwei Punkte bei korrekter
-      Tordifferenz. Ansonsten einen Punkt für den richtigen Spielausgang. Ein Joker verdoppelt
-      die Punktzahl.
-    `,
-  },
-];
+import { TipRuleId } from '../model/rules/tip-rule';
+import { Tip } from '../model/tip';
 
 function toGoalTuple(result: string) {
   const goals = result.split(':');
@@ -39,7 +17,7 @@ function toTotoResult(goals: number[]) {
 export function calculateTipResult(
   tip: Tip,
   result: string,
-  rule: TipRule
+  ruleId: TipRuleId
 ): Tip {
   // Remove all extra flags if any
   if (typeof tip.lonelyHit !== 'undefined') {
@@ -65,13 +43,13 @@ export function calculateTipResult(
     const tipDiff = tipGoals[0] - tipGoals[1];
     const resultDiff = resultGoals[0] - resultGoals[1];
 
-    switch (rule) {
-      case 'DreiOderEinPunktJokerVerdoppelt':
+    switch (ruleId) {
+      case 'drei-oder-ein-punkt-joker-verdoppelt':
         if (tipToto === resultToto) {
           points = 1;
         }
         break;
-      case 'DreiZweiOderEinPunktJokerVerdoppelt':
+      case 'drei-zwei-oder-ein-punkt-joker-verdoppelt':
         if (tipToto === resultToto) {
           points = 1;
           if (tipDiff === resultDiff) {

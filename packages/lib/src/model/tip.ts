@@ -1,4 +1,4 @@
-import { BaseModel } from '@/firebase/db/base-model';
+import { BaseModel } from './base/model';
 
 export interface Tip extends BaseModel {
   playerId: string;

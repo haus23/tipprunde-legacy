@@ -1,11 +1,9 @@
 import { atom } from 'recoil';
+import { ChampionshipRules, collection } from 'lib';
 
-import { collection } from '@/firebase/db/repository/collection';
-import { Ruleset } from '@/model/domain/ruleset';
-
-export const rulesetsState = atom<Ruleset[]>({
+export const rulesetsState = atom<ChampionshipRules[]>({
   key: 'rulesetsState',
   effects: [
-    ({ setSelf }) => collection<Ruleset>('rulesets').subscribe(setSelf),
+    ({ setSelf }) => collection<ChampionshipRules>('rules').subscribe(setSelf),
   ],
 });

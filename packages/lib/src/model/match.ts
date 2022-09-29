@@ -1,5 +1,5 @@
 import { Timestamp } from 'firebase/firestore';
-import { BaseModel } from '@/firebase/db/base-model';
+import { BaseModel } from './base/model';
 
 export interface Match extends BaseModel {
   roundId: string;

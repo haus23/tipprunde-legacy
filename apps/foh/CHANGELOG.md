@@ -1,5 +1,32 @@
 # foh
 
+## 0.0.21
+
+### Patch Changes
+
+- Updated dependencies
+  - lib@0.0.8
+
+## 0.0.20
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+  - lib@0.0.7
+
+## 0.0.19
+
+### Patch Changes
+
+- Updated dependencies
+  - lib@0.0.6
+
 ## 0.0.18
 
 ### Patch Changes

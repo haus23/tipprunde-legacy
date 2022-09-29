@@ -1,16 +1,15 @@
 import { useRecoilValue } from 'recoil';
-import { createEntity } from '@/firebase/db/repository/create-entity';
-import { updateEntity } from '@/firebase/db/repository/update-entity';
-import { Ruleset } from '@/model/domain/ruleset';
 import { rulesetsState } from '@/states/domain/rulesets-state';
+import { ChampionshipRules, createEntity, updateEntity } from 'lib';
 
 export function useRulesets() {
   const rulesets = useRecoilValue(rulesetsState);
 
-  const createRuleset = (ruleset: Ruleset) =>
-    createEntity<Ruleset>('rulesets', ruleset);
+  const createRuleset = (ruleset: ChampionshipRules) =>
+    createEntity<ChampionshipRules>('rules', ruleset);
 
-  const updateRuleset = (ruleset: Ruleset) => updateEntity('rulesets', ruleset);
+  const updateRuleset = (ruleset: ChampionshipRules) =>
+    updateEntity('rules', ruleset);
 
   return { rulesets, createRuleset, updateRuleset };
 }

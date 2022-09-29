@@ -1,12 +1,10 @@
-import { Match } from '@/model/domain/match';
 import { Timestamp } from 'firebase/firestore';
 import { describe, expect, test } from 'vitest';
-import { Ruleset } from '../ruleset';
-import { Tip } from '../tip';
-import {
-  calculateMatchResults,
-  matchRuleDescriptions,
-} from './calculate-match-results';
+import { ChampionshipRules } from '../model/championchip-rules';
+import { Match } from '../model/match';
+import { matchRuleDescriptions } from '../model/rules/match-rule';
+import { Tip } from '../model/tip';
+import { calculateMatchResults } from './calculate-match-results';
 
 // Passing in an unreal points value in order to test object identity
 function makeTipMock(
@@ -36,13 +34,13 @@ const tipStrings = ['2:1', '3:1', '4:1', '2:2', '0:3', '5:0', '3:2'];
 describe(
   'Spielberechnung nach Regeln: ' + matchRuleDescriptions[0].name,
   () => {
-    const ruleset: Ruleset = {
+    const ruleset: ChampionshipRules = {
       id: '',
       name: '',
       description: '',
-      tipRule: 'DreiOderEinPunktJokerVerdoppelt',
-      matchRule: 'KeineBesonderheiten',
-      roundRule: 'KeineBesonderheiten',
+      tipRuleId: 'drei-oder-ein-punkt-joker-verdoppelt',
+      matchRuleId: 'keine-besonderheiten',
+      roundRuleId: 'keine-besonderheiten',
     };
 
     test('Berechnung summiert korrekt die erzielten Punkte', () => {
@@ -126,13 +124,13 @@ describe(
 describe(
   'Spielberechnung nach Regeln: ' + matchRuleDescriptions[1].name,
   () => {
-    const ruleset: Ruleset = {
+    const ruleset: ChampionshipRules = {
       id: '',
       name: '',
       description: '',
-      tipRule: 'DreiOderEinPunktJokerVerdoppelt',
-      matchRule: 'AlleinigerTrefferGibtDreiPunkte',
-      roundRule: 'KeineBesonderheiten',
+      tipRuleId: 'drei-oder-ein-punkt-joker-verdoppelt',
+      matchRuleId: 'alleiniger-treffer-drei-punkte',
+      roundRuleId: 'keine-besonderheiten',
     };
 
     test('Berechnung summiert korrekt die erzielten Punkte', () => {

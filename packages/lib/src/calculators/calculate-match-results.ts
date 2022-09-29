@@ -1,40 +1,20 @@
-import { Match } from '@/model/domain/match';
-import { Ruleset } from '../ruleset';
-import { Tip } from '../tip';
+import { ChampionshipRules } from '../model/championchip-rules';
+import { Match } from '../model/match';
+import { Tip } from '../model/tip';
 import { calculateTipResult } from './calculate-tip-result';
-
-export type MatchRule =
-  | 'KeineBesonderheiten'
-  | 'AlleinigerTrefferGibtDreiPunkte';
-
-export const matchRuleDescriptions: { name: MatchRule; description: string }[] =
-  [
-    {
-      name: 'KeineBesonderheiten',
-      description: `
-      Es gibt keine Sonderregeln für einzelne Spiele.
-    `,
-    },
-    {
-      name: 'AlleinigerTrefferGibtDreiPunkte',
-      description: `
-      Falls ein Spieler als einziger für ein Spiel Punkte erhält, bekommt er drei zusätzliche Punkte.
-    `,
-    },
-  ];
 
 export function calculateMatchResults(
   match: Match,
   tips: Tip[],
-  ruleset: Ruleset
+  rules: ChampionshipRules
 ): { match: Match; tips: Tip[] } {
-  tips = tips.map((t) => calculateTipResult(t, match.result, ruleset.tipRule));
+  tips = tips.map((t) => calculateTipResult(t, match.result, rules.tipRuleId));
 
   const tipsWithPoints = tips.filter((t) => t.points > 0);
   let totalPoints = tipsWithPoints.reduce((sum, t) => sum + t.points, 0);
 
-  switch (ruleset.matchRule) {
-    case 'AlleinigerTrefferGibtDreiPunkte':
+  switch (rules.matchRuleId) {
+    case 'alleiniger-treffer-drei-punkte':
       if (tipsWithPoints.length === 1) {
         const correctTip = tipsWithPoints[0];
         tips = tips.map((t) =>

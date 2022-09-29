@@ -1,9 +1,9 @@
 import { BaseModel } from './base/model';
 
 export interface Championship extends BaseModel {
-  title: string;
+  name: string;
   nr: number;
-  rulesetId: string;
+  rulesId: string;
   published: boolean;
   completed: boolean;
 }

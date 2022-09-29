@@ -3,27 +3,32 @@ import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 
+import {
+  ChampionshipRules,
+  extraQuestionRuleDescriptions,
+  matchRuleDescriptions,
+  roundRuleDescriptions,
+  tipRuleDescriptions,
+} from 'lib';
+
 import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
 import AppCard from '@/components/layout/app-card';
 import TextareaField from '@/components/form/textarea-field';
-import SelectField from '@/components/form/ruleset-select-field';
 import { trimProps } from '@/utils/trim-props';
 import { classNames } from '@/utils/class-names';
-import { extraQuestionDescriptions, Ruleset } from '@/model/domain/ruleset';
 import { useRulesets } from '@/hooks/domain/use-rulesets';
-import { tipRuleDescriptions } from '@/model/domain/calculators/calculate-tip-result';
-import { matchRuleDescriptions } from '@/model/domain/calculators/calculate-match-results';
-import { roundRuleDescriptions } from '@/model/domain/calculators/calculate-round-results';
 import { slug } from '@/utils/slug';
+import { SelectField } from 'ui';
 
-const initialFormState: Ruleset = {
+const initialFormState: ChampionshipRules = {
   id: '',
   name: '',
   description: '',
-  tipRule: tipRuleDescriptions[0].name,
-  matchRule: matchRuleDescriptions[0].name,
-  roundRule: roundRuleDescriptions[0].name,
+  tipRuleId: tipRuleDescriptions[0].id,
+  matchRuleId: matchRuleDescriptions[0].id,
+  roundRuleId: roundRuleDescriptions[0].id,
+  extraQuestionRuleId: extraQuestionRuleDescriptions[0].id,
 };
 
 export default function RulesetsView() {
@@ -35,7 +40,7 @@ export default function RulesetsView() {
     reset,
     setValue,
     formState: { dirtyFields, errors },
-  } = useForm<Ruleset>({
+  } = useForm<ChampionshipRules>({
     defaultValues: initialFormState,
   });
 
@@ -43,8 +48,8 @@ export default function RulesetsView() {
   const [isFormOpen, setFormOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
-  function beginEdit(ruleset: Ruleset) {
-    reset(ruleset);
+  function beginEdit(rules: ChampionshipRules) {
+    reset(rules);
     setEditMode(true);
     setFormOpen(true);
   }
@@ -55,22 +60,19 @@ export default function RulesetsView() {
     setFormOpen(false);
   }
 
-  async function saveRuleset(ruleset: Ruleset) {
-    ruleset = trimProps(ruleset);
-    // Add default values
-    ruleset.extraQuestionRule ||
-      (ruleset.extraQuestionRule = extraQuestionDescriptions[0].name);
+  async function saveRuleset(rules: ChampionshipRules) {
+    rules = trimProps(rules);
 
-    if (ruleset.id === '') {
-      await toast.promise(createRuleset(ruleset), {
+    if (!editMode) {
+      await toast.promise(createRuleset(rules), {
         loading: 'Speichern',
-        success: `${ruleset.name} angelegt.`,
+        success: `${rules.name} angelegt.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
     } else {
-      await toast.promise(updateRuleset(ruleset), {
+      await toast.promise(updateRuleset(rules), {
         loading: 'Speichern',
-        success: `${ruleset.name} geändert.`,
+        success: `${rules.name} geändert.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
     }
@@ -143,53 +145,29 @@ export default function RulesetsView() {
                     error={errors.description?.message}
                     {...register('description', { required: true })}
                   />
-                  <Controller
+                  <SelectField
+                    label="Tippregel"
                     control={control}
-                    name="tipRule"
-                    render={({ field: { value, onChange } }) => (
-                      <SelectField
-                        value={value}
-                        onChange={onChange}
-                        label="Tippregel"
-                        options={tipRuleDescriptions}
-                      />
-                    )}
+                    name="tipRuleId"
+                    options={tipRuleDescriptions}
                   />
-                  <Controller
+                  <SelectField
                     control={control}
-                    name="matchRule"
-                    render={({ field: { value, onChange } }) => (
-                      <SelectField
-                        value={value}
-                        onChange={onChange}
-                        label="Spielregel"
-                        options={matchRuleDescriptions}
-                      />
-                    )}
+                    name="matchRuleId"
+                    label="Spielregel"
+                    options={matchRuleDescriptions}
                   />
-                  <Controller
+                  <SelectField
                     control={control}
-                    name="roundRule"
-                    render={({ field: { value, onChange } }) => (
-                      <SelectField
-                        value={value}
-                        onChange={onChange}
-                        label="Rundenregel"
-                        options={roundRuleDescriptions}
-                      />
-                    )}
+                    name="roundRuleId"
+                    label="Rundenregel"
+                    options={roundRuleDescriptions}
                   />
-                  <Controller
+                  <SelectField
                     control={control}
-                    name="extraQuestionRule"
-                    render={({ field: { value, onChange } }) => (
-                      <SelectField
-                        value={value || extraQuestionDescriptions[0].name}
-                        onChange={onChange}
-                        label="Zusatzfragen"
-                        options={extraQuestionDescriptions}
-                      />
-                    )}
+                    name="extraQuestionRuleId"
+                    label="Zusatzfragen"
+                    options={extraQuestionRuleDescriptions}
                   />
                 </div>
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
