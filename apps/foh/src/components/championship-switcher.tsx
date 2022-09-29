@@ -38,7 +38,7 @@ export default function ChampionshipSwitcher() {
     query === ''
       ? []
       : championships?.filter((championship) => {
-          return championship.title.toLowerCase().includes(query.toLowerCase());
+          return championship.name.toLowerCase().includes(query.toLowerCase());
         }) || [];
 
   function switchChampionship(championship: Championship) {
@@ -112,7 +112,7 @@ export default function ChampionshipSwitcher() {
                             )
                           }
                         >
-                          {championship.title}
+                          {championship.name}
                         </Combobox.Option>
                       ))}
                     </Combobox.Options>

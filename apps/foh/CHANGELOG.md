@@ -1,5 +1,11 @@
 # foh
 
+## 0.0.22
+
+### Patch Changes
+
+- Fix: update changed property name.
+
 ## 0.0.21
 
 ### Patch Changes
