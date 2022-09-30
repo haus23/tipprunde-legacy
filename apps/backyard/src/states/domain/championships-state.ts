@@ -1,7 +1,5 @@
 import { atom } from 'recoil';
-
-import { collection } from '@/firebase/db/repository/collection';
-import { Championship } from '@/model/domain/championship';
+import { Championship, collection } from 'lib';
 
 export const championshipsState = atom<Championship[]>({
   key: 'championshipsState',

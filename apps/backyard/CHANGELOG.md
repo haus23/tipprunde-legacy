@@ -1,5 +1,12 @@
 # backyard
 
+## 0.0.18
+
+### Patch Changes
+
+- Make notify function awaitable.
+- Move championship model to lib.
+
 ## 0.0.17
 
 ### Patch Changes
