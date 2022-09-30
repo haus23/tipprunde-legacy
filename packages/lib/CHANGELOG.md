@@ -1,5 +1,12 @@
 # lib
 
+## 0.0.10
+
+### Patch Changes
+
+- Expose updateProfile function.
+- Expose firebase auth.
+
 ## 0.0.9
 
 ### Patch Changes

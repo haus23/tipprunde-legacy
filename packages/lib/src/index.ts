@@ -1,3 +1,6 @@
+// Auth
+export * from './firebase/auth';
+
 // Model
 export * from './model/base/model';
 export * from './model/rules/rule';

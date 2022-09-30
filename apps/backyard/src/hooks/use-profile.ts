@@ -1,24 +1,43 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { authState } from '@/states/auth-state';
-import { User } from '@/model/user';
-import { profileState } from '@/states/profile-state';
-import { updateProfile } from 'firebase/auth';
-import { auth } from '@/firebase/auth';
+import { useRouteLoaderData } from 'react-router-dom';
+import { useAtom } from 'jotai';
+
+import { auth, patchEntity, updateProfile } from 'lib';
+
 import { Role } from '@/model/profile';
-import { patchEntity } from '@/firebase/db/repository/patch-entity';
+import { profileState } from '@/states/profile-state';
+
+// TODO:
+// Der Hook wirkt gefühlt sehr tricky, sollte also aber mal überdacht werden.
 
 export function useProfile() {
-  const user = useRecoilValue(authState) as User;
-  const [profile, setProfile] = useRecoilState(profileState(user));
+  const firebaseUser = auth.currentUser!;
+
+  const { users } = useRouteLoaderData('root') as {
+    users: { id: string; role: Role; playerId: string }[];
+  };
+
+  const [profile, setProfile] = useAtom(profileState);
+
+  if (profile === null) {
+    const user = users.find((u) => u.id === firebaseUser.uid);
+    setProfile({
+      id: firebaseUser.uid,
+      email: firebaseUser.email || '',
+      displayName: firebaseUser.displayName || '',
+      photoURL: firebaseUser.photoURL || '',
+      role: user?.role || 'Keine',
+      playerId: user?.playerId || '',
+    });
+  }
 
   const updateDisplayName = async (displayName: string) => {
-    await updateProfile(auth.currentUser!, { displayName });
-    setProfile({ ...profile, displayName });
+    await updateProfile({ displayName });
+    setProfile({ ...profile!, displayName });
   };
 
   const updateRole = async (role: Role) => {
-    await patchEntity('users', profile, { role });
-    setProfile({ ...profile, role });
+    await patchEntity('users', profile!, { role });
+    setProfile({ ...profile!, role });
   };
 
   return { profile, updateDisplayName, updateRole };

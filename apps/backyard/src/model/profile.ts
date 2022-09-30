@@ -1,11 +1,12 @@
-import { BaseModel } from '@/firebase/db/base-model';
-import { User } from './user';
-
 export const ROLES = <const>['Admin', 'Manager', 'Keine'];
 
 export type Role = typeof ROLES[number];
 
-export interface Profile extends BaseModel, User {
+export interface Profile {
+  id: string;
+  email: string;
+  displayName: string;
+  photoURL: string;
   role: Role;
   playerId: string;
 }

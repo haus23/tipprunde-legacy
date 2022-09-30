@@ -1,4 +1,8 @@
-import { RouteObject } from 'react-router-dom';
+import { LoaderFunction, redirect, RouteObject } from 'react-router-dom';
+import { auth, collection } from 'lib';
+
+import AppShell from './app/app-shell';
+
 import ChampionshipView from './app/championship';
 import ChampionshipPlayersView from './app/championship-players';
 import ChampionshipCreateView from './app/championship/create';
@@ -8,17 +12,36 @@ import PlayersView from './app/domain/players';
 import RulesView from './app/domain/rules';
 import TeamsView from './app/domain/teams';
 import UsersView from './app/domain/users';
-import Layout from './app/layout';
 import Login from './app/login';
 import Logout from './app/logout';
 import MatchesView from './app/matches';
 import ProfileView from './app/profile';
 import TipsView from './app/tips';
 
+const rootLoader: LoaderFunction = async () => {
+  // Load small users collection early and eager
+  const users = await collection('users').get();
+
+  // Auth state now sure, so check
+  if (auth.currentUser === null) {
+    return redirect('/login');
+  }
+
+  return {
+    users,
+  };
+};
+
 const appRoutes: RouteObject[] = [
   {
+    path: '/login',
+    element: <Login />,
+  },
+  {
     path: '/',
-    element: <Layout />,
+    element: <AppShell />,
+    id: 'root',
+    loader: rootLoader,
     children: [
       { index: true, element: <Dashboard /> },
       { path: 'turnier', element: <ChampionshipView /> },
@@ -32,7 +55,6 @@ const appRoutes: RouteObject[] = [
       { path: 'domain/ligen', element: <LeaguesView /> },
       { path: 'domain/regelwerke', element: <RulesView /> },
       { path: 'domain/benutzer', element: <UsersView /> },
-      { path: 'login', element: <Login /> },
       { path: 'logout', element: <Logout /> },
     ],
   },

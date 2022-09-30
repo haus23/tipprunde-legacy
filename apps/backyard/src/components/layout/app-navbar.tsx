@@ -142,32 +142,34 @@ export default function AppNavbar() {
         </div>
       </div>
       <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
-        <div className="flex items-center">
-          <div>
-            {profile.photoURL ? (
-              <img
-                src={profile.photoURL}
-                className="inline-block h-9 w-9 rounded-full"
-              />
-            ) : (
-              <UserIcon className="inline-block h-9 w-9 rounded-full bg-gray-200 p-1 text-gray-500" />
-            )}
-          </div>
-          <div className="ml-3">
-            <p className="text-sm font-medium text-gray-700">
-              {profile.displayName || profile.email}
-            </p>
-            <div className="text-xs font-medium text-gray-500">
-              <Link to="./profil" className="hover:text-gray-900">
-                Profil
-              </Link>
-              {' / '}
-              <Link to="./logout" className="hover:text-gray-900">
-                Log Out
-              </Link>
+        {profile && (
+          <div className="flex items-center">
+            <div>
+              {profile.photoURL ? (
+                <img
+                  src={profile.photoURL}
+                  className="inline-block h-9 w-9 rounded-full"
+                />
+              ) : (
+                <UserIcon className="inline-block h-9 w-9 rounded-full bg-gray-200 p-1 text-gray-500" />
+              )}
+            </div>
+            <div className="ml-3">
+              <p className="text-sm font-medium text-gray-700">
+                {profile.displayName || profile.email}
+              </p>
+              <div className="text-xs font-medium text-gray-500">
+                <Link to="./profil" className="hover:text-gray-900">
+                  Profil
+                </Link>
+                {' / '}
+                <Link to="./logout" className="hover:text-gray-900">
+                  Log Out
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

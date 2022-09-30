@@ -1,33 +1,29 @@
+import { useForm } from 'react-hook-form';
+
 import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
+
 import { useProfile } from '@/hooks/use-profile';
-import { Profile, ROLES } from '@/model/profile';
+import { Profile } from '@/model/profile';
 import { notify } from '@/utils/notify';
-import { useForm, Controller } from 'react-hook-form';
-import { SelectField } from 'ui';
 
 export default function ProfileView() {
-  /* TODO: disable or remove role editing here! */
+  const { profile, updateDisplayName } = useProfile();
 
-  const { profile, updateDisplayName, updateRole } = useProfile();
   const {
-    control,
     handleSubmit,
     register,
+    reset,
     formState: { isDirty, dirtyFields, errors },
-  } = useForm<Profile>({ defaultValues: profile });
-
-  const roleOptions = ROLES.map((role) => ({ id: role, name: role }));
+  } = useForm<Profile>({ defaultValues: profile! });
 
   async function saveProfile(profile: Profile) {
     if (dirtyFields.displayName) {
-      notify(
+      await notify(
         updateDisplayName(profile.displayName || ''),
         'Dein Name wurde geändert.'
       );
-    }
-    if (dirtyFields.role) {
-      notify(updateRole(profile.role), 'Rolle wurde geändert.');
+      reset(profile);
     }
   }
 
@@ -57,12 +53,6 @@ export default function ProfileView() {
                       'Drei Zeichen sollten es schon sein ;-)',
                   },
                 })}
-              />
-              <SelectField
-                label="Rolle"
-                control={control}
-                name="role"
-                options={roleOptions}
               />
             </div>
             <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">

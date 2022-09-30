@@ -1,5 +1,24 @@
 # backyard
 
+## 0.0.20
+
+### Patch Changes
+
+- Navigate to login after logout.
+
+## 0.0.19
+
+### Patch Changes
+
+- Rename to app-shell and simplify. Handle auth via loader function.
+- Import shareable tailwind config.
+- Refactor authentication and user profile.
+- Rename layout to app-shell
+- Create new auth-hook free login page. Changed routing as well.
+- Updated dependencies
+- Updated dependencies
+  - lib@0.0.10
+
 ## 0.0.18
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # foh
 
+## 0.0.24
+
+### Patch Changes
+
+- Create extra chunk for lib.
+- Updated dependencies
+- Updated dependencies
+  - lib@0.0.10
+
 ## 0.0.23
 
 ### Patch Changes
