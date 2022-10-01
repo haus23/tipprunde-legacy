@@ -1,5 +1,16 @@
 # backyard
 
+## 0.0.21
+
+### Patch Changes
+
+- Final auth solution ;-)
+- Add very early auth gate in app and manage auth state there as well.
+- Drop jotai again and stay with recoil.
+- Simplify user profile.
+- Updated dependencies
+  - lib@0.0.11
+
 ## 0.0.20
 
 ### Patch Changes

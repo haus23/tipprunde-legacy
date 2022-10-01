@@ -1,5 +1,11 @@
 # lib
 
+## 0.0.11
+
+### Patch Changes
+
+- Add very early auth gate in app and manage auth state there as well.
+
 ## 0.0.10
 
 ### Patch Changes

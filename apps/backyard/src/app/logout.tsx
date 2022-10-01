@@ -6,8 +6,7 @@ export default function Logout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    signOut();
-    navigate('/login');
+    signOut().then(() => navigate('/login'));
   }, []);
 
   return null;

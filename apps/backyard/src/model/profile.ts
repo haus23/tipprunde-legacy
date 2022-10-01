@@ -1,12 +1,3 @@
-export const ROLES = <const>['Admin', 'Manager', 'Keine'];
+import { User } from 'lib';
 
-export type Role = typeof ROLES[number];
-
-export interface Profile {
-  id: string;
-  email: string;
-  displayName: string;
-  photoURL: string;
-  role: Role;
-  playerId: string;
-}
+export type Profile = User;

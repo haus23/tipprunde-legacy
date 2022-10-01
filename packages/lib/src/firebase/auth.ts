@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signOut as signOutFromFirebase,
   updateProfile as updateFirebaseProfile,
+  User as FirebaseUser,
 } from 'firebase/auth';
 import { app } from './app';
 
@@ -22,3 +23,8 @@ export function updateProfile(changes: {
 }) {
   return updateFirebaseProfile(auth.currentUser!, changes);
 }
+
+export type User = Pick<
+  FirebaseUser,
+  'uid' | 'email' | 'displayName' | 'photoURL'
+>;

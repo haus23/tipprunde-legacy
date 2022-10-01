@@ -4,8 +4,8 @@ import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
 
 import { useProfile } from '@/hooks/use-profile';
-import { Profile } from '@/model/profile';
 import { notify } from '@/utils/notify';
+import { Profile } from '@/model/profile';
 
 export default function ProfileView() {
   const { profile, updateDisplayName } = useProfile();

@@ -14,6 +14,8 @@ type LoginFormType = {
 };
 
 export default function Login() {
+  const [isAuthenticated, setAuthenticated] = useState(false);
+
   const navigate = useNavigate();
 
   const [error, setError] = useState('');
@@ -26,7 +28,9 @@ export default function Login() {
   useEffect(
     () =>
       auth.onAuthStateChanged((user) => {
-        user && navigate('/', { replace: true });
+        let params = new URL(window.location.toString()).searchParams;
+        setAuthenticated(true);
+        user && navigate(params.get('from') || '/', { replace: true });
       }),
     []
   );
@@ -37,7 +41,7 @@ export default function Login() {
     );
   };
 
-  return (
+  return isAuthenticated ? (
     <div className="flex flex-col">
       <div className="flex h-16 flex-shrink-0 px-4 sm:px-6 md:px-8 bg-white shadow">
         <div className="flex items-center flex-1 gap-x-2">
@@ -97,5 +101,5 @@ export default function Login() {
         </div>
       </main>
     </div>
-  );
+  ) : null;
 }
