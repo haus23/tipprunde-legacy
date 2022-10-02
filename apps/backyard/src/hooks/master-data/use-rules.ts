@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import { rulesState } from '@/states/domain/rules-state';
+import { rulesState } from '@/state/master-data/rules-state';
 import { ChampionshipRules, createEntity, updateEntity } from 'lib';
 
 export function useRules() {

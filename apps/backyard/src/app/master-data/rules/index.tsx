@@ -17,7 +17,7 @@ import AppCard from '@/components/layout/app-card';
 import TextareaField from '@/components/form/textarea-field';
 import { trimProps } from '@/utils/trim-props';
 import { classNames } from '@/utils/class-names';
-import { useRules } from '@/hooks/domain/use-rules';
+import { useRules } from '@/hooks/master-data/use-rules';
 import { slug } from '@/utils/slug';
 import { SelectField } from 'ui';
 

@@ -1,6 +1,6 @@
 import { Championship } from 'lib';
 import { atom, selector } from 'recoil';
-import { championshipsState } from './domain/championships-state';
+import { championshipsState } from './master-data/championships-state';
 
 const currentChampionshipInnerState = atom<Championship | undefined>({
   key: 'currentChampionshipInnerState',

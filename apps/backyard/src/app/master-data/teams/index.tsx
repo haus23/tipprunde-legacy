@@ -9,8 +9,8 @@ import { trimProps } from '@/utils/trim-props';
 import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 import { classNames } from '@/utils/class-names';
-import { Team } from '@/model/domain/team';
-import { useTeams } from '@/hooks/domain/use-teams';
+import { useTeams } from '@/hooks/master-data/use-teams';
+import { Team } from 'lib';
 
 export default function TeamsView() {
   const {

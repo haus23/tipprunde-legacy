@@ -1,5 +1,17 @@
 # backyard
 
+## 0.0.24
+
+### Patch Changes
+
+- Rename domain to master-data.
+- Move firestore related code to lib.
+- Singularize state in folder name.
+- Move remaining models to lib package.
+- Updated dependencies
+- Updated dependencies
+  - lib@0.0.12
+
 ## 0.0.23
 
 ### Patch Changes

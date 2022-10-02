@@ -1,9 +1,7 @@
 import { useRecoilValue } from 'recoil';
+import { createEntity, Team, updateEntity } from 'lib';
 
-import { createEntity } from '@/firebase/db/repository/create-entity';
-import { updateEntity } from '@/firebase/db/repository/update-entity';
-import { Team } from '@/model/domain/team';
-import { teamsState } from '@/states/domain/teams-state';
+import { teamsState } from '@/state/master-data/teams-state';
 
 export function useTeams() {
   const teams = useRecoilValue(teamsState);

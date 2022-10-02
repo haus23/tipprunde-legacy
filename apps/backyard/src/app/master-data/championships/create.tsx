@@ -7,8 +7,8 @@ import { Championship } from 'lib';
 import TextField from '@/components/form/text-field';
 import Button from '@/components/button';
 
-import { useRules } from '@/hooks/domain/use-rules';
-import { useChampionships } from '@/hooks/domain/use-championships';
+import { useRules } from '@/hooks/master-data/use-rules';
+import { useChampionships } from '@/hooks/master-data/use-championships';
 import { notify } from '@/utils/notify';
 
 export default function ChampionshipsCreateView() {

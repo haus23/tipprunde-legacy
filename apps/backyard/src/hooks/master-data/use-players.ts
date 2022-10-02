@@ -1,8 +1,7 @@
-import { createEntity } from '@/firebase/db/repository/create-entity';
-import { updateEntity } from '@/firebase/db/repository/update-entity';
-import { Player } from '@/model/domain/player';
-import { playersState } from '@/states/domain/players-state';
 import { useRecoilValue } from 'recoil';
+import { createEntity, Player, updateEntity } from 'lib';
+
+import { playersState } from '@/state/master-data/players-state';
 
 export function usePlayers() {
   const players = useRecoilValue(playersState);

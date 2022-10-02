@@ -7,7 +7,7 @@ import { auth } from 'lib';
 import { SplashScreen } from 'ui';
 
 import appRoutes from './app.routes';
-import { authState } from './states/auth-state';
+import { authState } from './state/auth-state';
 const router = createBrowserRouter(appRoutes);
 
 export default function App() {

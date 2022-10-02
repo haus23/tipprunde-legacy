@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
 import { updateProfile } from 'lib';
 
-import { authState } from '@/states/auth-state';
+import { authState } from '@/state/auth-state';
 import { Profile } from '@/model/profile';
 
 export function useProfile() {

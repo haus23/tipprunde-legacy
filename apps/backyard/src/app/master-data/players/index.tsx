@@ -3,15 +3,15 @@ import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
 import AppCard from '@/components/layout/app-card';
-import { usePlayers } from '@/hooks/domain/use-players';
+import { usePlayers } from '@/hooks/master-data/use-players';
 import { useForm } from 'react-hook-form';
-import { Player } from '@/model/domain/player';
 import { slug } from '@/utils/slug';
 import { emailValidator } from '@/utils/email-validator';
 import { trimProps } from '@/utils/trim-props';
 import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 import { classNames } from '@/utils/class-names';
+import { Player } from 'lib';
 
 export default function PlayersView() {
   const {

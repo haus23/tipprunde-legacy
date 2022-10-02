@@ -1,5 +1,12 @@
 # lib
 
+## 0.0.12
+
+### Patch Changes
+
+- Move firestore related code to lib.
+- Move remaining models to lib package.
+
 ## 0.0.11
 
 ### Patch Changes
