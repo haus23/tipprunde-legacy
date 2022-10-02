@@ -1,10 +1,12 @@
 import { atom } from 'recoil';
-import { Championship, collection } from 'lib';
+import { Championship, collection, orderByDesc } from 'lib';
 
 export const championshipsState = atom<Championship[]>({
   key: 'championshipsState',
   effects: [
     ({ setSelf }) =>
-      collection<Championship>('championships').subscribe(setSelf),
+      collection<Championship>('championships', orderByDesc('nr')).subscribe(
+        setSelf
+      ),
   ],
 });

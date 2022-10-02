@@ -9,6 +9,8 @@ import {
 } from '@heroicons/react/24/outline';
 import { classNames } from '@/utils/class-names';
 import { Link } from 'react-router-dom';
+import { useCurrentChampionship } from '@/hooks/use-current-championship';
+import { Championship } from 'lib';
 
 const items: {
   title: string;
@@ -16,7 +18,7 @@ const items: {
   background: string;
   route: string;
   icon: ElementType;
-  visible: () => boolean;
+  visible: (championship: Championship | undefined) => boolean;
 }[] = [
   {
     title: 'Neues Turnier',
@@ -32,7 +34,7 @@ const items: {
     icon: UsersIcon,
     background: 'bg-yellow-500',
     route: './mitspieler',
-    visible: () => true,
+    visible: (championship) => !!championship,
   },
   {
     title: 'Neue Runde',
@@ -40,7 +42,7 @@ const items: {
     icon: CalendarIcon,
     background: 'bg-green-500',
     route: './neue-runde',
-    visible: () => true,
+    visible: (championship) => !!championship,
   },
   {
     title: 'Spielansetzungen',
@@ -48,7 +50,7 @@ const items: {
     icon: MegaphoneIcon,
     background: 'bg-blue-500',
     route: './spiele-anlegen',
-    visible: () => true,
+    visible: (championship) => !!championship,
   },
   {
     title: 'Tipps eintragen',
@@ -56,7 +58,7 @@ const items: {
     icon: PencilSquareIcon,
     background: 'bg-indigo-500',
     route: './tipps-eintragen',
-    visible: () => true,
+    visible: (championship) => !!championship,
   },
   {
     title: 'Ergebnisse eintragen',
@@ -64,20 +66,24 @@ const items: {
     icon: ScaleIcon,
     background: 'bg-purple-500',
     route: './ergebnisse-eintragen',
-    visible: () => true,
+    visible: (championship) => !!championship,
   },
 ];
 
 export default function Dashboard() {
+  const { currentChampionship } = useCurrentChampionship();
+
   return (
     <div>
-      <h2 className="text-2xl font-semibold">Hinterhof</h2>
+      <h2 className="text-2xl font-semibold">
+        {currentChampionship?.name || 'Hinterhof'}
+      </h2>
       <ul
         role="list"
         className="mt-2 grid grid-cols-1 gap-6 py-6 sm:grid-cols-2"
       >
         {items
-          .filter((item) => item.visible())
+          .filter((item) => item.visible(currentChampionship))
           .map((item, itemIdx) => (
             <li
               key={itemIdx}

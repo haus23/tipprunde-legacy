@@ -3,20 +3,22 @@ import { redirect, RouteObject } from 'react-router-dom';
 
 import AppShell from './app/app-shell';
 
-import ChampionshipView from './app/championship';
-import ChampionshipPlayersView from './app/championship-players';
-import ChampionshipCreateView from './app/championship/create';
-import Dashboard from './app/dashboard';
-import LeaguesView from './app/domain/leagues';
-import PlayersView from './app/domain/players';
-import RulesView from './app/domain/rules';
-import TeamsView from './app/domain/teams';
-import UsersView from './app/domain/users';
+import Dashboard from './app/current-data/dashboard';
+import ChampionshipView from './app/current-data/championship';
+import ChampionshipPlayersView from './app/current-data/players';
+import MatchesView from './app/current-data/matches';
+import TipsView from './app/current-data/tips';
+
+import ChampionshipsView from './app/master-data/championships';
+import ChampionshipsCreateView from './app/master-data/championships/create';
+import PlayersView from './app/master-data/players';
+import TeamsView from './app/master-data/teams';
+import LeaguesView from './app/master-data/leagues';
+import RulesView from './app/master-data/rules';
+
+import ProfileView from './app/profile';
 import Login from './app/login';
 import Logout from './app/logout';
-import MatchesView from './app/matches';
-import ProfileView from './app/profile';
-import TipsView from './app/tips';
 
 const appRoutes: RouteObject[] = [
   {
@@ -32,18 +34,31 @@ const appRoutes: RouteObject[] = [
       }
     },
     children: [
-      { index: true, element: <Dashboard /> },
-      { path: 'turnier', element: <ChampionshipView /> },
-      { path: 'neues-turnier', element: <ChampionshipCreateView /> },
-      { path: 'mitspieler', element: <ChampionshipPlayersView /> },
-      { path: 'tipps', element: <TipsView /> },
-      { path: 'spiele', element: <MatchesView /> },
+      {
+        children: [
+          { index: true, element: <Dashboard /> },
+          { path: 'turnier', element: <ChampionshipView /> },
+          { path: 'mitspieler', element: <ChampionshipPlayersView /> },
+          { path: 'spiele', element: <MatchesView /> },
+          { path: 'tipps', element: <TipsView /> },
+        ],
+      },
+      {
+        path: 'stammdaten',
+        children: [
+          { path: 'turniere', element: <ChampionshipsView /> },
+          { path: 'spieler', element: <PlayersView /> },
+          { path: 'teams', element: <TeamsView /> },
+          { path: 'ligen', element: <LeaguesView /> },
+          { path: 'regelwerke', element: <RulesView /> },
+        ],
+      },
+      {
+        children: [
+          { path: 'neues-turnier', element: <ChampionshipsCreateView /> },
+        ],
+      },
       { path: 'profil', element: <ProfileView /> },
-      { path: 'domain/spieler', element: <PlayersView /> },
-      { path: 'domain/teams', element: <TeamsView /> },
-      { path: 'domain/ligen', element: <LeaguesView /> },
-      { path: 'domain/regelwerke', element: <RulesView /> },
-      { path: 'domain/benutzer', element: <UsersView /> },
       { path: 'logout', element: <Logout /> },
     ],
   },

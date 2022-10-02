@@ -1,5 +1,14 @@
 # backyard
 
+## 0.0.22
+
+### Patch Changes
+
+- Mark dashboard link exact. Resolves #6
+- Refactor master-data routes. Add championships, drop users.
+- Add state for current championship
+- Refactor current data routes.
+
 ## 0.0.21
 
 ### Patch Changes
