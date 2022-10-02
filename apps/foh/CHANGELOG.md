@@ -1,5 +1,13 @@
 # foh
 
+## 0.0.26
+
+### Patch Changes
+
+- Update deps.
+- Updated dependencies
+  - ui@0.0.8
+
 ## 0.0.25
 
 ### Patch Changes
