@@ -1,11 +1,14 @@
 import { classNames } from '@/utils/class-names';
 import { MergeElementProps } from '@/utils/merge-element-props';
-import { ForwardedRef, forwardRef, ReactNode } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
 
-type ButtonProps = MergeElementProps<'button'> & {
-  type?: 'button' | 'submit';
-  primary?: boolean;
-};
+type ButtonProps = MergeElementProps<
+  'button',
+  {
+    type?: 'button' | 'submit';
+    primary?: boolean;
+  }
+>;
 
 type Ref = HTMLButtonElement;
 
