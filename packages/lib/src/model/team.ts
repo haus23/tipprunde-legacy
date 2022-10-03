@@ -1,6 +1,6 @@
 import { BaseModel } from './base/model';
 
-export interface Team extends BaseModel {
+export type Team = BaseModel & {
   name: string;
   shortname: string;
-}
+};

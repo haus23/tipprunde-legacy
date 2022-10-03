@@ -4,9 +4,9 @@ export type MatchRuleId =
   | 'keine-besonderheiten'
   | 'alleiniger-treffer-drei-punkte';
 
-export interface MatchRule extends Rule {
+export type MatchRule = Rule & {
   id: MatchRuleId;
-}
+};
 
 export const matchRuleDescriptions: MatchRule[] = [
   {

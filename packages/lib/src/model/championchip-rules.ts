@@ -4,11 +4,11 @@ import { MatchRuleId } from './rules/match-rule';
 import { RoundRuleId } from './rules/round-rule';
 import { TipRuleId } from './rules/tip-rule';
 
-export interface ChampionshipRules extends BaseModel {
+export type ChampionshipRules = BaseModel & {
   name: string;
   description: string;
   tipRuleId: TipRuleId;
   matchRuleId: MatchRuleId;
   roundRuleId: RoundRuleId;
   extraQuestionRuleId: ExtraQuestionRuleId;
-}
+};
