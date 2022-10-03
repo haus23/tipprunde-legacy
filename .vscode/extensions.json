@@ -3,6 +3,7 @@
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
-    "johnsoncodehk.vscode-tsconfig-helper"
+    "johnsoncodehk.vscode-tsconfig-helper",
+    "antfu.file-nesting"
   ]
 }
