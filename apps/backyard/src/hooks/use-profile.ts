@@ -9,7 +9,7 @@ export function useProfile() {
 
   const updateDisplayName = async (displayName: string) => {
     await updateProfile({ displayName });
-    setProfile({ ...profile!, displayName });
+    setProfile((p) => (p ? { ...p, displayName } : null));
   };
 
   return { profile: profile as Profile, updateDisplayName };

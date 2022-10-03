@@ -15,7 +15,7 @@ export default function ProfileView() {
     register,
     reset,
     formState: { isDirty, dirtyFields, errors },
-  } = useForm<Profile>({ defaultValues: profile! });
+  } = useForm<Profile>({ defaultValues: profile });
 
   async function saveProfile(profile: Profile) {
     if (dirtyFields.displayName) {
