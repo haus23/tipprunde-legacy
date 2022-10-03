@@ -1,5 +1,11 @@
 # backyard
 
+## 0.0.26
+
+### Patch Changes
+
+- f280d44: Add linting.
+
 ## 0.0.25
 
 ### Patch Changes

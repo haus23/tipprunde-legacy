@@ -3,10 +3,13 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "lint": "turbo run lint",
     "test": "turbo run test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.25.0",
+    "eslint": "^8.24.0",
+    "eslint-config-workspace": "workspace:*",
     "turbo": "^1.5.5"
   }
 }
