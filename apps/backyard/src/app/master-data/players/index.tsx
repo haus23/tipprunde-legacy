@@ -48,7 +48,7 @@ export default function PlayersView() {
   }
 
   async function savePlayer(player: Player) {
-    player = trimProps(player);
+    trimProps(player);
     if (player.id === '') {
       await toast.promise(createPlayer(player), {
         loading: 'Speichern',

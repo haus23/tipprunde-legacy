@@ -61,7 +61,7 @@ export default function RulesView() {
   }
 
   async function saveRules(rules: ChampionshipRules) {
-    rules = trimProps(rules);
+    trimProps(rules);
 
     if (!editMode) {
       await toast.promise(createRules(rules), {

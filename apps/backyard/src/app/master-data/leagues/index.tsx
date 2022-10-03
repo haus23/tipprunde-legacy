@@ -48,7 +48,7 @@ export default function LeaguesView() {
   }
 
   async function saveLeague(league: League) {
-    league = trimProps(league);
+    trimProps(league);
     if (league.id === '') {
       await toast.promise(createLeague(league), {
         loading: 'Speichern',
