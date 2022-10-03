@@ -7,7 +7,7 @@ export default function Logout() {
 
   useEffect(() => {
     signOut().then(() => navigate('/login'));
-  }, []);
+  }, [navigate]);
 
   return null;
 }

@@ -28,11 +28,11 @@ export default function Login() {
   useEffect(
     () =>
       auth.onAuthStateChanged((user) => {
-        let params = new URL(window.location.toString()).searchParams;
+        const params = new URL(window.location.toString()).searchParams;
         setAuthenticated(true);
         user && navigate(params.get('from') || '/', { replace: true });
       }),
-    []
+    [navigate]
   );
 
   const onSubmit: SubmitHandler<LoginFormType> = ({ email, password }) => {
