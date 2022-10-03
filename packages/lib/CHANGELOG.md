@@ -1,5 +1,11 @@
 # lib
 
+## 0.0.13
+
+### Patch Changes
+
+- dbd386c: Refactor model types to type aliases. Works better with Record types.
+
 ## 0.0.12
 
 ### Patch Changes
