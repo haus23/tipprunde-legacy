@@ -1,5 +1,11 @@
 # backyard
 
+## 0.0.25
+
+### Patch Changes
+
+- Create first workflow: create first championship.
+
 ## 0.0.24
 
 ### Patch Changes

@@ -50,7 +50,7 @@ const items: {
     icon: MegaphoneIcon,
     background: 'bg-blue-500',
     route: './spiele-anlegen',
-    visible: (championship) => !!championship,
+    visible: (championship) => false,
   },
   {
     title: 'Tipps eintragen',
@@ -58,7 +58,7 @@ const items: {
     icon: PencilSquareIcon,
     background: 'bg-indigo-500',
     route: './tipps-eintragen',
-    visible: (championship) => !!championship,
+    visible: (championship) => false,
   },
   {
     title: 'Ergebnisse eintragen',
@@ -66,7 +66,7 @@ const items: {
     icon: ScaleIcon,
     background: 'bg-purple-500',
     route: './ergebnisse-eintragen',
-    visible: (championship) => !!championship,
+    visible: (championship) => false,
   },
 ];
 

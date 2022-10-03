@@ -1,3 +1,6 @@
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -17,5 +20,9 @@ export default defineConfig({
         },
       },
     },
+  },
+  // Vitest
+  test: {
+    environment: 'jsdom',
   },
 });
