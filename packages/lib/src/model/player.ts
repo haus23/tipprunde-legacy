@@ -1,6 +1,6 @@
 import { BaseModel } from './base/model';
 
-export interface Player extends BaseModel {
+export type Player = BaseModel & {
   name: string;
   email: string;
-}
+};

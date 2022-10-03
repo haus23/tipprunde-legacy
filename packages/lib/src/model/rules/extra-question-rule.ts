@@ -2,9 +2,9 @@ import { Rule } from './rule';
 
 export type ExtraQuestionRuleId = 'keine-zusatzfragen' | 'mit-zusatzfragen';
 
-export interface ExtraQuestionRule extends Rule {
+export type ExtraQuestionRule = Rule & {
   id: ExtraQuestionRuleId;
-}
+};
 
 export const extraQuestionRuleDescriptions: ExtraQuestionRule[] = [
   { id: 'keine-zusatzfragen', name: 'Keine Zusatzfragen' },

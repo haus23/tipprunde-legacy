@@ -2,9 +2,9 @@ import { Rule } from './rule';
 
 export type RoundRuleId = 'keine-besonderheiten';
 
-export interface RoundRule extends Rule {
+export type RoundRule = Rule & {
   id: RoundRuleId;
-}
+};
 
 export const roundRuleDescriptions: RoundRule[] = [
   {

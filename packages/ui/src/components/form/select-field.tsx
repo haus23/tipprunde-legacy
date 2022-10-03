@@ -3,44 +3,41 @@ import {
   Control,
   FieldPathByValue,
   FieldValues,
-  Path,
   useController,
 } from 'react-hook-form';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { classNames } from '../../utils/class-names';
 
-type SelectFieldOption = Record<string, unknown> & {
-  id?: string;
-};
-
 export type SelectFieldProps<
   T extends FieldValues,
   TPath extends FieldPathByValue<T, string>,
-  TOption extends Record<string, unknown>
+  Option extends FieldValues,
+  OptionPath extends FieldPathByValue<Option, string>
 > = {
   label: string;
   control: Control<T>;
   name: TPath;
-  options: TOption[];
-  valueField?: keyof TOption;
-  displayField?: keyof TOption;
-  descriptionField?: keyof TOption;
+  options: Option[];
+  valueField?: OptionPath;
+  displayField?: OptionPath;
+  descriptionField?: OptionPath;
 };
 
 export function SelectField<
   T extends FieldValues,
   TPath extends FieldPathByValue<T, string>,
-  TOption extends Record<string, any>
+  Option extends FieldValues,
+  OptionPath extends FieldPathByValue<Option, string>
 >({
   label,
   control,
   name,
   options,
-  valueField = 'id',
-  displayField = 'name',
-  descriptionField = 'description',
-}: SelectFieldProps<T, TPath, TOption>) {
+  valueField,
+  displayField,
+  descriptionField,
+}: SelectFieldProps<T, TPath, Option, OptionPath>) {
   const {
     field: { value, onChange },
   } = useController({
@@ -86,7 +83,7 @@ export function SelectField<
                         'relative cursor-default select-none py-2 pl-8 pr-4'
                       )
                     }
-                    value={option[valueField]}
+                    value={option[valueField || 'id']}
                   >
                     {({ selected, active }) => (
                       <>
@@ -96,7 +93,7 @@ export function SelectField<
                             'block truncate'
                           )}
                         >
-                          {option[displayField]}
+                          {option[displayField || 'name']}
                         </span>
 
                         {selected ? (

@@ -4,9 +4,9 @@ export type TipRuleId =
   | 'drei-oder-ein-punkt-joker-verdoppelt'
   | 'drei-zwei-oder-ein-punkt-joker-verdoppelt';
 
-export interface TipRule extends Rule {
+export type TipRule = Rule & {
   id: TipRuleId;
-}
+};
 
 export const tipRuleDescriptions: TipRule[] = [
   {

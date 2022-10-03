@@ -54,7 +54,7 @@ export default function TeamsView() {
   }
 
   async function saveTeam(team: Team) {
-    team = trimProps(team);
+    trimProps(team);
     if (team.id === '') {
       await toast.promise(createTeam(team), {
         loading: 'Speichern',
