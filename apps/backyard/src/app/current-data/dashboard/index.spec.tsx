@@ -70,11 +70,7 @@ describe('with new current championship', () => {
     expect(screen.getByRole('link', { name: /Neue Runde/ })).toBeDefined();
   });
 
-  it('should display championship-players link', () => {
-    expect(screen.getByRole('link', { name: /Mitspieler/ })).toBeDefined();
-  });
-
   it('should display just this three list items', () => {
-    expect(screen.getAllByRole('listitem').length).toBe(3);
+    expect(screen.getAllByRole('listitem').length).toBe(2);
   });
 });
