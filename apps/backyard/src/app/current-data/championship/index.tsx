@@ -1,4 +1,4 @@
-import { useCurrentChampionship } from '@/hooks/use-current-championship';
+import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
 import { notify } from '@/utils/notify';
 import { Card } from 'ui';
 import ToggleField from 'ui/src/components/form/toggle-field';

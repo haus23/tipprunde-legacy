@@ -12,7 +12,7 @@ import { useProfile } from '@/hooks/use-profile';
 import { classNames } from '@/utils/class-names';
 import AppTitle from './app-title';
 import { Championship } from 'lib';
-import { useCurrentChampionship } from '@/hooks/use-current-championship';
+import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
 
 const championshipNavLinks: {
   to: string;

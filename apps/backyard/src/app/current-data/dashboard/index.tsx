@@ -8,7 +8,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { classNames } from '@/utils/class-names';
 import { Link } from 'react-router-dom';
-import { useCurrentChampionship } from '@/hooks/use-current-championship';
+import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
 import { Championship } from 'lib';
 
 const items: {

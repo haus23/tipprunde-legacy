@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { currentChampionshipState } from '@/state/current-championship-state';
+import { currentChampionshipState } from '@/state/current-data/current-championship-state';
 import { Championship, patchEntity } from 'lib';
 import { useCallback } from 'react';
 
