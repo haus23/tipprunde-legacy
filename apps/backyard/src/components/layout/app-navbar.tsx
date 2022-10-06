@@ -2,7 +2,6 @@ import { ElementType } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import {
   HomeIcon,
-  UsersIcon,
   FolderIcon,
   CalendarIcon,
   UserIcon,
@@ -25,12 +24,6 @@ const championshipNavLinks: {
     to: './turnier',
     icon: FolderIcon,
     label: 'Turnier',
-    visible: (championship) => !!championship,
-  },
-  {
-    to: './mitspieler',
-    icon: UsersIcon,
-    label: 'Mitspieler',
     visible: (championship) => !!championship,
   },
   {

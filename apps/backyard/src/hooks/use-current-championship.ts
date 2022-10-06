@@ -1,10 +1,24 @@
 import { useRecoilState } from 'recoil';
 import { currentChampionshipState } from '@/state/current-championship-state';
+import { Championship, patchEntity } from 'lib';
+import { useCallback } from 'react';
 
 export function useCurrentChampionship() {
   const [currentChampionship, setCurrentChampionship] = useRecoilState(
     currentChampionshipState
   );
 
-  return { currentChampionship, setCurrentChampionship };
+  const updateCurrentChampionship = useCallback(
+    (changes: Partial<Championship>) =>
+      currentChampionship
+        ? patchEntity('championships', currentChampionship, changes)
+        : Promise.resolve(),
+    [currentChampionship]
+  );
+
+  return {
+    currentChampionship,
+    setCurrentChampionship,
+    updateCurrentChampionship,
+  };
 }

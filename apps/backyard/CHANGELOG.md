@@ -1,5 +1,15 @@
 # backyard
 
+## 0.0.28
+
+### Patch Changes
+
+- 9900ce0: Simplify nav. No need for extra championship players view.
+- c47aeba: Implement workflow publishing a championship
+- Updated dependencies [ade137d]
+- Updated dependencies [d4b112a]
+  - ui@0.0.9
+
 ## 0.0.27
 
 ### Patch Changes

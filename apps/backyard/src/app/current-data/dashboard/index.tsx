@@ -2,7 +2,6 @@ import { ElementType } from 'react';
 import {
   CalendarIcon,
   FolderPlusIcon,
-  UsersIcon,
   PencilSquareIcon,
   ScaleIcon,
   MegaphoneIcon,
@@ -21,28 +20,20 @@ const items: {
   visible: (championship: Championship | undefined) => boolean;
 }[] = [
   {
-    title: 'Neues Turnier',
-    description: 'Starte eine neue Liga-Halbserie oder ein Turnier',
-    icon: FolderPlusIcon,
-    background: 'bg-pink-500',
-    route: './neues-turnier',
-    visible: () => true,
-  },
-  {
-    title: 'Mitspieler',
-    description: 'Verwalte die Mitspieler des Turniers',
-    icon: UsersIcon,
-    background: 'bg-yellow-500',
-    route: './mitspieler',
-    visible: (championship) => !!championship,
-  },
-  {
     title: 'Neue Runde',
     description: 'Lege eine neue (Monats-) Runde an',
     icon: CalendarIcon,
     background: 'bg-green-500',
     route: './neue-runde',
     visible: (championship) => !!championship,
+  },
+  {
+    title: 'Neues Turnier',
+    description: 'Starte eine neue Liga-Halbserie oder ein Turnier',
+    icon: FolderPlusIcon,
+    background: 'bg-pink-500',
+    route: './neues-turnier',
+    visible: () => true,
   },
   {
     title: 'Spielansetzungen',

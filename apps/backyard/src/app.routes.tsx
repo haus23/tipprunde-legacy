@@ -5,7 +5,6 @@ import AppShell from './app/app-shell';
 
 import Dashboard from './app/current-data/dashboard';
 import ChampionshipView from './app/current-data/championship';
-import ChampionshipPlayersView from './app/current-data/players';
 import MatchesView from './app/current-data/matches';
 import TipsView from './app/current-data/tips';
 
@@ -38,7 +37,6 @@ const appRoutes: RouteObject[] = [
         children: [
           { index: true, element: <Dashboard /> },
           { path: 'turnier', element: <ChampionshipView /> },
-          { path: 'mitspieler', element: <ChampionshipPlayersView /> },
           { path: 'spiele', element: <MatchesView /> },
           { path: 'tipps', element: <TipsView /> },
         ],
