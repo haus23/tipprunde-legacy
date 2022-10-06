@@ -4,6 +4,9 @@
   "type": "module",
   "main": "src/index.tsx",
   "types": "src/index.tsx",
+  "scripts": {
+    "lint": "eslint src --ext .ts,.tsx"
+  },
   "dependencies": {
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.11",
