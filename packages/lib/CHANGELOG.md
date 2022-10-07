@@ -1,5 +1,13 @@
 # lib
 
+## 0.0.14
+
+### Patch Changes
+
+- [#24](https://github.com/haus23/runde.tips/pull/24) [`d608978`](https://github.com/haus23/runde.tips/commit/d60897850b9d9b6d50a1464c7f9e37ef1b049536) Thanks [@lean-dev](https://github.com/lean-dev)! - Create new model: championship-player
+
+- [#24](https://github.com/haus23/runde.tips/pull/24) [`d87564c`](https://github.com/haus23/runde.tips/commit/d87564c80ec92cf60f66764514a97481c763ffc8) Thanks [@lean-dev](https://github.com/lean-dev)! - Fix: need collection to add item
+
 ## 0.0.13
 
 ### Patch Changes

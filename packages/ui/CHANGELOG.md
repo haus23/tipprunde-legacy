@@ -1,5 +1,11 @@
 # ui
 
+## 0.0.10
+
+### Patch Changes
+
+- [#24](https://github.com/haus23/runde.tips/pull/24) [`066d732`](https://github.com/haus23/runde.tips/commit/066d732167d04371e4d400d5aa97a545a9636ac7) Thanks [@lean-dev](https://github.com/lean-dev)! - Fix: one border to much - removed.
+
 ## 0.0.9
 
 ### Patch Changes

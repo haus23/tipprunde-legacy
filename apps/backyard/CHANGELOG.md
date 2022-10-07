@@ -1,5 +1,21 @@
 # backyard
 
+## 0.0.29
+
+### Patch Changes
+
+- [#24](https://github.com/haus23/runde.tips/pull/24) [`56b4758`](https://github.com/haus23/runde.tips/commit/56b4758cbefe7f854530bcb8dfc4a60aeb628dec) Thanks [@lean-dev](https://github.com/lean-dev)! - Fix test due to move of the hook.
+
+- [#24](https://github.com/haus23/runde.tips/pull/24) [`be9627b`](https://github.com/haus23/runde.tips/commit/be9627bd33cd6fb9fdc600108c139925cd4fd8ac) Thanks [@lean-dev](https://github.com/lean-dev)! - Add feature: adding championship players.
+
+- [#24](https://github.com/haus23/runde.tips/pull/24) [`6549db7`](https://github.com/haus23/runde.tips/commit/6549db7fd5831d3236278ed147132ff4fc4434e7) Thanks [@lean-dev](https://github.com/lean-dev)! - Move current-championship to new current-data folder
+
+- [#24](https://github.com/haus23/runde.tips/pull/24) [`22cc668`](https://github.com/haus23/runde.tips/commit/22cc668cfd215d9af5c9be89ec2b6da314135e48) Thanks [@lean-dev](https://github.com/lean-dev)! - Navigate to championship view after creating one.
+
+- Updated dependencies [[`066d732`](https://github.com/haus23/runde.tips/commit/066d732167d04371e4d400d5aa97a545a9636ac7), [`d608978`](https://github.com/haus23/runde.tips/commit/d60897850b9d9b6d50a1464c7f9e37ef1b049536), [`d87564c`](https://github.com/haus23/runde.tips/commit/d87564c80ec92cf60f66764514a97481c763ffc8)]:
+  - ui@0.0.10
+  - lib@0.0.14
+
 ## 0.0.28
 
 ### Patch Changes
