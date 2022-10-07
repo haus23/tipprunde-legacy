@@ -9,5 +9,8 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "references.preferredLocation": "peek"
+  "references.preferredLocation": "peek",
+  "workbench.colorTheme": "Vitesse Dark Soft",
+  "workbench.preferredDarkColorTheme": "Vitesse Dark Soft",
+  "workbench.preferredLightColorTheme": "Vitesse Light Soft"
 }

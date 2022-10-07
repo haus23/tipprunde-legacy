@@ -4,6 +4,7 @@
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
     "johnsoncodehk.vscode-tsconfig-helper",
-    "antfu.file-nesting"
+    "antfu.file-nesting",
+    "antfu.theme-vitesse"
   ]
 }
