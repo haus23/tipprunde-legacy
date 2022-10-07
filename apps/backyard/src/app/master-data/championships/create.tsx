@@ -60,7 +60,7 @@ export default function ChampionshipsCreateView() {
       createChampionship(championship),
       `${championship.name} angelegt.`
     );
-    navigate('..');
+    navigate('../turnier');
   };
 
   return (

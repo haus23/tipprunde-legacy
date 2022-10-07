@@ -10,6 +10,7 @@ export * from './model/rules/round-rule';
 export * from './model/rules/extra-question-rule';
 export * from './model/championship';
 export * from './model/championchip-rules';
+export * from './model/championship-player';
 export * from './model/league';
 export * from './model/match';
 export * from './model/player';

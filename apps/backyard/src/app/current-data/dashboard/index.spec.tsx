@@ -4,9 +4,10 @@ import { render, screen, cleanup } from '@testing-library/react';
 import Dashboard from '.';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
-import { useCurrentChampionship } from '@/hooks/use-current-championship';
+import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
 import { Championship } from 'lib';
-vi.mock('@/hooks/use-current-championship', () => ({
+
+vi.mock('@/hooks/current-data/use-current-championship', () => ({
   useCurrentChampionship: vi.fn(),
 }));
 
