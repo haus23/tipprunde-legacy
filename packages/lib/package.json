@@ -8,10 +8,10 @@
     "test": "vitest"
   },
   "dependencies": {
-    "firebase": "^9.10.0"
+    "firebase": "^9.11.0"
   },
   "devDependencies": {
-    "tsconfig": "workspace:*",
+    "tsconfig": "workspace:0.0.1",
     "vitest": "^0.23.4"
   }
 }
