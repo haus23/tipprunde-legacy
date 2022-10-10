@@ -1,5 +1,20 @@
 # backyard
 
+## 0.0.30
+
+### Patch Changes
+
+- [`a2b4970`](https://github.com/haus23/runde.tips/commit/a2b49701290c34720f18f26a0b41f2853baa607b) Thanks [@haus23](https://github.com/haus23)! - Add preloader and suspense fallback for current shell.
+
+- [`0ac3f91`](https://github.com/haus23/runde.tips/commit/0ac3f91735e12822db5822ee89de2a68242a5df4) Thanks [@haus23](https://github.com/haus23)! - Returns empty array for undefined id.
+
+- [`3878f3e`](https://github.com/haus23/runde.tips/commit/3878f3ef0a9f29e05d5d809a4ee4085c2f871b57) Thanks [@haus23](https://github.com/haus23)! - Introduce a new current-data layout shell.
+
+- [`5bb6ea2`](https://github.com/haus23/runde.tips/commit/5bb6ea2ab0b175aeac61fb87248f29dfb5da8071) Thanks [@haus23](https://github.com/haus23)! - Renamed preloader component.
+
+- Updated dependencies [[`5453c70`](https://github.com/haus23/runde.tips/commit/5453c70c7a3d129d0383cc0a15ca52e1bf1f9b99)]:
+  - ui@0.0.11
+
 ## 0.0.29
 
 ### Patch Changes

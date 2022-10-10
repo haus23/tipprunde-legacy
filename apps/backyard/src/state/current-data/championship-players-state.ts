@@ -8,8 +8,10 @@ export const championshipPlayersState = atomFamily<
   key: 'championshipPlayersState',
   effects: (championshipId) => [
     ({ setSelf }) =>
-      collection<ChampionshipPlayer>(
-        `championships/${championshipId}/players`
-      ).subscribe(setSelf),
+      championshipId
+        ? collection<ChampionshipPlayer>(
+            `championships/${championshipId}/players`
+          ).subscribe(setSelf)
+        : setSelf([]),
   ],
 });

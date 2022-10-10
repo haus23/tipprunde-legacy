@@ -41,73 +41,70 @@ export default function ChampionshipView() {
   }
 
   return currentChampionship ? (
-    <div>
-      <h2 className="text-2xl font-semibold">{currentChampionship.name}</h2>
-      <div className="mt-5 flex flex-col space-y-4">
-        <Card>
-          <Card.Header>Turnier</Card.Header>
-          <div className="p-4">
-            <ToggleField
-              checked={currentChampionship.published}
-              onChange={togglePublishedState}
-              label="Veröffentlicht"
-            />
+    <div className="mt-5 flex flex-col space-y-4">
+      <Card>
+        <Card.Header>Turnier</Card.Header>
+        <div className="p-4">
+          <ToggleField
+            checked={currentChampionship.published}
+            onChange={togglePublishedState}
+            label="Veröffentlicht"
+          />
+        </div>
+      </Card>
+      <Card>
+        <Card.Header>Mitspieler</Card.Header>
+        <div className="flex p-2 sm:p-4 gap-x-2 divide-x divide-gray-200 sm:gap-x-4">
+          <div
+            className={classNames(
+              hasRemainingPlayers ? 'basis-1/2' : 'grow justify-self-center'
+            )}
+          >
+            <h4 className="text-center font-medium">Wer ist dabei?</h4>
+            <div className="h-full w-full overflow-y-auto">
+              <ul
+                role="list"
+                className="relative z-0 mt-2 divide-y divide-gray-200"
+              >
+                {attendingPlayers.map((p) => (
+                  <li
+                    className="flex select-none items-center px-2 py-2 sm:px-4"
+                    key={p.id}
+                  >
+                    <span className="mr-4">{p.player.name}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </Card>
-        <Card>
-          <Card.Header>Mitspieler</Card.Header>
-          <div className="flex p-2 sm:p-4 gap-x-2 divide-x divide-gray-200 sm:gap-x-4">
-            <div
-              className={classNames(
-                hasRemainingPlayers ? 'basis-1/2' : 'grow justify-self-center'
-              )}
-            >
-              <h4 className="text-center font-medium">Wer ist dabei?</h4>
+          {hasRemainingPlayers && (
+            <div className="basis-1/2 pl-2 sm:pl-4">
+              <h4 className="text-center font-medium">Wer (noch) nicht?</h4>
               <div className="h-full w-full overflow-y-auto">
                 <ul
                   role="list"
                   className="relative z-0 mt-2 divide-y divide-gray-200"
                 >
-                  {attendingPlayers.map((p) => (
+                  {remainingPlayers.map((p) => (
                     <li
                       className="flex select-none items-center px-2 py-2 sm:px-4"
                       key={p.id}
                     >
-                      <span className="mr-4">{p.player.name}</span>
+                      <button
+                        onClick={() => addPlayer(p.id)}
+                        className="rounded-full p-1 bg-white hover:bg-gray-100 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      >
+                        <PlusIcon className="h-4 w-4" />
+                      </button>
+                      <span className="ml-4">{p.name}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-            {hasRemainingPlayers && (
-              <div className="basis-1/2 pl-2 sm:pl-4">
-                <h4 className="text-center font-medium">Wer (noch) nicht?</h4>
-                <div className="h-full w-full overflow-y-auto">
-                  <ul
-                    role="list"
-                    className="relative z-0 mt-2 divide-y divide-gray-200"
-                  >
-                    {remainingPlayers.map((p) => (
-                      <li
-                        className="flex select-none items-center px-2 py-2 sm:px-4"
-                        key={p.id}
-                      >
-                        <button
-                          onClick={() => addPlayer(p.id)}
-                          className="rounded-full p-1 bg-white hover:bg-gray-100 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        >
-                          <PlusIcon className="h-4 w-4" />
-                        </button>
-                        <span className="ml-4">{p.name}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            )}
-          </div>
-        </Card>
-      </div>
+          )}
+        </div>
+      </Card>
     </div>
   ) : null;
 }
