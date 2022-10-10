@@ -1,5 +1,12 @@
 # foh
 
+## 0.0.31
+
+### Patch Changes
+
+- Updated dependencies [[`5453c70`](https://github.com/haus23/runde.tips/commit/5453c70c7a3d129d0383cc0a15ca52e1bf1f9b99)]:
+  - ui@0.0.11
+
 ## 0.0.30
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # ui
 
+## 0.0.11
+
+### Patch Changes
+
+- [`5453c70`](https://github.com/haus23/runde.tips/commit/5453c70c7a3d129d0383cc0a15ca52e1bf1f9b99) Thanks [@haus23](https://github.com/haus23)! - Export the logo.
+
 ## 0.0.10
 
 ### Patch Changes
