@@ -65,49 +65,36 @@ export default function Dashboard() {
   const { currentChampionship } = useCurrentChampionship();
 
   return (
-    <div>
-      <h2 className="text-2xl font-semibold">
-        {currentChampionship?.name || 'Hinterhof'}
-      </h2>
-      <ul
-        role="list"
-        className="mt-2 grid grid-cols-1 gap-6 py-6 sm:grid-cols-2"
-      >
-        {items
-          .filter((item) => item.visible(currentChampionship))
-          .map((item, itemIdx) => (
-            <li
-              key={itemIdx}
-              className="flow-root self-stretch sm:only:col-span-2 sm:only:mx-auto"
-            >
-              <div className="relative flex h-full space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-200">
-                <div
-                  className={classNames(
-                    item.background,
-                    'flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg'
-                  )}
-                >
-                  <item.icon
-                    className="h-6 w-6 text-white"
-                    aria-hidden="true"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-sm font-medium text-gray-900 ">
-                    <Link to={item.route} className="focus:outline-none">
-                      <span className="absolute inset-0" aria-hidden="true" />
-                      {item.title}
-                      <span aria-hidden="true"> &rarr;</span>
-                    </Link>
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-500">
-                    {item.description}
-                  </p>
-                </div>
+    <ul role="list" className="mt-2 grid grid-cols-1 gap-6 py-6 sm:grid-cols-2">
+      {items
+        .filter((item) => item.visible(currentChampionship))
+        .map((item, itemIdx) => (
+          <li
+            key={itemIdx}
+            className="flow-root self-stretch sm:only:col-span-2 sm:only:mx-auto"
+          >
+            <div className="relative flex h-full space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-200">
+              <div
+                className={classNames(
+                  item.background,
+                  'flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg'
+                )}
+              >
+                <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
-            </li>
-          ))}
-      </ul>
-    </div>
+              <div>
+                <h3 className="text-sm font-medium text-gray-900 ">
+                  <Link to={item.route} className="focus:outline-none">
+                    <span className="absolute inset-0" aria-hidden="true" />
+                    {item.title}
+                    <span aria-hidden="true"> &rarr;</span>
+                  </Link>
+                </h3>
+                <p className="mt-1 text-sm text-gray-500">{item.description}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+    </ul>
   );
 }

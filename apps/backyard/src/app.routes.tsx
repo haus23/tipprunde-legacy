@@ -18,6 +18,7 @@ import RulesView from './app/master-data/rules';
 import ProfileView from './app/profile';
 import Login from './app/login';
 import Logout from './app/logout';
+import CurrentShell from './app/current-data/current-shell';
 
 const appRoutes: RouteObject[] = [
   {
@@ -34,6 +35,7 @@ const appRoutes: RouteObject[] = [
     },
     children: [
       {
+        element: <CurrentShell />,
         children: [
           { index: true, element: <Dashboard /> },
           { path: 'turnier', element: <ChampionshipView /> },
