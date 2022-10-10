@@ -4,7 +4,8 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "changeset": "changeset"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.7",
