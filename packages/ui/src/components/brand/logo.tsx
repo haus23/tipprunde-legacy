@@ -2,7 +2,7 @@ type LogoProps = {
   className?: string;
 };
 
-export default function Logo({ className }: LogoProps) {
+export function Logo({ className }: LogoProps) {
   return (
     <div className={className}>
       <svg className="h-full fill-current" viewBox="0 0 3160 2610">
