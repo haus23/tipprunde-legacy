@@ -4,7 +4,7 @@ import { usePlayers } from '@/hooks/master-data/use-players';
 import { useRules } from '@/hooks/master-data/use-rules';
 import { useTeams } from '@/hooks/master-data/use-teams';
 
-export default function AppPreloader() {
+export default function AppShellPreloader() {
   useChampionships();
   usePlayers();
   useTeams();

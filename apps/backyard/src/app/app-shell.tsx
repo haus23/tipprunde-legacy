@@ -4,7 +4,7 @@ import { Transition, Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import AppNavbar from '@/components/layout/app-navbar';
-import AppPreloader from './app-preloader';
+import AppShellPreloader from './app-shell.preloader';
 
 export default function AppShell() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -16,7 +16,7 @@ export default function AppShell() {
 
   return (
     <div>
-      <AppPreloader />
+      <AppShellPreloader />
       {/* Mobile slide out navbar */}
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog
