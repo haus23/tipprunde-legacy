@@ -30,13 +30,13 @@ const championshipNavLinks: {
     to: './spiele',
     icon: CalendarIcon,
     label: 'Spiele',
-    visible: (championship) => !!championship,
+    visible: (championship) => !!championship && false,
   },
   {
     to: './tipps',
     icon: PencilSquareIcon,
     label: 'Tipps',
-    visible: (championship) => !!championship,
+    visible: (championship) => !!championship && false,
   },
 ];
 
