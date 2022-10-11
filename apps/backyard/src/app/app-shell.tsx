@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Transition, Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-import AppNavbar from '@/components/layout/app-navbar';
+import AppShellNavbar from './app-shell.navbar';
 import AppShellPreloader from './app-shell.preloader';
 
 export default function AppShell() {
@@ -19,11 +19,7 @@ export default function AppShell() {
       <AppShellPreloader />
       {/* Mobile slide out navbar */}
       <Transition.Root show={sidebarOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-40 md:hidden"
-          onClose={setSidebarOpen}
-        >
+        <Dialog className="relative z-40 md:hidden" onClose={setSidebarOpen}>
           <Transition.Child
             as={Fragment}
             enter="transition-opacity ease-linear duration-300"
@@ -70,7 +66,7 @@ export default function AppShell() {
                     </button>
                   </div>
                 </Transition.Child>
-                <AppNavbar />
+                <AppShellNavbar />
               </Dialog.Panel>
             </Transition.Child>
             <div className="w-14 flex-shrink-0">
@@ -82,7 +78,7 @@ export default function AppShell() {
       {/* Static desktop navbar */}
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
         <div className="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-white">
-          <AppNavbar />
+          <AppShellNavbar />
         </div>
       </div>
       {/* Content with header */}
