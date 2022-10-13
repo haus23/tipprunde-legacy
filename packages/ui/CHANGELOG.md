@@ -1,5 +1,11 @@
 # ui
 
+## 0.0.12
+
+### Patch Changes
+
+- [`4322c75`](https://github.com/haus23/runde.tips/commit/4322c7592485edff7f0f8df6e4d3f330a20d5c18) Thanks [@haus23](https://github.com/haus23)! - Update deps.
+
 ## 0.0.11
 
 ### Patch Changes

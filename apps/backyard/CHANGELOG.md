@@ -1,5 +1,25 @@
 # backyard
 
+## 0.0.31
+
+### Patch Changes
+
+- [`0897a5d`](https://github.com/haus23/runde.tips/commit/0897a5d41bf9db5b7529caad9a5c25e5bb0ad478) Thanks [@haus23](https://github.com/haus23)! - Refine routing and start adding new rounds.
+
+- [`222c8af`](https://github.com/haus23/runde.tips/commit/222c8af6d47a13535c5184419109c847d1288ce7) Thanks [@haus23](https://github.com/haus23)! - Implement adding rounds.
+
+- [`7d5024d`](https://github.com/haus23/runde.tips/commit/7d5024d43ec6ba82dddae4ec3301db0da1b24505) Thanks [@haus23](https://github.com/haus23)! - Move navbar next to shell.
+
+- [`4322c75`](https://github.com/haus23/runde.tips/commit/4322c7592485edff7f0f8df6e4d3f330a20d5c18) Thanks [@haus23](https://github.com/haus23)! - Update deps.
+
+- [`26014cb`](https://github.com/haus23/runde.tips/commit/26014cb2e746c1c55a20504790c243bf61ea7579) Thanks [@haus23](https://github.com/haus23)! - Drop component tests.
+
+- [`6807227`](https://github.com/haus23/runde.tips/commit/68072273a49f5b5f22f3936e5d5c79b2d7679cbb) Thanks [@haus23](https://github.com/haus23)! - Hide navbar items with no round created.
+
+- Updated dependencies [[`4322c75`](https://github.com/haus23/runde.tips/commit/4322c7592485edff7f0f8df6e4d3f330a20d5c18), [`0fe2064`](https://github.com/haus23/runde.tips/commit/0fe2064003a29b98791fc83b15e8df699fa95e7a)]:
+  - lib@0.0.15
+  - ui@0.0.12
+
 ## 0.0.30
 
 ### Patch Changes

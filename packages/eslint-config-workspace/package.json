@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-workspace",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.cjs",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.40.0",
