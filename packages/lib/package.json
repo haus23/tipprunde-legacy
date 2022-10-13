@@ -1,6 +1,6 @@
 {
   "name": "lib",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -8,7 +8,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "firebase": "^9.11.0"
+    "firebase": "^9.12.1"
   },
   "devDependencies": {
     "tsconfig": "workspace:0.0.1",

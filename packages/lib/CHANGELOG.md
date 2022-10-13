@@ -1,5 +1,11 @@
 # lib
 
+## 0.0.16
+
+### Patch Changes
+
+- Update deps.
+
 ## 0.0.15
 
 ### Patch Changes

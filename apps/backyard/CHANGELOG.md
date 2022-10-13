@@ -1,5 +1,14 @@
 # backyard
 
+## 0.0.32
+
+### Patch Changes
+
+- Update deps.
+
+- Updated dependencies []:
+  - lib@0.0.16
+
 ## 0.0.31
 
 ### Patch Changes
