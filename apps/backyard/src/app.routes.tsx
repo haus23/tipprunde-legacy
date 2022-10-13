@@ -3,13 +3,15 @@ import { redirect, RouteObject } from 'react-router-dom';
 
 import AppShell from './app/app-shell';
 
+import CurrentShell from './app/current-data/current-shell';
 import Dashboard from './app/current-data/dashboard';
 import ChampionshipView from './app/current-data/championship';
-import MatchesView from './app/current-data/matches';
+import ChampionshipCreateView from './app/current-data/championship/create';
+import RoundView from './app/current-data/rounds';
+import RoundCreateView from './app/current-data/rounds/create';
 import TipsView from './app/current-data/tips';
 
 import ChampionshipsView from './app/master-data/championships';
-import ChampionshipsCreateView from './app/master-data/championships/create';
 import PlayersView from './app/master-data/players';
 import TeamsView from './app/master-data/teams';
 import LeaguesView from './app/master-data/leagues';
@@ -18,7 +20,6 @@ import RulesView from './app/master-data/rules';
 import ProfileView from './app/profile';
 import Login from './app/login';
 import Logout from './app/logout';
-import CurrentShell from './app/current-data/current-shell';
 
 const appRoutes: RouteObject[] = [
   {
@@ -39,7 +40,9 @@ const appRoutes: RouteObject[] = [
         children: [
           { index: true, element: <Dashboard /> },
           { path: 'turnier', element: <ChampionshipView /> },
-          { path: 'spiele', element: <MatchesView /> },
+          { path: 'neues-turnier', element: <ChampionshipCreateView /> },
+          { path: 'runden', element: <RoundView /> },
+          { path: 'neue-runde', element: <RoundCreateView /> },
           { path: 'tipps', element: <TipsView /> },
         ],
       },
@@ -51,11 +54,6 @@ const appRoutes: RouteObject[] = [
           { path: 'teams', element: <TeamsView /> },
           { path: 'ligen', element: <LeaguesView /> },
           { path: 'regelwerke', element: <RulesView /> },
-        ],
-      },
-      {
-        children: [
-          { path: 'neues-turnier', element: <ChampionshipsCreateView /> },
         ],
       },
       { path: 'profil', element: <ProfileView /> },

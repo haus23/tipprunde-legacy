@@ -40,7 +40,7 @@ const items: {
     description: 'Bearbeite die Ansetzungen einer Runde',
     icon: MegaphoneIcon,
     background: 'bg-blue-500',
-    route: './spiele-anlegen',
+    route: './runden',
     visible: (championship) => !!championship && false,
   },
   {
@@ -48,7 +48,7 @@ const items: {
     description: 'Tipps der Mitspieler erfassen.',
     icon: PencilSquareIcon,
     background: 'bg-indigo-500',
-    route: './tipps-eintragen',
+    route: './tipps',
     visible: (championship) => !!championship && false,
   },
   {
