@@ -14,6 +14,7 @@ export * from './model/championship-player';
 export * from './model/league';
 export * from './model/match';
 export * from './model/player';
+export * from './model/round';
 export * from './model/team';
 export * from './model/tip';
 

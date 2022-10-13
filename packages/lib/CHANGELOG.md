@@ -1,5 +1,13 @@
 # lib
 
+## 0.0.15
+
+### Patch Changes
+
+- [`4322c75`](https://github.com/haus23/runde.tips/commit/4322c7592485edff7f0f8df6e4d3f330a20d5c18) Thanks [@haus23](https://github.com/haus23)! - Update deps.
+
+- [`0fe2064`](https://github.com/haus23/runde.tips/commit/0fe2064003a29b98791fc83b15e8df699fa95e7a) Thanks [@haus23](https://github.com/haus23)! - Add round model.
+
 ## 0.0.14
 
 ### Patch Changes

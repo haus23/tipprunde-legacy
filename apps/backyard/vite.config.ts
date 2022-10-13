@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 /// <reference types="vite/client" />
 
 import { fileURLToPath } from 'url';
@@ -20,9 +19,5 @@ export default defineConfig({
         },
       },
     },
-  },
-  // Vitest
-  test: {
-    environment: 'jsdom',
   },
 });

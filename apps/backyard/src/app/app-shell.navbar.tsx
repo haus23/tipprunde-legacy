@@ -8,17 +8,19 @@ import {
   PencilSquareIcon,
 } from '@heroicons/react/24/outline';
 
-import { useProfile } from '@/hooks/use-profile';
-import { classNames } from '@/utils/class-names';
-import AppTitle from './app-title';
-import { Championship } from 'lib';
+import { Championship, Round } from 'lib';
+import { AppTitle, classNames } from 'ui';
+
 import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
+import { useRounds } from '@/hooks/current-data/use-rounds';
+
+import { useProfile } from '@/hooks/use-profile';
 
 const championshipNavLinks: {
   to: string;
   icon: ElementType;
   label: string;
-  visible: (championship: Championship | undefined) => boolean;
+  visible: (championship: Championship | undefined, rounds: Round[]) => boolean;
 }[] = [
   {
     to: './turnier',
@@ -27,16 +29,16 @@ const championshipNavLinks: {
     visible: (championship) => !!championship,
   },
   {
-    to: './spiele',
+    to: './runden',
     icon: CalendarIcon,
-    label: 'Spiele',
-    visible: (championship) => !!championship,
+    label: 'Runden / Spiele',
+    visible: (championship, rounds) => !!championship && rounds.length > 0,
   },
   {
     to: './tipps',
     icon: PencilSquareIcon,
     label: 'Tipps',
-    visible: (championship) => !!championship,
+    visible: (championship) => !!championship && false,
   },
 ];
 
@@ -66,14 +68,17 @@ const masterDataNavLinks: {
   },
 ];
 
-export default function AppNavbar() {
+export default function AppShellNavbar() {
   const { profile } = useProfile();
   const { currentChampionship: championship } = useCurrentChampionship();
+  const { rounds } = useRounds();
 
   return (
     <>
       <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-        <AppTitle />
+        <div className="px-2">
+          <AppTitle />
+        </div>
         <div className="mt-5 flex-1 flex flex-col justify-between gap-y-4">
           <nav className="space-y-1 px-2">
             <NavLink
@@ -104,7 +109,7 @@ export default function AppNavbar() {
               )}
             </NavLink>
             {championshipNavLinks
-              .filter((item) => item.visible(championship))
+              .filter((item) => item.visible(championship, rounds))
               .map((item) => (
                 <NavLink
                   key={item.label}

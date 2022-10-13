@@ -9,7 +9,8 @@ import {
 import { classNames } from '@/utils/class-names';
 import { Link } from 'react-router-dom';
 import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
-import { Championship } from 'lib';
+import { useRounds } from '@/hooks/current-data/use-rounds';
+import { Championship, Round } from 'lib';
 
 const items: {
   title: string;
@@ -17,7 +18,7 @@ const items: {
   background: string;
   route: string;
   icon: ElementType;
-  visible: (championship: Championship | undefined) => boolean;
+  visible: (championship: Championship | undefined, rounds: Round[]) => boolean;
 }[] = [
   {
     title: 'Neue Runde',
@@ -40,15 +41,15 @@ const items: {
     description: 'Bearbeite die Ansetzungen einer Runde',
     icon: MegaphoneIcon,
     background: 'bg-blue-500',
-    route: './spiele-anlegen',
-    visible: (championship) => !!championship && false,
+    route: './runden',
+    visible: (championship, rounds) => !!championship && rounds.length > 0,
   },
   {
     title: 'Tipps eintragen',
     description: 'Tipps der Mitspieler erfassen.',
     icon: PencilSquareIcon,
     background: 'bg-indigo-500',
-    route: './tipps-eintragen',
+    route: './tipps',
     visible: (championship) => !!championship && false,
   },
   {
@@ -63,11 +64,12 @@ const items: {
 
 export default function Dashboard() {
   const { currentChampionship } = useCurrentChampionship();
+  const { rounds } = useRounds();
 
   return (
     <ul role="list" className="mt-2 grid grid-cols-1 gap-6 py-6 sm:grid-cols-2">
       {items
-        .filter((item) => item.visible(currentChampionship))
+        .filter((item) => item.visible(currentChampionship, rounds))
         .map((item, itemIdx) => (
           <li
             key={itemIdx}
