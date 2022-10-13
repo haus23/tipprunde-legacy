@@ -8,17 +8,19 @@ import {
   PencilSquareIcon,
 } from '@heroicons/react/24/outline';
 
-import { Championship } from 'lib';
+import { Championship, Round } from 'lib';
 import { AppTitle, classNames } from 'ui';
 
 import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
+import { useRounds } from '@/hooks/current-data/use-rounds';
+
 import { useProfile } from '@/hooks/use-profile';
 
 const championshipNavLinks: {
   to: string;
   icon: ElementType;
   label: string;
-  visible: (championship: Championship | undefined) => boolean;
+  visible: (championship: Championship | undefined, rounds: Round[]) => boolean;
 }[] = [
   {
     to: './turnier',
@@ -30,7 +32,7 @@ const championshipNavLinks: {
     to: './runden',
     icon: CalendarIcon,
     label: 'Runden / Spiele',
-    visible: (championship) => !!championship && false,
+    visible: (championship, rounds) => !!championship && rounds.length > 0,
   },
   {
     to: './tipps',
@@ -69,6 +71,7 @@ const masterDataNavLinks: {
 export default function AppShellNavbar() {
   const { profile } = useProfile();
   const { currentChampionship: championship } = useCurrentChampionship();
+  const { rounds } = useRounds();
 
   return (
     <>
@@ -106,7 +109,7 @@ export default function AppShellNavbar() {
               )}
             </NavLink>
             {championshipNavLinks
-              .filter((item) => item.visible(championship))
+              .filter((item) => item.visible(championship, rounds))
               .map((item) => (
                 <NavLink
                   key={item.label}
