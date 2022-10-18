@@ -7,11 +7,7 @@ type ToggleFieldProps = {
   onChange?: (checked: boolean) => void;
 };
 
-export default function ToggleField({
-  label,
-  checked,
-  onChange,
-}: ToggleFieldProps) {
+export function ToggleField({ label, checked, onChange }: ToggleFieldProps) {
   return (
     <Switch.Group as="div" className="flex items-center">
       <Switch
