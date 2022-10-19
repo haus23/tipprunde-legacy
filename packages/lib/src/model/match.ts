@@ -5,9 +5,9 @@ export type Match = BaseModel & {
   roundId: string;
   nr: number;
   date: Timestamp;
-  league: string;
-  hometeam: string;
-  awayteam: string;
+  leagueId: string;
+  hometeamId: string;
+  awayteamId: string;
   result: string;
   points: number;
 };
