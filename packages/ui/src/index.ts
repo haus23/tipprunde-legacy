@@ -6,6 +6,7 @@ export * from './components/container/card';
 
 export * from './components/elements/button';
 
+export * from './components/form/combobox-field';
 export * from './components/form/select-field';
 export * from './components/form/text-field';
 export * from './components/form/toggle-field';
