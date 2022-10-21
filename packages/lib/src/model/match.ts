@@ -1,10 +1,9 @@
-import { Timestamp } from 'firebase/firestore';
 import { BaseModel } from './base/model';
 
 export type Match = BaseModel & {
   roundId: string;
   nr: number;
-  date: Timestamp;
+  date: string;
   leagueId: string;
   hometeamId: string;
   awayteamId: string;
