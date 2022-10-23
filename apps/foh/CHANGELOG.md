@@ -1,5 +1,15 @@
 # foh
 
+## 0.0.34
+
+### Patch Changes
+
+- [`afa9b7f`](https://github.com/haus23/runde.tips/commit/afa9b7f82ea24f56d6dba5dff1ba0921c5e67329) Thanks [@haus23](https://github.com/haus23)! - Update tailwindcss.
+
+- Updated dependencies [[`8408edf`](https://github.com/haus23/runde.tips/commit/8408edfad1ec0519d876d94e69fd98a0d16be6d5), [`29eabb5`](https://github.com/haus23/runde.tips/commit/29eabb50ee91efc995450367b0c4a5ed062a6e24), [`aa04441`](https://github.com/haus23/runde.tips/commit/aa044413ce2131df7fb88a6a5b0b205cece651b6), [`3db88bc`](https://github.com/haus23/runde.tips/commit/3db88bc5d2e3f1fc7fdcf8bb6518bb1be9bbd88b), [`c80f48b`](https://github.com/haus23/runde.tips/commit/c80f48bc80edc4ecc595c8ade243513acd685bfb), [`ea3444e`](https://github.com/haus23/runde.tips/commit/ea3444e3e9eb16e30da54a613c317ee0bde1f128), [`e843ca9`](https://github.com/haus23/runde.tips/commit/e843ca9a12810cc7bbc9bc33de9638993d3dbcef), [`580bc4f`](https://github.com/haus23/runde.tips/commit/580bc4fc1d5ff92098be4e845b0e3f832c5eceaa)]:
+  - ui@0.0.13
+  - lib@0.0.17
+
 ## 0.0.33
 
 ### Patch Changes

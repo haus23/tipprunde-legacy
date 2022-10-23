@@ -1,5 +1,33 @@
 # backyard
 
+## 0.0.33
+
+### Patch Changes
+
+- [`221f6e7`](https://github.com/haus23/runde.tips/commit/221f6e7519c335e8ea0c2817770fb71f409ac05e) Thanks [@haus23](https://github.com/haus23)! - Implement a first basic autocomplete combobox field.
+
+- [`7052ea9`](https://github.com/haus23/runde.tips/commit/7052ea9e55ebc45a04296753df65fc1518d5ca15) Thanks [@haus23](https://github.com/haus23)! - Fix routing and some clean-up.
+
+- [`7241ab2`](https://github.com/haus23/runde.tips/commit/7241ab2ded9499b343c3a38a597e4cf0bba46b15) Thanks [@haus23](https://github.com/haus23)! - Restructure current-data routing.
+
+- [`97fc71c`](https://github.com/haus23/runde.tips/commit/97fc71c4049f1412c47e71c11ed963f5aa7bafeb) Thanks [@haus23](https://github.com/haus23)! - Implement adding files.
+
+- [`0fc01bc`](https://github.com/haus23/runde.tips/commit/0fc01bcef08df70fafe211c1e68dc47781103a6c) Thanks [@haus23](https://github.com/haus23)! - Implement matches state and hook.
+
+- [`c544a81`](https://github.com/haus23/runde.tips/commit/c544a81a10dac11cfcdc9c323ce8065ae47466a8) Thanks [@haus23](https://github.com/haus23)! - Remove firebase dep and align workspace libs.
+
+- [`ea3444e`](https://github.com/haus23/runde.tips/commit/ea3444e3e9eb16e30da54a613c317ee0bde1f128) Thanks [@haus23](https://github.com/haus23)! - Update deps.
+
+- [`afa9b7f`](https://github.com/haus23/runde.tips/commit/afa9b7f82ea24f56d6dba5dff1ba0921c5e67329) Thanks [@haus23](https://github.com/haus23)! - Update tailwindcss.
+
+- [`06448a7`](https://github.com/haus23/runde.tips/commit/06448a74e2755004b79cd964fbc16849eb0898c0) Thanks [@haus23](https://github.com/haus23)! - Align config with config package.
+
+- [`4b15ff8`](https://github.com/haus23/runde.tips/commit/4b15ff86620e4da91fc268be03c5ab88ce5360e4) Thanks [@haus23](https://github.com/haus23)! - Fix wrong recoil key.
+
+- Updated dependencies [[`8408edf`](https://github.com/haus23/runde.tips/commit/8408edfad1ec0519d876d94e69fd98a0d16be6d5), [`29eabb5`](https://github.com/haus23/runde.tips/commit/29eabb50ee91efc995450367b0c4a5ed062a6e24), [`aa04441`](https://github.com/haus23/runde.tips/commit/aa044413ce2131df7fb88a6a5b0b205cece651b6), [`3db88bc`](https://github.com/haus23/runde.tips/commit/3db88bc5d2e3f1fc7fdcf8bb6518bb1be9bbd88b), [`c80f48b`](https://github.com/haus23/runde.tips/commit/c80f48bc80edc4ecc595c8ade243513acd685bfb), [`ea3444e`](https://github.com/haus23/runde.tips/commit/ea3444e3e9eb16e30da54a613c317ee0bde1f128), [`e843ca9`](https://github.com/haus23/runde.tips/commit/e843ca9a12810cc7bbc9bc33de9638993d3dbcef), [`580bc4f`](https://github.com/haus23/runde.tips/commit/580bc4fc1d5ff92098be4e845b0e3f832c5eceaa)]:
+  - ui@0.0.13
+  - lib@0.0.17
+
 ## 0.0.32
 
 ### Patch Changes

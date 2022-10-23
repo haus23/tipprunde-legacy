@@ -1,5 +1,15 @@
 # lib
 
+## 0.0.17
+
+### Patch Changes
+
+- [`29eabb5`](https://github.com/haus23/runde.tips/commit/29eabb50ee91efc995450367b0c4a5ed062a6e24) Thanks [@haus23](https://github.com/haus23)! - Simplify match model: no firestore timestamp, just a string.
+
+- [`ea3444e`](https://github.com/haus23/runde.tips/commit/ea3444e3e9eb16e30da54a613c317ee0bde1f128) Thanks [@haus23](https://github.com/haus23)! - Update deps.
+
+- [`580bc4f`](https://github.com/haus23/runde.tips/commit/580bc4fc1d5ff92098be4e845b0e3f832c5eceaa) Thanks [@haus23](https://github.com/haus23)! - Rename the foreign key props.
+
 ## 0.0.16
 
 ### Patch Changes

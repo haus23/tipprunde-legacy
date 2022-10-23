@@ -1,5 +1,11 @@
 # eslint-config-workspace
 
+## 0.0.4
+
+### Patch Changes
+
+- [`b0e75e6`](https://github.com/haus23/runde.tips/commit/b0e75e6b330c7c431c1cb7878f03e89a5aae1501) Thanks [@haus23](https://github.com/haus23)! - Refine eslint config. Split up extra react/typescript override.
+
 ## 0.0.3
 
 ### Patch Changes
