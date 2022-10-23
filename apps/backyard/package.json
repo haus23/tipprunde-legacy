@@ -10,8 +10,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
-    "firebase": "^9.12.1",
-    "lib": "workspace:0.0.16",
+    "lib": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.37.0",
@@ -19,7 +18,7 @@
     "react-router-dom": "^6.4.2",
     "recoil": "^0.7.6",
     "slugify": "^1.6.5",
-    "ui": "workspace:0.0.12"
+    "ui": "workspace:*"
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.1.1",
@@ -32,7 +31,7 @@
     "autoprefixer": "^10.4.12",
     "jsdom": "^20.0.1",
     "postcss": "^8.4.18",
-    "tailwind-config": "workspace:0.0.1",
+    "tailwind-config": "workspace:*",
     "tailwindcss": "^3.2.1",
     "typescript": "~4.8.4",
     "vite": "^3.1.8"
