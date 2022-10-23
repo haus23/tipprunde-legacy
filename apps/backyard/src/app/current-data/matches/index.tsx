@@ -198,7 +198,7 @@ export default function MatchesView() {
         </div>
       </Card>
       <AppCard>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto overflow-y-hidden">
           <table className="min-w-full divide-y divide-gray-300">
             <thead className="bg-gray-50">
               <tr>
@@ -232,46 +232,48 @@ export default function MatchesView() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 bg-white pr-1">
-              {matches.map((m) => (
-                <tr key={m.id}>
-                  <td className="whitespace-nowrap pl-4 pr-2 py-4 text-sm text-gray-500">
-                    {m.nr}
-                  </td>
-                  <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
-                    <span className="hidden lg:inline">
-                      {formatDate(m.date)}
-                    </span>
-                    <span className="lg:hidden">
-                      {formatDate(m.date, true)}
-                    </span>
-                  </td>
-                  <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
-                    <span className="hidden lg:inline">
-                      {leaguesHash[m.leagueId]?.name || ''}
-                    </span>
-                    <span className="lg:hidden">
-                      {leaguesHash[m.leagueId]?.shortname || ''}
-                    </span>
-                  </td>
-                  <td className="whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
-                    <span className="hidden lg:inline">
-                      {`${teamsHash[m.hometeamId]?.name || ''} - ${
-                        teamsHash[m.awayteamId]?.name || ''
-                      }`.replace(/^ - $/, '')}
-                    </span>
-                    <span className="lg:hidden">
-                      {`${teamsHash[m.hometeamId]?.shortname || ''} - ${
-                        teamsHash[m.awayteamId]?.shortname || ''
-                      }`.replace(/^ - $/, '')}
-                    </span>
-                  </td>
-                  <td className="text-right pr-3">
-                    <Button onClick={() => beginEdit(m)}>
-                      <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
-                    </Button>
-                  </td>
-                </tr>
-              ))}
+              {matches
+                .filter((m) => m.roundId === currentRound.id)
+                .map((m) => (
+                  <tr key={m.id}>
+                    <td className="whitespace-nowrap pl-4 pr-2 py-4 text-sm text-gray-500">
+                      {m.nr}
+                    </td>
+                    <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                      <span className="hidden lg:inline">
+                        {formatDate(m.date)}
+                      </span>
+                      <span className="lg:hidden">
+                        {formatDate(m.date, true)}
+                      </span>
+                    </td>
+                    <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                      <span className="hidden lg:inline">
+                        {leaguesHash[m.leagueId]?.name || ''}
+                      </span>
+                      <span className="lg:hidden">
+                        {leaguesHash[m.leagueId]?.shortname || ''}
+                      </span>
+                    </td>
+                    <td className="whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                      <span className="hidden lg:inline">
+                        {`${teamsHash[m.hometeamId]?.name || ''} - ${
+                          teamsHash[m.awayteamId]?.name || ''
+                        }`.replace(/^ - $/, '')}
+                      </span>
+                      <span className="lg:hidden">
+                        {`${teamsHash[m.hometeamId]?.shortname || ''} - ${
+                          teamsHash[m.awayteamId]?.shortname || ''
+                        }`.replace(/^ - $/, '')}
+                      </span>
+                    </td>
+                    <td className="text-right pr-3">
+                      <Button onClick={() => beginEdit(m)}>
+                        <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
