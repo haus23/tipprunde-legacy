@@ -2,7 +2,7 @@ import { atomFamily } from 'recoil';
 import { Championship, collection, Round } from 'lib';
 
 export const roundsState = atomFamily<Round[], Championship['id'] | undefined>({
-  key: 'matcheState',
+  key: 'roundsState',
   effects: (championshipId) => [
     ({ setSelf }) =>
       championshipId
