@@ -22,7 +22,7 @@ export function DateField<
   const id = `${useId()}-${name}`;
 
   const {
-    field: { value, onChange },
+    field: { value, ...props },
   } = useController({
     control,
     name,
@@ -39,7 +39,7 @@ export function DateField<
           type="date"
           className="form-input block w-full rounded-md shadow-sm sm:text-sm border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
           value={value ?? ''}
-          onChange={onChange}
+          {...props}
         />
       </div>
     </div>
