@@ -8,19 +8,26 @@ import {
   PencilSquareIcon,
 } from '@heroicons/react/24/outline';
 
-import { Championship, Round } from 'lib';
+import { Championship, ChampionshipPlayer, Match, Round } from 'lib';
 import { AppTitle, classNames } from 'ui';
 
 import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
 import { useRounds } from '@/hooks/current-data/use-rounds';
 
 import { useProfile } from '@/hooks/use-profile';
+import { useMatches } from '@/hooks/current-data/use-matches';
+import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
 
 const championshipNavLinks: {
   to: string;
   icon: ElementType;
   label: string;
-  visible: (championship: Championship | undefined, rounds: Round[]) => boolean;
+  visible: (
+    championship: Championship | undefined,
+    rounds: Round[],
+    matches: Match[],
+    players: ChampionshipPlayer[]
+  ) => boolean;
 }[] = [
   {
     to: './turnier',
@@ -32,13 +39,14 @@ const championshipNavLinks: {
     to: './spiele',
     icon: CalendarIcon,
     label: 'Spiele',
-    visible: (championship, rounds) => !!championship && rounds.length > 0,
+    visible: (championship, rounds) => rounds.length > 0,
   },
   {
     to: './tipps',
     icon: PencilSquareIcon,
     label: 'Tipps',
-    visible: (championship) => !!championship && false,
+    visible: (championship, rounds, matches, players) =>
+      matches.length > 0 && players.length > 0,
   },
 ];
 
@@ -72,6 +80,8 @@ export default function AppShellNavbar() {
   const { profile } = useProfile();
   const { currentChampionship: championship } = useCurrentChampionship();
   const { rounds } = useRounds();
+  const { championshipPlayers } = useChampionshipPlayers();
+  const { matches } = useMatches();
 
   return (
     <>
@@ -109,7 +119,9 @@ export default function AppShellNavbar() {
               )}
             </NavLink>
             {championshipNavLinks
-              .filter((item) => item.visible(championship, rounds))
+              .filter((item) =>
+                item.visible(championship, rounds, matches, championshipPlayers)
+              )
               .map((item) => (
                 <NavLink
                   key={item.label}
