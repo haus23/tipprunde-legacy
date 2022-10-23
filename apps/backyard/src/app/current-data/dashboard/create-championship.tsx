@@ -11,7 +11,7 @@ import { useRules } from '@/hooks/master-data/use-rules';
 import { useChampionships } from '@/hooks/master-data/use-championships';
 import { notify } from '@/utils/notify';
 
-export default function ChampionshipCreateView() {
+export default function CreateChampionshipView() {
   const { championships, createChampionship } = useChampionships();
   const { rules } = useRules();
 

@@ -6,7 +6,7 @@ import Button from '@/components/button';
 import { useRounds } from '@/hooks/current-data/use-rounds';
 import { notify } from '@/utils/notify';
 
-export default function RoundCreateView() {
+export default function CreateRoundView() {
   const navigate = useNavigate();
   const { rounds, createRound } = useRounds();
 
@@ -16,9 +16,9 @@ export default function RoundCreateView() {
       0
     ) + 1;
 
-  const create = () => {
-    notify(createRound(nr), `Runde ${nr} angelegt`);
-    navigate('../runden');
+  const create = async () => {
+    await notify(createRound(nr), `Runde ${nr} angelegt`);
+    navigate('../spiele-bearbeiten');
   };
 
   return (
