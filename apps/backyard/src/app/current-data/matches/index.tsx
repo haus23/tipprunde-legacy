@@ -2,7 +2,14 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
-import { Button, Card, classNames, ComboboxField, DateField } from 'ui';
+import {
+  Button,
+  Card,
+  classNames,
+  ComboboxField,
+  DateField,
+  TextField,
+} from 'ui';
 import { Match } from 'lib';
 
 import { useMatches } from '@/hooks/current-data/use-matches';
@@ -88,9 +95,7 @@ export default function MatchesView() {
               onClick={() => setFormOpen(!isFormOpen)}
               className="w-full flex items-center justify-between px-4 py-2 font-semibold"
             >
-              <span>
-                {editMode ? 'Spiel bearbeiten' : `Neues Spiel Nummer ${nr}`}
-              </span>
+              <span>{editMode ? 'Spiel bearbeiten' : `Neues Spiel`}</span>
               <ChevronDownIcon
                 className={classNames(
                   'h-5 w-5 transition-transform',
@@ -103,6 +108,7 @@ export default function MatchesView() {
             <div>
               <form noValidate onSubmit={handleSubmit(saveMatch)}>
                 <div className="space-y-4 p-4 pt-2">
+                  <span className="text-sm font-semibold">Nummer {nr}</span>
                   <div className="flex flex-col gap-y-4 sm:flex-row sm:justify-between">
                     <DateField label="Wann?" control={control} name="date" />
                     <ComboboxField
