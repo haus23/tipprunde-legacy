@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 import { matchesState } from '@/state/current-data/matches-state';
 
 import { useCurrentChampionship } from './use-current-championship';
-import { createEntity, Match } from 'lib';
+import { createEntity, Match, updateEntity } from 'lib';
 
 export function useMatches() {
   const { currentChampionship } = useCurrentChampionship();
@@ -14,5 +14,10 @@ export function useMatches() {
       match
     );
 
-  return { matches, createMatch };
+  const updateMatch = async (match: Match) =>
+    updateEntity<Match>(
+      `championships/${currentChampionship?.id}/matches`,
+      match
+    );
+  return { matches, createMatch, updateMatch };
 }

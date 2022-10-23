@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 
 import {
   Button,
@@ -8,15 +8,16 @@ import {
   classNames,
   ComboboxField,
   DateField,
-  TextField,
+  formatDate,
 } from 'ui';
-import { Match } from 'lib';
+import { League, Match, Team } from 'lib';
 
 import { useMatches } from '@/hooks/current-data/use-matches';
 import { useRounds } from '@/hooks/current-data/use-rounds';
 import { useLeagues } from '@/hooks/master-data/use-leagues';
 import { useTeams } from '@/hooks/master-data/use-teams';
 import { notify } from '@/utils/notify';
+import AppCard from '@/components/layout/app-card';
 
 export default function MatchesView() {
   const { leagues } = useLeagues();
@@ -24,48 +25,78 @@ export default function MatchesView() {
   const { rounds } = useRounds();
   const { matches, createMatch } = useMatches();
 
-  const [currentRound, setCurrentRound] = useState(rounds[rounds.length - 1]);
+  const leaguesHash = useMemo(
+    () =>
+      leagues.reduce((hash, league) => {
+        hash[league.id] = league;
+        return hash;
+      }, {} as Record<string, League>),
+    [leagues]
+  );
 
-  const nr = (matches.at(-1)?.nr || 0) + 1;
-  const date = matches.at(-1)?.date || new Date().toISOString().slice(0, 10);
+  const teamsHash = useMemo(
+    () =>
+      teams.reduce((hash, team) => {
+        hash[team.id] = team;
+        return hash;
+      }, {} as Record<string, Team>),
+    [teams]
+  );
+
+  const [currentRound, setCurrentRound] = useState(rounds[rounds.length - 1]);
 
   const [isFormOpen, setFormOpen] = useState(matches.length === 0);
   const [editMode, setEditMode] = useState(false);
 
+  const nr = (matches.at(-1)?.nr || 0) + 1;
+  const date = matches.reduce(
+    (lastDate, match) => (match.date > lastDate ? match.date : lastDate),
+    ''
+  );
+
   const initialFormValues: Partial<Match> = {
+    nr,
     date,
     leagueId: '',
     hometeamId: '',
     awayteamId: '',
   };
 
-  const { control, handleSubmit, reset, setFocus } = useForm<Match>({
+  const { control, handleSubmit, register, reset, setFocus } = useForm<Match>({
     defaultValues: initialFormValues,
   });
 
   async function saveMatch(match: Match) {
-    match.nr = nr;
-    match.roundId = currentRound.id;
-    match.result = '';
-    match.points = 0;
-    await notify(createMatch(match), `Spiel ${nr} hinzugefügt.`);
-    reset({
-      date: match.date,
-      leagueId: '',
-      hometeamId: '',
-      awayteamId: '',
-    });
-    setFocus('date', { shouldSelect: true });
+    if (match.id) {
+      await notify(createMatch(match), `Spiel ${match.nr} geändert.`);
+      endEdit();
+    } else {
+      match.roundId = currentRound.id;
+      match.result = '';
+      match.points = 0;
+      await notify(createMatch(match), `Spiel ${match.nr} hinzugefügt.`);
+      reset({ ...initialFormValues, date: match.date });
+      setFocus('date', { shouldSelect: true });
+    }
+  }
+
+  const topRef = useRef<HTMLDivElement>(null);
+
+  function beginEdit(match: Match) {
+    reset(match.date ? match : { ...match, date });
+    setEditMode(true);
+    setFormOpen(true);
+    topRef.current?.scrollIntoView();
   }
 
   function endEdit() {
-    reset();
+    reset(initialFormValues);
     setEditMode(false);
     setFormOpen(false);
   }
 
   return (
-    <div className="mt-5">
+    <div ref={topRef} className="mt-5 space-y-8">
       <Card>
         <div className="flex items-center border-b border-gray-200 font-semibold px-2 sm:px-4 gap-x-4 sm:gap-x-8">
           <span>Runde</span>
@@ -108,7 +139,14 @@ export default function MatchesView() {
             <div>
               <form noValidate onSubmit={handleSubmit(saveMatch)}>
                 <div className="space-y-4 p-4 pt-2">
-                  <span className="text-sm font-semibold">Nummer {nr}</span>
+                  <div className="flex items-center">
+                    <span className="text-sm font-semibold">Nummer</span>
+                    <input
+                      disabled
+                      className="form-input font-semibold text-sm text-center w-6 rounded p-1 border-transparent"
+                      {...register('nr')}
+                    />
+                  </div>
                   <div className="flex flex-col gap-y-4 sm:flex-row sm:justify-between">
                     <DateField label="Wann?" control={control} name="date" />
                     <ComboboxField
@@ -159,6 +197,85 @@ export default function MatchesView() {
           )}
         </div>
       </Card>
+      <AppCard>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-300">
+            <thead className="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  className="pl-4 pr-2 py-3.5 text-left text-sm font-semibold text-gray-900"
+                >
+                  Nr
+                </th>
+                <th
+                  scope="col"
+                  className="hidden sm:table-cell px-2 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
+                >
+                  Datum
+                </th>
+                <th
+                  scope="col"
+                  className="hidden sm:table-cell px-2 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
+                >
+                  Liga
+                </th>
+                <th
+                  scope="col"
+                  className="px-2 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
+                >
+                  Spiel
+                </th>
+                <th scope="col" className="py-3.5 pl-2 sm:pl-6 lg:pl-8">
+                  <span className="sr-only">Edit</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 bg-white pr-1">
+              {matches.map((m) => (
+                <tr key={m.id}>
+                  <td className="whitespace-nowrap pl-4 pr-2 py-4 text-sm text-gray-500">
+                    {m.nr}
+                  </td>
+                  <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                    <span className="hidden lg:inline">
+                      {formatDate(m.date)}
+                    </span>
+                    <span className="lg:hidden">
+                      {formatDate(m.date, true)}
+                    </span>
+                  </td>
+                  <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                    <span className="hidden lg:inline">
+                      {leaguesHash[m.leagueId]?.name || ''}
+                    </span>
+                    <span className="lg:hidden">
+                      {leaguesHash[m.leagueId]?.shortname || ''}
+                    </span>
+                  </td>
+                  <td className="whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                    <span className="hidden lg:inline">
+                      {`${teamsHash[m.hometeamId]?.name || ''} - ${
+                        teamsHash[m.awayteamId]?.name || ''
+                      }`.replace(/^ - $/, '')}
+                    </span>
+                    <span className="lg:hidden">
+                      {`${teamsHash[m.hometeamId]?.shortname || ''} - ${
+                        teamsHash[m.awayteamId]?.shortname || ''
+                      }`.replace(/^ - $/, '')}
+                    </span>
+                  </td>
+                  <td className="text-right pr-3">
+                    <Button onClick={() => beginEdit(m)}>
+                      <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </AppCard>
     </div>
   );
 }
