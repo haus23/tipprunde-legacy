@@ -13,3 +13,4 @@ export * from './components/form/text-field';
 export * from './components/form/toggle-field';
 
 export * from './utils/class-names';
+export * from './utils/format-date';
