@@ -11,7 +11,7 @@
     "@changesets/changelog-github": "^0.4.7",
     "@changesets/cli": "^2.25.0",
     "eslint": "^8.26.0",
-    "eslint-config-workspace": "workspace:*",
+    "eslint-config-workspace": "workspace:0.0.4",
     "turbo": "^1.6.1"
   }
 }
