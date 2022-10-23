@@ -1,5 +1,18 @@
 # backyard
 
+## 0.0.34
+
+### Patch Changes
+
+- [#31](https://github.com/haus23/runde.tips/pull/31) [`3104883`](https://github.com/haus23/runde.tips/commit/3104883560185c59960313ac3adc76580d6364ec) Thanks [@haus23](https://github.com/haus23)! - Implement displaying and editing matches.
+
+- [#31](https://github.com/haus23/runde.tips/pull/31) [`f0656e3`](https://github.com/haus23/runde.tips/commit/f0656e3d595e7ea0511b0cbe430e2f2120f37ef5) Thanks [@haus23](https://github.com/haus23)! - Change the way to display match nr.
+
+- [#31](https://github.com/haus23/runde.tips/pull/31) [`cbc3220`](https://github.com/haus23/runde.tips/commit/cbc32202d5dcef1bcce03e2ef235cfac34911607) Thanks [@haus23](https://github.com/haus23)! - Enable smooth scrolling globally.
+
+- Updated dependencies [[`c39cf0e`](https://github.com/haus23/runde.tips/commit/c39cf0ee3651a2218fc63ca02e88613c2dd787bf)]:
+  - ui@0.0.14
+
 ## 0.0.33
 
 ### Patch Changes
