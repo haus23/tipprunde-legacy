@@ -29,9 +29,9 @@ const championshipNavLinks: {
     visible: (championship) => !!championship,
   },
   {
-    to: './runden',
+    to: './spiele',
     icon: CalendarIcon,
-    label: 'Runden / Spiele',
+    label: 'Spiele',
     visible: (championship, rounds) => !!championship && rounds.length > 0,
   },
   {

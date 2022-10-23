@@ -1,10 +1,10 @@
 import { Card } from 'ui';
 
-export default function RoundView() {
+export default function ResultsView() {
   return (
     <div className="mt-5">
       <Card>
-        <Card.Header>Runden</Card.Header>
+        <Card.Header>Ergebnisse</Card.Header>
       </Card>
     </div>
   );

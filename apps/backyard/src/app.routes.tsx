@@ -6,10 +6,11 @@ import AppShell from './app/app-shell';
 import CurrentShell from './app/current-data/current-shell';
 import Dashboard from './app/current-data/dashboard';
 import ChampionshipView from './app/current-data/championship';
-import ChampionshipCreateView from './app/current-data/championship/create';
-import RoundView from './app/current-data/rounds';
-import RoundCreateView from './app/current-data/rounds/create';
+import MatchesView from './app/current-data/matches';
 import TipsView from './app/current-data/tips';
+import ResultsView from './app/current-data/results';
+import CreateChampionshipView from './app/current-data/dashboard/create-championship';
+import CreateRoundView from './app/current-data/dashboard/create-round';
 
 import ChampionshipsView from './app/master-data/championships';
 import PlayersView from './app/master-data/players';
@@ -40,10 +41,11 @@ const appRoutes: RouteObject[] = [
         children: [
           { index: true, element: <Dashboard /> },
           { path: 'turnier', element: <ChampionshipView /> },
-          { path: 'neues-turnier', element: <ChampionshipCreateView /> },
-          { path: 'runden', element: <RoundView /> },
-          { path: 'neue-runde', element: <RoundCreateView /> },
+          { path: 'spiele', element: <MatchesView /> },
           { path: 'tipps', element: <TipsView /> },
+          { path: 'ergebnisse', element: <ResultsView /> },
+          { path: 'neues-turnier', element: <CreateChampionshipView /> },
+          { path: 'neue-runde', element: <CreateRoundView /> },
         ],
       },
       {

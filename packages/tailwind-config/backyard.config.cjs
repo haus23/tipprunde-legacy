@@ -13,5 +13,8 @@ module.exports = {
       ...defaultTheme.screens,
     },
   },
-  plugins: [],
+  plugins: [
+    require('@headlessui/tailwindcss'),
+    require('@tailwindcss/forms')({ strategy: 'class' }),
+  ],
 };

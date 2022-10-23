@@ -56,9 +56,9 @@ describe(
         id: '',
         roundId: '',
         nr: 1,
-        hometeam: '',
+        hometeamId: '',
         awayteam: '',
-        league: '',
+        leagueId: '',
         date: Timestamp.fromDate(new Date()),
       };
       const { match: calculatedMatch } = calculateMatchResults(
@@ -82,9 +82,9 @@ describe(
         id: '',
         roundId: '',
         nr: 1,
-        hometeam: '',
+        hometeamId: '',
         awayteam: '',
-        league: '',
+        leagueId: '',
         date: Timestamp.fromDate(new Date()),
       };
       const { match: calculatedMatch } = calculateMatchResults(
@@ -108,9 +108,9 @@ describe(
         id: '',
         roundId: '',
         nr: 1,
-        hometeam: '',
+        hometeamId: '',
         awayteam: '',
-        league: '',
+        leagueId: '',
         date: Timestamp.fromDate(new Date()),
       };
       const { match: calculatedMatch, tips: updatedTips } =
@@ -147,9 +147,9 @@ describe(
         id: '',
         roundId: '',
         nr: 1,
-        hometeam: '',
+        hometeamId: '',
         awayteam: '',
-        league: '',
+        leagueId: '',
         date: Timestamp.fromDate(new Date()),
       };
       const { match: calculatedMatch } = calculateMatchResults(
@@ -172,9 +172,9 @@ describe(
         id: '',
         roundId: '',
         nr: 1,
-        hometeam: '',
+        hometeamId: '',
         awayteam: '',
-        league: '',
+        leagueId: '',
         date: Timestamp.fromDate(new Date()),
       };
       const { match: calculatedMatch } = calculateMatchResults(
@@ -198,9 +198,9 @@ describe(
         id: '',
         roundId: '',
         nr: 1,
-        hometeam: '',
+        hometeamId: '',
         awayteam: '',
-        league: '',
+        leagueId: '',
         date: Timestamp.fromDate(new Date()),
       };
       const { match: calculatedMatch, tips: updatedTips } =

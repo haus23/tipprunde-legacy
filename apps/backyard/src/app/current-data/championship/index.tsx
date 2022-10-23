@@ -4,8 +4,7 @@ import { usePlayers } from '@/hooks/master-data/use-players';
 import { notify } from '@/utils/notify';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { Player } from 'lib';
-import { Card, classNames } from 'ui';
-import ToggleField from 'ui/src/components/form/toggle-field';
+import { Card, classNames, ToggleField } from 'ui';
 
 export default function ChampionshipView() {
   const { players } = usePlayers();
