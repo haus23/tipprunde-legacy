@@ -1,5 +1,26 @@
 # backyard
 
+## 0.0.35
+
+### Patch Changes
+
+- [#34](https://github.com/haus23/runde.tips/pull/34) [`49cc9a1`](https://github.com/haus23/runde.tips/commit/49cc9a1d2562b15251c5a53b3042eb26f4de7a6c) Thanks [@haus23](https://github.com/haus23)! - Fix: missed to filter the matches by round.
+
+- [#34](https://github.com/haus23/runde.tips/pull/34) [`0e015bb`](https://github.com/haus23/runde.tips/commit/0e015bb36a4355426c2b61f53a3b31578147347f) Thanks [@haus23](https://github.com/haus23)! - Allow pasting of partial tips from random position.
+
+- [#34](https://github.com/haus23/runde.tips/pull/34) [`be49fdd`](https://github.com/haus23/runde.tips/commit/be49fdd60771a90aa39ecaa576380a52361ec4f9) Thanks [@haus23](https://github.com/haus23)! - Add matches to preloader.
+
+- [#34](https://github.com/haus23/runde.tips/pull/34) [`eaac4c7`](https://github.com/haus23/runde.tips/commit/eaac4c711f087e06ad05f5bf3e5a2e6011bd17c9) Thanks [@haus23](https://github.com/haus23)! - Add a player select box.
+
+- [#34](https://github.com/haus23/runde.tips/pull/34) [`4fc314b`](https://github.com/haus23/runde.tips/commit/4fc314ba11826c36d2b7860170bf7531974d2b8a) Thanks [@haus23](https://github.com/haus23)! - Allow bulk inserting tips from clipboard.
+
+- [#34](https://github.com/haus23/runde.tips/pull/34) [`6d32175`](https://github.com/haus23/runde.tips/commit/6d3217594b2ba1a4d62f6d04b9c4696548c032af) Thanks [@haus23](https://github.com/haus23)! - Basic tip editing implemented.
+
+- [#34](https://github.com/haus23/runde.tips/pull/34) [`514bc0f`](https://github.com/haus23/runde.tips/commit/514bc0f63923b7eb1bb83a2de51f51545c6b6584) Thanks [@haus23](https://github.com/haus23)! - Show tips nav entries if appropriate.
+
+- Updated dependencies [[`45e36de`](https://github.com/haus23/runde.tips/commit/45e36deae741040d8dfe1d2ca77ddecbf16e9eaf), [`3681a74`](https://github.com/haus23/runde.tips/commit/3681a746f8413ace83cdfa23e6c67a7293294f4f)]:
+  - ui@0.0.15
+
 ## 0.0.34
 
 ### Patch Changes
