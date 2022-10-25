@@ -56,15 +56,13 @@ export default function ResultsView() {
     if (dirtyFields.results) {
       const updateOperations = dirtyFields.results.reduce((promises, _, ix) => {
         const updates = data.results[ix];
-        promises.push(updateMatchResult(updates.matchId, updates.result));
-        // Recalculate tips and update tips
+        promises.push(updateMatchResult(matches[ix], updates.result));
         return promises;
       }, [] as Promise<void>[]);
       await notify(
         Promise.all(updateOperations),
         `Ergebnisse gespeichert und berechnet`
       );
-      reset();
     }
   }
 
