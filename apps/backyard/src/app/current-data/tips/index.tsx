@@ -148,7 +148,6 @@ export default function TipsView() {
           if (m.roundId === currentRound.id && fieldIx >= inputFieldIx) {
             const t = tips.at(tipIx++);
             if (typeof t !== 'undefined') {
-              console.log(t, ix);
               setValue(`tips.${ix}.tip`, t);
             }
           }
