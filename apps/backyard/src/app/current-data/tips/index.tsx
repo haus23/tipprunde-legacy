@@ -1,18 +1,19 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
+import { ClipboardIcon } from '@heroicons/react/24/outline';
+
 import { Button, Card, classNames, Select, TextField } from 'ui';
+import { Player, Team, Tip } from 'lib';
 
 import AppCard from '@/components/layout/app-card';
-import { Player, Team, Tip } from 'lib';
 
 import { useRounds } from '@/hooks/current-data/use-rounds';
 import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
 import { usePlayers } from '@/hooks/master-data/use-players';
 import { useTeams } from '@/hooks/master-data/use-teams';
 import { useMatches } from '@/hooks/current-data/use-matches';
-import { useFieldArray, useForm } from 'react-hook-form';
 import { useTips } from '@/hooks/current-data/use-tips';
 import { notify } from '@/utils/notify';
-import { ClipboardIcon } from '@heroicons/react/24/outline';
 
 type TipData = { id: string; tip: string; joker: boolean };
 
@@ -115,9 +116,25 @@ export default function TipsView() {
   // Handling copy/paste from clipboard
   const handleClipboardData = useCallback(
     async (ev?: ClipboardEvent) => {
+      let inputFieldIx = 0;
       let pastedText;
       if (ev) {
         ev.preventDefault();
+        // Get index of paste target
+        if (
+          ev.target instanceof HTMLInputElement &&
+          ev.target.type === 'text'
+        ) {
+          const inputFields = ev.target
+            .closest('tbody')
+            ?.querySelectorAll('input[type=text]') as NodeList;
+          const fieldIx = [...inputFields].findIndex(
+            (elt) => elt === ev.target
+          );
+          if (fieldIx !== -1) {
+            inputFieldIx = fieldIx;
+          }
+        }
         pastedText = ev.clipboardData?.getData('text');
       } else {
         pastedText = await navigator.clipboard.readText();
@@ -126,14 +143,16 @@ export default function TipsView() {
       if (pastedText) {
         const tips = pastedText.split(/\r?\n/);
         let tipIx = 0;
+        let fieldIx = 0;
         matches.forEach((m, ix) => {
-          if (m.roundId === currentRound.id) {
+          if (m.roundId === currentRound.id && fieldIx >= inputFieldIx) {
             const t = tips.at(tipIx++);
             if (typeof t !== 'undefined') {
               console.log(t, ix);
               setValue(`tips.${ix}.tip`, t);
             }
           }
+          fieldIx++;
         });
       }
     },
