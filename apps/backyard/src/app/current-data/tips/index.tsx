@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Card, classNames, Select, TextField } from 'ui';
 
 import AppCard from '@/components/layout/app-card';
@@ -12,6 +12,7 @@ import { useMatches } from '@/hooks/current-data/use-matches';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { useTips } from '@/hooks/current-data/use-tips';
 import { notify } from '@/utils/notify';
+import { ClipboardIcon } from '@heroicons/react/24/outline';
 
 type TipData = { id: string; tip: string; joker: boolean };
 
@@ -56,11 +57,12 @@ export default function TipsView() {
 
   const [player, setPlayer] = useState(players[0]);
 
-  const { control, handleSubmit, register, reset } = useForm<TipsFormProps>({
-    defaultValues: {
-      tips: new Array(matches.length).fill({ id: '', tip: '', joker: false }),
-    },
-  });
+  const { control, handleSubmit, register, reset, setValue } =
+    useForm<TipsFormProps>({
+      defaultValues: {
+        tips: new Array(matches.length).fill({ id: '', tip: '', joker: false }),
+      },
+    });
 
   const { tips, createTip, updateTip } = useTips();
 
@@ -109,6 +111,39 @@ export default function TipsView() {
   };
 
   const { fields } = useFieldArray({ control, name: 'tips' });
+
+  // Handling copy/paste from clipboard
+  const handleClipboardData = useCallback(
+    async (ev?: ClipboardEvent) => {
+      let pastedText;
+      if (ev) {
+        ev.preventDefault();
+        pastedText = ev.clipboardData?.getData('text');
+      } else {
+        pastedText = await navigator.clipboard.readText();
+      }
+
+      if (pastedText) {
+        const tips = pastedText.split(/\r?\n/);
+        let tipIx = 0;
+        matches.forEach((m, ix) => {
+          if (m.roundId === currentRound.id) {
+            const t = tips.at(tipIx++);
+            if (typeof t !== 'undefined') {
+              console.log(t, ix);
+              setValue(`tips.${ix}.tip`, t);
+            }
+          }
+        });
+      }
+    },
+    [setValue, matches, currentRound]
+  );
+
+  useEffect(() => {
+    document.addEventListener('paste', handleClipboardData);
+    return () => document.removeEventListener('paste', handleClipboardData);
+  }, [handleClipboardData]);
 
   return (
     <div className="mt-5 space-y-8">
@@ -170,7 +205,15 @@ export default function TipsView() {
                     scope="col"
                     className="px-2 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
                   >
-                    Tipp
+                    <div className="flex items-center gap-x-2">
+                      <span>Tipp</span>
+                      <button
+                        type="button"
+                        onClick={() => handleClipboardData()}
+                      >
+                        <ClipboardIcon className="h-4 w-4" />
+                      </button>
+                    </div>
                   </th>
                   <th
                     scope="col"
