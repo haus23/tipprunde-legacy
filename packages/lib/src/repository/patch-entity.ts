@@ -19,7 +19,7 @@ export async function patchEntity<T extends BaseModel>(
   entity: string | T,
   updates: Partial<T>
 ): Promise<void> {
-  let id = typeof entity === 'string' ? entity : entity.id;
+  const id = typeof entity === 'string' ? entity : entity.id;
   const docRef = doc(db, path, id).withConverter(baseModelConverter<T>());
   await setDoc(docRef, updates, { merge: true });
 }
