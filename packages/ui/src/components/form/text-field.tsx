@@ -48,6 +48,7 @@ export function TextField<T extends FieldValues, TPath extends Path<T>>({
         <input
           {...props}
           id={id}
+          type="text"
           className={classNames(
             error
               ? 'border-red-300 pr-10 text-red-700 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
