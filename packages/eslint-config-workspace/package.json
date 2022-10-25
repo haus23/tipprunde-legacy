@@ -1,7 +1,10 @@
 {
   "name": "eslint-config-workspace",
   "version": "0.0.4",
-  "main": "index.cjs",
+  "exports": {
+    ".": "./index.cjs",
+    "./ts-recommended": "./ts-recommended.cjs"
+  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
