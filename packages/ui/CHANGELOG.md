@@ -1,5 +1,13 @@
 # ui
 
+## 0.0.15
+
+### Patch Changes
+
+- [#34](https://github.com/haus23/runde.tips/pull/34) [`45e36de`](https://github.com/haus23/runde.tips/commit/45e36deae741040d8dfe1d2ca77ddecbf16e9eaf) Thanks [@haus23](https://github.com/haus23)! - Add type attribute to input fields.
+
+- [#34](https://github.com/haus23/runde.tips/pull/34) [`3681a74`](https://github.com/haus23/runde.tips/commit/3681a746f8413ace83cdfa23e6c67a7293294f4f) Thanks [@haus23](https://github.com/haus23)! - Implement a simple select box.
+
 ## 0.0.14
 
 ### Patch Changes

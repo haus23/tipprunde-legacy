@@ -10,7 +10,9 @@ import { classNames } from '@/utils/class-names';
 import { Link } from 'react-router-dom';
 import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
 import { useRounds } from '@/hooks/current-data/use-rounds';
-import { Championship, Round } from 'lib';
+import { Championship, ChampionshipPlayer, Match, Round } from 'lib';
+import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
+import { useMatches } from '@/hooks/current-data/use-matches';
 
 const items: {
   title: string;
@@ -18,7 +20,12 @@ const items: {
   background: string;
   route: string;
   icon: ElementType;
-  visible: (championship: Championship | undefined, rounds: Round[]) => boolean;
+  visible: (
+    championship: Championship | undefined,
+    rounds: Round[],
+    matches: Match[],
+    players: ChampionshipPlayer[]
+  ) => boolean;
 }[] = [
   {
     title: 'Ergebnisse eintragen',
@@ -34,7 +41,8 @@ const items: {
     icon: PencilSquareIcon,
     background: 'bg-indigo-500',
     route: './tipps',
-    visible: (championship) => !!championship && false,
+    visible: (championship, rounds, matches, players) =>
+      matches.length > 0 && players.length > 0,
   },
   {
     title: 'Spielansetzungen',
@@ -42,7 +50,7 @@ const items: {
     icon: MegaphoneIcon,
     background: 'bg-blue-500',
     route: './spiele',
-    visible: (championship, rounds) => !!championship && rounds.length > 0,
+    visible: (championship, rounds) => rounds.length > 0,
   },
   {
     title: 'Neue Runde',
@@ -65,11 +73,20 @@ const items: {
 export default function Dashboard() {
   const { currentChampionship } = useCurrentChampionship();
   const { rounds } = useRounds();
+  const { championshipPlayers } = useChampionshipPlayers();
+  const { matches } = useMatches();
 
   return (
     <ul role="list" className="mt-2 grid grid-cols-1 gap-6 py-6 sm:grid-cols-2">
       {items
-        .filter((item) => item.visible(currentChampionship, rounds))
+        .filter((item) =>
+          item.visible(
+            currentChampionship,
+            rounds,
+            matches,
+            championshipPlayers
+          )
+        )
         .map((item, itemIdx) => (
           <li
             key={itemIdx}

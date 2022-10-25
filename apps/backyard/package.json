@@ -1,6 +1,6 @@
 {
   "name": "backyard",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -18,7 +18,7 @@
     "react-router-dom": "^6.4.2",
     "recoil": "^0.7.6",
     "slugify": "^1.6.5",
-    "ui": "workspace:0.0.14"
+    "ui": "workspace:0.0.15"
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.1.1",
