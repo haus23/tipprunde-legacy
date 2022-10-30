@@ -1,0 +1,5 @@
+---
+'lib': patch
+---
+
+Update firebase.
