@@ -12,7 +12,7 @@
     "firebase": "^9.13.0"
   },
   "devDependencies": {
-    "eslint-config-workspace": "workspace:*",
+    "eslint-config-workspace": "workspace:0.0.4",
     "tsconfig": "workspace:0.0.1",
     "vitest": "^0.24.3"
   }

@@ -15,8 +15,8 @@
     "react-hook-form": "^7.38.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
     "tsconfig": "workspace:0.0.1",
     "typescript": "^4.8.4"
   }
