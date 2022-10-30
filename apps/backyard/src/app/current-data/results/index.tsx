@@ -9,6 +9,7 @@ import { useTeams } from '@/hooks/master-data/use-teams';
 import { useMatches } from '@/hooks/current-data/use-matches';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { notify } from '@/utils/notify';
+import { useRanking } from '@/hooks/current-data/use-ranking';
 
 type ResultsFormType = {
   results: { matchId: string; result: string }[];
@@ -52,6 +53,8 @@ export default function ResultsView() {
 
   const { fields } = useFieldArray({ control, name: 'results' });
 
+  const { calculateRanking } = useRanking();
+
   async function saveAndCalculate(data: ResultsFormType) {
     if (dirtyFields.results) {
       const updateOperations = dirtyFields.results.reduce((promises, _, ix) => {
@@ -64,6 +67,10 @@ export default function ResultsView() {
         `Ergebnisse gespeichert und berechnet`
       );
     }
+  }
+
+  async function calculateCurrentRanking() {
+    await notify(calculateRanking(), `Tabelle neu berechnet`);
   }
 
   return (
@@ -93,6 +100,9 @@ export default function ResultsView() {
             </nav>
           </div>
           <div className="py-4 px-4 flex items-center justify-end gap-x-8">
+            <Button type="button" primary onClick={calculateCurrentRanking}>
+              Tabelle neu berechnen
+            </Button>
             <Button
               type="button"
               primary
