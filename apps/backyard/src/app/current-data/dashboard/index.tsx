@@ -32,8 +32,8 @@ const items: {
     description: 'Spiel-Ergebnisse eintragen und auswerten',
     icon: ScaleIcon,
     background: 'bg-purple-500',
-    route: './ergebnisse-eintragen',
-    visible: (championship) => !!championship && false,
+    route: './ergebnisse',
+    visible: (championship, rounds, matches) => matches.length > 0,
   },
   {
     title: 'Tipps eintragen',

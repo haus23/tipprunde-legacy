@@ -1,10 +1,13 @@
 {
   "name": "eslint-config-workspace",
-  "version": "0.0.4",
-  "main": "index.cjs",
+  "version": "0.0.5",
+  "exports": {
+    ".": "./index.cjs",
+    "./ts-recommended": "./ts-recommended.cjs"
+  },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.40.1",
-    "@typescript-eslint/parser": "^5.40.1",
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0"
   },

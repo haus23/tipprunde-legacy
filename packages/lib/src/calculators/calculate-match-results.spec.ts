@@ -1,4 +1,3 @@
-import { Timestamp } from 'firebase/firestore';
 import { describe, expect, test } from 'vitest';
 import { ChampionshipRules } from '../model/championchip-rules';
 import { Match } from '../model/match';
@@ -29,6 +28,21 @@ function makeTipMock(
   return Object.freeze(newTip);
 }
 
+function makeMatchMock(result: string, points = -1): Match {
+  const newMatch = {
+    result,
+    points,
+    id: '',
+    roundId: '',
+    nr: 1,
+    hometeamId: '',
+    awayteamId: '',
+    leagueId: '',
+    date: '',
+  };
+  return Object.freeze(newMatch);
+}
+
 const tipStrings = ['2:1', '3:1', '4:1', '2:2', '0:3', '5:0', '3:2'];
 
 describe(
@@ -50,17 +64,7 @@ describe(
         makeTipMock(tip, false, tipPoints[ix])
       );
 
-      const match: Match = {
-        result: '2:1',
-        points: -1,
-        id: '',
-        roundId: '',
-        nr: 1,
-        hometeamId: '',
-        awayteam: '',
-        leagueId: '',
-        date: Timestamp.fromDate(new Date()),
-      };
+      const match = makeMatchMock('2:1');
       const { match: calculatedMatch } = calculateMatchResults(
         match,
         tips,
@@ -76,17 +80,7 @@ describe(
         makeTipMock(tip, false, tipPoints[ix])
       );
 
-      const match: Match = {
-        result: '2:1',
-        points: 7,
-        id: '',
-        roundId: '',
-        nr: 1,
-        hometeamId: '',
-        awayteam: '',
-        leagueId: '',
-        date: Timestamp.fromDate(new Date()),
-      };
+      const match = makeMatchMock('2:1', 7);
       const { match: calculatedMatch } = calculateMatchResults(
         match,
         tips,
@@ -102,17 +96,7 @@ describe(
         makeTipMock(tip, false, tipPoints[ix])
       );
 
-      const match: Match = {
-        result: '0:4',
-        points: 1,
-        id: '',
-        roundId: '',
-        nr: 1,
-        hometeamId: '',
-        awayteam: '',
-        leagueId: '',
-        date: Timestamp.fromDate(new Date()),
-      };
+      const match = makeMatchMock('0:4', 1);
       const { match: calculatedMatch, tips: updatedTips } =
         calculateMatchResults(match, tips, rules);
       expect(calculatedMatch.points).toBe(1);
@@ -141,17 +125,7 @@ describe(
         makeTipMock(tip, false, tipPoints[ix])
       );
 
-      const match: Match = {
-        result: '2:1',
-        points: -1,
-        id: '',
-        roundId: '',
-        nr: 1,
-        hometeamId: '',
-        awayteam: '',
-        leagueId: '',
-        date: Timestamp.fromDate(new Date()),
-      };
+      const match = makeMatchMock('2:1');
       const { match: calculatedMatch } = calculateMatchResults(
         match,
         tips,
@@ -166,17 +140,7 @@ describe(
       const tips = tipStrings.map((tip, ix) =>
         makeTipMock(tip, false, tipPoints[ix])
       );
-      const match: Match = {
-        result: '2:1',
-        points: 7,
-        id: '',
-        roundId: '',
-        nr: 1,
-        hometeamId: '',
-        awayteam: '',
-        leagueId: '',
-        date: Timestamp.fromDate(new Date()),
-      };
+      const match = makeMatchMock('2:1', 7);
       const { match: calculatedMatch } = calculateMatchResults(
         match,
         tips,
@@ -192,17 +156,7 @@ describe(
         makeTipMock(tip, true, tipPoints[ix])
       );
 
-      const match: Match = {
-        result: '1:6',
-        points: 2,
-        id: '',
-        roundId: '',
-        nr: 1,
-        hometeamId: '',
-        awayteam: '',
-        leagueId: '',
-        date: Timestamp.fromDate(new Date()),
-      };
+      const match = makeMatchMock('1:6', 2);
       const { match: calculatedMatch, tips: updatedTips } =
         calculateMatchResults(match, tips, rules);
       expect(calculatedMatch.points).toBe(5);

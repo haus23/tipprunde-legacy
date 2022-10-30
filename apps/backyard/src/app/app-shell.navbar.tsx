@@ -6,6 +6,7 @@ import {
   CalendarIcon,
   UserIcon,
   PencilSquareIcon,
+  ScaleIcon,
 } from '@heroicons/react/24/outline';
 
 import { Championship, ChampionshipPlayer, Match, Round } from 'lib';
@@ -47,6 +48,12 @@ const championshipNavLinks: {
     label: 'Tipps',
     visible: (championship, rounds, matches, players) =>
       matches.length > 0 && players.length > 0,
+  },
+  {
+    to: './ergebnisse',
+    icon: ScaleIcon,
+    label: 'Ergebnisse',
+    visible: (championship, rounds, matches) => matches.length > 0,
   },
 ];
 

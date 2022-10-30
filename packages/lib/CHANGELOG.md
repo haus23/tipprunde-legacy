@@ -1,5 +1,19 @@
 # lib
 
+## 0.0.18
+
+### Patch Changes
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`0695c24`](https://github.com/haus23/runde.tips/commit/0695c2406c5965b613605a8b15b41a5f3fbb24d1) Thanks [@lean-dev](https://github.com/lean-dev)! - Fix and simplify test.
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`694cbc8`](https://github.com/haus23/runde.tips/commit/694cbc85891bed8383279e98bd7ad33ab879163d) Thanks [@lean-dev](https://github.com/lean-dev)! - Fix lint errors.
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`378873b`](https://github.com/haus23/runde.tips/commit/378873b98e7e03641deab8035bb36a88aad76a35) Thanks [@lean-dev](https://github.com/lean-dev)! - Update firebase.
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`343fa68`](https://github.com/haus23/runde.tips/commit/343fa6829fe9c81149fa269fc222da07d751f542) Thanks [@lean-dev](https://github.com/lean-dev)! - Update dev deps.
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`8ab40bd`](https://github.com/haus23/runde.tips/commit/8ab40bddecd8c9d9410511f84a6f620ebdd4d744) Thanks [@lean-dev](https://github.com/lean-dev)! - Add function overload with simple id arg.
+
 ## 0.0.17
 
 ### Patch Changes

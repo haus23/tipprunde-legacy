@@ -1,5 +1,5 @@
 import { championshipPlayersState } from '@/state/current-data/championship-players-state';
-import { ChampionshipPlayer, createEntity } from 'lib';
+import { ChampionshipPlayer, createEntity, patchEntity } from 'lib';
 import { useRecoilValue } from 'recoil';
 import { useCurrentChampionship } from './use-current-championship';
 
@@ -30,5 +30,19 @@ export function useChampionshipPlayers() {
     );
   };
 
-  return { championshipPlayers, addChampionshipPlayer };
+  const updateChampionshipPlayer = (
+    playerId: string,
+    changes: Partial<ChampionshipPlayer>
+  ) =>
+    patchEntity(
+      `championships/${currentChampionship?.id}/players`,
+      playerId,
+      changes
+    );
+
+  return {
+    championshipPlayers,
+    addChampionshipPlayer,
+    updateChampionshipPlayer,
+  };
 }

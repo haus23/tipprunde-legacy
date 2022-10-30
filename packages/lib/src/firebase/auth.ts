@@ -21,7 +21,7 @@ export function updateProfile(changes: {
   displayName?: string;
   photoURL?: string;
 }) {
-  return updateFirebaseProfile(auth.currentUser!, changes);
+  return updateFirebaseProfile(auth.currentUser as FirebaseUser, changes);
 }
 
 export type User = Pick<

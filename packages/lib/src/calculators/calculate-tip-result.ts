@@ -56,7 +56,6 @@ export function calculateTipResult(
             points = 2;
           }
         }
-      default:
         break;
     }
 
