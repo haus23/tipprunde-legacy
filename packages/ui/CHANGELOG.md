@@ -1,5 +1,11 @@
 # ui
 
+## 0.0.16
+
+### Patch Changes
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`343fa68`](https://github.com/haus23/runde.tips/commit/343fa6829fe9c81149fa269fc222da07d751f542) Thanks [@lean-dev](https://github.com/lean-dev)! - Update dev deps.
+
 ## 0.0.15
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # eslint-config-workspace
 
+## 0.0.5
+
+### Patch Changes
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`343fa68`](https://github.com/haus23/runde.tips/commit/343fa6829fe9c81149fa269fc222da07d751f542) Thanks [@lean-dev](https://github.com/lean-dev)! - Update dev deps.
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`95d937a`](https://github.com/haus23/runde.tips/commit/95d937af09d35adfbbea31c1e3014e82bc1d29dd) Thanks [@lean-dev](https://github.com/lean-dev)! - Provide extra ts-recommended config and update package exports.
+
 ## 0.0.4
 
 ### Patch Changes

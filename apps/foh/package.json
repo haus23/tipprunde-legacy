@@ -1,6 +1,6 @@
 {
   "name": "foh",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
@@ -12,10 +12,10 @@
     "@heroicons/react": "^2.0.12",
     "@tailwindcss/forms": "^0.5.3",
     "@tanstack/react-location": "^3.7.4",
-    "lib": "workspace:0.0.17",
+    "lib": "workspace:0.0.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ui": "workspace:0.0.15"
+    "ui": "workspace:0.0.16"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",

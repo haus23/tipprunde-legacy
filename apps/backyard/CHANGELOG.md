@@ -1,5 +1,23 @@
 # backyard
 
+## 0.0.36
+
+### Patch Changes
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`beca2e9`](https://github.com/haus23/runde.tips/commit/beca2e92a19c7c6f33c33e8311707ed7696af778) Thanks [@lean-dev](https://github.com/lean-dev)! - Display editing results link.
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`bdde153`](https://github.com/haus23/runde.tips/commit/bdde15384ba3df3093b02e5c2109b15d8f02519f) Thanks [@lean-dev](https://github.com/lean-dev)! - Calculate current ranking.
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`1049d9e`](https://github.com/haus23/runde.tips/commit/1049d9e1631b00ebb6325cf26273a60502326097) Thanks [@lean-dev](https://github.com/lean-dev)! - Save result and calculate points.
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`343fa68`](https://github.com/haus23/runde.tips/commit/343fa6829fe9c81149fa269fc222da07d751f542) Thanks [@lean-dev](https://github.com/lean-dev)! - Update dev deps.
+
+- [#39](https://github.com/haus23/runde.tips/pull/39) [`0f0d722`](https://github.com/haus23/runde.tips/commit/0f0d722f4a2975cceb74e08eeb6bdd2a5f2c07e3) Thanks [@lean-dev](https://github.com/lean-dev)! - Implement setting and saving match results.
+
+- Updated dependencies [[`0695c24`](https://github.com/haus23/runde.tips/commit/0695c2406c5965b613605a8b15b41a5f3fbb24d1), [`694cbc8`](https://github.com/haus23/runde.tips/commit/694cbc85891bed8383279e98bd7ad33ab879163d), [`378873b`](https://github.com/haus23/runde.tips/commit/378873b98e7e03641deab8035bb36a88aad76a35), [`343fa68`](https://github.com/haus23/runde.tips/commit/343fa6829fe9c81149fa269fc222da07d751f542), [`8ab40bd`](https://github.com/haus23/runde.tips/commit/8ab40bddecd8c9d9410511f84a6f620ebdd4d744)]:
+  - lib@0.0.18
+  - ui@0.0.16
+
 ## 0.0.35
 
 ### Patch Changes

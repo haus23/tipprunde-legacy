@@ -1,6 +1,6 @@
 {
   "name": "lib",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "type": "module",
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -12,7 +12,7 @@
     "firebase": "^9.13.0"
   },
   "devDependencies": {
-    "eslint-config-workspace": "workspace:0.0.4",
+    "eslint-config-workspace": "workspace:0.0.5",
     "tsconfig": "workspace:0.0.1",
     "vitest": "^0.24.3"
   }
