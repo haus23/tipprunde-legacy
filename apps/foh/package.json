@@ -11,10 +11,11 @@
     "@headlessui/react": "^1.7.3",
     "@heroicons/react": "^2.0.12",
     "@tailwindcss/forms": "^0.5.3",
-    "@tanstack/react-location": "^3.7.4",
     "lib": "workspace:0.0.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2",
+    "swr": "2.0.0-rc.0",
     "ui": "workspace:0.0.16"
   },
   "devDependencies": {
