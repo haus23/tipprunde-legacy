@@ -1,10 +1,10 @@
-import { ReactLocation, Router } from '@tanstack/react-location';
-import { appRoutes, LocationGenerics } from './app.routes';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { appRoutes } from './app.routes';
 
-const location = new ReactLocation<LocationGenerics>();
+const router = createBrowserRouter(appRoutes);
 
 function App() {
-  return <Router location={location} routes={appRoutes} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
