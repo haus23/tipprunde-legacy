@@ -1,12 +1,13 @@
-import Layout from '@/app/layout';
+import { redirect, RouteObject } from 'react-router-dom';
 
+import { appLoader } from '@/app.loader';
+
+import Layout from '@/app/layout';
 import ChampionshipPage from '@/app/championship/page';
 import PlayersPage from '@/app/players/page';
 import RankingPage from '@/app/ranking/page';
 import MatchesPage from '@/app/matches/page';
-import { redirect, RouteObject } from 'react-router-dom';
-import { Championship, collection, filter, orderByDesc } from 'lib';
-import { queryClient } from './app';
+import ErrorPage from '@/app/error/page';
 
 export const appRoutes: RouteObject[] = [
   {
@@ -14,25 +15,11 @@ export const appRoutes: RouteObject[] = [
     loader: () => redirect('/turnier'),
   },
   {
-    id: 'root',
+    id: 'app',
     path: ':championshipId',
     element: <Layout />,
-    loader: async ({ params: { championshipId } }) => {
-      const championships = await queryClient.fetchQuery(
-        ['championships'],
-        collection<Championship>(
-          'championships',
-          filter('published', '==', true),
-          orderByDesc('nr')
-        ).get
-      );
-      const currentChampionship =
-        championshipId === 'turnier'
-          ? championships?.at(0) || null
-          : championships?.find((c) => c.id === championshipId);
-
-      return { championships, currentChampionship };
-    },
+    loader: appLoader,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, handle: { childPath: '' }, element: <ChampionshipPage /> },
       {

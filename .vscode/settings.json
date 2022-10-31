@@ -21,5 +21,8 @@
   "references.preferredLocation": "peek",
   "workbench.colorTheme": "Vitesse Dark Soft",
   "workbench.preferredDarkColorTheme": "Vitesse Dark Soft",
-  "workbench.preferredLightColorTheme": "Vitesse Light Soft"
+  "workbench.preferredLightColorTheme": "Vitesse Light Soft",
+  "explorer.fileNesting.patterns": {
+    "*.tsx": "${capture}.*"
+  }
 }

@@ -1,10 +1,12 @@
 import { Fragment } from 'react';
+import { Link, NavLink, Outlet } from 'react-router-dom';
+
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+
 import { AppTitle, classNames } from 'ui';
-import ErrorPage from './error/page';
+
 import ChampionshipSwitcher from '@/components/championship-switcher';
-import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useChampionships } from '@/hooks/use-championships';
 import { useCurrentChampionship } from '@/hooks/use-current-championship';
 
@@ -118,11 +120,7 @@ export default function Layout() {
       </Disclosure>
 
       <main className="py-10">
-        {typeof currentChampionship !== 'undefined' ? (
-          <Outlet />
-        ) : (
-          <ErrorPage />
-        )}
+        <Outlet />
       </main>
     </div>
   );
