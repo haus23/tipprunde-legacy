@@ -6,6 +6,7 @@ import RankingPage from '@/app/ranking/page';
 import MatchesPage from '@/app/matches/page';
 import { redirect, RouteObject } from 'react-router-dom';
 import { Championship, collection, filter, orderByDesc } from 'lib';
+import { queryClient } from './app';
 
 export const appRoutes: RouteObject[] = [
   {
@@ -17,11 +18,14 @@ export const appRoutes: RouteObject[] = [
     path: ':championshipId',
     element: <Layout />,
     loader: async ({ params: { championshipId } }) => {
-      const championships = await collection<Championship>(
-        'championships',
-        filter('published', '==', true),
-        orderByDesc('nr')
-      ).get();
+      const championships = await queryClient.fetchQuery(
+        ['championships'],
+        collection<Championship>(
+          'championships',
+          filter('published', '==', true),
+          orderByDesc('nr')
+        ).get
+      );
       const currentChampionship =
         championshipId === 'turnier'
           ? championships?.at(0) || null
