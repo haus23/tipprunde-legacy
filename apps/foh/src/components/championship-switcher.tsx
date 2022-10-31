@@ -2,16 +2,16 @@ import { Fragment, useCallback, useEffect, useState } from 'react';
 import { FolderIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Combobox, Dialog, Transition } from '@headlessui/react';
 import { classNames } from 'ui';
-import { useMatch, useMatches, useNavigate } from '@tanstack/react-location';
-import { LocationGenerics } from '@/app.routes';
 import { Championship } from 'lib';
+import { useChampionships } from '@/hooks/use-championships';
+import { useMatches, useNavigate } from 'react-router-dom';
 
 export default function ChampionshipSwitcher() {
-  const {
-    data: { championships },
-  } = useMatch<LocationGenerics>();
+  const championships = useChampionships();
 
-  const childRoutePath = useMatches().at(1)?.route.path || '';
+  const childPath =
+    useMatches().find((route) => route.handle?.childPath !== undefined)?.handle
+      ?.childPath || '';
 
   const navigate = useNavigate();
 
@@ -43,8 +43,7 @@ export default function ChampionshipSwitcher() {
 
   function switchChampionship(championship: Championship) {
     setOpen(false);
-    const childPath = childRoutePath !== '/' ? '/' + childRoutePath : '';
-    navigate({ to: `/${championship.id + childPath}` });
+    navigate(`/${championship.id + childPath}`);
   }
 
   return (

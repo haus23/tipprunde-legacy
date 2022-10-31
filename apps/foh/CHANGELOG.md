@@ -1,5 +1,15 @@
 # foh
 
+## 0.0.38
+
+### Patch Changes
+
+- [#40](https://github.com/haus23/runde.tips/pull/40) [`0c907fe`](https://github.com/haus23/runde.tips/commit/0c907fe1a2f0a8400b6886b011638601e288ca39) Thanks [@lean-dev](https://github.com/lean-dev)! - Switch libraries: use react-router and swr, drop react-location.
+
+- [#40](https://github.com/haus23/runde.tips/pull/40) [`6111291`](https://github.com/haus23/runde.tips/commit/6111291b4ba477c6a83314a13a7b7f5b0c4311a1) Thanks [@lean-dev](https://github.com/lean-dev)! - Re-implement current app.
+
+- [#40](https://github.com/haus23/runde.tips/pull/40) [`4b8b69c`](https://github.com/haus23/runde.tips/commit/4b8b69c386dd9b3778089054121fd113e5a88fc6) Thanks [@lean-dev](https://github.com/lean-dev)! - Switch to react-query (from swr)
+
 ## 0.0.37
 
 ### Patch Changes

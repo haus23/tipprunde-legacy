@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
-import { Link, LoaderFn, Outlet, useMatch } from '@tanstack/react-location';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { AppTitle, classNames } from 'ui';
-import { LocationGenerics } from '@/app.routes';
-import { Championship, collection, filter, orderByDesc } from 'lib';
 import ErrorPage from './error/page';
 import ChampionshipSwitcher from '@/components/championship-switcher';
+import { Link, NavLink, Outlet } from 'react-router-dom';
+import { useChampionships } from '@/hooks/use-championships';
+import { useCurrentChampionship } from '@/hooks/use-current-championship';
 
 const navigation = [
   { name: 'Turnier', route: '.' },
@@ -15,36 +15,9 @@ const navigation = [
   { name: 'Spiele', route: 'spiele' },
 ];
 
-export const rootLoader: LoaderFn<LocationGenerics> = async ({
-  params: { championshipId },
-}) => {
-  const championships = await collection<Championship>(
-    'championships',
-    filter('published', '==', true),
-    orderByDesc('nr')
-  ).get();
-
-  const currentChampionship =
-    championshipId === 'turnier'
-      ? championships.at(0) || null
-      : championships.find((c) => c.id === championshipId);
-
-  // Todo: Check updates for error bug.
-  // See: https://github.com/TanStack/router/issues/255
-  // if (typeof currentChampionship === 'undefined') {
-  //   throw new Error('Unbekanntes Turnier.');
-  // }
-
-  return {
-    championships,
-    currentChampionship,
-  };
-};
-
 export default function Layout() {
-  const {
-    data: { championships, currentChampionship },
-  } = useMatch<LocationGenerics>();
+  const championships = useChampionships();
+  const currentChampionship = useCurrentChampionship();
 
   return (
     <div className="min-h-full">
@@ -62,10 +35,10 @@ export default function Layout() {
                   {currentChampionship && (
                     <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-4">
                       {navigation.map((item) => (
-                        <Link
+                        <NavLink
                           key={item.name}
                           to={item.route}
-                          activeOptions={{ exact: true }}
+                          end
                           className="inline-flex pt-1 text-sm font-medium items-stretch"
                         >
                           {({ isActive }) => (
@@ -80,7 +53,7 @@ export default function Layout() {
                               {item.name}
                             </span>
                           )}
-                        </Link>
+                        </NavLink>
                       ))}
                     </div>
                   )}
@@ -118,9 +91,9 @@ export default function Layout() {
                     key={item.name}
                     refName="_ref"
                   >
-                    <Link
+                    <NavLink
                       to={item.route}
-                      activeOptions={{ exact: true }}
+                      end
                       className="block  text-base font-medium"
                     >
                       {({ isActive }) => (
@@ -135,7 +108,7 @@ export default function Layout() {
                           {item.name}
                         </span>
                       )}
-                    </Link>
+                    </NavLink>
                   </Disclosure.Button>
                 ))}
               </div>

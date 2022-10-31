@@ -1,10 +1,7 @@
-import { LocationGenerics } from '@/app.routes';
-import { useMatch } from '@tanstack/react-location';
+import { useCurrentChampionship } from '@/hooks/use-current-championship';
 
 export default function ChampionshipPage() {
-  const {
-    data: { currentChampionship },
-  } = useMatch<LocationGenerics>();
+  const currentChampionship = useCurrentChampionship();
 
   return currentChampionship ? (
     <div>
