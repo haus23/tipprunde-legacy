@@ -52,24 +52,32 @@ export default function RankingPage() {
                         </tr>
                       </thead>
                       <tbody className="bg-white">
-                        {players.map((player, playerIdx) => (
-                          <tr
-                            key={player.id}
-                            className={
-                              playerIdx % 2 === 0 ? undefined : 'bg-gray-50'
-                            }
-                          >
-                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-right text-sm font-medium text-gray-900 sm:pl-6">
-                              {player.rank + '.'}
-                            </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {player.name}
-                            </td>
-                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                              {player.totalPoints}
-                            </td>
-                          </tr>
-                        ))}
+                        {players.map((player, playerIdx, players) => {
+                          const currentRank =
+                            playerIdx === 0
+                              ? '1.'
+                              : player.rank !== players[playerIdx].rank
+                              ? `${player.rank}.`
+                              : '';
+                          return (
+                            <tr
+                              key={player.id}
+                              className={
+                                playerIdx % 2 === 0 ? undefined : 'bg-gray-50'
+                              }
+                            >
+                              <td className="whitespace-nowrap py-4 pl-4 pr-3 text-right text-sm font-medium text-gray-900 sm:pl-6">
+                                {currentRank}
+                              </td>
+                              <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                {player.name}
+                              </td>
+                              <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                {player.totalPoints}
+                              </td>
+                            </tr>
+                          );
+                        })}
                       </tbody>
                     </table>
                   </div>

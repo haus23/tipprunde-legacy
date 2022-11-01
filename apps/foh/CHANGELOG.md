@@ -1,5 +1,17 @@
 # foh
 
+## 0.3.0
+
+### Minor Changes
+
+- v0.3: Display basic ranking table.
+
+### Patch Changes
+
+- [`5f3b873`](https://github.com/haus23/runde.tips/commit/5f3b873c3e4cfa0557247484bdf39f2d63320990) Thanks [@haus23](https://github.com/haus23)! - Cache queries until reload.
+
+- [`cc8b4d7`](https://github.com/haus23/runde.tips/commit/cc8b4d7c10ed24eaf2374e697c8b4e08f1178e82) Thanks [@haus23](https://github.com/haus23)! - Render first basic ranking.
+
 ## 0.2.0
 
 ### Minor Changes
