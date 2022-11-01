@@ -1,6 +1,6 @@
 {
   "name": "tailwind-config",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "types": "./index.d.ts",
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.1.1",
