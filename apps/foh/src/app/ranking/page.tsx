@@ -56,7 +56,7 @@ export default function RankingPage() {
                           const currentRank =
                             playerIdx === 0
                               ? '1.'
-                              : player.rank !== players[playerIdx].rank
+                              : player.rank !== players[playerIdx - 1].rank
                               ? `${player.rank}.`
                               : '';
                           return (

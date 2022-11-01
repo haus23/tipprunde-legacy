@@ -26,7 +26,7 @@ export function useRanking() {
       ...cp,
       name: playersHash[cp.playerId].name,
     }))
-    .sort((a, b) => b.rank - a.rank);
+    .sort((a, b) => a.rank - b.rank);
 
   return {
     players,
