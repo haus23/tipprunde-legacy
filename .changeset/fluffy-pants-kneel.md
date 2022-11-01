@@ -1,0 +1,5 @@
+---
+'foh': patch
+---
+
+Install flowbite.
