@@ -1,5 +1,11 @@
 # backyard
 
+## 0.1.1
+
+### Patch Changes
+
+- [`9d6c20c`](https://github.com/haus23/runde.tips/commit/9d6c20c4bd57838d14089a3ae49ef05a067cb44d) Thanks [@haus23](https://github.com/haus23)! - New player starts on rank 1.
+
 ## 0.1.0
 
 ### Minor Changes
