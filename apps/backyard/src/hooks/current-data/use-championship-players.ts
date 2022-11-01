@@ -22,7 +22,7 @@ export function useChampionshipPlayers() {
       points: 0,
       extraPoints: 0,
       totalPoints: 0,
-      rank: 0,
+      rank: 1,
     };
     return createEntity<ChampionshipPlayer>(
       `championships/${currentChampionship?.id}/players`,
