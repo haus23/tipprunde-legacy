@@ -89,11 +89,7 @@ export default function Layout() {
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 pt-2 pb-3">
                 {navigation.map((item) => (
-                  <Disclosure.Button
-                    as={Fragment}
-                    key={item.name}
-                    refName="_ref"
-                  >
+                  <Disclosure.Button as={Fragment} key={item.name}>
                     <NavLink
                       to={item.route}
                       end
