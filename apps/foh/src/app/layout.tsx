@@ -11,10 +11,11 @@ import { useChampionships } from '@/hooks/use-championships';
 import { useCurrentChampionship } from '@/hooks/use-current-championship';
 
 const navigation = [
-  { name: 'Turnier', route: '.' },
+  // v1: Uncomment the below lines
+  // { name: 'Turnier', route: '.' },
   { name: 'Tabelle', route: 'tabelle' },
-  { name: 'Spieler', route: 'spieler' },
-  { name: 'Spiele', route: 'spiele' },
+  // { name: 'Spieler', route: 'spieler' },
+  // { name: 'Spiele', route: 'spiele' },
 ];
 
 export default function Layout() {
@@ -30,7 +31,7 @@ export default function Layout() {
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <div className="flex flex-shrink-0 items-center">
-                    <Link onClick={() => close()} to="/turnier">
+                    <Link onClick={() => close()} to="/">
                       <AppTitle />
                     </Link>
                   </div>

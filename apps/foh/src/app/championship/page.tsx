@@ -1,27 +1,30 @@
+import { Navigate } from 'react-router-dom';
 import { useCurrentChampionship } from '@/hooks/use-current-championship';
 
 export default function ChampionshipPage() {
   const currentChampionship = useCurrentChampionship();
 
   return currentChampionship ? (
-    <div>
-      <header>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">
-            {currentChampionship.name}
-          </h1>
-        </div>
-      </header>
-      <div>
-        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-          {/* Replace with your content */}
-          <div className="px-4 py-8 sm:px-0">
-            <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
-          </div>
-          {/* /End replace */}
-        </div>
-      </div>
-    </div>
+    // v1: Display decent championship page
+    // <div>
+    //   <header>
+    //     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    //       <h1 className="text-3xl font-bold leading-tight tracking-tight text-gray-900">
+    //         {currentChampionship.name}
+    //       </h1>
+    //     </div>
+    //   </header>
+    //   <div>
+    //     <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    //       {/* Replace with your content */}
+    //       <div className="px-4 py-8 sm:px-0">
+    //         <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
+    //       </div>
+    //       {/* /End replace */}
+    //     </div>
+    //   </div>
+    // </div>
+    <Navigate to="tabelle" />
   ) : (
     <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col gap-y-4 rounded-md bg-white p-4 shadow-md">
