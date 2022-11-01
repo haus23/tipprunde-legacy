@@ -1,5 +1,23 @@
 # foh
 
+## 0.1.0
+
+### Minor Changes
+
+- v0.1: Empty start page with no championships.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - lib@0.1.0
+  - ui@0.1.0
+
+## 0.0.39
+
+### Patch Changes
+
+- [`5179109`](https://github.com/haus23/runde.tips/commit/51791092a802c3cc986341edc9a6d0d732112264) Thanks [@haus23](https://github.com/haus23)! - Remove the countdown gimmick.
+
 ## 0.0.38
 
 ### Patch Changes

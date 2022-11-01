@@ -1,5 +1,17 @@
 # backyard
 
+## 0.1.0
+
+### Minor Changes
+
+- v0.1: Empty start page with no championships.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - lib@0.1.0
+  - ui@0.1.0
+
 ## 0.0.36
 
 ### Patch Changes
