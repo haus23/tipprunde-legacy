@@ -21,7 +21,11 @@ export const appRoutes: RouteObject[] = [
     loader: appLoader,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, handle: { childPath: '' }, element: <ChampionshipPage /> },
+      {
+        index: true,
+        handle: { childPath: '' },
+        element: <ChampionshipPage />,
+      },
       {
         path: 'tabelle',
         handle: { childPath: '/tabelle' },

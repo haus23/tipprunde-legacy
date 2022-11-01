@@ -1,5 +1,23 @@
 # foh
 
+## 0.2.0
+
+### Minor Changes
+
+- [#44](https://github.com/haus23/runde.tips/pull/44) [`b3d4992`](https://github.com/haus23/runde.tips/commit/b3d499298d52c9c506a952ab30ad4c95d8d6773d) Thanks [@lean-dev](https://github.com/lean-dev)! - Display empty ranking with no players registered.
+
+### Patch Changes
+
+- [#44](https://github.com/haus23/runde.tips/pull/44) [`8cdb2a3`](https://github.com/haus23/runde.tips/commit/8cdb2a3c82fb7196aead9ea64195d43c82e46a90) Thanks [@lean-dev](https://github.com/lean-dev)! - Start the big ranking hook. First the players.
+
+- [#44](https://github.com/haus23/runde.tips/pull/44) [`bd36dfb`](https://github.com/haus23/runde.tips/commit/bd36dfb567d47c6934e51787b3ffb64ac13184d6) Thanks [@lean-dev](https://github.com/lean-dev)! - Hide not implemented views.
+
+- [#44](https://github.com/haus23/runde.tips/pull/44) [`f1e515d`](https://github.com/haus23/runde.tips/commit/f1e515dfad71598af7b817d61ed2a91706755036) Thanks [@lean-dev](https://github.com/lean-dev)! - Removed unused and wrong attribute.
+
+- [#44](https://github.com/haus23/runde.tips/pull/44) [`d2fd9f4`](https://github.com/haus23/runde.tips/commit/d2fd9f4079fc6b919ff7793746831293b4d33718) Thanks [@lean-dev](https://github.com/lean-dev)! - Tweak react-query. Every query will receive at least an empty array after suspended. Not undefined.
+
+- [#44](https://github.com/haus23/runde.tips/pull/44) [`400f771`](https://github.com/haus23/runde.tips/commit/400f771d0579d1b001f859bfb62cb1955a1c21ca) Thanks [@lean-dev](https://github.com/lean-dev)! - Let queries suspense by default. And show splashscreen while components are suspended.
+
 ## 0.1.0
 
 ### Minor Changes
