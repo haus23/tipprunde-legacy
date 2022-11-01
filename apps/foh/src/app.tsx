@@ -1,7 +1,8 @@
+import { Suspense } from 'react';
+
 // React Query
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Suspense } from 'react';
 export const queryClient = new QueryClient({
   defaultOptions: { queries: { suspense: true, staleTime: Infinity } },
 });
