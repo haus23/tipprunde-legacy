@@ -92,7 +92,7 @@ export default function TipsView() {
           id: t.id,
           playerId: player.id,
           matchId: m.id,
-          tip: t.tip,
+          tip: t.tip.trim(),
           joker: t.joker,
           points: 0,
         };
@@ -146,8 +146,9 @@ export default function TipsView() {
         let fieldIx = 0;
         matches.forEach((m, ix) => {
           if (m.roundId === currentRound.id && fieldIx >= inputFieldIx) {
-            const t = tips.at(tipIx++);
+            let t = tips.at(tipIx++);
             if (typeof t !== 'undefined') {
+              t = t.trim().replace(/[-\.]+/, ':');
               setValue(`tips.${ix}.tip`, t);
             }
           }
@@ -264,6 +265,12 @@ export default function TipsView() {
                         <TextField
                           control={control}
                           name={`tips.${ix}.tip`}
+                          registerOptions={{
+                            pattern: {
+                              value: /\b\d{1,2}:\d{1,2}\b/,
+                              message: 'Ungültiger Tipp.',
+                            },
+                          }}
                           label=""
                         />
                       </td>
