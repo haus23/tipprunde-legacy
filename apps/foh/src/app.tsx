@@ -9,8 +9,8 @@ export const queryClient = new QueryClient({
 
 // React Router
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { SplashScreen } from 'ui';
 import { appRoutes } from './app.routes';
+import SplashScreen from '@/components/brand/splash-screen';
 const router = createBrowserRouter(appRoutes);
 
 function App() {
