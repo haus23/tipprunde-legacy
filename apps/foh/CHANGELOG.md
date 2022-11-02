@@ -1,5 +1,23 @@
 # foh
 
+## 0.4.0
+
+### Minor Changes
+
+- v0.4: Switch to flowbite.
+
+### Patch Changes
+
+- [#48](https://github.com/haus23/runde.tips/pull/48) [`fee51b7`](https://github.com/haus23/runde.tips/commit/fee51b77738a6d04c168e91a3d696ae71bb72f2d) Thanks [@lean-dev](https://github.com/lean-dev)! - Adapt flowbite layout with dark mode.
+
+- [#48](https://github.com/haus23/runde.tips/pull/48) [`38ddea5`](https://github.com/haus23/runde.tips/commit/38ddea535176f22d51a70d419486e79e8bfaa999) Thanks [@lean-dev](https://github.com/lean-dev)! - Install flowbite.
+
+- [#48](https://github.com/haus23/runde.tips/pull/48) [`9647350`](https://github.com/haus23/runde.tips/commit/964735049109f19a2ab1478807ba16be9cb7c267) Thanks [@lean-dev](https://github.com/lean-dev)! - Refactor routing again.
+
+- [#48](https://github.com/haus23/runde.tips/pull/48) [`f2ae3ef`](https://github.com/haus23/runde.tips/commit/f2ae3efd6eca235ee3632fa701385843bad25afc) Thanks [@lean-dev](https://github.com/lean-dev)! - Implement button component. Drop dependency on ui package.
+
+- [#48](https://github.com/haus23/runde.tips/pull/48) [`8a87c6c`](https://github.com/haus23/runde.tips/commit/8a87c6cfd45be1fdd7447dbc59d2fcf8f0d1123d) Thanks [@lean-dev](https://github.com/lean-dev)! - Add theme switch. Change tailwind darkMode setting to class.
+
 ## 0.3.0
 
 ### Minor Changes
