@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useCurrentChampionship } from '@/hooks/use-current-championship';
+import Card from '@/components/container/card';
 
 export default function ChampionshipPage() {
   const currentChampionship = useCurrentChampionship();
@@ -26,16 +27,18 @@ export default function ChampionshipPage() {
     // </div>
     <Navigate to="tabelle" />
   ) : (
-    <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col gap-y-4 rounded-md bg-white p-4 shadow-md">
-        <h2 className="px-4 text-3xl font-semibold">Haus23 Tipprunde</h2>
-        <hr />
-        <div className="px-4 text-lg">
-          Hier entsteht unsere neue Tipprunde - also zumindest die
-          Online-Auswertung. Bis allerdings erste Tabellenstände tatsächlich
-          hier auf Abruf stehen, dauert es noch eine kleine Weile.
+    <div className="px-2">
+      <Card>
+        <div className="flex flex-col gap-y-4">
+          <h2 className="px-4 text-3xl font-semibold">Haus23 Tipprunde</h2>
+          <hr />
+          <div className="px-4 text-lg">
+            Hier entsteht unsere neue Tipprunde - also zumindest die
+            Online-Auswertung. Bis allerdings erste Tabellenstände tatsächlich
+            hier auf Abruf stehen, dauert es noch eine kleine Weile.
+          </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
