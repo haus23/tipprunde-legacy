@@ -48,7 +48,7 @@ export default function MatchesView() {
   const [isFormOpen, setFormOpen] = useState(matches.length === 0);
   const [editMode, setEditMode] = useState(false);
 
-  const nr = (matches.at(-1)?.nr || 0) + 1;
+  let nr = (matches.at(-1)?.nr || 0) + 1;
   const date = matches.reduce(
     (lastDate, match) => (match.date > lastDate ? match.date : lastDate),
     ''
@@ -75,7 +75,7 @@ export default function MatchesView() {
       match.result = '';
       match.points = 0;
       await notify(createMatch(match), `Spiel ${match.nr} hinzugefügt.`);
-      reset({ ...initialFormValues, date: match.date });
+      reset({ ...initialFormValues, date: match.date, nr: ++nr });
       setFocus('date', { shouldSelect: true });
     }
   }
