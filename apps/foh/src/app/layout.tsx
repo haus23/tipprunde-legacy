@@ -11,6 +11,7 @@ import Logo from '@/components/brand/logo';
 
 import { useChampionships } from '@/hooks/use-championships';
 import { useCurrentChampionship } from '@/hooks/use-current-championship';
+import ThemeSwitcher from '@/components/commands/theme-switcher';
 
 const navigation = [
   // v1: Uncomment the below lines
@@ -82,6 +83,7 @@ export default function Layout() {
                 {championships && (
                   <div className="flex items-center space-x-1">
                     {championships.length > 1 && <ChampionshipSwitcher />}
+                    <ThemeSwitcher />
                     {currentChampionship && (
                       <div className="flex items-center sm:hidden">
                         <Disclosure.Button className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1">
