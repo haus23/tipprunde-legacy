@@ -1,10 +1,10 @@
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import { FolderIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Combobox, Dialog, Transition } from '@headlessui/react';
-import { classNames } from 'ui';
 import { Championship } from 'lib';
 import { useChampionships } from '@/hooks/use-championships';
 import { useMatches, useNavigate } from 'react-router-dom';
+import { classNames } from '@/utils/class-names';
 
 export default function ChampionshipSwitcher() {
   const championships = useChampionships();
@@ -52,9 +52,17 @@ export default function ChampionshipSwitcher() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="flex sm:gap-x-2 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
         >
-          <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
+          <MagnifyingGlassIcon className="w-5 h-5" aria-hidden="true" />
+          <span className="sr-only">Turnier</span>
+        </button>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="hidden md:flex items-center gap-x-2 p-2.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700"
+        >
+          <MagnifyingGlassIcon className="w-5 h-5" aria-hidden="true" />
           <span>Turnier</span>
         </button>
       </div>

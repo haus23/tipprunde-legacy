@@ -1,4 +1,4 @@
-import { redirect, RouteObject } from 'react-router-dom';
+import { RouteObject } from 'react-router-dom';
 
 import { appLoader } from '@/app.loader';
 
@@ -9,37 +9,41 @@ import RankingPage from '@/app/ranking/page';
 import MatchesPage from '@/app/matches/page';
 import ErrorPage from '@/app/error/page';
 
+const childRoutes: RouteObject[] = [
+  {
+    index: true,
+    handle: { childPath: '' },
+    element: <ChampionshipPage />,
+  },
+  {
+    path: 'tabelle',
+    handle: { childPath: '/tabelle' },
+    element: <RankingPage />,
+  },
+  {
+    path: 'spieler',
+    handle: { childPath: '/spieler' },
+    element: <PlayersPage />,
+  },
+  {
+    path: 'spiele',
+    handle: { childPath: '/spiele' },
+    element: <MatchesPage />,
+  },
+];
+
 export const appRoutes: RouteObject[] = [
   {
     path: '/',
-    loader: () => redirect('/turnier'),
-  },
-  {
     id: 'app',
-    path: ':championshipId',
-    element: <Layout />,
     loader: appLoader,
+    element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
+      ...childRoutes,
       {
-        index: true,
-        handle: { childPath: '' },
-        element: <ChampionshipPage />,
-      },
-      {
-        path: 'tabelle',
-        handle: { childPath: '/tabelle' },
-        element: <RankingPage />,
-      },
-      {
-        path: 'spieler',
-        handle: { childPath: '/spieler' },
-        element: <PlayersPage />,
-      },
-      {
-        path: 'spiele',
-        handle: { childPath: '/spiele' },
-        element: <MatchesPage />,
+        path: ':championshipId',
+        children: childRoutes,
       },
     ],
   },
