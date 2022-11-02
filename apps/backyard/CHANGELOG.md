@@ -1,5 +1,11 @@
 # backyard
 
+## 0.1.2
+
+### Patch Changes
+
+- [`6199a66`](https://github.com/haus23/runde.tips/commit/6199a667e4b9067ba45a5636f9b0043fa1b5bef0) Thanks [@haus23](https://github.com/haus23)! - Increase match nr after insert. Reolves #50
+
 ## 0.1.1
 
 ### Patch Changes
