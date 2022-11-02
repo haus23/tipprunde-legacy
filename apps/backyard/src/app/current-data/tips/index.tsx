@@ -145,14 +145,13 @@ export default function TipsView() {
         let tipIx = 0;
         let fieldIx = 0;
         matches.forEach((m, ix) => {
-          if (m.roundId === currentRound.id && fieldIx >= inputFieldIx) {
+          if (m.roundId === currentRound.id && fieldIx++ >= inputFieldIx) {
             let t = tips.at(tipIx++);
             if (typeof t !== 'undefined') {
               t = t.trim().replace(/[-.]+/, ':');
               setValue(`tips.${ix}.tip`, t);
             }
           }
-          fieldIx++;
         });
       }
     },
