@@ -1,5 +1,15 @@
 # backyard
 
+## 0.1.4
+
+### Patch Changes
+
+- [`af16ccc`](https://github.com/haus23/runde.tips/commit/af16ccc396345c02766cd602e45616bc1b1c595d) Thanks [@haus23](https://github.com/haus23)! - Small layout fix. Number field was to narrow.
+
+- [`2b50d5d`](https://github.com/haus23/runde.tips/commit/2b50d5d420932f7dfc8546003cc7dab1edc48694) Thanks [@haus23](https://github.com/haus23)! - Not respecting edit mode. We always hav an id here.
+
+- [`96124e8`](https://github.com/haus23/runde.tips/commit/96124e80e83af1445b4de8d32f66f9e1e1934336) Thanks [@haus23](https://github.com/haus23)! - Bugfix: inserting tips not at the top did not work in second round.
+
 ## 0.1.3
 
 ### Patch Changes
