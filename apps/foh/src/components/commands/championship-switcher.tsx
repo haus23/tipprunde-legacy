@@ -1,10 +1,10 @@
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import { FolderIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Combobox, Dialog, Transition } from '@headlessui/react';
-import { classNames } from 'ui';
 import { Championship } from 'lib';
 import { useChampionships } from '@/hooks/use-championships';
 import { useMatches, useNavigate } from 'react-router-dom';
+import { classNames } from '@/utils/class-names';
 
 export default function ChampionshipSwitcher() {
   const championships = useChampionships();

@@ -1,6 +1,7 @@
-import Card from '@/components/container/card';
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'ui';
+
+import Button from '@/components/elements/button';
+import Card from '@/components/container/card';
 
 export default function ErrorPage() {
   const navigate = useNavigate();

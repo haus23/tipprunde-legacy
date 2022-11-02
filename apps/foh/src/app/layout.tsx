@@ -4,14 +4,13 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-import { classNames } from 'ui';
-
-import ChampionshipSwitcher from '@/components/commands/championship-switcher';
 import Logo from '@/components/brand/logo';
+import ChampionshipSwitcher from '@/components/commands/championship-switcher';
+import ThemeSwitcher from '@/components/commands/theme-switcher';
 
+import { classNames } from '@/utils/class-names';
 import { useChampionships } from '@/hooks/use-championships';
 import { useCurrentChampionship } from '@/hooks/use-current-championship';
-import ThemeSwitcher from '@/components/commands/theme-switcher';
 
 const navigation = [
   // v1: Uncomment the below lines
