@@ -5,12 +5,9 @@ import { queryClient } from '@/app';
 
 export type AppData = {
   championships: Championship[];
-  currentChampionship: Championship | null;
 };
 
-export const appLoader: LoaderFunction = async ({
-  params: { championshipId },
-}): Promise<AppData> => {
+export const appLoader: LoaderFunction = async (): Promise<AppData> => {
   const championships = await queryClient.fetchQuery(
     ['championships'],
     collection<Championship>(
@@ -19,14 +16,6 @@ export const appLoader: LoaderFunction = async ({
       orderByDesc('nr')
     ).get
   );
-  const currentChampionship =
-    championshipId === 'turnier'
-      ? championships?.at(0) || null
-      : championships?.find((c) => c.id === championshipId);
 
-  if (currentChampionship === undefined) {
-    throw new Response('Not Found', { status: 404 });
-  }
-
-  return { championships, currentChampionship };
+  return { championships };
 };
