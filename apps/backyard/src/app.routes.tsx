@@ -21,6 +21,7 @@ import RulesView from './app/master-data/rules';
 import ProfileView from './app/profile';
 import Login from './app/login';
 import Logout from './app/logout';
+import RefactorView from './app/refactor';
 
 const appRoutes: RouteObject[] = [
   {
@@ -58,6 +59,7 @@ const appRoutes: RouteObject[] = [
           { path: 'regelwerke', element: <RulesView /> },
         ],
       },
+      { path: 'refactor', element: <RefactorView /> },
       { path: 'profil', element: <ProfileView /> },
       { path: 'logout', element: <Logout /> },
     ],
