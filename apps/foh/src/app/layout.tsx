@@ -16,7 +16,7 @@ const navigation = [
   // v1: Uncomment the below lines
   // { name: 'Turnier', route: '.' },
   { name: 'Tabelle', route: '../tabelle' },
-  // { name: 'Spieler', route: '../spieler' },
+  { name: 'Spieler', route: '../spieler' },
   // { name: 'Spiele', route: '../spiele' },
 ];
 
