@@ -5,4 +5,5 @@ export interface Round extends BaseModel {
   nr: number;
   published: boolean;
   completed: boolean;
+  tipsPublished: boolean;
 }
