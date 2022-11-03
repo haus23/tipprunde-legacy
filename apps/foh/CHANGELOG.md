@@ -1,5 +1,12 @@
 # foh
 
+## 0.4.1
+
+### Patch Changes
+
+- Updated dependencies [[`5d5e5fc`](https://github.com/haus23/runde.tips/commit/5d5e5fcfa606fba74bc218edea35afba621fbea6), [`4f53d72`](https://github.com/haus23/runde.tips/commit/4f53d72d11061fe004836f9c6432872745b90b9c)]:
+  - lib@0.2.0
+
 ## 0.4.0
 
 ### Minor Changes

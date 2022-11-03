@@ -1,5 +1,15 @@
 # lib
 
+## 0.2.0
+
+### Minor Changes
+
+- [#53](https://github.com/haus23/runde.tips/pull/53) [`4f53d72`](https://github.com/haus23/runde.tips/commit/4f53d72d11061fe004836f9c6432872745b90b9c) Thanks [@lean-dev](https://github.com/lean-dev)! - Add tipsPublished field.
+
+### Patch Changes
+
+- [#53](https://github.com/haus23/runde.tips/pull/53) [`5d5e5fc`](https://github.com/haus23/runde.tips/commit/5d5e5fcfa606fba74bc218edea35afba621fbea6) Thanks [@lean-dev](https://github.com/lean-dev)! - Add delete entity method.
+
 ## 0.1.0
 
 ### Minor Changes
