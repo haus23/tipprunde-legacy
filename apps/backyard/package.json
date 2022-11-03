@@ -1,6 +1,6 @@
 {
   "name": "backyard",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,16 +9,16 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.3",
-    "@heroicons/react": "^2.0.12",
-    "lib": "workspace:0.2.0",
+    "@heroicons/react": "^2.0.13",
+    "lib": "workspace:0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.38.0",
+    "react-hook-form": "^7.39.1",
     "react-hot-toast": "^2.4.0",
-    "react-router-dom": "^6.4.2",
+    "react-router-dom": "^6.4.3",
     "recoil": "^0.7.6",
     "slugify": "^1.6.5",
-    "ui": "workspace:0.1.0"
+    "ui": "workspace:0.1.1"
   },
   "devDependencies": {
     "@headlessui/tailwindcss": "^0.1.1",
