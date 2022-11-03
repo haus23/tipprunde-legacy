@@ -10,10 +10,11 @@ export function useRounds() {
 
   const createRound = async (nr: number) =>
     createEntity<Round>(`championships/${currentChampionship?.id}/rounds`, {
-      id: `runde-${nr}`,
+      id: '',
       nr,
       published: false,
       completed: false,
+      tipsPublished: false,
     });
 
   return { rounds, createRound };
