@@ -51,7 +51,10 @@ export function useRanking() {
 
   const { data: rounds } = useAppQuery(
     ['rounds', championship?.id],
-    collection<Round>(`championships/${championship?.id}/rounds`).get
+    collection<Round>(
+      `championships/${championship?.id}/rounds`,
+      orderByAsc('nr')
+    ).get
   );
 
   return {
