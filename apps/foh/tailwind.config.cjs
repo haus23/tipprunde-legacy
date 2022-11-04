@@ -9,5 +9,5 @@ module.exports = {
       ...defaultTheme.screens,
     },
   },
-  plugins: [require('flowbite/plugin')],
+  plugins: [require('@headlessui/tailwindcss'), require('flowbite/plugin')],
 };
