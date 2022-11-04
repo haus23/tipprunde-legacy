@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
 
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -14,15 +14,18 @@ import { useCurrentChampionship } from '@/hooks/use-current-championship';
 
 const navigation = [
   // v1: Uncomment the below lines
-  // { name: 'Turnier', route: '.' },
-  { name: 'Tabelle', route: '../tabelle' },
-  { name: 'Spieler', route: '../spieler' },
-  // { name: 'Spiele', route: '../spiele' },
+  // { name: 'Turnier', route: '' },
+  { name: 'Tabelle', route: 'tabelle' },
+  { name: 'Spieler', route: 'spieler' },
+  // { name: 'Spiele', route: 'spiele' },
 ];
 
 export default function Layout() {
   const championships = useChampionships();
   const currentChampionship = useCurrentChampionship();
+
+  const { championshipId } = useParams();
+  const championshipRouteSegment = championshipId ? `/${championshipId}` : '';
 
   return (
     <div className="min-h-full">
@@ -50,8 +53,8 @@ export default function Layout() {
                       {navigation.map((item) => (
                         <li key={item.name}>
                           <NavLink
-                            to={item.route}
-                            relative="path"
+                            to={`${championshipRouteSegment}/${item.route}`}
+                            relative="route"
                             end
                             className={({ isActive }) =>
                               classNames(
@@ -110,7 +113,7 @@ export default function Layout() {
                 {navigation.map((item) => (
                   <Disclosure.Button as={Fragment} key={item.name}>
                     <NavLink
-                      to={item.route}
+                      to={`${championshipRouteSegment}/${item.route}`}
                       end
                       className="block text-base font-medium"
                     >

@@ -1,5 +1,5 @@
 import { Listbox, Transition } from '@headlessui/react';
-import { ChevronDownIcon, Cog8ToothIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { BaseModel } from 'lib';
 import { Fragment } from 'react';
 
@@ -43,7 +43,7 @@ export default function Select<T extends BaseModel>({
                   <Listbox.Option
                     key={option.id}
                     value={option}
-                    className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="block py-2 px-4 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     <span className="select-none">
                       {option[displayField] as string}

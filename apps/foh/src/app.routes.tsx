@@ -26,6 +26,11 @@ const childRoutes: RouteObject[] = [
     element: <PlayersPage />,
   },
   {
+    path: 'spieler/:playerId',
+    handle: { childPath: '/spieler' },
+    element: <PlayersPage />,
+  },
+  {
     path: 'spiele',
     handle: { childPath: '/spiele' },
     element: <MatchesPage />,
