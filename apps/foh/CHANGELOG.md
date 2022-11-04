@@ -1,5 +1,11 @@
 # foh
 
+## 0.5.1
+
+### Patch Changes
+
+- [`b32a597`](https://github.com/haus23/runde.tips/commit/b32a59713dab751ef35845e689b3f26fab11b331) Thanks [@haus23](https://github.com/haus23)! - Fix: sort rounds by number.
+
 ## 0.5.0
 
 ### Minor Changes
