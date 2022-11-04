@@ -4,6 +4,7 @@ import {
   Match,
   orderByAsc,
   Player,
+  Round,
   Team,
   Tip,
 } from 'lib';
@@ -43,14 +44,14 @@ export function useRanking() {
     awayteam: teamsHash[m.awayteamId],
   }));
 
-  const tips = useAppQuery(
+  const { data: tips } = useAppQuery(
     ['tips', championship?.id],
     collection<Tip>(`championships/${championship?.id}/tips`).get
   );
 
-  const rounds = useAppQuery(
+  const { data: rounds } = useAppQuery(
     ['rounds', championship?.id],
-    collection<Tip>(`championships/${championship?.id}/rounds`).get
+    collection<Round>(`championships/${championship?.id}/rounds`).get
   );
 
   return {
