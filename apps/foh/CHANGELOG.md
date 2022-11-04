@@ -1,5 +1,21 @@
 # foh
 
+## 0.5.0
+
+### Minor Changes
+
+- [`083e8ec`](https://github.com/haus23/runde.tips/commit/083e8ec2315b4ffa01d2c4d1875f418391848f3b) Thanks [@haus23](https://github.com/haus23)! - Implement players view with tips.
+
+### Patch Changes
+
+- [`196169d`](https://github.com/haus23/runde.tips/commit/196169d8e97e862063e3032508a892f319e8a33e) Thanks [@haus23](https://github.com/haus23)! - Add a simple select box.
+
+- [`fae962b`](https://github.com/haus23/runde.tips/commit/fae962be4f25bafc1c8b0e586b638687d4a0d4bd) Thanks [@haus23](https://github.com/haus23)! - Add headlessui tailwind plugin.
+
+- [`a25b702`](https://github.com/haus23/runde.tips/commit/a25b7020e61481357f964a9213dc74fd41879db7) Thanks [@haus23](https://github.com/haus23)! - Start implementing the players view.
+
+- [`fe79400`](https://github.com/haus23/runde.tips/commit/fe79400129a916ee9191d1d6de7c78e750e7f7f5) Thanks [@haus23](https://github.com/haus23)! - Make useRanking complete.
+
 ## 0.4.2
 
 ### Patch Changes
