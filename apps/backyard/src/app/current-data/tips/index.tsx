@@ -58,12 +58,18 @@ export default function TipsView() {
 
   const [player, setPlayer] = useState(players[0]);
 
-  const { control, handleSubmit, register, reset, setValue } =
-    useForm<TipsFormProps>({
-      defaultValues: {
-        tips: new Array(matches.length).fill({ id: '', tip: '', joker: false }),
-      },
-    });
+  const {
+    control,
+    handleSubmit,
+    register,
+    reset,
+    setValue,
+    formState: { dirtyFields },
+  } = useForm<TipsFormProps>({
+    defaultValues: {
+      tips: new Array(matches.length).fill({ id: '', tip: '', joker: false }),
+    },
+  });
 
   const { tips, createTip, updateTip } = useTips();
 
@@ -86,7 +92,7 @@ export default function TipsView() {
 
   const saveResults = (data: TipsFormProps) => {
     const saveOperations = matches.reduce((promises, m, ix) => {
-      if (m.roundId === currentRound.id) {
+      if (m.roundId === currentRound.id && dirtyFields.tips?.at(ix)) {
         const t = data.tips[ix];
         const tip: Tip = {
           id: t.id,
