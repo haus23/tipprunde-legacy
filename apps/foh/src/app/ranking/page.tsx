@@ -7,7 +7,7 @@ export default function RankingPage() {
   const { players } = useRanking();
 
   return (
-    <div className="mx-auto max-w-5xl sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-5xl mt-6 sm:px-6 lg:px-8">
       <header className="text-center sm:text-left">
         <div>
           <h1 className="text-xl font-semibold leading-tight tracking-tight">

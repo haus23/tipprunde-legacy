@@ -1,5 +1,6 @@
+import { classNames } from '@/utils/class-names';
 import { Listbox, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { BaseModel } from 'lib';
 import { Fragment } from 'react';
 
@@ -24,7 +25,7 @@ export default function Select<T extends BaseModel>({
     <Listbox value={value} onChange={onChange}>
       {({ open }) => (
         <div>
-          <Listbox.Button className="text-white w-32 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex space-x-2 items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          <Listbox.Button className="text-white w-40 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex space-x-2 items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             <span className="w-full text-left">
               {value[displayField] as string}
             </span>
@@ -37,17 +38,34 @@ export default function Select<T extends BaseModel>({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="absolute w-48 mt-1 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
-              <Listbox.Options className="py-1 text-sm text-gray-700 dark:text-gray-200">
+            <div className="absolute z-20 w-48 mt-2 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+              <Listbox.Options className="p-1 text-sm max-h-[75vh] overflow-y-auto">
                 {options.map((option) => (
                   <Listbox.Option
                     key={option.id}
                     value={option}
-                    className="block py-2 px-4 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    className={({ active }) =>
+                      classNames(
+                        'relative cursor-default select-none block py-2 pl-8 pr-4 text-left',
+                        active
+                          ? 'bg-gray-100 dark:bg-gray-600 dark:text-white'
+                          : 'text-gray-500 dark:text-gray-200'
+                      )
+                    }
                   >
-                    <span className="select-none">
-                      {option[displayField] as string}
-                    </span>
+                    {({ selected }) => (
+                      <>
+                        <span className="block truncate">
+                          {option[displayField] as string}
+                        </span>
+
+                        {selected ? (
+                          <span className="absolute inset-y-0 left-0 flex items-center pl-1.5 text-blue-600 dark:text-blue-400">
+                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                          </span>
+                        ) : null}
+                      </>
+                    )}
                   </Listbox.Option>
                 ))}
               </Listbox.Options>

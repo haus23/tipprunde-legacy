@@ -138,7 +138,7 @@ export default function Layout() {
         )}
       </Disclosure>
 
-      <main className="py-10">
+      <main className="pb-10">
         <Outlet />
       </main>
     </div>
