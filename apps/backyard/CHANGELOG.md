@@ -1,5 +1,11 @@
 # backyard
 
+## 0.1.7
+
+### Patch Changes
+
+- [`2458286`](https://github.com/haus23/runde.tips/commit/2458286ab6341c46dde19ad37eb913290faec614) Thanks [@haus23](https://github.com/haus23)! - Save only edited tips.
+
 ## 0.1.6
 
 ### Patch Changes

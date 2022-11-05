@@ -1,5 +1,11 @@
 # foh
 
+## 0.5.2
+
+### Patch Changes
+
+- [`808811c`](https://github.com/haus23/runde.tips/commit/808811c28cac40861dd440a799d8d33c67ec8e04) Thanks [@haus23](https://github.com/haus23)! - Tweaking FOH UI.
+
 ## 0.5.1
 
 ### Patch Changes
