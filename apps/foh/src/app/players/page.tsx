@@ -72,11 +72,11 @@ export default function PlayersPage() {
                     <th scope="col" className="py-3 px-1 sm:px-4 md:px-6">
                       Tipp
                     </th>
-                    <th scope="col" className="py-3 pl-1 pr-2 sm:px-4 md:px-6">
-                      Punkte
-                    </th>
                     <th scope="col" className="sr-only">
                       Info
+                    </th>
+                    <th scope="col" className="py-3 pl-1 pr-2 sm:px-4 md:px-6">
+                      Punkte
                     </th>
                   </tr>
                 </thead>
@@ -131,11 +131,11 @@ export default function PlayersPage() {
                           <td className="text-center py-4 px-1 sm:px-4 md:px-6">
                             {tip?.tip}
                           </td>
+                          <td className="absolute w-5 top-4">
+                            {infoText && <InfoPopover text={infoText} />}
+                          </td>
                           <td className="text-center py-4 px-1 sm:px-4 md:px-6">
                             {tip?.points}
-                          </td>
-                          <td className="absolute w-5 h-5 z-10 top-4 right-1 sm:right-3">
-                            {infoText && <InfoPopover text={infoText} />}
                           </td>
                         </tr>
                       );
