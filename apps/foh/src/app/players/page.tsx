@@ -28,7 +28,7 @@ export default function PlayersPage() {
 
   return (
     <div className="mx-auto max-w-5xl mt-6 sm:px-6 lg:px-8">
-      <header className="bg-white flex justify-center text-center sm:text-left sm:justify-start">
+      <header className="flex justify-center text-center sm:text-left sm:justify-start">
         <h1 className="text-xl font-semibold leading-tight tracking-tight flex items-center gap-x-4">
           <span>Tipps von</span>
           <div>
