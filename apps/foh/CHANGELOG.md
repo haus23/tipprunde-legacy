@@ -1,5 +1,11 @@
 # foh
 
+## 0.5.5
+
+### Patch Changes
+
+- Update styles and behavior of switcher.
+
 ## 0.5.4
 
 ### Patch Changes

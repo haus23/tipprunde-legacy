@@ -36,10 +36,10 @@ export default function ChampionshipSwitcher() {
 
   const filteredChampionships =
     query === ''
-      ? []
-      : championships?.filter((championship) => {
-          return championship.name.toLowerCase().includes(query.toLowerCase());
-        }) || [];
+      ? championships
+      : championships?.filter((championship) =>
+          championship.name.toLowerCase().includes(query.toLowerCase())
+        ) || [];
 
   function switchChampionship(championship: Championship) {
     setOpen(false);
@@ -70,7 +70,7 @@ export default function ChampionshipSwitcher() {
         show={open}
         as={Fragment}
         afterLeave={() => setQuery('')}
-        appear
+        appear={true}
       >
         <Dialog as="div" className="relative z-10" onClose={setOpen}>
           <Transition.Child
@@ -82,7 +82,7 @@ export default function ChampionshipSwitcher() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-500 bg-opacity-25 transition-opacity" />
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-25 dark:bg-gray-700 dark:bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
           <div className="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 md:p-20">
@@ -95,18 +95,17 @@ export default function ChampionshipSwitcher() {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="mx-auto max-w-xl transform rounded-xl bg-white p-2 shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
+              <Dialog.Panel className="mx-auto max-w-xl transform rounded-xl bg-white dark:bg-gray-800 p-2 shadow-2xl ring-1 ring-black dark:ring-gray-800 ring-opacity-5 transition-all">
                 <Combobox onChange={switchChampionship}>
                   <Combobox.Input
-                    className="w-full rounded-md border-0 bg-gray-100 px-4 py-2.5 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                    className="w-full rounded-md border-0 bg-gray-100 dark:bg-gray-700 px-4 py-2.5 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:ring-0 sm:text-sm"
                     placeholder="Turnier"
                     onChange={(event) => setQuery(event.target.value)}
                   />
-
                   {filteredChampionships.length > 0 && (
                     <Combobox.Options
-                      static
-                      className="-mb-2 max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800"
+                      static={true}
+                      className="-mb-2 max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800 dark:text-gray-300"
                     >
                       {filteredChampionships.map((championship) => (
                         <Combobox.Option
@@ -131,7 +130,7 @@ export default function ChampionshipSwitcher() {
                         className="mx-auto h-6 w-6 text-gray-400"
                         aria-hidden="true"
                       />
-                      <p className="mt-4 text-sm text-gray-900">
+                      <p className="mt-4 text-sm text-gray-900 dark:text-gray-200">
                         Kein Turnier passt zu der Suche.
                       </p>
                     </div>
