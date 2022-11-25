@@ -40,6 +40,12 @@ export default function LeaguesView() {
     setFormOpen(false);
   }
 
+  function handleNameChange() {
+    const name = getValues('name').trim();
+    if (!editMode && name && !dirtyFields.shortname) {
+      setValue('shortname', name, { shouldValidate: true });
+    }
+  }
   function handleShortnameChange() {
     const sluggedName = slug(getValues('shortname'));
     if (!editMode && sluggedName && !dirtyFields.id) {
@@ -86,15 +92,16 @@ export default function LeaguesView() {
           </button>
           {isFormOpen && (
             <div>
-              <form noValidate onSubmit={handleSubmit(saveLeague)}>
+              <form noValidate={true} onSubmit={handleSubmit(saveLeague)}>
                 <div className="space-y-4 p-4">
                   <TextField
-                    autoFocus
+                    autoFocus={true}
                     label="Name"
-                    required
+                    required={true}
                     error={errors.name?.message}
                     {...register('name', {
                       required: true,
+                      onBlur: handleNameChange,
                       validate: {
                         uniqueName: (name) =>
                           editMode ||
@@ -105,7 +112,7 @@ export default function LeaguesView() {
                   />
                   <TextField
                     label="Kürzel"
-                    required
+                    required={true}
                     error={errors.shortname?.message}
                     {...register('shortname', {
                       required: true,
@@ -120,7 +127,7 @@ export default function LeaguesView() {
                   />
                   <TextField
                     label="Kennung"
-                    required
+                    required={true}
                     disabled={editMode}
                     error={errors.id?.message}
                     {...register('id', {
@@ -136,7 +143,7 @@ export default function LeaguesView() {
                 </div>
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
                   <Button onClick={endEdit}>Abbrechen</Button>
-                  <Button primary type="submit">
+                  <Button primary={true} type="submit">
                     Speichern
                   </Button>
                 </div>

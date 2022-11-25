@@ -55,21 +55,21 @@ export default function TeamsView() {
 
   async function saveTeam(team: Team) {
     trimProps(team);
-    if (!editMode) {
-      await toast.promise(createTeam(team), {
-        loading: 'Speichern',
-        success: `${team.name} angelegt.`,
-        error: 'Hopply, das hat nicht geklappt.',
-      });
-      setFocus('name');
-      reset();
-    } else {
+    if (editMode) {
       await toast.promise(updateTeam(team), {
         loading: 'Speichern',
         success: `${team.name} geändert.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
       endEdit();
+    } else {
+      await toast.promise(createTeam(team), {
+        loading: 'Speichern',
+        success: `${team.name} angelegt`,
+        error: 'Hopply, das hat nicht geklappt.',
+      });
+      setFocus('name');
+      reset();
     }
   }
 
@@ -94,12 +94,12 @@ export default function TeamsView() {
           </button>
           {isFormOpen && (
             <div>
-              <form noValidate onSubmit={handleSubmit(saveTeam)}>
+              <form noValidate={true} onSubmit={handleSubmit(saveTeam)}>
                 <div className="space-y-4 p-4">
                   <TextField
-                    autoFocus
+                    autoFocus={true}
                     label="Name"
-                    required
+                    required={true}
                     error={errors.name?.message}
                     {...register('name', {
                       required: true,
@@ -114,7 +114,7 @@ export default function TeamsView() {
                   />
                   <TextField
                     label="Kürzel"
-                    required
+                    required={true}
                     error={errors.shortname?.message}
                     {...register('shortname', {
                       required: true,
@@ -129,7 +129,7 @@ export default function TeamsView() {
                   />
                   <TextField
                     label="Kennung"
-                    required
+                    required={true}
                     disabled={editMode}
                     error={errors.id?.message}
                     {...register('id', {
@@ -145,7 +145,7 @@ export default function TeamsView() {
                 </div>
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
                   <Button onClick={endEdit}>Abbrechen</Button>
-                  <Button primary type="submit">
+                  <Button primary={true} type="submit">
                     Speichern
                   </Button>
                 </div>
