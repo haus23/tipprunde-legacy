@@ -1,5 +1,15 @@
 # lib
 
+## 0.3.0
+
+### Minor Changes
+
+- [#56](https://github.com/haus23/runde.tips/pull/56) [`895c0f0`](https://github.com/haus23/runde.tips/commit/895c0f0d34032f10d05fa59d64eda6067a834993) Thanks [@lean-dev](https://github.com/lean-dev)! - New rule: double points in all round matches.
+
+### Patch Changes
+
+- [#56](https://github.com/haus23/runde.tips/pull/56) [`ca82b1e`](https://github.com/haus23/runde.tips/commit/ca82b1eeed449ce93d402eb70e5f792e31b9a1d5) Thanks [@lean-dev](https://github.com/lean-dev)! - Update model and calculators.
+
 ## 0.2.1
 
 ### Patch Changes
