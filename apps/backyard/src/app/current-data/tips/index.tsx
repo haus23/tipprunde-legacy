@@ -155,7 +155,7 @@ export default function TipsView() {
             let t = tips.at(tipIx++);
             if (typeof t !== 'undefined') {
               t = t.trim().replace(/[-.]+/, ':');
-              setValue(`tips.${ix}.tip`, t);
+              setValue(`tips.${ix}.tip`, t, { shouldDirty: true});
             }
           }
         });
@@ -291,7 +291,7 @@ export default function TipsView() {
                 )}
                 <tr>
                   <td colSpan={4} className="text-right pr-4 py-2">
-                    <Button type="submit" primary>
+                    <Button type="submit" primary={true}>
                       Speichern
                     </Button>
                   </td>
