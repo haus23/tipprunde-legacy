@@ -64,13 +64,13 @@ export default function ResultsView() {
       }, [] as Promise<void>[]);
       await notify(
         Promise.all(updateOperations),
-        `Ergebnisse gespeichert und berechnet`
+        "Ergebnisse gespeichert und berechnet"
       );
     }
   }
 
   async function calculateCurrentRanking() {
-    await notify(calculateRanking(), `Tabelle neu berechnet`);
+    await notify(calculateRanking(), "Tabelle neu berechnet");
   }
 
   return (
@@ -100,12 +100,12 @@ export default function ResultsView() {
             </nav>
           </div>
           <div className="py-4 px-4 flex items-center justify-end gap-x-8">
-            <Button type="button" primary onClick={calculateCurrentRanking}>
+            <Button type="button" primary={true} onClick={calculateCurrentRanking}>
               Tabelle neu berechnen
             </Button>
             <Button
               type="button"
-              primary
+              primary={true}
               onClick={handleSubmit(saveAndCalculate)}
             >
               Speichern und berechnen
