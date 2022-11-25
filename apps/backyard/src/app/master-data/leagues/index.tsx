@@ -55,21 +55,21 @@ export default function LeaguesView() {
 
   async function saveLeague(league: League) {
     trimProps(league);
-    if (league.id === '') {
-      await toast.promise(createLeague(league), {
-        loading: 'Speichern',
-        success: `${league.name} angelegt.`,
-        error: 'Hopply, das hat nicht geklappt.',
-      });
-      setFocus('name');
-      reset();
-    } else {
+    if (editMode) {
       await toast.promise(updateLeague(league), {
         loading: 'Speichern',
         success: `${league.name} geändert.`,
         error: 'Hopply, das hat nicht geklappt.',
       });
       endEdit();
+    } else {
+      await toast.promise(createLeague(league), {
+        loading: 'Speichern',
+        success: `${league.name} angelegt`,
+        error: 'Hopply, das hat nicht geklappt.',
+      });
+      setFocus('name');
+      reset();
     }
   }
 

@@ -1,5 +1,11 @@
 # backyard
 
+## 0.1.10
+
+### Patch Changes
+
+- Fix: not respected edit-mode while saving.
+
 ## 0.1.9
 
 ### Patch Changes
