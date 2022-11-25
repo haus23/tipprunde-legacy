@@ -1,5 +1,11 @@
 # backyard
 
+## 0.1.9
+
+### Patch Changes
+
+- Update shortname as well while league creating.
+
 ## 0.1.8
 
 ### Patch Changes
