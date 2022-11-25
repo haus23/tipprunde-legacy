@@ -7,13 +7,16 @@ import {
   ChampionshipRules,
   createEntity,
   Match,
+  Round,
   updateEntity,
 } from 'lib';
 import { useTips } from './use-tips';
 import { useRules } from '../master-data/use-rules';
+import { useRounds } from './use-rounds';
 
 export function useMatches() {
   const { currentChampionship } = useCurrentChampionship();
+  const { rounds } = useRounds();
   const { rules } = useRules();
 
   const { tips, updateTip } = useTips();
@@ -34,12 +37,15 @@ export function useMatches() {
 
   const updateMatchResult = async (match: Match, result: string) => {
     const matchTips = tips.filter((t) => t.matchId === match.id);
+    const round = rounds.find((r) => r.id === match.roundId) as Round;
+
     const { match: updatedMatch, tips: updatedTips } = calculateMatchResults(
       { ...match, result },
       matchTips,
       rules.find(
         (r) => r.id === currentChampionship?.rulesId
-      ) as ChampionshipRules
+      ) as ChampionshipRules,
+      { isDoubleRound: round.isDoubleRound }
     );
     await Promise.all([
       updateMatch(updatedMatch),

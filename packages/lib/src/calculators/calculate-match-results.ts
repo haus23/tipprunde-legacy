@@ -6,9 +6,11 @@ import { calculateTipResult } from './calculate-tip-result';
 export function calculateMatchResults(
   match: Match,
   tips: Tip[],
-  rules: ChampionshipRules
+  rules: ChampionshipRules,
+  options: { isDoubleRound?: boolean } = {}
 ): { match: Match; tips: Tip[] } {
-  const isDoubleRound = rules.roundRuleId === 'alles-verdoppelt';
+  const isDoubleRound =
+    rules.roundRuleId === 'alles-verdoppelt' && !!options.isDoubleRound;
 
   tips = tips.map((t) =>
     calculateTipResult(t, match.result, rules.tipRuleId, {

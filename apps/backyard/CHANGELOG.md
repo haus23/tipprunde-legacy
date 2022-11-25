@@ -1,5 +1,14 @@
 # backyard
 
+## 0.1.12
+
+### Patch Changes
+
+- Checking whether we have a double-point round.
+
+- Updated dependencies []:
+  - lib@0.3.1
+
 ## 0.1.11
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # lib
 
+## 0.3.1
+
+### Patch Changes
+
+- Checking whether we have a double-point round.
+
 ## 0.3.0
 
 ### Minor Changes

@@ -188,7 +188,8 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name} und ${ro
     const { match: calculatedMatch } = calculateMatchResults(
       match,
       tips,
-      rules
+      rules,
+      { isDoubleRound: true }
     );
     expect(calculatedMatch.points).toBe(14);
     expect(calculatedMatch).not.toBe(match);
@@ -203,7 +204,8 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name} und ${ro
     const { match: calculatedMatch } = calculateMatchResults(
       match,
       tips,
-      rules
+      rules,
+      { isDoubleRound: true }
     );
     expect(calculatedMatch.points).toBe(14);
     expect(calculatedMatch).toBe(match);
@@ -219,7 +221,8 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name} und ${ro
     const { match: calculatedMatch, tips: updatedTips } = calculateMatchResults(
       match,
       tips,
-      rules
+      rules,
+      { isDoubleRound: true }
     );
     expect(calculatedMatch.points).toBe(7);
     expect(calculatedMatch).not.toBe(match);
