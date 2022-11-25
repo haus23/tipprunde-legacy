@@ -80,7 +80,7 @@ const mockData = [
   },
 ];
 
-describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[0].name, () => {
+describe(`Tippberechnung nach Regeln: ${tipRuleDescriptions[0].name}`, () => {
   const ruleId: TipRuleId = 'drei-oder-ein-punkt-joker-verdoppelt';
 
   const expectedPoints = [3, 6, 1, 2, 1, 2, 0, 0, 0, 0, 0, 0];
@@ -92,6 +92,19 @@ describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[0].name, () => {
         const calculatedTip = calculateTipResult(t, match.result, ruleId);
         expect(calculatedTip).not.toBe(t);
         expect(calculatedTip.points).toBe(expectedPoints[ix]);
+      });
+    });
+  });
+
+  test('berechnet die korrekten Punkte in einer Doppelte-Punkte-Runde', () => {
+    mockData.forEach((match) => {
+      match.tips.forEach((tip, ix) => {
+        const t = makeTipMock(tip.tip, tip.joker);
+        const calculatedTip = calculateTipResult(t, match.result, ruleId, {
+          doubleRound: true,
+        });
+        expect(calculatedTip).not.toBe(t);
+        expect(calculatedTip.points).toBe(expectedPoints[ix] * 2);
       });
     });
   });
@@ -124,7 +137,7 @@ describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[0].name, () => {
   });
 });
 
-describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[1].name, () => {
+describe(`Tippberechnung nach Regeln: ${tipRuleDescriptions[1].name}`, () => {
   const ruleId: TipRuleId = 'drei-zwei-oder-ein-punkt-joker-verdoppelt';
 
   const expectedPoints = [
@@ -140,6 +153,19 @@ describe('Tippberechnung nach Regeln: ' + tipRuleDescriptions[1].name, () => {
         const calculatedTip = calculateTipResult(t, match.result, ruleId);
         expect(calculatedTip).not.toBe(t);
         expect(calculatedTip.points).toBe(expectedPoints[ixMatch][ixTip]);
+      });
+    });
+  });
+
+  test('berechnet die korrekten Punkte in einer Doppelte-Punkte-Runde', () => {
+    mockData.forEach((match, ixMatch) => {
+      match.tips.forEach((tip, ixTip) => {
+        const t = makeTipMock(tip.tip, tip.joker);
+        const calculatedTip = calculateTipResult(t, match.result, ruleId, {
+          doubleRound: true,
+        });
+        expect(calculatedTip).not.toBe(t);
+        expect(calculatedTip.points).toBe(expectedPoints[ixMatch][ixTip] * 2);
       });
     });
   });

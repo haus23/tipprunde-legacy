@@ -17,8 +17,11 @@ function toTotoResult(goals: number[]) {
 export function calculateTipResult(
   tip: Tip,
   result: string,
-  ruleId: TipRuleId
+  ruleId: TipRuleId,
+  options: { doubleRound?: boolean } = {}
 ): Tip {
+  const isDoubleRound = !!options.doubleRound;
+
   // Remove all extra flags if any
   if (typeof tip.lonelyHit !== 'undefined') {
     const { lonelyHit, ...cleanedCopy } = { ...tip };
@@ -44,12 +47,13 @@ export function calculateTipResult(
     const resultDiff = resultGoals[0] - resultGoals[1];
 
     switch (ruleId) {
-      case 'drei-oder-ein-punkt-joker-verdoppelt':
+      case 'drei-oder-ein-punkt-joker-verdoppelt': {
         if (tipToto === resultToto) {
           points = 1;
         }
         break;
-      case 'drei-zwei-oder-ein-punkt-joker-verdoppelt':
+      }
+      case 'drei-zwei-oder-ein-punkt-joker-verdoppelt': {
         if (tipToto === resultToto) {
           points = 1;
           if (tipDiff === resultDiff) {
@@ -57,6 +61,7 @@ export function calculateTipResult(
           }
         }
         break;
+      }
     }
 
     if (tipGoals[0] === resultGoals[0] && tipGoals[1] === resultGoals[1]) {
@@ -64,6 +69,10 @@ export function calculateTipResult(
     }
 
     if (tip.joker) {
+      points *= 2;
+    }
+
+    if (isDoubleRound) {
       points *= 2;
     }
   }

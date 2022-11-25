@@ -6,4 +6,5 @@ export interface Round extends BaseModel {
   published: boolean;
   completed: boolean;
   tipsPublished: boolean;
+  isDoubleRound?: boolean;
 }

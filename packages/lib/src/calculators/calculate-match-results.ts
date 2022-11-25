@@ -8,13 +8,19 @@ export function calculateMatchResults(
   tips: Tip[],
   rules: ChampionshipRules
 ): { match: Match; tips: Tip[] } {
-  tips = tips.map((t) => calculateTipResult(t, match.result, rules.tipRuleId));
+  const isDoubleRound = rules.roundRuleId === 'alles-verdoppelt';
+
+  tips = tips.map((t) =>
+    calculateTipResult(t, match.result, rules.tipRuleId, {
+      doubleRound: isDoubleRound,
+    })
+  );
 
   const tipsWithPoints = tips.filter((t) => t.points > 0);
   let totalPoints = tipsWithPoints.reduce((sum, t) => sum + t.points, 0);
 
   switch (rules.matchRuleId) {
-    case 'alleiniger-treffer-drei-punkte':
+    case 'alleiniger-treffer-drei-punkte': {
       if (tipsWithPoints.length === 1) {
         const correctTip = tipsWithPoints[0];
         tips = tips.map((t) =>
@@ -29,6 +35,7 @@ export function calculateMatchResults(
         totalPoints += 3;
       }
       break;
+    }
 
     default:
       break;
