@@ -35,6 +35,11 @@ const childRoutes: RouteObject[] = [
     handle: { childPath: '/spiele' },
     element: <MatchesPage />,
   },
+  {
+    path: 'spiele/:matchId',
+    handle: { childPath: '/spiele' },
+    element: <MatchesPage />,
+  },
 ];
 
 export const appRoutes: RouteObject[] = [

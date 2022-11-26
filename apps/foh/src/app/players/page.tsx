@@ -5,7 +5,7 @@ import Select from '@/components/elements/select';
 import { useRanking } from '@/hooks/use-ranking';
 import { classNames } from '@/utils/class-names';
 import { formatDate } from '@/utils/format-date';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import InfoPopover from '@/components/elements/info-popover';
 
 export default function PlayersPage() {
@@ -97,7 +97,6 @@ export default function PlayersPage() {
                       return (
                         <tr
                           key={m.id}
-                          title={tip?.joker ? 'Joker' : ''}
                           className={classNames(
                             'relative border-b dark:border-gray-700',
                             infoText
@@ -114,16 +113,21 @@ export default function PlayersPage() {
                             </span>
                           </td>
                           <td className="py-4 px-1 sm:px-4 md:px-6">
-                            <span className="md:hidden">
-                              {`${m.hometeam?.shortname || ''} - ${
-                                m.awayteam?.shortname || ''
-                              }`.replace(/^ - $/, '')}
-                            </span>
-                            <span className="hidden md:inline">
-                              {`${m.hometeam?.name || ''} - ${
-                                m.awayteam?.name || ''
-                              }`.replace(/^ - $/, '')}
-                            </span>
+                            <Link
+                              to={`../spiele/${m.id}`}
+                              className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                            >
+                              <span className="md:hidden">
+                                {`${m.hometeam?.shortname || ''} - ${
+                                  m.awayteam?.shortname || ''
+                                }`.replace(/^ - $/, '')}
+                              </span>
+                              <span className="hidden md:inline">
+                                {`${m.hometeam?.name || ''} - ${
+                                  m.awayteam?.name || ''
+                                }`.replace(/^ - $/, '')}
+                              </span>
+                            </Link>
                           </td>
                           <td className="text-center py-4 px-1 sm:px-4 md:px-6">
                             {m.result}

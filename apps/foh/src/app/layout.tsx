@@ -17,7 +17,7 @@ const navigation = [
   // { name: 'Turnier', route: '' },
   { name: 'Tabelle', route: 'tabelle' },
   { name: 'Spieler', route: 'spieler' },
-  // { name: 'Spiele', route: 'spiele' },
+  { name: 'Spiele', route: 'spiele' },
 ];
 
 export default function Layout() {
