@@ -97,7 +97,6 @@ export default function PlayersPage() {
                       return (
                         <tr
                           key={m.id}
-                          title={tip?.joker ? 'Joker' : ''}
                           className={classNames(
                             'relative border-b dark:border-gray-700',
                             infoText
