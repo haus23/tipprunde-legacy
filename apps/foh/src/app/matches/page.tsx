@@ -1,22 +1,37 @@
 import InfoPopover from "@/components/elements/info-popover";
+import Select from "@/components/elements/select";
 import { useRanking } from "@/hooks/use-ranking";
 import { classNames } from "@/utils/class-names";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function MatchesPage() {
+  const navigate = useNavigate();
   const { matchId, championshipId } = useParams();
-  const { players, rounds, matches, tips } = useRanking();
+  const { players, /* rounds, */ matches, tips } = useRanking();
 
   const lastMatch = [...matches].reverse().find(m => m.result !== '') || matches[0];
   const match = matchId ? matches.find(m => m.id === matchId) || lastMatch : lastMatch;
 
+  const matchesForSelect = matches.map(m => ({ id: m.id, match: `${m.hometeam.shortname} - ${m.awayteam.shortname}`}));
+  const selectedMatch = matchesForSelect.find(m => m.id === match.id) as { id: string, match: string };
+
+  const championshipRouteSegment = championshipId ? `/${championshipId}` : '';
+  function navigateTo(matchId: string) {
+    navigate(`${championshipRouteSegment}/spiele/${matchId}`);
+  }
+
   return (
     <div className="mx-auto max-w-5xl mt-6 sm:px-6 lg:px-8">
-    <header className="flex justify-center text-center sm:text-left sm:justify-start">
+    <header className="flex text-left justify-start pl-4 sm:pl-0">
       <h1 className="text-xl font-semibold leading-tight tracking-tight flex items-center gap-x-4">
         <span>Tipps für</span>
         <div>
-          {match.hometeam.name} - {match.awayteam.name}
+        <Select
+              options={matchesForSelect}
+              value={selectedMatch}
+              onChange={(p) => navigateTo(p.id)}
+              displayField="match"
+            />
         </div>
       </h1>
     </header>
