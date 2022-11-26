@@ -9,11 +9,11 @@
     "lint": "eslint src --ext .ts"
   },
   "dependencies": {
-    "firebase": "^9.13.0"
+    "firebase": "^9.14.0"
   },
   "devDependencies": {
     "eslint-config-workspace": "workspace:0.1.0",
     "tsconfig": "workspace:0.1.0",
-    "vitest": "^0.24.5"
+    "vitest": "^0.25.3"
   }
 }
