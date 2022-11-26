@@ -1,5 +1,7 @@
+import InfoPopover from "@/components/elements/info-popover";
 import { useRanking } from "@/hooks/use-ranking";
-import { useParams } from "react-router-dom";
+import { classNames } from "@/utils/class-names";
+import { Link, useParams } from "react-router-dom";
 
 export default function MatchesPage() {
   const { matchId, championshipId } = useParams();
@@ -19,7 +21,68 @@ export default function MatchesPage() {
       </h1>
     </header>
     <div className="mt-6">
+    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" className="py-3 pl-2 pr-1 sm:px-4 md:px-6">
+                      Spieler
+                    </th>
+                    <th scope="col" className="sr-only">
+                      Info
+                    </th>
+                    <th scope="col" className="py-3 px-1 sm:px-4 md:px-6 text-center">
+                      Tipp
+                    </th>
+                    <th scope="col" className="py-3 pl-1 pr-2 sm:px-4 md:px-6 text-center">
+                      Punkte
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {players
+                    .map((p) => {
+                      const tip = tips.find(
+                        (t) => t.matchId === match.id && t.playerId === p.id
+                      );
+                      const infoText = [
+                        tip?.joker && 'Joker',
+                        tip?.lonelyHit && 'Einzeltreffer',
+                      ]
+                        .filter(Boolean)
+                        .join(', ');
 
+                      return (
+                        <tr
+                          key={p.id}
+                          className={classNames(
+                            'relative border-b dark:border-gray-700',
+                            infoText
+                              ? 'bg-blue-100 dark:bg-gray-800'
+                              : 'dark:bg-gray-900'
+                          )}
+                        >
+                          <td className="py-4 pl-2 pr-1 sm:px-4 md:px-6">
+                            <Link
+                              to={`../spieler/${p.playerId}`}
+                              className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                            >
+                              {p.name}
+                            </Link>
+                          </td>
+                          <td className="absolute w-5 top-4">
+                            {infoText && <InfoPopover text={infoText} />}
+                          </td>
+                          <td className="text-center py-4 px-1 sm:px-4 md:px-6">
+                            {tip?.tip}
+                          </td>
+                          <td className="text-center py-4 px-1 sm:px-4 md:px-6">
+                            {tip?.points}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table>
     </div>
   </div>
   );
