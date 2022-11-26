@@ -1,5 +1,11 @@
 # tailwind-config
 
+## 0.1.1
+
+### Patch Changes
+
+- [`c24946b`](https://github.com/haus23/runde.tips/commit/c24946b9c2475ea8c6cb597eb614f25166ea4a95) Thanks [@haus23](https://github.com/haus23)! - Update deps.
+
 ## 0.1.0
 
 ### Minor Changes

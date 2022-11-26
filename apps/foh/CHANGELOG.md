@@ -1,5 +1,14 @@
 # foh
 
+## 0.5.6
+
+### Patch Changes
+
+- [`bf1033c`](https://github.com/haus23/runde.tips/commit/bf1033c3e4a91632f462e5aaddea4b395452b1b6) Thanks [@haus23](https://github.com/haus23)! - Update foh deps.
+
+- Updated dependencies [[`b2a91e4`](https://github.com/haus23/runde.tips/commit/b2a91e4d2e198c91c07052467a67387ccd488a95)]:
+  - lib@0.3.2
+
 ## 0.5.5
 
 ### Patch Changes

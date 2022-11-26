@@ -1,5 +1,11 @@
 # eslint-config-workspace
 
+## 0.1.1
+
+### Patch Changes
+
+- [`e9c3da6`](https://github.com/haus23/runde.tips/commit/e9c3da60fda59b8b40588c6670221afe598677f5) Thanks [@haus23](https://github.com/haus23)! - Update deps.
+
 ## 0.1.0
 
 ### Minor Changes

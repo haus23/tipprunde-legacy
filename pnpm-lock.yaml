@@ -7,7 +7,7 @@ importers:
       '@changesets/changelog-github': ^0.4.7
       '@changesets/cli': ^2.25.2
       eslint: ^8.28.0
-      eslint-config-workspace: workspace:0.1.0
+      eslint-config-workspace: workspace:0.1.1
       turbo: ^1.6.3
     devDependencies:
       '@changesets/changelog-github': 0.4.7
@@ -26,7 +26,7 @@ importers:
       '@types/react-dom': ^18.0.9
       '@vitejs/plugin-react': ^2.2.0
       autoprefixer: ^10.4.13
-      lib: workspace:0.3.1
+      lib: workspace:0.3.2
       postcss: ^8.4.19
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -35,10 +35,10 @@ importers:
       react-router-dom: ^6.4.3
       recoil: ^0.7.6
       slugify: ^1.6.5
-      tailwind-config: workspace:0.1.0
+      tailwind-config: workspace:0.1.1
       tailwindcss: ^3.2.4
       typescript: ~4.9.3
-      ui: workspace:0.1.1
+      ui: workspace:0.1.2
       vite: ^3.2.4
     dependencies:
       '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
@@ -78,7 +78,7 @@ importers:
       '@vitejs/plugin-react': ^2.2.0
       autoprefixer: ^10.4.13
       flowbite: ^1.5.4
-      lib: workspace:0.3.1
+      lib: workspace:0.3.2
       postcss: ^8.4.19
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -127,7 +127,7 @@ importers:
 
   packages/lib:
     specifiers:
-      eslint-config-workspace: workspace:0.1.0
+      eslint-config-workspace: workspace:0.1.1
       firebase: ^9.14.0
       tsconfig: workspace:0.1.0
       vitest: ^0.25.3
@@ -411,7 +411,7 @@ packages:
     resolution: {integrity: sha512-mrzLkl6U9YLF8qpqI7TB82PESyEGjm/0Ly91jG575eVxMMlb8fYfOXFZIJ8XfLrJZQbm7dlKry2bJmXBUEkdFg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      regenerator-runtime: 0.13.10
+      regenerator-runtime: 0.13.11
     dev: true
 
   /@babel/template/7.18.10:
@@ -463,7 +463,7 @@ packages:
       fs-extra: 7.0.1
       lodash.startcase: 4.4.0
       outdent: 0.5.0
-      prettier: 2.7.1
+      prettier: 2.8.0
       resolve-from: 5.0.0
       semver: 5.7.1
     dev: true
@@ -649,7 +649,7 @@ packages:
       '@changesets/types': 5.2.0
       fs-extra: 7.0.1
       human-id: 1.0.2
-      prettier: 2.7.1
+      prettier: 2.8.0
     dev: true
 
   /@esbuild/android-arm/0.15.15:
@@ -1422,7 +1422,7 @@ packages:
   /@types/is-ci/3.0.0:
     resolution: {integrity: sha512-Q0Op0hdWbYd1iahB+IFNQcWXFq4O0Q5MwQP7uN0souuQ4rPg1vEYcnIOfr1gY+M+6rc8FGoRaBO1mOOvL29sEQ==}
     dependencies:
-      ci-info: 3.5.0
+      ci-info: 3.7.0
     dev: true
 
   /@types/json-schema/7.0.11:
@@ -1911,8 +1911,9 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /ci-info/3.5.0:
-    resolution: {integrity: sha512-yH4RezKOGlOhxkmhbeNuC4eYZKAUsEaGtBuBzDDP1eFUKiccDWzBABxBfOx31IDwDIXMTxWuwAxUGModvkbuVw==}
+  /ci-info/3.7.0:
+    resolution: {integrity: sha512-2CpRNYmImPx+RXKLq6jko/L07phmS9I02TyqkcNU20GCF/GgaWvc58hPtjxDX8lPpkdwc9sNh72V9k00S7ezog==}
+    engines: {node: '>=8'}
     dev: true
 
   /client-only/0.0.1:
@@ -2972,7 +2973,7 @@ packages:
     resolution: {integrity: sha512-ZYvCgrefwqoQ6yTyYUbQu64HsITZ3NfKX1lzaEYdkTDcfKzzCI/wthRRYKkdjHKFVgNiXKAKm65Zo1pk2as/QQ==}
     hasBin: true
     dependencies:
-      ci-info: 3.5.0
+      ci-info: 3.7.0
     dev: true
 
   /is-core-module/2.11.0:
@@ -3654,8 +3655,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  /prettier/2.7.1:
-    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
+  /prettier/2.8.0:
+    resolution: {integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
@@ -3899,8 +3900,8 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
-  /regenerator-runtime/0.13.10:
-    resolution: {integrity: sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==}
+  /regenerator-runtime/0.13.11:
+    resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
     dev: true
 
   /regexp.prototype.flags/1.4.3:
@@ -4357,7 +4358,7 @@ packages:
       smartwrap: 2.0.2
       strip-ansi: 6.0.1
       wcwidth: 1.0.1
-      yargs: 17.6.1
+      yargs: 17.6.2
     dev: true
 
   /turbo-darwin-64/1.6.3:
@@ -4795,8 +4796,8 @@ packages:
       yargs-parser: 20.2.9
     dev: false
 
-  /yargs/17.6.1:
-    resolution: {integrity: sha512-leBuCGrL4dAd6ispNOGsJlhd0uZ6Qehkbu/B9KCR+Pxa/NVdNwi+i31lo0buCm6XxhJQFshXCD0/evfV4xfoUg==}
+  /yargs/17.6.2:
+    resolution: {integrity: sha512-1/9UrdHjDZc0eOU0HxOHoS78C69UD3JRMvzlJ7S79S2nTaWRA/whGCTV8o9e/N/1Va9YIV7Q4sOxD8VV4pCWOw==}
     engines: {node: '>=12'}
     dependencies:
       cliui: 8.0.1

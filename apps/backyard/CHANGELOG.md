@@ -1,5 +1,15 @@
 # backyard
 
+## 0.1.13
+
+### Patch Changes
+
+- [`11884bf`](https://github.com/haus23/runde.tips/commit/11884bf9504d82e299abf7459fcde8709aa06e5d) Thanks [@haus23](https://github.com/haus23)! - Update backyard deps.
+
+- Updated dependencies [[`6dde2cd`](https://github.com/haus23/runde.tips/commit/6dde2cd3042b8ddbc6f03df1890cce3768b1980a), [`b2a91e4`](https://github.com/haus23/runde.tips/commit/b2a91e4d2e198c91c07052467a67387ccd488a95)]:
+  - ui@0.1.2
+  - lib@0.3.2
+
 ## 0.1.12
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # lib
 
+## 0.3.2
+
+### Patch Changes
+
+- [`b2a91e4`](https://github.com/haus23/runde.tips/commit/b2a91e4d2e198c91c07052467a67387ccd488a95) Thanks [@haus23](https://github.com/haus23)! - Update deps.
+
 ## 0.3.1
 
 ### Patch Changes
