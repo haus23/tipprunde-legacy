@@ -3,7 +3,7 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { ClipboardIcon } from '@heroicons/react/24/outline';
 
 import { Button, Card, classNames, Select, TextField } from 'ui';
-import { Player, Team, Tip } from 'lib';
+import { Match, Player, Team, Tip } from 'lib';
 
 import AppCard from '@/components/layout/app-card';
 
@@ -14,6 +14,7 @@ import { useTeams } from '@/hooks/master-data/use-teams';
 import { useMatches } from '@/hooks/current-data/use-matches';
 import { useTips } from '@/hooks/current-data/use-tips';
 import { notify } from '@/utils/notify';
+import { useRanking } from '@/hooks/current-data/use-ranking';
 
 type TipData = { id: string; tip: string; joker: boolean };
 
@@ -27,6 +28,7 @@ export default function TipsView() {
 
   const { players: masterPlayers } = usePlayers();
   const { championshipPlayers } = useChampionshipPlayers();
+  const { calculateRanking } = useRanking();
 
   const players = useMemo(() => {
     const playersHash = masterPlayers.reduce(
@@ -42,7 +44,7 @@ export default function TipsView() {
   }, [masterPlayers, championshipPlayers]);
 
   const { teams } = useTeams();
-  const { matches } = useMatches();
+  const { matches, updateMatchResult } = useMatches();
 
   const fixtures = useMemo(() => {
     const teamsHash = teams.reduce(
@@ -117,6 +119,11 @@ export default function TipsView() {
     );
   };
 
+  async function calculateCurrentRanking() {
+    await notify(Promise.all(matches.map(m => updateMatchResult(m, m.result))), `Alle Spiele neu berechnet.`);
+    await notify(calculateRanking(), "Tabelle neu berechnet");
+  }
+
   const { fields } = useFieldArray({ control, name: 'tips' });
 
   // Handling copy/paste from clipboard
@@ -155,7 +162,7 @@ export default function TipsView() {
             let t = tips.at(tipIx++);
             if (typeof t !== 'undefined') {
               t = t.trim().replace(/[-.]+/, ':');
-              setValue(`tips.${ix}.tip`, t, { shouldDirty: true});
+              setValue(`tips.${ix}.tip`, t, { shouldDirty: true });
             }
           }
         });
@@ -290,7 +297,13 @@ export default function TipsView() {
                   ) : null
                 )}
                 <tr>
-                  <td colSpan={4} className="text-right pr-4 py-2">
+                  <td/>
+                  <td className="text-right pr-4 py-2">
+                    <Button type="button" onClick={handleSubmit(calculateCurrentRanking)}>
+                      Alles neu berechnen
+                    </Button>
+                  </td>
+                  <td className="text-center pr-4 py-2">
                     <Button type="submit" primary={true}>
                       Speichern
                     </Button>
