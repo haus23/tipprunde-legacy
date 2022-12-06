@@ -1,5 +1,19 @@
 # foh
 
+## 0.6.0
+
+### Minor Changes
+
+- [#57](https://github.com/haus23/runde.tips/pull/57) [`e57ba12`](https://github.com/haus23/runde.tips/commit/e57ba12ea6b4916536198ac4991116bccc084767) Thanks [@haus23](https://github.com/haus23)! - Display tips.
+
+### Patch Changes
+
+- [#57](https://github.com/haus23/runde.tips/pull/57) [`f4808a0`](https://github.com/haus23/runde.tips/commit/f4808a04137b66bd0715031aa6b03590edba0e62) Thanks [@haus23](https://github.com/haus23)! - Make match selectable.
+
+- [#57](https://github.com/haus23/runde.tips/pull/57) [`8f3f26c`](https://github.com/haus23/runde.tips/commit/8f3f26c1f5f38f1eecfe30271f812adf31fbd39d) Thanks [@haus23](https://github.com/haus23)! - Remove useless row title attribute.
+
+- [#57](https://github.com/haus23/runde.tips/pull/57) [`27e9665`](https://github.com/haus23/runde.tips/commit/27e9665bfb0fb3b2808f4f3b00801d3c0e4e5ee2) Thanks [@haus23](https://github.com/haus23)! - Implement routing for the new feature: match tips.
+
 ## 0.5.6
 
 ### Patch Changes

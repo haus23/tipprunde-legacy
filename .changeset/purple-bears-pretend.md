@@ -1,5 +1,0 @@
----
-'foh': patch
----
-
-Display tips.
