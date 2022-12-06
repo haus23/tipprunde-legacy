@@ -66,10 +66,12 @@ export default function ResultsView() {
         Promise.all(updateOperations),
         "Ergebnisse gespeichert und berechnet"
       );
+      await notify(calculateRanking(), "Tabelle neu berechnet");
     }
   }
 
   async function calculateCurrentRanking() {
+    await notify(Promise.all(matches.map(m => updateMatchResult(m, m.result))), `Alle Spiele neu berechnet.`);
     await notify(calculateRanking(), "Tabelle neu berechnet");
   }
 
@@ -101,7 +103,7 @@ export default function ResultsView() {
           </div>
           <div className="py-4 px-4 flex items-center justify-end gap-x-8">
             <Button type="button" primary={true} onClick={calculateCurrentRanking}>
-              Tabelle neu berechnen
+              Alles neu berechnen
             </Button>
             <Button
               type="button"

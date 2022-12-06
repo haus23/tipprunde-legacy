@@ -1,5 +1,11 @@
 # backyard
 
+## 0.1.14
+
+### Patch Changes
+
+- Recalculate standings after editing tips or results.
+
 ## 0.1.13
 
 ### Patch Changes
