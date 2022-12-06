@@ -8,13 +8,14 @@ export function useRounds() {
   const { currentChampionship } = useCurrentChampionship();
   const rounds = useRecoilValue(roundsState(currentChampionship?.id));
 
-  const createRound = async (nr: number) =>
+  const createRound = async (nr: number, isDoubleRound: boolean) =>
     createEntity<Round>(`championships/${currentChampionship?.id}/rounds`, {
       id: '',
       nr,
       published: false,
       completed: false,
       tipsPublished: false,
+      isDoubleRound,
     });
 
   return { rounds, createRound };
