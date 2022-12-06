@@ -26,6 +26,10 @@ export default function CreateRoundView() {
             Anlegen
           </Button>
         </div>
+        <div className="flex p-4 items-center gap-x-4">
+        <span className="text-base pl-2 font-semibold">Doppel-Punkte Runde:</span>
+          <ToggleField checked={doubleRound} onChange={() => setDoubleRound(!doubleRound)} />
+        </div>
       </Card>
     </div>
   );
