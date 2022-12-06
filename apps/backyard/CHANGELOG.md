@@ -1,5 +1,13 @@
 # backyard
 
+## 0.2.0
+
+### Minor Changes
+
+- [#61](https://github.com/haus23/runde.tips/pull/61) [`e1e034b`](https://github.com/haus23/runde.tips/commit/e1e034b9655c2bbe56dc04e1fb17a59a89154d6a) Thanks [@lean-dev](https://github.com/lean-dev)! - Add double round toggle button.
+
+- [#61](https://github.com/haus23/runde.tips/pull/61) [`5975463`](https://github.com/haus23/runde.tips/commit/59754639420b7e8e43e13feb74a26fc3b78dab09) Thanks [@lean-dev](https://github.com/lean-dev)! - Handle double round creation logic.
+
 ## 0.1.14
 
 ### Patch Changes
