@@ -1,10 +1,11 @@
 import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
 import { useRanking } from '@/hooks/current-data/use-ranking';
 import { usePlayers } from '@/hooks/master-data/use-players';
+import { notify } from '@/utils/notify';
 import { Player } from 'lib';
 import { useEffect, useMemo } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { Card, TextField } from 'ui';
+import { Button, Card, TextField } from 'ui';
 
 type ExtraPointsFormType = {
   extraPoints: { playerId: string; points: number }[];
@@ -12,7 +13,8 @@ type ExtraPointsFormType = {
 
 export default function ExtraPointsView() {
   const { players: masterPlayers } = usePlayers();
-  const { championshipPlayers } = useChampionshipPlayers();
+  const { championshipPlayers, updateChampionshipPlayer } =
+    useChampionshipPlayers();
   const { calculateRanking } = useRanking();
 
   const players = useMemo(() => {
@@ -28,12 +30,7 @@ export default function ExtraPointsView() {
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [masterPlayers, championshipPlayers]);
 
-  const {
-    control,
-    handleSubmit,
-    reset,
-    formState: { dirtyFields },
-  } = useForm<ExtraPointsFormType>({
+  const { control, handleSubmit, reset } = useForm<ExtraPointsFormType>({
     defaultValues: {
       extraPoints: new Array(players.length).fill({ matchId: '', result: '' }),
     },
@@ -50,10 +47,40 @@ export default function ExtraPointsView() {
 
   const { fields } = useFieldArray({ control, name: 'extraPoints' });
 
+  async function save(data: ExtraPointsFormType) {
+    console.log(data.extraPoints);
+    await notify(
+      Promise.all(
+        players.map((p, ix) =>
+          updateChampionshipPlayer(p.id, {
+            extraPoints: Number(data.extraPoints[ix].points),
+          })
+        )
+      ),
+      'Zusatzpunkte gespeichert'
+    );
+  }
+
+  async function calculate() {
+    await notify(calculateRanking(), 'Tabelle neu berechnet');
+  }
+
   return (
     <div className="mt-5 flex flex-col space-y-4">
       <Card>
         <Card.Header>Zusatzpunkte</Card.Header>
+        <div className="py-4 px-4 flex items-center justify-end gap-x-8">
+          <Button
+            type="button"
+            primary={true}
+            onClick={handleSubmit(calculate)}
+          >
+            Tabelle berechnen
+          </Button>
+          <Button type="button" primary={true} onClick={handleSubmit(save)}>
+            Speichern
+          </Button>
+        </div>
         <div className="p-4">
           <form>
             <div className="overflow-x-auto overflow-y-hidden">

@@ -33,13 +33,13 @@ export function useChampionshipPlayers() {
   const updateChampionshipPlayer = (
     playerId: string,
     changes: Partial<ChampionshipPlayer>
-  ) =>
-    patchEntity(
+  ) => {
+    return patchEntity(
       `championships/${currentChampionship?.id}/players`,
       playerId,
       changes
     );
-
+  };
   return {
     championshipPlayers,
     addChampionshipPlayer,
