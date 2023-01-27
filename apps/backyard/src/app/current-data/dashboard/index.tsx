@@ -5,6 +5,7 @@ import {
   PencilSquareIcon,
   ScaleIcon,
   MegaphoneIcon,
+  SquaresPlusIcon,
 } from '@heroicons/react/24/outline';
 import { classNames } from '@/utils/class-names';
 import { Link } from 'react-router-dom';
@@ -59,6 +60,14 @@ const items: {
     background: 'bg-green-500',
     route: './neue-runde',
     visible: (championship) => !!championship,
+  },
+  {
+    title: 'Zusatzpunkte',
+    description: 'Ergebnisse der Zusatzfragen bei allen Mitspielern eintragen',
+    icon: SquaresPlusIcon,
+    background: 'bg-yellow-500',
+    route: './zusatzpunkte',
+    visible: (championship, rounds, matches, players) => players.length > 0,
   },
   {
     title: 'Neues Turnier',

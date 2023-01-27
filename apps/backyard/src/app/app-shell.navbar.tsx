@@ -7,6 +7,7 @@ import {
   UserIcon,
   PencilSquareIcon,
   ScaleIcon,
+  SquaresPlusIcon,
 } from '@heroicons/react/24/outline';
 
 import { Championship, ChampionshipPlayer, Match, Round } from 'lib';
@@ -54,6 +55,12 @@ const championshipNavLinks: {
     icon: ScaleIcon,
     label: 'Ergebnisse',
     visible: (championship, rounds, matches) => matches.length > 0,
+  },
+  {
+    to: './zusatzpunkte',
+    icon: SquaresPlusIcon,
+    label: 'Zusatzpunkte',
+    visible: (championship, rounds, matches, players) => players.length > 0,
   },
 ];
 

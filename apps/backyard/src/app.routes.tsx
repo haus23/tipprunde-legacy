@@ -22,6 +22,7 @@ import ProfileView from './app/profile';
 import Login from './app/login';
 import Logout from './app/logout';
 import RefactorView from './app/refactor';
+import ExtraPointsView from './app/current-data/extra-points';
 
 const appRoutes: RouteObject[] = [
   {
@@ -45,6 +46,7 @@ const appRoutes: RouteObject[] = [
           { path: 'spiele', element: <MatchesView /> },
           { path: 'tipps', element: <TipsView /> },
           { path: 'ergebnisse', element: <ResultsView /> },
+          { path: 'zusatzpunkte', element: <ExtraPointsView /> },
           { path: 'neues-turnier', element: <CreateChampionshipView /> },
           { path: 'neue-runde', element: <CreateRoundView /> },
         ],
