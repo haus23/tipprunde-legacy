@@ -2,12 +2,12 @@ import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-pl
 import { useRanking } from '@/hooks/current-data/use-ranking';
 import { usePlayers } from '@/hooks/master-data/use-players';
 import { Player } from 'lib';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Card, TextField } from 'ui';
 
 type ExtraPointsFormType = {
-  extraPoints: { playerId: string; points: string }[];
+  extraPoints: { playerId: string; points: number }[];
 };
 
 export default function ExtraPointsView() {
@@ -38,6 +38,15 @@ export default function ExtraPointsView() {
       extraPoints: new Array(players.length).fill({ matchId: '', result: '' }),
     },
   });
+
+  useEffect(() => {
+    reset({
+      extraPoints: players.map((p) => ({
+        playerId: p.id,
+        points: p.extraPoints,
+      })),
+    });
+  }, [players, reset]);
 
   const { fields } = useFieldArray({ control, name: 'extraPoints' });
 
