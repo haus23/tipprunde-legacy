@@ -1,5 +1,11 @@
 # foh
 
+## 0.7.0
+
+### Minor Changes
+
+- Displaying completed championships.
+
 ## 0.6.0
 
 ### Minor Changes
