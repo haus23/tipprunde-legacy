@@ -22,6 +22,15 @@ export default function ChampionshipView() {
     );
   }
 
+  function toggleCompletedState() {
+    notify(
+      updateCurrentChampionship({ completed: !currentChampionship?.completed }),
+      `Turnier ${
+        currentChampionship?.completed ? 'wieder geöffnet' : 'abgeschlossen'
+      }`
+    );
+  }
+
   const attendingPlayers = championshipPlayers
     .map((cp) => {
       const player = players.find((p) => p.id === cp.playerId) as Player;
@@ -48,6 +57,13 @@ export default function ChampionshipView() {
             checked={currentChampionship.published}
             onChange={togglePublishedState}
             label="Veröffentlicht"
+          />
+        </div>
+        <div className="p-4">
+          <ToggleField
+            checked={currentChampionship.completed}
+            onChange={toggleCompletedState}
+            label="Abgeschlossen"
           />
         </div>
       </Card>
