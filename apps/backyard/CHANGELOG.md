@@ -1,5 +1,13 @@
 # backyard
 
+## 0.3.0
+
+### Minor Changes
+
+- f5eac2c: Add route for extrapoints.
+- 507c580: Saving and recalculating.
+- 8dbdd2f: Display current extrapoints.
+
 ## 0.2.0
 
 ### Minor Changes
