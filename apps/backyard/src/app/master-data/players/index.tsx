@@ -12,6 +12,7 @@ import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 import { classNames } from '@/utils/class-names';
 import { Player } from 'lib';
+import { clearCache } from '@/utils/clear-cache';
 
 export default function PlayersView() {
   const {
@@ -49,7 +50,7 @@ export default function PlayersView() {
 
   async function savePlayer(player: Player) {
     trimProps(player);
-    if (player.id === '') {
+    if (!editMode) {
       await toast.promise(createPlayer(player), {
         loading: 'Speichern',
         success: `${player.name} angelegt.`,
@@ -65,6 +66,7 @@ export default function PlayersView() {
       });
       endEdit();
     }
+    clearCache('masterdata:players', 'Spielerdaten');
   }
 
   return (

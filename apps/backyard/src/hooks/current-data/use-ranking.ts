@@ -1,4 +1,6 @@
+import { clearCache } from '@/utils/clear-cache';
 import { useChampionshipPlayers } from './use-championship-players';
+import { useCurrentChampionship } from './use-current-championship';
 import { useTips } from './use-tips';
 
 type RankingData = {
@@ -10,6 +12,7 @@ type RankingData = {
 };
 
 export function useRanking() {
+  const { currentChampionship } = useCurrentChampionship();
   const { championshipPlayers, updateChampionshipPlayer } =
     useChampionshipPlayers();
   const { tips } = useTips();
@@ -44,8 +47,10 @@ export function useRanking() {
         }
       });
 
-    return Promise.all(
-      ranking.map((rd) => updateChampionshipPlayer(rd.id, rd))
+    await Promise.all(ranking.map((rd) => updateChampionshipPlayer(rd.id, rd)));
+    clearCache(
+      `standings:${currentChampionship?.id}`,
+      currentChampionship?.name || 'aktuellen Stand'
     );
   };
 
