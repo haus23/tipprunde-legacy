@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts"
+    "build": "tsup src/index.mts --format esm,cjs --dts"
   },
   "repository": {
     "type": "git",
