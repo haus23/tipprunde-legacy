@@ -1,0 +1,38 @@
+{
+  "name": "@haus23/tipprunde-types",
+  "version": "0.0.0",
+  "description": "Typ-System der Haus23 Tipprunde",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haus23/tipprunde-types.git"
+  },
+  "author": "Micha Buchholz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haus23/tipprunde-types/issues"
+  },
+  "homepage": "https://github.com/haus23/tipprunde-types#readme",
+  "dependencies": {
+    "@sinclair/typebox": "^0.25.24"
+  },
+  "devDependencies": {
+    "changelogen": "github:lean-stack/changelogen",
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5"
+  }
+}

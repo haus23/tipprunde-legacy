@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    // Source
+    "lib": ["ESNext"],
+
+    // Target
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "Node",
+
+    // Best practice
+    "strict": true
+  },
+  "include": ["src/**/*.ts"]
+}
