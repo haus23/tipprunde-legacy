@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v0.2.1
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.2.0...v0.2.1)
+
+
+### 🩹 Fixes
+
+  - Export player entity ([e3bd69c](https://github.com/haus23/tipprunde-types/commit/e3bd69c))
+
 ## v0.2.0
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.1.0...v0.2.0)

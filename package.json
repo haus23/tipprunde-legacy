@@ -1,6 +1,6 @@
 {
   "name": "@haus23/tipprunde-types",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Typ-System der Haus23 Tipprunde",
   "type": "module",
   "exports": {
