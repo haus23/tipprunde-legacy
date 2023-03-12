@@ -1,8 +1,9 @@
 import { it, expect } from 'vitest';
+
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 
-import { Player } from './player.mjs';
+import { Player } from './player';
 
 const ajv = new Ajv();
 addFormats(ajv);

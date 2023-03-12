@@ -2,7 +2,6 @@
   "name": "@haus23/tipprunde-types",
   "version": "0.2.1",
   "description": "Typ-System der Haus23 Tipprunde",
-  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -16,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.mts --format esm,cjs --dts",
+    "build": "tsup src/index.ts --format esm,cjs --dts",
     "test": "vitest"
   },
   "repository": {
