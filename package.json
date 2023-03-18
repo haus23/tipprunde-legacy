@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/haus23/tipprunde-types#readme",
   "dependencies": {
+    "zod": "^3.21.4",
     "@sinclair/typebox": "^0.25.24"
   },
   "devDependencies": {
