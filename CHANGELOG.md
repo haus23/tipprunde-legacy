@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v0.4.0
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.3.0...v0.4.0)
+
+
+### 🚀 Enhancements
+
+  - Add ranking types. ([ee7cb46](https://github.com/haus23/tipprunde-types/commit/ee7cb46))
+
 ## v0.3.0
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.2.2...v0.3.0)
