@@ -1,8 +1,9 @@
-import { Static, Type } from '@sinclair/typebox';
+import { z } from 'zod';
 
-export const Player = Type.Object({
-  id: Type.String(),
-  name: Type.String(),
-  email: Type.Union([Type.String({ format: 'email' }), Type.Literal('')]),
+export const Player = z.object({
+  id: z.string(),
+  name: z.string({ required_error: 'Player name is required' }),
+  email: z.string().email().or(z.literal('')),
 });
-export type Player = Static<typeof Player>;
+
+export type Player = z.infer<typeof Player>;

@@ -1,21 +1,15 @@
 import { it, expect } from 'vitest';
 
-import Ajv from 'ajv';
-import addFormats from 'ajv-formats';
-
 import { Player } from './player';
 
-const ajv = new Ajv();
-addFormats(ajv);
-
-it('can have email prop empty', () => {
+it('can have empty email prop', () => {
   const mock = { id: 'micha', name: 'Micha', email: '' };
-  expect(ajv.validate(Player, mock)).toBeTruthy();
+  expect(Player.safeParse(mock).success).toBeTruthy();
 });
 
 it('but non empty, it must have a valid email', () => {
   const mock = { id: 'micha', name: 'Micha', email: 'micha@haus23.net' };
-  expect(ajv.validate(Player, mock)).toBeTruthy();
+  expect(Player.safeParse(mock).success).toBeTruthy();
   mock.email = 'micha@';
-  expect(ajv.validate(Player, mock)).toBeFalsy();
+  expect(Player.safeParse(mock).success).toBeFalsy();
 });

@@ -1,14 +1,15 @@
-import { Static, Type } from '@sinclair/typebox';
+import { z } from 'zod';
 
-export const ChampionshipId = Type.RegEx(/^[a-z]{2}\d{4}$/);
-export type ChampionshipId = Static<typeof ChampionshipId>;
+export const ChampionshipId = z.string().regex(/^[a-z]{2}\d{4}$/, 'Bad championship id');
 
-export const Championship = Type.Object({
+export const Championship = z.object({
   id: ChampionshipId,
-  name: Type.String(),
-  nr: Type.Integer({ exclusiveMinimum: 0 }),
-  rulesId: Type.String(),
-  published: Type.Boolean(),
-  completed: Type.Boolean(),
+  name: z.string(),
+  nr: z.number().positive(),
+  rulesId: z.string(),
+  published: z.boolean(),
+  completed: z.boolean(),
 });
-export type Championship = Static<typeof Championship>;
+
+export type ChampionshipId = z.infer<typeof ChampionshipId>;
+export type Championship = z.infer<typeof Championship>;
