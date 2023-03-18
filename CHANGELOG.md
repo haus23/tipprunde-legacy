@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.3.0
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.2.2...v0.3.0)
+
+
+### 💅 Refactors
+
+  - ⚠️  Switch to zod from typebox ([6b63c0e](https://github.com/haus23/tipprunde-types/commit/6b63c0e))
+
+### 🏡 Chore
+
+  - **release:** V0.2.2 ([3a5e512](https://github.com/haus23/tipprunde-types/commit/3a5e512))
+  - Update non major deps ([fb0e3bd](https://github.com/haus23/tipprunde-types/commit/fb0e3bd))
+  - Update to typescript 5 ([f90ceee](https://github.com/haus23/tipprunde-types/commit/f90ceee))
+  - Install zod. prepare the switch. ([c1d3d26](https://github.com/haus23/tipprunde-types/commit/c1d3d26))
+  - Remove typebox from deps ([8beb52b](https://github.com/haus23/tipprunde-types/commit/8beb52b))
+
+#### ⚠️  Breaking Changes
+
+  - ⚠️  Switch to zod from typebox ([6b63c0e](https://github.com/haus23/tipprunde-types/commit/6b63c0e))
+
 ## v0.2.2
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.2.0...v0.2.2)
