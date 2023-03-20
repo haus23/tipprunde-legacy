@@ -4,3 +4,6 @@ node_modules/
 # Nitro
 .nitro/
 .output/
+
+# Sensible data
+.env
