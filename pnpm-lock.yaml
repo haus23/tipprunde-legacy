@@ -1,18 +1,22 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@haus23/tipprunde-types': ^0.4.0
   '@types/node': ^18.15.3
   changelogen: github:lean-stack/changelogen
   firebase-admin: ^11.5.0
   nitropack: ^2.3.1
+  typescript: ^5.0.2
 
 dependencies:
+  '@haus23/tipprunde-types': 0.4.0
   firebase-admin: 11.5.0
   nitropack: 2.3.1
 
 devDependencies:
   '@types/node': 18.15.3
   changelogen: github.com/lean-stack/changelogen/073fab0af9aa40e6cfc8aa65233e4fa969be3984
+  typescript: 5.0.2
 
 packages:
 
@@ -399,6 +403,12 @@ packages:
       yargs: 16.2.0
     dev: false
     optional: true
+
+  /@haus23/tipprunde-types/0.4.0:
+    resolution: {integrity: sha512-5tJDCdq+e9KDb1b02yftvjI72gkW46cruAEzTl84kJvs7X/Vg5So9tFfTG6cVWfTe1S33G1R/SwIwjvNv4ACOA==}
+    dependencies:
+      zod: 3.21.4
+    dev: false
 
   /@ioredis/commands/1.2.0:
     resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}
@@ -3266,6 +3276,12 @@ packages:
     engines: {node: '>=12.20'}
     dev: false
 
+  /typescript/5.0.2:
+    resolution: {integrity: sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==}
+    engines: {node: '>=12.20'}
+    hasBin: true
+    dev: true
+
   /uc.micro/1.0.6:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}
     dev: false
@@ -3526,6 +3542,10 @@ packages:
       archiver-utils: 2.1.0
       compress-commons: 4.1.1
       readable-stream: 3.6.2
+    dev: false
+
+  /zod/3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
 
   github.com/lean-stack/changelogen/073fab0af9aa40e6cfc8aa65233e4fa969be3984:

@@ -13,11 +13,13 @@
     "preview": "node .output/server/index.mjs"
   },
   "dependencies": {
+    "@haus23/tipprunde-types": "^0.4.0",
     "firebase-admin": "^11.5.0",
     "nitropack": "^2.3.1"
   },
   "devDependencies": {
     "@types/node": "^18.15.3",
-    "changelogen": "github:lean-stack/changelogen"
+    "changelogen": "github:lean-stack/changelogen",
+    "typescript": "^5.0.2"
   }
 }
