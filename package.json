@@ -1,0 +1,18 @@
+{
+  "name": "@haus23/tipprunde-backend",
+  "version": "0.0.0",
+  "description": "Backend Server der Haus23 Tipprunde",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haus23/tipprunde-backend.git"
+  },
+  "scripts": {
+    "dev": "nitropack dev",
+    "build": "nitropack build",
+    "preview": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "nitropack": "^2.3.1"
+  }
+}
