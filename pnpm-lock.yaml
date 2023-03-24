@@ -8,12 +8,14 @@ specifiers:
   h3: ^1.6.2
   nitropack: ^2.3.1
   typescript: ^5.0.2
+  unstorage: ^1.4.1
 
 dependencies:
   '@haus23/tipprunde-types': 0.4.0
   firebase-admin: 11.5.0
   h3: 1.6.2
   nitropack: 2.3.1
+  unstorage: 1.4.1
 
 devDependencies:
   '@types/node': 18.15.3

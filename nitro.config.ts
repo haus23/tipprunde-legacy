@@ -1,16 +1,3 @@
 import { defineNitroConfig } from 'nitropack';
 
-export default defineNitroConfig({
-  storage: {
-    cache: {
-      driver: 'fs',
-      base: process.env.STORAGE_BASE || '.cache',
-    },
-  },
-  devStorage: {
-    cache: {
-      driver: 'fs',
-      base: process.env.STORAGE_BASE || '.cache',
-    },
-  },
-});
+export default defineNitroConfig({});
