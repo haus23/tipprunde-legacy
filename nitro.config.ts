@@ -4,13 +4,13 @@ export default defineNitroConfig({
   storage: {
     cache: {
       driver: 'fs',
-      base: process.env.STORAGE_BASE,
+      base: process.env.STORAGE_BASE || '.cache',
     },
   },
   devStorage: {
     cache: {
       driver: 'fs',
-      base: process.env.STORAGE_BASE,
+      base: process.env.STORAGE_BASE || '.cache',
     },
   },
 });
