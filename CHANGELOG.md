@@ -1,6 +1,16 @@
 # Changelog
 
 
+## v0.4.1
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.4.0...v0.4.1)
+
+
+### 🏡 Chore
+
+  - Update deps ([823ba61](https://github.com/haus23/tipprunde-types/commit/823ba61))
+  - Omit commonjs export. ([c41f5a3](https://github.com/haus23/tipprunde-types/commit/c41f5a3))
+
 ## v0.4.0
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.3.0...v0.4.0)
