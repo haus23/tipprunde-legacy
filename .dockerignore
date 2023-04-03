@@ -1,0 +1,31 @@
+# Nitro
+**/.nitro
+**/.output
+
+# API cache
+**/.cache
+
+# Docker
+**/.dockerignore
+**/docker-compose.yml
+**/Dockerfile
+
+# Sensible data
+**/.env*
+
+# Git
+**/.git
+**/.gitignore
+
+# Editor
+**/.vscode
+**/.editorconfig
+**/.prettierrc
+
+# NPM
+**/node_modules
+
+# Project
+LICENSE
+README.md
+CHANGELOG.md
