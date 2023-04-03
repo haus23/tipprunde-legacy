@@ -1,4 +1,5 @@
 import { Rank } from '@haus23/tipprunde-types';
+import { z } from 'zod';
 import { getRanks } from '~/lib/query/aggregat/championship/get-ranks';
 import { getPlayers } from '~/lib/query/entity/get-players';
 import { getChampionshipId } from '~/lib/util/get-championship-id';
@@ -10,7 +11,7 @@ export default eventHandler(async (event) => {
   const ranks = await getRanks(championshipId);
 
   const ranking = ranks?.map(
-    (r) => ({ ...r, playerName: players?.find((p) => p.id === r.playerId)?.name! } satisfies Rank)
+    (r) => ({ ...r, playerName: z.string().parse(players?.find((p) => p.id === r.playerId)?.name) } satisfies Rank)
   );
 
   return ranking;
