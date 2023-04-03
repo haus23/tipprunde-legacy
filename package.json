@@ -13,15 +13,15 @@
     "preview": "node .output/server/index.mjs"
   },
   "dependencies": {
-    "@haus23/tipprunde-types": "^0.4.0",
+    "@haus23/tipprunde-types": "^0.4.1",
     "firebase-admin": "^11.5.0",
-    "h3": "^1.6.2",
-    "nitropack": "^2.3.1",
+    "h3": "^1.6.4",
+    "nitropack": "^2.3.2",
     "unstorage": "^1.4.1"
   },
   "devDependencies": {
-    "@types/node": "^18.15.3",
-    "changelogen": "github:lean-stack/changelogen",
-    "typescript": "^5.0.2"
+    "@types/node": "^18.15.11",
+    "changelogen": "github:lean-stack/changelogen#omit-authors",
+    "typescript": "^5.0.3"
   }
 }
