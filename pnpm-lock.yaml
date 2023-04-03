@@ -16,6 +16,9 @@ dependencies:
   unstorage:
     specifier: ^1.4.1
     version: 1.4.1
+  zod:
+    specifier: ^3.21.4
+    version: 3.21.4
 
 devDependencies:
   '@types/node':
