@@ -3,6 +3,8 @@
     // Target
     "target": "ESNext",
     "module": "ESNext",
+
+    // Modules
     "moduleResolution": "bundler",
 
     // CommonJS support
