@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v0.4.2
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.4.1...v0.4.2)
+
+
+### 🏡 Chore
+
+  - Revert omitting commonjs export. ([2fca708](https://github.com/haus23/tipprunde-types/commit/2fca708))
+
 ## v0.4.1
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.4.0...v0.4.1)
