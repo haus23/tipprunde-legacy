@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.4.3
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.4.2...v0.4.3)
+
+
+### 🩹 Fixes
+
+  - Expose top-level package exports ([aa1f624](https://github.com/haus23/tipprunde-types/commit/aa1f624))
+
+### 🏡 Chore
+
+  - Update deps ([98eeef0](https://github.com/haus23/tipprunde-types/commit/98eeef0))
+
 ## v0.4.2
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.4.1...v0.4.2)
