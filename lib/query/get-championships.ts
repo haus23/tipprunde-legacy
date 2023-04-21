@@ -1,8 +1,11 @@
 import { Championship } from '@haus23/tipprunde-types';
+import consola from 'consola';
 import { db, modelConverter } from '~/lib/firebase';
 
 export const getChampionships = cachedFunction(
   async () => {
+    consola.info(`[${new Date().toLocaleString()}] Querying championships`);
+
     const snapshot = await db
       .collection('championships')
       .where('published', '==', true)
@@ -11,5 +14,5 @@ export const getChampionships = cachedFunction(
       .get();
     return snapshot.docs.map((doc) => doc.data());
   },
-  { getKey: () => 'championships' }
+  { getKey: () => 'championships', maxAge: 60 * 60 }
 );

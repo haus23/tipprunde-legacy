@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@haus23/tipprunde-types": "^0.4.3",
+    "consola": "^3.1.0",
     "firebase-admin": "^11.7.0",
     "h3": "^1.6.4",
     "nitropack": "^2.3.3",
