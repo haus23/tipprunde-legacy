@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v0.1.1
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.1.0...v0.1.1)
+
+
+### 🚀 Enhancements
+
+  - Increase swr cache time to one hour ([3779154](https://github.com/haus23/tipprunde-backend/commit/3779154))
+
+### 🩹 Fixes
+
+  - Update env var name ([bb7c0f8](https://github.com/haus23/tipprunde-backend/commit/bb7c0f8))
+
+### 💅 Refactors
+
+  - Align config reading. ([e1cfe94](https://github.com/haus23/tipprunde-backend/commit/e1cfe94))
+  - Switch to default cachedHandler and cachedFunction helpers ([11de80a](https://github.com/haus23/tipprunde-backend/commit/11de80a))
+
+### 🏡 Chore
+
+  - Update deps. ([c743923](https://github.com/haus23/tipprunde-backend/commit/c743923))
+
 ## v0.1.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.0.0...v0.1.0)
