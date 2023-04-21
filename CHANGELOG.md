@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.1.2
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.1.1...v0.1.2)
+
+
+### 🚀 Enhancements
+
+  - Add firebase query logging ([c0c87a5](https://github.com/haus23/tipprunde-backend/commit/c0c87a5))
+
+### 🩹 Fixes
+
+  - Cache players query as well ([140837c](https://github.com/haus23/tipprunde-backend/commit/140837c))
+
 ## v0.1.1
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.1.0...v0.1.1)
