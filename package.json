@@ -13,16 +13,16 @@
     "preview": "node .output/server/index.mjs"
   },
   "dependencies": {
-    "@haus23/tipprunde-types": "^0.4.1",
-    "firebase-admin": "^11.5.0",
+    "@haus23/tipprunde-types": "^0.4.3",
+    "firebase-admin": "^11.7.0",
     "h3": "^1.6.4",
-    "nitropack": "^2.3.2",
-    "unstorage": "^1.4.1",
+    "nitropack": "^2.3.3",
+    "unstorage": "^1.5.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@types/node": "^18.15.11",
+    "@types/node": "^18.15.13",
     "changelogen": "github:lean-stack/changelogen#omit-authors",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.4"
   }
 }
