@@ -1,7 +1,7 @@
 import { ChampionshipId } from '@haus23/tipprunde-types';
 import { H3Event } from 'h3';
 import { z } from 'zod';
-import { getChampionships } from '../query/aggregat/get-championships';
+import { getChampionships } from '../query/get-championships';
 
 export async function getChampionshipId(event: H3Event): Promise<string> {
   const id = event.context.params?.id;

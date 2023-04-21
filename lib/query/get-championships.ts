@@ -1,9 +1,8 @@
 import { Championship } from '@haus23/tipprunde-types';
 import { db, modelConverter } from '~/lib/firebase';
-import { cachedQuery } from '~/lib/util/cached-query';
 
-export const getChampionships = cachedQuery(
-  async function () {
+export const getChampionships = cachedFunction(
+  async () => {
     const snapshot = await db
       .collection('championships')
       .where('published', '==', true)
@@ -12,8 +11,5 @@ export const getChampionships = cachedQuery(
       .get();
     return snapshot.docs.map((doc) => doc.data());
   },
-  {
-    name: 'aggregats',
-    getKey: () => 'championships',
-  }
+  { getKey: () => 'championships' }
 );

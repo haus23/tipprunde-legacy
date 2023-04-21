@@ -1,3 +1,3 @@
-import { getChampionships } from '~/lib/query/aggregat/get-championships';
+import { getChampionships } from '~/lib/query/get-championships';
 
-export default eventHandler(getChampionships);
+export default cachedEventHandler(getChampionships, { name: 'championships' });
