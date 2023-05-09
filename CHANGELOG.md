@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v0.5.0
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.4.4...v0.5.0)
+
+
+### 🚀 Enhancements
+
+  - Add match-tips type. collects tips for specific match ([4715641](https://github.com/haus23/tipprunde-types/commit/4715641))
+
 ## v0.4.4
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.4.3...v0.4.4)
