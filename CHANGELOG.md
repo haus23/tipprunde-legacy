@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v0.2.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.1.2...v0.2.0)
+
+
+### 🚀 Enhancements
+
+  - Implement querying current matches with tips. ([fbcabc3](https://github.com/haus23/tipprunde-backend/commit/fbcabc3))
+
+### 💅 Refactors
+
+  - Remove handler caching. the routes are cached as well. ([57cc833](https://github.com/haus23/tipprunde-backend/commit/57cc833))
+
+### 🏡 Chore
+
+  - Update trivial deps changes ([701fb54](https://github.com/haus23/tipprunde-backend/commit/701fb54))
+  - Update tipprunde types ([7008b74](https://github.com/haus23/tipprunde-backend/commit/7008b74))
+  - Update tipprunde types ([cbc9ff0](https://github.com/haus23/tipprunde-backend/commit/cbc9ff0))
+
 ## v0.1.2
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.1.1...v0.1.2)
