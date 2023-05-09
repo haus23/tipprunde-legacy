@@ -4,6 +4,7 @@ export * from './primitives';
 // Aggregat
 export * from './model/aggregat/championship';
 export * from './model/aggregat/championship/rank';
+export * from './model/aggregat/championship/match-tips';
 
 // Entities
 export * from './model/entity/player';
