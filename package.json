@@ -15,14 +15,14 @@
   "dependencies": {
     "@haus23/tipprunde-types": "^0.4.3",
     "consola": "^3.1.0",
-    "firebase-admin": "^11.7.0",
-    "h3": "^1.6.4",
+    "firebase-admin": "^11.8.0",
+    "h3": "^1.6.5",
     "nitropack": "^2.3.3",
-    "unstorage": "^1.5.0",
+    "unstorage": "^1.6.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@types/node": "^18.15.13",
+    "@types/node": "^18.16.6",
     "changelogen": "github:lean-stack/changelogen#omit-authors",
     "typescript": "^5.0.4"
   }

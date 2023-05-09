@@ -8,25 +8,25 @@ dependencies:
     specifier: ^3.1.0
     version: 3.1.0
   firebase-admin:
-    specifier: ^11.7.0
-    version: 11.7.0
+    specifier: ^11.8.0
+    version: 11.8.0
   h3:
-    specifier: ^1.6.4
-    version: 1.6.4
+    specifier: ^1.6.5
+    version: 1.6.5
   nitropack:
     specifier: ^2.3.3
     version: 2.3.3
   unstorage:
-    specifier: ^1.5.0
-    version: 1.5.0
+    specifier: ^1.6.0
+    version: 1.6.0
   zod:
     specifier: ^3.21.4
     version: 3.21.4
 
 devDependencies:
   '@types/node':
-    specifier: ^18.15.13
-    version: 18.15.13
+    specifier: ^18.16.6
+    version: 18.16.6
   changelogen:
     specifier: github:lean-stack/changelogen#omit-authors
     version: github.com/lean-stack/changelogen/e2255f443f1dadb124665ae5dd7215d8b573bd90
@@ -403,7 +403,7 @@ packages:
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.7.6
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
     dev: false
     optional: true
 
@@ -725,13 +725,13 @@ packages:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
       '@types/connect': 3.4.35
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
     dev: false
 
   /@types/connect@3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
     dev: false
 
   /@types/estree@1.0.0:
@@ -741,7 +741,7 @@ packages:
   /@types/express-serve-static-core@4.17.33:
     resolution: {integrity: sha512-TPBqmR/HRYI3eC2E5hmiivIzv+bidAfXofM+sbonAGvyDhySGw9/PQZFt2BLOrjUUR++4eJVpx6KnLQK1Fk9tA==}
     dependencies:
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
     dev: false
@@ -759,14 +759,14 @@ packages:
     resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
     dev: false
     optional: true
 
   /@types/jsonwebtoken@9.0.1:
     resolution: {integrity: sha512-c5ltxazpWabia/4UzhIoaDcIza4KViOQhdbjRlfcIGVnsE3c3brkz9Z+F/EeJIECOQP7W7US2hNE930cWWkPiw==}
     dependencies:
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
     dev: false
 
   /@types/linkify-it@3.0.2:
@@ -801,8 +801,8 @@ packages:
     dev: false
     optional: true
 
-  /@types/node@18.15.13:
-    resolution: {integrity: sha512-N+0kuo9KgrUQ1Sn/ifDXsvg0TTleP7rIy4zOBGECxAljqvqfqpTfzx0Q1NUedOixRMBfe2Whhb056a42cWs26Q==}
+  /@types/node@18.16.6:
+    resolution: {integrity: sha512-N7KINmeB8IN3vRR8dhgHEp+YpWvGFcpDoh5XZ8jB5a00AdFKCKEyyGTOPTddUf4JqU1ZKTVxkOxakDvchNVI2Q==}
 
   /@types/qs@6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -820,7 +820,7 @@ packages:
     resolution: {integrity: sha512-F3OznnSLAUxFrCEu/L5PY8+ny8DtcFRjx7fZZ9bycvXRi3KPTRS9HOitGZwvPg0juRhXFWIeKX58cnX5YqLohQ==}
     dependencies:
       '@types/glob': 8.1.0
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
     dev: false
     optional: true
 
@@ -828,7 +828,7 @@ packages:
     resolution: {integrity: sha512-NUo5XNiAdULrJENtJXZZ3fHtfMolzZwczzBbnAeBbqBwG+LaG6YaJtuwzwGSQZ2wsCrxjEhNNjAkKigy3n8teQ==}
     dependencies:
       '@types/mime': 3.0.1
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
     dev: false
 
   /@vercel/nft@0.22.6:
@@ -1233,6 +1233,10 @@ packages:
     resolution: {integrity: sha512-RyZrFi6PNpBFbIaQjXDlFIhFVqV42QeKSZX1yQIl6ihImq6vcHNGMtqQ/QzY3RMPuYSkvsRwtnt5M9NeYxKt0g==}
     dev: false
 
+  /cookie-es@1.0.0:
+    resolution: {integrity: sha512-mWYvfOLrfEc996hlKcdABeIiPHUPC6DM2QYZdGGOvhOTbA3tjm2eBwqlJpoFdjC89NI4Qt6h0Pu06Mp+1Pj5OQ==}
+    dev: false
+
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: false
@@ -1624,14 +1628,14 @@ packages:
       to-regex-range: 5.0.1
     dev: false
 
-  /firebase-admin@11.7.0:
-    resolution: {integrity: sha512-58y9dor/nrK4Dc/hwpmm7uGCy+oqld+k189mclWwhKu8IZJcZbXxPFHsNzW/yG7aVTH5sTD4rHnRXj8+t5AhPQ==}
+  /firebase-admin@11.8.0:
+    resolution: {integrity: sha512-RxO0wWDnuqVikXExhVjnhVaaXpziKCad4D1rOX5c1WJdk1jAu9hfE4rbrFKZQZgF1okZS04kgCBIFJro7xn8NQ==}
     engines: {node: '>=14'}
     dependencies:
       '@fastify/busboy': 1.2.1
       '@firebase/database-compat': 0.3.4
       '@firebase/database-types': 0.10.4
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
       jsonwebtoken: 9.0.0
       jwks-rsa: 3.0.1
       node-forge: 1.3.1
@@ -1889,15 +1893,15 @@ packages:
       duplexer: 0.1.2
     dev: false
 
-  /h3@1.6.4:
-    resolution: {integrity: sha512-uoDNeaoeDRwWBtwwi4siZ6l5sBmDJpnpcBssuAbvsaPBonl8vP7Ym4tFPe+tAvGM0GbUoC24wYcloCG+J9hqmA==}
+  /h3@1.6.5:
+    resolution: {integrity: sha512-A0r2LCDzeavSfcAbJpMwHXLcSN0H3FpEZtYigbz4IYun0fOE8r6vy3galwubAnmc6gXVob4261zXQsu3sZayzg==}
     dependencies:
-      cookie-es: 0.5.0
+      cookie-es: 1.0.0
       defu: 6.1.2
       destr: 1.2.2
-      iron-webcrypto: 0.6.0
+      iron-webcrypto: 0.7.0
       radix3: 1.0.1
-      ufo: 1.1.1
+      ufo: 1.1.2
       uncrypto: 0.1.2
     dev: false
 
@@ -2025,8 +2029,8 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dev: false
 
-  /iron-webcrypto@0.6.0:
-    resolution: {integrity: sha512-WYgEQttulX/+JTv1BTJFYY3OsAb+ZnCuA53IjppZMyiRsVdGeEuZ/k4fJrg77Rzn0pp9/PgWtXUF+5HndDA5SQ==}
+  /iron-webcrypto@0.7.0:
+    resolution: {integrity: sha512-WkX32iTcwd79ZsWRPP5wq1Jq6XXfPwO783ZiUBY8uMw4/AByx5WvBmxvYGnpVt6AOVJ0F41Qo420r8lIneT9Wg==}
     dev: false
 
   /is-binary-path@2.1.0:
@@ -2369,8 +2373,8 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /lru-cache@9.1.0:
-    resolution: {integrity: sha512-qFXQEwchrZcMVen2uIDceR8Tii6kCJak5rzDStfEM0qA3YLMswaxIEZO0DhIbJ3aqaJiDjt+3crlplOb0tDtKQ==}
+  /lru-cache@9.1.1:
+    resolution: {integrity: sha512-65/Jky17UwSb0BuB9V+MyDpsOtXKmYwzhyl+cOa9XUiI4uV2Ouy/2voFP3+al0BjZbJgMBD8FojMpAf+Z+qn4A==}
     engines: {node: 14 || >=16.14}
     dev: false
 
@@ -2583,7 +2587,7 @@ packages:
       fs-extra: 11.1.1
       globby: 13.1.3
       gzip-size: 7.0.0
-      h3: 1.6.4
+      h3: 1.6.5
       hookable: 5.5.3
       http-proxy: 1.18.1
       is-primitive: 3.0.1
@@ -2613,7 +2617,7 @@ packages:
       ufo: 1.1.1
       unenv: 1.4.1
       unimport: 3.0.6(rollup@3.20.2)
-      unstorage: 1.5.0
+      unstorage: 1.6.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -2622,6 +2626,8 @@ packages:
       - '@azure/keyvault-secrets'
       - '@azure/storage-blob'
       - '@planetscale/database'
+      - '@upstash/redis'
+      - '@vercel/kv'
       - debug
       - encoding
       - supports-color
@@ -2884,7 +2890,7 @@ packages:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
       long: 5.2.1
     dev: false
     optional: true
@@ -2904,7 +2910,7 @@ packages:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.15.13
+      '@types/node': 18.16.6
       long: 5.2.1
     dev: false
     optional: true
@@ -3407,6 +3413,10 @@ packages:
   /ufo@1.1.1:
     resolution: {integrity: sha512-MvlCc4GHrmZdAllBc0iUDowff36Q9Ndw/UzqmEKyrfSzokTd9ZCy1i+IIk5hrYKkjoYVQyNbrw7/F8XJ2rEwTg==}
 
+  /ufo@1.1.2:
+    resolution: {integrity: sha512-TrY6DsjTQQgyS3E3dBaOXf0TpPD8u9FVrVYmKVegJuFw51n/YB9XPt+U6ydzFG5ZIN7+DIjPbNmXoBj9esYhgQ==}
+    dev: false
+
   /uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
     engines: {node: '>=0.8.0'}
@@ -3464,16 +3474,18 @@ packages:
       webpack-virtual-modules: 0.5.0
     dev: false
 
-  /unstorage@1.5.0:
-    resolution: {integrity: sha512-bL6sHwTKp2ns0SAGNHAbLP9LwmtPGMtaOVrHRA4V8ngQMHQR18q0uRgkeGB4qF84XSDu/o8ebv54p/HBJESXFA==}
+  /unstorage@1.6.0:
+    resolution: {integrity: sha512-lWRPiW7WlIybZL96xt7V07P5y129CAc+sveSTR9SA/OeduOisOH7zWFNj6WqULLPetA5qP2PeTjNjpTUqyLh0w==}
     peerDependencies:
-      '@azure/app-configuration': ^1.3.1
+      '@azure/app-configuration': ^1.4.1
       '@azure/cosmos': ^3.17.3
       '@azure/data-tables': ^13.2.2
       '@azure/identity': ^3.1.4
       '@azure/keyvault-secrets': ^4.7.0
       '@azure/storage-blob': ^12.14.0
       '@planetscale/database': ^1.7.0
+      '@upstash/redis': ^1.20.5
+      '@vercel/kv': ^0.1.1
     peerDependenciesMeta:
       '@azure/app-configuration':
         optional: true
@@ -3489,18 +3501,22 @@ packages:
         optional: true
       '@planetscale/database':
         optional: true
+      '@upstash/redis':
+        optional: true
+      '@vercel/kv':
+        optional: true
     dependencies:
       anymatch: 3.1.3
       chokidar: 3.5.3
       destr: 1.2.2
-      h3: 1.6.4
+      h3: 1.6.5
       ioredis: 5.3.2
       listhen: 1.0.4
-      lru-cache: 9.1.0
+      lru-cache: 9.1.1
       mri: 1.2.0
       node-fetch-native: 1.1.0
       ofetch: 1.0.1
-      ufo: 1.1.1
+      ufo: 1.1.2
     transitivePeerDependencies:
       - supports-color
     dev: false
