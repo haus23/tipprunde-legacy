@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@haus23/tipprunde-types':
-    specifier: ^0.4.3
-    version: 0.4.3
+    specifier: ^0.4.4
+    version: 0.4.4
   consola:
     specifier: ^3.1.0
     version: 3.1.0
@@ -420,8 +420,8 @@ packages:
     dev: false
     optional: true
 
-  /@haus23/tipprunde-types@0.4.3:
-    resolution: {integrity: sha512-RAXK6my7CzARx2QsWVtQq3LkG9/LIwcr9u8pGXesRsvp4lGBcoJIYJ6OkP8Jv8J0VO/z5jC+SPMbRSWKZz50bw==}
+  /@haus23/tipprunde-types@0.4.4:
+    resolution: {integrity: sha512-nUm8bdxiHPEssxUW2rI+/RXMGJ0RQjPwQCTjdljwEprguKazRXm9JxzAyDdsc9aA7jC0JolMKgaOMaFsy5qghQ==}
     dependencies:
       zod: 3.21.4
     dev: false
