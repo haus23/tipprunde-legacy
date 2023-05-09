@@ -8,3 +8,5 @@ export * from './model/aggregat/championship/rank';
 // Entities
 export * from './model/entity/player';
 export * from './model/entity/championship-player';
+export * from './model/entity/match';
+export * from './model/entity/tip';
