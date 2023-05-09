@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.4.4
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.4.3...v0.4.4)
+
+
+### 🚀 Enhancements
+
+  - Add new entities for matches and tips. ([566d33f](https://github.com/haus23/tipprunde-types/commit/566d33f))
+
+### 💅 Refactors
+
+  - Create new primitives schemata and move championship id into them ([de8c0b3](https://github.com/haus23/tipprunde-types/commit/de8c0b3))
+
+### 🏡 Chore
+
+  - Next take on package exports. ([8bf135a](https://github.com/haus23/tipprunde-types/commit/8bf135a))
+
 ## v0.4.3
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.4.2...v0.4.3)
