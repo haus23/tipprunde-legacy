@@ -1,6 +1,5 @@
 import { z } from 'zod';
-
-export const ChampionshipId = z.string().regex(/^[a-z]{2}\d{4}$/, 'Bad championship id');
+import { ChampionshipId } from '../../primitives';
 
 export const Championship = z.object({
   id: ChampionshipId,
@@ -11,5 +10,4 @@ export const Championship = z.object({
   completed: z.boolean(),
 });
 
-export type ChampionshipId = z.infer<typeof ChampionshipId>;
 export type Championship = z.infer<typeof Championship>;

@@ -1,3 +1,6 @@
+// Primitives
+export * from './primitives';
+
 // Aggregat
 export * from './model/aggregat/championship';
 export * from './model/aggregat/championship/rank';
