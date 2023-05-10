@@ -1,9 +1,8 @@
 import { Championship } from '@haus23/tipprunde-types';
-import consola from 'consola';
 import { db, modelConverter } from '~/lib/firebase';
 
 export async function getChampionships() {
-  consola.info(`[${new Date().toLocaleString()}] Querying championships`);
+  console.info(`[${new Date().toLocaleString()}] Querying championships`);
 
   const snapshot = await db
     .collection('championships')
