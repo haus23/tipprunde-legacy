@@ -1,6 +1,34 @@
 # Changelog
 
 
+## v0.3.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.2.1...v0.3.0)
+
+
+### 🩹 Fixes
+
+  - Add cors headers again ([f47e704](https://github.com/haus23/tipprunde-backend/commit/f47e704))
+
+### 💅 Refactors
+
+  - Drop all caching by now ([ee19ef8](https://github.com/haus23/tipprunde-backend/commit/ee19ef8))
+  - Change api version prefix to v1 ([e7a382b](https://github.com/haus23/tipprunde-backend/commit/e7a382b))
+  - Validate h3 event. no need to import. ([c90d947](https://github.com/haus23/tipprunde-backend/commit/c90d947))
+  - Use console to log ([520bc22](https://github.com/haus23/tipprunde-backend/commit/520bc22))
+  - Drop unused explicit deps ([5d8b9f9](https://github.com/haus23/tipprunde-backend/commit/5d8b9f9))
+  - Use type imports ([9876fc5](https://github.com/haus23/tipprunde-backend/commit/9876fc5))
+  - Add route level caching again. mainly for dev purposes. see #2 ([#2](https://github.com/haus23/tipprunde-backend/issues/2))
+
+### 🏡 Chore
+
+  - Update deps incl nitro. recreate lockfile ([07c8f68](https://github.com/haus23/tipprunde-backend/commit/07c8f68))
+  - Add readme with deployment hints ([9bc649a](https://github.com/haus23/tipprunde-backend/commit/9bc649a))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.2.1
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.2.0...v0.2.1)
