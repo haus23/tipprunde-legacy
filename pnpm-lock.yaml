@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@haus23/tipprunde-types':
-    specifier: ^0.5.0
-    version: 0.5.0
+    specifier: ^0.6.0
+    version: 0.6.0
   consola:
     specifier: ^3.1.0
     version: 3.1.0
@@ -420,8 +420,8 @@ packages:
     dev: false
     optional: true
 
-  /@haus23/tipprunde-types@0.5.0:
-    resolution: {integrity: sha512-T9vADp1SMAMzwY94mv6X47m0UAqbSbU52nH8LXsCXShV0AyN2uPF/lPL2MCXN47AyQLT4xzlxigW40o9k/stlA==}
+  /@haus23/tipprunde-types@0.6.0:
+    resolution: {integrity: sha512-ju11lEvC3poNbVQkLKQscrX1simEDxwxxbpy7ePJ5gzFv52H2OcOlUq107nPWFCqWzDzydss63G6LbUYUgwEpg==}
     dependencies:
       zod: 3.21.4
     dev: false
@@ -2633,9 +2633,6 @@ packages:
       - supports-color
     dev: false
 
-  /node-fetch-native@1.0.2:
-    resolution: {integrity: sha512-KIkvH1jl6b3O7es/0ShyCgWLcfXxlBrLBbP3rOr23WArC66IMcU4DeZEeYEOwnopYhawLTn7/y+YtmASe8DFVQ==}
-
   /node-fetch-native@1.1.0:
     resolution: {integrity: sha512-nl5goFCig93JZ9FIV8GHT9xpNqXbxQUzkOmKIMKmncsBH9jhg7qKex8hirpymkBFmNQ114chEEG5lS4wgK2I+Q==}
 
@@ -2711,8 +2708,8 @@ packages:
     resolution: {integrity: sha512-icBz2JYfEpt+wZz1FRoGcrMigjNKjzvufE26m9+yUiacRQRHwnNlGRPiDnW4op7WX/MR6aniwS8xw8jyVelF2g==}
     dependencies:
       destr: 1.2.2
-      node-fetch-native: 1.0.2
-      ufo: 1.1.1
+      node-fetch-native: 1.1.0
+      ufo: 1.1.2
 
   /ohash@1.0.0:
     resolution: {integrity: sha512-kxSyzq6tt+6EE/xCnD1XaFhCCjUNUaz3X30rJp6mnjGLXAAvuPFqohMdv0aScWzajR45C29HyBaXZ8jXBwnh9A==}
@@ -3415,7 +3412,6 @@ packages:
 
   /ufo@1.1.2:
     resolution: {integrity: sha512-TrY6DsjTQQgyS3E3dBaOXf0TpPD8u9FVrVYmKVegJuFw51n/YB9XPt+U6ydzFG5ZIN7+DIjPbNmXoBj9esYhgQ==}
-    dev: false
 
   /uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
