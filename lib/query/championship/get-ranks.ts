@@ -1,9 +1,8 @@
-import { ChampionshipPlayer } from '@haus23/tipprunde-types';
-import consola from 'consola';
+import type { ChampionshipPlayer } from '@haus23/tipprunde-types';
 import { db, modelConverter } from '~/lib/firebase';
 
 export async function getRanks(championshipId: string) {
-  consola.info(`[${new Date().toLocaleString()}] Querying ranking ${championshipId}`);
+  console.info(`[${new Date().toLocaleString()}] Querying current ranking ${championshipId}`);
 
   const snapshot = await db
     .collection(`championships/${championshipId}/players`)

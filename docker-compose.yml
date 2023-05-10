@@ -11,5 +11,3 @@ services:
       - .env
     ports:
       - 127.0.0.1:2605:2605
-    volumes:
-      - ./.cache:/usr/src/app/.cache

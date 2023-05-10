@@ -4,7 +4,4 @@ export const config = {
     privateKey: process.env.FIREBASE_PRIVATE_KEY,
     projectId: process.env.FIREBASE_PROJECT_ID,
   },
-  unstorage: {
-    basePath: process.env.UNSTORAGE_BASE,
-  },
 };

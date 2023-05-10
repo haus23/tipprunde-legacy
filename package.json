@@ -14,16 +14,13 @@
   },
   "dependencies": {
     "@haus23/tipprunde-types": "^0.6.0",
-    "consola": "^3.1.0",
     "firebase-admin": "^11.8.0",
-    "h3": "^1.6.5",
-    "nitropack": "^2.3.3",
-    "unstorage": "^1.6.0",
+    "nitropack": "^2.4.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@types/node": "^18.16.6",
-    "changelogen": "github:lean-stack/changelogen#omit-authors",
+    "@types/node": "^18.16.7",
+    "changelogen": "^0.5.3",
     "typescript": "^5.0.4"
   }
 }
