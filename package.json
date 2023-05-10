@@ -14,11 +14,8 @@
   },
   "dependencies": {
     "@haus23/tipprunde-types": "^0.6.0",
-    "consola": "^3.1.0",
     "firebase-admin": "^11.8.0",
-    "h3": "^1.6.5",
     "nitropack": "^2.3.3",
-    "unstorage": "^1.6.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {

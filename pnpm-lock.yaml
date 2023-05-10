@@ -4,21 +4,12 @@ dependencies:
   '@haus23/tipprunde-types':
     specifier: ^0.6.0
     version: 0.6.0
-  consola:
-    specifier: ^3.1.0
-    version: 3.1.0
   firebase-admin:
     specifier: ^11.8.0
     version: 11.8.0
-  h3:
-    specifier: ^1.6.5
-    version: 1.6.5
   nitropack:
     specifier: ^2.3.3
     version: 2.3.3
-  unstorage:
-    specifier: ^1.6.0
-    version: 1.6.0
   zod:
     specifier: ^3.21.4
     version: 3.21.4
