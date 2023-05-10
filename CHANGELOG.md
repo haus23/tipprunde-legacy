@@ -1,6 +1,15 @@
 # Changelog
 
 
+## v0.2.1
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.2.0...v0.2.1)
+
+
+### 🚀 Enhancements
+
+  - Add teams with current-matches route ([9580632](https://github.com/haus23/tipprunde-backend/commit/9580632))
+
 ## v0.2.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.1.2...v0.2.0)
