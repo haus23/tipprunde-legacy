@@ -12,6 +12,7 @@
 
     // Best practices
     "strict": true,
+    "verbatimModuleSyntax": true,
 
     // DX
     "baseUrl": ".",

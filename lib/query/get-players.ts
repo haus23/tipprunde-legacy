@@ -1,4 +1,4 @@
-import { Player } from '@haus23/tipprunde-types';
+import type { Player } from '@haus23/tipprunde-types';
 import { db, modelConverter } from '~/lib/firebase';
 
 export async function getPlayers() {

@@ -1,4 +1,4 @@
-import { ChampionshipPlayer } from '@haus23/tipprunde-types';
+import type { ChampionshipPlayer } from '@haus23/tipprunde-types';
 import { db, modelConverter } from '~/lib/firebase';
 
 export async function getRanks(championshipId: string) {

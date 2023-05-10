@@ -1,4 +1,4 @@
-import { Team } from '@haus23/tipprunde-types';
+import type { Team } from '@haus23/tipprunde-types';
 import { db, modelConverter } from '~/lib/firebase';
 
 export async function getTeams() {
