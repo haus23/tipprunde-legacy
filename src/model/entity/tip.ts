@@ -6,6 +6,7 @@ export const Tip = z.object({
   tip: Result,
   joker: z.boolean(),
   points: z.number(),
+  lonelyHit: z.boolean().optional(),
   matchId: z.string(),
   playerId: z.string(),
 });
