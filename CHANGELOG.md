@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.7.0
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.6.0...v0.7.0)
+
+
+### 💅 Refactors
+
+  - Reorganize and rename types ([e0b9f74](https://github.com/haus23/tipprunde-types/commit/e0b9f74))
+
+### 🏡 Chore
+
+  - Restructure tests ([fbedf08](https://github.com/haus23/tipprunde-types/commit/fbedf08))
+
 ## v0.6.0
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.5.1...v0.6.0)
