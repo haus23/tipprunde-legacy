@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.8.0
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.7.0...v0.8.0)
+
+
+### 💅 Refactors
+
+  - Align entities with firebase - but rename appropriate ([c9230d4](https://github.com/haus23/tipprunde-types/commit/c9230d4))
+
+### 🏡 Chore
+
+  - Change builder to tsup ([5a1614a](https://github.com/haus23/tipprunde-types/commit/5a1614a))
+
 ## v0.7.0
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.6.0...v0.7.0)
