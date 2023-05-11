@@ -7,6 +7,9 @@ dependencies:
   firebase-admin:
     specifier: ^11.8.0
     version: 11.8.0
+  h3:
+    specifier: ^1.6.5
+    version: 1.6.5
   nitropack:
     specifier: ^2.4.0
     version: 2.4.0
