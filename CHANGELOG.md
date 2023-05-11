@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.4.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.3.0...v0.4.0)
+
+
+### 💅 Refactors
+
+  - Aligned with changed model data. ([c123a7f](https://github.com/haus23/tipprunde-backend/commit/c123a7f))
+
+### 🏡 Chore
+
+  - Upgrade tipprunde types ([bbc9c46](https://github.com/haus23/tipprunde-backend/commit/bbc9c46))
+  - Readding h3. autoimports not working else. ([b1df597](https://github.com/haus23/tipprunde-backend/commit/b1df597))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.3.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.2.1...v0.3.0)
