@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
   // add teams and the tips by players
   const currentMatches = {
     matches: currentSlice.map((match) => {
-      const tipsPerMatch = new Map(tips.filter((t) => t.matchId === match.id).map((t) => [t.id, t]));
+      const tipsPerMatch = new Map(tips.filter((t) => t.matchId === match.id).map((t) => [t.playerId, t]));
       return {
         ...match,
         tips: Object.fromEntries(tipsPerMatch),
