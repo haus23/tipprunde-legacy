@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.4.1
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.4.0...v0.4.1)
+
+
+### 🩹 Fixes
+
+  - Key for the tips is the playerId ([b523e0e](https://github.com/haus23/tipprunde-backend/commit/b523e0e))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.4.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.3.0...v0.4.0)
