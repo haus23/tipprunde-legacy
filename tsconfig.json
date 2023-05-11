@@ -9,7 +9,13 @@
     "moduleResolution": "Node",
 
     // Best practice
-    "strict": true
+    "strict": true,
+
+    // DX
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "tests"]
 }
