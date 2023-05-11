@@ -3,13 +3,14 @@ export * from './primitives';
 
 // Aggregat (joined data)
 export * from './model/aggregat/championship';
-export * from './model/aggregat/championship/championship-player';
+export * from './model/aggregat/championship/player';
 
 // Entities (raw leaves)
-export * from './model/entity/player';
-export * from './model/entity/match';
+export * from './model/entity/account';
 export * from './model/entity/team';
-export * from './model/entity/tip';
+export * from './model/entity/championship/match';
+export * from './model/entity/championship/member';
+export * from './model/entity/championship/tip';
 
 // Queries (collected data)
 export * from './model/queries/championship/current-matches';

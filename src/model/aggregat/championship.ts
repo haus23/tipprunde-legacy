@@ -1,8 +1,6 @@
 import { z } from 'zod';
 import { ChampionshipId } from '../../primitives';
 
-// Todo: join ruleset data
-
 export const Championship = z.object({
   id: ChampionshipId,
   name: z.string(),
@@ -10,6 +8,8 @@ export const Championship = z.object({
   rulesId: z.string(),
   published: z.boolean(),
   completed: z.boolean(),
+  // Todo: join rules data
+  // rules: Rules
 });
 
 export type Championship = z.infer<typeof Championship>;

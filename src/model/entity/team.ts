@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+// Firebase collection path: /teams
+
 export const Team = z.object({
   id: z.string(),
   name: z.string({ required_error: 'Team name is required' }),

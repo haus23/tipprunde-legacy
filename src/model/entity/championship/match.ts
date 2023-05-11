@@ -1,5 +1,7 @@
 import { z } from 'zod';
-import { MatchDate } from '../../primitives';
+import { MatchDate } from '../../../primitives';
+
+// Firebase collection path: /championships/[id]/matches
 
 export const Match = z.object({
   id: z.string(),

@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { Match } from '../../entity/match';
-import { Tip } from '../../entity/tip';
-import { Team } from '../../entity/team';
+import { Match } from '~/model/entity/championship/match';
+import { Tip } from '~/model/entity/championship/tip';
+import { Team } from '~/model/entity/team';
 
 export const CurrentMatches = z.object({
   matches: z.array(

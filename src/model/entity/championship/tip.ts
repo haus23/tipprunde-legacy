@@ -1,5 +1,7 @@
 import { z } from 'zod';
-import { Result } from '../../primitives';
+import { Result } from '~/primitives';
+
+// Firebase collection path: /championships/[id]/tips
 
 export const Tip = z.object({
   id: z.string(),
