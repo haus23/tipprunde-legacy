@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@haus23/tipprunde-types':
-    specifier: ^0.6.0
-    version: 0.6.0
+    specifier: ^0.8.0
+    version: 0.8.0
   firebase-admin:
     specifier: ^11.8.0
     version: 11.8.0
@@ -411,8 +411,8 @@ packages:
     dev: false
     optional: true
 
-  /@haus23/tipprunde-types@0.6.0:
-    resolution: {integrity: sha512-ju11lEvC3poNbVQkLKQscrX1simEDxwxxbpy7ePJ5gzFv52H2OcOlUq107nPWFCqWzDzydss63G6LbUYUgwEpg==}
+  /@haus23/tipprunde-types@0.8.0:
+    resolution: {integrity: sha512-BBs7mSY1yeWI2DkHap54IrcsXfW9Cs7s2fpCgNwN092LCTf5DYWFJTtVoH3LGQKmC0vFX57vEhsJrnswiStssQ==}
     dependencies:
       zod: 3.21.4
     dev: false
