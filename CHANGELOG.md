@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.5.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.4.1...v0.5.0)
+
+
+### 💅 Refactors
+
+  - Align with tipprunde types. now resolves #1 ([#1](https://github.com/haus23/tipprunde-backend/issues/1))
+
+### 🏡 Chore
+
+  - Upgrade tipprunde types ([439e4e5](https://github.com/haus23/tipprunde-backend/commit/439e4e5))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.4.1
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.4.0...v0.4.1)
