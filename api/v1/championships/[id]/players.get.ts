@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
   const members = await getMembers(championshipId);
 
   const players = members?.map(
-    (r) => ({ ...r, player: Account.parse(accounts?.find((p) => p.id === r.playerId)) } satisfies Player)
+    (r) => ({ ...r, account: Account.parse(accounts?.find((p) => p.id === r.playerId)) } satisfies Player)
   );
 
   return players;
