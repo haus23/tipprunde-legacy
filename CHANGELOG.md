@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v0.10.1
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.10.0...v0.10.1)
+
+
+### 🩹 Fixes
+
+  - Rename type ([767400b](https://github.com/haus23/tipprunde-types/commit/767400b))
+  - Update exports. ([6455fce](https://github.com/haus23/tipprunde-types/commit/6455fce))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.10.0
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.9.0...v0.10.0)
