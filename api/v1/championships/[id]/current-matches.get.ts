@@ -1,4 +1,4 @@
-import { CurrentMatches, Tip } from '@haus23/tipprunde-types';
+import { CurrentMatches } from '@haus23/tipprunde-types';
 import { getMatches } from '~/lib/query/championship/get-matches';
 import { getTips } from '~/lib/query/championship/get-tips';
 import { getTeams } from '~/lib/query/get-teams';
@@ -10,7 +10,6 @@ export default defineEventHandler(async (event) => {
   const matches = (await getMatches(championshipId)) || [];
   const tips = (await getTips(championshipId)) || [];
   const teams = (await getTeams()) || [];
-  const teamsMap = new Map(teams.map((t) => [t.id, t]));
 
   // sort matches by date
   matches.sort((a, b) => a.date.localeCompare(b.date));
