@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.6.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.5.0...v0.6.0)
+
+
+### 🚀 Enhancements
+
+  - Add query to get completed match data by championship. ([1097da4](https://github.com/haus23/tipprunde-backend/commit/1097da4))
+
+### 🏡 Chore
+
+  - Update core libs. ([0ce491e](https://github.com/haus23/tipprunde-backend/commit/0ce491e))
+  - Upgrade tipprunde types. ([3ee43fc](https://github.com/haus23/tipprunde-backend/commit/3ee43fc))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.5.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.4.1...v0.5.0)
