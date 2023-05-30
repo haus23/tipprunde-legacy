@@ -3,7 +3,7 @@ FROM node:18.15.0-bullseye-slim
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV PATH=$PATH:/home/node/.npm-global/bin
 
-RUN npm install --global pnpm
+RUN npm install --global pnpm@latest
 
 WORKDIR /usr/src/app
 
