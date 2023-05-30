@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.10.0
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.9.0...v0.10.0)
+
+
+### 🚀 Enhancements
+
+  - Add types to collect complete match data. ([e07a3e2](https://github.com/haus23/tipprunde-types/commit/e07a3e2))
+
+### 🏡 Chore
+
+  - Upgrade vitest and switch to vanilla changelogen. ([43fc8bb](https://github.com/haus23/tipprunde-types/commit/43fc8bb))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.9.0
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.8.0...v0.9.0)

@@ -1,6 +1,6 @@
 {
   "name": "@haus23/tipprunde-types",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "Typ-System der Haus23 Tipprunde",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
