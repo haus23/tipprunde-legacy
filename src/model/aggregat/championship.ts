@@ -7,6 +7,7 @@ export const Championship = z.object({
   nr: z.number().positive(),
   rulesId: z.string(),
   published: z.boolean(),
+  extraPointsPublished: z.boolean(),
   completed: z.boolean(),
   // Todo: join rules data
   // rules: Rules
