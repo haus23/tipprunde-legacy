@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.10.2
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.10.1...v0.10.2)
+
+
+### 🚀 Enhancements
+
+  - Add prop for extra-points publishing. ([592e406](https://github.com/haus23/tipprunde-types/commit/592e406))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.10.1
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.10.0...v0.10.1)
