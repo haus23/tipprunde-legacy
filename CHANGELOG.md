@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.7.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.6.0...v0.7.0)
+
+
+### 🚀 Enhancements
+
+  - Query tips by player ([354ecca](https://github.com/haus23/tipprunde-backend/commit/354ecca))
+  - Add caching strategy with cached query functions. ([56ea764](https://github.com/haus23/tipprunde-backend/commit/56ea764))
+
+### 🏡 Chore
+
+  - Ensure latest pnpm version. ([75f6a9a](https://github.com/haus23/tipprunde-backend/commit/75f6a9a))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.6.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.5.0...v0.6.0)
