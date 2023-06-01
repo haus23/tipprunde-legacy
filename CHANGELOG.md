@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.8.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.7.0...v0.8.0)
+
+
+### 💅 Refactors
+
+  - Align with upgraded type. Rename route. ([ba3d67c](https://github.com/haus23/tipprunde-backend/commit/ba3d67c))
+
+### 🏡 Chore
+
+  - Upgrade tipprunde types. ([7efe6f3](https://github.com/haus23/tipprunde-backend/commit/7efe6f3))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.7.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.6.0...v0.7.0)
