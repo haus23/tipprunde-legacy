@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.11.0
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.10.2...v0.11.0)
+
+
+### 💅 Refactors
+
+  - Simplify the data query for the current tips. ([fffcec0](https://github.com/haus23/tipprunde-types/commit/fffcec0))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.10.2
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.10.1...v0.10.2)
