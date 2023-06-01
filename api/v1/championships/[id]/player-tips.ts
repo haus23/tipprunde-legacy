@@ -7,8 +7,7 @@ export default defineEventHandler(async (event) => {
   const championshipId = await getChampionshipId(event);
   const accountId = getQuery(event).name;
 
-  const members = await getMembers(championshipId);
-
+  const members = (await getMembers(championshipId)) || [];
   const player = members.find((p) => p.playerId === accountId) || members[0];
 
   const tips = await getTipsByPlayer(championshipId, player.id);
