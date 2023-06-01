@@ -16,4 +16,4 @@ export * from './model/entity/championship/tip';
 
 // Queries (collected data)
 export * from './model/queries/championship/matches';
-export * from './model/queries/championship/current-matches';
+export * from './model/queries/championship/current-tips';
