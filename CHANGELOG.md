@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.9.1
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.0...v0.9.1)
+
+
+### 🩹 Fixes
+
+  - Do not cast undefined to number. ([bea10b6](https://github.com/haus23/tipprunde-backend/commit/bea10b6))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.9.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.8.0...v0.9.0)
