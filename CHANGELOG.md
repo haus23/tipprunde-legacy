@@ -1,6 +1,32 @@
 # Changelog
 
 
+## v0.9.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.8.0...v0.9.0)
+
+
+### 🚀 Enhancements
+
+  - Add new query tips-by-match. ([37f45ef](https://github.com/haus23/tipprunde-backend/commit/37f45ef))
+
+### 🩹 Fixes
+
+  - Allow only get requests. ([63f5961](https://github.com/haus23/tipprunde-backend/commit/63f5961))
+  - Better ordering, 1st played, 2nd date ([b9f9d61](https://github.com/haus23/tipprunde-backend/commit/b9f9d61))
+
+### 💅 Refactors
+
+  - Align with upgraded tips. ([f48a162](https://github.com/haus23/tipprunde-backend/commit/f48a162))
+
+### 🏡 Chore
+
+  - Upgrade tipprunde types. ([14572c9](https://github.com/haus23/tipprunde-backend/commit/14572c9))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.8.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.7.0...v0.8.0)
