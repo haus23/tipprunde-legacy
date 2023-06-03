@@ -11,11 +11,13 @@ export default defineEventHandler(async (event) => {
   const tips = (await getTips(championshipId)) || [];
   const teams = (await getTeams()) || [];
 
-  matches.sort((a, b) => a.date.localeCompare(b.date));
-  const lastMatchIx = matches.findLastIndex((m) => m.result);
+  const sortedByDate = [...matches].sort((a, b) => a.date.localeCompare(b.date));
+  const sortedByPlayed = [...sortedByDate.filter((m) => m.result), ...sortedByDate.filter((m) => !m.result)];
 
-  let currentSliceStart = Math.min(Math.max(0, lastMatchIx - 1), matches.length - 4);
-  const currentSlice = matches.slice(currentSliceStart, currentSliceStart + 4);
+  const lastMatchIx = sortedByPlayed.findLastIndex((m) => m.result);
+
+  let currentSliceStart = Math.min(Math.max(0, lastMatchIx - 1), sortedByPlayed.length - 4);
+  const currentSlice = sortedByPlayed.slice(currentSliceStart, currentSliceStart + 4);
 
   const currentTips = currentSlice.map((match) => {
     const tipsPerMatch = new Map(tips.filter((t) => t.matchId === match.id).map((t) => [t.playerId, t]));
