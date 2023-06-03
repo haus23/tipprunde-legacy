@@ -1,4 +1,4 @@
-import type { Tip } from '@haus23/tipprunde-types';
+import type { PlayerTips, Tip } from '@haus23/tipprunde-types';
 import { getMembers } from '~/lib/query/championship/get-members';
 import { getTipsByPlayer } from '~/lib/query/championship/get-tips';
 import { getChampionshipId } from '~/lib/util/get-championship-id';
@@ -12,5 +12,5 @@ export default defineEventHandler(async (event) => {
 
   const tips = await getTipsByPlayer(championshipId, player.id);
   const tipsByMatch = new Map(tips.map((t) => [t.matchId, t]));
-  return Object.fromEntries(tipsByMatch) satisfies Record<string, Tip>;
+  return { playerId: player.id, tips: Object.fromEntries(tipsByMatch) } satisfies PlayerTips;
 });
