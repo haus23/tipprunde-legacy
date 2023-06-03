@@ -5,7 +5,7 @@ import { getChampionshipId } from '~/lib/util/get-championship-id';
 
 export default defineEventHandler(async (event) => {
   const championshipId = await getChampionshipId(event);
-  const matchNr = Number(getQuery(event).nr);
+  const matchNr = getQuery(event).nr;
 
   const matches = (await getMatches(championshipId)) || [];
   let match: Match | undefined;
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
   if (!matchNr) {
     match = [...matches].sort((a, b) => a.date.localeCompare(b.date)).findLast((m) => m.result) || matches[0];
   } else {
-    match = matches.find((m) => m.nr === matchNr);
+    match = matches.find((m) => m.nr === Number(matchNr));
   }
 
   if (!match) return undefined;
