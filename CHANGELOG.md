@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.11.1
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.11.0...v0.11.1)
+
+
+### 🚀 Enhancements
+
+  - Add optional round prop isDoubleRound ([1aae360](https://github.com/haus23/tipprunde-types/commit/1aae360))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.11.0
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.10.2...v0.11.0)
