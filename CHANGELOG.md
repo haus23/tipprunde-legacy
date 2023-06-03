@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.12.1
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.12.0...v0.12.1)
+
+
+### 🩹 Fixes
+
+  - Export added query types. ([6adbc20](https://github.com/haus23/tipprunde-types/commit/6adbc20))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.12.0
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.11.1...v0.12.0)
