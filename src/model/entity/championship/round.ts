@@ -5,6 +5,7 @@ export const Round = z.object({
   nr: z.number().positive(),
   published: z.boolean(),
   tipsPublished: z.boolean(),
+  isDoubleRound: z.boolean().optional(),
   completed: z.boolean(),
 });
 
