@@ -27,3 +27,13 @@ export async function getTipsByPlayer(championshipId: string, playerId: string) 
 
   return tips.filter((t) => t.playerId === playerId);
 }
+
+export async function getTipsByMatch(championshipId: string, matchId: string) {
+  const tips = await getTips(championshipId);
+
+  if (!tips) {
+    throw new Error('Error reading tips');
+  }
+
+  return tips.filter((t) => t.matchId === matchId);
+}
