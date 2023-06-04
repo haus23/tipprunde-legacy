@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.12.3
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.12.2...v0.12.3)
+
+
+### 🩹 Fixes
+
+  - Add match result ([a930be0](https://github.com/haus23/tipprunde-types/commit/a930be0))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.12.2
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.12.1...v0.12.2)
