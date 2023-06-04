@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.9.3
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.2...v0.9.3)
+
+
+### 🩹 Fixes
+
+  - Add missing result (aligned with updated/fixed types). ([648f0a1](https://github.com/haus23/tipprunde-backend/commit/648f0a1))
+
+### 🏡 Chore
+
+  - Update tipprunde types. ([bdcf698](https://github.com/haus23/tipprunde-backend/commit/bdcf698))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.9.2
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.1...v0.9.2)
