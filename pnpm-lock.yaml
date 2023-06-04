@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@haus23/tipprunde-types':
-    specifier: ^0.12.1
-    version: 0.12.1
+    specifier: ^0.12.2
+    version: 0.12.2
   firebase-admin:
     specifier: ^11.9.0
     version: 11.9.0
@@ -418,8 +418,8 @@ packages:
     dev: false
     optional: true
 
-  /@haus23/tipprunde-types@0.12.1:
-    resolution: {integrity: sha512-499LeGzTG3Ml6g1s+lu7XoBNSFHpsh7LZRmzyT1SBr2WU2IWUzIBgGZQ/4AX3pjo0MmCO17N760Qnf76dbUgdw==}
+  /@haus23/tipprunde-types@0.12.2:
+    resolution: {integrity: sha512-ky3Y5zt065Y1DQi+Keb9ctbuadanW7qHxYkWTaOzn+WGQ3+bSSn8Ug6qMODKqNdP3bJxlseDH2WriqIbkMZqXw==}
     dependencies:
       zod: 3.21.4
     dev: false
