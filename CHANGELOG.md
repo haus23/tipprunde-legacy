@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.9.2
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.1...v0.9.2)
+
+
+### 💅 Refactors
+
+  - Align with current tips. ([ff80a68](https://github.com/haus23/tipprunde-backend/commit/ff80a68))
+
+### 🏡 Chore
+
+  - Update tipprunde types. ([b7bf0f7](https://github.com/haus23/tipprunde-backend/commit/b7bf0f7))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.9.1
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.0...v0.9.1)
