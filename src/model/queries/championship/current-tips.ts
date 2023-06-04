@@ -6,6 +6,7 @@ export const CurrentTips = z.array(
     matchId: z.string(),
     hometeam: z.string().optional(),
     awayteam: z.string().optional(),
+    result: z.string(),
     tips: z.record(Tip),
   })
 );
