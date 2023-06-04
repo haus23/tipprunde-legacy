@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.12.2
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.12.1...v0.12.2)
+
+
+### 💅 Refactors
+
+  - Include teams in current tips. ([75bb4ac](https://github.com/haus23/tipprunde-types/commit/75bb4ac))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.12.1
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.12.0...v0.12.1)
