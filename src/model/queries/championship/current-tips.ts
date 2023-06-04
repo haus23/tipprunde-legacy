@@ -4,6 +4,8 @@ import { Tip } from '~/model/entity/championship/tip';
 export const CurrentTips = z.array(
   z.object({
     matchId: z.string(),
+    hometeam: z.string().optional(),
+    awayteam: z.string().optional(),
     tips: z.record(Tip),
   })
 );
