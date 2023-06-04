@@ -23,6 +23,8 @@ export default defineEventHandler(async (event) => {
     const tipsPerMatch = new Map(tips.filter((t) => t.matchId === match.id).map((t) => [t.playerId, t]));
     return {
       matchId: match.id,
+      hometeam: teams.find((t) => t.id === match.hometeamId)?.shortname,
+      awayteam: teams.find((t) => t.id === match.awayteamId)?.shortname,
       tips: Object.fromEntries(tipsPerMatch),
     };
   }) satisfies CurrentTips;
