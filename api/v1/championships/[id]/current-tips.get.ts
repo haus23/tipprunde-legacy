@@ -25,6 +25,7 @@ export default defineEventHandler(async (event) => {
       matchId: match.id,
       hometeam: teams.find((t) => t.id === match.hometeamId)?.shortname,
       awayteam: teams.find((t) => t.id === match.awayteamId)?.shortname,
+      result: match.result,
       tips: Object.fromEntries(tipsPerMatch),
     };
   }) satisfies CurrentTips;
