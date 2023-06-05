@@ -1,5 +1,6 @@
 import type { Team } from '@haus23/tipprunde-types';
 import { db, modelConverter } from '~/lib/firebase';
+import { config } from '../config';
 
 export const getTeams = cachedFunction(
   async () => {
@@ -9,7 +10,7 @@ export const getTeams = cachedFunction(
     return snapshot.docs.map((doc) => doc.data());
   },
   {
-    maxAge: 60 * 60 * 24,
+    maxAge: config.cacheAge.long,
     name: 'teams',
     getKey: () => 'all',
   }

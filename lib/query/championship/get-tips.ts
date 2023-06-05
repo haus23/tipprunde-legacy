@@ -1,4 +1,5 @@
 import type { Tip } from '@haus23/tipprunde-types';
+import { config } from '~/lib/config';
 import { db, modelConverter } from '~/lib/firebase';
 
 export const getTips = cachedFunction(
@@ -12,7 +13,7 @@ export const getTips = cachedFunction(
     return snapshot.docs.map((doc) => doc.data());
   },
   {
-    maxAge: 10 * 60,
+    maxAge: config.cacheAge.short,
     name: 'tips',
     getKey: (championshipId: string) => championshipId,
   }
