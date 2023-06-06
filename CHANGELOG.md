@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v0.9.4
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.3...v0.9.4)
+
+
+### 🏡 Chore
+
+  - **cache:** Make cache age configurable. ([61ffc5b](https://github.com/haus23/tipprunde-backend/commit/61ffc5b))
+  - **cache:** Enable http caching for ten minutes. ([2a225f8](https://github.com/haus23/tipprunde-backend/commit/2a225f8))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.9.3
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.2...v0.9.3)
