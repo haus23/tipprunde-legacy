@@ -17,6 +17,9 @@ dependencies:
   nitropack:
     specifier: ^2.5.2
     version: 2.5.2
+  typescript:
+    specifier: ^5.1.6
+    version: 5.1.6
   zod:
     specifier: ^3.21.4
     version: 3.21.4
@@ -25,9 +28,6 @@ devDependencies:
   '@types/node':
     specifier: ^18.16.16
     version: 18.16.16
-  typescript:
-    specifier: ^5.1.6
-    version: 5.1.6
 
 packages:
 
@@ -3369,7 +3369,7 @@ packages:
     resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
+    dev: false
 
   /uc.micro@1.0.6:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}
