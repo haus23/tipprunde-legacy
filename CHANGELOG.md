@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.9.5
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.4...v0.9.5)
+
+### 🩹 Fixes
+
+- Throw errors to stop execution. And align errors. ([c68b59a](https://github.com/haus23/tipprunde-backend/commit/c68b59a))
+
+### 🏡 Chore
+
+- **dx:** Drop local changelogen installation. ([a1b3284](https://github.com/haus23/tipprunde-backend/commit/a1b3284))
+- Update nitro. ([263169d](https://github.com/haus23/tipprunde-backend/commit/263169d))
+- Upgrade typescript. ([3c7e931](https://github.com/haus23/tipprunde-backend/commit/3c7e931))
+
+### ❤️  Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.9.4
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.3...v0.9.4)
