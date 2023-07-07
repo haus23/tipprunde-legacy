@@ -12,13 +12,12 @@ export async function getChampionshipId(event: unknown): Promise<string> {
   if (isEvent(event)) {
     const id = event.context.params?.id;
     if (!id) {
-      throw new Error('No route param named id present.');
+      throw createError({ statusCode: 400, statusMessage: 'No route param named id present.' });
     }
 
     const parsedId = ChampionshipId.or(z.literal('current')).safeParse(id);
     if (!parsedId.success) {
-      sendError(event, createError({ statusCode: 406, statusMessage: 'Bad championship id' }));
-      return 'error';
+      throw createError({ statusCode: 406, statusMessage: 'Bad championship id' });
     }
 
     const championships = await getChampionships();
@@ -26,12 +25,11 @@ export async function getChampionshipId(event: unknown): Promise<string> {
     const championshipId =
       parsedId.data === 'current' ? championships?.at(0)?.id : championships?.find((c) => c.id === parsedId.data)?.id;
     if (!championshipId) {
-      sendError(event, createError({ statusCode: 404, statusMessage: 'Championship not found' }));
-      return 'error';
+      throw createError({ statusCode: 404, statusMessage: 'Championship not found' });
     }
 
     return championshipId;
   }
 
-  throw new Error('getChampionshipId must be called with a H3Event arg');
+  throw createError('getChampionshipId must be called with a H3Event arg');
 }
