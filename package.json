@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@types/node": "^18.16.16",
-    "changelogen": "^0.5.3",
     "typescript": "^5.0.4"
   }
 }
