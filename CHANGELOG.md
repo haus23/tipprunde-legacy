@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.11.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.10.1...v0.11.0)
+
+### 🚀 Enhancements
+
+- Implement cache invalidation route. ([fd10ab3](https://github.com/haus23/tipprunde-backend/commit/fd10ab3))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.10.1
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.10.0...v0.10.1)
