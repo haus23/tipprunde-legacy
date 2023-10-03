@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.10.1
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.10.0...v0.10.1)
+
+### 🩹 Fixes
+
+- Update lock file. ([db5a33f](https://github.com/haus23/tipprunde-backend/commit/db5a33f))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.10.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.5...v0.10.0)
