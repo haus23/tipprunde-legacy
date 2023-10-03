@@ -13,6 +13,7 @@
     // Best practices
     "strict": true,
     "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
 
     // DX
     "baseUrl": ".",
