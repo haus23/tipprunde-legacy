@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.10.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.5...v0.10.0)
+
+### 🚀 Enhancements
+
+- Add routes for teams and leagues. ([0941100](https://github.com/haus23/tipprunde-backend/commit/0941100))
+
+### 🩹 Fixes
+
+- Move typescript to prod deps. ([542819d](https://github.com/haus23/tipprunde-backend/commit/542819d))
+
+### 🏡 Chore
+
+- Update deps. ([e35f7c6](https://github.com/haus23/tipprunde-backend/commit/e35f7c6))
+- **dx:** Adjust tsconfig. ([0fd05a6](https://github.com/haus23/tipprunde-backend/commit/0fd05a6))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.9.5
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.4...v0.9.5)
