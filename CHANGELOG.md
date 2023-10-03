@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.11.1
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.11.0...v0.11.1)
+
+### 🩹 Fixes
+
+- Clear all standings caches - not only the first. ([6fc0b2c](https://github.com/haus23/tipprunde-backend/commit/6fc0b2c))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.11.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.10.1...v0.11.0)
