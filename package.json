@@ -14,13 +14,13 @@
   },
   "dependencies": {
     "@haus23/tipprunde-types": "^0.12.3",
-    "firebase-admin": "^11.9.0",
-    "h3": "^1.7.1",
-    "nitropack": "^2.5.2",
-    "typescript": "^5.1.6",
-    "zod": "^3.21.4"
+    "firebase-admin": "^11.11.0",
+    "h3": "^1.8.2",
+    "nitropack": "^2.6.3",
+    "typescript": "~5.2.2",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@types/node": "^18.16.16"
+    "@types/node": "^18.18.3"
   }
 }
