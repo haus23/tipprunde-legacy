@@ -38,11 +38,12 @@ export default defineEventHandler(async (event) => {
   });
 
   if (cacheKeys.standings) {
-    const cacheItemKey = keys.find((k) => k.includes(`:${cacheKeys.standings}.json`));
-    if (cacheItemKey) {
-      await storage.removeItem(cacheItemKey, true);
-      clearedCaches.push(cacheItemKey);
-    }
+    keys
+      .filter((k) => k.endsWith(`:${cacheKeys.standings}.json`))
+      .forEach(async (k) => {
+        await storage.removeItem(k, true);
+        clearedCaches.push(k);
+      });
   }
 
   return { cleared: clearedCaches };
