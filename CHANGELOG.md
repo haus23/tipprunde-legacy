@@ -1,6 +1,33 @@
 # Changelog
 
 
+## v0.13.0
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.12.3...v0.13.0)
+
+### 🚀 Enhancements
+
+- Add rules type ([ecaf36b](https://github.com/haus23/tipprunde-types/commit/ecaf36b))
+- Simplify package.json ([7e8aaae](https://github.com/haus23/tipprunde-types/commit/7e8aaae))
+
+### 🩹 Fixes
+
+- Won't add relation here. ([5cc2f36](https://github.com/haus23/tipprunde-types/commit/5cc2f36))
+
+### 💅 Refactors
+
+- Shorten import. ([3158ea1](https://github.com/haus23/tipprunde-types/commit/3158ea1))
+
+### 🏡 Chore
+
+- Restrict typescript version to minor changes.. ([f524694](https://github.com/haus23/tipprunde-types/commit/f524694))
+- Update/upgrade deps. ([c3768d0](https://github.com/haus23/tipprunde-types/commit/c3768d0))
+- Upgrade typescript. ([41b31ae](https://github.com/haus23/tipprunde-types/commit/41b31ae))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.12.3
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.12.2...v0.12.3)
