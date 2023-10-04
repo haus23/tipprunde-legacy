@@ -1,7 +1,13 @@
 {
   "name": "@haus23/tipprunde-types",
-  "version": "0.13.0",
   "description": "Typ-System der Haus23 Tipprunde",
+  "version": "0.13.0",
+  "author": "Micha Buchholz",
+  "license": "MIT",
+  "homepage": "https://github.com/haus23/tipprunde-types#readme",
+  "bugs": {
+    "url": "https://github.com/haus23/tipprunde-types/issues"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -20,12 +26,6 @@
     "type": "git",
     "url": "git+https://github.com/haus23/tipprunde-types.git"
   },
-  "author": "Micha Buchholz",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/haus23/tipprunde-types/issues"
-  },
-  "homepage": "https://github.com/haus23/tipprunde-types#readme",
   "dependencies": {
     "zod": "^3.22.3"
   },
