@@ -9,8 +9,6 @@ export const Championship = z.object({
   published: z.boolean(),
   extraPointsPublished: z.boolean(),
   completed: z.boolean(),
-  // Todo: join rules data
-  // rules: Rules
 });
 
 export type Championship = z.infer<typeof Championship>;
