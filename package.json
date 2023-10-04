@@ -2,15 +2,10 @@
   "name": "@haus23/tipprunde-types",
   "version": "0.12.3",
   "description": "Typ-System der Haus23 Tipprunde",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "exports": {
-    "./package.json": "./package.json",
     ".": {
-      "require": "./dist/index.js",
       "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     }
   },
   "files": [
