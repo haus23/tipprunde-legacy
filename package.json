@@ -18,7 +18,7 @@
     "h3": "^1.8.2",
     "nitropack": "^2.6.3",
     "typescript": "~5.2.2",
-    "zod": "^3.22.2"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@types/node": "^18.18.3"
