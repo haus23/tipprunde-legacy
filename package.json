@@ -13,7 +13,7 @@
     "preview": "node .output/server/index.mjs"
   },
   "dependencies": {
-    "@haus23/tipprunde-types": "^0.12.3",
+    "@haus23/tipprunde-types": "^0.13.1",
     "firebase-admin": "^11.11.0",
     "h3": "^1.8.2",
     "nitropack": "^2.6.3",
