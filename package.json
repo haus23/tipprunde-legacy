@@ -31,12 +31,12 @@
   },
   "homepage": "https://github.com/haus23/tipprunde-types#readme",
   "dependencies": {
-    "zod": "^3.21.4"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
-    "changelogen": "^0.5.3",
-    "tsup": "^6.7.0",
+    "changelogen": "^0.5.5",
+    "tsup": "^7.2.0",
     "typescript": "~5.0.4",
-    "vitest": "^0.31.2"
+    "vitest": "^0.34.6"
   }
 }
