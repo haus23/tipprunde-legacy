@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.12.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.11.1...v0.12.0)
+
+### 🚀 Enhancements
+
+- Add route for rules ([d3197f1](https://github.com/haus23/tipprunde-backend/commit/d3197f1))
+
+### 🏡 Chore
+
+- Update tipprunde-types. ([3a89bb6](https://github.com/haus23/tipprunde-backend/commit/3a89bb6))
+- Update deps. ([1fe0980](https://github.com/haus23/tipprunde-backend/commit/1fe0980))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.11.1
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.11.0...v0.11.1)
