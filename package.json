@@ -1,7 +1,7 @@
 {
   "name": "@haus23/tipprunde-types",
   "description": "Typ-System der Haus23 Tipprunde",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "author": "Micha Buchholz",
   "license": "MIT",
   "homepage": "https://github.com/haus23/tipprunde-types#readme",

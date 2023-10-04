@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.13.1
+
+[compare changes](https://github.com/haus23/tipprunde-types/compare/v0.13.0...v0.13.1)
+
+### 🩹 Fixes
+
+- Adjust minimum node version. ([8632d08](https://github.com/haus23/tipprunde-types/commit/8632d08))
+- Reformat files. ([729fa8b](https://github.com/haus23/tipprunde-types/commit/729fa8b))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.13.0
 
 [compare changes](https://github.com/haus23/tipprunde-types/compare/v0.12.3...v0.13.0)
