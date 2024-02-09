@@ -7,5 +7,6 @@ export default defineNitroConfig({
       cors: true,
       headers: { 'access-control-allow-methods': 'GET' },
     },
+    '/api/invalidate-cache': { cors: true },
   },
 });
