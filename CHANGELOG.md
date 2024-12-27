@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v0.12.1
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.12.0...v0.12.1)
+
+### 🚀 Enhancements
+
+- Add cors support for invalidate-cache route. ([4f03119](https://github.com/haus23/tipprunde-backend/commit/4f03119))
+
+### 🩹 Fixes
+
+- Respond with 404 for unknown matches. ([00413f3](https://github.com/haus23/tipprunde-backend/commit/00413f3))
+
+### 🏡 Chore
+
+- **dx:** Update package manager pnpm ([40d9f11](https://github.com/haus23/tipprunde-backend/commit/40d9f11))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.12.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.11.1...v0.12.0)
