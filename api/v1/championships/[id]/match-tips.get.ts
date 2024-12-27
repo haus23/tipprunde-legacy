@@ -17,7 +17,13 @@ export default defineEventHandler(async (event) => {
     match = matches.find((m) => m.nr === Number(matchNr));
   }
 
-  if (!match) return undefined;
+  if (!match) {
+    throw createError({
+      status: 404,
+      statusMessage: 'Not found',
+      message: 'Unknown match nr'
+    })
+  };
 
   const tips = await getTipsByMatch(championshipId, match.id);
   const tipsByPlayer = new Map(tips.map((t) => [t.playerId, t]));
