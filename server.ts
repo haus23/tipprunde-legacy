@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { app } from './src/app.js';
+import { app } from './src/app.ts';
 
 // Config
 const port = 2605;

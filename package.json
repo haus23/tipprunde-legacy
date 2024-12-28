@@ -9,7 +9,7 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "node server",
+    "dev": "node --experimental-strip-types server.ts",
     "build": "nitropack build",
     "preview": "node .output/server/index.mjs"
   },
