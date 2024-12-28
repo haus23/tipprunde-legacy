@@ -7,13 +7,15 @@
     "type": "git",
     "url": "https://github.com/haus23/tipprunde-backend.git"
   },
+  "type": "module",
   "scripts": {
-    "dev": "nitropack dev",
+    "dev": "node server",
     "build": "nitropack build",
     "preview": "node .output/server/index.mjs"
   },
   "dependencies": {
     "@haus23/tipprunde-types": "^0.13.1",
+    "express": "^5.0.1",
     "firebase-admin": "^11.11.0",
     "h3": "^1.8.2",
     "nitropack": "^2.6.3",
