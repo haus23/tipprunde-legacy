@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.13.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.12.1...v0.13.0)
+
+### 💅 Refactors
+
+- Fresh start. Migrating to Express. ([1b116f1](https://github.com/haus23/tipprunde-backend/commit/1b116f1))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.12.1
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.12.0...v0.12.1)
