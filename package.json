@@ -9,10 +9,10 @@
   },
   "type": "module",
   "imports": {
-    "#/*": "./src/*"
+    "#app/*": "./src/*"
   },
   "scripts": {
-    "dev": "node --experimental-strip-types server.ts",
+    "dev": "node --env-file=.env --experimental-strip-types server.ts",
     "test": "node --env-file=.env node_modules/vitest/vitest.mjs",
     "build": "nitropack build",
     "preview": "node .output/server/index.mjs"
@@ -20,7 +20,7 @@
   "dependencies": {
     "@haus23/tipprunde-types": "^0.13.1",
     "express": "^5.0.1",
-    "firebase-admin": "^11.11.0",
+    "firebase-admin": "^13.0.2",
     "h3": "^1.8.2",
     "nitropack": "^2.6.3",
     "unstorage": "^1.14.4",

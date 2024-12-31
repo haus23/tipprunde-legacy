@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { expect, it } from 'vitest';
 
-import { app } from '#/app.ts';
+import { app } from '#app/app.ts';
 
 it('returns status code 200', async () => {
   const response = await request(app).get('/api/v1/championships');

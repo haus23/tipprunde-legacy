@@ -1,6 +1,12 @@
-import { DocumentData, FirestoreDataConverter, PartialWithFieldValue } from 'firebase-admin/firestore';
+import type {
+  DocumentData,
+  FirestoreDataConverter,
+  PartialWithFieldValue,
+} from 'firebase-admin/firestore';
 
-export const modelConverter = <T extends { id: string }>(): FirestoreDataConverter<T> => ({
+export const modelConverter = <
+  T extends { id: string },
+>(): FirestoreDataConverter<T> => ({
   toFirestore: (modelObject: PartialWithFieldValue<T>): DocumentData => {
     const { id, ...doc } = modelObject;
     return doc;
@@ -9,5 +15,5 @@ export const modelConverter = <T extends { id: string }>(): FirestoreDataConvert
     ({
       id: snapshot.id,
       ...snapshot.data(),
-    } as T),
+    }) as T,
 });

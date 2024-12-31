@@ -1,5 +1,5 @@
-import { env } from '#/env';
-import { storage } from './storage';
+import { env } from '#app/env.ts';
+import { storage } from './storage.ts';
 
 export type CacheOptions<FnArgsT extends unknown[]> = {
   name: string;

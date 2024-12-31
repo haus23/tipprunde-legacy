@@ -2,9 +2,9 @@ import { expect, it, vi } from 'vitest';
 
 import { createStorage } from 'unstorage';
 import memoryDriver from 'unstorage/drivers/memory';
-import { cachedFunction } from '#/lib/cached';
+import { cachedFunction } from '#app/lib/cached.ts';
 
-vi.mock('#/lib/storage.ts', () => ({
+vi.mock('#app/lib/storage.ts', () => ({
   storage: createStorage({ driver: memoryDriver() }),
 }));
 
