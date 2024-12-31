@@ -8,8 +8,12 @@
     "url": "https://github.com/haus23/tipprunde-backend.git"
   },
   "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
   "scripts": {
     "dev": "node --experimental-strip-types server.ts",
+    "test": "node --env-file=.env node_modules/vitest/vitest.mjs",
     "build": "nitropack build",
     "preview": "node .output/server/index.mjs"
   },
@@ -19,13 +23,16 @@
     "firebase-admin": "^11.11.0",
     "h3": "^1.8.2",
     "nitropack": "^2.6.3",
+    "unstorage": "^1.14.4",
+    "valibot": "1.0.0-beta.9",
     "zod": "^3.22.3"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@types/express": "^5.0.0",
     "@types/node": "^18.18.3",
-    "typescript": "~5.7.2"
+    "typescript": "~5.7.2",
+    "vitest": "^2.1.8"
   },
   "packageManager": "pnpm@9.15.2"
 }
