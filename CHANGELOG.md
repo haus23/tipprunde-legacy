@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.13.1
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.13.0...v0.13.1)
+
+### 🚀 Enhancements
+
+- Implement and test a cached function factory. ([9bd48d8](https://github.com/haus23/tipprunde-backend/commit/9bd48d8))
+- Add first api route. Only mocked by now. ([e9dcac5](https://github.com/haus23/tipprunde-backend/commit/e9dcac5))
+- Add firebase and refactor imports. ([a96c8d1](https://github.com/haus23/tipprunde-backend/commit/a96c8d1))
+
+### 🏡 Chore
+
+- **dx:** Switch to biome for formatting and linting. ([afdefce](https://github.com/haus23/tipprunde-backend/commit/afdefce))
+- Update pnpm. ([22e36c1](https://github.com/haus23/tipprunde-backend/commit/22e36c1))
+- **dx:** Switch to experimental ts support in node. ([6673cd0](https://github.com/haus23/tipprunde-backend/commit/6673cd0))
+- Update typescript - now dev dep - and add tsconfig. ([5b52788](https://github.com/haus23/tipprunde-backend/commit/5b52788))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.13.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.12.1...v0.13.0)
