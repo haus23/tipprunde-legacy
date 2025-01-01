@@ -1,8 +1,10 @@
 import { createServer } from 'node:http';
-import { app } from './src/app.ts';
+
+import { app } from '#app/app.ts';
+import { env } from '#app/env.ts';
 
 // Config
-const port = 2605;
+const port = env.PORT;
 
 const server = createServer(app);
 server.listen(port, () => {
