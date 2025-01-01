@@ -1,6 +1,5 @@
-# Nitro
-**/.nitro
-**/.output
+# NPM
+**/node_modules
 
 # API cache
 **/.cache
@@ -16,14 +15,6 @@
 # Git
 **/.git
 **/.gitignore
-
-# Editor
-**/.vscode
-**/.editorconfig
-**/.prettierrc
-
-# NPM
-**/node_modules
 
 # Project
 LICENSE
