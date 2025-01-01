@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v0.13.2
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.13.1...v0.13.2)
+
+### 🚀 Enhancements
+
+- Add accounts query. ([302b54b](https://github.com/haus23/tipprunde-backend/commit/302b54b))
+
+### 💅 Refactors
+
+- Update key and remove legacy query. ([d970ce8](https://github.com/haus23/tipprunde-backend/commit/d970ce8))
+
+### 🏡 Chore
+
+- **dx:** Add supertest typings. ([7fbdab3](https://github.com/haus23/tipprunde-backend/commit/7fbdab3))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.13.1
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.13.0...v0.13.1)
