@@ -18,6 +18,6 @@ export const getChampionships = cachedFunction(
   {
     maxAge: env.MAX_AGE,
     name: 'championships',
-    getKey: () => 'all',
+    getKey: () => 'list',
   },
 );
