@@ -15,7 +15,6 @@ export const getRules = cachedFunction(
     return snapshot.docs.map((doc) => doc.data());
   },
   {
-    maxAge: env.MAX_AGE,
     name: 'rules',
     getKey: () => 'list',
   },

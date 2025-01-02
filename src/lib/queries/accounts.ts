@@ -15,7 +15,6 @@ export const getAccounts = cachedFunction(
     return snapshot.docs.map((doc) => doc.data());
   },
   {
-    maxAge: env.MAX_AGE,
     name: 'accounts',
     getKey: () => 'list',
   },

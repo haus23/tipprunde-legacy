@@ -16,7 +16,6 @@ export const getChampionships = cachedFunction(
     return snapshot.docs.map((doc) => doc.data());
   },
   {
-    maxAge: env.MAX_AGE,
     name: 'championships',
     getKey: () => 'list',
   },
