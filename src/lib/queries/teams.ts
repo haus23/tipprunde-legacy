@@ -1,6 +1,5 @@
 import type { Team } from '@haus23/tipprunde-types';
 
-import { env } from '#app/env.ts';
 import { cachedFunction } from '../cached.ts';
 import { db, modelConverter } from '../firebase/index.ts';
 
