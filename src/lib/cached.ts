@@ -3,8 +3,9 @@ import { storage } from './storage.ts';
 
 export type CacheOptions<FnArgsT extends unknown[]> = {
   name: string;
+  getBase?: (...args: FnArgsT) => string;
   getKey: (...args: FnArgsT) => string;
-  maxAge?: number | ((...args: FnArgsT) => number);
+  maxAge?: number;
 };
 
 export type CachedEntry<T> = {
@@ -17,17 +18,22 @@ export function cachedFunction<T, FnArgsT extends unknown[]>(
   { getKey, ...options }: CacheOptions<FnArgsT>,
 ) {
   async function get(
-    key: string,
+    cacheKey: string,
     maxAge: number,
     resolver: () => T | Promise<T>,
   ) {
-    const cacheKey = `${options.name}:${key}.json`;
     const now = Date.now();
 
     let cacheEntry = await storage.getItem<CachedEntry<T>>(cacheKey);
-    if (!cacheEntry || now > cacheEntry.expires) {
+    if (
+      !cacheEntry ||
+      (cacheEntry.expires !== -1 && now > cacheEntry.expires)
+    ) {
       const data = await resolver();
-      cacheEntry = { expires: now + maxAge * 1000, value: data };
+      cacheEntry = {
+        expires: maxAge === -1 ? maxAge : now + maxAge * 1000,
+        value: data,
+      };
       storage.setItem<CachedEntry<T>>(cacheKey, cacheEntry);
     }
 
@@ -35,11 +41,13 @@ export function cachedFunction<T, FnArgsT extends unknown[]>(
   }
 
   return async (...args: FnArgsT) => {
-    const maxAge =
-      typeof options.maxAge === 'function'
-        ? options.maxAge(...args)
-        : (options.maxAge ?? env.MAX_AGE);
-    const entry = await get(getKey(...args), maxAge, () => fn(...args));
+    const base = options.getBase ? options.getBase(...args) : '';
+    const key = getKey(...args);
+    const cacheKey = [base, options.name, `${key}.json`]
+      .filter(Boolean)
+      .join(':');
+    const maxAge = options.maxAge ?? (base === 'archive' ? -1 : env.MAX_AGE);
+    const entry = await get(cacheKey, maxAge, () => fn(...args));
     const value = entry.value;
     return value;
   };

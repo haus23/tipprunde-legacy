@@ -1,5 +1,4 @@
 import type { Championship, Member } from '@haus23/tipprunde-types';
-import { env } from '#app/env.ts';
 import { cachedFunction } from '#app/lib/cached.ts';
 import { db, modelConverter } from '#app/lib/firebase/index.ts';
 
@@ -17,8 +16,7 @@ export const getPlayers = cachedFunction(
     return snapshot.docs.map((doc) => doc.data());
   },
   {
-    maxAge: (championship) =>
-      championship.completed ? env.MAX_AGE : env.MAX_AGE * 100,
+    getBase: (championship) => (championship.completed ? 'archive' : ''),
     name: 'championships',
     getKey: (championship) => `${championship.id}:players`,
   },
