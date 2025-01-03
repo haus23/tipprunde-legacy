@@ -1,6 +1,39 @@
 # Changelog
 
 
+## v0.14.0
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.13.2...v0.14.0)
+
+### 🚀 Enhancements
+
+- Add remaining master queries. ([0308f71](https://github.com/haus23/tipprunde-backend/commit/0308f71))
+- Add error handler and app error handling. ([7ccff8d](https://github.com/haus23/tipprunde-backend/commit/7ccff8d))
+- Add validation method to extract valid championship from request. ([a85d6b7](https://github.com/haus23/tipprunde-backend/commit/a85d6b7))
+- Implement route for querying championship players aka ranking. ([940ea1a](https://github.com/haus23/tipprunde-backend/commit/940ea1a))
+
+### 🩹 Fixes
+
+- Remove maxAge option. Uses default anyway. ([dd9f47a](https://github.com/haus23/tipprunde-backend/commit/dd9f47a))
+
+### 💅 Refactors
+
+- Flatten the folder structure. ([fb1282f](https://github.com/haus23/tipprunde-backend/commit/fb1282f))
+- Make maxAge setable via function. ([bfa9866](https://github.com/haus23/tipprunde-backend/commit/bfa9866))
+
+### 🏡 Chore
+
+- Update license. ([ed5d33c](https://github.com/haus23/tipprunde-backend/commit/ed5d33c))
+- Update env and use port from env. ([3707d19](https://github.com/haus23/tipprunde-backend/commit/3707d19))
+- **dx:** Remove unused prettier config files. ([d16c12e](https://github.com/haus23/tipprunde-backend/commit/d16c12e))
+- Remove remaining nitro traces. ([652778f](https://github.com/haus23/tipprunde-backend/commit/652778f))
+- Remove already migrated routes. ([89e23d7](https://github.com/haus23/tipprunde-backend/commit/89e23d7))
+- **dx:** Enable watching source in dev script. ([a83e35b](https://github.com/haus23/tipprunde-backend/commit/a83e35b))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.13.2
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.13.1...v0.13.2)
