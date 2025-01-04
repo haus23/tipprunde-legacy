@@ -3,3 +3,6 @@ node_modules/
 
 # Turbo Build
 .turbo/
+
+# Project Builds
+dist/
