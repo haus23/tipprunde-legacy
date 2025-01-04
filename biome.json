@@ -26,5 +26,15 @@
     "formatter": {
       "quoteStyle": "single"
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["tsconfig.*.json"],
+      "json": {
+        "parser": {
+          "allowComments": true
+        }
+      }
+    }
+  ]
 }
