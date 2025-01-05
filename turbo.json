@@ -9,6 +9,12 @@
       "cache": false,
       "persistent": true
     },
+    "topo": {
+      "dependsOn": ["^topo"]
+    },
+    "typecheck": {
+      "dependsOn": ["topo"]
+    },
     "//#lint": {
       "cache": false
     }
