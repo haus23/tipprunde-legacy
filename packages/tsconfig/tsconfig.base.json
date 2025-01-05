@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    /* Linting */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+
+    /* Bundler */
+    "target": "ES2022",
+    "noEmit": true,
+    "skipLibCheck": true,
+
+    /* Modules */
+    "module": "Preserve",
+    "allowImportingTsExtensions": true,
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true
+  }
+}
