@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 300 20% 99%; /* Mauve 1 */
+    --foreground: 260 25% 11%; /* Mauve 12 */
+
+    --subtle: 300 7.7% 97.5%; /* Mauve 2 */
+    --subtle-foreground: 252 4% 44.8%; /* Mauve 11 */
+
+    --accent: 255 65% 99.4%;
+    --accent-foreground: 254 60% 18.5%;
+    --accent-subtle: 252 100% 99%;
+    --accent-subtle-foreground: 250 43% 48%;
+
+    --primary: 252 96.9% 97.4%;
+    --primary-hover: 252 91.5% 95.5%;
+    --primary-active: 252 85.1% 93%;
+    --primary-foreground: 254 60% 18.5%;
+
+    --neutral: 294 5.5% 95.3%; /* Mauve 3 */
+    --neutral-hover: 289 4.7% 93.3%; /* Mauve 4 */
+    --neutral-active: 283 4.4% 91.3%; /* Mauve 5 */
+
+    --border: 278 4.1% 89.1%; /* Mauve 6 */
+    --primary-border: 252 77.8% 89.4%; /* Violet 6 */
+    --ring: 271 3.9% 86.3%; /* Mauve 7 */
+    --primary-ring: 252 71% 83.7%; /* Violet 7 */
+
+    --border-hover: 255 3.7% 78.8%; /* Mauve 8 */
+    --primary-border-hover: 252 68.6% 76.3%; /* Violet 8 */
+
+    --destructive: 358 75% 59%;
+    --destructive-foreground: 354 50% 14.6%;
+
+    /* -------------------------------- */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --input: 214.3 31.8% 91.4%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    color-scheme: light;
+  }
+
+  .dark {
+    --background: 246 6% 9%;
+    --foreground: 256 6% 93.2%;
+
+    --subtle: 240 5.1% 11.6%;
+    --subtle-foreground: 253 4% 63.7%;
+
+    --accent: 250 20% 10.2%;
+    --accent-foreground: 252 87% 96.4%;
+    --accent-subtle: 255 30.3% 12.9%;
+    --accent-subtle-foreground: 250 95% 76.8%;
+
+    --primary: 253 37% 18.4%;
+    --primary-hover: 252 40.1% 22.5%;
+    --primary-active: 252 42.2% 26.2%;
+    --primary-foreground: 252 87% 96.4%;
+
+    --neutral: 241 5% 14.3%;
+    --neutral-hover: 242 4.9% 16.5%;
+    --neutral-active: 243 4.9% 18.8%;
+
+    --border: 244 4.9% 21.5%;
+    --primary-border: 251 44.3% 31.1%;
+    --ring: 245 4.9% 25.4%;
+    --primary-ring: 250 46.8% 38.9%;
+
+    --border-hover: 247 4.8% 32.5%;
+    --primary-border-hover: 250 51.8% 51.2%;
+
+    --destructive: 358 75% 59%;
+    --destructive-foreground: 351 89% 96%;
+
+    /* -------------------------------- */
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --input: 216 34% 17%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    color-scheme: dark;
+  }
+
+  html {
+    scrollbar-width: 0;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.mauve {
+  --mauve9: hsl(252, 4%, 57.3%);
+  --mauve10: hsl(253, 3.5%, 53.5%);
+}
+
+.mauveDark {
+  --mauve9: hsl(252, 4%, 45.2%);
+  --mauve10: hsl(247, 3.4%, 50.7%);
+}
+
+.violet {
+  --violet9: hsl(252, 56%, 57.5%);
+  --violet10: hsl(251, 48.1%, 53.5%);
+}
+
+.violetDark {
+  --violet9: hsl(252, 56%, 57.5%);
+  --violet10: hsl(251, 63.2%, 63.2%);
+}

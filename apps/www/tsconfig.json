@@ -1,0 +1,30 @@
+{
+  "include": ["app"],
+  "compilerOptions": {
+    "target": "ES2023",
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+
+    /* Bundler mode */
+    "module": "Preserve",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": ["vite/client"],
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    /* DX */
+    "paths": {
+      "#/*": ["./app/*"]
+    }
+  }
+}
