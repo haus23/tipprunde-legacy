@@ -1,6 +1,10 @@
 {
   "name": "tipprunde-legacy",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haus23/tipprunde-legacy.git"
+  },
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",

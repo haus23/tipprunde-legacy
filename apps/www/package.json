@@ -1,12 +1,7 @@
 {
-  "name": "tipprunde-legacy",
+  "name": "@haus23/tipprunde-www",
   "description": "Haus23 Tipprunde",
-  "license": "MIT",
   "version": "0.10.3",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/haus23/tipprunde-www.git"
-  },
   "type": "module",
   "scripts": {
     "dev": "vite",
