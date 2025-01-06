@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.14.1
+
+[compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.14.0...v0.14.1)
+
+### 🚀 Enhancements
+
+- Add (by now) unimplemented (clear) cache route ([199e4f0](https://github.com/haus23/tipprunde-backend/commit/199e4f0))
+
+### 🩹 Fixes
+
+- Remove unused imports. ([c6fd1e6](https://github.com/haus23/tipprunde-backend/commit/c6fd1e6))
+
+### 💅 Refactors
+
+- Rethink caches. ([52722ba](https://github.com/haus23/tipprunde-backend/commit/52722ba))
+- Make archive data cached forever. ([1c73412](https://github.com/haus23/tipprunde-backend/commit/1c73412))
+
+### ❤️ Contributors
+
+- Micha Buchholz <micha@haus23.net>
+
 ## v0.14.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.13.2...v0.14.0)
