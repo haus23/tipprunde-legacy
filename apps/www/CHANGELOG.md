@@ -1,5 +1,11 @@
 # www
 
+## 0.13.0
+
+### Minor Changes
+
+- [8dba132](https://github.com/haus23/tipprunde-legacy/commit/8dba132): Fix nav links for current championship.
+
 ## 0.12.1
 
 ### Patch Changes
