@@ -7,7 +7,7 @@ import { useChampionship } from '#/utils/app/championship';
 import { usePlayers } from '#/utils/app/players';
 import type { tablesLoader } from './_route.data';
 
-export default function TablesRoute() {
+export function TablesRoute() {
   const championship = useChampionship();
   const players = usePlayers(championship.id);
 

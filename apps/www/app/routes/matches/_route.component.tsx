@@ -17,7 +17,7 @@ import { formatDate } from '#/utils/misc';
 import type { matchesLoader } from './_route.data';
 import { TipsTable } from './tips-table';
 
-export default function MatchesRoute() {
+export function MatchesRoute() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const championship = useChampionship();

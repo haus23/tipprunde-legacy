@@ -10,17 +10,12 @@ import { AppErrorBoundary, ErrorBoundary } from './routes/_error';
 import Layout from './routes/_layout';
 import { layoutLoader } from './routes/_layout.data';
 import { rootLoader } from './routes/_root.data';
-import MatchesRoute from './routes/matches/_route';
 import { matchesLoader } from './routes/matches/_route.data';
-import PlayersRoute from './routes/players/_route';
 import { playersLoader } from './routes/players/_route.data';
-import TablesRoute from './routes/tables/_route';
 import { tablesLoader } from './routes/tables/_route.data';
+import { redirectLegacyRoute } from './utils/app/redirect-legacy-route';
 
 import './styles/tailwind.css';
-import { MatchesErrorBoundary } from './routes/matches/_route.error';
-import { PlayersErrorBoundary } from './routes/players/_route.error';
-import { redirectLegacyRoute } from './utils/app/redirect-legacy-route';
 
 const container = document.getElementById('root');
 if (!container) throw Error('Missing root element!');
@@ -49,23 +44,21 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            loader: tablesLoader(queryClient),
-            element: <TablesRoute />,
             handle: { viewPath: '' },
+            loader: tablesLoader(queryClient),
+            lazy: () => import('./routes/tables/_route'),
           },
           {
             path: 'spieler',
-            loader: playersLoader(queryClient),
-            element: <PlayersRoute />,
-            errorElement: <PlayersErrorBoundary />,
             handle: { viewPath: 'spieler' },
+            loader: playersLoader(queryClient),
+            lazy: () => import('./routes/players/_route'),
           },
           {
             path: 'spiel',
-            loader: matchesLoader(queryClient),
-            element: <MatchesRoute />,
-            errorElement: <MatchesErrorBoundary />,
             handle: { viewPath: 'spiel' },
+            loader: matchesLoader(queryClient),
+            lazy: () => import('./routes/matches/_route'),
           },
           {
             path: 'tipps',

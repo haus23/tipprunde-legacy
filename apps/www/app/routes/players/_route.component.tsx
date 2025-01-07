@@ -20,7 +20,7 @@ import { usePlayers } from '#/utils/app/players';
 import { formatDate } from '#/utils/misc';
 import type { playersLoader } from './_route.data';
 
-export default function PlayersRoute() {
+export function PlayersRoute() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const championship = useChampionship();
