@@ -9,6 +9,9 @@
   "scripts": {
     "dev": "node --watch --env-file=.env --experimental-strip-types server.ts",
     "test": "node --env-file=.env node_modules/vitest/vitest.mjs",
+    "build": "esbuild server.ts --bundle --platform=node --packages=external --outfile=dist/server.js --format=esm",
+    "preview": "node --env-file=.env dist/server.js",
+    "start": "node dist/server.js",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -21,6 +24,7 @@
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
     "@types/express": "^5.0.0",
+    "@types/node": "^22.10.5",
     "@types/supertest": "^6.0.2",
     "esbuild": "^0.24.2",
     "supertest": "^7.0.0",

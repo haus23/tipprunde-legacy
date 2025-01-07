@@ -7,6 +7,7 @@
   },
   "scripts": {
     "build": "turbo build",
+    "preview": "turbo preview",
     "dev": "turbo dev",
     "lint": "biome check --write",
     "typecheck": "turbo typecheck"
