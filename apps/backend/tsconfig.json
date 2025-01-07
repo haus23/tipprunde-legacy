@@ -1,0 +1,24 @@
+{
+  "include": ["server.ts", "src/**/*", "test/**/*"],
+  "compilerOptions": {
+    // Base
+    "esModuleInterop": true,
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "allowJs": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    // Node
+    "allowImportingTsExtensions": true,
+    "module": "Preserve",
+    "noEmit": true,
+    "skipLibCheck": true,
+
+    // DX
+    "paths": {
+      "#/*": ["./src/*"]
+    }
+  }
+}
