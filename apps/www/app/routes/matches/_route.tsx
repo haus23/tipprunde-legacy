@@ -59,7 +59,12 @@ export default function MatchesRoute() {
                   .filter((m) => m.roundId === r.id)
                   .map((m) => (
                     <SelectItem value={m.id} key={m.id}>
-                      {`${teams[m.hometeamId]?.shortname || 'TBA'} - ${teams[m.awayteamId]?.shortname || 'TBA'}`}
+                      <div className="flex gap-x-2 items-center">
+                        <span>{`${teams[m.hometeamId]?.shortname || 'TBA'} - ${teams[m.awayteamId]?.shortname || 'TBA'}`}</span>
+                        {m.result !== '' && (
+                          <span className="text-subtle-foreground text-xs font-semibold">{`(${m.points} Pkt)`}</span>
+                        )}
+                      </div>
                     </SelectItem>
                   ))}
               </SelectGroup>

@@ -103,7 +103,9 @@ export function SelectItem({
       {...focusProps}
       {...{ 'data-focus-visible': isFocusVisible || undefined }}
     >
-      <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+      <SelectPrimitive.ItemText asChild>
+        <div className="grow">{children}</div>
+      </SelectPrimitive.ItemText>
       <SelectPrimitive.ItemIndicator>
         <CheckIcon className="h-6" />
       </SelectPrimitive.ItemIndicator>
