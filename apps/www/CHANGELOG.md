@@ -1,5 +1,12 @@
 # www
 
+## 0.11.1
+
+### Patch Changes
+
+- e514047: Extend workspace tsconfig.
+- 90b6c4f: Add workaround. See https://github.com/pnpm/pnpm/issues/7158
+
 ## 0.11.0
 
 ### Minor Changes
