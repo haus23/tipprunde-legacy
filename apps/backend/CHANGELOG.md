@@ -1,5 +1,11 @@
 # backend
 
+## 0.14.2
+
+### Patch Changes
+
+- Integrate tipprunde-www into legacy monorepo.
+
 ## v0.14.1
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.14.0...v0.14.1)
@@ -215,7 +221,7 @@
 - Update nitro. ([263169d](https://github.com/haus23/tipprunde-backend/commit/263169d))
 - Upgrade typescript. ([3c7e931](https://github.com/haus23/tipprunde-backend/commit/3c7e931))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -223,13 +229,12 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.3...v0.9.4)
 
-
 ### 🏡 Chore
 
-  - **cache:** Make cache age configurable. ([61ffc5b](https://github.com/haus23/tipprunde-backend/commit/61ffc5b))
-  - **cache:** Enable http caching for ten minutes. ([2a225f8](https://github.com/haus23/tipprunde-backend/commit/2a225f8))
+- **cache:** Make cache age configurable. ([61ffc5b](https://github.com/haus23/tipprunde-backend/commit/61ffc5b))
+- **cache:** Enable http caching for ten minutes. ([2a225f8](https://github.com/haus23/tipprunde-backend/commit/2a225f8))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -237,16 +242,15 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.2...v0.9.3)
 
-
 ### 🩹 Fixes
 
-  - Add missing result (aligned with updated/fixed types). ([648f0a1](https://github.com/haus23/tipprunde-backend/commit/648f0a1))
+- Add missing result (aligned with updated/fixed types). ([648f0a1](https://github.com/haus23/tipprunde-backend/commit/648f0a1))
 
 ### 🏡 Chore
 
-  - Update tipprunde types. ([bdcf698](https://github.com/haus23/tipprunde-backend/commit/bdcf698))
+- Update tipprunde types. ([bdcf698](https://github.com/haus23/tipprunde-backend/commit/bdcf698))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -254,16 +258,15 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.1...v0.9.2)
 
-
 ### 💅 Refactors
 
-  - Align with current tips. ([ff80a68](https://github.com/haus23/tipprunde-backend/commit/ff80a68))
+- Align with current tips. ([ff80a68](https://github.com/haus23/tipprunde-backend/commit/ff80a68))
 
 ### 🏡 Chore
 
-  - Update tipprunde types. ([b7bf0f7](https://github.com/haus23/tipprunde-backend/commit/b7bf0f7))
+- Update tipprunde types. ([b7bf0f7](https://github.com/haus23/tipprunde-backend/commit/b7bf0f7))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -271,12 +274,11 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.9.0...v0.9.1)
 
-
 ### 🩹 Fixes
 
-  - Do not cast undefined to number. ([bea10b6](https://github.com/haus23/tipprunde-backend/commit/bea10b6))
+- Do not cast undefined to number. ([bea10b6](https://github.com/haus23/tipprunde-backend/commit/bea10b6))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -284,25 +286,24 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.8.0...v0.9.0)
 
-
 ### 🚀 Enhancements
 
-  - Add new query tips-by-match. ([37f45ef](https://github.com/haus23/tipprunde-backend/commit/37f45ef))
+- Add new query tips-by-match. ([37f45ef](https://github.com/haus23/tipprunde-backend/commit/37f45ef))
 
 ### 🩹 Fixes
 
-  - Allow only get requests. ([63f5961](https://github.com/haus23/tipprunde-backend/commit/63f5961))
-  - Better ordering, 1st played, 2nd date ([b9f9d61](https://github.com/haus23/tipprunde-backend/commit/b9f9d61))
+- Allow only get requests. ([63f5961](https://github.com/haus23/tipprunde-backend/commit/63f5961))
+- Better ordering, 1st played, 2nd date ([b9f9d61](https://github.com/haus23/tipprunde-backend/commit/b9f9d61))
 
 ### 💅 Refactors
 
-  - Align with upgraded tips. ([f48a162](https://github.com/haus23/tipprunde-backend/commit/f48a162))
+- Align with upgraded tips. ([f48a162](https://github.com/haus23/tipprunde-backend/commit/f48a162))
 
 ### 🏡 Chore
 
-  - Upgrade tipprunde types. ([14572c9](https://github.com/haus23/tipprunde-backend/commit/14572c9))
+- Upgrade tipprunde types. ([14572c9](https://github.com/haus23/tipprunde-backend/commit/14572c9))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -310,16 +311,15 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.7.0...v0.8.0)
 
-
 ### 💅 Refactors
 
-  - Align with upgraded type. Rename route. ([ba3d67c](https://github.com/haus23/tipprunde-backend/commit/ba3d67c))
+- Align with upgraded type. Rename route. ([ba3d67c](https://github.com/haus23/tipprunde-backend/commit/ba3d67c))
 
 ### 🏡 Chore
 
-  - Upgrade tipprunde types. ([7efe6f3](https://github.com/haus23/tipprunde-backend/commit/7efe6f3))
+- Upgrade tipprunde types. ([7efe6f3](https://github.com/haus23/tipprunde-backend/commit/7efe6f3))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -327,17 +327,16 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.6.0...v0.7.0)
 
-
 ### 🚀 Enhancements
 
-  - Query tips by player ([354ecca](https://github.com/haus23/tipprunde-backend/commit/354ecca))
-  - Add caching strategy with cached query functions. ([56ea764](https://github.com/haus23/tipprunde-backend/commit/56ea764))
+- Query tips by player ([354ecca](https://github.com/haus23/tipprunde-backend/commit/354ecca))
+- Add caching strategy with cached query functions. ([56ea764](https://github.com/haus23/tipprunde-backend/commit/56ea764))
 
 ### 🏡 Chore
 
-  - Ensure latest pnpm version. ([75f6a9a](https://github.com/haus23/tipprunde-backend/commit/75f6a9a))
+- Ensure latest pnpm version. ([75f6a9a](https://github.com/haus23/tipprunde-backend/commit/75f6a9a))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -345,17 +344,16 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.5.0...v0.6.0)
 
-
 ### 🚀 Enhancements
 
-  - Add query to get completed match data by championship. ([1097da4](https://github.com/haus23/tipprunde-backend/commit/1097da4))
+- Add query to get completed match data by championship. ([1097da4](https://github.com/haus23/tipprunde-backend/commit/1097da4))
 
 ### 🏡 Chore
 
-  - Update core libs. ([0ce491e](https://github.com/haus23/tipprunde-backend/commit/0ce491e))
-  - Upgrade tipprunde types. ([3ee43fc](https://github.com/haus23/tipprunde-backend/commit/3ee43fc))
+- Update core libs. ([0ce491e](https://github.com/haus23/tipprunde-backend/commit/0ce491e))
+- Upgrade tipprunde types. ([3ee43fc](https://github.com/haus23/tipprunde-backend/commit/3ee43fc))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -363,16 +361,15 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.4.1...v0.5.0)
 
-
 ### 💅 Refactors
 
-  - Align with tipprunde types. now resolves #1 ([#1](https://github.com/haus23/tipprunde-backend/issues/1))
+- Align with tipprunde types. now resolves #1 ([#1](https://github.com/haus23/tipprunde-backend/issues/1))
 
 ### 🏡 Chore
 
-  - Upgrade tipprunde types ([439e4e5](https://github.com/haus23/tipprunde-backend/commit/439e4e5))
+- Upgrade tipprunde types ([439e4e5](https://github.com/haus23/tipprunde-backend/commit/439e4e5))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -380,12 +377,11 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.4.0...v0.4.1)
 
-
 ### 🩹 Fixes
 
-  - Key for the tips is the playerId ([b523e0e](https://github.com/haus23/tipprunde-backend/commit/b523e0e))
+- Key for the tips is the playerId ([b523e0e](https://github.com/haus23/tipprunde-backend/commit/b523e0e))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -393,17 +389,16 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.3.0...v0.4.0)
 
-
 ### 💅 Refactors
 
-  - Aligned with changed model data. ([c123a7f](https://github.com/haus23/tipprunde-backend/commit/c123a7f))
+- Aligned with changed model data. ([c123a7f](https://github.com/haus23/tipprunde-backend/commit/c123a7f))
 
 ### 🏡 Chore
 
-  - Upgrade tipprunde types ([bbc9c46](https://github.com/haus23/tipprunde-backend/commit/bbc9c46))
-  - Readding h3. autoimports not working else. ([b1df597](https://github.com/haus23/tipprunde-backend/commit/b1df597))
+- Upgrade tipprunde types ([bbc9c46](https://github.com/haus23/tipprunde-backend/commit/bbc9c46))
+- Readding h3. autoimports not working else. ([b1df597](https://github.com/haus23/tipprunde-backend/commit/b1df597))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -411,27 +406,26 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.2.1...v0.3.0)
 
-
 ### 🩹 Fixes
 
-  - Add cors headers again ([f47e704](https://github.com/haus23/tipprunde-backend/commit/f47e704))
+- Add cors headers again ([f47e704](https://github.com/haus23/tipprunde-backend/commit/f47e704))
 
 ### 💅 Refactors
 
-  - Drop all caching by now ([ee19ef8](https://github.com/haus23/tipprunde-backend/commit/ee19ef8))
-  - Change api version prefix to v1 ([e7a382b](https://github.com/haus23/tipprunde-backend/commit/e7a382b))
-  - Validate h3 event. no need to import. ([c90d947](https://github.com/haus23/tipprunde-backend/commit/c90d947))
-  - Use console to log ([520bc22](https://github.com/haus23/tipprunde-backend/commit/520bc22))
-  - Drop unused explicit deps ([5d8b9f9](https://github.com/haus23/tipprunde-backend/commit/5d8b9f9))
-  - Use type imports ([9876fc5](https://github.com/haus23/tipprunde-backend/commit/9876fc5))
-  - Add route level caching again. mainly for dev purposes. see #2 ([#2](https://github.com/haus23/tipprunde-backend/issues/2))
+- Drop all caching by now ([ee19ef8](https://github.com/haus23/tipprunde-backend/commit/ee19ef8))
+- Change api version prefix to v1 ([e7a382b](https://github.com/haus23/tipprunde-backend/commit/e7a382b))
+- Validate h3 event. no need to import. ([c90d947](https://github.com/haus23/tipprunde-backend/commit/c90d947))
+- Use console to log ([520bc22](https://github.com/haus23/tipprunde-backend/commit/520bc22))
+- Drop unused explicit deps ([5d8b9f9](https://github.com/haus23/tipprunde-backend/commit/5d8b9f9))
+- Use type imports ([9876fc5](https://github.com/haus23/tipprunde-backend/commit/9876fc5))
+- Add route level caching again. mainly for dev purposes. see #2 ([#2](https://github.com/haus23/tipprunde-backend/issues/2))
 
 ### 🏡 Chore
 
-  - Update deps incl nitro. recreate lockfile ([07c8f68](https://github.com/haus23/tipprunde-backend/commit/07c8f68))
-  - Add readme with deployment hints ([9bc649a](https://github.com/haus23/tipprunde-backend/commit/9bc649a))
+- Update deps incl nitro. recreate lockfile ([07c8f68](https://github.com/haus23/tipprunde-backend/commit/07c8f68))
+- Add readme with deployment hints ([9bc649a](https://github.com/haus23/tipprunde-backend/commit/9bc649a))
 
-### ❤️  Contributors
+### ❤️ Contributors
 
 - Micha Buchholz <micha@haus23.net>
 
@@ -439,102 +433,96 @@
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.2.0...v0.2.1)
 
-
 ### 🚀 Enhancements
 
-  - Add teams with current-matches route ([9580632](https://github.com/haus23/tipprunde-backend/commit/9580632))
+- Add teams with current-matches route ([9580632](https://github.com/haus23/tipprunde-backend/commit/9580632))
 
 ## v0.2.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.1.2...v0.2.0)
 
-
 ### 🚀 Enhancements
 
-  - Implement querying current matches with tips. ([fbcabc3](https://github.com/haus23/tipprunde-backend/commit/fbcabc3))
+- Implement querying current matches with tips. ([fbcabc3](https://github.com/haus23/tipprunde-backend/commit/fbcabc3))
 
 ### 💅 Refactors
 
-  - Remove handler caching. the routes are cached as well. ([57cc833](https://github.com/haus23/tipprunde-backend/commit/57cc833))
+- Remove handler caching. the routes are cached as well. ([57cc833](https://github.com/haus23/tipprunde-backend/commit/57cc833))
 
 ### 🏡 Chore
 
-  - Update trivial deps changes ([701fb54](https://github.com/haus23/tipprunde-backend/commit/701fb54))
-  - Update tipprunde types ([7008b74](https://github.com/haus23/tipprunde-backend/commit/7008b74))
-  - Update tipprunde types ([cbc9ff0](https://github.com/haus23/tipprunde-backend/commit/cbc9ff0))
+- Update trivial deps changes ([701fb54](https://github.com/haus23/tipprunde-backend/commit/701fb54))
+- Update tipprunde types ([7008b74](https://github.com/haus23/tipprunde-backend/commit/7008b74))
+- Update tipprunde types ([cbc9ff0](https://github.com/haus23/tipprunde-backend/commit/cbc9ff0))
 
 ## v0.1.2
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.1.1...v0.1.2)
 
-
 ### 🚀 Enhancements
 
-  - Add firebase query logging ([c0c87a5](https://github.com/haus23/tipprunde-backend/commit/c0c87a5))
+- Add firebase query logging ([c0c87a5](https://github.com/haus23/tipprunde-backend/commit/c0c87a5))
 
 ### 🩹 Fixes
 
-  - Cache players query as well ([140837c](https://github.com/haus23/tipprunde-backend/commit/140837c))
+- Cache players query as well ([140837c](https://github.com/haus23/tipprunde-backend/commit/140837c))
 
 ## v0.1.1
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.1.0...v0.1.1)
 
-
 ### 🚀 Enhancements
 
-  - Increase swr cache time to one hour ([3779154](https://github.com/haus23/tipprunde-backend/commit/3779154))
+- Increase swr cache time to one hour ([3779154](https://github.com/haus23/tipprunde-backend/commit/3779154))
 
 ### 🩹 Fixes
 
-  - Update env var name ([bb7c0f8](https://github.com/haus23/tipprunde-backend/commit/bb7c0f8))
+- Update env var name ([bb7c0f8](https://github.com/haus23/tipprunde-backend/commit/bb7c0f8))
 
 ### 💅 Refactors
 
-  - Align config reading. ([e1cfe94](https://github.com/haus23/tipprunde-backend/commit/e1cfe94))
-  - Switch to default cachedHandler and cachedFunction helpers ([11de80a](https://github.com/haus23/tipprunde-backend/commit/11de80a))
+- Align config reading. ([e1cfe94](https://github.com/haus23/tipprunde-backend/commit/e1cfe94))
+- Switch to default cachedHandler and cachedFunction helpers ([11de80a](https://github.com/haus23/tipprunde-backend/commit/11de80a))
 
 ### 🏡 Chore
 
-  - Update deps. ([c743923](https://github.com/haus23/tipprunde-backend/commit/c743923))
+- Update deps. ([c743923](https://github.com/haus23/tipprunde-backend/commit/c743923))
 
 ## v0.1.0
 
 [compare changes](https://github.com/haus23/tipprunde-backend/compare/v0.0.0...v0.1.0)
 
-
 ### 🚀 Enhancements
 
-  - Add static homepage. remove initial route. ([67e8e89](https://github.com/haus23/tipprunde-backend/commit/67e8e89))
-  - Add first api route, v2 players route ([0f38836](https://github.com/haus23/tipprunde-backend/commit/0f38836))
-  - Cache event handler ([dcf8bef](https://github.com/haus23/tipprunde-backend/commit/dcf8bef))
-  - Add championships query and route ([f47928f](https://github.com/haus23/tipprunde-backend/commit/f47928f))
-  - Create chained storage driver - registered via plugin. ([88ccca5](https://github.com/haus23/tipprunde-backend/commit/88ccca5))
-  - Add utility to extract and validate championship from request ([bf1d22a](https://github.com/haus23/tipprunde-backend/commit/bf1d22a))
-  - Championship ranking route ([8d98d1a](https://github.com/haus23/tipprunde-backend/commit/8d98d1a))
-  - Add cors headers for api queries ([e392278](https://github.com/haus23/tipprunde-backend/commit/e392278))
+- Add static homepage. remove initial route. ([67e8e89](https://github.com/haus23/tipprunde-backend/commit/67e8e89))
+- Add first api route, v2 players route ([0f38836](https://github.com/haus23/tipprunde-backend/commit/0f38836))
+- Cache event handler ([dcf8bef](https://github.com/haus23/tipprunde-backend/commit/dcf8bef))
+- Add championships query and route ([f47928f](https://github.com/haus23/tipprunde-backend/commit/f47928f))
+- Create chained storage driver - registered via plugin. ([88ccca5](https://github.com/haus23/tipprunde-backend/commit/88ccca5))
+- Add utility to extract and validate championship from request ([bf1d22a](https://github.com/haus23/tipprunde-backend/commit/bf1d22a))
+- Championship ranking route ([8d98d1a](https://github.com/haus23/tipprunde-backend/commit/8d98d1a))
+- Add cors headers for api queries ([e392278](https://github.com/haus23/tipprunde-backend/commit/e392278))
 
 ### 🩹 Fixes
 
-  - Need to install h3 to make auto imports work. ([a127e7c](https://github.com/haus23/tipprunde-backend/commit/a127e7c))
-  - Add default values ([f571508](https://github.com/haus23/tipprunde-backend/commit/f571508))
-  - Proper typing for query fn args ([645b210](https://github.com/haus23/tipprunde-backend/commit/645b210))
-  - Parse instead of non-null assertion ([3ec1c46](https://github.com/haus23/tipprunde-backend/commit/3ec1c46))
+- Need to install h3 to make auto imports work. ([a127e7c](https://github.com/haus23/tipprunde-backend/commit/a127e7c))
+- Add default values ([f571508](https://github.com/haus23/tipprunde-backend/commit/f571508))
+- Proper typing for query fn args ([645b210](https://github.com/haus23/tipprunde-backend/commit/645b210))
+- Parse instead of non-null assertion ([3ec1c46](https://github.com/haus23/tipprunde-backend/commit/3ec1c46))
 
 ### 💅 Refactors
 
-  - Configure caching. ([5169fe9](https://github.com/haus23/tipprunde-backend/commit/5169fe9))
-  - Create cache helper with sane defaults ([c3aedf3](https://github.com/haus23/tipprunde-backend/commit/c3aedf3))
-  - Create business logic query helper ([0aa68b6](https://github.com/haus23/tipprunde-backend/commit/0aa68b6))
-  - Limit http method to get ([59fc574](https://github.com/haus23/tipprunde-backend/commit/59fc574))
+- Configure caching. ([5169fe9](https://github.com/haus23/tipprunde-backend/commit/5169fe9))
+- Create cache helper with sane defaults ([c3aedf3](https://github.com/haus23/tipprunde-backend/commit/c3aedf3))
+- Create business logic query helper ([0aa68b6](https://github.com/haus23/tipprunde-backend/commit/0aa68b6))
+- Limit http method to get ([59fc574](https://github.com/haus23/tipprunde-backend/commit/59fc574))
 
 ### 🏡 Chore
 
-  - Add changelog generator. ([a627cc3](https://github.com/haus23/tipprunde-backend/commit/a627cc3))
-  - Configure server address and port ([6bc4d9e](https://github.com/haus23/tipprunde-backend/commit/6bc4d9e))
-  - Configure formatting. ([a80a34c](https://github.com/haus23/tipprunde-backend/commit/a80a34c))
-  - Install and prepare firebase sdk usage. ([42c2301](https://github.com/haus23/tipprunde-backend/commit/42c2301))
-  - Add tipprunde types. need to overhaul ts config. ([0c7c2b5](https://github.com/haus23/tipprunde-backend/commit/0c7c2b5))
-  - Update deps ([fd762ea](https://github.com/haus23/tipprunde-backend/commit/fd762ea))
-  - Update tsconfig. ([cfe640e](https://github.com/haus23/tipprunde-backend/commit/cfe640e))
-
+- Add changelog generator. ([a627cc3](https://github.com/haus23/tipprunde-backend/commit/a627cc3))
+- Configure server address and port ([6bc4d9e](https://github.com/haus23/tipprunde-backend/commit/6bc4d9e))
+- Configure formatting. ([a80a34c](https://github.com/haus23/tipprunde-backend/commit/a80a34c))
+- Install and prepare firebase sdk usage. ([42c2301](https://github.com/haus23/tipprunde-backend/commit/42c2301))
+- Add tipprunde types. need to overhaul ts config. ([0c7c2b5](https://github.com/haus23/tipprunde-backend/commit/0c7c2b5))
+- Update deps ([fd762ea](https://github.com/haus23/tipprunde-backend/commit/fd762ea))
+- Update tsconfig. ([cfe640e](https://github.com/haus23/tipprunde-backend/commit/cfe640e))
