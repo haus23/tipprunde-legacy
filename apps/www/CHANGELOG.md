@@ -1,5 +1,12 @@
 # www
 
+## 0.12.1
+
+### Patch Changes
+
+- [941f30f](https://github.com/haus23/tipprunde-legacy/commit/941f30f): Reduce initial page load.
+- [5a09432](https://github.com/haus23/tipprunde-legacy/commit/5a09432): Add sourcemaps.
+
 ## 0.12.0
 
 ### Minor Changes
