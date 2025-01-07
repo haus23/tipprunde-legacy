@@ -5,6 +5,7 @@ import { VisuallyHidden } from 'react-aria';
 import { useLocation } from 'react-router';
 
 import { useOptionalChampionship } from '#/utils/app/championship';
+import { useChampionships } from '#/utils/app/championships';
 import { Button } from '../(ui)/atoms/button';
 import { Link, NavLink } from '../(ui)/atoms/link';
 import {
@@ -30,6 +31,11 @@ export function NavMobile() {
   const { key } = useLocation();
 
   const championship = useOptionalChampionship();
+  const championships = useChampionships();
+
+  const championshipRouteSegment =
+    championship?.id &&
+    (championship.id === championships[0].id ? '' : championship.id);
 
   useEffect(() => {
     function closeDialog(ev: MediaQueryListEvent) {
@@ -87,7 +93,7 @@ export function NavMobile() {
                       className="group my-1 block w-full rounded px-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                       <NavLink
-                        to={`/${[championship?.id, item.viewSegment].filter(Boolean).join('/')}`}
+                        to={`/${[championshipRouteSegment, item.viewSegment].filter(Boolean).join('/')}`}
                         end={item.end}
                       >
                         <span className="block border-l-4 border-transparent px-4 py-2 group-hover:border-line-hover group-aria-[current=page]:border-primary-line-hover">
