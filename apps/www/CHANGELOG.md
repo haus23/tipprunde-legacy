@@ -1,5 +1,15 @@
 # www
 
+## 0.12.0
+
+### Minor Changes
+
+- 479eba7: Display matchpoints in select.
+
+### Patch Changes
+
+- 881c2e1: Add missing space.
+
 ## 0.11.1
 
 ### Patch Changes
