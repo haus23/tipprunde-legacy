@@ -1,8 +1,0 @@
-# Dependencies
-node_modules/
-
-# Development environment
-.env
-
-# Cache
-.cache/
