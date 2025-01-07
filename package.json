@@ -9,6 +9,7 @@
     "build": "turbo build",
     "preview": "turbo preview",
     "dev": "turbo dev",
+    "test": "turbo test",
     "lint": "biome check --write",
     "typecheck": "turbo typecheck"
   },
