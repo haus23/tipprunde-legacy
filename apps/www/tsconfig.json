@@ -1,26 +1,12 @@
 {
+  "extends": ["@haus23/tipprunde-tsconfig/app.json"],
   "include": ["app"],
   "compilerOptions": {
-    "target": "ES2023",
-    "useDefineForClassFields": true,
-    "skipLibCheck": true,
-    "verbatimModuleSyntax": true,
+    /* Loose linting */
+    "noUncheckedIndexedAccess": false,
 
-    /* Bundler mode */
-    "module": "Preserve",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-    "jsx": "react-jsx",
+    /* Vite */
     "types": ["vite/client"],
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
 
     /* DX */
     "paths": {

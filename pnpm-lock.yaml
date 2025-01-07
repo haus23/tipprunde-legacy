@@ -94,6 +94,9 @@ importers:
         specifier: ^3.24.1
         version: 3.24.1
     devDependencies:
+      '@haus23/tipprunde-tsconfig':
+        specifier: workspace:^
+        version: link:../../packages/tsconfig
       '@types/react':
         specifier: ^19.0.2
         version: 19.0.3
