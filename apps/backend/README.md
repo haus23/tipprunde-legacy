@@ -1,5 +1,12 @@
 # Projekt: Haus23 Tipprunde
 
+## Release Stopper
+
+- Fully API implementation
+- CORS
+- Compression
+- Rethink Docker files (and remove compose-file)
+
 ### Deployment
 
     git pull

@@ -1,21 +1,14 @@
 {
   "name": "@haus23/tipprunde-backend",
-  "version": "0.14.1",
   "description": "Backend Server der Haus23 Tipprunde",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/haus23/tipprunde-backend.git"
-  },
+  "version": "0.14.1",
   "type": "module",
   "imports": {
     "#app/*": "./src/*"
   },
   "scripts": {
     "dev": "node --watch --env-file=.env --experimental-strip-types server.ts",
-    "test": "node --env-file=.env node_modules/vitest/vitest.mjs",
-    "build": "nitropack build",
-    "preview": "node .output/server/index.mjs"
+    "test": "node --env-file=.env node_modules/vitest/vitest.mjs"
   },
   "dependencies": {
     "@haus23/tipprunde-types": "^0.13.1",
@@ -25,12 +18,10 @@
     "valibot": "1.0.0-beta.9"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
     "@types/express": "^5.0.0",
     "@types/supertest": "^6.0.2",
     "supertest": "^7.0.0",
     "typescript": "~5.7.2",
     "vitest": "^2.1.8"
-  },
-  "packageManager": "pnpm@9.15.2"
+  }
 }
