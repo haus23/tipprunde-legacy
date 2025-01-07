@@ -1,9 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.5/schema.json",
-  "changelog": [
-    "@changesets/changelog-github",
-    { "repo": "haus23/tipprunde-legacy" }
-  ],
+  "changelog": "./custom-changelog-git.js",
   "commit": false,
   "fixed": [],
   "linked": [],
