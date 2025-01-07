@@ -48,8 +48,7 @@ export default function MatchesRoute() {
         <Select value={match.id} onValueChange={handleSelect}>
           <SelectTrigger>
             <SelectValue>
-              {teams[match.hometeamId]?.shortname || 'TBA'} -
-              {teams[match.awayteamId]?.shortname || 'TBA'}
+              {`${teams[match.hometeamId]?.shortname || 'TBA'} - ${teams[match.awayteamId]?.shortname || 'TBA'}`}
             </SelectValue>
           </SelectTrigger>
           <SelectContent>
@@ -60,8 +59,7 @@ export default function MatchesRoute() {
                   .filter((m) => m.roundId === r.id)
                   .map((m) => (
                     <SelectItem value={m.id} key={m.id}>
-                      {teams[m.hometeamId]?.shortname || 'TBA'} -
-                      {teams[m.awayteamId]?.shortname || 'TBA'}
+                      {`${teams[m.hometeamId]?.shortname || 'TBA'} - ${teams[m.awayteamId]?.shortname || 'TBA'}`}
                     </SelectItem>
                   ))}
               </SelectGroup>
