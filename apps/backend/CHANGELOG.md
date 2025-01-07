@@ -1,5 +1,16 @@
 # backend
 
+## 0.15.0
+
+### Minor Changes
+
+- [cfd1027](https://github.com/haus23/tipprunde-legacy/commit/cfd1027): Configure workflow scripts.
+
+### Patch Changes
+
+- [6c2b467](https://github.com/haus23/tipprunde-legacy/commit/6c2b467): Switch to esbuild.
+- [802bf5d](https://github.com/haus23/tipprunde-legacy/commit/802bf5d): Switch to Node LTS version.
+
 ## 0.14.2
 
 ### Patch Changes
