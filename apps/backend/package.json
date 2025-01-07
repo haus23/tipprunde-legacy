@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "node --watch --env-file=.env --experimental-strip-types server.ts",
-    "test": "node --env-file=.env node_modules/vitest/vitest.mjs"
+    "test": "node --env-file=.env node_modules/vitest/vitest.mjs",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@haus23/tipprunde-types": "^0.13.1",
@@ -18,8 +19,10 @@
     "valibot": "1.0.0-beta.9"
   },
   "devDependencies": {
+    "@haus23/tipprunde-tsconfig": "workspace:^",
     "@types/express": "^5.0.0",
     "@types/supertest": "^6.0.2",
+    "esbuild": "^0.24.2",
     "supertest": "^7.0.0",
     "typescript": "~5.7.2",
     "vitest": "^2.1.8"

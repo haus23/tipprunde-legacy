@@ -1,20 +1,9 @@
 {
+  "extends": ["@haus23/tipprunde-tsconfig/node.json"],
   "include": ["server.ts", "src/**/*", "test/**/*"],
   "compilerOptions": {
-    // Base
-    "esModuleInterop": true,
-    "target": "ES2022",
-    "lib": ["ES2022"],
-    "allowJs": true,
-    "moduleDetection": "force",
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-
-    // Node
-    "allowImportingTsExtensions": true,
-    "module": "Preserve",
-    "noEmit": true,
-    "skipLibCheck": true,
+    // Loose linting
+    "noUncheckedIndexedAccess": false,
 
     // DX
     "paths": {
