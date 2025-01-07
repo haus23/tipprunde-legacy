@@ -9,6 +9,7 @@
 - Remove query logs (backend/queries)
 - Style the Hydrate-Fallback
 - Performance/A11y/SEO
+  - Need to check all pages (/spieler)
 
 ### Future
 
