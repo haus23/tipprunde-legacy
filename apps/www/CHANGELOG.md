@@ -1,5 +1,11 @@
 # www
 
+## 0.14.0
+
+### Minor Changes
+
+- [affa7c4](https://github.com/haus23/tipprunde-legacy/commit/affa7c4): Switch to tipprunde-model package.
+
 ## 0.13.0
 
 ### Minor Changes
