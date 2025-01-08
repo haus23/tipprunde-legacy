@@ -1,5 +1,16 @@
 # www
 
+## 0.15.0
+
+### Minor Changes
+
+- [c73b906](https://github.com/haus23/tipprunde-legacy/commit/c73b906): Refactor entities and some cleanup
+
+### Patch Changes
+
+- Updated dependencies [c73b906]
+  - @haus23/tipprunde-model@0.16.0
+
 ## 0.14.1
 
 ### Patch Changes
