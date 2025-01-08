@@ -1,30 +1,18 @@
 {
-  "name": "@haus23/tipprunde-types",
-  "description": "Typ-System der Haus23 Tipprunde",
+  "name": "@haus23/tipprunde-model",
+  "description": "Domain-Modell der Haus23 Tipprunde",
   "version": "0.13.1",
-  "author": "Micha Buchholz",
-  "license": "MIT",
-  "homepage": "https://github.com/haus23/tipprunde-types#readme",
-  "bugs": {
-    "url": "https://github.com/haus23/tipprunde-types/issues"
-  },
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     }
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts",
     "test": "vitest",
     "typecheck": "tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/haus23/tipprunde-types.git"
   },
   "dependencies": {
     "zod": "^3.22.3"
@@ -34,8 +22,5 @@
     "tsup": "^7.2.0",
     "typescript": "~5.2.2",
     "vitest": "^0.34.6"
-  },
-  "engines": {
-    "node": ">=16"
   }
 }
