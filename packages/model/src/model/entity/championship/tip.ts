@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Result } from '~/primitives';
+import { Result } from '../../../primitives';
 
 // Firebase collection path: /championships/[id]/tips
 

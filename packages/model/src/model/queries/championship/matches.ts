@@ -1,8 +1,8 @@
 import { z } from 'zod';
-import { Match } from '~/model/entity/championship/match';
-import { Round } from '~/model/entity/championship/round';
-import { League } from '~/model/entity/league';
-import { Team } from '~/model/entity/team';
+import { Match } from '../../entity/championship/match';
+import { Round } from '../../entity/championship/round';
+import { League } from '../../entity/league';
+import { Team } from '../../entity/team';
 
 export const Matches = z.object({
   rounds: z.array(Round),

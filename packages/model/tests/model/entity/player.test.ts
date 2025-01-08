@@ -1,5 +1,5 @@
-import { Account } from '~/model/entity/account';
-import { it, expect } from 'vitest';
+import { expect, it } from 'vitest';
+import { Account } from '../../../src/model/entity/account';
 
 it('can have empty email prop', () => {
   const mock = { id: 'micha', name: 'Micha', email: '' };

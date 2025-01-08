@@ -1,5 +1,5 @@
-import { it, expect } from 'vitest';
-import { ChampionshipId, MatchDate, Result } from '~/primitives';
+import { expect, it } from 'vitest';
+import { ChampionshipId, MatchDate, Result } from '../src/primitives';
 
 it('validates championship ids', () => {
   expect(ChampionshipId.safeParse('hr2223').success).toBeTruthy();

@@ -1,6 +1,6 @@
-import { z } from 'zod';
-import { Account } from '~/model/entity/account';
-import { Member } from '~/model/entity/championship/member';
+import type { z } from 'zod';
+import { Account } from '../../entity/account';
+import { Member } from '../../entity/championship/member';
 
 export const Player = Member.extend({
   account: Account,

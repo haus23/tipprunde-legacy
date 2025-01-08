@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Tip } from '~/model/entity/championship/tip';
+import { Tip } from '../../entity/championship/tip';
 
 export const MatchTips = z.object({
   matchId: z.string(),

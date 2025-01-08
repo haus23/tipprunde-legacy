@@ -1,10 +1,5 @@
 {
   "extends": ["@haus23/tipprunde-tsconfig/node.json"],
   "include": ["src", "tests"],
-  "compilerOptions": {
-    // DX
-    "paths": {
-      "~/*": ["./src/*"]
-    }
-  }
+  "compilerOptions": {}
 }

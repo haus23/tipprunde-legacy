@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Tip } from '~/model/entity/championship/tip';
+import { Tip } from '../../entity/championship/tip';
 
 export const CurrentTips = z.array(
   z.object({
@@ -8,7 +8,7 @@ export const CurrentTips = z.array(
     awayteam: z.string().optional(),
     result: z.string(),
     tips: z.record(Tip),
-  })
+  }),
 );
 
 export type CurrentTips = z.infer<typeof CurrentTips>;
