@@ -1,5 +1,11 @@
 # backend
 
+## 0.15.1
+
+### Patch Changes
+
+- [b2aaea8](https://github.com/haus23/tipprunde-legacy/commit/b2aaea8): Switch to workspace model project.
+
 ## 0.15.0
 
 ### Minor Changes
