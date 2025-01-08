@@ -1,5 +1,13 @@
 # model
 
+## 0.14.1
+
+### Patch Changes
+
+- [f916ebd](https://github.com/haus23/tipprunde-legacy/commit/f916ebd): Upgrade vitest.
+- [b541c66](https://github.com/haus23/tipprunde-legacy/commit/b541c66): Remove unused changelogen.
+- [7bd70db](https://github.com/haus23/tipprunde-legacy/commit/7bd70db): Align typescript version and extend workspace tsconfig.
+
 ## 0.14.0
 
 ### Minor Changes
