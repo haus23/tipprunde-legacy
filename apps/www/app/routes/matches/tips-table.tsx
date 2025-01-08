@@ -1,4 +1,4 @@
-import type { Match, Player, Tip } from '@haus23/tipprunde-types';
+import type { Match, Player, Tip } from '@haus23/tipprunde-model';
 import {
   ArrowDownIcon,
   ArrowUpIcon,

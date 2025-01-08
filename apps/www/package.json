@@ -9,7 +9,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@haus23/tipprunde-types": "^0.13.1",
+    "@haus23/tipprunde-model": "workspace:^",
     "@heroicons/react": "^2.2.0",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-dialog": "^1.1.4",

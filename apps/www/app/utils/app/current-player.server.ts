@@ -1,4 +1,4 @@
-import type { Player } from '@haus23/tipprunde-types';
+import type { Player } from '@haus23/tipprunde-model';
 import type { QueryClient } from '@tanstack/react-query';
 import { data } from 'react-router';
 import { accountsQuery } from '#/backend/queries';

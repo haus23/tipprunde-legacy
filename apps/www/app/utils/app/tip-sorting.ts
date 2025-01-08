@@ -1,4 +1,4 @@
-import type { Player, Tip } from '@haus23/tipprunde-types';
+import type { Player, Tip } from '@haus23/tipprunde-model';
 import { useCallback, useReducer } from 'react';
 
 const sortOrderValues = ['ascending', 'none', 'descending'] as const;

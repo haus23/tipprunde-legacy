@@ -6,7 +6,7 @@ import {
   Matches,
   Player,
   PlayerTips,
-} from '@haus23/tipprunde-types';
+} from '@haus23/tipprunde-model';
 import { queryOptions } from '@tanstack/react-query';
 import { data } from 'react-router';
 import { z } from 'zod';

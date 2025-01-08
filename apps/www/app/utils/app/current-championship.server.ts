@@ -1,4 +1,4 @@
-import type { Championship } from '@haus23/tipprunde-types';
+import type { Championship } from '@haus23/tipprunde-model';
 import { type Params, data } from 'react-router';
 
 export function getCurrentChampionship(
