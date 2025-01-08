@@ -15,7 +15,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@haus23/tipprunde-types": "^0.13.1",
+    "@haus23/tipprunde-model": "workspace:^",
     "express": "^5.0.1",
     "firebase-admin": "^13.0.2",
     "unstorage": "^1.14.4",

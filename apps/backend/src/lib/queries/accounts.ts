@@ -1,4 +1,4 @@
-import type { Account } from '@haus23/tipprunde-types';
+import type { Account } from '@haus23/tipprunde-model';
 
 import { cachedFunction } from '../cached.ts';
 import { db, modelConverter } from '../firebase/index.ts';

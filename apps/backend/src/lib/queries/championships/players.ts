@@ -1,4 +1,4 @@
-import type { Championship, Member } from '@haus23/tipprunde-types';
+import type { Championship, Member } from '@haus23/tipprunde-model';
 import { cachedFunction } from '#app/lib/cached.ts';
 import { db, modelConverter } from '#app/lib/firebase/index.ts';
 

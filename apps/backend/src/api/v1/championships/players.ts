@@ -1,4 +1,4 @@
-import { Account, type Player } from '@haus23/tipprunde-types';
+import { Account, type Player } from '@haus23/tipprunde-model';
 import type { Request, Response } from 'express';
 
 import { getAccounts } from '#app/lib/queries/accounts.ts';

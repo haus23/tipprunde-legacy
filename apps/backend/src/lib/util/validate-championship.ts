@@ -1,4 +1,4 @@
-import { type Championship, ChampionshipId } from '@haus23/tipprunde-types';
+import { type Championship, ChampionshipId } from '@haus23/tipprunde-model';
 import type { Request } from 'express';
 
 import { getChampionships } from '../queries/championships.ts';
