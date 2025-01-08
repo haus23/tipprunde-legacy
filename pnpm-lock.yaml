@@ -183,15 +183,18 @@ importers:
         specifier: ^3.22.3
         version: 3.24.1
     devDependencies:
+      '@haus23/tipprunde-tsconfig':
+        specifier: workspace:^
+        version: link:../tsconfig
       changelogen:
         specifier: ^0.5.5
         version: 0.5.7
       tsup:
         specifier: ^7.2.0
-        version: 7.3.0(postcss@8.4.49)(typescript@5.2.2)
+        version: 7.3.0(postcss@8.4.49)(typescript@5.7.2)
       typescript:
-        specifier: ~5.2.2
-        version: 5.2.2
+        specifier: ~5.7.2
+        version: 5.7.2
       vitest:
         specifier: ^0.34.6
         version: 0.34.6
@@ -4120,11 +4123,6 @@ packages:
   type-is@2.0.0:
     resolution: {integrity: sha512-gd0sGezQYCbWSbkZr75mln4YBidWUN60+devscpLF5mtRDUpiaTvKpBNrdaCvel1NdR2k6vclXybU5fBd2i+nw==}
     engines: {node: '>= 0.6'}
-
-  typescript@5.2.2:
-    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
-    engines: {node: '>=14.17'}
-    hasBin: true
 
   typescript@5.6.3:
     resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
@@ -8876,7 +8874,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsup@7.3.0(postcss@8.4.49)(typescript@5.2.2):
+  tsup@7.3.0(postcss@8.4.49)(typescript@5.7.2):
     dependencies:
       bundle-require: 4.2.1(esbuild@0.19.12)
       cac: 6.7.14
@@ -8894,7 +8892,7 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.4.49
-      typescript: 5.2.2
+      typescript: 5.7.2
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -8947,8 +8945,6 @@ snapshots:
       content-type: 1.0.5
       media-typer: 1.1.0
       mime-types: 3.0.0
-
-  typescript@5.2.2: {}
 
   typescript@5.6.3: {}
 

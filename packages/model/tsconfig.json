@@ -1,25 +1,10 @@
 {
+  "extends": ["@haus23/tipprunde-tsconfig/node.json"],
+  "include": ["src", "tests"],
   "compilerOptions": {
-    // Source
-    "lib": ["ES2023"],
-
-    // Target
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-
-    // Best practice
-    "strict": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true,
-
     // DX
     "paths": {
       "~/*": ["./src/*"]
-    },
-
-    // Bundler mode
-    "noEmit": true
-  },
-  "include": ["src", "tests"]
+    }
+  }
 }
