@@ -1,3 +1,9 @@
 # @haus23/tipprunde-types
 
-> Typsystem der Production Apps der Haus23 Tipprunde
+> Domain-Modell der Legacy Apps der Haus23 Tipprunde
+
+## Release Stopper
+
+- Switch to valibot (from zod)
+- Add rule models
+- Clean up
