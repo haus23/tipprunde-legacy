@@ -1,4 +1,4 @@
-import type { Player, Tip } from '@haus23/tipprunde-model';
+import type { PlayerWithAccount, Tip } from '@haus23/tipprunde-model';
 import { useCallback, useReducer } from 'react';
 
 const sortOrderValues = ['ascending', 'none', 'descending'] as const;
@@ -26,7 +26,10 @@ export function useTipSorting() {
   const [sort, toggleSort] = useReducer(orderingReducer, { order: 'none' });
 
   const sortFn = useCallback(
-    (a: { player: Player; tip: Tip }, b: { player: Player; tip: Tip }) => {
+    (
+      a: { player: PlayerWithAccount; tip: Tip },
+      b: { player: PlayerWithAccount; tip: Tip },
+    ) => {
       if (sort.order === 'none') return 0;
 
       switch (sort.column) {

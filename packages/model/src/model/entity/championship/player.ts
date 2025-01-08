@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 // Firebase collection path: /championships/[id]/players
 
-export const Member = z.object({
+export const Player = z.object({
   id: z.string(),
   rank: z.number(),
   playerId: z.string(),
@@ -11,4 +11,4 @@ export const Member = z.object({
   totalPoints: z.number(),
 });
 
-export type Member = z.infer<typeof Member>;
+export type Player = z.infer<typeof Player>;

@@ -1,11 +1,11 @@
-import type { Player } from '@haus23/tipprunde-model';
+import type { PlayerWithAccount } from '@haus23/tipprunde-model';
 import type { QueryClient } from '@tanstack/react-query';
 import { data } from 'react-router';
 import { accountsQuery } from '#/backend/queries';
 
 export async function getCurrentPlayer(
   queryClient: QueryClient,
-  players: Player[],
+  players: PlayerWithAccount[],
   request: Request,
 ) {
   const accountId = new URL(request.url).searchParams.get('name');

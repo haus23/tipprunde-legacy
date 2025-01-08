@@ -1,4 +1,4 @@
-import type { Match, Player, Tip } from '@haus23/tipprunde-model';
+import type { Match, PlayerWithAccount, Tip } from '@haus23/tipprunde-model';
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -14,7 +14,7 @@ export function TipsTable({
   players,
   match,
   tips,
-}: { players: Player[]; match: Match; tips: Record<string, Tip> }) {
+}: { players: PlayerWithAccount[]; match: Match; tips: Record<string, Tip> }) {
   const { column, order, toggleSort, sortFn } = useTipSorting();
 
   const tipsByPlayer = players.map((p) => ({ player: p, tip: tips[p.id] }));

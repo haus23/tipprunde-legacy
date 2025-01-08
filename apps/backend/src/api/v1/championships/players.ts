@@ -1,4 +1,4 @@
-import { Account, type Player } from '@haus23/tipprunde-model';
+import { Account, type PlayerWithAccount } from '@haus23/tipprunde-model';
 import type { Request, Response } from 'express';
 
 import { getAccounts } from '#app/lib/queries/accounts.ts';
@@ -16,7 +16,7 @@ export async function handler(req: Request, res: Response) {
       ({
         ...r,
         account: Account.parse(accounts?.find((p) => p.id === r.playerId)),
-      }) satisfies Player,
+      }) satisfies PlayerWithAccount,
   );
 
   res.json(players);
