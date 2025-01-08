@@ -1,5 +1,12 @@
 # model
 
+## 0.14.2
+
+### Patch Changes
+
+- [5d85fd3](https://github.com/haus23/tipprunde-legacy/commit/5d85fd3): Remove path alias.
+- [b8f3729](https://github.com/haus23/tipprunde-legacy/commit/b8f3729): Switch to unbuild.
+
 ## 0.14.1
 
 ### Patch Changes
