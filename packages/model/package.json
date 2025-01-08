@@ -1,12 +1,14 @@
 {
   "name": "@haus23/tipprunde-model",
   "description": "Domain-Modell der Haus23 Tipprunde",
-  "version": "0.14.2",
+  "version": "0.15.0",
   "type": "module",
   "exports": {
     ".": "./src/index.ts"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "vitest",
     "typecheck": "tsc"

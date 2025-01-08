@@ -1,5 +1,11 @@
 # model
 
+## 0.15.0
+
+### Minor Changes
+
+- [d6b72c4](https://github.com/haus23/tipprunde-legacy/commit/d6b72c4): Turn into Just-In-Time package with no build step.
+
 ## 0.14.2
 
 ### Patch Changes
