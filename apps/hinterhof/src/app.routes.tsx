@@ -1,28 +1,28 @@
 import { auth } from 'lib';
-import { redirect, RouteObject } from 'react-router-dom';
+import { type RouteObject, redirect } from 'react-router-dom';
 
 import AppShell from './app/app-shell';
 
+import ChampionshipView from './app/current-data/championship';
 import CurrentShell from './app/current-data/current-shell';
 import Dashboard from './app/current-data/dashboard';
-import ChampionshipView from './app/current-data/championship';
-import MatchesView from './app/current-data/matches';
-import TipsView from './app/current-data/tips';
-import ResultsView from './app/current-data/results';
 import CreateChampionshipView from './app/current-data/dashboard/create-championship';
 import CreateRoundView from './app/current-data/dashboard/create-round';
+import MatchesView from './app/current-data/matches';
+import ResultsView from './app/current-data/results';
+import TipsView from './app/current-data/tips';
 
 import ChampionshipsView from './app/master-data/championships';
-import PlayersView from './app/master-data/players';
-import TeamsView from './app/master-data/teams';
 import LeaguesView from './app/master-data/leagues';
+import PlayersView from './app/master-data/players';
 import RulesView from './app/master-data/rules';
+import TeamsView from './app/master-data/teams';
 
-import ProfileView from './app/profile';
+import ExtraPointsView from './app/current-data/extra-points';
 import Login from './app/login';
 import Logout from './app/logout';
+import ProfileView from './app/profile';
 import RefactorView from './app/refactor';
-import ExtraPointsView from './app/current-data/extra-points';
 
 const appRoutes: RouteObject[] = [
   {
@@ -34,8 +34,9 @@ const appRoutes: RouteObject[] = [
     element: <AppShell />,
     loader: async () => {
       if (!auth.currentUser) {
-        return redirect('/login?from=' + window.location.pathname);
+        return redirect(`/login?from=${window.location.pathname}`);
       }
+      return null;
     },
     children: [
       {
