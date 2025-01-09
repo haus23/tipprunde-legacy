@@ -11,7 +11,8 @@
     "dev": "turbo dev",
     "test": "turbo test",
     "lint": "biome check --write",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "hinterhof": "turbo dev --filter=@haus23/tipprunde-hinterhof"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
