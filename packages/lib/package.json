@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "eslint-config-workspace": "workspace:0.1.1",
-    "tsconfig": "workspace:0.1.0",
+    "tsconfig-legacy": "workspace:0.1.0",
     "vitest": "^0.25.3"
   }
 }
