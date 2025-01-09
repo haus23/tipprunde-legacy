@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.4.6
+
+### Patch Changes
+
+- [d278e82](https://github.com/haus23/tipprunde-legacy/commit/d278e82): Fix type and lint errors.
+
 ## 0.4.5
 
 ### Patch Changes
