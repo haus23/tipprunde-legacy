@@ -1,5 +1,13 @@
 # ui
 
+## 0.1.3
+
+### Patch Changes
+
+- [0a44bf2](https://github.com/haus23/tipprunde-legacy/commit/0a44bf2): Fix type errors.
+- [52e6a8d](https://github.com/haus23/tipprunde-legacy/commit/52e6a8d): Bump deps specifications.
+- [6df41b3](https://github.com/haus23/tipprunde-legacy/commit/6df41b3): Update typescript and extend workspace config.
+
 ## 0.1.2
 
 ### Patch Changes
