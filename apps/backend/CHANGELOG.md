@@ -1,5 +1,13 @@
 # backend
 
+## 0.16.1
+
+### Patch Changes
+
+- [8e87b04](https://github.com/haus23/tipprunde-legacy/commit/8e87b04): Adapt model changes.
+- Updated dependencies [1eca211]
+  - @haus23/tipprunde-model@0.17.0
+
 ## 0.16.0
 
 ### Minor Changes

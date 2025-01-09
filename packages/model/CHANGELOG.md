@@ -1,5 +1,11 @@
 # model
 
+## 0.17.0
+
+### Minor Changes
+
+- [1eca211](https://github.com/haus23/tipprunde-legacy/commit/1eca211): Refactor to valibot validation.
+
 ## 0.16.0
 
 ### Minor Changes

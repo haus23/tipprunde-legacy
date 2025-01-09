@@ -1,5 +1,13 @@
 # www
 
+## 0.15.1
+
+### Patch Changes
+
+- [ef070f1](https://github.com/haus23/tipprunde-legacy/commit/ef070f1): Adapt model changes.
+- Updated dependencies [1eca211]
+  - @haus23/tipprunde-model@0.17.0
+
 ## 0.15.0
 
 ### Minor Changes
