@@ -1,5 +1,13 @@
 # lib
 
+## 0.3.3
+
+### Patch Changes
+
+- [1a69d5f](https://github.com/haus23/tipprunde-legacy/commit/1a69d5f): Bump deps. Upgrade vitest.
+- [9e31639](https://github.com/haus23/tipprunde-legacy/commit/9e31639): Fix type errors.
+- [f7a3eba](https://github.com/haus23/tipprunde-legacy/commit/f7a3eba): Update typescript and extend workspace config.
+
 ## 0.3.2
 
 ### Patch Changes
