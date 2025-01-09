@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.4.3
+
+### Patch Changes
+
+- [aad8df8](https://github.com/haus23/tipprunde-legacy/commit/aad8df8): Make app startable again.
+
 ## 0.4.2
 
 ### Patch Changes
