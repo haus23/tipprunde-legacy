@@ -1,8 +1,8 @@
-## Project: @haus23/tipprunde
+# Projekt: @haus23/tipprunde-www
 
-> Haus23 Tipprunde
+> Haus23 Tipprunde Legacy Frontend
 
-### Release Stopper
+## Release Stopper
 
 - Linting, CSS Sorting, ...
 - Scrollrestauration ?
@@ -11,6 +11,6 @@
 - Performance/A11y/SEO
   - Need to check all pages (/spieler)
 
-### Future
+## Future
 
 ...

@@ -1,4 +1,6 @@
-# Projekt: Haus23 Tipprunde
+# Projekt: @haus23/tipprunde-backend
+
+> Haus23 Tipprunde Legacy API Server
 
 ## Release Stopper
 
