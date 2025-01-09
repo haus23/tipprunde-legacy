@@ -1,4 +1,4 @@
-import type { League } from '@haus23/tipprunde-model';
+import type { LeagueInput } from '@haus23/tipprunde-model';
 
 import { cachedFunction } from '../cached.ts';
 import { db, modelConverter } from '../firebase/index.ts';
@@ -9,7 +9,7 @@ export const getLeagues = cachedFunction(
 
     const snapshot = await db
       .collection('leagues')
-      .withConverter(modelConverter<League>())
+      .withConverter(modelConverter<LeagueInput>())
       .get();
     return snapshot.docs.map((doc) => doc.data());
   },

@@ -1,5 +1,9 @@
-import { type Championship, ChampionshipId } from '@haus23/tipprunde-model';
+import {
+  ChampionshipIdSchema,
+  type ChampionshipInput,
+} from '@haus23/tipprunde-model';
 import type { Request } from 'express';
+import * as v from 'valibot';
 
 import { getChampionships } from '../queries/championships.ts';
 import { ValidationError } from './validation-error.ts';
@@ -10,9 +14,7 @@ import { ValidationError } from './validation-error.ts';
  * @param req Request
  * @returns Championship
  */
-export async function validateChampionship(
-  req: Request,
-): Promise<Championship> {
+export async function validateChampionship(req: Request) {
   const id = req.params.id;
   if (!id) {
     throw new ValidationError({
@@ -21,7 +23,7 @@ export async function validateChampionship(
     });
   }
 
-  const parsedId = ChampionshipId.safeParse(id);
+  const parsedId = v.safeParse(ChampionshipIdSchema, id);
   if (!parsedId.success) {
     throw new ValidationError({
       statusCode: 406,
@@ -31,7 +33,7 @@ export async function validateChampionship(
 
   const championships = await getChampionships();
 
-  const championship = championships?.find((c) => c.id === parsedId.data);
+  const championship = championships?.find((c) => c.id === parsedId.output);
   if (!championship) {
     throw new ValidationError({
       statusCode: 404,

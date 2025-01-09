@@ -1,4 +1,4 @@
-import type { Rule } from '@haus23/tipprunde-model';
+import type { RuleInput } from '@haus23/tipprunde-model';
 
 import { cachedFunction } from '../cached.ts';
 import { db, modelConverter } from '../firebase/index.ts';
@@ -9,7 +9,7 @@ export const getRules = cachedFunction(
 
     const snapshot = await db
       .collection('rules')
-      .withConverter(modelConverter<Rule>())
+      .withConverter(modelConverter<RuleInput>())
       .get();
     return snapshot.docs.map((doc) => doc.data());
   },
