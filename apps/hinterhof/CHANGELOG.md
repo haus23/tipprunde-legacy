@@ -1,5 +1,12 @@
 # hinterhof
 
+## 0.4.2
+
+### Patch Changes
+
+- [3261864](https://github.com/haus23/tipprunde-legacy/commit/3261864): Adapt tsconfig changes.
+- [a4d7772](https://github.com/haus23/tipprunde-legacy/commit/a4d7772): Extend workspace tsconfig.
+
 ## 0.4.1
 
 ### Patch Changes
