@@ -1,8 +1,8 @@
 import { createContext, use, useCallback, useState } from 'react';
-import { z } from 'zod';
+import * as v from 'valibot';
 
-const ColorSchemeSchema = z.enum(['light', 'dark']);
-type ColorScheme = z.infer<typeof ColorSchemeSchema>;
+const ColorSchemeSchema = v.picklist(['light', 'dark']);
+type ColorScheme = v.InferOutput<typeof ColorSchemeSchema>;
 
 type Theme = {
   colorScheme: ColorScheme;
@@ -17,11 +17,12 @@ const ThemeContext = createContext<ThemeContextType>(undefined as never);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [colorScheme, setColorSchemeState] = useState<ColorScheme>(() => {
-    const persistedColorScheme = ColorSchemeSchema.safeParse(
+    const persistedColorScheme = v.safeParse(
+      ColorSchemeSchema,
       localStorage.getItem('colorScheme'),
     );
     const effectiveColorScheme = persistedColorScheme.success
-      ? persistedColorScheme.data
+      ? persistedColorScheme.output
       : 'light';
     document.documentElement.classList.toggle(
       'dark',
