@@ -1,3 +1,9 @@
+// Rules
+export * from './rules/extra-questions';
+export * from './rules/match';
+export * from './rules/round';
+export * from './rules/tip';
+
 // Primitives
 export * from './primitives';
 
@@ -5,7 +11,7 @@ export * from './primitives';
 export * from './model/entity/account';
 export * from './model/entity/championship';
 export * from './model/entity/league';
-export * from './model/entity/rule';
+export * from './model/entity/ruleset';
 export * from './model/entity/team';
 export * from './model/entity/championship/match';
 export * from './model/entity/championship/player';
