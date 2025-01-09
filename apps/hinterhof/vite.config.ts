@@ -1,16 +1,10 @@
-/// <reference types="vite/client" />
-
-import { fileURLToPath } from 'url';
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
+
+import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-    },
-  },
+  plugins: [react(), tsconfigPaths()],
   build: {
     rollupOptions: {
       output: {
