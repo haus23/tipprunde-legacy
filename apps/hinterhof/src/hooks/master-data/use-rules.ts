@@ -1,6 +1,6 @@
-import { useRecoilValue } from 'recoil';
 import { rulesState } from '@/state/master-data/rules-state';
-import { ChampionshipRules, createEntity, updateEntity } from 'lib';
+import { type ChampionshipRules, createEntity, updateEntity } from 'lib';
+import { useRecoilValue } from 'recoil';
 
 export function useRules() {
   const rules = useRecoilValue(rulesState);

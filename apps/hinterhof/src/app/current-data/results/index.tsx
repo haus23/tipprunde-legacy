@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Button, Card, classNames, TextField } from 'ui';
+import { Button, Card, TextField, classNames } from 'ui';
 
-import { Team } from 'lib';
+import type { Team } from 'lib';
 
-import { useRounds } from '@/hooks/current-data/use-rounds';
 import AppCard from '@/components/layout/app-card';
-import { useTeams } from '@/hooks/master-data/use-teams';
 import { useMatches } from '@/hooks/current-data/use-matches';
-import { useFieldArray, useForm } from 'react-hook-form';
-import { notify } from '@/utils/notify';
 import { useRanking } from '@/hooks/current-data/use-ranking';
+import { useRounds } from '@/hooks/current-data/use-rounds';
+import { useTeams } from '@/hooks/master-data/use-teams';
+import { notify } from '@/utils/notify';
+import { useFieldArray, useForm } from 'react-hook-form';
 
 type ResultsFormType = {
   results: { matchId: string; result: string }[];
@@ -24,8 +24,9 @@ export default function ResultsView() {
 
   const fixtures = useMemo(() => {
     const teamsHash = teams.reduce(
+      // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
       (hash, team) => ({ ...hash, [team.id]: team }),
-      {} as Record<string, Team>
+      {} as Record<string, Team>,
     );
     return matches.map((m) => ({
       ...m,
@@ -64,7 +65,7 @@ export default function ResultsView() {
       }, [] as Promise<void>[]);
       await notify(
         Promise.all(updateOperations),
-        'Ergebnisse gespeichert und berechnet'
+        'Ergebnisse gespeichert und berechnet',
       );
       await notify(calculateRanking(), 'Tabelle neu berechnet');
     }
@@ -73,7 +74,7 @@ export default function ResultsView() {
   async function calculateCurrentRanking() {
     await notify(
       Promise.all(matches.map((m) => updateMatchResult(m, m.result))),
-      `Alle Spiele neu berechnet.`
+      'Alle Spiele neu berechnet.',
     );
     await notify(calculateRanking(), 'Tabelle neu berechnet');
   }
@@ -90,13 +91,14 @@ export default function ResultsView() {
             >
               {rounds.map((round) => (
                 <button
+                  type="button"
                   key={round.id}
                   onClick={() => setCurrentRound(round)}
                   className={classNames(
                     round === currentRound
                       ? 'border-indigo-500 text-indigo-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                    'whitespace-nowrap py-4 px-4 md:px-6 border-b-2 font-medium text-sm'
+                    'whitespace-nowrap py-4 px-4 md:px-6 border-b-2 font-medium text-sm',
                   )}
                 >
                   {round.nr}
@@ -175,7 +177,7 @@ export default function ResultsView() {
                         />
                       </td>
                     </tr>
-                  ) : null
+                  ) : null,
                 )}
               </tbody>
             </table>

@@ -1,5 +1,5 @@
+import { type Championship, type Match, collection, orderByAsc } from 'lib';
 import { atomFamily } from 'recoil';
-import { Championship, collection, Match, orderByAsc } from 'lib';
 
 export const matchesState = atomFamily<Match[], Championship['id'] | undefined>(
   {
@@ -9,9 +9,9 @@ export const matchesState = atomFamily<Match[], Championship['id'] | undefined>(
         championshipId
           ? collection<Match>(
               `championships/${championshipId}/matches`,
-              orderByAsc('nr')
+              orderByAsc('nr'),
             ).subscribe(setSelf)
           : setSelf([]),
     ],
-  }
+  },
 );

@@ -1,5 +1,5 @@
+import { type ChampionshipRules, collection } from 'lib';
 import { atom } from 'recoil';
-import { ChampionshipRules, collection } from 'lib';
 
 export const rulesState = atom<ChampionshipRules[]>({
   key: 'rulesState',

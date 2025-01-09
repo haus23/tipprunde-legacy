@@ -1,5 +1,5 @@
+import { type Championship, type ChampionshipPlayer, collection } from 'lib';
 import { atomFamily } from 'recoil';
-import { Championship, ChampionshipPlayer, collection } from 'lib';
 
 export const championshipPlayersState = atomFamily<
   ChampionshipPlayer[],
@@ -10,7 +10,7 @@ export const championshipPlayersState = atomFamily<
     ({ setSelf }) =>
       championshipId
         ? collection<ChampionshipPlayer>(
-            `championships/${championshipId}/players`
+            `championships/${championshipId}/players`,
           ).subscribe(setSelf)
         : setSelf([]),
   ],

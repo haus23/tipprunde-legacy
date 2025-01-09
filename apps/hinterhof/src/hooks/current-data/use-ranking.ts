@@ -20,7 +20,7 @@ export function useRanking() {
   const calculateRanking = async () => {
     const ranking: RankingData[] = [];
 
-    championshipPlayers.forEach((cp) => {
+    for (const cp of championshipPlayers) {
       const playerPoints = tips
         .filter((t) => t.playerId === cp.id)
         .reduce((sum, t) => sum + t.points, 0);
@@ -31,7 +31,7 @@ export function useRanking() {
         totalPoints: playerPoints + cp.extraPoints,
         rank: 0,
       });
-    });
+    }
 
     let currentRank = 1;
     let currentPoints = 0;
@@ -50,7 +50,7 @@ export function useRanking() {
     await Promise.all(ranking.map((rd) => updateChampionshipPlayer(rd.id, rd)));
     clearCache(
       `standings:${currentChampionship?.id}`,
-      currentChampionship?.name || 'aktuellen Stand'
+      currentChampionship?.name || 'aktuellen Stand',
     );
   };
 

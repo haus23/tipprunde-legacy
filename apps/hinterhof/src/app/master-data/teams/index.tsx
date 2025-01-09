@@ -3,14 +3,14 @@ import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
 import AppCard from '@/components/layout/app-card';
-import { useForm } from 'react-hook-form';
+import { useTeams } from '@/hooks/master-data/use-teams';
+import { classNames } from '@/utils/class-names';
 import { slug } from '@/utils/slug';
 import { trimProps } from '@/utils/trim-props';
-import { toast } from 'react-hot-toast';
+import type { Team } from 'lib';
 import { useState } from 'react';
-import { classNames } from '@/utils/class-names';
-import { useTeams } from '@/hooks/master-data/use-teams';
-import { Team } from 'lib';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 
 export default function TeamsView() {
   const {
@@ -79,6 +79,7 @@ export default function TeamsView() {
       <div className="mt-5">
         <div className="shadow sm:overflow-hidden rounded-md bg-white">
           <button
+            type="button"
             onClick={() => setFormOpen(!isFormOpen)}
             className="w-full flex items-center justify-between px-4 py-2 font-semibold"
           >
@@ -88,7 +89,7 @@ export default function TeamsView() {
             <ChevronDownIcon
               className={classNames(
                 'h-5 w-5 transition-transform',
-                isFormOpen && 'rotate-180 transform'
+                isFormOpen && 'rotate-180 transform',
               )}
             />
           </button>

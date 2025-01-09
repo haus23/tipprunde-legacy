@@ -1,17 +1,17 @@
 import { championshipPlayersState } from '@/state/current-data/championship-players-state';
-import { ChampionshipPlayer, createEntity, patchEntity } from 'lib';
+import { type ChampionshipPlayer, createEntity, patchEntity } from 'lib';
 import { useRecoilValue } from 'recoil';
 import { useCurrentChampionship } from './use-current-championship';
 
 export function useChampionshipPlayers() {
   const { currentChampionship } = useCurrentChampionship();
   const championshipPlayers = useRecoilValue(
-    championshipPlayersState(currentChampionship?.id)
+    championshipPlayersState(currentChampionship?.id),
   );
 
   const lastNr = championshipPlayers.reduce(
     (nr, p) => (p.nr > nr ? p.nr : nr),
-    0
+    0,
   );
 
   const addChampionshipPlayer = (playerId: string) => {
@@ -26,18 +26,18 @@ export function useChampionshipPlayers() {
     };
     return createEntity<ChampionshipPlayer>(
       `championships/${currentChampionship?.id}/players`,
-      championshipPlayer
+      championshipPlayer,
     );
   };
 
   const updateChampionshipPlayer = (
     playerId: string,
-    changes: Partial<ChampionshipPlayer>
+    changes: Partial<ChampionshipPlayer>,
   ) => {
     return patchEntity(
       `championships/${currentChampionship?.id}/players`,
       playerId,
-      changes
+      changes,
     );
   };
   return {

@@ -1,5 +1,5 @@
+import { type Player, collection } from 'lib';
 import { atom } from 'recoil';
-import { collection, Player } from 'lib';
 
 export const playersState = atom<Player[]>({
   key: 'playersState',

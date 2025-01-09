@@ -1,5 +1,5 @@
+import { type Championship, type Tip, collection } from 'lib';
 import { atomFamily } from 'recoil';
-import { Championship, collection, Tip } from 'lib';
 
 export const tipsState = atomFamily<Tip[], Championship['id'] | undefined>({
   key: 'tipsState',
@@ -7,7 +7,7 @@ export const tipsState = atomFamily<Tip[], Championship['id'] | undefined>({
     ({ setSelf }) =>
       championshipId
         ? collection<Tip>(`championships/${championshipId}/tips`).subscribe(
-            setSelf
+            setSelf,
           )
         : setSelf([]),
   ],

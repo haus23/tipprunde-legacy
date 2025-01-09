@@ -1,6 +1,6 @@
 import { classNames } from '@/utils/class-names';
-import { MergeElementProps } from '@/utils/merge-element-props';
-import { ForwardedRef, forwardRef } from 'react';
+import type { MergeElementProps } from '@/utils/merge-element-props';
+import { type ForwardedRef, forwardRef } from 'react';
 
 type ButtonProps = MergeElementProps<
   'button',
@@ -20,7 +20,7 @@ function Button(
     primary = false,
     ...props
   }: ButtonProps,
-  ref: ForwardedRef<Ref>
+  ref: ForwardedRef<Ref>,
 ) {
   return (
     <button
@@ -31,7 +31,7 @@ function Button(
         primary
           ? 'border-transparent bg-indigo-600 text-white hover:bg-indigo-700'
           : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50',
-        className
+        className,
       )}
       {...props}
     >

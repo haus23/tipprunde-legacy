@@ -1,5 +1,5 @@
+import { type Championship, type Round, collection, orderByAsc } from 'lib';
 import { atomFamily } from 'recoil';
-import { Championship, collection, orderByAsc, Round } from 'lib';
 
 export const roundsState = atomFamily<Round[], Championship['id'] | undefined>({
   key: 'roundsState',
@@ -8,7 +8,7 @@ export const roundsState = atomFamily<Round[], Championship['id'] | undefined>({
       championshipId
         ? collection<Round>(
             `championships/${championshipId}/rounds`,
-            orderByAsc('nr')
+            orderByAsc('nr'),
           ).subscribe(setSelf)
         : setSelf([]),
   ],

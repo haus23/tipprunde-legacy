@@ -1,24 +1,24 @@
-import { ElementType } from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import {
-  HomeIcon,
-  FolderIcon,
   CalendarIcon,
-  UserIcon,
+  FolderIcon,
+  HomeIcon,
   PencilSquareIcon,
   ScaleIcon,
   SquaresPlusIcon,
+  UserIcon,
 } from '@heroicons/react/24/outline';
+import type { ElementType } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
-import { Championship, ChampionshipPlayer, Match, Round } from 'lib';
+import type { Championship, ChampionshipPlayer, Match, Round } from 'lib';
 import { AppTitle, classNames } from 'ui';
 
 import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
 import { useRounds } from '@/hooks/current-data/use-rounds';
 
-import { useProfile } from '@/hooks/use-profile';
-import { useMatches } from '@/hooks/current-data/use-matches';
 import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
+import { useMatches } from '@/hooks/current-data/use-matches';
+import { useProfile } from '@/hooks/use-profile';
 
 const championshipNavLinks: {
   to: string;
@@ -28,7 +28,7 @@ const championshipNavLinks: {
     championship: Championship | undefined,
     rounds: Round[],
     matches: Match[],
-    players: ChampionshipPlayer[]
+    players: ChampionshipPlayer[],
   ) => boolean;
 }[] = [
   {
@@ -113,7 +113,7 @@ export default function AppShellNavbar() {
                   isActive
                     ? 'bg-gray-100 text-gray-900'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                  'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                  'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
                 )
               }
             >
@@ -124,7 +124,7 @@ export default function AppShellNavbar() {
                       isActive
                         ? 'text-gray-500'
                         : 'text-gray-400 group-hover:text-gray-500',
-                      'mr-3 flex-shrink-0 h-6 w-6'
+                      'mr-3 flex-shrink-0 h-6 w-6',
                     )}
                     aria-hidden="true"
                   />
@@ -134,7 +134,12 @@ export default function AppShellNavbar() {
             </NavLink>
             {championshipNavLinks
               .filter((item) =>
-                item.visible(championship, rounds, matches, championshipPlayers)
+                item.visible(
+                  championship,
+                  rounds,
+                  matches,
+                  championshipPlayers,
+                ),
               )
               .map((item) => (
                 <NavLink
@@ -145,7 +150,7 @@ export default function AppShellNavbar() {
                       isActive
                         ? 'bg-gray-100 text-gray-900'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
                     )
                   }
                 >
@@ -156,7 +161,7 @@ export default function AppShellNavbar() {
                           isActive
                             ? 'text-gray-500'
                             : 'text-gray-400 group-hover:text-gray-500',
-                          'mr-3 flex-shrink-0 h-6 w-6'
+                          'mr-3 flex-shrink-0 h-6 w-6',
                         )}
                         aria-hidden="true"
                       />
@@ -180,7 +185,7 @@ export default function AppShellNavbar() {
                       isActive
                         ? 'bg-gray-100 text-gray-900'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      'flex items-center px-2 py-2 text-sm font-medium rounded-md',
                     )
                   }
                 >
@@ -198,6 +203,7 @@ export default function AppShellNavbar() {
               {profile.photoURL ? (
                 <img
                   src={profile.photoURL}
+                  aria-label="Profil-Bild"
                   className="inline-block h-9 w-9 rounded-full"
                 />
               ) : (

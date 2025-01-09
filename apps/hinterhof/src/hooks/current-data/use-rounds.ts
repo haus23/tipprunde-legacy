@@ -1,5 +1,5 @@
 import { roundsState } from '@/state/current-data/rounds-state';
-import { createEntity, Round } from 'lib';
+import { type Round, createEntity } from 'lib';
 import { useRecoilValue } from 'recoil';
 
 import { useCurrentChampionship } from './use-current-championship';

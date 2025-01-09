@@ -1,18 +1,18 @@
-import { useRecoilValue } from 'recoil';
 import { matchesState } from '@/state/current-data/matches-state';
+import { useRecoilValue } from 'recoil';
 
-import { useCurrentChampionship } from './use-current-championship';
 import {
+  type ChampionshipRules,
+  type Match,
+  type Round,
   calculateMatchResults,
-  ChampionshipRules,
   createEntity,
-  Match,
-  Round,
   updateEntity,
 } from 'lib';
-import { useTips } from './use-tips';
 import { useRules } from '../master-data/use-rules';
+import { useCurrentChampionship } from './use-current-championship';
 import { useRounds } from './use-rounds';
+import { useTips } from './use-tips';
 
 export function useMatches() {
   const { currentChampionship } = useCurrentChampionship();
@@ -26,13 +26,13 @@ export function useMatches() {
   const createMatch = async (match: Match) =>
     createEntity<Match>(
       `championships/${currentChampionship?.id}/matches`,
-      match
+      match,
     );
 
   const updateMatch = async (match: Match) =>
     updateEntity<Match>(
       `championships/${currentChampionship?.id}/matches`,
-      match
+      match,
     );
 
   const updateMatchResult = async (match: Match, result: string) => {
@@ -43,9 +43,9 @@ export function useMatches() {
       { ...match, result },
       matchTips,
       rules.find(
-        (r) => r.id === currentChampionship?.rulesId
+        (r) => r.id === currentChampionship?.rulesId,
       ) as ChampionshipRules,
-      { isDoubleRound: round.isDoubleRound }
+      { isDoubleRound: round.isDoubleRound },
     );
     await Promise.all([
       updateMatch(updatedMatch),

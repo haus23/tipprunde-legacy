@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { signIn, auth } from 'lib';
+import { auth, signIn } from 'lib';
 import { AppTitle } from 'ui';
 
 import Button from '@/components/button';
@@ -32,12 +32,12 @@ export default function Login() {
         setAuthenticated(true);
         user && navigate(params.get('from') || '/', { replace: true });
       }),
-    [navigate]
+    [navigate],
   );
 
   const onSubmit: SubmitHandler<LoginFormType> = ({ email, password }) => {
     signIn(email, password).catch(() =>
-      setError('Email und/oder Passwort falsch!')
+      setError('Email und/oder Passwort falsch!'),
     );
   };
 

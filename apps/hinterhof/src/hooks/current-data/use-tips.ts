@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil';
 
-import { useCurrentChampionship } from './use-current-championship';
-import { createEntity, Tip, updateEntity } from 'lib';
 import { tipsState } from '@/state/current-data/tips-state';
+import { type Tip, createEntity, updateEntity } from 'lib';
+import { useCurrentChampionship } from './use-current-championship';
 
 export function useTips() {
   const { currentChampionship } = useCurrentChampionship();

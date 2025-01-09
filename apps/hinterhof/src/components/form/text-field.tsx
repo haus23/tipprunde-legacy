@@ -1,7 +1,7 @@
-import { ForwardedRef, forwardRef, useId } from 'react';
-import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { classNames } from '@/utils/class-names';
-import { MergeElementProps } from '@/utils/merge-element-props';
+import type { MergeElementProps } from '@/utils/merge-element-props';
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
+import { type ForwardedRef, forwardRef, useId } from 'react';
 
 type TextFieldProps = MergeElementProps<
   'input',
@@ -15,7 +15,7 @@ type Ref = HTMLInputElement;
 
 function TextField(
   { label, error, name, required, ...props }: TextFieldProps,
-  ref: ForwardedRef<Ref>
+  ref: ForwardedRef<Ref>,
 ) {
   const hasError = typeof error !== 'undefined';
   const id = `${useId()}-${name}`;
@@ -25,7 +25,7 @@ function TextField(
         htmlFor={id}
         className={classNames(
           'block text-sm font-medium',
-          hasError ? 'text-red-500' : 'text-gray-700'
+          hasError ? 'text-red-500' : 'text-gray-700',
         )}
       >
         {label} {required && '*'}
@@ -42,7 +42,7 @@ function TextField(
             'block w-full appearance-none rounded-md border px-3 py-2 placeholder-gray-400 shadow-sm focus:outline-none sm:text-sm',
             hasError
               ? 'text-red-500 border-red-300 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500'
+              : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500',
           )}
         />
         {hasError && (

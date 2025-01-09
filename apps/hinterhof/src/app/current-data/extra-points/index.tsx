@@ -2,7 +2,7 @@ import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-pl
 import { useRanking } from '@/hooks/current-data/use-ranking';
 import { usePlayers } from '@/hooks/master-data/use-players';
 import { notify } from '@/utils/notify';
-import { Player } from 'lib';
+import type { Player } from 'lib';
 import { useEffect, useMemo } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Button, Card, TextField } from 'ui';
@@ -19,8 +19,9 @@ export default function ExtraPointsView() {
 
   const players = useMemo(() => {
     const playersHash = masterPlayers.reduce(
+      // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
       (hash, player) => ({ ...hash, [player.id]: player }),
-      {} as Record<string, Player>
+      {} as Record<string, Player>,
     );
     return championshipPlayers
       .map((cp) => ({
@@ -54,10 +55,10 @@ export default function ExtraPointsView() {
         players.map((p, ix) =>
           updateChampionshipPlayer(p.id, {
             extraPoints: Number(data.extraPoints[ix].points),
-          })
-        )
+          }),
+        ),
       ),
-      'Zusatzpunkte gespeichert'
+      'Zusatzpunkte gespeichert',
     );
   }
 

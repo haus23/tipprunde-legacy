@@ -1,5 +1,5 @@
+import { type Championship, createEntity } from 'lib';
 import { useRecoilValue } from 'recoil';
-import { Championship, createEntity } from 'lib';
 
 import { championshipsState } from '@/state/master-data/championships-state';
 

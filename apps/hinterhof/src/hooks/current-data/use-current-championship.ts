@@ -1,11 +1,11 @@
-import { useRecoilState } from 'recoil';
 import { currentChampionshipState } from '@/state/current-data/current-championship-state';
-import { Championship, patchEntity } from 'lib';
+import { type Championship, patchEntity } from 'lib';
 import { useCallback } from 'react';
+import { useRecoilState } from 'recoil';
 
 export function useCurrentChampionship() {
   const [currentChampionship, setCurrentChampionship] = useRecoilState(
-    currentChampionshipState
+    currentChampionshipState,
   );
 
   const updateCurrentChampionship = useCallback(
@@ -13,7 +13,7 @@ export function useCurrentChampionship() {
       currentChampionship
         ? patchEntity('championships', currentChampionship, changes)
         : Promise.resolve(),
-    [currentChampionship]
+    [currentChampionship],
   );
 
   return {

@@ -1,23 +1,23 @@
+import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 import { useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 
+import type { League, Match, Team } from 'lib';
 import {
   Button,
   Card,
-  classNames,
   ComboboxField,
   DateField,
+  classNames,
   formatDate,
 } from 'ui';
-import { League, Match, Team } from 'lib';
 
+import AppCard from '@/components/layout/app-card';
 import { useMatches } from '@/hooks/current-data/use-matches';
 import { useRounds } from '@/hooks/current-data/use-rounds';
 import { useLeagues } from '@/hooks/master-data/use-leagues';
 import { useTeams } from '@/hooks/master-data/use-teams';
 import { notify } from '@/utils/notify';
-import AppCard from '@/components/layout/app-card';
 
 export default function MatchesView() {
   const { leagues } = useLeagues();
@@ -27,20 +27,26 @@ export default function MatchesView() {
 
   const leaguesHash = useMemo(
     () =>
-      leagues.reduce((hash, league) => {
-        hash[league.id] = league;
-        return hash;
-      }, {} as Record<string, League>),
-    [leagues]
+      leagues.reduce(
+        (hash, league) => {
+          hash[league.id] = league;
+          return hash;
+        },
+        {} as Record<string, League>,
+      ),
+    [leagues],
   );
 
   const teamsHash = useMemo(
     () =>
-      teams.reduce((hash, team) => {
-        hash[team.id] = team;
-        return hash;
-      }, {} as Record<string, Team>),
-    [teams]
+      teams.reduce(
+        (hash, team) => {
+          hash[team.id] = team;
+          return hash;
+        },
+        {} as Record<string, Team>,
+      ),
+    [teams],
   );
 
   const [currentRound, setCurrentRound] = useState(rounds[rounds.length - 1]);
@@ -51,7 +57,7 @@ export default function MatchesView() {
   let nr = (matches.at(-1)?.nr || 0) + 1;
   const date = matches.reduce(
     (lastDate, match) => (match.date > lastDate ? match.date : lastDate),
-    ''
+    '',
   );
 
   const initialFormValues: Partial<Match> = {
@@ -106,13 +112,14 @@ export default function MatchesView() {
           >
             {rounds.map((round) => (
               <button
+                type="button"
                 key={round.id}
                 onClick={() => setCurrentRound(round)}
                 className={classNames(
                   round === currentRound
                     ? 'border-indigo-500 text-indigo-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                  'whitespace-nowrap py-4 px-4 md:px-6 border-b-2 font-medium text-sm'
+                  'whitespace-nowrap py-4 px-4 md:px-6 border-b-2 font-medium text-sm',
                 )}
               >
                 {round.nr}
@@ -123,14 +130,15 @@ export default function MatchesView() {
         <div className="mt-2">
           <div className="pb-2">
             <button
+              type="button"
               onClick={() => setFormOpen(!isFormOpen)}
               className="w-full flex items-center justify-between px-4 py-2 font-semibold"
             >
-              <span>{editMode ? 'Spiel bearbeiten' : `Neues Spiel`}</span>
+              <span>{editMode ? 'Spiel bearbeiten' : 'Neues Spiel'}</span>
               <ChevronDownIcon
                 className={classNames(
                   'h-5 w-5 transition-transform',
-                  isFormOpen && 'rotate-180 transform'
+                  isFormOpen && 'rotate-180 transform',
                 )}
               />
             </button>

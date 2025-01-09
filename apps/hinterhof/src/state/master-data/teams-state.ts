@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-import { collection, Team } from 'lib';
+import { type Team, collection } from 'lib';
 
 export const teamsState = atom<Team[]>({
   key: 'teamsState',

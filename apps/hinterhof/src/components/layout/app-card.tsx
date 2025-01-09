@@ -1,7 +1,5 @@
-import { ReactNode } from 'react';
-
 type AppCardProps = {
-  children: ReactNode;
+  children: React.ReactNode;
 };
 export default function AppCard({ children }: AppCardProps) {
   return (

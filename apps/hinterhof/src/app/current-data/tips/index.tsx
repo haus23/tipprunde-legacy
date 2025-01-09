@@ -1,20 +1,20 @@
+import { ClipboardIcon } from '@heroicons/react/24/outline';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { ClipboardIcon } from '@heroicons/react/24/outline';
 
-import { Button, Card, classNames, Select, TextField } from 'ui';
-import { Match, Player, Team, Tip } from 'lib';
+import type { Match, Player, Team, Tip } from 'lib';
+import { Button, Card, Select, TextField, classNames } from 'ui';
 
 import AppCard from '@/components/layout/app-card';
 
-import { useRounds } from '@/hooks/current-data/use-rounds';
 import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
+import { useMatches } from '@/hooks/current-data/use-matches';
+import { useRanking } from '@/hooks/current-data/use-ranking';
+import { useRounds } from '@/hooks/current-data/use-rounds';
+import { useTips } from '@/hooks/current-data/use-tips';
 import { usePlayers } from '@/hooks/master-data/use-players';
 import { useTeams } from '@/hooks/master-data/use-teams';
-import { useMatches } from '@/hooks/current-data/use-matches';
-import { useTips } from '@/hooks/current-data/use-tips';
 import { notify } from '@/utils/notify';
-import { useRanking } from '@/hooks/current-data/use-ranking';
 
 type TipData = { id: string; tip: string; joker: boolean };
 
@@ -32,8 +32,9 @@ export default function TipsView() {
 
   const players = useMemo(() => {
     const playersHash = masterPlayers.reduce(
+      // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
       (hash, player) => ({ ...hash, [player.id]: player }),
-      {} as Record<string, Player>
+      {} as Record<string, Player>,
     );
     return championshipPlayers
       .map((cp) => ({
@@ -48,8 +49,9 @@ export default function TipsView() {
 
   const fixtures = useMemo(() => {
     const teamsHash = teams.reduce(
+      // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
       (hash, team) => ({ ...hash, [team.id]: team }),
-      {} as Record<string, Team>
+      {} as Record<string, Team>,
     );
     return matches.map((m) => ({
       ...m,
@@ -79,7 +81,7 @@ export default function TipsView() {
     const tipsByPlayer = matches.map((m) => {
       // Existing Tip?
       const t = tips.find(
-        (t) => t.matchId === m.id && t.playerId === player.id
+        (t) => t.matchId === m.id && t.playerId === player.id,
       );
       let tipFormData: TipData;
       if (t) {
@@ -115,13 +117,16 @@ export default function TipsView() {
 
     notify(
       Promise.all(saveOperations),
-      `Tipps für ${player.name} gespeichert.`
+      `Tipps für ${player.name} gespeichert.`,
     );
   };
 
   async function calculateCurrentRanking() {
-    await notify(Promise.all(matches.map(m => updateMatchResult(m, m.result))), `Alle Spiele neu berechnet.`);
-    await notify(calculateRanking(), "Tabelle neu berechnet");
+    await notify(
+      Promise.all(matches.map((m) => updateMatchResult(m, m.result))),
+      'Alle Spiele neu berechnet.',
+    );
+    await notify(calculateRanking(), 'Tabelle neu berechnet');
   }
 
   const { fields } = useFieldArray({ control, name: 'tips' });
@@ -130,7 +135,7 @@ export default function TipsView() {
   const handleClipboardData = useCallback(
     async (ev?: ClipboardEvent) => {
       let inputFieldIx = 0;
-      let pastedText;
+      let pastedText: string;
       if (ev) {
         ev.preventDefault();
         // Get index of paste target
@@ -142,13 +147,13 @@ export default function TipsView() {
             .closest('tbody')
             ?.querySelectorAll('input[type=text]') as NodeList;
           const fieldIx = [...inputFields].findIndex(
-            (elt) => elt === ev.target
+            (elt) => elt === ev.target,
           );
           if (fieldIx !== -1) {
             inputFieldIx = fieldIx;
           }
         }
-        pastedText = ev.clipboardData?.getData('text');
+        pastedText = ev.clipboardData?.getData('text') ?? '';
       } else {
         pastedText = await navigator.clipboard.readText();
       }
@@ -168,7 +173,7 @@ export default function TipsView() {
         });
       }
     },
-    [setValue, matches, currentRound]
+    [setValue, matches, currentRound],
   );
 
   useEffect(() => {
@@ -187,13 +192,14 @@ export default function TipsView() {
           >
             {rounds.map((round) => (
               <button
+                type="button"
                 key={round.id}
                 onClick={() => setCurrentRound(round)}
                 className={classNames(
                   round === currentRound
                     ? 'border-indigo-500 text-indigo-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                  'whitespace-nowrap py-4 px-4 md:px-6 border-b-2 font-medium text-sm'
+                  'whitespace-nowrap py-4 px-4 md:px-6 border-b-2 font-medium text-sm',
                 )}
               >
                 {round.nr}
@@ -294,12 +300,15 @@ export default function TipsView() {
                         />
                       </td>
                     </tr>
-                  ) : null
+                  ) : null,
                 )}
                 <tr>
-                  <td/>
+                  <td />
                   <td className="text-right pr-4 py-2">
-                    <Button type="button" onClick={handleSubmit(calculateCurrentRanking)}>
+                    <Button
+                      type="button"
+                      onClick={handleSubmit(calculateCurrentRanking)}
+                    >
                       Alles neu berechnen
                     </Button>
                   </td>

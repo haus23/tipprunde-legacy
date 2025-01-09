@@ -1,3 +1,3 @@
-import { User } from 'lib';
+import type { User } from 'lib';
 
 export type Profile = User;

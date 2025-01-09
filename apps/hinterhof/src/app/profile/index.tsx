@@ -4,8 +4,8 @@ import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
 
 import { useProfile } from '@/hooks/use-profile';
+import type { Profile } from '@/model/profile';
 import { notify } from '@/utils/notify';
-import { Profile } from '@/model/profile';
 
 export default function ProfileView() {
   const { profile, updateDisplayName } = useProfile();
@@ -21,7 +21,7 @@ export default function ProfileView() {
     if (dirtyFields.displayName) {
       await notify(
         updateDisplayName(profile.displayName || ''),
-        'Dein Name wurde geändert.'
+        'Dein Name wurde geändert.',
       );
       reset(profile);
     }

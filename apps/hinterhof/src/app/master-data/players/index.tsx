@@ -4,15 +4,15 @@ import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
 import AppCard from '@/components/layout/app-card';
 import { usePlayers } from '@/hooks/master-data/use-players';
-import { useForm } from 'react-hook-form';
-import { slug } from '@/utils/slug';
-import { emailValidator } from '@/utils/email-validator';
-import { trimProps } from '@/utils/trim-props';
-import { toast } from 'react-hot-toast';
-import { useState } from 'react';
 import { classNames } from '@/utils/class-names';
-import { Player } from 'lib';
 import { clearCache } from '@/utils/clear-cache';
+import { emailValidator } from '@/utils/email-validator';
+import { slug } from '@/utils/slug';
+import { trimProps } from '@/utils/trim-props';
+import type { Player } from 'lib';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 
 export default function PlayersView() {
   const {
@@ -75,6 +75,7 @@ export default function PlayersView() {
       <div className="mt-5">
         <div className="shadow sm:overflow-hidden rounded-md bg-white">
           <button
+            type="button"
             onClick={() => setFormOpen(!isFormOpen)}
             className="w-full flex items-center justify-between px-4 py-2 font-semibold"
           >
@@ -82,7 +83,7 @@ export default function PlayersView() {
             <ChevronDownIcon
               className={classNames(
                 'h-5 w-5 transition-transform',
-                isFormOpen && 'rotate-180 transform'
+                isFormOpen && 'rotate-180 transform',
               )}
             />
           </button>

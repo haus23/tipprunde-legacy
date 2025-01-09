@@ -1,4 +1,4 @@
-import { Championship } from 'lib';
+import type { Championship } from 'lib';
 import { atom, selector } from 'recoil';
 import { championshipsState } from '../master-data/championships-state';
 

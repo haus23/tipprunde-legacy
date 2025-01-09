@@ -1,5 +1,5 @@
+import { type Player, createEntity, updateEntity } from 'lib';
 import { useRecoilValue } from 'recoil';
-import { createEntity, Player, updateEntity } from 'lib';
 
 import { playersState } from '@/state/master-data/players-state';
 

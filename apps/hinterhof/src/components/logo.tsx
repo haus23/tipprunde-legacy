@@ -5,7 +5,12 @@ type LogoProps = {
 export default function Logo({ className }: LogoProps) {
   return (
     <div className={className}>
-      <svg className="h-full fill-current" viewBox="0 0 3160 2610">
+      <svg
+        role="img"
+        aria-label="Haus23 Logo"
+        className="h-full fill-current"
+        viewBox="0 0 3160 2610"
+      >
         <g>
           <path d="m 1155,2469 c -108,-16 -165,-32 -165,-45 0,-8 41,-141 91,-296 50,-156 101,-314 113,-352 26,-84 46,-98 41,-29 -2,26 -6,140 -9,253 -7,211 -17,475 -20,476 0,0 -23,-3 -51,-7 z" />
           <path d="m 1454,2452 c -4,-15 -51,-189 -105,-387 -62,-229 -94,-364 -88,-370 6,-6 14,-2 23,10 8,11 124,173 259,360 135,187 243,343 238,348 -9,9 -205,52 -273,61 -46,5 -48,4 -54,-22 z" />

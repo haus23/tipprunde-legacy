@@ -1,10 +1,10 @@
+import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 
 import {
-  ChampionshipRules,
+  type ChampionshipRules,
   extraQuestionRuleDescriptions,
   matchRuleDescriptions,
   roundRuleDescriptions,
@@ -13,12 +13,12 @@ import {
 
 import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
-import AppCard from '@/components/layout/app-card';
 import TextareaField from '@/components/form/textarea-field';
-import { trimProps } from '@/utils/trim-props';
-import { classNames } from '@/utils/class-names';
+import AppCard from '@/components/layout/app-card';
 import { useRules } from '@/hooks/master-data/use-rules';
+import { classNames } from '@/utils/class-names';
 import { slug } from '@/utils/slug';
+import { trimProps } from '@/utils/trim-props';
 import { SelectField } from 'ui';
 
 const initialFormState: ChampionshipRules = {
@@ -92,6 +92,7 @@ export default function RulesView() {
       <div className="mt-5">
         <div className="shadow rounded-md bg-white">
           <button
+            type="button"
             onClick={() => setFormOpen(!isFormOpen)}
             className="w-full flex items-center justify-between px-4 py-2 font-semibold"
           >
@@ -99,7 +100,7 @@ export default function RulesView() {
             <ChevronDownIcon
               className={classNames(
                 'h-5 w-5 transition-transform',
-                isFormOpen && 'rotate-180 transform'
+                isFormOpen && 'rotate-180 transform',
               )}
             />
           </button>

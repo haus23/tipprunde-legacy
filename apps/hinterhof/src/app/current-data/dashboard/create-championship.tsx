@@ -1,14 +1,14 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import type { Championship } from 'lib';
 import { SelectField } from 'ui';
-import { Championship } from 'lib';
 
-import TextField from '@/components/form/text-field';
 import Button from '@/components/button';
+import TextField from '@/components/form/text-field';
 
-import { useRules } from '@/hooks/master-data/use-rules';
 import { useChampionships } from '@/hooks/master-data/use-championships';
+import { useRules } from '@/hooks/master-data/use-rules';
 import { notify } from '@/utils/notify';
 
 export default function CreateChampionshipView() {
@@ -47,18 +47,18 @@ export default function CreateChampionshipView() {
         setValue(
           'id',
           `${match[1].toLowerCase() + secondLetter}${match[2] + match[3]}`,
-          { shouldValidate: true }
+          { shouldValidate: true },
         );
       }
     }
   };
 
   const saveChampionship: SubmitHandler<Championship> = async (
-    championship
+    championship,
   ) => {
     await notify(
       createChampionship(championship),
-      `${championship.name} angelegt.`
+      `${championship.name} angelegt.`,
     );
     navigate('../turnier');
   };

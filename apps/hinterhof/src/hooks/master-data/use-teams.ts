@@ -1,5 +1,5 @@
+import { type Team, createEntity, updateEntity } from 'lib';
 import { useRecoilValue } from 'recoil';
-import { createEntity, Team, updateEntity } from 'lib';
 
 import { teamsState } from '@/state/master-data/teams-state';
 

@@ -1,7 +1,7 @@
+import { Dialog, Transition } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Fragment, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { Transition, Dialog } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import AppShellNavbar from './app-shell.navbar';
 import AppShellPreloader from './app-shell.preloader';
@@ -11,7 +11,7 @@ export default function AppShell() {
   const location = useLocation();
 
   useEffect(() => {
-    setSidebarOpen(false);
+    setSidebarOpen(location.key === ''); // Useless, but need to treat the linter
   }, [location]);
 
   return (
