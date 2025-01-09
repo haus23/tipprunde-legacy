@@ -4,8 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint src --ext .ts,.tsx"
+    "build": "tsc && vite build"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",
