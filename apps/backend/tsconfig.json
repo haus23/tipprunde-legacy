@@ -2,9 +2,6 @@
   "extends": ["@haus23/tipprunde-tsconfig/node.json"],
   "include": ["server.ts", "src/**/*", "test/**/*"],
   "compilerOptions": {
-    // Loose linting
-    "noUncheckedIndexedAccess": false,
-
     // DX
     "paths": {
       "#/*": ["./src/*"]

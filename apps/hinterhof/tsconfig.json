@@ -2,9 +2,6 @@
   "extends": ["@haus23/tipprunde-tsconfig/app.json"],
   "include": ["src"],
   "compilerOptions": {
-    /* Loose linting */
-    "noUncheckedIndexedAccess": false,
-
     /* Vite */
     "types": ["vite/client"],
 
