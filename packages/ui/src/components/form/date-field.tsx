@@ -1,14 +1,14 @@
 import { useId } from 'react';
 import {
-  Control,
-  FieldPathByValue,
-  FieldValues,
+  type Control,
+  type FieldPathByValue,
+  type FieldValues,
   useController,
 } from 'react-hook-form';
 
 type DateFieldProps<
   T extends FieldValues,
-  TPath extends FieldPathByValue<T, string>
+  TPath extends FieldPathByValue<T, string>,
 > = {
   label: string;
   control: Control<T>;
@@ -17,7 +17,7 @@ type DateFieldProps<
 
 export function DateField<
   T extends FieldValues,
-  TPath extends FieldPathByValue<T, string>
+  TPath extends FieldPathByValue<T, string>,
 >({ label, control, name }: DateFieldProps<T, TPath>) {
   const id = `${useId()}-${name}`;
 

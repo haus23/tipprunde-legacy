@@ -1,7 +1,5 @@
-import { ReactNode } from 'react';
-
 type CardProps = {
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
 export function Card({ children }: CardProps) {

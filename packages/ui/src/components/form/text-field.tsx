@@ -1,12 +1,12 @@
+import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { useId } from 'react';
 import {
-  Control,
-  FieldValues,
-  Path,
-  RegisterOptions,
+  type Control,
+  type FieldValues,
+  type Path,
+  type RegisterOptions,
   useController,
 } from 'react-hook-form';
-import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { classNames } from '../../utils/class-names';
 
 type TextFieldProps<T extends FieldValues, TPath extends Path<T>> = {
@@ -39,7 +39,7 @@ export function TextField<T extends FieldValues, TPath extends Path<T>>({
         htmlFor={id}
         className={classNames(
           error ? 'text-red-500' : 'text-gray-700',
-          'block text-sm font-medium'
+          'block text-sm font-medium',
         )}
       >
         {label}
@@ -53,7 +53,7 @@ export function TextField<T extends FieldValues, TPath extends Path<T>>({
             error
               ? 'border-red-300 pr-10 text-red-700 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
               : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500',
-            'form-input block w-full rounded-md shadow-sm sm:text-sm'
+            'form-input block w-full rounded-md shadow-sm sm:text-sm',
           )}
           value={value}
           onChange={onChange}

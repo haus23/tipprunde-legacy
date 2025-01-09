@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { Combobox } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 import {
-  Control,
-  FieldPathByValue,
-  FieldValues,
+  type Control,
+  type FieldPathByValue,
+  type FieldValues,
   useController,
 } from 'react-hook-form';
 
@@ -14,7 +14,7 @@ export type ComboboxFieldProps<
   T extends FieldValues,
   TPath extends FieldPathByValue<T, string>,
   Option extends FieldValues,
-  OptionPath extends FieldPathByValue<Option, string>
+  OptionPath extends FieldPathByValue<Option, string>,
 > = {
   label: string;
   control: Control<T>;
@@ -29,7 +29,7 @@ export function ComboboxField<
   T extends FieldValues,
   TPath extends FieldPathByValue<T, string>,
   Option extends FieldValues,
-  OptionPath extends FieldPathByValue<Option, string>
+  OptionPath extends FieldPathByValue<Option, string>,
 >({
   label,
   control,
@@ -79,7 +79,7 @@ export function ComboboxField<
                 className={({ active }) =>
                   classNames(
                     'relative cursor-default select-none py-2 pl-8 pr-4',
-                    active ? 'bg-indigo-600 text-white' : 'text-gray-900'
+                    active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                   )
                 }
               >
@@ -88,7 +88,7 @@ export function ComboboxField<
                     <span
                       className={classNames(
                         'block truncate',
-                        selected && 'font-semibold'
+                        selected && 'font-semibold',
                       )}
                     >
                       {option[displayField || 'name']}
@@ -98,7 +98,7 @@ export function ComboboxField<
                       <span
                         className={classNames(
                           'absolute inset-y-0 left-0 flex items-center pl-1.5',
-                          active ? 'text-white' : 'text-indigo-600'
+                          active ? 'text-white' : 'text-indigo-600',
                         )}
                       >
                         <CheckIcon className="h-5 w-5" aria-hidden="true" />

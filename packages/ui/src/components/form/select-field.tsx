@@ -1,19 +1,19 @@
-import { Fragment } from 'react';
-import {
-  Control,
-  FieldPathByValue,
-  FieldValues,
-  useController,
-} from 'react-hook-form';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
+import { Fragment } from 'react';
+import {
+  type Control,
+  type FieldPathByValue,
+  type FieldValues,
+  useController,
+} from 'react-hook-form';
 import { classNames } from '../../utils/class-names';
 
 export type SelectFieldProps<
   T extends FieldValues,
   TPath extends FieldPathByValue<T, string>,
   Option extends FieldValues,
-  OptionPath extends FieldPathByValue<Option, string>
+  OptionPath extends FieldPathByValue<Option, string>,
 > = {
   label: string;
   control: Control<T>;
@@ -28,7 +28,7 @@ export function SelectField<
   T extends FieldValues,
   TPath extends FieldPathByValue<T, string>,
   Option extends FieldValues,
-  OptionPath extends FieldPathByValue<Option, string>
+  OptionPath extends FieldPathByValue<Option, string>,
 >({
   label,
   control,
@@ -74,13 +74,13 @@ export function SelectField<
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute right-0 z-10 mt-2 w-full origin-top-right divide-y divide-gray-200 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                {options.map((option, ix) => (
+                {options.map((option) => (
                   <Listbox.Option
-                    key={ix}
+                    key={option.id}
                     className={({ active }) =>
                       classNames(
                         active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                        'relative cursor-default select-none py-2 pl-8 pr-4'
+                        'relative cursor-default select-none py-2 pl-8 pr-4',
                       )
                     }
                     value={option[valueField || 'id']}
@@ -90,7 +90,7 @@ export function SelectField<
                         <span
                           className={classNames(
                             selected ? 'font-semibold' : 'font-normal',
-                            'block truncate'
+                            'block truncate',
                           )}
                         >
                           {option[displayField || 'name']}
@@ -100,7 +100,7 @@ export function SelectField<
                           <span
                             className={classNames(
                               active ? 'text-white' : 'text-indigo-600',
-                              'absolute left-0 top-3 flex items-center pl-1.5'
+                              'absolute left-0 top-3 flex items-center pl-1.5',
                             )}
                           >
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
@@ -112,7 +112,7 @@ export function SelectField<
                               active
                                 ? 'text-gray-300 bg-indigo-600'
                                 : 'text-gray-500',
-                              'mt-1'
+                              'mt-1',
                             )}
                           >
                             {option[descriptionField]}
