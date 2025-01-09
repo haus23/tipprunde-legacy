@@ -1,4 +1,4 @@
 {
-  "extends": "tsconfig-legacy/base.json",
+  "extends": "@haus23/tipprunde-tsconfig/node.json",
   "include": ["src"]
 }
