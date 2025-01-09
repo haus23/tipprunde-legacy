@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.4.1
+
+### Patch Changes
+
+- [2c7eae3](https://github.com/haus23/tipprunde-legacy/commit/2c7eae3): Migration into legacy monorepo.
+
 ## 0.4.0
 
 ### Minor Changes
