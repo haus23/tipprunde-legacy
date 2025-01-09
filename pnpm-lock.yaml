@@ -40,7 +40,7 @@ importers:
         version: 1.14.4
       valibot:
         specifier: 1.0.0-beta.11
-        version: 1.0.0-beta.11(typescript@5.7.2)
+        version: 1.0.0-beta.11(typescript@5.7.3)
     devDependencies:
       '@haus23/tipprunde-tsconfig':
         specifier: workspace:^
@@ -64,8 +64,8 @@ importers:
         specifier: ^4.19.2
         version: 4.19.2
       typescript:
-        specifier: ~5.7.2
-        version: 5.7.2
+        specifier: ~5.7.3
+        version: 5.7.3
       vitest:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@22.10.5)
@@ -106,6 +106,9 @@ importers:
         specifier: workspace:0.1.2
         version: link:../../packages/ui
     devDependencies:
+      '@haus23/tipprunde-tsconfig':
+        specifier: workspace:^
+        version: link:../../packages/tsconfig
       '@headlessui/tailwindcss':
         specifier: ^0.1.1
         version: 0.1.3(tailwindcss@3.4.17)
@@ -134,8 +137,8 @@ importers:
         specifier: ^3.2.4
         version: 3.4.17
       typescript:
-        specifier: ~4.9.3
-        version: 4.9.5
+        specifier: ~5.7.3
+        version: 5.7.3
       vite:
         specifier: ^3.2.4
         version: 3.2.11(@types/node@22.10.5)
@@ -186,7 +189,7 @@ importers:
         version: 0.3.0(tailwindcss@3.4.17)
       valibot:
         specifier: 1.0.0-beta.11
-        version: 1.0.0-beta.11(typescript@5.7.2)
+        version: 1.0.0-beta.11(typescript@5.7.3)
     devDependencies:
       '@haus23/tipprunde-tsconfig':
         specifier: workspace:^
@@ -213,14 +216,14 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.17)
       typescript:
-        specifier: ~5.7.2
-        version: 5.7.2
+        specifier: ~5.7.3
+        version: 5.7.3
       vite:
         specifier: ^6.0.7
         version: 6.0.7(@types/node@22.10.5)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(typescript@5.7.2)(vite@6.0.7(@types/node@22.10.5)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))
+        version: 5.1.4(typescript@5.7.3)(vite@6.0.7(@types/node@22.10.5)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0))
 
   packages/lib:
     dependencies:
@@ -4291,6 +4294,11 @@ packages:
 
   typescript@5.7.2:
     resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@5.7.3:
+    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -9239,9 +9247,9 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  tsconfck@3.1.4(typescript@5.7.2):
+  tsconfck@3.1.4(typescript@5.7.3):
     optionalDependencies:
-      typescript: 5.7.2
+      typescript: 5.7.3
 
   tslib@2.8.1: {}
 
@@ -9297,6 +9305,8 @@ snapshots:
   typescript@4.9.5: {}
 
   typescript@5.7.2: {}
+
+  typescript@5.7.3: {}
 
   ufo@1.5.4: {}
 
@@ -9367,6 +9377,10 @@ snapshots:
     optionalDependencies:
       typescript: 5.7.2
 
+  valibot@1.0.0-beta.11(typescript@5.7.3):
+    optionalDependencies:
+      typescript: 5.7.3
+
   vary@1.1.2: {}
 
   vite-node@2.1.8(@types/node@22.10.5):
@@ -9387,11 +9401,11 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@5.1.4(typescript@5.7.2)(vite@6.0.7(@types/node@22.10.5)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0)):
+  vite-tsconfig-paths@5.1.4(typescript@5.7.3)(vite@6.0.7(@types/node@22.10.5)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0)):
     dependencies:
       debug: 4.4.0
       globrex: 0.1.2
-      tsconfck: 3.1.4(typescript@5.7.2)
+      tsconfck: 3.1.4(typescript@5.7.3)
     optionalDependencies:
       vite: 6.0.7(@types/node@22.10.5)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0)
     transitivePeerDependencies:

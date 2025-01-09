@@ -5,3 +5,4 @@
 ## Release Stopper
 
 - Linting, CSS Sorting, ...
+- Eliminate old path alias: "@/*"
