@@ -1,5 +1,12 @@
 # hinterhof
 
+## 0.4.4
+
+### Patch Changes
+
+- Updated dependencies
+  - ui@0.1.3
+
 ## 0.4.3
 
 ### Patch Changes
