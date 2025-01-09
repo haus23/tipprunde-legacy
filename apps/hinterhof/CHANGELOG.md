@@ -1,5 +1,14 @@
 # hinterhof
 
+## 0.4.5
+
+### Patch Changes
+
+- Updated dependencies [1a69d5f]
+- Updated dependencies [9e31639]
+- Updated dependencies [f7a3eba]
+  - lib@0.3.3
+
 ## 0.4.4
 
 ### Patch Changes
