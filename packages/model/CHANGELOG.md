@@ -1,5 +1,11 @@
 # model
 
+## 0.18.0
+
+### Minor Changes
+
+- [43c2bda](https://github.com/haus23/tipprunde-legacy/commit/43c2bda): Add rulesets.
+
 ## 0.17.0
 
 ### Minor Changes
