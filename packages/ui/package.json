@@ -6,16 +6,16 @@
   "types": "./src/index.ts",
   "scripts": {},
   "dependencies": {
-    "@headlessui/react": "^1.7.4",
-    "@heroicons/react": "^2.0.13",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.39.5"
+    "@headlessui/react": "^1.7.19",
+    "@heroicons/react": "^2.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.54.2"
   },
   "devDependencies": {
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.9",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
     "tsconfig-legacy": "workspace:0.1.0",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.5"
   }
 }
