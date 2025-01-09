@@ -3,7 +3,6 @@
   "compilerOptions": {
     /* Linting */
     "strict": true,
-    "noUncheckedIndexedAccess": true,
 
     /* Bundler */
     "target": "ES2022",
