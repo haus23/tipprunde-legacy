@@ -4,6 +4,4 @@
 
 ## Release Stopper
 
-- Switch to valibot (from zod)
-- Add rule models
-- Clean up
+- Integration into hinterhof app
