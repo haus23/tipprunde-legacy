@@ -1,5 +1,5 @@
-import { TipRuleId } from '../model/rules/tip-rule';
-import { Tip } from '../model/tip';
+import type { TipRuleId } from '../model/rules/tip-rule';
+import type { Tip } from '../model/tip';
 
 function toGoalTuple(result: string) {
   const goals = result.split(':');
@@ -15,12 +15,13 @@ function toTotoResult(goals: number[]) {
  * @returns Unmodified tip or updated copy.
  */
 export function calculateTipResult(
-  tip: Tip,
+  originalTip: Tip,
   result: string,
   ruleId: TipRuleId,
-  options: { doubleRound?: boolean } = {}
+  options: { doubleRound?: boolean } = {},
 ): Tip {
   const isDoubleRound = !!options.doubleRound;
+  let tip = originalTip;
 
   // Remove all extra flags if any
   if (typeof tip.lonelyHit !== 'undefined') {

@@ -1,9 +1,9 @@
+import type { User as FirebaseUser } from 'firebase/auth';
 import {
   getAuth,
   signInWithEmailAndPassword,
   signOut as signOutFromFirebase,
   updateProfile as updateFirebaseProfile,
-  User as FirebaseUser,
 } from 'firebase/auth';
 import { app } from './app';
 

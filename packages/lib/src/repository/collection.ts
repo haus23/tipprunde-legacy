@@ -1,13 +1,13 @@
+import type { QueryConstraint } from 'firebase/firestore';
 import {
-  QueryConstraint,
   collection as firestoreCollection,
   getDocs,
-  query,
   onSnapshot,
+  query,
 } from 'firebase/firestore';
 
 import { db } from '../firebase/db';
-import { BaseModel } from '../model/base/model';
+import type { BaseModel } from '../model/base/model';
 import { baseModelConverter } from './base-model-converter';
 
 export const collection = <T extends BaseModel>(
@@ -15,7 +15,7 @@ export const collection = <T extends BaseModel>(
   ...constraints: QueryConstraint[]
 ) => {
   const q = query(firestoreCollection(db, path), ...constraints).withConverter(
-    baseModelConverter<T>()
+    baseModelConverter<T>(),
   );
 
   return {

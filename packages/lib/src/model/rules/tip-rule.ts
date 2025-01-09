@@ -1,4 +1,4 @@
-import { Rule } from './rule';
+import type { Rule } from './rule';
 
 export type TipRuleId =
   | 'drei-oder-ein-punkt-joker-verdoppelt'

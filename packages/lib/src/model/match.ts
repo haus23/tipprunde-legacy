@@ -1,4 +1,4 @@
-import { BaseModel } from './base/model';
+import type { BaseModel } from './base/model';
 
 export type Match = BaseModel & {
   roundId: string;

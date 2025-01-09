@@ -1,6 +1,6 @@
-import { collection, doc, DocumentReference, setDoc } from 'firebase/firestore';
+import { collection, doc, type DocumentReference, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/db';
-import { BaseModel } from '../model/base/model';
+import type { BaseModel } from '../model/base/model';
 import { baseModelConverter } from './base-model-converter';
 
 /**

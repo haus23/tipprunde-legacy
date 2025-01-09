@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import { tipRuleDescriptions, TipRuleId } from '../model/rules/tip-rule';
-import { Tip } from '../model/tip';
+import { type TipRuleId, tipRuleDescriptions } from '../model/rules/tip-rule';
+import type { Tip } from '../model/tip';
 import { calculateTipResult } from './calculate-tip-result';
 
 // Passing in an unreal points value in order to test object identity
@@ -8,7 +8,7 @@ function makeTipMock(
   tip: string,
   joker = false,
   points = -1,
-  lonelyHit?: boolean
+  lonelyHit?: boolean,
 ): Tip {
   const newTip: Tip = {
     id: '',
@@ -86,18 +86,18 @@ describe(`Tippberechnung nach Regeln: ${tipRuleDescriptions[0].name}`, () => {
   const expectedPoints = [3, 6, 1, 2, 1, 2, 0, 0, 0, 0, 0, 0];
 
   test('berechnet die korrekten Punkte', () => {
-    mockData.forEach((match) => {
+    for (const match of mockData) {
       match.tips.forEach((tip, ix) => {
         const t = makeTipMock(tip.tip, tip.joker);
         const calculatedTip = calculateTipResult(t, match.result, ruleId);
         expect(calculatedTip).not.toBe(t);
         expect(calculatedTip.points).toBe(expectedPoints[ix]);
       });
-    });
+    }
   });
 
   test('berechnet die korrekten Punkte in einer Doppelte-Punkte-Runde', () => {
-    mockData.forEach((match) => {
+    for (const match of mockData) {
       match.tips.forEach((tip, ix) => {
         const t = makeTipMock(tip.tip, tip.joker);
         const calculatedTip = calculateTipResult(t, match.result, ruleId, {
@@ -106,7 +106,7 @@ describe(`Tippberechnung nach Regeln: ${tipRuleDescriptions[0].name}`, () => {
         expect(calculatedTip).not.toBe(t);
         expect(calculatedTip.points).toBe(expectedPoints[ix] * 2);
       });
-    });
+    }
   });
 
   test('ändert bei einer Neuberechnung nichts', () => {

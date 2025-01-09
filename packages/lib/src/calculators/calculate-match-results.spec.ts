@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest';
-import { ChampionshipRules } from '../model/championchip-rules';
-import { Match } from '../model/match';
+import type { ChampionshipRules } from '../model/championchip-rules';
+import type { Match } from '../model/match';
 import { matchRuleDescriptions } from '../model/rules/match-rule';
 import { roundRuleDescriptions } from '../model/rules/round-rule';
-import { Tip } from '../model/tip';
+import type { Tip } from '../model/tip';
 import { calculateMatchResults } from './calculate-match-results';
 
 // Passing in an unreal points value in order to test object identity
@@ -11,7 +11,7 @@ function makeTipMock(
   tip: string,
   joker = false,
   points = -1,
-  lonelyHit?: boolean
+  lonelyHit?: boolean,
 ): Tip {
   const newTip: Tip = {
     id: '',
@@ -60,14 +60,14 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[0].name}`, () => 
   test('Berechnung summiert korrekt die erzielten Punkte', () => {
     const tipPoints = [3, 1, 1, 0, 0, 1, 1];
     const tips = tipStrings.map((tip, ix) =>
-      makeTipMock(tip, false, tipPoints[ix])
+      makeTipMock(tip, false, tipPoints[ix]),
     );
 
     const match = makeMatchMock('2:1');
     const { match: calculatedMatch } = calculateMatchResults(
       match,
       tips,
-      rules
+      rules,
     );
     expect(calculatedMatch.points).toBe(7);
     expect(calculatedMatch).not.toBe(match);
@@ -76,14 +76,14 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[0].name}`, () => 
   test('Neuberechnung behält Objekt-Identität', () => {
     const tipPoints = [3, 1, 1, 0, 0, 1, 1];
     const tips = tipStrings.map((tip, ix) =>
-      makeTipMock(tip, false, tipPoints[ix])
+      makeTipMock(tip, false, tipPoints[ix]),
     );
 
     const match = makeMatchMock('2:1', 7);
     const { match: calculatedMatch } = calculateMatchResults(
       match,
       tips,
-      rules
+      rules,
     );
     expect(calculatedMatch.points).toBe(7);
     expect(calculatedMatch).toBe(match);
@@ -92,14 +92,14 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[0].name}`, () => 
   test('Einzelner korrekter Tipp ist irrelevant', () => {
     const tipPoints = [0, 0, 0, 0, 1, 0, 0];
     const tips = tipStrings.map((tip, ix) =>
-      makeTipMock(tip, false, tipPoints[ix])
+      makeTipMock(tip, false, tipPoints[ix]),
     );
 
     const match = makeMatchMock('0:4', 1);
     const { match: calculatedMatch, tips: updatedTips } = calculateMatchResults(
       match,
       tips,
-      rules
+      rules,
     );
     expect(calculatedMatch.points).toBe(1);
     expect(calculatedMatch).toBe(match);
@@ -121,14 +121,14 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name}`, () => 
   test('Berechnung summiert korrekt die erzielten Punkte', () => {
     const tipPoints = [3, 1, 1, 0, 0, 1, 1];
     const tips = tipStrings.map((tip, ix) =>
-      makeTipMock(tip, false, tipPoints[ix])
+      makeTipMock(tip, false, tipPoints[ix]),
     );
 
     const match = makeMatchMock('2:1');
     const { match: calculatedMatch } = calculateMatchResults(
       match,
       tips,
-      rules
+      rules,
     );
     expect(calculatedMatch.points).toBe(7);
     expect(calculatedMatch).not.toBe(match);
@@ -137,13 +137,13 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name}`, () => 
   test('Neuberechnung der Summe behält Objekt-Identität', () => {
     const tipPoints = [3, 1, 1, 0, 0, 1, 1];
     const tips = tipStrings.map((tip, ix) =>
-      makeTipMock(tip, false, tipPoints[ix])
+      makeTipMock(tip, false, tipPoints[ix]),
     );
     const match = makeMatchMock('2:1', 7);
     const { match: calculatedMatch } = calculateMatchResults(
       match,
       tips,
-      rules
+      rules,
     );
     expect(calculatedMatch.points).toBe(7);
     expect(calculatedMatch).toBe(match);
@@ -152,14 +152,14 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name}`, () => 
   test('Einzelner korrekter Tipp wird aufgewertet', () => {
     const tipPoints = [0, 0, 0, 0, 2, 0, 0];
     const tips = tipStrings.map((tip, ix) =>
-      makeTipMock(tip, true, tipPoints[ix])
+      makeTipMock(tip, true, tipPoints[ix]),
     );
 
     const match = makeMatchMock('1:6', 2);
     const { match: calculatedMatch, tips: updatedTips } = calculateMatchResults(
       match,
       tips,
-      rules
+      rules,
     );
     expect(calculatedMatch.points).toBe(5);
     expect(calculatedMatch).not.toBe(match);
@@ -181,7 +181,7 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name} und ${ro
   test('Berechnung summiert korrekt die erzielten Punkte', () => {
     const tipPoints = [3, 1, 1, 0, 0, 1, 1];
     const tips = tipStrings.map((tip, ix) =>
-      makeTipMock(tip, false, tipPoints[ix])
+      makeTipMock(tip, false, tipPoints[ix]),
     );
 
     const match = makeMatchMock('2:1');
@@ -189,7 +189,7 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name} und ${ro
       match,
       tips,
       rules,
-      { isDoubleRound: true }
+      { isDoubleRound: true },
     );
     expect(calculatedMatch.points).toBe(14);
     expect(calculatedMatch).not.toBe(match);
@@ -198,14 +198,14 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name} und ${ro
   test('Neuberechnung der Summe behält Objekt-Identität', () => {
     const tipPoints = [3, 1, 1, 0, 0, 1, 1];
     const tips = tipStrings.map((tip, ix) =>
-      makeTipMock(tip, false, tipPoints[ix])
+      makeTipMock(tip, false, tipPoints[ix]),
     );
     const match = makeMatchMock('2:1', 14);
     const { match: calculatedMatch } = calculateMatchResults(
       match,
       tips,
       rules,
-      { isDoubleRound: true }
+      { isDoubleRound: true },
     );
     expect(calculatedMatch.points).toBe(14);
     expect(calculatedMatch).toBe(match);
@@ -214,7 +214,7 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name} und ${ro
   test('Einzelner korrekter Tipp wird aufgewertet', () => {
     const tipPoints = [0, 0, 0, 0, 2, 0, 0];
     const tips = tipStrings.map((tip, ix) =>
-      makeTipMock(tip, true, tipPoints[ix])
+      makeTipMock(tip, true, tipPoints[ix]),
     );
 
     const match = makeMatchMock('1:6', 0);
@@ -222,7 +222,7 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name} und ${ro
       match,
       tips,
       rules,
-      { isDoubleRound: true }
+      { isDoubleRound: true },
     );
     expect(calculatedMatch.points).toBe(7);
     expect(calculatedMatch).not.toBe(match);

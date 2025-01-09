@@ -1,24 +1,25 @@
-import { ChampionshipRules } from '../model/championchip-rules';
-import { Match } from '../model/match';
-import { Tip } from '../model/tip';
+import type { ChampionshipRules } from '../model/championchip-rules';
+import type { Match } from '../model/match';
+import type { Tip } from '../model/tip';
 import { calculateTipResult } from './calculate-tip-result';
 
 export function calculateMatchResults(
-  match: Match,
-  tips: Tip[],
+  originalMatch: Match,
+  originalTips: Tip[],
   rules: ChampionshipRules,
-  options: { isDoubleRound?: boolean } = {}
+  options: { isDoubleRound?: boolean } = {},
 ): { match: Match; tips: Tip[] } {
   const isDoubleRound =
     rules.roundRuleId === 'alles-verdoppelt' && !!options.isDoubleRound;
 
-  tips = tips.map((t) =>
+  let match = originalMatch;
+  let tips = originalTips.map((t) =>
     calculateTipResult(t, match.result, rules.tipRuleId, {
       doubleRound: isDoubleRound,
-    })
+    }),
   );
 
-  const tipsWithPoints = tips.filter((t) => t.points > 0);
+  const tipsWithPoints = originalTips.filter((t) => t.points > 0);
   let totalPoints = tipsWithPoints.reduce((sum, t) => sum + t.points, 0);
 
   switch (rules.matchRuleId) {
@@ -32,7 +33,7 @@ export function calculateMatchResults(
                 ...correctTip,
                 points: correctTip.points + 3,
                 lonelyHit: true,
-              }
+              },
         );
         totalPoints += 3;
       }

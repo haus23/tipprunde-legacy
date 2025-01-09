@@ -1,4 +1,9 @@
-import { FirebaseOptions, getApp, getApps, initializeApp } from 'firebase/app';
+import {
+  type FirebaseOptions,
+  getApp,
+  getApps,
+  initializeApp,
+} from 'firebase/app';
 
 const options: FirebaseOptions = {
   apiKey: import.meta.env.VITE_FB_API_KEY,
