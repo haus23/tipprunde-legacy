@@ -1,5 +1,13 @@
 # www
 
+## 0.15.3
+
+### Patch Changes
+
+- [3261864](https://github.com/haus23/tipprunde-legacy/commit/3261864): Adapt tsconfig changes.
+- [7a53819](https://github.com/haus23/tipprunde-legacy/commit/7a53819): Update typescript.
+  - @haus23/tipprunde-model@0.18.0
+
 ## 0.15.2
 
 ### Patch Changes
