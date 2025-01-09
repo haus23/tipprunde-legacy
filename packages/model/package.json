@@ -6,15 +6,21 @@
   "exports": {
     ".": "./src/index.ts"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "test": "vitest",
     "typecheck": "tsc"
   },
   "dependencies": {
-    "zod": "^3.24.1"
+    "valibot": "1.0.0-beta.11"
+  },
+  "peerDependencies": {
+    "valibot": ">=1.0.0-beta"
+  },
+  "peerDependenciesMeta": {
+    "valibot": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",

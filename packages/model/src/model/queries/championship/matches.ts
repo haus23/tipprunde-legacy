@@ -1,14 +1,16 @@
-import { z } from 'zod';
-import { Match } from '../../entity/championship/match';
-import { Round } from '../../entity/championship/round';
-import { League } from '../../entity/league';
-import { Team } from '../../entity/team';
+import * as v from 'valibot';
 
-export const Matches = z.object({
-  rounds: z.array(Round),
-  matches: z.array(Match),
-  teams: z.record(Team),
-  leagues: z.record(League),
+import { MatchSchema } from '../../entity/championship/match';
+import { RoundSchema } from '../../entity/championship/round';
+import { LeagueSchema } from '../../entity/league';
+import { TeamSchema } from '../../entity/team';
+
+export const MatchesSchema = v.object({
+  rounds: v.array(RoundSchema),
+  matches: v.array(MatchSchema),
+  teams: v.record(v.string(), TeamSchema),
+  leagues: v.record(v.string(), LeagueSchema),
 });
 
-export type Matches = z.infer<typeof Matches>;
+export type MatchesInput = v.InferInput<typeof MatchesSchema>;
+export type Matches = v.InferOutput<typeof MatchesSchema>;

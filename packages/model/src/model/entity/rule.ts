@@ -1,15 +1,18 @@
-import { z } from 'zod';
+import * as v from 'valibot';
+
+import { IdSchema } from '../id';
 
 // Firebase collection path: /rules
 
-export const Rule = z.object({
-  id: z.string(),
-  name: z.string({ required_error: 'Rule name is required' }),
-  description: z.string({ required_error: 'Rule description is required' }),
-  extraQuestionRuleId: z.string(),
-  matchRuleId: z.string(),
-  roundRuleId: z.string(),
-  tipRuleId: z.string(),
+export const RuleSchema = v.object({
+  id: IdSchema,
+  name: v.pipe(v.string(), v.nonEmpty()),
+  description: v.pipe(v.string(), v.nonEmpty()),
+  extraQuestionRuleId: IdSchema,
+  matchRuleId: IdSchema,
+  roundRuleId: IdSchema,
+  tipRuleId: IdSchema,
 });
 
-export type Rule = z.infer<typeof Rule>;
+export type RuleInput = v.InferInput<typeof RuleSchema>;
+export type Rule = v.InferOutput<typeof RuleSchema>;

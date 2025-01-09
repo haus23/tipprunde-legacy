@@ -1,14 +1,17 @@
-import { z } from 'zod';
-import { ChampionshipId } from '../../primitives';
+import * as v from 'valibot';
 
-export const Championship = z.object({
-  id: ChampionshipId,
-  name: z.string(),
-  nr: z.number().positive(),
-  rulesId: z.string(),
-  published: z.boolean(),
-  extraPointsPublished: z.boolean(),
-  completed: z.boolean(),
+import { ChampionshipIdSchema } from '../../primitives';
+import { IdSchema } from '../id';
+
+export const ChampionshipSchema = v.object({
+  id: ChampionshipIdSchema,
+  name: v.pipe(v.string(), v.nonEmpty()),
+  nr: v.pipe(v.number(), v.integer(), v.minValue(1)),
+  rulesId: IdSchema,
+  published: v.optional(v.boolean(), false),
+  extraPointsPublished: v.optional(v.boolean(), false),
+  completed: v.optional(v.boolean(), false),
 });
 
-export type Championship = z.infer<typeof Championship>;
+export type ChampionshipInput = v.InferInput<typeof ChampionshipSchema>;
+export type Championship = v.InferOutput<typeof ChampionshipSchema>;

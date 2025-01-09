@@ -1,9 +1,14 @@
-import type { z } from 'zod';
-import { Account } from '../entity/account';
-import { Player } from '../entity/championship/player';
+import * as v from 'valibot';
 
-export const PlayerWithAccount = Player.extend({
-  account: Account,
+import { AccountSchema } from '../entity/account';
+import { PlayerSchema } from '../entity/championship/player';
+
+export const PlayerWithAccountSchema = v.object({
+  ...PlayerSchema.entries,
+  account: AccountSchema,
 });
 
-export type PlayerWithAccount = z.infer<typeof PlayerWithAccount>;
+export type PlayerWithAccountInput = v.InferInput<
+  typeof PlayerWithAccountSchema
+>;
+export type PlayerWithAccount = v.InferOutput<typeof PlayerWithAccountSchema>;

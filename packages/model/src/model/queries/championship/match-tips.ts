@@ -1,9 +1,12 @@
-import { z } from 'zod';
-import { Tip } from '../../entity/championship/tip';
+import * as v from 'valibot';
 
-export const MatchTips = z.object({
-  matchId: z.string(),
-  tips: z.record(Tip),
+import { TipSchema } from '../../entity/championship/tip';
+import { IdSchema } from '../../id';
+
+export const MatchTipsSchema = v.object({
+  matchId: IdSchema,
+  tips: v.record(v.string(), TipSchema),
 });
 
-export type MatchTips = z.infer<typeof MatchTips>;
+export type MatchTipsInput = v.InferInput<typeof MatchTipsSchema>;
+export type MatchTips = v.InferOutput<typeof MatchTipsSchema>;

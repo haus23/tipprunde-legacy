@@ -1,11 +1,17 @@
-import { z } from 'zod';
+import * as v from 'valibot';
+
+import { IdSchema } from '../id';
 
 // Firebase collection path: /players
 
-export const Account = z.object({
-  id: z.string(),
-  name: z.string({ required_error: 'Player name is required' }),
-  email: z.string().email().or(z.literal('')),
+export const AccountSchema = v.object({
+  id: IdSchema,
+  name: v.pipe(v.string(), v.nonEmpty()),
+  email: v.optional(
+    v.union([v.literal(''), v.pipe(v.string(), v.email())]),
+    '',
+  ),
 });
 
-export type Account = z.infer<typeof Account>;
+export type AccountInput = v.InferInput<typeof AccountSchema>;
+export type Account = v.InferOutput<typeof AccountSchema>;

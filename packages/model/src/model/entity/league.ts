@@ -1,11 +1,14 @@
-import { z } from 'zod';
+import * as v from 'valibot';
+
+import { IdSchema } from '../id';
 
 // Firebase collection path: /leagues
 
-export const League = z.object({
-  id: z.string(),
-  name: z.string({ required_error: 'League name is required' }),
-  shortname: z.string({ required_error: 'League short name is required' }),
+export const LeagueSchema = v.object({
+  id: IdSchema,
+  name: v.pipe(v.string(), v.nonEmpty()),
+  shortname: v.pipe(v.string(), v.nonEmpty()),
 });
 
-export type League = z.infer<typeof League>;
+export type LeagueInput = v.InferInput<typeof LeagueSchema>;
+export type League = v.InferOutput<typeof LeagueSchema>;

@@ -1,9 +1,12 @@
-import { z } from 'zod';
-import { Tip } from '../../entity/championship/tip';
+import * as v from 'valibot';
 
-export const PlayerTips = z.object({
-  playerId: z.string(),
-  tips: z.record(Tip),
+import { TipSchema } from '../../entity/championship/tip';
+import { IdSchema } from '../../id';
+
+export const PlayerTipsSchema = v.object({
+  playerId: IdSchema,
+  tips: v.record(v.string(), TipSchema),
 });
 
-export type PlayerTips = z.infer<typeof PlayerTips>;
+export type PlayerTipsInput = v.InferInput<typeof PlayerTipsSchema>;
+export type PlayerTips = v.InferOutput<typeof PlayerTipsSchema>;
