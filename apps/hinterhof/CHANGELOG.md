@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.4.7
+
+### Patch Changes
+
+- [d17d193](https://github.com/haus23/tipprunde-legacy/commit/d17d193): Update vite.
+
 ## 0.4.6
 
 ### Patch Changes
