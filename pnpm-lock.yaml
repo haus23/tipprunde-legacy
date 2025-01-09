@@ -273,33 +273,33 @@ importers:
   packages/ui:
     dependencies:
       '@headlessui/react':
-        specifier: ^1.7.4
+        specifier: ^1.7.19
         version: 1.7.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroicons/react':
-        specifier: ^2.0.13
+        specifier: ^2.2.0
         version: 2.2.0(react@18.3.1)
       react:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1
       react-dom:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-hook-form:
-        specifier: ^7.39.5
+        specifier: ^7.54.2
         version: 7.54.2(react@18.3.1)
     devDependencies:
+      '@haus23/tipprunde-tsconfig':
+        specifier: workspace:^
+        version: link:../tsconfig
       '@types/react':
-        specifier: ^18.0.25
+        specifier: ^18.3.18
         version: 18.3.18
       '@types/react-dom':
-        specifier: ^18.0.9
+        specifier: ^18.3.5
         version: 18.3.5(@types/react@18.3.18)
-      tsconfig-legacy:
-        specifier: workspace:0.1.0
-        version: link:../tsconfig-legacy
       typescript:
-        specifier: ^4.9.3
-        version: 4.9.5
+        specifier: ~5.7.3
+        version: 5.7.3
 
 packages:
 
@@ -4286,11 +4286,6 @@ packages:
   type-is@2.0.0:
     resolution: {integrity: sha512-gd0sGezQYCbWSbkZr75mln4YBidWUN60+devscpLF5mtRDUpiaTvKpBNrdaCvel1NdR2k6vclXybU5fBd2i+nw==}
     engines: {node: '>= 0.6'}
-
-  typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
 
   typescript@5.7.2:
     resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
@@ -9301,8 +9296,6 @@ snapshots:
       content-type: 1.0.5
       media-typer: 1.1.0
       mime-types: 3.0.0
-
-  typescript@4.9.5: {}
 
   typescript@5.7.2: {}
 

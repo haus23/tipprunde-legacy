@@ -1,4 +1,4 @@
 {
-  "extends": "tsconfig-legacy/react-library.json",
+  "extends": "@haus23/tipprunde-tsconfig/app.json",
   "include": ["src"]
 }
