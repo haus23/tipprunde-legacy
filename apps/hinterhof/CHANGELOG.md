@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.4.8
+
+### Patch Changes
+
+- [494c109](https://github.com/haus23/tipprunde-legacy/commit/494c109): Update react plugin.
+
 ## 0.4.7
 
 ### Patch Changes
