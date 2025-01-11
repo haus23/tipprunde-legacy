@@ -1,5 +1,16 @@
 # backend
 
+## 0.18.0
+
+### Minor Changes
+
+- [c781ae0](https://github.com/haus23/tipprunde-legacy/commit/c781ae0): Add player-tips route.
+- [8a71d63](https://github.com/haus23/tipprunde-legacy/commit/8a71d63): Add validation method for players.
+
+### Patch Changes
+
+- [4727a46](https://github.com/haus23/tipprunde-legacy/commit/4727a46): Add missing route.
+
 ## 0.17.0
 
 ### Minor Changes
