@@ -1,5 +1,16 @@
 # backend
 
+## 0.17.0
+
+### Minor Changes
+
+- [f99129b](https://github.com/haus23/tipprunde-legacy/commit/f99129b): Add route for aggregated championship matches.
+- [692186b](https://github.com/haus23/tipprunde-legacy/commit/692186b): Add queries for rounds and matches.
+
+### Patch Changes
+
+- [447f841](https://github.com/haus23/tipprunde-legacy/commit/447f841): Improve DX
+
 ## 0.16.3
 
 ### Patch Changes
