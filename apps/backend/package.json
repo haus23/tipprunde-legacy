@@ -7,7 +7,7 @@
     "#app/*": "./src/*"
   },
   "scripts": {
-    "dev": "tsx --env-file=.env server.ts",
+    "dev": "tsx watch --env-file=.env server.ts",
     "test": "node --env-file=.env node_modules/vitest/vitest.mjs",
     "build": "esbuild server.ts --bundle --platform=node --packages=external --outfile=dist/server.js --format=esm",
     "preview": "node --env-file=.env dist/server.js",
