@@ -12,7 +12,9 @@
     "test": "turbo test",
     "lint": "biome check --write",
     "typecheck": "turbo typecheck",
-    "hinterhof": "turbo dev --filter=@haus23/tipprunde-hinterhof"
+    "backend": "turbo dev --filter=@haus23/tipprunde-backend",
+    "hinterhof": "turbo dev --filter=@haus23/tipprunde-hinterhof",
+    "www": "turbo dev --filter=@haus23/tipprunde-www"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
