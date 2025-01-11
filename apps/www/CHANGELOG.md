@@ -1,5 +1,11 @@
 # www
 
+## 0.15.5
+
+### Patch Changes
+
+- [d3839c5](https://github.com/haus23/tipprunde-legacy/commit/d3839c5): Add handling for no ranking. Resolves #8.
+
 ## 0.15.4
 
 ### Patch Changes
