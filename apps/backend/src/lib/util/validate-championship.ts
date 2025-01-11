@@ -1,7 +1,4 @@
-import {
-  ChampionshipIdSchema,
-  type ChampionshipInput,
-} from '@haus23/tipprunde-model';
+import { ChampionshipIdSchema } from '@haus23/tipprunde-model';
 import type { Request } from 'express';
 import * as v from 'valibot';
 
