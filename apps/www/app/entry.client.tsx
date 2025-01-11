@@ -3,7 +3,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router';
 
-import { Logo } from './components/brand/logo';
+import { SplashScreen } from './components/brand/splash-screen';
 import { ThemeProvider } from './utils/theme';
 
 import { AppErrorBoundary, ErrorBoundary } from './routes/_error';
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     loader: rootLoader(queryClient),
     element: <Layout />,
     errorElement: <ErrorBoundary />,
-    hydrateFallbackElement: <Logo className="translate-y-[180px]" />,
+    hydrateFallbackElement: <SplashScreen />,
     children: [
       {
         id: 'master',

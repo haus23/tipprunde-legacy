@@ -1,12 +1,16 @@
 import LogoImage from '#/assets/logo.svg?no-inline';
 
-export function Logo({ className }: { className?: string }) {
+namespace Logo {
+  export interface Props extends React.ComponentProps<'div'> {}
+}
+
+export function Logo({ className, ...props }: Logo.Props) {
   return (
-    <div className={className}>
+    <div className={className} {...props}>
       <svg
         role="img"
         aria-label="Haus 23 Logo"
-        className="h-full w-full fill-current"
+        className="size-full fill-current"
       >
         <use href={`${LogoImage}#logo`} />
       </svg>
