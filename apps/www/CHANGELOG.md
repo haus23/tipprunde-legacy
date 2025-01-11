@@ -1,5 +1,11 @@
 # www
 
+## 0.15.4
+
+### Patch Changes
+
+- [38aec8a](https://github.com/haus23/tipprunde-legacy/commit/38aec8a): Style the loading screen.
+
 ## 0.15.3
 
 ### Patch Changes
