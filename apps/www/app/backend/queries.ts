@@ -102,8 +102,11 @@ async function fetchMatchTips(championshipId: string, nr: string | null) {
 
   const url = `${baseUrl}/championships/${championshipId}/match-tips${query}`;
   const response = await fetch(url);
-  if (response.status === 404) {
-    throw data('Dieses Spiel gibt es nicht in dieser Runde.', 404);
+  if (!response.ok) {
+    if (!nr) {
+      throw data('Bisher noch keine Spiele in dieser Runde.', response.status);
+    }
+    throw data('Dieses Spiel gibt es nicht in dieser Runde.', response.status);
   }
 
   return v.parse(MatchTipsSchema, await response.json());

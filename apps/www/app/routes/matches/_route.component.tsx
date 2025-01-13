@@ -24,7 +24,26 @@ export function MatchesRoute() {
   const players = usePlayers(championship.id);
   const { leagues, matches, rounds, teams } = useMatches(championship.id);
 
-  const { matchId, tips } = useLoaderData<ReturnType<typeof matchesLoader>>();
+  const loaderData = useLoaderData<ReturnType<typeof matchesLoader>>();
+  if (loaderData.state === 'error') {
+    return (
+      <div>
+        <header className="mx-2 flex items-center gap-x-2 pt-2 text-accent-foreground sm:mx-0 sm:gap-x-4">
+          <title>{`Tabelle ${championship.name} - runde.tips`}</title>
+          <h1 className="flex gap-x-2 text-xl font-semibold tracking-tight">
+            <span className="hidden sm:block">{championship.name}</span>
+            <span className="hidden sm:block">-</span>
+            <span>Neues Turnier</span>
+          </h1>
+        </header>
+        <div className="mx-2 mt-4 text-lg text-subtle-foreground">
+          <p>Noch sind keine Spiele eingetragen. Noch etwas Geduld bitte.</p>
+        </div>
+      </div>
+    );
+  }
+
+  const { matchId, tips } = loaderData;
   const match = matches.find((m) => m.id === matchId) || matches[0];
 
   function handleSelect(value: string) {
