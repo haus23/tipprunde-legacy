@@ -1,5 +1,17 @@
 # www
 
+## 0.16.0
+
+### Minor Changes
+
+- [93a7d8a](https://github.com/haus23/tipprunde-legacy/commit/93a7d8a): feat: Handle edge case "no matches".
+- [656f805](https://github.com/haus23/tipprunde-legacy/commit/656f805): Add handling of the edge case no players in championship.
+
+### Patch Changes
+
+- [00b4139](https://github.com/haus23/tipprunde-legacy/commit/00b4139): refactor: Extract empty data component.
+- [686e8ae](https://github.com/haus23/tipprunde-legacy/commit/686e8ae): fix: Use discriminated union.
+
 ## 0.15.5
 
 ### Patch Changes
