@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '#/components/(ui)/elements/select';
+import { EmptyData } from '#/components/(ui)/molecules/empty-data';
 import { InfoBox } from '#/components/(ui)/molecules/info-box';
 import { useChampionship } from '#/utils/app/championship';
 import { useMatches } from '#/utils/app/matches';
@@ -27,19 +28,9 @@ export function MatchesRoute() {
   const loaderData = useLoaderData<ReturnType<typeof matchesLoader>>();
   if (loaderData.state === 'error') {
     return (
-      <div>
-        <header className="mx-2 flex items-center gap-x-2 pt-2 text-accent-foreground sm:mx-0 sm:gap-x-4">
-          <title>{`Tabelle ${championship.name} - runde.tips`}</title>
-          <h1 className="flex gap-x-2 text-xl font-semibold tracking-tight">
-            <span className="hidden sm:block">{championship.name}</span>
-            <span className="hidden sm:block">-</span>
-            <span>Neues Turnier</span>
-          </h1>
-        </header>
-        <div className="mx-2 mt-4 text-lg text-subtle-foreground">
-          <p>Noch sind keine Spiele eingetragen. Noch etwas Geduld bitte.</p>
-        </div>
-      </div>
+      <EmptyData championship={championship}>
+        Noch sind keine Spiele eingetragen. Noch etwas Geduld bitte.
+      </EmptyData>
     );
   }
 
