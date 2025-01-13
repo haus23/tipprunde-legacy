@@ -21,7 +21,10 @@ export const playersLoader =
     );
 
     if (players.length === 0) {
-      return { state: 'error', error: 'Bisher keine Spieler in dieser Runde.' };
+      return {
+        state: 'error',
+        error: 'Bisher keine Spieler in dieser Runde.',
+      } as const;
     }
 
     const player = await getCurrentPlayer(queryClient, players, request);
@@ -30,5 +33,5 @@ export const playersLoader =
       playerTipsQuery(championship.id, player.account.id),
     );
 
-    return { state: 'success', ...data };
+    return { state: 'success', ...data } as const;
   };

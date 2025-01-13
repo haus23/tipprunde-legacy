@@ -31,7 +31,7 @@ export function PlayersRoute() {
   const players = usePlayers(championship.id);
 
   const loaderData = useLoaderData<ReturnType<typeof playersLoader>>();
-  if (typeof loaderData.error === 'string') {
+  if (loaderData.state === 'error') {
     return (
       <div>
         <header className="mx-2 flex items-center gap-x-2 pt-2 text-accent-foreground sm:mx-0 sm:gap-x-4">
