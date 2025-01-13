@@ -5,8 +5,8 @@ import { useChampionship } from '#/utils/app/championship';
 export function PlayersErrorBoundary() {
   const championship = useChampionship();
   const error = useRouteError();
-  let errorMsg = 'Hoppla, hier stimmt was nicht.';
 
+  let errorMsg = 'Hoppla, hier stimmt was nicht.';
   if (isRouteErrorResponse(error)) {
     errorMsg = error.data;
   }

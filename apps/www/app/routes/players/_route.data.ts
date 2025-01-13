@@ -19,11 +19,16 @@ export const playersLoader =
     const players = await queryClient.ensureQueryData(
       playersQuery(championship.id),
     );
+
+    if (players.length === 0) {
+      return { state: 'error', error: 'Bisher keine Spieler in dieser Runde.' };
+    }
+
     const player = await getCurrentPlayer(queryClient, players, request);
 
     const data = await queryClient.ensureQueryData(
       playerTipsQuery(championship.id, player.account.id),
     );
 
-    return data;
+    return { state: 'success', ...data };
   };
