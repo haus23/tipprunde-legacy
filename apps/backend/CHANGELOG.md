@@ -1,5 +1,12 @@
 # backend
 
+## 0.19.0
+
+### Minor Changes
+
+- [000e60c](https://github.com/haus23/tipprunde-legacy/commit/000e60c): Implement match-tips query.
+- [e27c67d](https://github.com/haus23/tipprunde-legacy/commit/e27c67d): Implement current-tips query.
+
 ## 0.18.0
 
 ### Minor Changes
