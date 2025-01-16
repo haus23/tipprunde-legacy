@@ -1,5 +1,11 @@
 # unterbau
 
+## 0.21.0
+
+### Minor Changes
+
+- [690a310](https://github.com/haus23/tipprunde-legacy/commit/690a310): Add cache invalidation route.
+
 ## 0.20.0
 
 ### Minor Changes
