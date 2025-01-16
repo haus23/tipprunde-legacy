@@ -1,5 +1,12 @@
 # unterbau
 
+## 0.21.1
+
+### Patch Changes
+
+- [55d95b6](https://github.com/haus23/tipprunde-legacy/commit/55d95b6): Remove docker compose file.
+- [eab0d56](https://github.com/haus23/tipprunde-legacy/commit/eab0d56): Simplify docker file
+
 ## 0.21.0
 
 ### Minor Changes
