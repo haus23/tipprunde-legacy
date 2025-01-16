@@ -13,7 +13,7 @@
     "lint": "biome check --write",
     "typecheck": "turbo typecheck",
     "backend": "turbo dev --filter=@haus23/tipprunde-backend",
-    "hinterhof": "turbo dev --filter=@haus23/tipprunde-hinterhof",
+    "unterbau": "turbo dev --filter=@haus23/tipprunde-unterbau",
     "www": "turbo dev --filter=@haus23/tipprunde-www"
   },
   "devDependencies": {

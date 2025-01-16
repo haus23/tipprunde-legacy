@@ -1,4 +1,4 @@
-# Projekt: @haus23/tipprunde-backend
+# Projekt: @haus23/tipprunde-unterbau
 
 > Haus23 Tipprunde Legacy API Server
 

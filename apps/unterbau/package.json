@@ -1,5 +1,5 @@
 {
-  "name": "@haus23/tipprunde-backend",
+  "name": "@haus23/tipprunde-unterbau",
   "description": "Backend Server der Haus23 Tipprunde",
   "version": "0.19.0",
   "type": "module",
