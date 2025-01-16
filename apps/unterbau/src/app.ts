@@ -12,6 +12,7 @@ app.use(express.static('public'));
 app.use(express.json());
 
 // API
+app.use('/api/cache', cacheRouter);
 app.use('/api/v1', router);
 
 // Error Handler
