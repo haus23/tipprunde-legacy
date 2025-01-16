@@ -1,5 +1,11 @@
 # unterbau
 
+## 0.20.0
+
+### Minor Changes
+
+- [82f8b3a](https://github.com/haus23/tipprunde-legacy/commit/82f8b3a): Rename app to unterbau.
+
 ## 0.19.0
 
 ### Minor Changes
