@@ -127,9 +127,6 @@ importers:
       '@types/supertest':
         specifier: ^6.0.2
         version: 6.0.2
-      esbuild:
-        specifier: ^0.24.2
-        version: 0.24.2
       supertest:
         specifier: ^7.0.0
         version: 7.0.0

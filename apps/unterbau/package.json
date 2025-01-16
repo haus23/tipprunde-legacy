@@ -9,9 +9,8 @@
   "scripts": {
     "dev": "tsx watch --env-file=.env server.ts",
     "test": "node --env-file=.env node_modules/vitest/vitest.mjs",
-    "build": "esbuild server.ts --bundle --platform=node --packages=external --outfile=dist/server.js --format=esm",
-    "preview": "node --env-file=.env dist/server.js",
-    "start": "node dist/server.js",
+    "preview": "NODE_ENV=production tsx --env-file=.env server.ts",
+    "start": "NODE_ENV=production tsx server.ts",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -26,7 +25,6 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.5",
     "@types/supertest": "^6.0.2",
-    "esbuild": "^0.24.2",
     "supertest": "^7.0.0",
     "tsx": "^4.19.2",
     "typescript": "~5.7.3",
