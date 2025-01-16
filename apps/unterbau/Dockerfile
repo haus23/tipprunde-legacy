@@ -1,27 +1,16 @@
-FROM node:18.15.0-bullseye-slim
+FROM node:22-slim
 
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH=$PATH:/home/node/.npm-global/bin
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
-RUN npm install --global pnpm@latest
-
-WORKDIR /usr/src/app
-
-# Change user
-RUN chown -R node /usr/src/app
-USER node
+# Copy workspace source
+COPY . /workspace
+WORKDIR /workspace
 
 # Fetch deps
-COPY --chown=node:node pnpm-lock.yaml ./
-RUN pnpm fetch --prod
-
-# Copy app
-ADD --chown=node:node . ./
-RUN pnpm install -r --offline --prod
-
-# Build app
-RUN pnpm build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 # Start app
-EXPOSE 2605
-CMD ["node",".output/server/index.mjs"]
+EXPOSE 26515
+CMD ["pnpm","start:unterbau"]
