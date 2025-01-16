@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import type { ErrorRequestHandler } from 'express';
 
@@ -9,6 +10,7 @@ export const app = express();
 
 // Middleware
 app.use(express.static('public'));
+app.use(cors());
 app.use(express.json());
 
 // API
