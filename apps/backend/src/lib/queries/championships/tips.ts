@@ -6,7 +6,7 @@ import type {
 import { cachedFunction } from '#app/lib/cached.ts';
 import { db, modelConverter } from '#app/lib/firebase/index.ts';
 
-const getTips = cachedFunction(
+export const getTips = cachedFunction(
   async (championship: ChampionshipInput) => {
     console.info(
       `[${new Date().toLocaleString()}] Querying tips ${championship.id}`,
