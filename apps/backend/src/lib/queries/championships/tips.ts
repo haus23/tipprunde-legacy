@@ -1,5 +1,6 @@
 import type {
   ChampionshipInput,
+  MatchInput,
   PlayerInput,
   TipInput,
 } from '@haus23/tipprunde-model';
@@ -32,4 +33,13 @@ export async function getTipsByPlayer(
   const tips = await getTips(championship);
 
   return tips.filter((t) => t.playerId === player.id);
+}
+
+export async function getTipsByMatch(
+  match: MatchInput,
+  championship: ChampionshipInput,
+) {
+  const tips = await getTips(championship);
+
+  return tips.filter((t) => t.matchId === match.id);
 }

@@ -1,17 +1,12 @@
 import type { ChampionshipInput } from '@haus23/tipprunde-model';
 import type { Request } from 'express';
-import * as v from 'valibot';
 
 import { getAccounts } from '../queries/accounts.ts';
-import { getChampionships } from '../queries/championships.ts';
 import { getPlayers } from '../queries/championships/players.ts';
 import { ValidationError } from './validation-error.ts';
 
 /**
- * Validate account id for championship
- **/
-
-/**
+ * Validates accountId in request
  *
  * @param req The request object
  * @param championship Championship to lookup the account
