@@ -12,11 +12,11 @@ import { queryOptions } from '@tanstack/react-query';
 import { data } from 'react-router';
 import * as v from 'valibot';
 
-const backendHost = 'https://backend.runde.tips';
+const backendHost = import.meta.env.VITE_UNTERBAU_SERVER;
 const baseUrl = `${backendHost}/api/v1`;
 
 async function fetchChampionships() {
-  console.log('Fetching championships');
+  console.log('Fetching championships from ', baseUrl);
   const response = await fetch(`${baseUrl}/championships`);
   return v.parse(v.array(ChampionshipSchema), await response.json());
 }
