@@ -1,5 +1,11 @@
 # www
 
+## 0.16.1
+
+### Patch Changes
+
+- [ba06ebf](https://github.com/haus23/tipprunde-legacy/commit/ba06ebf): Read backend host from environment.
+
 ## 0.16.0
 
 ### Minor Changes
