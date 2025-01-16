@@ -1,5 +1,11 @@
 # tsconfig
 
+## 0.3.0
+
+### Minor Changes
+
+- [3c80eea](https://github.com/haus23/tipprunde-legacy/commit/3c80eea): Upgrade to ES2023
+
 ## 0.2.0
 
 ### Minor Changes
