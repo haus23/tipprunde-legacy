@@ -1,5 +1,11 @@
 # unterbau
 
+## 0.21.2
+
+### Patch Changes
+
+- [a299d0f](https://github.com/haus23/tipprunde-legacy/commit/a299d0f): Add cors headers
+
 ## 0.21.1
 
 ### Patch Changes
