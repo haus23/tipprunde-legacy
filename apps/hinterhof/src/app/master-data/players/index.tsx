@@ -66,7 +66,7 @@ export default function PlayersView() {
       });
       endEdit();
     }
-    clearCache('masterdata:players', 'Spielerdaten');
+    clearCache('accounts', 'Spielerdaten');
   }
 
   return (

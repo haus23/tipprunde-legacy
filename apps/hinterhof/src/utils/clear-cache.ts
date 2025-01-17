@@ -1,8 +1,8 @@
 import { toast } from 'react-hot-toast';
 
 export async function clearCache(key: string, topic: string) {
-  const cacheUri = `${import.meta.env.VITE_H23_API_SERVER}/api/clear-cache`;
-  const body = { key };
+  const cacheUri = `${import.meta.env.VITE_H23_API_SERVER}/api/cache`;
+  const body = { keys: [key] };
 
   await fetch(cacheUri, {
     method: 'POST',

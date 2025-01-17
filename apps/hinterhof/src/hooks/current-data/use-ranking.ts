@@ -49,7 +49,7 @@ export function useRanking() {
 
     await Promise.all(ranking.map((rd) => updateChampionshipPlayer(rd.id, rd)));
     clearCache(
-      `standings:${currentChampionship?.id}`,
+      `${currentChampionship?.id}`,
       currentChampionship?.name || 'aktuellen Stand',
     );
   };
