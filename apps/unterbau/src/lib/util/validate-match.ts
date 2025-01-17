@@ -25,7 +25,12 @@ export async function validateMatch(
   }
 
   if (!nr) {
-    return matches[0];
+    // Return latest played match or the first if none played
+    return (
+      matches
+        .toSorted((a, b) => (a.date ?? '').localeCompare(b.date ?? ''))
+        .findLast((m) => m.result) || matches[0]
+    );
   }
 
   // Validate match nr exists in this championship
