@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.4.9
+
+### Patch Changes
+
+- [03635f8](https://github.com/haus23/tipprunde-legacy/commit/03635f8): Adapted cache clear code.
+
 ## 0.4.8
 
 ### Patch Changes
