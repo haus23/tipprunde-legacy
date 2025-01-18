@@ -1,5 +1,11 @@
 # model
 
+## 0.18.1
+
+### Patch Changes
+
+- [ae452be](https://github.com/haus23/tipprunde-legacy/commit/ae452be): Align ts versions in workspace.
+
 ## 0.18.0
 
 ### Minor Changes
