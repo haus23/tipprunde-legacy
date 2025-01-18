@@ -1,5 +1,16 @@
 # hinterhof
 
+## 0.5.0
+
+### Minor Changes
+
+- [9bb8b98](https://github.com/haus23/tipprunde-legacy/commit/9bb8b98): Use now the ui-legacy package.
+
+### Patch Changes
+
+- Updated dependencies [ddfc8d7]
+  - ui-legacy@0.2.0
+
 ## 0.4.10
 
 ### Patch Changes
