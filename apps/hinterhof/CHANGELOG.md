@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.4.10
+
+### Patch Changes
+
+- [af28f0a](https://github.com/haus23/tipprunde-legacy/commit/af28f0a): Drop external tailwind configuration.
+
 ## 0.4.9
 
 ### Patch Changes
