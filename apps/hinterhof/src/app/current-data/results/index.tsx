@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Button, Card, TextField, classNames } from 'ui';
+import { Button, Card, TextField, classNames } from 'ui-legacy';
 
 import type { Team } from 'lib';
 

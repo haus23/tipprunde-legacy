@@ -10,7 +10,7 @@ import {
   DateField,
   classNames,
   formatDate,
-} from 'ui';
+} from 'ui-legacy';
 
 import AppCard from '@/components/layout/app-card';
 import { useMatches } from '@/hooks/current-data/use-matches';

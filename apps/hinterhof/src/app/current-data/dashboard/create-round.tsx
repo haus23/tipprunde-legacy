@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card, ToggleField } from 'ui';
+import { Button, Card, ToggleField } from 'ui-legacy';
 
 import { useRounds } from '@/hooks/current-data/use-rounds';
 import { notify } from '@/utils/notify';
@@ -13,7 +13,10 @@ export default function CreateRoundView() {
   const nr = useRef((rounds.at(-1)?.nr || 0) + 1);
 
   const create = async () => {
-    await notify(createRound(nr.current, doubleRound), `Runde ${nr.current} angelegt`);
+    await notify(
+      createRound(nr.current, doubleRound),
+      `Runde ${nr.current} angelegt`,
+    );
     navigate('../spiele');
   };
 
@@ -28,8 +31,13 @@ export default function CreateRoundView() {
           </Button>
         </div>
         <div className="flex p-4 items-center gap-x-4">
-        <span className="text-base pl-2 font-semibold">Doppel-Punkte Runde:</span>
-          <ToggleField checked={doubleRound} onChange={() => setDoubleRound(!doubleRound)} />
+          <span className="text-base pl-2 font-semibold">
+            Doppel-Punkte Runde:
+          </span>
+          <ToggleField
+            checked={doubleRound}
+            onChange={() => setDoubleRound(!doubleRound)}
+          />
         </div>
       </Card>
     </div>

@@ -11,7 +11,7 @@ import type { ElementType } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import type { Championship, ChampionshipPlayer, Match, Round } from 'lib';
-import { AppTitle, classNames } from 'ui';
+import { AppTitle, classNames } from 'ui-legacy';
 
 import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
 import { useRounds } from '@/hooks/current-data/use-rounds';

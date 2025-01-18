@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 
 import type { Match, Player, Team, Tip } from 'lib';
-import { Button, Card, Select, TextField, classNames } from 'ui';
+import { Button, Card, Select, TextField, classNames } from 'ui-legacy';
 
 import AppCard from '@/components/layout/app-card';
 

@@ -1,10 +1,10 @@
 import { Suspense, useState } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
 import { auth } from 'lib';
-import { SplashScreen } from 'ui';
+import { SplashScreen } from 'ui-legacy';
 
 import appRoutes from './app.routes';
 import { authState } from './state/auth-state';
@@ -23,7 +23,7 @@ export default function App() {
             displayName: user.displayName,
             photoURL: user.photoURL,
           }
-        : null
+        : null,
     );
     setAuthenticated(true);
   });

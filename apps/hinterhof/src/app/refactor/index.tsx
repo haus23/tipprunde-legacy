@@ -2,7 +2,7 @@ import { useCurrentChampionship } from '@/hooks/current-data/use-current-champio
 import { useMatches } from '@/hooks/current-data/use-matches';
 import { useRounds } from '@/hooks/current-data/use-rounds';
 import { type Match, deleteEntity } from 'lib';
-import { Button } from 'ui';
+import { Button } from 'ui-legacy';
 
 export default function RefactorView() {
   const { currentChampionship } = useCurrentChampionship();

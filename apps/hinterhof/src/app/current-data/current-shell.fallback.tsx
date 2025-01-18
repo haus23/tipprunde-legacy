@@ -1,4 +1,4 @@
-import { Logo } from 'ui';
+import { Logo } from 'ui-legacy';
 
 export default function CurrentShellFallback() {
   return (

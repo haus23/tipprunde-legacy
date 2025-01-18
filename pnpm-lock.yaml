@@ -53,9 +53,9 @@ importers:
       slugify:
         specifier: ^1.6.6
         version: 1.6.6
-      ui:
+      ui-legacy:
         specifier: workspace:0.1.3
-        version: link:../../packages/ui
+        version: link:../../packages/ui-legacy
     devDependencies:
       '@haus23/tipprunde-tsconfig':
         specifier: workspace:^
@@ -259,7 +259,7 @@ importers:
 
   packages/tsconfig: {}
 
-  packages/ui:
+  packages/ui-legacy:
     dependencies:
       '@headlessui/react':
         specifier: ^1.7.19

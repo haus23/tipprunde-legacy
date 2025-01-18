@@ -5,7 +5,7 @@ import { notify } from '@/utils/notify';
 import type { Player } from 'lib';
 import { useEffect, useMemo } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { Button, Card, TextField } from 'ui';
+import { Button, Card, TextField } from 'ui-legacy';
 
 type ExtraPointsFormType = {
   extraPoints: { playerId: string; points: number }[];

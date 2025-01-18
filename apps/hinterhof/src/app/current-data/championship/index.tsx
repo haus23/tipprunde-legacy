@@ -4,7 +4,7 @@ import { usePlayers } from '@/hooks/master-data/use-players';
 import { notify } from '@/utils/notify';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import type { Player } from 'lib';
-import { Card, ToggleField, classNames } from 'ui';
+import { Card, ToggleField, classNames } from 'ui-legacy';
 
 export default function ChampionshipView() {
   const { players } = usePlayers();

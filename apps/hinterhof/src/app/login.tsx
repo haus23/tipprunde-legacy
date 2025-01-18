@@ -3,7 +3,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { auth, signIn } from 'lib';
-import { AppTitle } from 'ui';
+import { AppTitle } from 'ui-legacy';
 
 import Button from '@/components/button';
 import TextField from '@/components/form/text-field';

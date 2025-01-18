@@ -19,7 +19,7 @@ import { useRules } from '@/hooks/master-data/use-rules';
 import { classNames } from '@/utils/class-names';
 import { slug } from '@/utils/slug';
 import { trimProps } from '@/utils/trim-props';
-import { SelectField } from 'ui';
+import { SelectField } from 'ui-legacy';
 
 const initialFormState: ChampionshipRules = {
   id: '',

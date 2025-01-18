@@ -2,7 +2,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import type { Championship } from 'lib';
-import { SelectField } from 'ui';
+import { SelectField } from 'ui-legacy';
 
 import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
