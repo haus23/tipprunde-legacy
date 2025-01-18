@@ -9,6 +9,5 @@
 
 ## Modernize App
 
-- Eliminate tailwind-config package
 - Upgrade to headlessui v2
 - Eliminate usage of tailwind/headless ui package
