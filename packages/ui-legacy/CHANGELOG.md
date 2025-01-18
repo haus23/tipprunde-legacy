@@ -1,5 +1,11 @@
 # ui-legacy
 
+## 0.2.0
+
+### Minor Changes
+
+- [ddfc8d7](https://github.com/haus23/tipprunde-legacy/commit/ddfc8d7): Rename package to ui-legacy
+
 ## 0.1.3
 
 ### Patch Changes
