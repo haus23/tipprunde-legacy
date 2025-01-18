@@ -245,14 +245,14 @@ importers:
     dependencies:
       valibot:
         specifier: 1.0.0-beta.11
-        version: 1.0.0-beta.11(typescript@5.7.2)
+        version: 1.0.0-beta.11(typescript@5.7.3)
     devDependencies:
       '@haus23/tipprunde-tsconfig':
         specifier: workspace:^
         version: link:../tsconfig
       typescript:
-        specifier: ~5.7.2
-        version: 5.7.2
+        specifier: ~5.7.3
+        version: 5.7.3
       vitest:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@22.10.5)
@@ -4046,11 +4046,6 @@ packages:
   type-is@2.0.0:
     resolution: {integrity: sha512-gd0sGezQYCbWSbkZr75mln4YBidWUN60+devscpLF5mtRDUpiaTvKpBNrdaCvel1NdR2k6vclXybU5fBd2i+nw==}
     engines: {node: '>= 0.6'}
-
-  typescript@5.7.2:
-    resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
-    engines: {node: '>=14.17'}
-    hasBin: true
 
   typescript@5.7.3:
     resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
@@ -8821,8 +8816,6 @@ snapshots:
       media-typer: 1.1.0
       mime-types: 3.0.0
 
-  typescript@5.7.2: {}
-
   typescript@5.7.3: {}
 
   ufo@1.5.4: {}
@@ -8889,10 +8882,6 @@ snapshots:
     optional: true
 
   uuid@9.0.1: {}
-
-  valibot@1.0.0-beta.11(typescript@5.7.2):
-    optionalDependencies:
-      typescript: 5.7.2
 
   valibot@1.0.0-beta.11(typescript@5.7.3):
     optionalDependencies:
