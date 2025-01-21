@@ -22,8 +22,7 @@
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
-    "@tailwindcss/postcss": "4.0.0-beta.9",
-    "@tailwindcss/upgrade": "4.0.0-beta.9",
+    "@tailwindcss/vite": "4.0.0-beta.9",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
