@@ -1,5 +1,13 @@
 # hinterhof
 
+## 0.5.1
+
+### Patch Changes
+
+- [6b32061](https://github.com/haus23/tipprunde-legacy/commit/6b32061): Deactivate and deinstall the plugin.
+- Updated dependencies [77b47d5]
+  - ui-legacy@0.2.1
+
 ## 0.5.0
 
 ### Minor Changes
