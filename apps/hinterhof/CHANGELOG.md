@@ -1,5 +1,13 @@
 # hinterhof
 
+## 0.5.5
+
+### Patch Changes
+
+- [cbc637a](https://github.com/haus23/tipprunde-legacy/commit/cbc637a): Update headlessui
+- Updated dependencies [cbc637a]
+  - ui-legacy@0.2.2
+
 ## 0.5.4
 
 ### Patch Changes
