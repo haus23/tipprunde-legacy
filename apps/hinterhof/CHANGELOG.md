@@ -1,5 +1,12 @@
 # hinterhof
 
+## 0.5.3
+
+### Patch Changes
+
+- Updated dependencies [d2bc064]
+  - lib@0.4.0
+
 ## 0.5.2
 
 ### Patch Changes
