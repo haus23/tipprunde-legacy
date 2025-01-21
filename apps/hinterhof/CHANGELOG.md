@@ -1,5 +1,19 @@
 # hinterhof
 
+## 0.6.0
+
+### Minor Changes
+
+- [090f17c](https://github.com/haus23/tipprunde-legacy/commit/090f17c): Upgrade tailwind via upgrade tool
+
+### Patch Changes
+
+- [161789d](https://github.com/haus23/tipprunde-legacy/commit/161789d): Update all minor and patch versions.
+- Updated dependencies [090f17c]
+- Updated dependencies [161789d]
+  - ui-legacy@0.3.0
+  - lib@0.4.2
+
 ## 0.5.5
 
 ### Patch Changes
