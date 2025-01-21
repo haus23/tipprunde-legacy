@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.5.2
+
+### Patch Changes
+
+- [4dc5fa6](https://github.com/haus23/tipprunde-legacy/commit/4dc5fa6): Remove unused headlessui plugin.
+
 ## 0.5.1
 
 ### Patch Changes
