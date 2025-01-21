@@ -1,5 +1,13 @@
 # unterbau
 
+## 0.21.7
+
+### Patch Changes
+
+- [161789d](https://github.com/haus23/tipprunde-legacy/commit/161789d): Update all minor and patch versions.
+- Updated dependencies [161789d]
+  - @haus23/tipprunde-model@0.18.4
+
 ## 0.21.6
 
 ### Patch Changes
