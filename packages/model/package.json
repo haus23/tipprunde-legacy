@@ -6,9 +6,7 @@
   "exports": {
     ".": "./src/index.ts"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "test": "vitest",
     "typecheck": "tsc"
@@ -27,6 +25,6 @@
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
     "typescript": "~5.7.3",
-    "vitest": "^2.1.8"
+    "vitest": "^3.0.2"
   }
 }
