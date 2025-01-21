@@ -10,4 +10,3 @@
 ## Modernize App
 
 - Upgrade to headlessui v2
-- Eliminate usage of tailwind/headlessui package

@@ -1,4 +1,3 @@
-import headlessUI from '@headlessui/tailwindcss';
 import type { Config } from 'tailwindcss';
 
 export default {
@@ -14,5 +13,4 @@ export default {
       },
     },
   },
-  plugins: [headlessUI],
 } satisfies Config;
