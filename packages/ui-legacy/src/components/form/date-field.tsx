@@ -37,7 +37,7 @@ export function DateField<
         <input
           id={id}
           type="date"
-          className="form-input block w-full rounded-md shadow-sm sm:text-sm border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
+          className="block w-full px-3 py-2 rounded-md shadow-sm sm:text-sm border border-gray-300 focus:border-indigo-500 focus:ring-indigo-500"
           value={value ?? ''}
           {...props}
         />

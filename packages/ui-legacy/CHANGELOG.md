@@ -1,5 +1,11 @@
 # ui-legacy
 
+## 0.2.1
+
+### Patch Changes
+
+- [77b47d5](https://github.com/haus23/tipprunde-legacy/commit/77b47d5): Add missing paddings and border styles.
+
 ## 0.2.0
 
 ### Minor Changes
