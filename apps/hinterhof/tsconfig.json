@@ -1,14 +1,24 @@
 {
-  "extends": ["@haus23/tipprunde-tsconfig/app.json"],
-  "include": ["app"],
+  "extends": [
+    "@haus23/tipprunde-tsconfig/app.json"
+  ],
+  "include": [
+    "app"
+  ],
   "compilerOptions": {
-    /* Vite */
-    "types": ["vite/client"],
-
-    /* DX */
+    "types": [
+      "vite/client"
+    ],
     "paths": {
-      "react": ["./node_modules/@types/react"],
-      "#/*": ["./src/*"]
+      "react": [
+        "./node_modules/@types/react"
+      ],
+      "#/*": [
+        "./src/*"
+      ],
+      "ui": [
+        "./src/components/ui/index.ts"
+      ]
     }
   }
 }
