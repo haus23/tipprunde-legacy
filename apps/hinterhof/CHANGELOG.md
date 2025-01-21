@@ -1,5 +1,15 @@
 # hinterhof
 
+## 0.6.1
+
+### Patch Changes
+
+- [92fa80f](https://github.com/haus23/tipprunde-legacy/commit/92fa80f): Remove default border. Works for me.
+- [5f4a2e7](https://github.com/haus23/tipprunde-legacy/commit/5f4a2e7): Switch to vite plugin. And remove update tool.
+- Updated dependencies [5f4a2e7]
+  - ui-legacy@0.3.1
+  - lib@0.4.3
+
 ## 0.6.0
 
 ### Minor Changes

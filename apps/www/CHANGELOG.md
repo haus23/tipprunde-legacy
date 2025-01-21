@@ -1,5 +1,13 @@
 # www
 
+## 0.16.6
+
+### Patch Changes
+
+- [5f4a2e7](https://github.com/haus23/tipprunde-legacy/commit/5f4a2e7): Switch to vite plugin. And remove update tool.
+- Updated dependencies [5f4a2e7]
+  - @haus23/tipprunde-model@0.18.5
+
 ## 0.16.5
 
 ### Patch Changes

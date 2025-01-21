@@ -1,5 +1,11 @@
 # ui-legacy
 
+## 0.3.1
+
+### Patch Changes
+
+- [5f4a2e7](https://github.com/haus23/tipprunde-legacy/commit/5f4a2e7): Switch to vite plugin. And remove update tool.
+
 ## 0.3.0
 
 ### Minor Changes
