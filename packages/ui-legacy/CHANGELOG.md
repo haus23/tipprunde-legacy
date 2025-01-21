@@ -1,5 +1,11 @@
 # ui-legacy
 
+## 0.2.2
+
+### Patch Changes
+
+- [cbc637a](https://github.com/haus23/tipprunde-legacy/commit/cbc637a): Update headlessui
+
 ## 0.2.1
 
 ### Patch Changes
