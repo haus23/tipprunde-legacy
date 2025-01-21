@@ -1,5 +1,11 @@
 # lib
 
+## 0.4.0
+
+### Minor Changes
+
+- [d2bc064](https://github.com/haus23/tipprunde-legacy/commit/d2bc064): Wrong calculation in double rounds.
+
 ## 0.3.3
 
 ### Patch Changes
