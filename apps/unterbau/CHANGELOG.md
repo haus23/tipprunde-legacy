@@ -1,5 +1,13 @@
 # unterbau
 
+## 0.21.6
+
+### Patch Changes
+
+- [3cab400](https://github.com/haus23/tipprunde-legacy/commit/3cab400): Update vite and vitest due security issue.
+- Updated dependencies [3cab400]
+  - @haus23/tipprunde-model@0.18.3
+
 ## 0.21.5
 
 ### Patch Changes
