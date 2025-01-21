@@ -1,6 +1,6 @@
 {
   "extends": ["@haus23/tipprunde-tsconfig/app.json"],
-  "include": ["src"],
+  "include": ["app"],
   "compilerOptions": {
     /* Vite */
     "types": ["vite/client"],
@@ -8,7 +8,6 @@
     /* DX */
     "paths": {
       "react": ["./node_modules/@types/react"],
-      "@/*": ["./src/*"],
       "#/*": ["./src/*"]
     }
   }

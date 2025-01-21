@@ -9,6 +9,6 @@
 
 ## Modernize App
 
-- Switch to justd - React Aria Components
 - Upgrade to React Router 7
+- Switch to justd - React Aria Components
 - Upgrade to React 19
