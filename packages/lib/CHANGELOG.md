@@ -1,5 +1,11 @@
 # lib
 
+## 0.4.2
+
+### Patch Changes
+
+- [161789d](https://github.com/haus23/tipprunde-legacy/commit/161789d): Update all minor and patch versions.
+
 ## 0.4.1
 
 ### Patch Changes
