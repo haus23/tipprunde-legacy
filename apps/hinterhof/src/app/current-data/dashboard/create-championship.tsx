@@ -67,7 +67,7 @@ export default function CreateChampionshipView() {
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold">Neues Turnier</h2>
       <div className="mt-5">
-        <div className="shadow rounded-md bg-white">
+        <div className="shadow-sm rounded-md bg-white">
           <form onSubmit={handleSubmit(saveChampionship)} noValidate>
             <div className="space-y-4 p-4">
               <TextField

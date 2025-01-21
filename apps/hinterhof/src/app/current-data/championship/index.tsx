@@ -102,7 +102,7 @@ export default function ChampionshipView() {
                       <button
                         type="button"
                         onClick={() => addPlayer(p.id)}
-                        className="rounded-full p-1 bg-white hover:bg-gray-100 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="rounded-full p-1 bg-white hover:bg-gray-100 text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       >
                         <PlusIcon className="h-4 w-4" />
                       </button>

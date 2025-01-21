@@ -73,7 +73,7 @@ export default function PlayersView() {
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold">Spieler</h2>
       <div className="mt-5">
-        <div className="shadow sm:overflow-hidden rounded-md bg-white">
+        <div className="shadow-sm sm:overflow-hidden rounded-md bg-white">
           <button
             type="button"
             onClick={() => setFormOpen(!isFormOpen)}

@@ -51,9 +51,9 @@ export function TextField<T extends FieldValues, TPath extends Path<T>>({
           type="text"
           className={classNames(
             error
-              ? 'border-red-300 pr-10 text-red-700 placeholder-red-300 focus:border-red-500 focus:outline-none focus:ring-red-500'
+              ? 'border-red-300 pr-10 text-red-700 placeholder-red-300 focus:border-red-500 focus:outline-hidden focus:ring-red-500'
               : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500',
-            'block w-full px-3 py-2 border rounded-md shadow-sm sm:text-sm',
+            'block w-full px-3 py-2 border rounded-md shadow-xs sm:text-sm',
           )}
           value={value}
           onChange={onChange}

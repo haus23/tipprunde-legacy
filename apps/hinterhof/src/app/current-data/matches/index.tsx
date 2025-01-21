@@ -151,7 +151,7 @@ export default function MatchesView() {
                     <span className="text-sm font-semibold">Nummer</span>
                     <input
                       disabled
-                      className="bg-white font-semibold text-sm text-center w-8 rounded p-1 border-transparent"
+                      className="bg-white font-semibold text-sm text-center w-8 rounded-sm p-1 border-transparent"
                       {...register('nr')}
                     />
                   </div>

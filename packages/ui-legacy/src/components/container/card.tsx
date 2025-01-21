@@ -3,7 +3,7 @@ type CardProps = {
 };
 
 export function Card({ children }: CardProps) {
-  return <div className="rounded-lg bg-white shadow">{children}</div>;
+  return <div className="rounded-lg bg-white shadow-sm">{children}</div>;
 }
 
 function Header({ children }: CardProps) {

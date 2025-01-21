@@ -3,7 +3,7 @@ type AppCardProps = {
 };
 export default function AppCard({ children }: AppCardProps) {
   return (
-    <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
+    <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-sm">
       <div>{children}</div>
     </div>
   );

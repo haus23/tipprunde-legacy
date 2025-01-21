@@ -43,7 +43,7 @@ export default function Login() {
 
   return isAuthenticated ? (
     <div className="flex flex-col">
-      <div className="flex h-16 flex-shrink-0 px-4 sm:px-6 md:px-8 bg-white shadow">
+      <div className="flex h-16 shrink-0 px-4 sm:px-6 md:px-8 bg-white shadow-sm">
         <div className="flex items-center flex-1 gap-x-2">
           <AppTitle />
           <h1 className="xs:hidden text-2xl font-semibold">runde.tips</h1>
@@ -59,7 +59,7 @@ export default function Login() {
                 </h2>
               </div>
               <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <div className="bg-white py-8 px-4 shadow-sm sm:rounded-lg sm:px-10">
                   <form
                     className="space-y-6"
                     onSubmit={handleSubmit(onSubmit)}
