@@ -19,7 +19,7 @@ export function calculateMatchResults(
     }),
   );
 
-  const tipsWithPoints = originalTips.filter((t) => t.points > 0);
+  const tipsWithPoints = tips.filter((t) => t.points > 0);
   let totalPoints = tipsWithPoints.reduce((sum, t) => sum + t.points, 0);
 
   switch (rules.matchRuleId) {

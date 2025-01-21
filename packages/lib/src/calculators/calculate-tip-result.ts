@@ -82,5 +82,5 @@ export function calculateTipResult(
     return tip;
   }
 
-  return { ...tip, points: points };
+  return { ...tip, points };
 }
