@@ -1,5 +1,4 @@
 import headlessUI from '@headlessui/tailwindcss';
-import tailwindForms from '@tailwindcss/forms';
 import type { Config } from 'tailwindcss';
 
 export default {
@@ -15,5 +14,5 @@ export default {
       },
     },
   },
-  plugins: [headlessUI, tailwindForms({ strategy: 'class' })],
+  plugins: [headlessUI],
 } satisfies Config;
