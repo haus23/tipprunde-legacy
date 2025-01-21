@@ -30,7 +30,7 @@ importers:
         specifier: ^2.2.0
         version: 2.2.0(react@18.3.1)
       lib:
-        specifier: workspace:0.4.0
+        specifier: workspace:0.4.1
         version: link:../../packages/lib
       react:
         specifier: ^18.3.1
