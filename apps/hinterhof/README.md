@@ -11,10 +11,3 @@
 
 - Upgrade to headlessui v2
 - Eliminate usage of tailwind/headlessui package
-- Eliminate usage of tailwind/forms plugin
-  - Usages:
-    - www/src/app/current-data/matches
-    - ui-legacy: 
-      - form/text-field
-      - form/date-field
-      - elements/select
