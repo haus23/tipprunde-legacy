@@ -39,7 +39,7 @@ function TextareaField(
           autoComplete="off"
           {...props}
           className={classNames(
-            'block w-full rounded-md placeholder-gray-400 shadow-sm sm:text-sm',
+            'block w-full rounded-md placeholder-gray-400 shadow-xs sm:text-sm',
             hasError
               ? 'text-red-500 border-red-300 focus:border-red-500 focus:ring-red-500'
               : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500',

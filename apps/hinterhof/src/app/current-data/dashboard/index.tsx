@@ -105,14 +105,14 @@ export default function Dashboard() {
               <div
                 className={classNames(
                   item.background,
-                  'flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg',
+                  'flex h-16 w-16 shrink-0 items-center justify-center rounded-lg',
                 )}
               >
                 <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
               <div>
                 <h3 className="text-sm font-medium text-gray-900 ">
-                  <Link to={item.route} className="focus:outline-none">
+                  <Link to={item.route} className="focus:outline-hidden">
                     <span className="absolute inset-0" aria-hidden="true" />
                     {item.title}
                     <span aria-hidden="true"> &rarr;</span>

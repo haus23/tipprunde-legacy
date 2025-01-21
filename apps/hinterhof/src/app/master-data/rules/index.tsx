@@ -90,7 +90,7 @@ export default function RulesView() {
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold">Regelwerke</h2>
       <div className="mt-5">
-        <div className="shadow rounded-md bg-white">
+        <div className="shadow-sm rounded-md bg-white">
           <button
             type="button"
             onClick={() => setFormOpen(!isFormOpen)}

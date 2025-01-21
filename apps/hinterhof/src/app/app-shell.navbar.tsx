@@ -124,7 +124,7 @@ export default function AppShellNavbar() {
                       isActive
                         ? 'text-gray-500'
                         : 'text-gray-400 group-hover:text-gray-500',
-                      'mr-3 flex-shrink-0 h-6 w-6',
+                      'mr-3 shrink-0 h-6 w-6',
                     )}
                     aria-hidden="true"
                   />
@@ -161,7 +161,7 @@ export default function AppShellNavbar() {
                           isActive
                             ? 'text-gray-500'
                             : 'text-gray-400 group-hover:text-gray-500',
-                          'mr-3 flex-shrink-0 h-6 w-6',
+                          'mr-3 shrink-0 h-6 w-6',
                         )}
                         aria-hidden="true"
                       />
@@ -196,7 +196,7 @@ export default function AppShellNavbar() {
           </div>
         </div>
       </div>
-      <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
+      <div className="flex shrink-0 border-t border-gray-200 p-4">
         {profile && (
           <div className="flex items-center">
             <div>
