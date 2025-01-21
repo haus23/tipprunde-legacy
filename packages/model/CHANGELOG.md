@@ -1,5 +1,11 @@
 # model
 
+## 0.18.4
+
+### Patch Changes
+
+- [161789d](https://github.com/haus23/tipprunde-legacy/commit/161789d): Update all minor and patch versions.
+
 ## 0.18.3
 
 ### Patch Changes
