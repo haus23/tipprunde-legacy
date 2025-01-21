@@ -1,5 +1,11 @@
 # model
 
+## 0.18.2
+
+### Patch Changes
+
+- [4a26325](https://github.com/haus23/tipprunde-legacy/commit/4a26325): Update tv and valibot.
+
 ## 0.18.1
 
 ### Patch Changes
