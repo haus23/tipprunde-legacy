@@ -5,10 +5,9 @@
 ## Release Stopper
 
 - Linting, CSS Sorting, ...
-- Eliminate old path alias: "@/*"
+- Clean up
+  - Remove packages lib and ui-legacy
+  - Remove old src folder
+  - Remove remaining legacy code
 
-## Modernize App
 
-- Upgrade to React Router 7
-- Switch to justd - React Aria Components
-- Upgrade to React 19
