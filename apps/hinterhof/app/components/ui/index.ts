@@ -5,5 +5,6 @@ export * from './container';
 export * from './field';
 export * from './form';
 export * from './heading';
+export * from './link';
 export * from './loader';
 export * from './text-field';

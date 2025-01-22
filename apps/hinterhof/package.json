@@ -10,6 +10,8 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
+    "firebase": "^11.2.0",
+    "jotai": "^2.11.1",
     "justd-icons": "^1.10.21",
     "lib": "workspace:*",
     "react": "^18.3.1",
