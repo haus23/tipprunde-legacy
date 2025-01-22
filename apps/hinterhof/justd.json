@@ -4,6 +4,6 @@
   "utils": "app/utils",
   "gray": "gray",
   "css": "app/styles/index.css",
-  "alias": "react",
+  "alias": "#",
   "language": "typescript"
 }
