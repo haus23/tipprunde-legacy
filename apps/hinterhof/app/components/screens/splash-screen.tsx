@@ -1,6 +1,6 @@
 import { tv } from 'tailwind-variants';
 
-import { Logo } from './logo';
+import { Logo } from '../logo';
 
 const styles = tv({ base: 'min-h-svh grid place-content-center' });
 

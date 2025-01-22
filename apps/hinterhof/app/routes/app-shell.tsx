@@ -1,12 +1,10 @@
-import { Navigate, Outlet } from 'react-router';
-import { useAuth } from '#/utils/state/auth';
+import { Outlet } from 'react-router';
+import { UiProvider } from '#/components/ui-provider';
 
 export default function AppShell() {
-  const auth = useAuth();
-
-  if (!auth.user) {
-    return <Navigate to={{ pathname: '/login' }} />;
-  }
-
-  return <Outlet />;
+  return (
+    <UiProvider>
+      <Outlet />
+    </UiProvider>
+  );
 }

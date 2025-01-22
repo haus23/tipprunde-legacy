@@ -1,27 +1,30 @@
-import { Route, Routes } from 'react-router';
+import { RouterProvider, createBrowserRouter } from 'react-router';
 
-import { SplashScreen } from './components/splash-screen';
 import { useAuth } from './utils/state/auth';
 
+import { LoginScreen } from './components/screens/login-screen';
+import { SplashScreen } from './components/screens/splash-screen';
+
 import AppShell from './routes/app-shell';
-import LoginRoute from './routes/auth/login';
-import LogoutRoute from './routes/auth/logout';
 import DashboardRoute from './routes/dashboard';
+
+export const router = createBrowserRouter([
+  {
+    element: <AppShell />,
+    children: [{ index: true, element: <DashboardRoute /> }],
+  },
+]);
 
 export default function App() {
   const auth = useAuth();
 
-  if (auth.isPending) {
+  if (!auth.isAuthenticated) {
     return <SplashScreen />;
   }
 
-  return (
-    <Routes>
-      <Route element={<AppShell />}>
-        <Route index element={<DashboardRoute />} />
-      </Route>
-      <Route path="/login" element={<LoginRoute />} />
-      <Route path="/logout" element={<LogoutRoute />} />
-    </Routes>
-  );
+  if (auth.user === null) {
+    return <LoginScreen />;
+  }
+
+  return <RouterProvider router={router} />;
 }

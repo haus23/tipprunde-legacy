@@ -8,5 +8,5 @@ const options: FirebaseOptions = {
   messagingSenderId: import.meta.env.VITE_FB_MSG_SENDER_ID,
   appId: import.meta.env.VITE_FB_APP_ID,
 };
-console.log(getApps());
+
 export const app = initializeApp(options);

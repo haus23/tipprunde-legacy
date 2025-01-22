@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { Logo } from '#/components/logo';
 import {
   Button,
@@ -11,8 +10,7 @@ import {
 } from '#/components/ui';
 import { signIn } from '#/lib/firebase/auth';
 
-export default function LoginRoute() {
-  const navigate = useNavigate();
+export function LoginScreen() {
   const [error, setError] = useState('');
 
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
@@ -22,13 +20,9 @@ export default function LoginRoute() {
       new FormData(ev.currentTarget),
     );
 
-    signIn(String(email), String(password))
-      .then(() => {
-        navigate('/');
-      })
-      .catch(() => {
-        setError('Email und/oder Passwort falsch');
-      });
+    signIn(String(email), String(password)).catch(() => {
+      setError('Email und/oder Passwort falsch');
+    });
   };
 
   return (
