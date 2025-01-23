@@ -1,5 +1,15 @@
 # hinterhof
 
+## 0.7.1
+
+### Patch Changes
+
+- [d57623f](https://github.com/haus23/tipprunde-legacy/commit/d57623f): Add toasting.
+- [5b40787](https://github.com/haus23/tipprunde-legacy/commit/5b40787): Implement user menu.
+- [3e9c7e6](https://github.com/haus23/tipprunde-legacy/commit/3e9c7e6): Start handling teams editing.
+- [a9279cb](https://github.com/haus23/tipprunde-legacy/commit/a9279cb): Add a responsive variant for smallest devices.
+- [dd2990f](https://github.com/haus23/tipprunde-legacy/commit/dd2990f): Simplify with action method.
+
 ## 0.7.0
 
 ### Minor Changes
