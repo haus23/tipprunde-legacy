@@ -1,5 +1,13 @@
 # www
 
+## 0.16.7
+
+### Patch Changes
+
+- [f9b9303](https://github.com/haus23/tipprunde-legacy/commit/f9b9303): Update valibot.
+- Updated dependencies [f9b9303]
+  - @haus23/tipprunde-model@0.18.6
+
 ## 0.16.6
 
 ### Patch Changes
