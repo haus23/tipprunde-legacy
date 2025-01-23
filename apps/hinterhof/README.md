@@ -17,5 +17,6 @@
 ## Future
 
 - Gradually clean-up justd styles
+- Switch from sonner to RAC toasts
 - Change Avatar Image
 

@@ -1,9 +1,12 @@
+import { useNavigate } from 'react-router';
 import { Button, Card, Form, Heading, TextField } from '#/components/ui';
 import { updateProfile } from '#/lib/firebase/auth';
 import { useUser } from '#/utils/state/auth';
+import { toast } from '#/utils/toast';
 
 export default function ProfileRoute() {
   const user = useUser();
+  const navigate = useNavigate();
 
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
@@ -13,6 +16,8 @@ export default function ProfileRoute() {
     await updateProfile({
       displayName: String(displayName).trim(),
     });
+    toast.success('Dein Profil wurde gespeichert');
+    navigate('/');
   };
 
   return (
