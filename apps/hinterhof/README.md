@@ -5,9 +5,13 @@
 ## Release Stopper
 
 - Linting, CSS Sorting, ...
+- Evaluation: Inter oder Geist Font
 - Clean up
   - Remove packages lib and ui-legacy
   - Remove old src folder
   - Remove remaining legacy code
 
+## Future
+
+- Gradually clean-up justd styles
 

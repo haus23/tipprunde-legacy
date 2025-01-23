@@ -7,11 +7,17 @@ import { SplashScreen } from './components/screens/splash-screen';
 
 import AppShell from './routes/app-shell';
 import DashboardRoute from './routes/dashboard';
+import ChampionshipsRoute from './routes/master-data/championships';
+import TeamsRoute from './routes/master-data/teams';
 
 export const router = createBrowserRouter([
   {
     element: <AppShell />,
-    children: [{ index: true, element: <DashboardRoute /> }],
+    children: [
+      { index: true, element: <DashboardRoute /> },
+      { path: 'turniere', element: <ChampionshipsRoute /> },
+      { path: 'teams', element: <TeamsRoute /> },
+    ],
   },
 ]);
 
