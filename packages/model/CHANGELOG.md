@@ -1,5 +1,11 @@
 # model
 
+## 0.18.6
+
+### Patch Changes
+
+- [f9b9303](https://github.com/haus23/tipprunde-legacy/commit/f9b9303): Update valibot.
+
 ## 0.18.5
 
 ### Patch Changes
