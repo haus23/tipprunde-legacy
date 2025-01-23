@@ -16,7 +16,7 @@
   
 ## Future
 
-- Gradually clean-up justd styles
+- Gradually clean-up justd styles and components (high priority) - just make it your own
 - Switch from sonner to RAC toasts
 - Change Avatar Image
 

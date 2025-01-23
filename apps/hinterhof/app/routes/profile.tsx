@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Button, Card, Form, Heading, TextField } from '#/components/ui';
 import { updateProfile } from '#/lib/firebase/auth';
@@ -7,11 +8,10 @@ import { toast } from '#/utils/toast';
 export default function ProfileRoute() {
   const user = useUser();
   const navigate = useNavigate();
+  const [isDirty, setDirty] = useState(false);
 
-  const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
-    ev.preventDefault();
-
-    const { displayName } = Object.fromEntries(new FormData(ev.currentTarget));
+  const saveProfile = async (formData: FormData) => {
+    const { displayName } = Object.fromEntries(formData);
 
     await updateProfile({
       displayName: String(displayName).trim(),
@@ -23,7 +23,7 @@ export default function ProfileRoute() {
   return (
     <div>
       <Heading>Profil</Heading>
-      <Form onSubmit={handleSubmit}>
+      <Form action={saveProfile}>
         <Card className="mt-4">
           <Card.Content className="mt-4 flex flex-col gap-y-4">
             <TextField
@@ -31,7 +31,6 @@ export default function ProfileRoute() {
               label="Email"
               name="email"
               type="email"
-              isReadOnly
               isDisabled
             />
             <TextField
@@ -40,10 +39,13 @@ export default function ProfileRoute() {
               name="displayName"
               type="text"
               placeholder="Darf auch leer bleiben"
+              onChange={() => setDirty(true)}
             />
           </Card.Content>
           <Card.Footer>
-            <Button type="submit">Speichern</Button>
+            <Button type="submit" isDisabled={!isDirty}>
+              Speichern
+            </Button>
           </Card.Footer>
         </Card>
       </Form>
