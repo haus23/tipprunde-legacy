@@ -19,7 +19,7 @@
     "express": "^5.0.1",
     "firebase-admin": "^13.0.2",
     "unstorage": "^1.14.4",
-    "valibot": "1.0.0-beta.12"
+    "valibot": "1.0.0-beta.14"
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
