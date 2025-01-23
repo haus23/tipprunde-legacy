@@ -1,5 +1,15 @@
 # hinterhof
 
+## 0.7.0
+
+### Minor Changes
+
+- [d9c96da](https://github.com/haus23/tipprunde-legacy/commit/d9c96da): Simplify auth flow and routing.
+- [f29959e](https://github.com/haus23/tipprunde-legacy/commit/f29959e): Implement basic auth flow.
+- [6b3dd10](https://github.com/haus23/tipprunde-legacy/commit/6b3dd10): Show teams synchronized with firestore.
+- [2bc864d](https://github.com/haus23/tipprunde-legacy/commit/2bc864d): Upgrade to React 19
+- [b3b401e](https://github.com/haus23/tipprunde-legacy/commit/b3b401e): Add sidebar nav
+
 ## 0.6.1
 
 ### Patch Changes
