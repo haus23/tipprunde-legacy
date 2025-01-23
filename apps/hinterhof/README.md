@@ -10,8 +10,12 @@
   - Remove packages lib and ui-legacy
   - Remove old src folder
   - Remove remaining legacy code
-
+- Find a solution for the remaining heroicons
+  - Dices
+  - ...
+  
 ## Future
 
 - Gradually clean-up justd styles
+- Change Avatar Image
 

@@ -50,6 +50,9 @@ importers:
       react:
         specifier: ^19.0.0
         version: 19.0.0
+      react-aria:
+        specifier: ^3.37.0
+        version: 3.37.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-aria-components:
         specifier: ^1.6.0
         version: 1.6.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -74,6 +77,9 @@ importers:
       ui-legacy:
         specifier: workspace:*
         version: link:../../packages/ui-legacy
+      valibot:
+        specifier: 1.0.0-beta.12
+        version: 1.0.0-beta.12(typescript@5.7.3)
     devDependencies:
       '@haus23/tipprunde-tsconfig':
         specifier: workspace:^

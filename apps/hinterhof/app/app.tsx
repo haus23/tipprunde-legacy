@@ -9,6 +9,7 @@ import AppShell from './routes/app-shell';
 import DashboardRoute from './routes/dashboard';
 import ChampionshipsRoute from './routes/master-data/championships';
 import TeamsRoute from './routes/master-data/teams';
+import ProfileRoute from './routes/profile';
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
       { index: true, element: <DashboardRoute /> },
       { path: 'turniere', element: <ChampionshipsRoute /> },
       { path: 'teams', element: <TeamsRoute /> },
+      { path: 'profil', element: <ProfileRoute /> },
     ],
   },
 ]);

@@ -14,7 +14,7 @@ export default function AppShell() {
   return (
     <UiProvider>
       <SidebarProvider>
-        <AppSidebar />
+        <AppSidebar collapsible="dock" />
         <SidebarInset>
           <AppNav />
           <div className="p-4 lg:p-6">
