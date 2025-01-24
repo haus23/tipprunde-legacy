@@ -25,11 +25,11 @@
     "@haus23/tipprunde-tsconfig": "workspace:^",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.10.10",
     "@types/supertest": "^6.0.2",
     "supertest": "^7.0.0",
     "tsx": "^4.19.2",
     "typescript": "~5.7.3",
-    "vitest": "^3.0.3"
+    "vitest": "^3.0.4"
   }
 }
