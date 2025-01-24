@@ -1,5 +1,13 @@
 # hinterhof
 
+## 0.7.2
+
+### Patch Changes
+
+- [b1c7c89](https://github.com/haus23/tipprunde-legacy/commit/b1c7c89): Update ref typing.
+- [b54c86c](https://github.com/haus23/tipprunde-legacy/commit/b54c86c): Update tailwind to stable.
+- [471b4c6](https://github.com/haus23/tipprunde-legacy/commit/471b4c6): Patch update remaining deps.
+
 ## 0.7.1
 
 ### Patch Changes
