@@ -1,5 +1,12 @@
 # hinterhof
 
+## 0.6.2
+
+### Patch Changes
+
+- Updated dependencies [9b903de]
+  - lib@0.4.4
+
 ## 0.6.1
 
 ### Patch Changes
