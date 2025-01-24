@@ -1,5 +1,13 @@
 # www
 
+## 0.16.8
+
+### Patch Changes
+
+- [9b903de](https://github.com/haus23/tipprunde-legacy/commit/9b903de): Patch update deps.
+- Updated dependencies [9b903de]
+  - @haus23/tipprunde-model@0.18.7
+
 ## 0.16.7
 
 ### Patch Changes
