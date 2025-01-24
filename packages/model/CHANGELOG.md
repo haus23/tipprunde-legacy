@@ -1,5 +1,11 @@
 # model
 
+## 0.18.7
+
+### Patch Changes
+
+- [9b903de](https://github.com/haus23/tipprunde-legacy/commit/9b903de): Patch update deps.
+
 ## 0.18.6
 
 ### Patch Changes
