@@ -1,4 +1,4 @@
-import { type ComponentProps, useState } from 'react';
+import { useState } from 'react';
 
 import { IconEye, IconEyeClosed } from 'justd-icons';
 import {
@@ -13,7 +13,7 @@ import { Description, FieldError, FieldGroup, Input, Label } from './field';
 import { Loader } from './loader';
 import { composeTailwindRenderProps } from './primitive';
 
-type InputType = Exclude<ComponentProps<'input'>['type'], 'password'>;
+type InputType = Exclude<React.ComponentProps<'input'>['type'], 'password'>;
 
 interface BaseTextFieldProps extends TextFieldPrimitiveProps, FieldProps {
   prefix?: React.ReactNode;
