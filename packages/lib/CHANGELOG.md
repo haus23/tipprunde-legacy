@@ -1,5 +1,11 @@
 # lib
 
+## 0.4.4
+
+### Patch Changes
+
+- [9b903de](https://github.com/haus23/tipprunde-legacy/commit/9b903de): Patch update deps.
+
 ## 0.4.3
 
 ### Patch Changes
