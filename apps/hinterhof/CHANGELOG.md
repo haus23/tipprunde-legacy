@@ -20,6 +20,13 @@
 - [2bc864d](https://github.com/haus23/tipprunde-legacy/commit/2bc864d): Upgrade to React 19
 - [b3b401e](https://github.com/haus23/tipprunde-legacy/commit/b3b401e): Add sidebar nav
 
+## 0.6.2
+
+### Patch Changes
+
+- Updated dependencies [9b903de]
+  - lib@0.4.4
+
 ## 0.6.1
 
 ### Patch Changes
