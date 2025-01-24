@@ -108,7 +108,7 @@ const FieldGroup = ({ className, ...props }: GroupProps) => {
 }
 
 interface InputProps extends InputPrimitiveProps {
-  ref?: React.RefObject<HTMLInputElement>
+  ref?: React.Ref<HTMLInputElement>
 }
 const Input = ({ className, ref, ...props }: InputProps) => {
   return (
