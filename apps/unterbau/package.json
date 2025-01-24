@@ -1,7 +1,7 @@
 {
   "name": "@haus23/tipprunde-unterbau",
   "description": "Backend Server der Haus23 Tipprunde",
-  "version": "0.21.9",
+  "version": "0.21.10",
   "type": "module",
   "imports": {
     "#app/*": "./src/*"
