@@ -15,6 +15,12 @@ als fast-forward merge in die Branches v1 und main eingebracht
 
 Siehe: https://git-scm.com/book/en/v2/Git-Branching-Rebasing
 
+Hinweise für den Staging/Production Workflow:
+- Commits in v1-staging
+- Push and Validate
+- Checkout v1 and git merge v1-staging --ff-only
+- Push and Deploy
+
 ## Tools
 
 npx syncpack --help
