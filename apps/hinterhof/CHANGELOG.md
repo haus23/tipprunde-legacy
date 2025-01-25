@@ -1,5 +1,13 @@
 # hinterhof
 
+## 0.8.2
+
+### Patch Changes
+
+- [f42e017](https://github.com/haus23/tipprunde-legacy/commit/f42e017): Adapt heading component.
+- [e0ff630](https://github.com/haus23/tipprunde-legacy/commit/e0ff630): Delete wrong build config.
+- [52bcaef](https://github.com/haus23/tipprunde-legacy/commit/52bcaef): Add form component.
+
 ## 0.8.1
 
 ### Patch Changes
