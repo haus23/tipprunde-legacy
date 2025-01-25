@@ -1,5 +1,18 @@
 # hinterhof
 
+## 0.8.0
+
+### Minor Changes
+
+- [7a034b8](https://github.com/haus23/tipprunde-legacy/commit/7a034b8): Switch the first component: button
+
+### Patch Changes
+
+- [3e70091](https://github.com/haus23/tipprunde-legacy/commit/3e70091): Rename justd components folder.
+- [8f37ffb](https://github.com/haus23/tipprunde-legacy/commit/8f37ffb): Make the switch.
+- Updated dependencies [452eba4]
+  - ui-legacy@0.3.2
+
 ## 0.7.2
 
 ### Patch Changes
