@@ -10,7 +10,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          lib: ['lib'],
+          firebase: ['firebase'],
         },
       },
     },

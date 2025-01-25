@@ -5,6 +5,7 @@
     "types": ["vite/client"],
     "paths": {
       "react": ["./node_modules/@types/react"],
+      "@/*": ["./app/*"],
       "#/*": ["./app/*"],
       "ui": ["./src/components/ui/index.ts"]
     }
