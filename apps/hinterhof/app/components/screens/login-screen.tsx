@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Logo } from '#/components/logo';
 import {
-  Button,
   Card,
   Container,
   Form,
@@ -9,6 +8,7 @@ import {
   TextField,
 } from '#/components/ui-justd';
 import { signIn } from '#/lib/firebase/auth';
+import { Button } from '../ui/button';
 
 export function LoginScreen() {
   const [error, setError] = useState('');

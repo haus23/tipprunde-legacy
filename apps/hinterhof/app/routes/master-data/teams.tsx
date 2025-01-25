@@ -1,8 +1,8 @@
+import { Button } from '@/components/ui/button';
 import type { Team } from '@haus23/tipprunde-model';
-import { IconPencilBox } from 'justd-icons';
-import { useRef, useState } from 'react';
+import { SquarePen } from 'lucide-react';
+import { useState } from 'react';
 import {
-  Button,
   Card,
   Form,
   Heading,
@@ -39,7 +39,7 @@ export default function TeamsRoute() {
     <div>
       <header className="flex items-center justify-between">
         <Heading className="grow">Mannschaften / Vereine</Heading>
-        <Button appearance="outline" onPress={openNewTeamForm}>
+        <Button variant="outline" onClick={openNewTeamForm}>
           <span className="hidden sm:inline">Neue Mannschaft</span>
           <span className="inline sm:hidden">Neu</span>
         </Button>
@@ -80,9 +80,7 @@ export default function TeamsRoute() {
           </Sheet.Body>
           <Sheet.Footer>
             <Sheet.Close>Abbrechen</Sheet.Close>
-            <Button intent="primary" type="submit">
-              Speichern
-            </Button>
+            <Button type="submit">Speichern</Button>
           </Sheet.Footer>
         </Form>
       </Sheet.Content>
@@ -103,11 +101,11 @@ export default function TeamsRoute() {
                 <Table.Cell>
                   <div className="flex justify-end">
                     <Button
-                      size="square-petite"
-                      appearance="outline"
-                      onPress={() => openEditTeamForm(team)}
+                      variant="outline"
+                      size="icon"
+                      onClick={() => openEditTeamForm(team)}
                     >
-                      <IconPencilBox />
+                      <SquarePen />
                     </Button>
                   </div>
                 </Table.Cell>

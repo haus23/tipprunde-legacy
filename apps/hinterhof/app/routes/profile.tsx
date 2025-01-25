@@ -1,6 +1,7 @@
+import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Button, Card, Form, Heading, TextField } from '#/components/ui-justd';
+import { Card, Form, Heading, TextField } from '#/components/ui-justd';
 import { updateProfile } from '#/lib/firebase/auth';
 import { useUser } from '#/utils/state/auth';
 import { toast } from '#/utils/toast';
@@ -43,7 +44,7 @@ export default function ProfileRoute() {
             />
           </Card.Content>
           <Card.Footer>
-            <Button type="submit" isDisabled={!isDirty}>
+            <Button type="submit" disabled={!isDirty}>
               Speichern
             </Button>
           </Card.Footer>
