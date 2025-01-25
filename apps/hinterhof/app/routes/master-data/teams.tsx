@@ -1,9 +1,10 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Heading } from '@/components/ui/heading';
 import type { Team } from '@haus23/tipprunde-model';
 import { SquarePen } from 'lucide-react';
 import { useState } from 'react';
-import { Form, Heading, Sheet, Table, TextField } from '#/components/ui-justd';
+import { Form, Sheet, Table, TextField } from '#/components/ui-justd';
 import { useTeams } from '#/utils/state/teams';
 
 export default function TeamsRoute() {

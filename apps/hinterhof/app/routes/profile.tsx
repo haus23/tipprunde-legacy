@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Heading } from '@/components/ui/heading';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Form, Heading, TextField } from '#/components/ui-justd';
+import { Form, TextField } from '#/components/ui-justd';
 import { updateProfile } from '#/lib/firebase/auth';
 import { useUser } from '#/utils/state/auth';
 import { toast } from '#/utils/toast';
