@@ -6,7 +6,7 @@ import App from './app';
 import { initializeAuth } from './lib/firebase/auth';
 import { store } from './utils/store';
 
-import './styles/index.css';
+import './styles/globals.css';
 
 // Initialize firebase auth
 initializeAuth();
