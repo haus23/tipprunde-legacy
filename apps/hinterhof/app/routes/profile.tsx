@@ -1,7 +1,8 @@
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Card, Form, Heading, TextField } from '#/components/ui-justd';
+import { Form, Heading, TextField } from '#/components/ui-justd';
 import { updateProfile } from '#/lib/firebase/auth';
 import { useUser } from '#/utils/state/auth';
 import { toast } from '#/utils/toast';
@@ -26,7 +27,7 @@ export default function ProfileRoute() {
       <Heading>Profil</Heading>
       <Form action={saveProfile}>
         <Card className="mt-4">
-          <Card.Content className="mt-4 flex flex-col gap-y-4">
+          <CardContent className="mt-4 flex flex-col gap-y-4">
             <TextField
               defaultValue={user.email}
               label="Email"
@@ -42,12 +43,12 @@ export default function ProfileRoute() {
               placeholder="Darf auch leer bleiben"
               onChange={() => setDirty(true)}
             />
-          </Card.Content>
-          <Card.Footer>
+          </CardContent>
+          <CardFooter>
             <Button type="submit" disabled={!isDirty}>
               Speichern
             </Button>
-          </Card.Footer>
+          </CardFooter>
         </Card>
       </Form>
     </div>
