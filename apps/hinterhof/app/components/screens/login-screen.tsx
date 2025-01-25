@@ -1,24 +1,47 @@
+import { valibotResolver } from '@hookform/resolvers/valibot';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import * as v from 'valibot';
 import { Logo } from '#/components/logo';
-import { Container, Form, Heading, TextField } from '#/components/ui-justd';
+import { Container, Heading } from '#/components/ui-justd';
 import { signIn } from '#/lib/firebase/auth';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form';
+import { Input } from '../ui/input';
+
+const LoginSchema = v.object({
+  email: v.pipe(
+    v.string(),
+    v.nonEmpty('Email-Adresse angeben'),
+    v.email('Ungültige Email-Adresse'),
+  ),
+  password: v.pipe(v.string(), v.nonEmpty('Passwort muss schon sein.')),
+});
 
 export function LoginScreen() {
+  const form = useForm<v.InferInput<typeof LoginSchema>>({
+    resolver: valibotResolver(LoginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
   const [error, setError] = useState('');
 
-  const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
-    ev.preventDefault();
-
-    const { email, password } = Object.fromEntries(
-      new FormData(ev.currentTarget),
-    );
-
+  function handleLogin({ email, password }: v.InferOutput<typeof LoginSchema>) {
     signIn(String(email), String(password)).catch(() => {
       setError('Email und/oder Passwort falsch');
     });
-  };
+  }
 
   return (
     <Container
@@ -30,31 +53,56 @@ export function LoginScreen() {
           <Logo className="mx-auto size-32 text-secondary-fg" />
           <span className="mx-auto font-medium text-2xl">Hinterhof</span>
         </div>
-        <Form
-          onSubmit={handleSubmit}
-          className="mx-2 grow sm:mx-0 md:min-w-md md:self-center"
-        >
-          <Card>
-            <CardHeader>
-              <Heading>Anmeldung</Heading>
-              {error && <span className="text-danger">{error}</span>}
-            </CardHeader>
-            <CardContent className="flex flex-col gap-y-2">
-              <TextField name="email" label="Email *" isRequired type="email" />
-              <TextField
-                name="password"
-                label="Passwort *"
-                isRequired
-                type="password"
-                isRevealable
-              />
-            </CardContent>
-            <CardFooter>
-              <Button className="w-full" type="submit">
-                Anmelden
-              </Button>
-            </CardFooter>
-          </Card>
+        <Form {...form}>
+          <form
+            noValidate
+            onSubmit={form.handleSubmit(handleLogin)}
+            className="mx-2 grow sm:mx-0 md:min-w-md md:self-center"
+          >
+            <Card>
+              <CardHeader>
+                <Heading>Anmeldung</Heading>
+                {error && (
+                  <span className="font-medium text-[0.8rem] text-destructive">
+                    {error}
+                  </span>
+                )}
+              </CardHeader>
+              <CardContent className="flex flex-col gap-y-2">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input type="email" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Passwort</FormLabel>
+                      <FormControl>
+                        <Input type="password" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+              <CardFooter>
+                <Button className="w-full" type="submit">
+                  Anmelden
+                </Button>
+              </CardFooter>
+            </Card>
+          </form>
         </Form>
       </div>
     </Container>
