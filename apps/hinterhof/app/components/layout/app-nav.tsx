@@ -1,4 +1,4 @@
-import { Separator, SidebarNav, SidebarTrigger } from '../ui';
+import { Separator, SidebarNav, SidebarTrigger } from '../ui-justd';
 
 export function AppNav() {
   return (

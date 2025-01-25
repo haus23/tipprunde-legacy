@@ -25,7 +25,7 @@ import {
   SidebarRail,
   SidebarSection,
   SidebarSeparator,
-} from '../ui';
+} from '../ui-justd';
 
 const anonymousAvatarUrl = 'https://i.pravatar.cc/300?img=50';
 

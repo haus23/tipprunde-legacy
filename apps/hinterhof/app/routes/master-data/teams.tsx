@@ -9,7 +9,7 @@ import {
   Sheet,
   Table,
   TextField,
-} from '#/components/ui';
+} from '#/components/ui-justd';
 import { useTeams } from '#/utils/state/teams';
 
 export default function TeamsRoute() {
