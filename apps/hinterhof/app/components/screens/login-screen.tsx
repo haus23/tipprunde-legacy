@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as v from 'valibot';
 import { Logo } from '#/components/logo';
-import { Container, Heading } from '#/components/ui-justd';
+import { Container } from '#/components/ui-justd';
 import { signIn } from '#/lib/firebase/auth';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
@@ -15,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
+import { Heading } from '../ui/heading';
 import { Input } from '../ui/input';
 
 const LoginSchema = v.object({
