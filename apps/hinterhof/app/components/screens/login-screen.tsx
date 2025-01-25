@@ -7,7 +7,7 @@ import {
   Form,
   Heading,
   TextField,
-} from '#/components/ui';
+} from '#/components/ui-justd';
 import { signIn } from '#/lib/firebase/auth';
 
 export function LoginScreen() {

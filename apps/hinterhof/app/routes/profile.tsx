@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Button, Card, Form, Heading, TextField } from '#/components/ui';
+import { Button, Card, Form, Heading, TextField } from '#/components/ui-justd';
 import { updateProfile } from '#/lib/firebase/auth';
 import { useUser } from '#/utils/state/auth';
 import { toast } from '#/utils/toast';

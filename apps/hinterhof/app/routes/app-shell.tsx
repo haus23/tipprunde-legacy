@@ -2,7 +2,7 @@ import { Outlet } from 'react-router';
 
 import { AppNav } from '#/components/layout/app-nav';
 import { AppSidebar } from '#/components/layout/app-sidebar';
-import { SidebarInset, SidebarProvider, Toaster } from '#/components/ui';
+import { SidebarInset, SidebarProvider, Toaster } from '#/components/ui-justd';
 import { UiProvider } from '#/components/ui-provider';
 
 import { useTeams } from '#/utils/state/teams';
