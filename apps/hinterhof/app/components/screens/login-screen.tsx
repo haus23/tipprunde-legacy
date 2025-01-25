@@ -1,14 +1,9 @@
 import { useState } from 'react';
 import { Logo } from '#/components/logo';
-import {
-  Card,
-  Container,
-  Form,
-  Heading,
-  TextField,
-} from '#/components/ui-justd';
+import { Container, Form, Heading, TextField } from '#/components/ui-justd';
 import { signIn } from '#/lib/firebase/auth';
 import { Button } from '../ui/button';
+import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 
 export function LoginScreen() {
   const [error, setError] = useState('');
@@ -40,11 +35,11 @@ export function LoginScreen() {
           className="mx-2 grow sm:mx-0 md:min-w-md md:self-center"
         >
           <Card>
-            <Card.Header>
+            <CardHeader>
               <Heading>Anmeldung</Heading>
               {error && <span className="text-danger">{error}</span>}
-            </Card.Header>
-            <Card.Content className="flex flex-col gap-y-2">
+            </CardHeader>
+            <CardContent className="flex flex-col gap-y-2">
               <TextField name="email" label="Email *" isRequired type="email" />
               <TextField
                 name="password"
@@ -53,12 +48,12 @@ export function LoginScreen() {
                 type="password"
                 isRevealable
               />
-            </Card.Content>
-            <Card.Footer>
+            </CardContent>
+            <CardFooter>
               <Button className="w-full" type="submit">
                 Anmelden
               </Button>
-            </Card.Footer>
+            </CardFooter>
           </Card>
         </Form>
       </div>
