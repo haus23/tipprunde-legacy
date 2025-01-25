@@ -1,5 +1,11 @@
 # ui-legacy
 
+## 0.3.2
+
+### Patch Changes
+
+- [452eba4](https://github.com/haus23/tipprunde-legacy/commit/452eba4): Drop typecheck - it fails.
+
 ## 0.3.1
 
 ### Patch Changes
