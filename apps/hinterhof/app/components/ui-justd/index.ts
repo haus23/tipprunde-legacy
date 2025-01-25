@@ -13,7 +13,6 @@ export * from './loader';
 export * from './menu';
 export * from './popover';
 export * from './separator';
-export * from './sheet';
 export * from './sidebar';
 export * from './table';
 export * from './text-field';

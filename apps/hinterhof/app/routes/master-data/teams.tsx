@@ -1,10 +1,18 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Heading } from '@/components/ui/heading';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet';
 import type { Team } from '@haus23/tipprunde-model';
 import { SquarePen } from 'lucide-react';
 import { useState } from 'react';
-import { Form, Sheet, Table, TextField } from '#/components/ui-justd';
+import { Form, Table, TextField } from '#/components/ui-justd';
 import { useTeams } from '#/utils/state/teams';
 
 export default function TeamsRoute() {
@@ -39,46 +47,54 @@ export default function TeamsRoute() {
           <span className="inline sm:hidden">Neu</span>
         </Button>
       </header>
-      <Sheet.Content isOpen={isFormOpen} onOpenChange={setFormOpen}>
-        <Form action={saveTeam}>
-          <Sheet.Header>
-            <Sheet.Title>
-              {formMode === 'new' ? 'Neue Mannschaft' : 'Mannschaft bearbeiten'}
-            </Sheet.Title>
-          </Sheet.Header>
-          <Sheet.Body className="space-y-2">
-            <TextField
-              defaultValue={editedTeam?.name}
-              name="name"
-              label="Name *"
-              type="text"
-              placeholder="Offizieller Name"
-              isRequired
-            />
-            <TextField
-              defaultValue={editedTeam?.shortname}
-              name="shortname"
-              label="Kürzel *"
-              type="text"
-              placeholder="Typisches Kürzel (eindeutig)"
-              isRequired
-            />
-            <TextField
-              defaultValue={editedTeam?.id}
-              name="id"
-              label="Kennung *"
-              type="text"
-              placeholder="Eindeutige ID"
-              isRequired
-              isDisabled={formMode === 'edit'}
-            />
-          </Sheet.Body>
-          <Sheet.Footer>
-            <Sheet.Close>Abbrechen</Sheet.Close>
-            <Button type="submit">Speichern</Button>
-          </Sheet.Footer>
-        </Form>
-      </Sheet.Content>
+      <Sheet open={isFormOpen} onOpenChange={setFormOpen}>
+        <SheetContent>
+          <Form action={saveTeam}>
+            <SheetHeader>
+              <SheetTitle>
+                {formMode === 'new'
+                  ? 'Neue Mannschaft'
+                  : 'Mannschaft bearbeiten'}
+              </SheetTitle>
+            </SheetHeader>
+            <div className="space-y-2 my-4">
+              <TextField
+                defaultValue={editedTeam?.name}
+                name="name"
+                label="Name *"
+                type="text"
+                placeholder="Offizieller Name"
+                isRequired
+              />
+              <TextField
+                defaultValue={editedTeam?.shortname}
+                name="shortname"
+                label="Kürzel *"
+                type="text"
+                placeholder="Typisches Kürzel (eindeutig)"
+                isRequired
+              />
+              <TextField
+                defaultValue={editedTeam?.id}
+                name="id"
+                label="Kennung *"
+                type="text"
+                placeholder="Eindeutige ID"
+                isRequired
+                isDisabled={formMode === 'edit'}
+              />
+            </div>
+            <SheetFooter>
+              <SheetClose asChild>
+                <Button variant="outline">Abbrechen</Button>
+              </SheetClose>
+              <SheetClose asChild>
+                <Button type="submit">Speichern</Button>
+              </SheetClose>
+            </SheetFooter>
+          </Form>
+        </SheetContent>
+      </Sheet>
       <Card className="mt-4">
         <Table aria-label="Teams">
           <Table.Header>
