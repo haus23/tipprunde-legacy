@@ -1,5 +1,12 @@
 # hinterhof
 
+## 0.8.1
+
+### Patch Changes
+
+- [4c97553](https://github.com/haus23/tipprunde-legacy/commit/4c97553): Migrate button styles to tw4
+- [5b98fca](https://github.com/haus23/tipprunde-legacy/commit/5b98fca): Switch card implementation.
+
 ## 0.8.0
 
 ### Minor Changes
