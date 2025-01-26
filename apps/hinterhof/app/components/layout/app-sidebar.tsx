@@ -1,131 +1,195 @@
+import { DialogTitle } from '@radix-ui/react-dialog';
 import {
-  IconChevronLgDown,
-  IconHome5,
-  IconLogout,
-  IconSettings,
-  IconShield,
-  IconTrophy,
-} from 'justd-icons';
-import { use } from 'react';
-
-import { useSubmit } from 'react-router';
+  ChevronDownIcon,
+  ChevronsUpDown,
+  HomeIcon,
+  LogOutIcon,
+  SettingsIcon,
+  ShieldIcon,
+  TrophyIcon,
+} from 'lucide-react';
+import { VisuallyHidden } from 'react-aria';
+import { Link, NavLink } from 'react-router';
 import { signOut } from '#/lib/firebase/auth';
 import { useUser } from '#/utils/state/auth';
 import { Logo } from '../logo';
+import { Avatar, AvatarImage } from '../ui/avatar';
 import {
-  Avatar,
-  Menu,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
+import {
   Sidebar,
   SidebarContent,
-  SidebarContext,
   SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
-  SidebarItem,
-  SidebarLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
   SidebarRail,
-  SidebarSection,
   SidebarSeparator,
-} from '../ui-justd';
+  useSidebar,
+} from '../ui/sidebar';
 
 const anonymousAvatarUrl = 'https://i.pravatar.cc/300?img=50';
+
+const masterdataItems = [
+  {
+    title: 'Turniere',
+    url: '/turniere',
+    icon: TrophyIcon,
+  },
+  {
+    title: 'Teams',
+    url: '/teams',
+    icon: ShieldIcon,
+  },
+];
 
 namespace AppSidebar {
   export interface Props extends React.ComponentProps<typeof Sidebar> {}
 }
 
 export function AppSidebar({ ...props }: AppSidebar.Props) {
-  const submit = useSubmit();
+  const { isMobile, openMobile, setOpenMobile } = useSidebar();
 
-  const ctx = use(SidebarContext);
+  function closeSidebar() {
+    openMobile && setOpenMobile(false);
+  }
+
   const user = useUser();
 
   async function logoutUser() {
     await signOut();
   }
 
-  function closeSidebar() {
-    ctx.isMobile && ctx.isOpenOnMobile && ctx.setIsOpenOnMobile(false);
-  }
-
   return (
     <Sidebar {...props}>
-      <SidebarHeader className="mb-1.5">
-        <a
-          href="https://www.runde.tips"
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-x-2 group-data-[collapsible=dock]:size-10 group-data-[collapsible=dock]:justify-center"
-          onClick={closeSidebar}
-        >
-          <Logo className="size-5" />
-          <SidebarLabel className="font-medium">runde.tips</SidebarLabel>
-        </a>
-      </SidebarHeader>
-      <SidebarContent className="overflow-x-clip">
-        <SidebarSeparator className="mt-0" />
-        <SidebarSection className="grow">
-          <SidebarItem href="/" onPress={closeSidebar} tooltip="Dashboard">
-            <IconHome5 className="size-5" />
-            <SidebarLabel>Dashboard</SidebarLabel>
-          </SidebarItem>
-        </SidebarSection>
+      <SidebarContent>
+        <SidebarHeader className="pb-0">
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild tooltip="runde.tips">
+                <a
+                  href="https://www.runde.tips"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={closeSidebar}
+                >
+                  <Logo className="scale-200" />
+                  <span className="pl-1 text-lg">runde.tips</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarHeader>
         <SidebarSeparator />
-        <SidebarSection title="Stammdaten">
-          <SidebarItem
-            href="/turniere"
-            onPress={closeSidebar}
-            tooltip="Turniere"
-          >
-            <IconTrophy />
-            <SidebarLabel>Turniere</SidebarLabel>
-          </SidebarItem>
-          <SidebarItem href="/teams" onPress={closeSidebar} tooltip="Teams">
-            <IconShield />
-            <SidebarLabel>Teams</SidebarLabel>
-          </SidebarItem>
-        </SidebarSection>
-        <SidebarSection />
-        <SidebarSeparator className="mb-0" />
+        <SidebarGroup className="grow">
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild tooltip="Dashboard">
+                  <NavLink to="/" onClick={closeSidebar}>
+                    <HomeIcon />
+                    <span>Dashboard</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarSeparator />
+        <SidebarGroup>
+          <SidebarGroupLabel>Stammdaten</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {masterdataItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild tooltip={item.title}>
+                    <NavLink to={item.url} onClick={closeSidebar}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
+      <SidebarSeparator />
       <SidebarFooter>
-        <Menu>
-          <Menu.Trigger aria-label="Profil" data-slot="menu-trigger">
-            <Avatar src={user.photoURL || anonymousAvatarUrl} size="large" />
-            <div className="in-data-[sidebar-collapsible=dock]:hidden text-sm">
-              {user.displayName || user.email}
-              {user.displayName.length > 0 && (
-                <span className="-mt-0.5 block text-muted-fg">
-                  {user.email}
-                </span>
-              )}
-            </div>
-            <IconChevronLgDown className="absolute right-3 in-data-[sidebar-collapsible=dock]:hidden size-4 transition-transform group-pressed:rotate-180" />
-          </Menu.Trigger>
-          <Menu.Content
-            aria-label="User Menu"
-            placement="bottom right"
-            className="sm:min-w-(--trigger-width)"
-          >
-            <Menu.Section>
-              <Menu.Header separator>
-                <span className="block">{user.displayName || user.email}</span>
-                {user.displayName.length > 0 && (
-                  <span className="font-normal text-muted-fg">
-                    {user.email}
-                  </span>
-                )}
-              </Menu.Header>
-            </Menu.Section>
-            <Menu.Item href="/profil" onAction={closeSidebar}>
-              <IconSettings />
-              Profil
-            </Menu.Item>
-            <Menu.Item onAction={logoutUser}>
-              <IconLogout />
-              Log out
-            </Menu.Item>
-          </Menu.Content>
-        </Menu>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton tooltip="User Menu">
+                  <Avatar className="size-5">
+                    <AvatarImage
+                      src={user.photoURL || anonymousAvatarUrl}
+                      alt={user.email}
+                    />
+                  </Avatar>
+                  <div className="grid flex-1 pl-1 text-left text-sm leading-tight">
+                    <span className="truncate font-semibold">
+                      {user.displayName || user.email}
+                    </span>
+                    {user.displayName.length > 0 && (
+                      <span className="truncate text-xs">{user.email}</span>
+                    )}
+                  </div>
+                  <ChevronsUpDown className="ml-auto size-4" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+                side={isMobile ? 'bottom' : 'right'}
+                align="end"
+                sideOffset={isMobile ? 8 : 4}
+              >
+                <DropdownMenuLabel className="p-0 font-normal">
+                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                    <Avatar className="size-5">
+                      <AvatarImage
+                        src={user.photoURL || anonymousAvatarUrl}
+                        alt={user.email}
+                      />
+                    </Avatar>
+                    <div className="grid flex-1 pl-1 text-left text-sm leading-tight">
+                      <span className="truncate font-semibold">
+                        {user.displayName || user.email}
+                      </span>
+                      {user.displayName.length > 0 && (
+                        <span className="truncate text-xs">{user.email}</span>
+                      )}
+                    </div>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                  <DropdownMenuItem asChild onClick={closeSidebar}>
+                    <Link to="/profil">
+                      <SettingsIcon />
+                      Profil
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={signOut}>
+                    <LogOutIcon />
+                    Log out
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

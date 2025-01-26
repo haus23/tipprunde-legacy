@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router';
 
-import { AppNav } from '#/components/layout/app-nav';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '#/components/layout/app-sidebar';
-import { SidebarInset, SidebarProvider, Toaster } from '#/components/ui-justd';
+import { Toaster } from '#/components/ui-justd';
 import { UiProvider } from '#/components/ui-provider';
 
+import { AppNav } from '@/components/layout/app-nav';
 import { useTeams } from '#/utils/state/teams';
 
 export default function AppShell() {
@@ -14,10 +15,10 @@ export default function AppShell() {
   return (
     <UiProvider>
       <SidebarProvider>
-        <AppSidebar collapsible="dock" />
+        <AppSidebar collapsible="icon" />
         <SidebarInset>
           <AppNav />
-          <div className="p-4 lg:p-6">
+          <div className="grow p-4 lg:p-6 ">
             <Outlet />
           </div>
         </SidebarInset>
