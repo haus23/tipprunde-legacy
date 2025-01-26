@@ -8,7 +8,7 @@ import { SplashScreen } from './components/screens/splash-screen';
 import AppShell from './routes/app-shell';
 import DashboardRoute from './routes/dashboard';
 import ChampionshipsRoute from './routes/master-data/championships';
-import TeamsRoute from './routes/master-data/teams';
+import TeamsRoute from './routes/master-data/teams/_route';
 import ProfileRoute from './routes/profile';
 
 export const router = createBrowserRouter([

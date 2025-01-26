@@ -1,19 +1,15 @@
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Heading } from '@/components/ui/heading';
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-} from '@/components/ui/sheet';
 import type { Team } from '@haus23/tipprunde-model';
 import { SquarePen } from 'lucide-react';
 import { useState } from 'react';
-import { Form, Table, TextField } from '#/components/ui-justd';
+
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Heading } from '@/components/ui/heading';
+import { Sheet, SheetDescription } from '@/components/ui/sheet';
+import { Table } from '#/components/ui-justd';
 import { useTeams } from '#/utils/state/teams';
+
+import { EditSheet } from './edit-sheet';
 
 export default function TeamsRoute() {
   const [isFormOpen, setFormOpen] = useState(false);
@@ -34,10 +30,6 @@ export default function TeamsRoute() {
     setFormOpen(true);
   }
 
-  function saveTeam(data: FormData) {
-    console.log(Object.fromEntries(data));
-  }
-
   return (
     <div>
       <header className="flex items-center justify-between">
@@ -48,52 +40,8 @@ export default function TeamsRoute() {
         </Button>
       </header>
       <Sheet open={isFormOpen} onOpenChange={setFormOpen}>
-        <SheetContent>
-          <Form action={saveTeam}>
-            <SheetHeader>
-              <SheetTitle>
-                {formMode === 'new'
-                  ? 'Neue Mannschaft'
-                  : 'Mannschaft bearbeiten'}
-              </SheetTitle>
-            </SheetHeader>
-            <div className="space-y-2 my-4">
-              <TextField
-                defaultValue={editedTeam?.name}
-                name="name"
-                label="Name *"
-                type="text"
-                placeholder="Offizieller Name"
-                isRequired
-              />
-              <TextField
-                defaultValue={editedTeam?.shortname}
-                name="shortname"
-                label="Kürzel *"
-                type="text"
-                placeholder="Typisches Kürzel (eindeutig)"
-                isRequired
-              />
-              <TextField
-                defaultValue={editedTeam?.id}
-                name="id"
-                label="Kennung *"
-                type="text"
-                placeholder="Eindeutige ID"
-                isRequired
-                isDisabled={formMode === 'edit'}
-              />
-            </div>
-            <SheetFooter>
-              <SheetClose asChild>
-                <Button variant="outline">Abbrechen</Button>
-              </SheetClose>
-              <SheetClose asChild>
-                <Button type="submit">Speichern</Button>
-              </SheetClose>
-            </SheetFooter>
-          </Form>
-        </SheetContent>
+        <SheetDescription>Mannschaft/Team Formular</SheetDescription>
+        <EditSheet mode={formMode} team={editedTeam} />
       </Sheet>
       <Card className="mt-4">
         <Table aria-label="Teams">
