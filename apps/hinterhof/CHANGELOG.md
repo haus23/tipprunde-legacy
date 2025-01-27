@@ -1,5 +1,15 @@
 # hinterhof
 
+## 0.9.1
+
+### Patch Changes
+
+- [c985ae7](https://github.com/haus23/tipprunde-legacy/commit/c985ae7): Completely reset the toaster.
+- [779e76b](https://github.com/haus23/tipprunde-legacy/commit/779e76b): Creating/updating teams.
+- [1d0437c](https://github.com/haus23/tipprunde-legacy/commit/1d0437c): Implement toaster styles with minimal effort.
+- Updated dependencies [b54b65e]
+  - @haus23/tipprunde-model@0.18.9
+
 ## 0.9.0
 
 ### Minor Changes
