@@ -6,6 +6,7 @@
 
 - Linting, CSS Sorting, ...
 - Evaluation: Inter oder Geist Font
+- Align tsconfig aliases
 - Clean up
   - Remove packages lib and ui-legacy
   - Remove old src folder
@@ -19,4 +20,4 @@
 - Gradually clean-up shadcn/ui styles and components (high priority) - just make it your own
 - Switch from sonner to RAC toasts
 - Change Avatar Image
-
+- Personally dislike the disabled field icons.

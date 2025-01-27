@@ -2,10 +2,10 @@ import { Outlet } from 'react-router';
 
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '#/components/layout/app-sidebar';
-import { Toaster } from '#/components/ui-justd';
 import { UiProvider } from '#/components/ui-provider';
 
 import { AppNav } from '@/components/layout/app-nav';
+import { Toaster } from '@/components/ui/toaster';
 import { useTeams } from '#/utils/state/teams';
 
 export default function AppShell() {
