@@ -6,8 +6,8 @@ import { IdSchema } from '../id';
 
 export const TeamSchema = v.object({
   id: IdSchema,
-  name: v.pipe(v.string(), v.nonEmpty()),
-  shortname: v.pipe(v.string(), v.nonEmpty()),
+  name: v.pipe(v.string(), v.nonEmpty('Kann nicht leer sein.')),
+  shortname: v.pipe(v.string(), v.nonEmpty('Kann nicht leer sein.')),
 });
 
 export type TeamInput = v.InferInput<typeof TeamSchema>;
