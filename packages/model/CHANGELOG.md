@@ -1,5 +1,11 @@
 # model
 
+## 0.18.9
+
+### Patch Changes
+
+- [b54b65e](https://github.com/haus23/tipprunde-legacy/commit/b54b65e): Refining validation.
+
 ## 0.18.8
 
 ### Patch Changes
