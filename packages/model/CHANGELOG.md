@@ -1,5 +1,11 @@
 # model
 
+## 0.18.8
+
+### Patch Changes
+
+- [6cbd215](https://github.com/haus23/tipprunde-legacy/commit/6cbd215): Refine team validation.
+
 ## 0.18.7
 
 ### Patch Changes
