@@ -1,6 +1,7 @@
 import { type Team, type TeamInput, TeamSchema } from '@haus23/tipprunde-model';
 import { valibotResolver } from '@hookform/resolvers/valibot';
 import { useForm } from 'react-hook-form';
+import * as v from 'valibot';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -20,16 +21,31 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { slug } from '@/utils/slug';
-import { useEffect } from 'react';
+import { useTeams } from '@/utils/state/teams';
+import { useEffect, useMemo } from 'react';
 
 namespace EditSheet {
   export interface Props extends React.ComponentProps<typeof SheetContent> {
     mode: 'new' | 'edit';
     team: Team;
+    // Better use Context (must be implemented)
+    onClose?: () => void;
   }
 }
 
-export function EditSheet({ mode, team, ...props }: EditSheet.Props) {
+export function EditSheet({
+  mode,
+  team,
+  onClose = () => {},
+  ...props
+}: EditSheet.Props) {
+  const teams = useTeams();
+
+  const otherTeams = useMemo(
+    () => teams.filter((t) => t.id !== team?.id),
+    [team, teams],
+  );
+
   const form = useForm<TeamInput>({
     resolver: valibotResolver(TeamSchema),
     defaultValues: team,
@@ -40,7 +56,20 @@ export function EditSheet({ mode, team, ...props }: EditSheet.Props) {
   }, [form, team]);
 
   function saveTeam(data: Team) {
+    if (otherTeams.some((t) => t.name === data.name)) {
+      form.setError('name', { message: 'Name schon vorhanden' });
+      return;
+    }
+    if (otherTeams.some((t) => t.shortname === data.shortname)) {
+      form.setError('shortname', { message: 'Kurzname schon vorhanden' });
+      return;
+    }
+    if (otherTeams.some((t) => t.id === data.id)) {
+      form.setError('id', { message: 'Kennung schon vorhanden' });
+      return;
+    }
     console.log(data);
+    onClose();
   }
 
   function handleNameChange() {

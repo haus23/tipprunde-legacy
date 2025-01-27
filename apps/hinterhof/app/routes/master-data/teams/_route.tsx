@@ -41,7 +41,11 @@ export default function TeamsRoute() {
       </header>
       <Sheet open={isFormOpen} onOpenChange={setFormOpen}>
         <SheetDescription>Mannschaft/Team Formular</SheetDescription>
-        <EditSheet mode={formMode} team={editedTeam} />
+        <EditSheet
+          mode={formMode}
+          team={editedTeam}
+          onClose={() => setFormOpen(false)}
+        />
       </Sheet>
       <Card className="mt-4">
         <Table aria-label="Teams">
