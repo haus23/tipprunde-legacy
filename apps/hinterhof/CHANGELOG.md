@@ -1,5 +1,19 @@
 # hinterhof
 
+## 0.9.0
+
+### Minor Changes
+
+- [dce0cb4](https://github.com/haus23/tipprunde-legacy/commit/dce0cb4): Rebuild the sidebar.
+
+### Patch Changes
+
+- [6dfc5cd](https://github.com/haus23/tipprunde-legacy/commit/6dfc5cd): Switch the sheet component.
+- [592d853](https://github.com/haus23/tipprunde-legacy/commit/592d853): Rebuild the basics of the team edit form.
+- [45e96cb](https://github.com/haus23/tipprunde-legacy/commit/45e96cb): Add team validation.
+- Updated dependencies [6cbd215]
+  - @haus23/tipprunde-model@0.18.8
+
 ## 0.8.2
 
 ### Patch Changes
