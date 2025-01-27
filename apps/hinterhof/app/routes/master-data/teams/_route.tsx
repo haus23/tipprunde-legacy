@@ -16,7 +16,7 @@ export default function TeamsRoute() {
   const [formMode, setFormMode] = useState<'new' | 'edit'>(undefined as never);
   const [editedTeam, setEditedTeam] = useState<Team>(undefined as never);
 
-  const teams = useTeams();
+  const { teams } = useTeams();
 
   function openNewTeamForm() {
     setFormMode('new');
@@ -42,6 +42,7 @@ export default function TeamsRoute() {
       <Sheet open={isFormOpen} onOpenChange={setFormOpen}>
         <SheetDescription>Mannschaft/Team Formular</SheetDescription>
         <EditSheet
+          side="bottom"
           mode={formMode}
           team={editedTeam}
           onClose={() => setFormOpen(false)}

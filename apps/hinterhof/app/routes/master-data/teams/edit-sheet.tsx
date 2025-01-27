@@ -22,6 +22,7 @@ import {
 } from '@/components/ui/sheet';
 import { slug } from '@/utils/slug';
 import { useTeams } from '@/utils/state/teams';
+import { toast } from '@/utils/toast';
 import { useEffect, useMemo } from 'react';
 
 namespace EditSheet {
@@ -39,7 +40,7 @@ export function EditSheet({
   onClose = () => {},
   ...props
 }: EditSheet.Props) {
-  const teams = useTeams();
+  const { teams, createTeam, updateTeam } = useTeams();
 
   const otherTeams = useMemo(
     () => teams.filter((t) => t.id !== team?.id),
@@ -55,20 +56,34 @@ export function EditSheet({
     form.reset(team);
   }, [form, team]);
 
-  function saveTeam(data: Team) {
-    if (otherTeams.some((t) => t.name === data.name)) {
+  async function saveTeam(team: Team) {
+    if (otherTeams.some((t) => t.name === team.name)) {
       form.setError('name', { message: 'Name schon vorhanden' });
       return;
     }
-    if (otherTeams.some((t) => t.shortname === data.shortname)) {
+    if (otherTeams.some((t) => t.shortname === team.shortname)) {
       form.setError('shortname', { message: 'Kurzname schon vorhanden' });
       return;
     }
-    if (otherTeams.some((t) => t.id === data.id)) {
+    if (otherTeams.some((t) => t.id === team.id)) {
       form.setError('id', { message: 'Kennung schon vorhanden' });
       return;
     }
-    console.log(data);
+
+    if (mode === 'new') {
+      toast.promise(createTeam(team), {
+        loading: 'Speichern',
+        success: `${team.name} angelegt`,
+        error: 'Hoppla, das hat nicht geklappt.',
+      });
+    } else {
+      toast.promise(updateTeam(team), {
+        loading: 'Speichern',
+        success: `${team.name} geändert.`,
+        error: 'Hoppla, das hat nicht geklappt.',
+      });
+    }
+
     onClose();
   }
 
