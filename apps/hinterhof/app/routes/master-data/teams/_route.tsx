@@ -9,6 +9,7 @@ import { Sheet, SheetDescription } from '@/components/ui/sheet';
 import { Table } from '#/components/ui-justd';
 import { useTeams } from '#/utils/state/teams';
 
+import { VisuallyHidden } from 'react-aria';
 import { EditSheet } from './edit-sheet';
 
 export default function TeamsRoute() {
@@ -40,7 +41,9 @@ export default function TeamsRoute() {
         </Button>
       </header>
       <Sheet open={isFormOpen} onOpenChange={setFormOpen}>
-        <SheetDescription>Mannschaft/Team Formular</SheetDescription>
+        <VisuallyHidden>
+          <SheetDescription>Mannschaft/Team Formular</SheetDescription>
+        </VisuallyHidden>
         <EditSheet
           side="bottom"
           mode={formMode}
