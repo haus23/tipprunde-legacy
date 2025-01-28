@@ -1,15 +1,16 @@
 import type { Team } from '@haus23/tipprunde-model';
-import { SquarePen } from 'lucide-react';
 import { useState } from 'react';
+import { VisuallyHidden } from 'react-aria';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { DataTable } from '@/components/ui/data-table';
 import { Heading } from '@/components/ui/heading';
 import { Sheet, SheetDescription } from '@/components/ui/sheet';
-import { Table } from '#/components/ui-justd';
+
 import { useTeams } from '#/utils/state/teams';
 
-import { VisuallyHidden } from 'react-aria';
+import { columns } from './columns-defs';
 import { EditSheet } from './edit-sheet';
 
 export default function TeamsRoute() {
@@ -52,34 +53,7 @@ export default function TeamsRoute() {
         />
       </Sheet>
       <Card className="mt-4">
-        <Table aria-label="Teams">
-          <Table.Header>
-            <Table.Column isRowHeader>Name</Table.Column>
-            <Table.Column className="hidden sm:table-cell">Kürzel</Table.Column>
-            <Table.Column />
-          </Table.Header>
-          <Table.Body items={teams}>
-            {(team) => (
-              <Table.Row id={team.id}>
-                <Table.Cell>{team.name}</Table.Cell>
-                <Table.Cell className="hidden sm:table-cell">
-                  {team.shortname}
-                </Table.Cell>
-                <Table.Cell>
-                  <div className="flex justify-end">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => openEditTeamForm(team)}
-                    >
-                      <SquarePen />
-                    </Button>
-                  </div>
-                </Table.Cell>
-              </Table.Row>
-            )}
-          </Table.Body>
-        </Table>
+        <DataTable columns={columns} data={teams} />
       </Card>
     </div>
   );
