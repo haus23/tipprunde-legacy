@@ -8,7 +8,8 @@ import { DataTable } from '@/components/ui/data-table';
 import { Heading } from '@/components/ui/heading';
 import { Sheet, SheetDescription } from '@/components/ui/sheet';
 
-import { useTeams } from '#/utils/state/teams';
+import { useTeams } from '@/utils/state/teams';
+
 import { actions, columns } from './columns-defs';
 import { EditSheet } from './edit-sheet';
 
@@ -52,11 +53,7 @@ export default function TeamsRoute() {
         />
       </Sheet>
       <Card className="mt-4">
-        <DataTable
-          columns={columns}
-          data={teams}
-          enableMultiRowSelection={false}
-        />
+        <DataTable columns={columns} data={teams} withPagination />
       </Card>
     </div>
   );

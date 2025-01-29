@@ -119,6 +119,7 @@ export function EditSheet({
                   <FormLabel>Name *</FormLabel>
                   <FormControl>
                     <Input
+                      autoFocus
                       type="text"
                       placeholder="Offizieller Name"
                       {...field}
