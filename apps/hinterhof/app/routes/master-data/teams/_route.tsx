@@ -9,8 +9,7 @@ import { Heading } from '@/components/ui/heading';
 import { Sheet, SheetDescription } from '@/components/ui/sheet';
 
 import { useTeams } from '#/utils/state/teams';
-
-import { columns } from './columns-defs';
+import { actions, columns } from './columns-defs';
 import { EditSheet } from './edit-sheet';
 
 export default function TeamsRoute() {
@@ -26,11 +25,11 @@ export default function TeamsRoute() {
     setFormOpen(true);
   }
 
-  function openEditTeamForm(team: Team) {
+  actions.onEditClick = (team: Team) => {
     setFormMode('edit');
     setEditedTeam(team);
     setFormOpen(true);
-  }
+  };
 
   return (
     <div>
@@ -53,7 +52,11 @@ export default function TeamsRoute() {
         />
       </Sheet>
       <Card className="mt-4">
-        <DataTable columns={columns} data={teams} />
+        <DataTable
+          columns={columns}
+          data={teams}
+          enableMultiRowSelection={false}
+        />
       </Card>
     </div>
   );

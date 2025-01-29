@@ -1,5 +1,7 @@
 import {
   type ColumnDef,
+  type RowModel,
+  type TableOptions,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -14,19 +16,23 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+namespace DataTable {
+  export interface Props<TData, TValue>
+    extends Omit<TableOptions<TData>, 'getCoreRowModel'> {
+    columns: ColumnDef<TData, TValue>[];
+  }
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+  ...props
+}: DataTable.Props<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    ...props,
   });
 
   return (
