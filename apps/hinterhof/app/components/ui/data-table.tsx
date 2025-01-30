@@ -3,6 +3,7 @@ import {
   type TableOptions,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
 } from '@tanstack/react-table';
@@ -16,12 +17,15 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { DataTablePagination } from './data-table-pagination';
+import { Input } from './input';
+import { Label } from './label';
 
 namespace DataTable {
   export interface Props<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     withPagination?: boolean;
+    withFilter?: boolean;
   }
 }
 
@@ -29,16 +33,28 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   withPagination,
+  withFilter,
 }: DataTable.Props<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: withPagination ? getPaginationRowModel() : undefined,
+    getFilteredRowModel: withFilter ? getFilteredRowModel() : undefined,
+    globalFilterFn: 'includesString',
   });
 
   return (
-    <div>
+    <div className="flex flex-col gap-y-4">
+      {withFilter && (
+        <div className="flex items-center gap-x-2 p-2">
+          <Label className="text-muted-foreground">Filter: </Label>
+          <Input
+            placeholder="Suche nach..."
+            onChange={(event) => table.setGlobalFilter(event.target.value)}
+          />
+        </div>
+      )}
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

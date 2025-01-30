@@ -53,7 +53,7 @@ export default function TeamsRoute() {
         />
       </Sheet>
       <Card className="mt-4">
-        <DataTable columns={columns} data={teams} withPagination />
+        <DataTable columns={columns} data={teams} withPagination withFilter />
       </Card>
     </div>
   );
