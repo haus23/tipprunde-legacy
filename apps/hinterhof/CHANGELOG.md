@@ -1,5 +1,14 @@
 # hinterhof
 
+## 0.9.2
+
+### Patch Changes
+
+- [93a6fa7](https://github.com/haus23/tipprunde-legacy/commit/93a6fa7): Add basic data table.
+- [e7054fa](https://github.com/haus23/tipprunde-legacy/commit/e7054fa): Generalize data-table props and add column actions.
+- [f01adf2](https://github.com/haus23/tipprunde-legacy/commit/f01adf2): Add filtering for data tables.
+- [9221b7b](https://github.com/haus23/tipprunde-legacy/commit/9221b7b): Add pagination for data tables.
+
 ## 0.9.1
 
 ### Patch Changes
