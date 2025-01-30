@@ -1,6 +1,4 @@
-import { DialogTitle } from '@radix-ui/react-dialog';
 import {
-  ChevronDownIcon,
   ChevronsUpDown,
   HomeIcon,
   LogOutIcon,
@@ -8,10 +6,11 @@ import {
   ShieldIcon,
   TrophyIcon,
 } from 'lucide-react';
-import { VisuallyHidden } from 'react-aria';
 import { Link, NavLink } from 'react-router';
+
 import { signOut } from '#/lib/firebase/auth';
 import { useUser } from '#/utils/state/auth';
+
 import { Logo } from '../logo';
 import { Avatar, AvatarImage } from '../ui/avatar';
 import {

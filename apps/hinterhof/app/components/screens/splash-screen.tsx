@@ -11,7 +11,7 @@ namespace SplashScreen {
 export function SplashScreen({ className, ...props }: SplashScreen.Props) {
   return (
     <div className={styles({ className })} {...props}>
-      <Logo className="size-64 text-primary/80 md:size-96" />
+      <Logo className="size-64 text-primary/90 md:size-96" />
       <span className="block text-center font-medium text-4xl tracking-wide md:text-5xl">
         runde.tips
       </span>
