@@ -1,5 +1,11 @@
 # model
 
+## 0.18.10
+
+### Patch Changes
+
+- [c8dee81](https://github.com/haus23/tipprunde-legacy/commit/c8dee81): Refine accounts schema.
+
 ## 0.18.9
 
 ### Patch Changes
