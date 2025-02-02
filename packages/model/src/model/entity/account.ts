@@ -6,9 +6,12 @@ import { IdSchema } from '../id';
 
 export const AccountSchema = v.object({
   id: IdSchema,
-  name: v.pipe(v.string(), v.nonEmpty()),
+  name: v.pipe(v.string(), v.trim(), v.nonEmpty('Kann nicht leer sein.')),
   email: v.optional(
-    v.union([v.literal(''), v.pipe(v.string(), v.email())]),
+    v.union([
+      v.literal(''),
+      v.pipe(v.string(), v.email('Ungültige Email-Adresse.')),
+    ]),
     '',
   ),
 });
