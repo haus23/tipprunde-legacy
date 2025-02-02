@@ -5,11 +5,12 @@ import {
   SettingsIcon,
   ShieldIcon,
   TrophyIcon,
+  UsersIcon,
 } from 'lucide-react';
 import { Link, NavLink } from 'react-router';
 
-import { signOut } from '#/lib/firebase/auth';
-import { useUser } from '#/utils/state/auth';
+import { signOut } from '@/lib/firebase/auth';
+import { useUser } from '@/utils/state/auth';
 
 import { Logo } from '../logo';
 import { Avatar, AvatarImage } from '../ui/avatar';
@@ -45,6 +46,11 @@ const masterdataItems = [
     title: 'Turniere',
     url: '/turniere',
     icon: TrophyIcon,
+  },
+  {
+    title: 'Spieler',
+    url: '/spieler',
+    icon: UsersIcon,
   },
   {
     title: 'Teams',
