@@ -1,5 +1,11 @@
 # unterbau
 
+## 0.21.11
+
+### Patch Changes
+
+- [b0f4f76](https://github.com/haus23/tipprunde-legacy/commit/b0f4f76): Update node typings.
+
 ## 0.21.10
 
 ### Patch Changes
