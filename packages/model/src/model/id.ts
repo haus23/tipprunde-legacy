@@ -6,4 +6,4 @@ export const IdSchema = v.pipe(
   v.minLength(3, 'Eine ID muss mindestens drei Zeichen haben'),
   v.regex(/^\w[-\w]+\w$/, 'Ungültige ID.'),
 );
-export const OptionalIdSchema = v.optional(v.string(), '');
+export const OptionalIdSchema = v.nullish(v.string(), '');

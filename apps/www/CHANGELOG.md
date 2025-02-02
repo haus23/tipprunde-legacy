@@ -1,5 +1,17 @@
 # www
 
+## 0.17.0
+
+### Minor Changes
+
+- Updated dependencies [8565032]
+  - @haus23/tipprunde-model@0.19.0
+  
+## Patch Changes
+
+- [e9fc052](https://github.com/haus23/tipprunde-legacy/commit/e9fc052): Add env dist file.
+- [939566f](https://github.com/haus23/tipprunde-legacy/commit/939566f): Update deps.
+
 ## 0.16.11
 
 ### Patch Changes
