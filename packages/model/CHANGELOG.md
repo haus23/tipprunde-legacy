@@ -1,5 +1,11 @@
 # model
 
+## 0.19.0
+
+### Minor Changes
+
+- [8565032](https://github.com/haus23/tipprunde-legacy/commit/8565032): Accept null values as well.
+
 ## 0.18.7
 
 ### Patch Changes
