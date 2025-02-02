@@ -1,6 +1,11 @@
-import { type Team, type TeamInput, TeamSchema } from '@haus23/tipprunde-model';
+import {
+  type Account,
+  type AccountInput,
+  AccountSchema,
+} from '@haus23/tipprunde-model';
 import { valibotResolver } from '@hookform/resolvers/valibot';
 import { useForm } from 'react-hook-form';
+import * as v from 'valibot';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -20,14 +25,14 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { slug } from '@/utils/slug';
-import { useTeams } from '@/utils/state/teams';
+import { useAccounts } from '@/utils/state/accounts';
 import { toast } from '@/utils/toast';
 import { useEffect, useMemo } from 'react';
 
 namespace EditSheet {
   export interface Props extends React.ComponentProps<typeof SheetContent> {
     mode: 'new' | 'edit';
-    team: Team;
+    account: Account;
     // Better use Context (must be implemented)
     onClose?: () => void;
   }
@@ -35,50 +40,54 @@ namespace EditSheet {
 
 export function EditSheet({
   mode,
-  team,
+  account,
   onClose = () => {},
   ...props
 }: EditSheet.Props) {
-  const { teams, createTeam, updateTeam } = useTeams();
+  const { accounts, createAccount, updateAccount } = useAccounts();
 
-  const otherTeams = useMemo(
-    () => teams.filter((t) => t.id !== team?.id),
-    [team, teams],
+  const otherAccounts = useMemo(
+    () => accounts.filter((a) => a.id !== account?.id),
+    [account, accounts],
   );
 
-  const form = useForm<TeamInput>({
-    resolver: valibotResolver(TeamSchema),
-    defaultValues: team,
+  const form = useForm<AccountInput>({
+    resolver: valibotResolver(AccountSchema),
+    defaultValues: account,
   });
 
   useEffect(() => {
-    form.reset(team);
-  }, [form, team]);
+    form.reset(account);
+  }, [form, account]);
 
-  async function saveTeam(team: Team) {
-    if (otherTeams.some((t) => t.name === team.name)) {
+  async function saveAccount(accountData: AccountInput) {
+    if (otherAccounts.some((acc) => acc.name === accountData.name)) {
       form.setError('name', { message: 'Name schon vorhanden' });
       return;
     }
-    if (otherTeams.some((t) => t.shortname === team.shortname)) {
-      form.setError('shortname', { message: 'Kurzname schon vorhanden' });
+    if (
+      accountData.email &&
+      otherAccounts.some((acc) => acc.email === accountData.email)
+    ) {
+      form.setError('email', { message: 'Email-Adresse schon genutzt' });
       return;
     }
-    if (otherTeams.some((t) => t.id === team.id)) {
+    if (otherAccounts.some((acc) => acc.id === accountData.id)) {
       form.setError('id', { message: 'Kennung schon vorhanden' });
       return;
     }
 
+    const account = v.parse(AccountSchema, accountData);
     if (mode === 'new') {
-      toast.promise(createTeam(team), {
+      toast.promise(createAccount(account), {
         loading: 'Speichern',
-        success: `${team.name} angelegt`,
+        success: `${accountData.name} angelegt`,
         error: 'Hoppla, das hat nicht geklappt.',
       });
     } else {
-      toast.promise(updateTeam(team), {
+      toast.promise(updateAccount(account), {
         loading: 'Speichern',
-        success: `${team.name} geändert.`,
+        success: `${accountData.name} geändert.`,
         error: 'Hoppla, das hat nicht geklappt.',
       });
     }
@@ -87,13 +96,7 @@ export function EditSheet({
   }
 
   function handleNameChange() {
-    const name = form.getValues('name').trim();
-    if (mode === 'new' && name && !form.formState.dirtyFields.shortname) {
-      form.setValue('shortname', name, { shouldValidate: true });
-    }
-  }
-  function handleShortnameChange() {
-    const sluggedName = slug(form.getValues('shortname'));
+    const sluggedName = slug(form.getValues('name').trim());
     if (mode === 'new' && sluggedName && !form.formState.dirtyFields.id) {
       form.setValue('id', sluggedName, { shouldValidate: true });
     }
@@ -102,10 +105,10 @@ export function EditSheet({
   return (
     <SheetContent {...props}>
       <Form {...form}>
-        <form noValidate onSubmit={form.handleSubmit(saveTeam)}>
+        <form noValidate onSubmit={form.handleSubmit(saveAccount)}>
           <SheetHeader>
             <SheetTitle>
-              {mode === 'new' ? 'Neue Mannschaft' : 'Mannschaft bearbeiten'}
+              {mode === 'new' ? 'Neuer Spieler' : 'Spieler bearbeiten'}
             </SheetTitle>
           </SheetHeader>
 
@@ -120,7 +123,6 @@ export function EditSheet({
                     <Input
                       autoFocus
                       type="text"
-                      placeholder="Offizieller Name"
                       {...field}
                       onBlur={handleNameChange}
                     />
@@ -131,16 +133,15 @@ export function EditSheet({
             />
             <FormField
               control={form.control}
-              name="shortname"
+              name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Kurzname *</FormLabel>
+                  <FormLabel>Email *</FormLabel>
                   <FormControl>
                     <Input
-                      type="text"
-                      placeholder="Typische Kurzform (eindeutig)"
+                      type="email"
+                      placeholder="Email-Adresse (eindeutig)"
                       {...field}
-                      onBlur={handleShortnameChange}
                     />
                   </FormControl>
                   <FormMessage />
