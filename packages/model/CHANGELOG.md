@@ -1,5 +1,11 @@
 # model
 
+## 0.19.1
+
+### Patch Changes
+
+- Loose id schema.
+
 ## 0.19.0
 
 ### Minor Changes
