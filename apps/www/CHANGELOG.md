@@ -1,5 +1,12 @@
 # www
 
+## 0.16.9
+
+### Patch Changes
+
+- [e9fc052](https://github.com/haus23/tipprunde-legacy/commit/e9fc052): Add env dist file.
+- [939566f](https://github.com/haus23/tipprunde-legacy/commit/939566f): Update deps.
+
 ## 0.16.8
 
 ### Patch Changes
