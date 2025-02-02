@@ -25,7 +25,7 @@
     "@haus23/tipprunde-tsconfig": "workspace:^",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.10.10",
+    "@types/node": "^22.13.0",
     "@types/supertest": "^6.0.2",
     "supertest": "^7.0.0",
     "tsx": "^4.19.2",
