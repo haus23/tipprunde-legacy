@@ -1,12 +1,19 @@
 # unterbau
 
+## 0.22.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @haus23/tipprunde-model@0.19.1
+
 ## 0.22.0
 
 ### Minor Changes
 
 - Updated dependencies [8565032]
   - @haus23/tipprunde-model@0.19.0
-  
+
 ### Patch Changes
 
 - [b0f4f76](https://github.com/haus23/tipprunde-legacy/commit/b0f4f76): Update node typings.
