@@ -1,5 +1,16 @@
 # hinterhof
 
+## 0.9.3
+
+### Patch Changes
+
+- [a4fe4b7](https://github.com/haus23/tipprunde-legacy/commit/a4fe4b7): Add initial accounts view.
+- [87781f7](https://github.com/haus23/tipprunde-legacy/commit/87781f7): Add editing of accounts.
+- [c7e91ad](https://github.com/haus23/tipprunde-legacy/commit/c7e91ad): Upgrade twMerge to tailwindcss v4 version.
+- [5402f6e](https://github.com/haus23/tipprunde-legacy/commit/5402f6e): Patch update deps.
+- Updated dependencies [c8dee81]
+  - @haus23/tipprunde-model@0.18.10
+
 ## 0.9.2
 
 ### Patch Changes
