@@ -4,15 +4,18 @@ import { atomEffect } from 'jotai-effect';
 import {
   collection,
   createEntity,
+  orderByDesc,
   updateEntity,
 } from '#/lib/firebase/repository';
 
 const championshipsAtom = atom<Championship[]>([]);
 const championshipsSubscriptionEffect = atomEffect((get, set) =>
-  collection<Championship>('championships').subscribe((championships) => {
-    console.log('Setting championships masterdata');
-    set(championshipsAtom, championships);
-  }),
+  collection<Championship>('championships', orderByDesc('nr')).subscribe(
+    (championships) => {
+      console.log('Setting championships masterdata');
+      set(championshipsAtom, championships);
+    },
+  ),
 );
 
 export function useChampionships() {

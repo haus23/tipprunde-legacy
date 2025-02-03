@@ -4,11 +4,16 @@ import {
   collection as firestoreCollection,
   getDocs,
   onSnapshot,
+  orderBy,
   query,
   setDoc,
 } from 'firebase/firestore';
 
 import { db, modelConverter } from './db';
+
+export function orderByDesc(field: string) {
+  return orderBy(field, 'desc');
+}
 
 export const collection = <T extends { id: string }>(
   path: string,
