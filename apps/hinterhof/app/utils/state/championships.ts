@@ -9,11 +9,17 @@ import {
 } from '#/lib/firebase/repository';
 
 const championshipsAtom = atom<Championship[]>([]);
+const currentChampionshipAtom = atom<Championship>();
+
 const championshipsSubscriptionEffect = atomEffect((get, set) =>
   collection<Championship>('championships', orderByDesc('nr')).subscribe(
     (championships) => {
       console.log('Setting championships masterdata');
       set(championshipsAtom, championships);
+      const current = get(currentChampionshipAtom);
+      if (!current) {
+        set(currentChampionshipAtom, championships[0]);
+      }
     },
   ),
 );
@@ -26,8 +32,14 @@ export function useChampionships() {
   const updateChampionship = (championship: Championship) =>
     updateEntity('championships', championship);
 
+  const [currentChampionship, setCurrentChampionship] = useAtom(
+    currentChampionshipAtom,
+  );
+
   return {
     championships: useAtomValue(championshipsAtom),
+    currentChampionship,
+    setCurrentChampionship,
     createChampionship,
     updateChampionship,
   };
