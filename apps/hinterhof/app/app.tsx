@@ -7,7 +7,7 @@ import { SplashScreen } from './components/screens/splash-screen';
 
 import AppShell from './routes/app-shell';
 import DashboardRoute from './routes/dashboard';
-import ChampionshipsRoute from './routes/master-data/championships';
+import ChampionshipsRoute from './routes/master-data/championships/_route';
 import PlayersRoute from './routes/master-data/players/_route';
 import TeamsRoute from './routes/master-data/teams/_route';
 import ProfileRoute from './routes/profile';
