@@ -10,7 +10,7 @@ import { Sheet, SheetDescription } from '@/components/ui/sheet';
 
 import { useTeams } from '@/utils/state/teams';
 
-import { actions, columns } from './columns-defs';
+import { actions, columns } from './column-defs';
 import { EditSheet } from './edit-sheet';
 
 export default function TeamsRoute() {

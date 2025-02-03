@@ -9,7 +9,7 @@ import { useAccounts } from '@/utils/state/accounts';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetDescription } from '@/components/ui/sheet';
 import { VisuallyHidden } from 'react-aria';
-import { actions, columns } from './columns-defs';
+import { actions, columns } from './column-defs';
 import { EditSheet } from './edit-sheet';
 
 export default function PlayersRoute() {
