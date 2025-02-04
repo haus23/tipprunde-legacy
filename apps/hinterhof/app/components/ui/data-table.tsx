@@ -1,5 +1,7 @@
 import {
   type ColumnDef,
+  type OnChangeFn,
+  type RowSelectionState,
   type TableOptions,
   flexRender,
   getCoreRowModel,
@@ -26,6 +28,10 @@ namespace DataTable {
     data: TData[];
     withPagination?: boolean;
     withFilter?: boolean;
+    withMultipleSelection?: boolean;
+    getRowId?: TableOptions<TData>['getRowId'];
+    rowSelection?: RowSelectionState;
+    onRowSelectionChange?: OnChangeFn<RowSelectionState>;
   }
 }
 
@@ -34,10 +40,20 @@ export function DataTable<TData, TValue>({
   data,
   withPagination,
   withFilter,
+  withMultipleSelection = false,
+  rowSelection,
+  onRowSelectionChange,
+  getRowId,
 }: DataTable.Props<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
+    enableMultiRowSelection: withMultipleSelection,
+    getRowId,
+    onRowSelectionChange,
+    state: {
+      rowSelection,
+    },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: withPagination ? getPaginationRowModel() : undefined,
     getFilteredRowModel: withFilter ? getFilteredRowModel() : undefined,
