@@ -12,26 +12,53 @@ import ProfileRoute from './routes/profile';
 export const router = createBrowserRouter([
   {
     element: <AppShell />,
+    handle: {
+      title: 'Hinterhof',
+    },
     children: [
-      { index: true, element: <DashboardRoute /> },
+      {
+        index: true,
+        element: <DashboardRoute />,
+        handle: {
+          title: 'Dashboard',
+        },
+      },
       {
         path: 'stammdaten',
+        handle: {
+          title: 'Stammdaten',
+        },
         children: [
           {
             path: 'turniere',
             lazy: () => import('./routes/master-data/championships/_route'),
+            handle: {
+              title: 'Turniere',
+            },
           },
           {
             path: 'spieler',
             lazy: () => import('./routes/master-data/players/_route'),
+            handle: {
+              title: 'Spieler',
+            },
           },
           {
             path: 'teams',
             lazy: () => import('./routes/master-data/teams/_route'),
+            handle: {
+              title: 'Teams',
+            },
           },
         ],
       },
-      { path: 'profil', element: <ProfileRoute /> },
+      {
+        path: 'profil',
+        element: <ProfileRoute />,
+        handle: {
+          title: 'Profil',
+        },
+      },
     ],
   },
 ]);
