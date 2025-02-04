@@ -9,8 +9,14 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          firebase: ['firebase/app','firebase/auth','firebase/firestore'],
+        manualChunks: (id) => {
+          if (id.includes('@radix-ui/')) {
+            return 'radix-ui';
+          }
+          if (/firebase\/(app|auth|firestore)/.test(id)) {
+            return 'firebase';
+          }
+          return null;
         },
       },
     },
