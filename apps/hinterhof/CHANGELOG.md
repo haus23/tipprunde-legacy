@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.9.5
+
+### Patch Changes
+
+- [870a493](https://github.com/haus23/tipprunde-legacy/commit/870a493): Make current championship state setable.
+
 ## 0.9.4
 
 ### Patch Changes
