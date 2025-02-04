@@ -9,17 +9,20 @@ import {
 } from '#/lib/firebase/repository';
 
 const championshipsAtom = atom<Championship[]>([]);
-const currentChampionshipAtom = atom<Championship>();
+
+const currentChampionshipInnerAtom = atom<Championship>();
+const currentChampionshipAtom = atom(
+  (get) => get(currentChampionshipInnerAtom) ?? get(championshipsAtom)[0],
+  (get, set, championship: Championship | undefined) => {
+    set(currentChampionshipInnerAtom, championship);
+  },
+);
 
 const championshipsSubscriptionEffect = atomEffect((get, set) =>
   collection<Championship>('championships', orderByDesc('nr')).subscribe(
     (championships) => {
       console.log('Setting championships masterdata');
       set(championshipsAtom, championships);
-      const current = get(currentChampionshipAtom);
-      if (!current) {
-        set(currentChampionshipAtom, championships[0]);
-      }
     },
   ),
 );
