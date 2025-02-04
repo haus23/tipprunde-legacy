@@ -3,6 +3,7 @@ import {
   type OnChangeFn,
   type RowSelectionState,
   type TableOptions,
+  type TableState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -45,15 +46,18 @@ export function DataTable<TData, TValue>({
   onRowSelectionChange,
   getRowId,
 }: DataTable.Props<TData, TValue>) {
+  let state: Partial<TableState> | undefined = undefined;
+  if (rowSelection) {
+    state = { rowSelection };
+  }
+
   const table = useReactTable({
     data,
     columns,
     enableMultiRowSelection: withMultipleSelection,
     getRowId,
     onRowSelectionChange,
-    state: {
-      rowSelection,
-    },
+    state,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: withPagination ? getPaginationRowModel() : undefined,
     getFilteredRowModel: withFilter ? getFilteredRowModel() : undefined,
