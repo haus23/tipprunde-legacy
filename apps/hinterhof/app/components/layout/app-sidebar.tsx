@@ -119,7 +119,10 @@ export function AppSidebar({ ...props }: AppSidebar.Props) {
               {masterdataItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={item.title}>
-                    <NavLink to={item.url} onClick={closeSidebar}>
+                    <NavLink
+                      to={`/stammdaten${item.url}`}
+                      onClick={closeSidebar}
+                    >
                       <item.icon />
                       <span>{item.title}</span>
                     </NavLink>

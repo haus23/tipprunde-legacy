@@ -15,16 +15,21 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <DashboardRoute /> },
       {
-        path: 'turniere',
-        lazy: () => import('./routes/master-data/championships/_route'),
-      },
-      {
-        path: 'spieler',
-        lazy: () => import('./routes/master-data/players/_route'),
-      },
-      {
-        path: 'teams',
-        lazy: () => import('./routes/master-data/teams/_route'),
+        path: 'stammdaten',
+        children: [
+          {
+            path: 'turniere',
+            lazy: () => import('./routes/master-data/championships/_route'),
+          },
+          {
+            path: 'spieler',
+            lazy: () => import('./routes/master-data/players/_route'),
+          },
+          {
+            path: 'teams',
+            lazy: () => import('./routes/master-data/teams/_route'),
+          },
+        ],
       },
       { path: 'profil', element: <ProfileRoute /> },
     ],
