@@ -9,7 +9,6 @@ export * from './keyboard';
 export * from './link';
 export * from './loader';
 export * from './separator';
-export * from './table';
 export * from './text-field';
 export * from './tooltip';
 export * from './visually-hidden';
