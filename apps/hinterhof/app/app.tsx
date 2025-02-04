@@ -7,9 +7,6 @@ import { SplashScreen } from './components/screens/splash-screen';
 
 import AppShell from './routes/app-shell';
 import DashboardRoute from './routes/dashboard';
-import ChampionshipsRoute from './routes/master-data/championships/_route';
-import PlayersRoute from './routes/master-data/players/_route';
-import TeamsRoute from './routes/master-data/teams/_route';
 import ProfileRoute from './routes/profile';
 
 export const router = createBrowserRouter([
@@ -17,9 +14,18 @@ export const router = createBrowserRouter([
     element: <AppShell />,
     children: [
       { index: true, element: <DashboardRoute /> },
-      { path: 'turniere', element: <ChampionshipsRoute /> },
-      { path: 'spieler', element: <PlayersRoute /> },
-      { path: 'teams', element: <TeamsRoute /> },
+      {
+        path: 'turniere',
+        lazy: () => import('./routes/master-data/championships/_route'),
+      },
+      {
+        path: 'spieler',
+        lazy: () => import('./routes/master-data/players/_route'),
+      },
+      {
+        path: 'teams',
+        lazy: () => import('./routes/master-data/teams/_route'),
+      },
       { path: 'profil', element: <ProfileRoute /> },
     ],
   },

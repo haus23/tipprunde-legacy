@@ -13,7 +13,7 @@ import { useTeams } from '@/utils/state/teams';
 import { actions, columns } from './column-defs';
 import { EditSheet } from './edit-sheet';
 
-export default function TeamsRoute() {
+function TeamsRoute() {
   const [isFormOpen, setFormOpen] = useState(false);
   const [formMode, setFormMode] = useState<'new' | 'edit'>(undefined as never);
   const [editedTeam, setEditedTeam] = useState<Team>(undefined as never);
@@ -58,3 +58,5 @@ export default function TeamsRoute() {
     </div>
   );
 }
+
+export { TeamsRoute as Component };

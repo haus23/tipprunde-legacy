@@ -5,7 +5,7 @@ import { useChampionships } from '@/utils/state/championships';
 import type { OnChangeFn, RowSelectionState } from '@tanstack/react-table';
 import { columns } from './column-defs';
 
-export default function ChampionshipsRoute() {
+function ChampionshipsRoute() {
   const { championships, currentChampionship, setCurrentChampionship } =
     useChampionships();
 
@@ -37,3 +37,5 @@ export default function ChampionshipsRoute() {
     </div>
   );
 }
+
+export { ChampionshipsRoute as Component };

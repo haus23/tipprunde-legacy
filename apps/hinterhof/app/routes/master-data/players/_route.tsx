@@ -12,7 +12,7 @@ import { VisuallyHidden } from 'react-aria';
 import { actions, columns } from './column-defs';
 import { EditSheet } from './edit-sheet';
 
-export default function PlayersRoute() {
+function PlayersRoute() {
   const [isFormOpen, setFormOpen] = useState(false);
   const [formMode, setFormMode] = useState<'new' | 'edit'>(undefined as never);
   const [editedAccount, setEditedAccount] = useState<Account>(
@@ -64,3 +64,5 @@ export default function PlayersRoute() {
     </div>
   );
 }
+
+export { PlayersRoute as Component };
