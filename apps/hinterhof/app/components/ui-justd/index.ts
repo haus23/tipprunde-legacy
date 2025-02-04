@@ -2,7 +2,6 @@ export * from './primitive';
 export * from './badge';
 export * from './checkbox';
 export * from './container';
-export * from './dropdown';
 export * from './field';
 export * from './form';
 export * from './keyboard';
