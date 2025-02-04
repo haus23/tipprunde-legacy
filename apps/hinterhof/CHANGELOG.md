@@ -1,5 +1,15 @@
 # hinterhof
 
+## 0.9.6
+
+### Patch Changes
+
+- [436a11f](https://github.com/haus23/tipprunde-legacy/commit/436a11f): Split radix-ui and firebase from main chunk.
+- [3376b8e](https://github.com/haus23/tipprunde-legacy/commit/3376b8e): Split firebase from main chunk.
+- [358dc46](https://github.com/haus23/tipprunde-legacy/commit/358dc46): Only set rowSelection state if provided.
+- [bbf89cc](https://github.com/haus23/tipprunde-legacy/commit/bbf89cc): Code splitting with lazy loaded routes.
+- [ff6c758](https://github.com/haus23/tipprunde-legacy/commit/ff6c758): Drop justd table. Removes build warning.
+
 ## 0.9.5
 
 ### Patch Changes
