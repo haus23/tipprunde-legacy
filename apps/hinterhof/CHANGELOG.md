@@ -1,5 +1,14 @@
 # hinterhof
 
+## 0.9.7
+
+### Patch Changes
+
+- [1c8bbdd](https://github.com/haus23/tipprunde-legacy/commit/1c8bbdd): Create parent route prefix stammdaten
+- [64c7e23](https://github.com/haus23/tipprunde-legacy/commit/64c7e23): Implement navigation breadcrumps.
+- [a9ce464](https://github.com/haus23/tipprunde-legacy/commit/a9ce464): Create initiall stammdaten dashboard.
+- [33697e2](https://github.com/haus23/tipprunde-legacy/commit/33697e2): Remove justd dropdown component.
+
 ## 0.9.6
 
 ### Patch Changes
