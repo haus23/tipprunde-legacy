@@ -6,4 +6,13 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), tsconfigPaths()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          firebase: ['firebase/app','firebase/auth','firebase/firestore'],
+        },
+      },
+    },
+  },
 });
