@@ -22,8 +22,12 @@
 
 ### Patch Changes
 
-- Updated dependencies [c8dee81]
-  - @haus23/tipprunde-model@0.18.10
+- [9b165fd](https://github.com/haus23/tipprunde-legacy/commit/9b165fd): Update node typings.
+- [d73dc48](https://github.com/haus23/tipprunde-legacy/commit/d73dc48): Update firebase-admin.
+- [214dcaa](https://github.com/haus23/tipprunde-legacy/commit/214dcaa): Update valibot.
+- Updated dependencies [1db1ed2]
+- Updated dependencies [214dcaa]
+  - @haus23/tipprunde-model@0.19.1
 
 ## 0.21.12
 

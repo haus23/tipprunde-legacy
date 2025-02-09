@@ -17,19 +17,19 @@
     "@haus23/tipprunde-model": "workspace:^",
     "cors": "^2.8.5",
     "express": "^5.0.1",
-    "firebase-admin": "^13.0.2",
+    "firebase-admin": "^13.1.0",
     "unstorage": "^1.14.4",
-    "valibot": "1.0.0-beta.14"
+    "valibot": "1.0.0-beta.15"
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.13.0",
+    "@types/node": "^22.13.1",
     "@types/supertest": "^6.0.2",
     "supertest": "^7.0.0",
     "tsx": "^4.19.2",
     "typescript": "~5.7.3",
-    "vitest": "^3.0.4"
+    "vitest": "^3.0.5"
   }
 }

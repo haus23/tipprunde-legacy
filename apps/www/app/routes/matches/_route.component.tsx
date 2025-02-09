@@ -50,8 +50,8 @@ export function MatchesRoute() {
       <title>{`Tipps ${teams[match.hometeamId]?.shortname || 'TBA'} - ${
         teams[match.awayteamId]?.shortname || 'TBA'
       } - ${championship.name} - runde.tips`}</title>
-      <header className="sticky top-0 z-10 mx-2 flex items-center gap-x-4 bg-background pb-2 pt-1 text-accent-foreground sm:mx-0 sm:gap-x-4">
-        <h2 className="flex gap-x-2 text-xl font-semibold tracking-tight">
+      <header className="sticky top-0 z-10 mx-2 flex items-center gap-x-4 bg-background pt-1 pb-2 text-accent-foreground sm:mx-0 sm:gap-x-4">
+        <h2 className="flex gap-x-2 font-semibold text-xl tracking-tight">
           <span className="hidden py-1 sm:block">{championship.name} -</span>
           <span className="py-1">Tipps für</span>
         </h2>
@@ -69,10 +69,15 @@ export function MatchesRoute() {
                   .filter((m) => m.roundId === r.id)
                   .map((m) => (
                     <SelectItem value={m.id} key={m.id}>
-                      <div className="flex gap-x-2 items-center">
-                        <span>{`${teams[m.hometeamId]?.shortname || 'TBA'} - ${teams[m.awayteamId]?.shortname || 'TBA'}`}</span>
+                      <div className="flex items-center gap-x-2">
+                        <span>
+                          {!teams[m.hometeamId]?.shortname &&
+                          !teams[m.awayteamId]?.shortname
+                            ? '(noch offen)'
+                            : `${teams[m.hometeamId]?.shortname || '(noch offen)'} - ${teams[m.awayteamId]?.shortname || '(noch offen)'}`}
+                        </span>
                         {m.result !== '' && (
-                          <span className="text-subtle-foreground text-xs font-semibold">{`(${m.points} Pkt)`}</span>
+                          <span className="font-semibold text-subtle-foreground text-xs">{`(${m.points} Pkt)`}</span>
                         )}
                       </div>
                     </SelectItem>
@@ -85,25 +90,25 @@ export function MatchesRoute() {
       <div className="mx-2 mt-6 max-w-3xl text-sm md:mx-auto">
         <div className="flex w-full justify-between">
           <div className="space-y-1">
-            <p className="text-xs font-medium uppercase">Wann</p>
+            <p className="font-medium text-xs uppercase">Wann</p>
             <p className="font-semibold text-accent-foreground">
               {formatDate(match.date)}
             </p>
           </div>
           <div className="space-y-1">
-            <p className="text-xs font-medium uppercase">Wo</p>
+            <p className="font-medium text-xs uppercase">Wo</p>
             <p className="font-semibold text-accent-foreground">
               {leagues[match.leagueId]?.name}
             </p>
           </div>
           <div className="space-y-1">
-            <p className="text-xs font-medium uppercase">Ergebnis</p>
+            <p className="font-medium text-xs uppercase">Ergebnis</p>
             <p className="font-semibold text-accent-foreground">
               {match.result}
             </p>
           </div>
           <div className="space-y-1">
-            <p className="text-xs font-medium uppercase">Punkte</p>
+            <p className="font-medium text-xs uppercase">Punkte</p>
             <p className="font-semibold text-accent-foreground">
               {match.result && match.points}
             </p>

@@ -5,6 +5,8 @@
 ### Patch Changes
 
 - Loose id schema.
+- [1db1ed2](https://github.com/haus23/tipprunde-legacy/commit/1db1ed2): Update vite and vitest.
+- [214dcaa](https://github.com/haus23/tipprunde-legacy/commit/214dcaa): Update valibot.
 
 ## 0.19.0
 

@@ -23,8 +23,11 @@
 
 ### Patch Changes
 
-- Updated dependencies [c8dee81]
-  - @haus23/tipprunde-model@0.18.10
+- [e9de33a](https://github.com/haus23/tipprunde-legacy/commit/e9de33a): Update node-version for cloudflare.
+- [1db1ed2](https://github.com/haus23/tipprunde-legacy/commit/1db1ed2): Update vite and vitest.
+- [214dcaa](https://github.com/haus23/tipprunde-legacy/commit/214dcaa): Update valibot.
+- [6a82338](https://github.com/haus23/tipprunde-legacy/commit/6a82338): Better display for tba teams in a match.
+- Updated dependencies [1db1ed2]
 
 ## 0.16.10
 
