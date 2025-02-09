@@ -25,6 +25,6 @@
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
     "typescript": "~5.7.3",
-    "vitest": "^3.0.4"
+    "vitest": "^3.0.5"
   }
 }
