@@ -27,7 +27,7 @@ export function TablesRoute() {
     <div>
       <header className="mx-2 flex items-center gap-x-2 pt-2 text-accent-foreground sm:mx-0 sm:gap-x-4">
         <title>{`Tabelle ${championship.name} - runde.tips`}</title>
-        <h1 className="flex gap-x-2 text-xl font-semibold tracking-tight">
+        <h1 className="flex gap-x-2 font-semibold text-xl tracking-tight">
           <span className="hidden sm:block">{championship.name} -</span>
           <span>
             {championship.completed ? 'Abschlusstabelle' : 'Aktuelle Tabelle'}
@@ -35,11 +35,11 @@ export function TablesRoute() {
         </h1>
       </header>
       <table className="mt-4 w-full text-sm">
-        <thead className="bg-accent-subtle text-xs uppercase text-accent-foreground">
+        <thead className="bg-accent-subtle text-accent-foreground text-xs uppercase">
           <tr>
             <th
               scope="col"
-              className="py-3 pl-4 pr-2 text-right font-medium md:px-6"
+              className="py-3 pr-2 pl-4 text-right font-medium md:px-6"
             >
               Platz
             </th>
@@ -80,12 +80,12 @@ export function TablesRoute() {
                   : '';
             return (
               <tr key={p.id}>
-                <td className="pl-4 pr-2 text-right md:px-6">{currentRank}</td>
+                <td className="pr-2 pl-4 text-right md:px-6">{currentRank}</td>
                 <td className="w-full px-2 md:px-6">
                   <div className="py-1.5">
                     <Link
                       prefetch="viewport"
-                      className="rounded-sm p-1 block hover:text-accent-foreground hover:underline"
+                      className="block rounded-sm p-1 hover:text-accent-foreground hover:underline"
                       to={`spieler?name=${p.playerId}`}
                     >
                       {p.account.name}
@@ -107,14 +107,14 @@ export function TablesRoute() {
                         icon={CalendarDaysIcon}
                         ariaTriggerLabel={`Aktuelle Tips von ${p.account.name}`}
                       >
-                        <div className="grid w-[240px] grid-cols-[1fr_repeat(2,_auto)] pb-2 text-sm font-normal">
-                          <div className="border-b border-line py-2 pl-2">
+                        <div className="grid w-[240px] grid-cols-[1fr_repeat(2,_auto)] pb-2 font-normal text-sm">
+                          <div className="border-line border-b py-2 pl-2">
                             Spiel
                           </div>
-                          <div className="border-b border-line p-2 text-center">
+                          <div className="border-line border-b p-2 text-center">
                             Tipp
                           </div>
-                          <div className="border-b border-line p-2 text-center">
+                          <div className="border-line border-b p-2 text-center">
                             Pkt
                           </div>
                           {currentTips.map((m) => {
@@ -130,7 +130,9 @@ export function TablesRoute() {
                                     .filter(Boolean)
                                     .join(' ')}
                                 >
-                                  {m.hometeam}-{m.awayteam}
+                                  {!m.hometeam && !m.awayteam
+                                    ? '(noch offen)'
+                                    : `${m.hometeam || '(noch offen)'} - ${m.awayteam || '(noch offen)'}`}
                                 </div>
                                 <div
                                   className={[
