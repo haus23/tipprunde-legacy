@@ -5,6 +5,7 @@
 ## TODO
 
 - Remove cloudflare key: COREPACK_INTEGRITY_KEYS=0
+- Approve pnpm build scripts on branch v1: `pnpm approve-builds`
 
 ## Branches
 
