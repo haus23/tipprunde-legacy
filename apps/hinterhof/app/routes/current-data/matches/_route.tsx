@@ -1,10 +1,13 @@
 import { Heading } from '@/components/ui/heading';
+import { useChampionships } from '@/utils/state/championships';
 
 function CurrentMatchesRoute() {
+  const { currentChampionship } = useChampionships();
+
   return (
     <div>
       <header className="flex items-center justify-between">
-        <Heading className="grow">Spiele</Heading>
+        <Heading className="grow">{currentChampionship.name} - Spiele</Heading>
       </header>
     </div>
   );
