@@ -28,6 +28,10 @@ export const router = createBrowserRouter([
         handle: { title: '$championshipId$' },
         children: [
           {
+            path: '',
+            lazy: () => import('./routes/current-data/current-data'),
+          },
+          {
             path: 'spiele',
             lazy: () => import('./routes/current-data/matches/_route'),
             handle: {
