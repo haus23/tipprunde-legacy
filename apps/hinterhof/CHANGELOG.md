@@ -1,5 +1,14 @@
 # hinterhof
 
+## 0.6.3
+
+### Patch Changes
+
+- [e9de33a](https://github.com/haus23/tipprunde-legacy/commit/e9de33a): Update node-version for cloudflare.
+- [1db1ed2](https://github.com/haus23/tipprunde-legacy/commit/1db1ed2): Update vite and vitest.
+- Updated dependencies [1db1ed2]
+  - lib@0.4.5
+
 ## 0.6.2
 
 ### Patch Changes
