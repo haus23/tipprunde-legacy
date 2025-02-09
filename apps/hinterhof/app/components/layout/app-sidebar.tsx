@@ -1,7 +1,9 @@
 import {
+  CalendarIcon,
   ChevronsUpDown,
   HomeIcon,
   LogOutIcon,
+  type LucideIcon,
   SettingsIcon,
   ShieldIcon,
   TrophyIcon,
@@ -11,8 +13,8 @@ import { Link, NavLink } from 'react-router';
 
 import { signOut } from '@/lib/firebase/auth';
 import { useUser } from '@/utils/state/auth';
+import { useChampionships } from '@/utils/state/championships';
 
-import { Logo } from '../logo';
 import { Avatar, AvatarImage } from '../ui/avatar';
 import {
   DropdownMenu,
@@ -39,9 +41,26 @@ import {
   useSidebar,
 } from '../ui/sidebar';
 
+import type { Championship } from '@haus23/tipprunde-model';
+import { Logo } from '../logo';
+
 const anonymousAvatarUrl = 'https://i.pravatar.cc/300?img=50';
 
-const masterdataItems = [
+const currentDataItems: {
+  title: string;
+  url: string;
+  icon: LucideIcon;
+  visible: (championship: Championship) => boolean;
+}[] = [
+  {
+    title: 'Spiele',
+    url: '/spiele',
+    icon: CalendarIcon,
+    visible: (c) => !!c,
+  },
+];
+
+const masterDataItems = [
   {
     title: 'Turniere',
     url: '/turniere',
@@ -65,6 +84,7 @@ namespace AppSidebar {
 
 export function AppSidebar({ ...props }: AppSidebar.Props) {
   const { isMobile, openMobile, setOpenMobile } = useSidebar();
+  const { currentChampionship } = useChampionships();
 
   function closeSidebar() {
     openMobile && setOpenMobile(false);
@@ -108,6 +128,21 @@ export function AppSidebar({ ...props }: AppSidebar.Props) {
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              {currentDataItems
+                .filter((item) => item.visible(currentChampionship))
+                .map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild tooltip={item.title}>
+                      <NavLink
+                        to={`/${currentChampionship.id}${item.url}`}
+                        onClick={closeSidebar}
+                      >
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
@@ -116,7 +151,7 @@ export function AppSidebar({ ...props }: AppSidebar.Props) {
           <SidebarGroupLabel>Stammdaten</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {masterdataItems.map((item) => (
+              {masterDataItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild tooltip={item.title}>
                     <NavLink
@@ -189,7 +224,7 @@ export function AppSidebar({ ...props }: AppSidebar.Props) {
                       Profil
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={signOut}>
+                  <DropdownMenuItem onClick={logoutUser}>
                     <LogOutIcon />
                     Log out
                   </DropdownMenuItem>
