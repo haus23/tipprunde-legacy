@@ -1,5 +1,11 @@
 # lib
 
+## 0.4.5
+
+### Patch Changes
+
+- [1db1ed2](https://github.com/haus23/tipprunde-legacy/commit/1db1ed2): Update vite and vitest.
+
 ## 0.4.4
 
 ### Patch Changes
