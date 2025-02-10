@@ -14,6 +14,9 @@ import { db, modelConverter } from './db';
 export function orderByDesc(field: string) {
   return orderBy(field, 'desc');
 }
+export function orderByAsc(field: string) {
+  return orderBy(field, 'asc');
+}
 
 export const collection = <T extends { id: string }>(
   path: string,
