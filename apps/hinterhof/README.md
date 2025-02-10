@@ -14,10 +14,12 @@
 - Find a solution for the remaining heroicons
   - Dices
   - ...
-  
+- Remove query logs (in utils/state)
+- Make tables responsive
+
 ## Future
 
 - Gradually clean-up shadcn/ui styles and components (high priority) - just make it your own
-- Switch from sonner to RAC toasts
+- Switch from sonner to RAC toasts ??? (Sonner, Radix, RAC)???
 - Change Avatar Image
 - Personally dislike the disabled field icons.
