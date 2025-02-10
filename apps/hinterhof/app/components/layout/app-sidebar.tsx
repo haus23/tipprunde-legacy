@@ -6,6 +6,7 @@ import {
   type LucideIcon,
   SettingsIcon,
   ShieldIcon,
+  Table2Icon,
   TrophyIcon,
   UsersIcon,
 } from 'lucide-react';
@@ -75,6 +76,11 @@ const masterDataItems = [
     title: 'Teams',
     url: '/teams',
     icon: ShieldIcon,
+  },
+  {
+    title: 'Ligen',
+    url: '/ligen',
+    icon: Table2Icon,
   },
 ];
 

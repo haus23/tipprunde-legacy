@@ -3,6 +3,7 @@ import {
   FoldersIcon,
   type LucideIcon,
   ShieldIcon,
+  Table2Icon,
   UsersIcon,
 } from 'lucide-react';
 import { Link } from 'react-router';
@@ -35,6 +36,13 @@ const masterDataItems: {
     icon: ShieldIcon,
     background: 'bg-purple-500',
     route: './teams',
+  },
+  {
+    title: 'Ligen',
+    description: 'Fussball-Ligen oder Phasen eines Turniers.',
+    icon: Table2Icon,
+    background: 'bg-green-500',
+    route: './ligen',
   },
 ];
 

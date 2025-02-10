@@ -71,6 +71,13 @@ export const router = createBrowserRouter([
               title: 'Teams',
             },
           },
+          {
+            path: 'ligen',
+            lazy: () => import('./routes/master-data/leagues/_route'),
+            handle: {
+              title: 'Ligen',
+            },
+          },
         ],
       },
       {
