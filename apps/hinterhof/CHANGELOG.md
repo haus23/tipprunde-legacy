@@ -1,5 +1,19 @@
 # hinterhof
 
+## 0.10.0
+
+### Minor Changes
+
+- [786b412](https://github.com/haus23/tipprunde-legacy/commit/786b412): Create basic idea for a current data route.
+- [f3a30b7](https://github.com/haus23/tipprunde-legacy/commit/f3a30b7): Use current championship name as breadcrump title.
+- [4b70029](https://github.com/haus23/tipprunde-legacy/commit/4b70029): Develop an idea for current data states.
+- [9ef25d7](https://github.com/haus23/tipprunde-legacy/commit/9ef25d7): Add dashboard route for the current championship.
+- [a75e096](https://github.com/haus23/tipprunde-legacy/commit/a75e096): Add leagues master data.
+
+### Patch Changes
+
+- [17c2a71](https://github.com/haus23/tipprunde-legacy/commit/17c2a71): Show current championship in page header.
+
 ## 0.9.7
 
 ### Patch Changes
