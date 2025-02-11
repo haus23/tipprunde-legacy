@@ -4,6 +4,7 @@ import {
   HomeIcon,
   LogOutIcon,
   type LucideIcon,
+  ScaleIcon,
   SettingsIcon,
   ShieldIcon,
   Table2Icon,
@@ -57,6 +58,12 @@ const currentDataItems: {
     title: 'Spiele',
     url: '/spiele',
     icon: CalendarIcon,
+    visible: (c) => !!c,
+  },
+  {
+    title: 'Ergebnisse',
+    url: '/ergebnisse',
+    icon: ScaleIcon,
     visible: (c) => !!c,
   },
 ];
