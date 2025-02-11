@@ -8,17 +8,7 @@ import {
   updateEntity,
 } from '#/lib/firebase/repository';
 
-const championshipsAtom = atom<Championship[]>([]);
-
-const currentChampionshipInnerAtom = atom<Championship>();
-export const currentChampionshipAtom = atom(
-  (get) => get(currentChampionshipInnerAtom) ?? get(championshipsAtom)[0],
-  (get, set, championship: Championship | undefined) => {
-    set(currentChampionshipInnerAtom, championship);
-  },
-);
-
-const championshipsSubscriptionEffect = atomEffect((get, set) =>
+export const championshipsAtom = atom<Championship[]>([]);
   collection<Championship>('championships', orderByDesc('nr')).subscribe(
     (championships) => {
       console.log('Setting championships masterdata');
