@@ -1,5 +1,12 @@
 # hinterhof
 
+## 0.10.1
+
+### Patch Changes
+
+- [4a71403](https://github.com/haus23/tipprunde-legacy/commit/4a71403): Eager loading championships and determine current.
+- [167721e](https://github.com/haus23/tipprunde-legacy/commit/167721e): Re-think hooks. Add an optional championship hook.
+
 ## 0.10.0
 
 ### Minor Changes
