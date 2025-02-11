@@ -5,7 +5,6 @@ export * from './container';
 export * from './field';
 export * from './form';
 export * from './keyboard';
-export * from './link';
 export * from './loader';
 export * from './separator';
 export * from './text-field';
