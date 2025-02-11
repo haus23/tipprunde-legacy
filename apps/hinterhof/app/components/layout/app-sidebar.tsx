@@ -14,7 +14,6 @@ import { Link, NavLink } from 'react-router';
 
 import { signOut } from '@/lib/firebase/auth';
 import { useUser } from '@/utils/state/auth';
-import { useChampionships } from '@/utils/state/championships';
 
 import { Avatar, AvatarImage } from '../ui/avatar';
 import {
@@ -42,6 +41,7 @@ import {
   useSidebar,
 } from '../ui/sidebar';
 
+import { useOptionalChampionship } from '@/utils/state/championships';
 import type { Championship } from '@haus23/tipprunde-model';
 import { Logo } from '../logo';
 
@@ -51,7 +51,7 @@ const currentDataItems: {
   title: string;
   url: string;
   icon: LucideIcon;
-  visible: (championship: Championship) => boolean;
+  visible: (championship?: Championship) => boolean;
 }[] = [
   {
     title: 'Spiele',
@@ -90,7 +90,7 @@ namespace AppSidebar {
 
 export function AppSidebar({ ...props }: AppSidebar.Props) {
   const { isMobile, openMobile, setOpenMobile } = useSidebar();
-  const { currentChampionship } = useChampionships();
+  const championship = useOptionalChampionship();
 
   function closeSidebar() {
     openMobile && setOpenMobile(false);
@@ -135,12 +135,12 @@ export function AppSidebar({ ...props }: AppSidebar.Props) {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               {currentDataItems
-                .filter((item) => item.visible(currentChampionship))
+                .filter((item) => item.visible(championship))
                 .map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild tooltip={item.title}>
                       <NavLink
-                        to={`/${currentChampionship.id}${item.url}`}
+                        to={`/${championship?.id}${item.url}`}
                         onClick={closeSidebar}
                       >
                         <item.icon />

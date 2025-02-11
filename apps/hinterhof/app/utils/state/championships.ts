@@ -1,39 +1,35 @@
 import type { Championship } from '@haus23/tipprunde-model';
 import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomEffect } from 'jotai-effect';
-import {
-  collection,
-  createEntity,
-  orderByDesc,
-  updateEntity,
-} from '#/lib/firebase/repository';
+import { observe } from 'jotai-effect';
+
+import { collection, orderByDesc } from '#/lib/firebase/repository';
+
+import { invariant } from '../invariant';
+import { store } from '../store';
 
 export const championshipsAtom = atom<Championship[]>([]);
+
+observe((get, set) => {
   collection<Championship>('championships', orderByDesc('nr')).subscribe(
     (championships) => {
-      console.log('Setting championships masterdata');
+      console.log('Subscription: championships');
       set(championshipsAtom, championships);
     },
-  ),
-);
+  );
+}, store);
+
+export const currentChampionshipAtom = atom<Championship>();
+
+export function useOptionalChampionship() {
+  return useAtomValue(currentChampionshipAtom);
+}
+
+export function useChampionship() {
+  const [championship, setChampionship] = useAtom(currentChampionshipAtom);
+  invariant(typeof championship !== 'undefined');
+  return { championship, setChampionship };
+}
 
 export function useChampionships() {
-  useAtom(championshipsSubscriptionEffect);
-
-  const createChampionship = (championship: Championship) =>
-    createEntity<Championship>('championships', championship);
-  const updateChampionship = (championship: Championship) =>
-    updateEntity('championships', championship);
-
-  const [currentChampionship, setCurrentChampionship] = useAtom(
-    currentChampionshipAtom,
-  );
-
-  return {
-    championships: useAtomValue(championshipsAtom),
-    currentChampionship,
-    setCurrentChampionship,
-    createChampionship,
-    updateChampionship,
-  };
+  return { championships: useAtomValue(championshipsAtom) };
 }

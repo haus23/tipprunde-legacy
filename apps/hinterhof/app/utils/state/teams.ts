@@ -1,23 +1,24 @@
 import type { Team } from '@haus23/tipprunde-model';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomEffect } from 'jotai-effect';
+import { atom, useAtomValue } from 'jotai';
+import { observe } from 'jotai-effect';
+
 import {
   collection,
   createEntity,
   updateEntity,
 } from '#/lib/firebase/repository';
+import { store } from '../store';
 
 const teamsAtom = atom<Team[]>([]);
-const teamsSubscriptionEffect = atomEffect((get, set) =>
+
+observe((get, set) => {
   collection<Team>('teams').subscribe((teams) => {
-    console.log('Setting teams masterdata');
+    console.log('Subscription: teams');
     set(teamsAtom, teams);
-  }),
-);
+  });
+}, store);
 
 export function useTeams() {
-  useAtom(teamsSubscriptionEffect);
-
   const createTeam = (team: Team) => createEntity<Team>('teams', team);
   const updateTeam = (team: Team) => updateEntity('teams', team);
 

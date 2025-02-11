@@ -6,16 +6,8 @@ import { UiProvider } from '#/components/ui-provider';
 
 import { AppNav } from '@/components/layout/app-nav';
 import { Toaster } from '@/components/ui/toaster';
-import { useAccounts } from '@/utils/state/accounts';
-import { useChampionships } from '@/utils/state/championships';
-import { useTeams } from '#/utils/state/teams';
 
 export default function AppShell() {
-  // (Pre-) Syncing masterdata
-  useChampionships();
-  useAccounts();
-  useTeams();
-
   return (
     <UiProvider>
       <SidebarProvider>
