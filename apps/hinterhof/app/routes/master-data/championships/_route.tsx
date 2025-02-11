@@ -1,21 +1,22 @@
 import { Card } from '@/components/ui/card';
 import { DataTable } from '@/components/ui/data-table';
 import { Heading } from '@/components/ui/heading';
-import { useChampionships } from '@/utils/state/championships';
+import { useChampionship, useChampionships } from '@/utils/state/championships';
 import type { OnChangeFn, RowSelectionState } from '@tanstack/react-table';
 import { columns } from './column-defs';
 
 function ChampionshipsRoute() {
-  const { championships, currentChampionship, setCurrentChampionship } =
-    useChampionships();
+  const { championships } = useChampionships();
 
-  const currentRowSelection = currentChampionship && {
-    [currentChampionship.id]: true,
+  const { championship, setChampionship } = useChampionship();
+
+  const currentRowSelection = {
+    [championship.id]: true,
   };
   const changeRowSelection: OnChangeFn<RowSelectionState> = (updater) => {
     if (typeof updater === 'function') {
       const newRowSelection = updater(currentRowSelection || {});
-      setCurrentChampionship(
+      setChampionship(
         championships.find((c) => c.id === Object.keys(newRowSelection)[0]),
       );
     }

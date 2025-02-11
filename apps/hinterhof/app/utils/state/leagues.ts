@@ -13,7 +13,7 @@ const leaguesAtom = atom<League[]>([]);
 
 observe((get, set) => {
   collection<League>('leagues').subscribe((leagues) => {
-    console.log('Setting leagues masterdata');
+    console.log('Subscription: leagues');
     set(leaguesAtom, leagues);
   });
 }, store);

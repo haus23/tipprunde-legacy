@@ -6,12 +6,16 @@ import { LoginScreen } from './components/screens/login-screen';
 import { SplashScreen } from './components/screens/splash-screen';
 
 import AppShell from './routes/app-shell';
+import { loader } from './routes/app-shell.loader';
 import DashboardRoute from './routes/dashboard';
 import ProfileRoute from './routes/profile';
 
 export const router = createBrowserRouter([
   {
     element: <AppShell />,
+    loader: loader,
+    shouldRevalidate: () => false,
+    hydrateFallbackElement: <SplashScreen />,
     handle: {
       title: 'Hinterhof',
     },

@@ -10,7 +10,7 @@ import {
 const accountsAtom = atom<Account[]>([]);
 const accountsSubscriptionEffect = atomEffect((get, set) =>
   collection<Account>('players').subscribe((teams) => {
-    console.log('Setting accounts masterdata');
+    console.log('Subscription: accounts');
     set(accountsAtom, teams);
   }),
 );

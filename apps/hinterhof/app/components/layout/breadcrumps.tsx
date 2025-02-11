@@ -9,7 +9,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { useChampionships } from '@/utils/state/championships';
+import { useChampionship } from '@/utils/state/championships';
 
 type RouteHandle = {
   title: string;
@@ -21,7 +21,7 @@ function hasTitle(handle: unknown): handle is RouteHandle {
 
 export function Breadrumbs() {
   const matches = useMatches();
-  const { currentChampionship } = useChampionships();
+  const { championship } = useChampionship();
 
   return (
     <Breadcrumb>
@@ -30,7 +30,7 @@ export function Breadrumbs() {
           if (hasTitle(m.handle)) {
             const title =
               m.handle.title === '$championshipId$'
-                ? currentChampionship.name
+                ? championship.name
                 : m.handle.title;
 
             return ix !== matches.length - 1 ? (
