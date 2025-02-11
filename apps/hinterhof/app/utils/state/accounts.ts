@@ -1,23 +1,23 @@
 import type { Account } from '@haus23/tipprunde-model';
-import { atom, useAtom, useAtomValue } from 'jotai';
-import { atomEffect } from 'jotai-effect';
+import { atom, useAtomValue } from 'jotai';
+import { observe } from 'jotai-effect';
 import {
   collection,
   createEntity,
   updateEntity,
 } from '#/lib/firebase/repository';
+import { store } from '../store';
 
 const accountsAtom = atom<Account[]>([]);
-const accountsSubscriptionEffect = atomEffect((get, set) =>
+
+observe((get, set) => {
   collection<Account>('players').subscribe((teams) => {
     console.log('Subscription: accounts');
     set(accountsAtom, teams);
-  }),
-);
+  });
+}, store);
 
 export function useAccounts() {
-  useAtom(accountsSubscriptionEffect);
-
   const createAccount = (account: Account) =>
     createEntity<Account>('players', account);
   const updateAccount = (account: Account) =>
