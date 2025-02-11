@@ -1,5 +1,12 @@
 # hinterhof
 
+## 0.10.2
+
+### Patch Changes
+
+- [aa64c01](https://github.com/haus23/tipprunde-legacy/commit/aa64c01): Patch update deps.
+- [de0c426](https://github.com/haus23/tipprunde-legacy/commit/de0c426): patch update dev deps.
+
 ## 0.10.1
 
 ### Patch Changes
