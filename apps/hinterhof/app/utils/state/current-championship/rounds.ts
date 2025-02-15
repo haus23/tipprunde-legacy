@@ -8,19 +8,21 @@ import { store } from '@/utils/store';
 
 import { currentChampionshipAtom, useChampionship } from '../championships';
 
-const resultsAtom = atomFamily((championshipId: string) => atom<Round[]>());
+const resultsAtom = atomFamily((championshipId: string) =>
+  atom<{ rounds: Round[]; isSynced: boolean }>({ rounds: [], isSynced: false }),
+);
 
 observe((get, set) => {
   const currentChampionship = get(currentChampionshipAtom);
   if (currentChampionship) {
-    const results = get(resultsAtom(currentChampionship.id));
-    if (typeof results === 'undefined') {
+    const { isSynced } = get(resultsAtom(currentChampionship.id));
+    if (!isSynced) {
       collection<Round>(
         `championships/${currentChampionship.id}/rounds`,
         orderByAsc('nr'),
       ).subscribe((rounds) => {
         console.log(`Query rounds for ${currentChampionship.id}`);
-        set(resultsAtom(currentChampionship.id), rounds);
+        set(resultsAtom(currentChampionship.id), { rounds, isSynced: true });
       });
     }
   }
@@ -28,7 +30,7 @@ observe((get, set) => {
 
 export function useRounds() {
   const { championship } = useChampionship();
-  const rounds = useAtomValue(resultsAtom(championship.id));
+  const { rounds } = useAtomValue(resultsAtom(championship.id));
 
   return { rounds };
 }

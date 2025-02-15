@@ -8,31 +8,32 @@ import { store } from '@/utils/store';
 
 import { currentChampionshipAtom, useChampionship } from '../championships';
 
-const currentChampionshipMatchesAtom = atomFamily((id: string) =>
-  atom<Match[]>(),
+const matchesAtom = atomFamily((id: string) =>
+  atom<{ matches: Match[]; isSynced: boolean }>({
+    matches: [],
+    isSynced: false,
+  }),
 );
 
 observe((get, set) => {
   const currentChampionship = get(currentChampionshipAtom);
   if (currentChampionship) {
-    const currentMatches = get(
-      currentChampionshipMatchesAtom(currentChampionship.id),
-    );
-    if (typeof currentMatches === 'undefined') {
+    const { isSynced } = get(matchesAtom(currentChampionship.id));
+    if (!isSynced) {
       collection<Match>(
         `championships/${currentChampionship.id}/matches`,
         orderByAsc('nr'),
       ).subscribe((matches) => {
         console.log(`Query matches for ${currentChampionship.id}`);
-        set(currentChampionshipMatchesAtom(currentChampionship.id), matches);
+        set(matchesAtom(currentChampionship.id), { matches, isSynced: true });
       });
     }
   }
 }, store);
 
-export function useCurrentMatches() {
+export function useMatches() {
   const { championship } = useChampionship();
-  const matches = useAtomValue(currentChampionshipMatchesAtom(championship.id));
+  const { matches } = useAtomValue(matchesAtom(championship.id));
 
   return { matches };
 }
