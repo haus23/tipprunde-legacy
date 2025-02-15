@@ -1,5 +1,20 @@
 # hinterhof
 
+## 0.11.0
+
+### Minor Changes
+
+- [efd77b7](https://github.com/haus23/tipprunde-legacy/commit/efd77b7): Add synchronized rounds state.
+- [d9ff6ac](https://github.com/haus23/tipprunde-legacy/commit/d9ff6ac): Start displaying results.
+
+### Patch Changes
+
+- [598ba82](https://github.com/haus23/tipprunde-legacy/commit/598ba82): Pin resolver version to 4.0.0 (Minor upgrade 4.1.0 is not buildable).
+- [7252e5e](https://github.com/haus23/tipprunde-legacy/commit/7252e5e): Update deps.
+- [d214348](https://github.com/haus23/tipprunde-legacy/commit/d214348): Adapt the observe effect pattern for accounts data.
+- [ce3afea](https://github.com/haus23/tipprunde-legacy/commit/ce3afea): Drop justd link component.
+- [8694e61](https://github.com/haus23/tipprunde-legacy/commit/8694e61): Simplify current data synchronization
+
 ## 0.10.2
 
 ### Patch Changes
