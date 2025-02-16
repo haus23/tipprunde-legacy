@@ -7,8 +7,9 @@ import {
 } from 'firebase/auth';
 import * as v from 'valibot';
 
-import { authAtom } from '#/utils/state/auth';
-import { store } from '#/utils/store';
+import { authAtom } from '@/utils/state/auth';
+import { store } from '@/utils/store';
+
 import { app } from './app';
 
 export const auth = getAuth(app);

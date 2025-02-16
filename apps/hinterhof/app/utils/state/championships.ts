@@ -2,7 +2,7 @@ import type { Championship } from '@haus23/tipprunde-model';
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { observe } from 'jotai-effect';
 
-import { collection, orderByDesc } from '#/lib/firebase/repository';
+import { collection, orderByDesc } from '@/lib/firebase/repository';
 
 import { invariant } from '../invariant';
 import { store } from '../store';

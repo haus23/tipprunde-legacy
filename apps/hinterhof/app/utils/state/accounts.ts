@@ -1,11 +1,12 @@
 import type { Account } from '@haus23/tipprunde-model';
 import { atom, useAtomValue } from 'jotai';
 import { observe } from 'jotai-effect';
+
 import {
   collection,
   createEntity,
   updateEntity,
-} from '#/lib/firebase/repository';
+} from '@/lib/firebase/repository';
 import { store } from '../store';
 
 const accountsAtom = atom<Account[]>([]);
