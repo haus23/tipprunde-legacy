@@ -139,7 +139,7 @@ importers:
         specifier: workspace:^
         version: link:../../packages/tsconfig
       '@tailwindcss/vite':
-        specifier: 4.0.6
+        specifier: ^4.0.6
         version: 4.0.6(vite@6.1.0(@types/node@22.13.1)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)(yaml@2.7.0))
       '@types/react':
         specifier: ^19.0.8
