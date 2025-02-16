@@ -1,5 +1,16 @@
 # hinterhof
 
+## 0.11.1
+
+### Patch Changes
+
+- [07264af](https://github.com/haus23/tipprunde-legacy/commit/07264af): Update remaining path alias.
+- [065b2b7](https://github.com/haus23/tipprunde-legacy/commit/065b2b7): Update shadcn/ui styles, components and hooks.
+- [56ec13d](https://github.com/haus23/tipprunde-legacy/commit/56ec13d): Remove obsolete vercel config.
+- [e2e8f9a](https://github.com/haus23/tipprunde-legacy/commit/e2e8f9a): Provide shadcn/ui canary add script.
+- [3b871dd](https://github.com/haus23/tipprunde-legacy/commit/3b871dd): Update shadcn/ui config.
+- [833acd0](https://github.com/haus23/tipprunde-legacy/commit/833acd0): Remove obsolete aliases. Update readme with release stopper.
+
 ## 0.11.0
 
 ### Minor Changes
