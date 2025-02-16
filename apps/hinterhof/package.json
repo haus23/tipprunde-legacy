@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "shadcn": "pnpm dlx shadcn@canary add"
   },
   "dependencies": {
     "@haus23/tipprunde-model": "workspace:^",
