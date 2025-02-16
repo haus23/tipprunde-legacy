@@ -6,6 +6,7 @@
 
 - Remove cloudflare key: COREPACK_INTEGRITY_KEYS=0
 - Approve pnpm build scripts on branch v1: `pnpm approve-builds`
+- Generate certs vie lego for the now cloudflare hosted domain
 
 ## Branches
 
