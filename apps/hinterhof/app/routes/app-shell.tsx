@@ -1,10 +1,9 @@
 import { Outlet } from 'react-router';
 
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-import { AppSidebar } from '#/components/layout/app-sidebar';
-import { UiProvider } from '#/components/ui-provider';
-
 import { AppNav } from '@/components/layout/app-nav';
+import { AppSidebar } from '@/components/layout/app-sidebar';
+import { UiProvider } from '@/components/ui-provider';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { Toaster } from '@/components/ui/toaster';
 
 export default function AppShell() {

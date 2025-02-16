@@ -6,7 +6,7 @@ import {
   collection,
   createEntity,
   updateEntity,
-} from '#/lib/firebase/repository';
+} from '@/lib/firebase/repository';
 import { store } from '../store';
 
 const teamsAtom = atom<Team[]>([]);

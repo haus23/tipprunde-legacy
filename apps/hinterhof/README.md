@@ -16,6 +16,13 @@
   - ...
 - Remove query logs (in utils/state)
 - Make tables responsive
+- Remove remaining justd components/utils
+  - @/utils/classes
+  - Container
+  - Form
+  - TextField
+  - UiProvider
+
 
 ## Future
 

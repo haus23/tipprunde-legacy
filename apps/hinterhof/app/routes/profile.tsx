@@ -1,12 +1,13 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+
+import { Form, TextField } from '@/components/ui-justd';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Heading } from '@/components/ui/heading';
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { Form, TextField } from '#/components/ui-justd';
-import { updateProfile } from '#/lib/firebase/auth';
-import { useUser } from '#/utils/state/auth';
-import { toast } from '#/utils/toast';
+import { updateProfile } from '@/lib/firebase/auth';
+import { useUser } from '@/utils/state/auth';
+import { toast } from '@/utils/toast';
 
 export default function ProfileRoute() {
   const user = useUser();

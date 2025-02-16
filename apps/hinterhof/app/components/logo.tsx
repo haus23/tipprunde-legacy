@@ -1,5 +1,5 @@
+import LogoImage from '@/assets/logo.svg?no-inline';
 import { cn } from '@/utils/cn';
-import LogoImage from '#/assets/logo.svg?no-inline';
 
 namespace Logo {
   export interface Props extends React.ComponentProps<'svg'> {}

@@ -1,5 +1,6 @@
 import { atom, useAtomValue } from 'jotai';
-import type { User } from '#/lib/firebase/auth';
+
+import type { User } from '@/lib/firebase/auth';
 
 export type AuthState = {
   isAuthenticated: boolean;

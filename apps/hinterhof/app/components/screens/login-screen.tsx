@@ -2,9 +2,11 @@ import { valibotResolver } from '@hookform/resolvers/valibot';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as v from 'valibot';
-import { Logo } from '#/components/logo';
-import { Container } from '#/components/ui-justd';
-import { signIn } from '#/lib/firebase/auth';
+
+import { Logo } from '@/components/logo';
+import { Container } from '@/components/ui-justd';
+import { signIn } from '@/lib/firebase/auth';
+
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
 import {
