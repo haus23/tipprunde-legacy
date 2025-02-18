@@ -5,6 +5,8 @@
 ### Patch Changes
 
 - [d3a9a73](https://github.com/haus23/tipprunde-legacy/commit/d3a9a73): Update error message.
+- [7c2f553](https://github.com/haus23/tipprunde-legacy/commit/7c2f553): Update valibot to rc
+- [6279752](https://github.com/haus23/tipprunde-legacy/commit/6279752): Update vitest
 
 ## 0.19.1
 

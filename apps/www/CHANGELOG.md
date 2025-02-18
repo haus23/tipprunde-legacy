@@ -26,6 +26,18 @@
 - [e9fc052](https://github.com/haus23/tipprunde-legacy/commit/e9fc052): Add env dist file.
 - [939566f](https://github.com/haus23/tipprunde-legacy/commit/939566f): Update deps.
 
+## 0.16.12
+
+### Patch Changes
+
+- [7c2f553](https://github.com/haus23/tipprunde-legacy/commit/7c2f553): Update valibot to rc
+- [6279752](https://github.com/haus23/tipprunde-legacy/commit/6279752): Update postcss.
+- [61dcb1d](https://github.com/haus23/tipprunde-legacy/commit/61dcb1d): Update postcss.
+- [7b77cd6](https://github.com/haus23/tipprunde-legacy/commit/7b77cd6): Update deps.
+- Updated dependencies [7c2f553]
+- Updated dependencies [6279752]
+  - @haus23/tipprunde-model@0.19.2
+
 ## 0.16.11
 
 ### Patch Changes

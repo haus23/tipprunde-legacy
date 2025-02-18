@@ -200,6 +200,17 @@
 - [2bc864d](https://github.com/haus23/tipprunde-legacy/commit/2bc864d): Upgrade to React 19
 - [b3b401e](https://github.com/haus23/tipprunde-legacy/commit/b3b401e): Add sidebar nav
 
+## 0.6.4
+
+### Patch Changes
+
+- [7283142](https://github.com/haus23/tipprunde-legacy/commit/7283142): Update tailwind to release version.
+- [6279752](https://github.com/haus23/tipprunde-legacy/commit/6279752): Update postcss.
+- [61dcb1d](https://github.com/haus23/tipprunde-legacy/commit/61dcb1d): Update postcss.
+- [7922951](https://github.com/haus23/tipprunde-legacy/commit/7922951): Update react-hot-toast.
+- Updated dependencies [6279752]
+  - lib@0.4.6
+
 ## 0.6.3
 
 ### Patch Changes
