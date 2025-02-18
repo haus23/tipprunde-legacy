@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.11.3
+
+### Patch Changes
+
+- [45051cb](https://github.com/haus23/tipprunde-legacy/commit/45051cb): Update deps.
+
 ## 0.11.2
 
 ### Patch Changes
