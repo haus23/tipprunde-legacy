@@ -1,5 +1,11 @@
 # lib
 
+## 0.4.6
+
+### Patch Changes
+
+- [6279752](https://github.com/haus23/tipprunde-legacy/commit/6279752): Update vitest
+
 ## 0.4.5
 
 ### Patch Changes
