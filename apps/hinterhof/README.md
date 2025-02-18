@@ -6,7 +6,6 @@
 
 - Linting, CSS Sorting, ...
 - Evaluation: Inter oder Geist Font
-- Align tsconfig aliases
 - Clean up
   - Remove packages lib and ui-legacy
   - Remove old src folder
@@ -22,7 +21,7 @@
   - Form
   - TextField
   - UiProvider
-
+- Un-pin the hook resolvers version from 4.0.0
 
 ## Future
 
