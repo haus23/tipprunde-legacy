@@ -1,5 +1,16 @@
 # unterbau
 
+## 0.21.14
+
+### Patch Changes
+
+- [12e4976](https://github.com/haus23/tipprunde-legacy/commit/12e4976): Update node typings
+- [7c2f553](https://github.com/haus23/tipprunde-legacy/commit/7c2f553): Update valibot to rc
+- [6279752](https://github.com/haus23/tipprunde-legacy/commit/6279752): Update vitest
+- Updated dependencies [7c2f553]
+- Updated dependencies [6279752]
+  - @haus23/tipprunde-model@0.19.2
+
 ## 0.21.13
 
 ### Patch Changes
