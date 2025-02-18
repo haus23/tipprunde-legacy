@@ -1,5 +1,11 @@
 # model
 
+## 0.19.2
+
+### Patch Changes
+
+- [d3a9a73](https://github.com/haus23/tipprunde-legacy/commit/d3a9a73): Update error message.
+
 ## 0.19.1
 
 ### Patch Changes
