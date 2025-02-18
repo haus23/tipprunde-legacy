@@ -1,5 +1,13 @@
 # hinterhof
 
+## 0.11.2
+
+### Patch Changes
+
+- [91b04b1](https://github.com/haus23/tipprunde-legacy/commit/91b04b1): Add results table and form.
+- Updated dependencies [d3a9a73]
+  - @haus23/tipprunde-model@0.19.2
+
 ## 0.11.1
 
 ### Patch Changes
