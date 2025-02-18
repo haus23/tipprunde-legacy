@@ -1,5 +1,12 @@
 # model
 
+## 0.19.2
+
+### Patch Changes
+
+- [7c2f553](https://github.com/haus23/tipprunde-legacy/commit/7c2f553): Update valibot to rc
+- [6279752](https://github.com/haus23/tipprunde-legacy/commit/6279752): Update vitest
+
 ## 0.19.1
 
 ### Patch Changes
