@@ -16,7 +16,7 @@ export const MatchDateSchema = v.pipe(
 
 export const ResultSchema = v.pipe(
   v.string(),
-  v.regex(resultRegEx, 'Bad match result or tip'),
+  v.regex(resultRegEx, 'Ungültiges Ergebnis.'),
 );
 
 export type ChampionshipId = v.InferInput<typeof ChampionshipIdSchema>;
