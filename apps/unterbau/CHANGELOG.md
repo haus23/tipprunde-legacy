@@ -1,5 +1,12 @@
 # unterbau
 
+## 0.22.3
+
+### Patch Changes
+
+- Updated dependencies [5e54dcb]
+  - @haus23/tipprunde-model@0.20.0
+
 ## 0.22.2
 
 ### Patch Changes
