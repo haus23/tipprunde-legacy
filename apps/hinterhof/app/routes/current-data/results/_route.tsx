@@ -18,6 +18,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { updateMatchResult } from '@/lib/api/update-match-results';
 import { useChampionship } from '@/utils/state/championships';
 import { useMatches } from '@/utils/state/current-championship/matches';
 import { useRounds } from '@/utils/state/current-championship/rounds';
@@ -60,7 +61,7 @@ function CurrentResultsRoute() {
   }, [activeMatches, form]);
 
   function saveResults(formData: v.InferOutput<typeof formSchema>) {
-    if (form.formState.dirtyFields.results) {
+    if (form.formState.dirtyFields?.results) {
       const resultsToUpdate = form.formState.dirtyFields.results.reduce(
         (coll, _, ix) => {
           coll.push(formData.results[ix]);
@@ -68,7 +69,9 @@ function CurrentResultsRoute() {
         },
         [],
       );
-      console.log(resultsToUpdate);
+      for (const result of resultsToUpdate) {
+        updateMatchResult(result.matchId, result.result);
+      }
     }
   }
 

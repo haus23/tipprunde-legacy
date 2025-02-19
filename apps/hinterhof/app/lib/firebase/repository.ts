@@ -1,4 +1,8 @@
-import type { DocumentReference, QueryConstraint } from 'firebase/firestore';
+import type {
+  DocumentReference,
+  QueryConstraint,
+  WhereFilterOp,
+} from 'firebase/firestore';
 import {
   doc,
   collection as firestoreCollection,
@@ -7,6 +11,7 @@ import {
   orderBy,
   query,
   setDoc,
+  where,
 } from 'firebase/firestore';
 
 import { db, modelConverter } from './db';
@@ -16,6 +21,9 @@ export function orderByDesc(field: string) {
 }
 export function orderByAsc(field: string) {
   return orderBy(field, 'asc');
+}
+export function filter(field: string, op: WhereFilterOp, value: unknown) {
+  return where(field, op, value);
 }
 
 export const collection = <T extends { id: string }>(
