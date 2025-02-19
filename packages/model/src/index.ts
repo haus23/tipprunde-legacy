@@ -7,6 +7,9 @@ export * from './rules/tip';
 // Primitives
 export * from './primitives';
 
+// IDs
+export * from './model/id';
+
 // Entities (raw leaves)
 export * from './model/entity/account';
 export * from './model/entity/championship';

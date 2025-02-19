@@ -7,3 +7,6 @@ export const IdSchema = v.pipe(
   v.regex(/^\w[-\w]*\w$/, 'Ungültige ID.'),
 );
 export const OptionalIdSchema = v.nullish(v.string(), '');
+
+export type Id = v.InferOutput<typeof IdSchema>;
+export type OptionalId = v.InferOutput<typeof IdSchema>;

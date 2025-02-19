@@ -21,4 +21,6 @@ export const ResultSchema = v.pipe(
 
 export type ChampionshipId = v.InferInput<typeof ChampionshipIdSchema>;
 export type MatchDate = v.InferInput<typeof MatchDateSchema>;
-export type Result = v.InferInput<typeof ResultSchema>;
+
+export type ResultInput = v.InferInput<typeof ResultSchema>;
+export type Result = v.InferOutput<typeof ResultSchema>;
