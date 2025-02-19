@@ -1,5 +1,11 @@
 # model
 
+## 0.20.0
+
+### Minor Changes
+
+- [5e54dcb](https://github.com/haus23/tipprunde-legacy/commit/5e54dcb): Expose refactored types from model.
+
 ## 0.19.2
 
 ### Patch Changes
