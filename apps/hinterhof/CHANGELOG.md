@@ -1,5 +1,13 @@
 # hinterhof
 
+## 0.11.4
+
+### Patch Changes
+
+- [5dd7aaf](https://github.com/haus23/tipprunde-legacy/commit/5dd7aaf): Add initial calculating strategy.
+- Updated dependencies [5e54dcb]
+  - @haus23/tipprunde-model@0.20.0
+
 ## 0.11.3
 
 ### Patch Changes
