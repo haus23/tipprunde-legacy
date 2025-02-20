@@ -32,6 +32,12 @@
 
 - [b0f4f76](https://github.com/haus23/tipprunde-legacy/commit/b0f4f76): Update node typings.
 
+## 0.21.15
+
+### Patch Changes
+
+- [cf75901](https://github.com/haus23/tipprunde-legacy/commit/cf75901): Update tsx.
+
 ## 0.21.14
 
 ### Patch Changes

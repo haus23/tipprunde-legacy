@@ -33,6 +33,13 @@
 - [e9fc052](https://github.com/haus23/tipprunde-legacy/commit/e9fc052): Add env dist file.
 - [939566f](https://github.com/haus23/tipprunde-legacy/commit/939566f): Update deps.
 
+## 0.16.13
+
+### Patch Changes
+
+- [e683431](https://github.com/haus23/tipprunde-legacy/commit/e683431): Update tanstack query. No more type errors.
+- [00e966a](https://github.com/haus23/tipprunde-legacy/commit/00e966a): Patch update dev deps.
+
 ## 0.16.12
 
 ### Patch Changes
