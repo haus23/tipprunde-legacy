@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.6.5
+
+### Patch Changes
+
+- [00e966a](https://github.com/haus23/tipprunde-legacy/commit/00e966a): Patch update dev deps.
+
 ## 0.6.4
 
 ### Patch Changes
