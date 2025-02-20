@@ -1,5 +1,11 @@
 # unterbau
 
+## 0.21.15
+
+### Patch Changes
+
+- [cf75901](https://github.com/haus23/tipprunde-legacy/commit/cf75901): Update tsx.
+
 ## 0.21.14
 
 ### Patch Changes
