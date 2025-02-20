@@ -9,7 +9,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { useChampionship } from '@/utils/state/championships';
+import { useChampionship } from '@/utils/state/current-championship/championship';
 
 type RouteHandle = {
   title: string;

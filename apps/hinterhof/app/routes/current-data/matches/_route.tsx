@@ -1,5 +1,5 @@
 import { Heading } from '@/components/ui/heading';
-import { useChampionship } from '@/utils/state/championships';
+import { useChampionship } from '@/utils/state/current-championship/championship';
 import { useMatches } from '@/utils/state/current-championship/matches';
 
 function CurrentMatchesRoute() {

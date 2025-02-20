@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { updateMatchResult } from '@/lib/api/update-match-results';
-import { useChampionship } from '@/utils/state/championships';
+import { useChampionship } from '@/utils/state/current-championship/championship';
 import { useMatches } from '@/utils/state/current-championship/matches';
 import { useRounds } from '@/utils/state/current-championship/rounds';
 import { useTeams } from '@/utils/state/teams';

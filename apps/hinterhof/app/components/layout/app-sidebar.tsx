@@ -42,7 +42,7 @@ import {
   useSidebar,
 } from '../ui/sidebar';
 
-import { useOptionalChampionship } from '@/utils/state/championships';
+import { useOptionalChampionship } from '@/utils/state/current-championship/championship';
 import type { Championship } from '@haus23/tipprunde-model';
 import { Logo } from '../logo';
 

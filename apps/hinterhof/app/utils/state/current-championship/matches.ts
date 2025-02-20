@@ -6,7 +6,7 @@ import { atomFamily } from 'jotai/utils';
 import { collection, orderByAsc } from '@/lib/firebase/repository';
 import { store } from '@/utils/store';
 
-import { currentChampionshipAtom, useChampionship } from '../championships';
+import { currentChampionshipAtom, useChampionship } from './championship';
 
 const matchesAtom = atomFamily((id: string) =>
   atom<{ matches: Match[]; isSynced: boolean }>({

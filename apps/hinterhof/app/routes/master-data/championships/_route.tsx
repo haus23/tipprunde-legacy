@@ -1,7 +1,8 @@
 import { Card } from '@/components/ui/card';
 import { DataTable } from '@/components/ui/data-table';
 import { Heading } from '@/components/ui/heading';
-import { useChampionship, useChampionships } from '@/utils/state/championships';
+import { useChampionships } from '@/utils/state/championships';
+import { useChampionship } from '@/utils/state/current-championship/championship';
 import type { OnChangeFn, RowSelectionState } from '@tanstack/react-table';
 import { columns } from './column-defs';
 

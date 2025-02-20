@@ -1,8 +1,6 @@
 import { collection, orderByDesc } from '@/lib/firebase/repository';
-import {
-  championshipsAtom,
-  currentChampionshipAtom,
-} from '@/utils/state/championships';
+import { championshipsAtom } from '@/utils/state/championships';
+import { currentChampionshipAtom } from '@/utils/state/current-championship/championship';
 import { store } from '@/utils/store';
 import type { Championship } from '@haus23/tipprunde-model';
 import type { LoaderFunction } from 'react-router';
