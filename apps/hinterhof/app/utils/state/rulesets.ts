@@ -9,7 +9,7 @@ import {
 } from '@/lib/firebase/repository';
 import { store } from '../store';
 
-const rulesetsAtom = atom<Ruleset[]>([]);
+export const rulesetsAtom = atom<Ruleset[]>([]);
 
 observe((get, set) => {
   collection<Ruleset>('rules').subscribe((rulesets) => {
