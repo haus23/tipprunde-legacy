@@ -10,7 +10,6 @@ export async function updateMatchResult(matchId: Id, result: Result) {
   console.log(`Update match ${matchId} result: ${result}`);
 
   const currentChampionship = store.get(currentChampionshipAtom);
-  invariant(currentChampionship);
 
   // TODO: Can we cache tips? Put them into atom?
   console.log('Evaluate tips fetching');

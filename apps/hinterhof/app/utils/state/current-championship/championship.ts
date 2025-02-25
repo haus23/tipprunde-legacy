@@ -3,15 +3,21 @@ import { atom, useAtom, useAtomValue } from 'jotai';
 
 import { invariant } from '@/utils/invariant';
 
-export const currentChampionshipAtom = atom<Championship>();
+export const currentOptionalChampionshipAtom = atom<Championship>();
 
-// TODO: Can i derive from the championshipsAtom??
+export const currentChampionshipAtom = atom((get) => {
+  const championship = get(currentOptionalChampionshipAtom);
+  invariant(typeof championship !== 'undefined');
+  return championship;
+});
+
 export function useOptionalChampionship() {
-  return useAtomValue(currentChampionshipAtom);
+  return useAtomValue(currentOptionalChampionshipAtom);
 }
 
 export function useChampionship() {
-  const [championship, setChampionship] = useAtom(currentChampionshipAtom);
-  invariant(typeof championship !== 'undefined');
+  const [_, setChampionship] = useAtom(currentOptionalChampionshipAtom);
+  const championship = useAtomValue(currentChampionshipAtom);
+
   return { championship, setChampionship };
 }

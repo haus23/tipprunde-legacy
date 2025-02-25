@@ -14,17 +14,15 @@ const resultsAtom = atomFamily((championshipId: string) =>
 
 observe((get, set) => {
   const currentChampionship = get(currentChampionshipAtom);
-  if (currentChampionship) {
-    const { isSynced } = get(resultsAtom(currentChampionship.id));
-    if (!isSynced) {
-      collection<Round>(
-        `championships/${currentChampionship.id}/rounds`,
-        orderByAsc('nr'),
-      ).subscribe((rounds) => {
-        console.log(`Query rounds for ${currentChampionship.id}`);
-        set(resultsAtom(currentChampionship.id), { rounds, isSynced: true });
-      });
-    }
+  const { isSynced } = get(resultsAtom(currentChampionship.id));
+  if (!isSynced) {
+    collection<Round>(
+      `championships/${currentChampionship.id}/rounds`,
+      orderByAsc('nr'),
+    ).subscribe((rounds) => {
+      console.log(`Query rounds for ${currentChampionship.id}`);
+      set(resultsAtom(currentChampionship.id), { rounds, isSynced: true });
+    });
   }
 }, store);
 
