@@ -12,3 +12,6 @@ dist/
 
 # Development environments
 .env
+
+# Editor/IDE settings
+.zed/
