@@ -6,7 +6,10 @@ import { atomFamily } from 'jotai/utils';
 import { collection, orderByAsc } from '@/lib/firebase/repository';
 import { store } from '@/utils/store';
 
-import { currentChampionshipAtom, useChampionship } from './championship';
+import {
+  currentOptionalChampionshipAtom,
+  useChampionship,
+} from './championship';
 
 const matchesAtom = atomFamily((id: string) =>
   atom<{ matches: Match[]; isSynced: boolean }>({
@@ -16,16 +19,18 @@ const matchesAtom = atomFamily((id: string) =>
 );
 
 observe((get, set) => {
-  const currentChampionship = get(currentChampionshipAtom);
-  const { isSynced } = get(matchesAtom(currentChampionship.id));
-  if (!isSynced) {
-    collection<Match>(
-      `championships/${currentChampionship.id}/matches`,
-      orderByAsc('nr'),
-    ).subscribe((matches) => {
-      console.log(`Query matches for ${currentChampionship.id}`);
-      set(matchesAtom(currentChampionship.id), { matches, isSynced: true });
-    });
+  const currentChampionship = get(currentOptionalChampionshipAtom);
+  if (currentChampionship) {
+    const { isSynced } = get(matchesAtom(currentChampionship.id));
+    if (!isSynced) {
+      collection<Match>(
+        `championships/${currentChampionship.id}/matches`,
+        orderByAsc('nr'),
+      ).subscribe((matches) => {
+        console.log(`Query matches for ${currentChampionship.id}`);
+        set(matchesAtom(currentChampionship.id), { matches, isSynced: true });
+      });
+    }
   }
 }, store);
 

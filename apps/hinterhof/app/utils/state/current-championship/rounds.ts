@@ -6,23 +6,28 @@ import { atomFamily } from 'jotai/utils';
 import { collection, orderByAsc } from '@/lib/firebase/repository';
 import { store } from '@/utils/store';
 
-import { currentChampionshipAtom, useChampionship } from './championship';
+import {
+  currentOptionalChampionshipAtom,
+  useChampionship,
+} from './championship';
 
 const resultsAtom = atomFamily((championshipId: string) =>
   atom<{ rounds: Round[]; isSynced: boolean }>({ rounds: [], isSynced: false }),
 );
 
 observe((get, set) => {
-  const currentChampionship = get(currentChampionshipAtom);
-  const { isSynced } = get(resultsAtom(currentChampionship.id));
-  if (!isSynced) {
-    collection<Round>(
-      `championships/${currentChampionship.id}/rounds`,
-      orderByAsc('nr'),
-    ).subscribe((rounds) => {
-      console.log(`Query rounds for ${currentChampionship.id}`);
-      set(resultsAtom(currentChampionship.id), { rounds, isSynced: true });
-    });
+  const currentChampionship = get(currentOptionalChampionshipAtom);
+  if (currentChampionship) {
+    const { isSynced } = get(resultsAtom(currentChampionship.id));
+    if (!isSynced) {
+      collection<Round>(
+        `championships/${currentChampionship.id}/rounds`,
+        orderByAsc('nr'),
+      ).subscribe((rounds) => {
+        console.log(`Query rounds for ${currentChampionship.id}`);
+        set(resultsAtom(currentChampionship.id), { rounds, isSynced: true });
+      });
+    }
   }
 }, store);
 
