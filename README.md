@@ -7,6 +7,8 @@
 - Remove cloudflare key: COREPACK_INTEGRITY_KEYS=0
 - Approve pnpm build scripts on branch v1: `pnpm approve-builds`
 - Generate certs vie lego for the now cloudflare hosted domain
+- Check false routes:
+  - http://localhost:5173/rr2426/ergebnisse  (Wrong championship)
 
 ## Branches
 
@@ -30,3 +32,4 @@ Hinweise für den Staging/Production Workflow:
 ## Tools
 
 npx syncpack --help
+npx depcheck --help
