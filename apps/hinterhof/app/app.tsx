@@ -89,6 +89,13 @@ export const router = createBrowserRouter([
               title: 'Ligen',
             },
           },
+          {
+            path: 'regelwerke',
+            lazy: () => import('./routes/master-data/rulesets/_route'),
+            handle: {
+              title: 'Regelwerke',
+            },
+          },
         ],
       },
       {

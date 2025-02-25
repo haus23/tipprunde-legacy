@@ -4,6 +4,7 @@ import {
   HomeIcon,
   LogOutIcon,
   type LucideIcon,
+  PilcrowIcon,
   ScaleIcon,
   SettingsIcon,
   ShieldIcon,
@@ -88,6 +89,11 @@ const masterDataItems = [
     title: 'Ligen',
     url: '/ligen',
     icon: Table2Icon,
+  },
+  {
+    title: 'Regelwerke',
+    url: '/regelwerke',
+    icon: PilcrowIcon,
   },
 ];
 
