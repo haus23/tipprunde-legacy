@@ -1,5 +1,15 @@
 # hinterhof
 
+## 0.12.0
+
+### Minor Changes
+
+- Add rulesets. Cleanup current championship state.
+
+### Patch Changes
+
+- [2236cba](https://github.com/haus23/tipprunde-legacy/commit/2236cba): Extract current championship atom and hooks
+
 ## 0.11.4
 
 ### Patch Changes
