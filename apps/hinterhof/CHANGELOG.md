@@ -1,5 +1,12 @@
 # hinterhof
 
+## 0.12.2
+
+### Patch Changes
+
+- [2b8e1e0](https://github.com/haus23/tipprunde-legacy/commit/2b8e1e0): Sync players and their tips.
+- [c77100f](https://github.com/haus23/tipprunde-legacy/commit/c77100f): (Re-) calculate ranking.
+
 ## 0.12.1
 
 ### Patch Changes
