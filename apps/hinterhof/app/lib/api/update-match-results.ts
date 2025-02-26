@@ -3,6 +3,7 @@ import { currentChampionshipAtom } from '@/utils/state/current-championship/cham
 import { matchesAtom } from '@/utils/state/current-championship/matches';
 import { roundsAtom } from '@/utils/state/current-championship/rounds';
 import { rulesetAtom } from '@/utils/state/current-championship/ruleset';
+import { tipsAtom } from '@/utils/state/current-championship/tips';
 import { store } from '@/utils/store';
 import type { Id, Match, Result, Tip } from '@haus23/tipprunde-model';
 import { collection, filter, patchEntity } from '../firebase/repository';
@@ -23,11 +24,8 @@ export async function updateMatchResult(matchId: Id, result: Result) {
     .rounds.find((r) => r.id === match.roundId);
   invariant(round);
 
-  console.log(`Fetching tips for Match ${match.nr}`);
-  const tips = await collection<Tip>(
-    `championships/${championship.id}/tips`,
-    filter('matchId', '==', matchId),
-  ).get();
+  const { tips: championshipTips } = store.get(tipsAtom(championship.id));
+  const tips = championshipTips.filter((t) => t.matchId === matchId);
 
   const updatedTips = await Promise.all(
     tips.map((t) => updateTipOutcome(t, result, round)),

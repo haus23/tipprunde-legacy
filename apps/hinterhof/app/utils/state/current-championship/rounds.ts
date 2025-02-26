@@ -20,11 +20,11 @@ observe((get, set) => {
   if (currentChampionship) {
     const { isSynced } = get(roundsAtom(currentChampionship.id));
     if (!isSynced) {
+      console.log(`Subscription: rounds for ${currentChampionship.id}`);
       collection<Round>(
         `championships/${currentChampionship.id}/rounds`,
         orderByAsc('nr'),
       ).subscribe((rounds) => {
-        console.log(`Query rounds for ${currentChampionship.id}`);
         set(roundsAtom(currentChampionship.id), { rounds, isSynced: true });
       });
     }
