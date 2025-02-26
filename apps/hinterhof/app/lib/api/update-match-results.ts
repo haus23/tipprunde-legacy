@@ -1,3 +1,5 @@
+import type { Id, Match, Result, Tip } from '@haus23/tipprunde-model';
+
 import { invariant } from '@/utils/invariant';
 import { currentChampionshipAtom } from '@/utils/state/current-championship/championship';
 import { matchesAtom } from '@/utils/state/current-championship/matches';
@@ -5,8 +7,9 @@ import { roundsAtom } from '@/utils/state/current-championship/rounds';
 import { rulesetAtom } from '@/utils/state/current-championship/ruleset';
 import { tipsAtom } from '@/utils/state/current-championship/tips';
 import { store } from '@/utils/store';
-import type { Id, Match, Result, Tip } from '@haus23/tipprunde-model';
-import { collection, filter, patchEntity } from '../firebase/repository';
+
+import { patchEntity } from '../firebase/repository';
+import { clearCache } from '../unterbau/clear-cache';
 import { updateRanking } from './update-ranking';
 import { updateTipOutcome } from './update-tip-outcome';
 
@@ -68,4 +71,6 @@ export async function updateMatchResult(matchId: Id, result: Result) {
   );
 
   await updateRanking();
+
+  clearCache(championship.id);
 }

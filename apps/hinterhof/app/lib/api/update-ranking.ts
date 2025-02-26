@@ -20,13 +20,13 @@ export async function updateRanking() {
 
   let previousRank = 0;
   let rank = 0;
-  let previousPoints = -1;
+  let previousRankPoints = -1;
   for (const p of players.toSorted((a, b) => b.totalPoints - a.totalPoints)) {
     ++rank;
-    if (p.totalPoints !== previousPoints) {
+    if (p.totalPoints !== previousRankPoints) {
       p.rank = rank;
       previousRank = rank;
-      previousPoints = p.totalPoints;
+      previousRankPoints = p.totalPoints;
     } else {
       p.rank = previousRank;
     }
