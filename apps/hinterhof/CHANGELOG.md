@@ -1,5 +1,15 @@
 # hinterhof
 
+## 0.12.1
+
+### Patch Changes
+
+- [a7a1313](https://github.com/haus23/tipprunde-legacy/commit/a7a1313): Update atom name. Fixed, was typo.
+- [10e122b](https://github.com/haus23/tipprunde-legacy/commit/10e122b): Add patchEntity methods.
+- [2fdcacc](https://github.com/haus23/tipprunde-legacy/commit/2fdcacc): Calculate points for match result update.
+- [18d9974](https://github.com/haus23/tipprunde-legacy/commit/18d9974): Revert some simplifications
+- [80d010d](https://github.com/haus23/tipprunde-legacy/commit/80d010d): Add derived atom for the current ruleset.
+
 ## 0.12.0
 
 ### Minor Changes
