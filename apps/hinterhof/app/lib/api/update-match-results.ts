@@ -1,26 +1,73 @@
 import { invariant } from '@/utils/invariant';
 import { currentChampionshipAtom } from '@/utils/state/current-championship/championship';
+import { matchesAtom } from '@/utils/state/current-championship/matches';
+import { roundsAtom } from '@/utils/state/current-championship/rounds';
+import { rulesetAtom } from '@/utils/state/current-championship/ruleset';
 import { store } from '@/utils/store';
-import type { Id, Result, Tip } from '@haus23/tipprunde-model';
-import { collection, filter } from '../firebase/repository';
+import type { Id, Match, Result, Tip } from '@haus23/tipprunde-model';
+import { collection, filter, patchEntity } from '../firebase/repository';
 import { updateRanking } from './update-ranking';
 import { updateTipOutcome } from './update-tip-outcome';
 
 export async function updateMatchResult(matchId: Id, result: Result) {
   console.log(`Update match ${matchId} result: ${result}`);
 
-  const currentChampionship = store.get(currentChampionshipAtom);
+  const championship = store.get(currentChampionshipAtom);
+  const ruleset = store.get(rulesetAtom);
+  const match = store
+    .get(matchesAtom(championship.id))
+    .matches.find((m) => m.id === matchId);
+  invariant(match);
+  const round = store
+    .get(roundsAtom(championship.id))
+    .rounds.find((r) => r.id === match.roundId);
+  invariant(round);
 
-  // TODO: Can we cache tips? Put them into atom?
-  console.log('Evaluate tips fetching');
+  console.log(`Fetching tips for Match ${match.nr}`);
   const tips = await collection<Tip>(
-    `championships/${currentChampionship.id}/tips`,
+    `championships/${championship.id}/tips`,
     filter('matchId', '==', matchId),
   ).get();
 
-  for (const tip of tips) {
-    await updateTipOutcome(tip, result);
+  const updatedTips = await Promise.all(
+    tips.map((t) => updateTipOutcome(t, result, round)),
+  );
+
+  if (ruleset.matchRuleId === 'alleiniger-treffer-drei-punkte') {
+    const lonelyHitBefore = updatedTips.find((t) => t.lonelyHit);
+    const tipsWithPoints = updatedTips.filter((t) => t.points > 0);
+    const lonelyHitAfter =
+      tipsWithPoints.length === 1 ? tipsWithPoints[0] : null;
+
+    if (lonelyHitAfter) {
+      await patchEntity<Tip>(
+        `championships/${championship.id}/tips`,
+        lonelyHitAfter,
+        {
+          points: lonelyHitAfter.points + 3,
+          lonelyHit: true,
+        },
+      );
+      lonelyHitAfter.points += 3;
+    }
+    if (lonelyHitBefore && lonelyHitBefore !== lonelyHitAfter) {
+      await patchEntity<Tip>(
+        `championships/${championship.id}/tips`,
+        lonelyHitBefore,
+        {
+          lonelyHit: false,
+        },
+      );
+    }
   }
+
+  const points = updatedTips.reduce((sum, elt) => sum + elt.points, 0);
+
+  await patchEntity<Match>(
+    `championships/${championship.id}/matches`,
+    matchId,
+    { result, points },
+  );
 
   await updateRanking();
 }

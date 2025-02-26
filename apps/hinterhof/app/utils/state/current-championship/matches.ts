@@ -11,7 +11,7 @@ import {
   useChampionship,
 } from './championship';
 
-const matchesAtom = atomFamily((id: string) =>
+export const matchesAtom = atomFamily((id: string) =>
   atom<{ matches: Match[]; isSynced: boolean }>({
     matches: [],
     isSynced: false,
