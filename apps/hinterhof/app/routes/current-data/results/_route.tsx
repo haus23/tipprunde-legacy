@@ -23,6 +23,7 @@ import { useChampionship } from '@/utils/state/current-championship/championship
 import { useMatches } from '@/utils/state/current-championship/matches';
 import { useRounds } from '@/utils/state/current-championship/rounds';
 import { useTeams } from '@/utils/state/teams';
+import { toast } from '@/utils/toast';
 
 const formSchema = v.object({
   results: v.array(
@@ -69,9 +70,15 @@ function CurrentResultsRoute() {
         },
         [],
       );
-      for (const result of resultsToUpdate) {
-        updateMatchResult(result.matchId, result.result);
-      }
+      toast.promise(
+        Promise.all(
+          resultsToUpdate.map((r: any) => updateMatchResult(r.matchId, r.result)),
+        ),
+        {
+          loading: 'Speichern und berechnen ...',
+          success: 'Fertig. Alles aktualisiert.',
+        },
+      );
     }
   }
 
