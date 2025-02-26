@@ -84,3 +84,30 @@ export const updateEntity = async <T extends { id: string }>(
   const docRef = doc(db, path, id).withConverter(modelConverter<T>());
   await setDoc(docRef, data);
 };
+
+export async function patchEntity<T extends { id: string }>(
+  path: string,
+  entityId: string,
+  updates: Partial<T>,
+): Promise<void>;
+export async function patchEntity<T extends { id: string }>(
+  path: string,
+  entity: T,
+  updates: Partial<T>,
+): Promise<void>;
+
+/**
+ *
+ * @param path
+ * @param entity
+ * @param updates
+ */
+export async function patchEntity<T extends { id: string }>(
+  path: string,
+  entity: string | T,
+  updates: Partial<T>,
+): Promise<void> {
+  const id = typeof entity === 'string' ? entity : entity.id;
+  const docRef = doc(db, path, id).withConverter(modelConverter<T>());
+  await setDoc(docRef, updates, { merge: true });
+}
