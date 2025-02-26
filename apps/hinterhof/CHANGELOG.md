@@ -1,5 +1,15 @@
 # hinterhof
 
+## 0.13.0
+
+### Minor Changes
+
+- [65cf1d2](https://github.com/haus23/tipprunde-legacy/commit/65cf1d2): Feature match result updating completed. UX message via toast now.
+
+### Patch Changes
+
+- [24e0718](https://github.com/haus23/tipprunde-legacy/commit/24e0718): Clear unterbau cache.
+
 ## 0.12.2
 
 ### Patch Changes
