@@ -1,12 +1,17 @@
-import { cn } from '@/utils/cn';
 import {
   FoldersIcon,
   type LucideIcon,
+  PilcrowIcon,
   ShieldIcon,
   Table2Icon,
   UsersIcon,
 } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, href } from 'react-router';
+
+import { cn } from '@/utils/cn';
+import { getShuffledColors } from '@/utils/misc';
+
+const dashboardBackgrounds = getShuffledColors();
 
 const masterDataItems: {
   title: string;
@@ -20,35 +25,42 @@ const masterDataItems: {
     description:
       'Übersicht über alle Turniere und die Auswahl des Turniers zur Bearbeitung',
     icon: FoldersIcon,
-    background: 'bg-blue-500',
+    background: dashboardBackgrounds[0],
     route: './turniere',
   },
   {
     title: 'Spieler',
     description: 'Alle Mitspieler der Tipprunde. Erfassen und bearbeiten.',
     icon: UsersIcon,
-    background: 'bg-indigo-500',
+    background: dashboardBackgrounds[1],
     route: './spieler',
   },
   {
     title: 'Mannschaften / Teams',
     description: 'Erfassen und bearbeiten von Namen und Kürzeln',
     icon: ShieldIcon,
-    background: 'bg-purple-500',
+    background: dashboardBackgrounds[2],
     route: './teams',
   },
   {
     title: 'Ligen',
     description: 'Fussball-Ligen oder Phasen eines Turniers.',
     icon: Table2Icon,
-    background: 'bg-green-500',
+    background: dashboardBackgrounds[3],
     route: './ligen',
+  },
+  {
+    title: 'Regelwerke',
+    description: 'Erstellen und bearbeiten der Turnierregelwerke.',
+    icon: PilcrowIcon,
+    background: dashboardBackgrounds[4],
+    route: './regelwerke',
   },
 ];
 
 function MasterDataRoute() {
   return (
-    <ul className="mt-2 grid grid-cols-1 gap-6 py-6 sm:grid-cols-2">
+    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       {masterDataItems.map((item) => (
         <li
           key={item.title}
