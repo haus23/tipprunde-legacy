@@ -1,6 +1,15 @@
-import { cn } from '@/utils/cn';
-import { CalendarIcon, FoldersIcon, type LucideIcon } from 'lucide-react';
+import {
+  CalendarIcon,
+  FoldersIcon,
+  type LucideIcon,
+  ScaleIcon,
+} from 'lucide-react';
 import { Link } from 'react-router';
+
+import { cn } from '@/utils/cn';
+import { getShuffledColors } from '@/utils/misc';
+
+const dashboardBackgrounds = getShuffledColors();
 
 const currentDataItems: {
   title: string;
@@ -13,21 +22,28 @@ const currentDataItems: {
     title: 'Turnier wechseln',
     description: 'Wechselt das aktuell zu bearbeitende Turnier',
     icon: FoldersIcon,
-    background: 'bg-green-500',
+    background: dashboardBackgrounds[0],
     route: '../stammdaten/turniere',
   },
   {
     title: 'Spiele',
     description: 'Spiele des Turniers. Erfassen und bearbeiten.',
     icon: CalendarIcon,
-    background: 'bg-indigo-500',
+    background: dashboardBackgrounds[1],
     route: './spiele',
+  },
+  {
+    title: 'Ergebnisse',
+    description: 'Spielergebnisse eintragen und Punkte berechnen',
+    icon: ScaleIcon,
+    background: dashboardBackgrounds[2],
+    route: './ergebnisse',
   },
 ];
 
 function CurrentDataRoute() {
   return (
-    <ul className="mt-2 grid grid-cols-1 gap-6 py-6 sm:grid-cols-2">
+    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       {currentDataItems.map((item) => (
         <li
           key={item.title}
