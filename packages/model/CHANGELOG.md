@@ -6,6 +6,14 @@
 
 - [5e54dcb](https://github.com/haus23/tipprunde-legacy/commit/5e54dcb): Expose refactored types from model.
 
+## 0.19.3
+
+### Patch Changes
+
+- [eab890b](https://github.com/haus23/tipprunde-legacy/commit/eab890b): Update dev deps and typings.
+- [dc53a9e](https://github.com/haus23/tipprunde-legacy/commit/dc53a9e): Upgrade typescript.
+- [3d789e3](https://github.com/haus23/tipprunde-legacy/commit/3d789e3): Update valibot.
+
 ## 0.19.2
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # lib
 
+## 0.4.7
+
+### Patch Changes
+
+- [eab890b](https://github.com/haus23/tipprunde-legacy/commit/eab890b): Update dev deps and typings.
+- [dc53a9e](https://github.com/haus23/tipprunde-legacy/commit/dc53a9e): Upgrade typescript.
+
 ## 0.4.6
 
 ### Patch Changes

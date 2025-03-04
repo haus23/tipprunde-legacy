@@ -6,15 +6,13 @@
   "exports": {
     ".": "./src/index.ts"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "test": "vitest",
     "typecheck": "tsc"
   },
   "dependencies": {
-    "valibot": "1.0.0-rc.1"
+    "valibot": "1.0.0-rc.3"
   },
   "peerDependencies": {
     "valibot": ">=1.0.0-rc"
@@ -26,7 +24,7 @@
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
-    "typescript": "~5.7.3",
-    "vitest": "^3.0.6"
+    "typescript": "~5.8.2",
+    "vitest": "^3.0.7"
   }
 }

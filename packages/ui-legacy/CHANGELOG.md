@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - [452eba4](https://github.com/haus23/tipprunde-legacy/commit/452eba4): Drop typecheck - it fails.
+- [dc53a9e](https://github.com/haus23/tipprunde-legacy/commit/dc53a9e): Upgrade typescript.
 
 ## 0.3.1
 
