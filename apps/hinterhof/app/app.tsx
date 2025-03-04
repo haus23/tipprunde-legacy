@@ -37,6 +37,10 @@ export const router = createBrowserRouter([
             lazy: () => import('./routes/current-data/current-data'),
           },
           {
+            path: 'neue-runde',
+            lazy: () => import('./routes/current-data/create-round'),
+          },
+          {
             path: 'spiele',
             lazy: () => import('./routes/current-data/matches/_route'),
             handle: {

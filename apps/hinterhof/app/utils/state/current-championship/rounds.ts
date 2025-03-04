@@ -3,7 +3,11 @@ import { atom, useAtomValue } from 'jotai';
 import { observe } from 'jotai-effect';
 import { atomFamily } from 'jotai/utils';
 
-import { collection, orderByAsc } from '@/lib/firebase/repository';
+import {
+  collection,
+  createEntity,
+  orderByAsc,
+} from '@/lib/firebase/repository';
 import { store } from '@/utils/store';
 
 import {
@@ -35,5 +39,15 @@ export function useRounds() {
   const { championship } = useChampionship();
   const { rounds } = useAtomValue(roundsAtom(championship.id));
 
-  return { rounds };
+  const createRound = (nr: number, isDoubleRound: boolean) =>
+    createEntity<Round>(`championships/${championship.id}/rounds`, {
+      id: '',
+      nr,
+      isDoubleRound,
+      published: false,
+      tipsPublished: false,
+      completed: false,
+    });
+
+  return { rounds, createRound };
 }

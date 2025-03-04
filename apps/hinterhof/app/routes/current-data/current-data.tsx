@@ -6,10 +6,8 @@ import {
   TicketPlusIcon,
   TrophyIcon,
 } from 'lucide-react';
-import { Link } from 'react-router';
 
 import { Dashboard } from '@/components/dashboard';
-import { cn } from '@/utils/cn';
 import { getShuffledColors } from '@/utils/misc';
 
 const dashboardBackgrounds = getShuffledColors();
