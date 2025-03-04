@@ -1,5 +1,11 @@
 # ui-legacy
 
+## 0.3.2
+
+### Patch Changes
+
+- [dc53a9e](https://github.com/haus23/tipprunde-legacy/commit/dc53a9e): Upgrade typescript.
+
 ## 0.3.1
 
 ### Patch Changes
