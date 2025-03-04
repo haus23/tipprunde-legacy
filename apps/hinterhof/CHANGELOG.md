@@ -1,5 +1,16 @@
 # hinterhof
 
+## 0.13.1
+
+### Patch Changes
+
+- [e7511eb](https://github.com/haus23/tipprunde-legacy/commit/e7511eb): Simplify and finish sidebar.
+- [c4cbedb](https://github.com/haus23/tipprunde-legacy/commit/c4cbedb): Update master-data dashboard. Use shuffled bg colors.
+- [25af02f](https://github.com/haus23/tipprunde-legacy/commit/25af02f): Add hinterhof dashboard.
+- [07e9456](https://github.com/haus23/tipprunde-legacy/commit/07e9456): Update remaining dashboards.
+- [657518a](https://github.com/haus23/tipprunde-legacy/commit/657518a): Create reusable dashboard component.
+- [e1475c4](https://github.com/haus23/tipprunde-legacy/commit/e1475c4): Update current data dashboard.
+
 ## 0.13.0
 
 ### Minor Changes
