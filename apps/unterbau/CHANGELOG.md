@@ -1,5 +1,18 @@
 # unterbau
 
+## 0.21.16
+
+### Patch Changes
+
+- [eab890b](https://github.com/haus23/tipprunde-legacy/commit/eab890b): Update dev deps and typings.
+- [91a02a3](https://github.com/haus23/tipprunde-legacy/commit/91a02a3): Update unstorage.
+- [dc53a9e](https://github.com/haus23/tipprunde-legacy/commit/dc53a9e): Upgrade typescript.
+- [3d789e3](https://github.com/haus23/tipprunde-legacy/commit/3d789e3): Update valibot.
+- Updated dependencies [eab890b]
+- Updated dependencies [dc53a9e]
+- Updated dependencies [3d789e3]
+  - @haus23/tipprunde-model@0.19.3
+
 ## 0.21.15
 
 ### Patch Changes
