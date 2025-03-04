@@ -72,7 +72,9 @@ function CurrentResultsRoute() {
       );
       toast.promise(
         Promise.all(
-          resultsToUpdate.map((r: any) => updateMatchResult(r.matchId, r.result)),
+          resultsToUpdate.map((r: any) =>
+            updateMatchResult(r.matchId, r.result),
+          ),
         ),
         {
           loading: 'Speichern und berechnen ...',
@@ -115,30 +117,28 @@ function CurrentResultsRoute() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {activeMatches
-                        .filter((m) => m.roundId === activeRoundId)
-                        .map((m, ix) => (
-                          <TableRow key={m.id}>
-                            <TableCell>{m.nr}</TableCell>
-                            <TableCell>{`${teams.find((t) => t.id === m.hometeamId)?.name || '(Offen)'} - ${teams.find((t) => t.id === m.awayteamId)?.name || '(Offen)'}`}</TableCell>
-                            <TableCell>
-                              <FormField
-                                control={form.control}
-                                name={`results.${ix}.result`}
-                                render={({ field }) => (
-                                  <FormItem>
-                                    <FormControl>
-                                      <Input
-                                        className="w-16 text-center"
-                                        {...field}
-                                      />
-                                    </FormControl>
-                                  </FormItem>
-                                )}
-                              />
-                            </TableCell>
-                          </TableRow>
-                        ))}
+                      {activeMatches.map((m, ix) => (
+                        <TableRow key={m.id}>
+                          <TableCell>{m.nr}</TableCell>
+                          <TableCell>{`${teams.find((t) => t.id === m.hometeamId)?.name || '(Offen)'} - ${teams.find((t) => t.id === m.awayteamId)?.name || '(Offen)'}`}</TableCell>
+                          <TableCell>
+                            <FormField
+                              control={form.control}
+                              name={`results.${ix}.result`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormControl>
+                                    <Input
+                                      className="w-16 text-center"
+                                      {...field}
+                                    />
+                                  </FormControl>
+                                </FormItem>
+                              )}
+                            />
+                          </TableCell>
+                        </TableRow>
+                      ))}
                     </TableBody>
                   </Table>
                 </form>
