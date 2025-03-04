@@ -1,5 +1,17 @@
 # hinterhof
 
+## 0.6.6
+
+### Patch Changes
+
+- [eab890b](https://github.com/haus23/tipprunde-legacy/commit/eab890b): Update dev deps and typings.
+- [dc53a9e](https://github.com/haus23/tipprunde-legacy/commit/dc53a9e): Upgrade typescript.
+- [bb96972](https://github.com/haus23/tipprunde-legacy/commit/bb96972): Update tailwindcss.
+- Updated dependencies [eab890b]
+- Updated dependencies [dc53a9e]
+  - lib@0.4.7
+  - ui-legacy@0.3.2
+
 ## 0.6.5
 
 ### Patch Changes
