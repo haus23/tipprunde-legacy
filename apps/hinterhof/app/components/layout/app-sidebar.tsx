@@ -66,14 +66,14 @@ const currentDataItems: {
     icon: CalendarIcon,
   },
   {
-    title: 'Ergebnisse',
-    url: '/ergebnisse',
-    icon: ScaleIcon,
-  },
-  {
     title: 'Tipps',
     url: '/tipps',
     icon: DicesIcon,
+  },
+  {
+    title: 'Ergebnisse',
+    url: '/ergebnisse',
+    icon: ScaleIcon,
   },
   {
     title: 'Zusatzpunkte',
