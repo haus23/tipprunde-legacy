@@ -12,3 +12,4 @@ dist/
 
 # Development environments
 .env
+.zed/
