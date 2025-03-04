@@ -1,5 +1,12 @@
 # hinterhof
 
+## 0.13.2
+
+### Patch Changes
+
+- [41c677d](https://github.com/haus23/tipprunde-legacy/commit/41c677d): Update safe deps.
+- [aeacb0c](https://github.com/haus23/tipprunde-legacy/commit/aeacb0c): Upgrade typescript.
+
 ## 0.13.1
 
 ### Patch Changes
