@@ -1,6 +1,8 @@
 import {
   CalendarIcon,
   ChevronsUpDown,
+  DicesIcon,
+  FoldersIcon,
   HomeIcon,
   LogOutIcon,
   type LucideIcon,
@@ -9,6 +11,7 @@ import {
   SettingsIcon,
   ShieldIcon,
   Table2Icon,
+  TicketPlusIcon,
   TrophyIcon,
   UsersIcon,
 } from 'lucide-react';
@@ -16,7 +19,9 @@ import { Link, NavLink } from 'react-router';
 
 import { signOut } from '@/lib/firebase/auth';
 import { useUser } from '@/utils/state/auth';
+import { useOptionalChampionship } from '@/utils/state/current-championship/championship';
 
+import { Logo } from '../logo';
 import { Avatar, AvatarImage } from '../ui/avatar';
 import {
   DropdownMenu,
@@ -43,29 +48,37 @@ import {
   useSidebar,
 } from '../ui/sidebar';
 
-import { useOptionalChampionship } from '@/utils/state/current-championship/championship';
-import type { Championship } from '@haus23/tipprunde-model';
-import { Logo } from '../logo';
-
 const anonymousAvatarUrl = 'https://i.pravatar.cc/300?img=50';
 
 const currentDataItems: {
   title: string;
   url: string;
   icon: LucideIcon;
-  visible: (championship?: Championship) => boolean;
 }[] = [
+  {
+    title: 'Turnier',
+    url: '/turnier',
+    icon: TrophyIcon,
+  },
   {
     title: 'Spiele',
     url: '/spiele',
     icon: CalendarIcon,
-    visible: (c) => !!c,
   },
   {
     title: 'Ergebnisse',
     url: '/ergebnisse',
     icon: ScaleIcon,
-    visible: (c) => !!c,
+  },
+  {
+    title: 'Tipps',
+    url: '/tipps',
+    icon: DicesIcon,
+  },
+  {
+    title: 'Zusatzpunkte',
+    url: '/zusatzpunkte',
+    icon: TicketPlusIcon,
   },
 ];
 
@@ -73,7 +86,7 @@ const masterDataItems = [
   {
     title: 'Turniere',
     url: '/turniere',
-    icon: TrophyIcon,
+    icon: FoldersIcon,
   },
   {
     title: 'Spieler',
@@ -147,21 +160,19 @@ export function AppSidebar({ ...props }: AppSidebar.Props) {
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              {currentDataItems
-                .filter((item) => item.visible(championship))
-                .map((item) => (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild tooltip={item.title}>
-                      <NavLink
-                        to={`/${championship?.id}${item.url}`}
-                        onClick={closeSidebar}
-                      >
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </NavLink>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
+              {currentDataItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild tooltip={item.title}>
+                    <NavLink
+                      to={`/${championship?.id}${item.url}`}
+                      onClick={closeSidebar}
+                    >
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
