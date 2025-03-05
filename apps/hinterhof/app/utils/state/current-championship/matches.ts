@@ -3,7 +3,11 @@ import { atom, useAtomValue } from 'jotai';
 import { observe } from 'jotai-effect';
 import { atomFamily } from 'jotai/utils';
 
-import { collection, orderByAsc } from '@/lib/firebase/repository';
+import {
+  collection,
+  createEntity,
+  orderByAsc,
+} from '@/lib/firebase/repository';
 import { store } from '@/utils/store';
 
 import {
@@ -38,5 +42,11 @@ export function useMatches() {
   const { championship } = useChampionship();
   const { matches } = useAtomValue(matchesAtom(championship.id));
 
-  return { matches };
+  const createMatch = (match: Omit<Match, 'id'>) =>
+    createEntity<Match>(`championships/${championship.id}/matches`, {
+      id: '',
+      ...match,
+    });
+
+  return { matches, createMatch };
 }
