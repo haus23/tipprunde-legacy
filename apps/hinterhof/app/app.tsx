@@ -6,7 +6,7 @@ import { LoginScreen } from './components/screens/login-screen';
 import { SplashScreen } from './components/screens/splash-screen';
 
 import AppShell from './routes/app-shell';
-import { loader } from './routes/app-shell.loader';
+import { loader as appShellLoader } from './routes/app-shell.loader';
 
 import DashboardRoute from './routes/dashboard/_route';
 import ProfileRoute from './routes/profile';
@@ -14,7 +14,7 @@ import ProfileRoute from './routes/profile';
 export const router = createBrowserRouter([
   {
     element: <AppShell />,
-    loader: loader,
+    loader: appShellLoader,
     shouldRevalidate: () => false,
     hydrateFallbackElement: <SplashScreen />,
     handle: {
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: '',
-            lazy: () => import('./routes/current-data/current-data'),
+            lazy: () => import('./routes/current-data/current-data-dashboard'),
           },
           {
             path: 'neue-runde',
