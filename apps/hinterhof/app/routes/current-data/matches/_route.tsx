@@ -58,7 +58,7 @@ import { useLeagues } from '@/utils/state/leagues';
 import { useTeams } from '@/utils/state/teams';
 
 const createOrUpdateMatchSchema = v.partial(MatchSchema, ['id']);
-type CreateOrUpdateMatch = v.InferOutput<typeof createOrUpdateMatchSchema>;
+type CreateOrUpdateMatch = v.InferInput<typeof createOrUpdateMatchSchema>;
 
 function CurrentMatchesRoute() {
   const roundToCreateMatchForRef = useRef<Round | null>(null);

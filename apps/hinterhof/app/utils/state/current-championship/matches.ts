@@ -1,4 +1,4 @@
-import type { Match } from '@haus23/tipprunde-model';
+import type { Match, MatchInput } from '@haus23/tipprunde-model';
 import { atom, useAtomValue } from 'jotai';
 import { observe } from 'jotai-effect';
 import { atomFamily } from 'jotai/utils';
@@ -42,8 +42,8 @@ export function useMatches() {
   const { championship } = useChampionship();
   const { matches } = useAtomValue(matchesAtom(championship.id));
 
-  const createMatch = (match: Omit<Match, 'id'>) =>
-    createEntity<Match>(`championships/${championship.id}/matches`, {
+  const createMatch = (match: Omit<MatchInput, 'id'>) =>
+    createEntity<MatchInput>(`championships/${championship.id}/matches`, {
       id: '',
       ...match,
     });
