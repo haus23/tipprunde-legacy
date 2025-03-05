@@ -48,7 +48,7 @@ function CurrentResultsRoute() {
     [activeRoundId, matches],
   );
 
-  const form = useForm({
+  const form = useForm<v.InferOutput<typeof formSchema>>({
     resolver: valibotResolver(formSchema),
     defaultValues: {
       results: new Array(matches.length).fill({ matchId: '', result: '' }),
@@ -68,13 +68,11 @@ function CurrentResultsRoute() {
           coll.push(formData.results[ix]);
           return coll;
         },
-        [],
+        [] as { matchId: string; result: string }[],
       );
       toast.promise(
         Promise.all(
-          resultsToUpdate.map((r: any) =>
-            updateMatchResult(r.matchId, r.result),
-          ),
+          resultsToUpdate.map((r) => updateMatchResult(r.matchId, r.result)),
         ),
         {
           loading: 'Speichern und berechnen ...',
