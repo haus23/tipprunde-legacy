@@ -1,5 +1,22 @@
 # hinterhof
 
+## 0.14.0
+
+### Minor Changes
+
+- [fb2070f](https://github.com/haus23/tipprunde-legacy/commit/fb2070f): Display current matches per round. With empty data fallback.
+- [e67f190](https://github.com/haus23/tipprunde-legacy/commit/e67f190): Implement adding new matches.
+- [c53469d](https://github.com/haus23/tipprunde-legacy/commit/c53469d): Add creating new rounds route.
+
+### Patch Changes
+
+- [9b05b7f](https://github.com/haus23/tipprunde-legacy/commit/9b05b7f): Align wording and syntax.
+- [33e3ae8](https://github.com/haus23/tipprunde-legacy/commit/33e3ae8): Type error - missed inferring form schema type.
+- [b137b00](https://github.com/haus23/tipprunde-legacy/commit/b137b00): Add shadcn collapsible.
+- [ff2be32](https://github.com/haus23/tipprunde-legacy/commit/ff2be32): Un-pin hook-form resolvers package.
+- [383205e](https://github.com/haus23/tipprunde-legacy/commit/383205e): Remove obsolete double filtering.
+- [0b38b7e](https://github.com/haus23/tipprunde-legacy/commit/0b38b7e): Re-order current data items.
+
 ## 0.13.2
 
 ### Patch Changes
