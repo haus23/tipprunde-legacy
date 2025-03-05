@@ -21,7 +21,6 @@
   - Form
   - TextField
   - UiProvider
-- Un-pin the hook resolvers version from 4.0.0
 
 ## Future
 
