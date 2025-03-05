@@ -101,48 +101,54 @@ function CurrentResultsRoute() {
           </TabsList>
           {rounds.map((r) => (
             <TabsContent key={r.id} value={r.id}>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(saveResults)}>
-                  <div className="sticky top-4 right-4 z-10 flex justify-end bg-background/50 p-2 ">
-                    <Button variant="default" type="submit">
-                      Speichern
-                    </Button>
-                  </div>
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Nr</TableHead>
-                        <TableHead>Spiel</TableHead>
-                        <TableHead>Ergebnis</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {activeMatches.map((m, ix) => (
-                        <TableRow key={m.id}>
-                          <TableCell>{m.nr}</TableCell>
-                          <TableCell>{`${teams.find((t) => t.id === m.hometeamId)?.name || '(Offen)'} - ${teams.find((t) => t.id === m.awayteamId)?.name || '(Offen)'}`}</TableCell>
-                          <TableCell>
-                            <FormField
-                              control={form.control}
-                              name={`results.${ix}.result`}
-                              render={({ field }) => (
-                                <FormItem>
-                                  <FormControl>
-                                    <Input
-                                      className="w-16 text-center"
-                                      {...field}
-                                    />
-                                  </FormControl>
-                                </FormItem>
-                              )}
-                            />
-                          </TableCell>
+              {activeMatches.length > 0 ? (
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(saveResults)}>
+                    <div className="sticky top-4 right-4 z-10 flex justify-end bg-background/50 p-2 ">
+                      <Button variant="default" type="submit">
+                        Speichern
+                      </Button>
+                    </div>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Nr</TableHead>
+                          <TableHead>Spiel</TableHead>
+                          <TableHead>Ergebnis</TableHead>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </form>
-              </Form>
+                      </TableHeader>
+                      <TableBody>
+                        {activeMatches.map((m, ix) => (
+                          <TableRow key={m.id}>
+                            <TableCell>{m.nr}</TableCell>
+                            <TableCell>{`${teams.find((t) => t.id === m.hometeamId)?.name || '(Offen)'} - ${teams.find((t) => t.id === m.awayteamId)?.name || '(Offen)'}`}</TableCell>
+                            <TableCell>
+                              <FormField
+                                control={form.control}
+                                name={`results.${ix}.result`}
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormControl>
+                                      <Input
+                                        className="w-16 text-center"
+                                        {...field}
+                                      />
+                                    </FormControl>
+                                  </FormItem>
+                                )}
+                              />
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </form>
+                </Form>
+              ) : (
+                <p className="pt-2 pb-4 text-center text-foreground/70">
+                  Noch keine Spiele in dieser Runde.
+                </p>
+              )}
             </TabsContent>
           ))}
         </Tabs>

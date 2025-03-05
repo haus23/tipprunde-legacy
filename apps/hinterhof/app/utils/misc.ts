@@ -30,3 +30,7 @@ const dashboardColors = [
 export function getShuffledColors() {
   return toShuffled(...dashboardColors);
 }
+
+export const fullDateFormat = new Intl.DateTimeFormat('de-DE', {
+  dateStyle: 'medium',
+});
