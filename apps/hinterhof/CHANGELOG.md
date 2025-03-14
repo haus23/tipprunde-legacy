@@ -1,5 +1,13 @@
 # hinterhof
 
+## 0.6.7
+
+### Patch Changes
+
+- [60bbd7d](https://github.com/haus23/tipprunde-legacy/commit/60bbd7d): Update dev deps.
+- Updated dependencies [01da854]
+  - lib@0.4.8
+
 ## 0.6.6
 
 ### Patch Changes
