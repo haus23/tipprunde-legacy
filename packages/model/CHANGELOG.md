@@ -1,5 +1,12 @@
 # model
 
+## 0.19.4
+
+### Patch Changes
+
+- [01da854](https://github.com/haus23/tipprunde-legacy/commit/01da854): Update dev deps.
+- [cffdea7](https://github.com/haus23/tipprunde-legacy/commit/cffdea7): Update valibot.
+
 ## 0.19.3
 
 ### Patch Changes
