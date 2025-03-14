@@ -23,7 +23,7 @@
     "@changesets/types": "^6.1.0",
     "turbo": "^2.4.4"
   },
-  "packageManager": "pnpm@10.5.2",
+  "packageManager": "pnpm@10.6.3",
   "pnpm": {
     "onlyBuiltDependencies": ["@firebase/util", "esbuild", "protobufjs"]
   }

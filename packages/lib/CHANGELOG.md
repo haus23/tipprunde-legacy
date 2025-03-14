@@ -1,5 +1,11 @@
 # lib
 
+## 0.4.8
+
+### Patch Changes
+
+- [01da854](https://github.com/haus23/tipprunde-legacy/commit/01da854): Update dev deps.
+
 ## 0.4.7
 
 ### Patch Changes

@@ -12,7 +12,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "valibot": "1.0.0-rc.3"
+    "valibot": "1.0.0-rc.4"
   },
   "peerDependencies": {
     "valibot": ">=1.0.0-rc"
@@ -25,6 +25,6 @@
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
     "typescript": "~5.8.2",
-    "vitest": "^3.0.7"
+    "vitest": "^3.0.8"
   }
 }
