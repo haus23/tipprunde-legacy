@@ -2,7 +2,7 @@ import type { Team } from '@haus23/tipprunde-model';
 import { useState } from 'react';
 import { VisuallyHidden } from 'react-aria';
 
-import { EditSheet } from '@/components/sheets/edit-team';
+import { EditTeamSheet } from '@/components/sheets/edit-team';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { DataTable } from '@/components/ui/data-table';
@@ -45,7 +45,7 @@ function TeamsRoute() {
         <VisuallyHidden>
           <SheetDescription>Mannschaft/Team Formular</SheetDescription>
         </VisuallyHidden>
-        <EditSheet
+        <EditTeamSheet
           side="bottom"
           mode={formMode}
           team={editedTeam}

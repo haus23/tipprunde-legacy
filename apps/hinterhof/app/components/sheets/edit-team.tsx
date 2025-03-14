@@ -24,7 +24,7 @@ import { useTeams } from '@/utils/state/teams';
 import { toast } from '@/utils/toast';
 import { useEffect, useMemo } from 'react';
 
-namespace EditSheet {
+namespace EditTeamSheet {
   export interface Props extends React.ComponentProps<typeof SheetContent> {
     mode: 'new' | 'edit';
     team: Team;
@@ -33,12 +33,12 @@ namespace EditSheet {
   }
 }
 
-export function EditSheet({
+export function EditTeamSheet({
   mode,
   team,
   onClose = () => {},
   ...props
-}: EditSheet.Props) {
+}: EditTeamSheet.Props) {
   const { teams, createTeam, updateTeam } = useTeams();
 
   const otherTeams = useMemo(

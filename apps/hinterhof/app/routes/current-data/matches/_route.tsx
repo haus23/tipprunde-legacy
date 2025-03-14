@@ -1,4 +1,9 @@
-import { type Match, MatchSchema, type Round } from '@haus23/tipprunde-model';
+import {
+  type Match,
+  MatchSchema,
+  type Round,
+  type Team,
+} from '@haus23/tipprunde-model';
 import { valibotResolver } from '@hookform/resolvers/valibot';
 import {
   CheckIcon,
@@ -10,6 +15,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as v from 'valibot';
 
+import { EditTeamSheet } from '@/components/sheets/edit-team';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
@@ -40,6 +46,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { Sheet, SheetDescription } from '@/components/ui/sheet';
 import {
   Table,
   TableBody,
@@ -56,6 +63,7 @@ import { useMatches } from '@/utils/state/current-championship/matches';
 import { useRounds } from '@/utils/state/current-championship/rounds';
 import { useLeagues } from '@/utils/state/leagues';
 import { useTeams } from '@/utils/state/teams';
+import { VisuallyHidden } from 'react-aria';
 
 const createOrUpdateMatchSchema = v.partial(MatchSchema, ['id']);
 type CreateOrUpdateMatch = v.InferInput<typeof createOrUpdateMatchSchema>;
@@ -121,12 +129,31 @@ function CurrentMatchesRoute() {
   const [isLeagueOpen, setLeagueOpen] = useState(false);
   const [isHometeamOpen, setHometeamOpen] = useState(false);
   const [isAwayteamOpen, setAwayteamOpen] = useState(false);
+  const [isTeamSheetOpen, setTeamSheetOpen] = useState(false);
+
+  const [editedTeam, setEditedTeam] = useState<Team>(undefined as never);
+
+  function openNewTeamForm() {
+    setEditedTeam({ id: '', name: '', shortname: '' });
+    setTeamSheetOpen(true);
+  }
 
   return (
     <div>
       <header className="flex items-center justify-between">
         <Heading className="grow">{championship.name} - Spiele</Heading>
       </header>
+      <Sheet open={isTeamSheetOpen} onOpenChange={setTeamSheetOpen}>
+        <VisuallyHidden>
+          <SheetDescription>Mannschaft/Team Formular</SheetDescription>
+        </VisuallyHidden>
+        <EditTeamSheet
+          side="bottom"
+          mode="new"
+          team={editedTeam}
+          onClose={() => setTeamSheetOpen(false)}
+        />
+      </Sheet>
       <Card className="mt-4">
         <Collapsible
           open={!isFormCollapsed}
@@ -271,7 +298,14 @@ function CurrentMatchesRoute() {
                                 className="h-9"
                               />
                               <CommandList>
-                                <CommandEmpty>Keine Team passt.</CommandEmpty>
+                                <CommandEmpty>
+                                  <div className="flex flex-col gap-y-2">
+                                    <p>Kein Team gefunden.</p>
+                                    <Button size="sm" onClick={openNewTeamForm}>
+                                      Neu
+                                    </Button>
+                                  </div>
+                                </CommandEmpty>
                                 <CommandGroup>
                                   {teams.map((t) => (
                                     <CommandItem
@@ -338,7 +372,14 @@ function CurrentMatchesRoute() {
                                 className="h-9"
                               />
                               <CommandList>
-                                <CommandEmpty>Keine Team passt.</CommandEmpty>
+                                <CommandEmpty>
+                                  <div className="flex flex-col gap-y-2">
+                                    <p>Kein Team gefunden.</p>
+                                    <Button size="sm" onClick={openNewTeamForm}>
+                                      Neu
+                                    </Button>
+                                  </div>
+                                </CommandEmpty>
                                 <CommandGroup>
                                   {teams.map((t) => (
                                     <CommandItem
