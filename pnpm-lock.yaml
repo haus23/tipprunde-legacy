@@ -100,8 +100,8 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1
       firebase-admin:
-        specifier: ^13.1.0
-        version: 13.1.0
+        specifier: ^13.2.0
+        version: 13.2.0
       unstorage:
         specifier: ^1.15.0
         version: 1.15.0
@@ -2730,8 +2730,8 @@ packages:
     resolution: {integrity: sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==}
     engines: {node: '>=8'}
 
-  firebase-admin@13.1.0:
-    resolution: {integrity: sha512-XPKiTyPyvUMZ22EPk4M1oSiZ8/4qFeYwjK88o/DYpGtNbOLKrM6Oc9jTaK+P6Vwn3Vr1+OCyLLJ93Bci382UqA==}
+  firebase-admin@13.2.0:
+    resolution: {integrity: sha512-qQBTKo0QWCDaWwISry989pr8YfZSSk00rNCKaucjOgltEm3cCYzEe4rODqBd1uUwma+Iu5jtAzg89Nfsjr3fGg==}
     engines: {node: '>=18'}
 
   firebase@9.23.0:
@@ -7438,7 +7438,7 @@ snapshots:
       locate-path: 5.0.0
       path-exists: 4.0.0
 
-  firebase-admin@13.1.0:
+  firebase-admin@13.2.0:
     dependencies:
       '@fastify/busboy': 3.1.1
       '@firebase/database-compat': 2.0.2
