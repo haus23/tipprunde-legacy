@@ -25,6 +25,11 @@
   },
   "packageManager": "pnpm@10.6.3",
   "pnpm": {
-    "onlyBuiltDependencies": ["@firebase/util", "esbuild", "protobufjs"]
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "@firebase/util",
+      "esbuild",
+      "protobufjs"
+    ]
   }
 }
