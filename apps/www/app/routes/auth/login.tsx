@@ -1,4 +1,22 @@
+import { useState } from 'react';
+import { Button } from '#/components/(ui)/atoms/button';
+import { useAccounts } from '#/utils/app/accounts';
+
 function LoginRoute() {
+  const [error, setError] = useState('');
+
+  const accounts = useAccounts();
+
+  function handleEmail(formData: FormData) {
+    const email = String(formData.get('email'));
+    const account = accounts.find((acc) => acc.email === email);
+    if (!account) {
+      setError('Unbekannte Email-Adresse. Wende dich an Micha.');
+    } else {
+      setError('');
+    }
+  }
+
   return (
     <div>
       <header className="mx-2 flex items-center gap-x-2 pt-2 text-accent-foreground sm:mx-0 sm:gap-x-4">
@@ -7,6 +25,34 @@ function LoginRoute() {
           Anmeldung
         </h1>
       </header>
+      <div className="mx-2 mt-4 rounded-md border border-line bg-card p-4">
+        <form action={handleEmail}>
+          <div className="mb-4 flex flex-col gap-y-2">
+            <label htmlFor="email" className="font-semibold text-sm">
+              Email:
+            </label>
+            <input
+              id="email"
+              name="email"
+              className="boder-line rounded-md border px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+            />
+            <div className="text-sm">
+              {error ? (
+                <p className="text-red-600">{error}</p>
+              ) : (
+                <p className="text-subtle-foreground">
+                  Die uns bekannte Email-Adresse
+                </p>
+              )}
+            </div>
+          </div>
+          <div>
+            <Button variant="default" type="submit">
+              Code anfordern
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
