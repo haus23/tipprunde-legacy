@@ -1,5 +1,13 @@
 # hinterhof
 
+## 0.14.1
+
+### Patch Changes
+
+- [3157231](https://github.com/haus23/tipprunde-legacy/commit/3157231): Move sheet to make it reusable.
+- [74d8fc7](https://github.com/haus23/tipprunde-legacy/commit/74d8fc7): Update cmdk.
+- [9d55b13](https://github.com/haus23/tipprunde-legacy/commit/9d55b13): Adjust types. Package model considered broken by now.
+
 ## 0.14.0
 
 ### Minor Changes
