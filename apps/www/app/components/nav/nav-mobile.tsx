@@ -96,7 +96,7 @@ export function NavMobile() {
                         to={`/${[championshipRouteSegment, item.viewSegment].filter(Boolean).join('/')}`}
                         end={item.end}
                       >
-                        <span className="block border-l-4 border-transparent px-4 py-2 group-hover:border-line-hover group-aria-[current=page]:border-primary-line-hover">
+                        <span className="block border-transparent border-l-4 px-4 py-2 group-hover:border-line-hover group-aria-[current=page]:border-primary-line-hover">
                           {item.label}
                         </span>
                       </NavLink>
@@ -104,7 +104,19 @@ export function NavMobile() {
                   </Nav.Item>
                 ))}
                 <Nav.Item>
-                  <hr className="mb-2 border-line" />
+                  <hr className="my-2 border-line" />
+                </Nav.Item>
+                <Nav.Item className="px-2">
+                  <Nav.Link
+                    asChild
+                    className="group my-1 block w-full rounded px-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  >
+                    <NavLink to={'/login'}>
+                      <span className="block border-transparent border-l-4 px-4 py-2 group-hover:border-line-hover group-aria-[current=page]:border-primary-line-hover">
+                        Log In
+                      </span>
+                    </NavLink>
+                  </Nav.Link>
                 </Nav.Item>
                 <Nav.Item className="px-2">
                   <div className="flex items-center justify-between">
@@ -116,12 +128,12 @@ export function NavMobile() {
                 </Nav.Item>
               </Nav.List>
             </Nav.Root>
-            <DialogClose className="absolute right-2 top-4 rounded p-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+            <DialogClose className="absolute top-4 right-2 rounded p-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
               <XMarkIcon className="h-6" />
             </DialogClose>
           </DialogContent>
         </Dialog>
-        <h2 className="text-xl font-semibold text-accent-foreground">
+        <h2 className="font-semibold text-accent-foreground text-xl">
           {championship?.name || 'runde.tips'}
         </h2>
       </div>
