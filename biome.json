@@ -25,7 +25,7 @@
           "level": "info",
           "fix": "safe",
           "options": {
-            "functions": []
+            "functions": ["tv"]
           }
         }
       }
