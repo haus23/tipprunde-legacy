@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { Button } from '#/components/(ui)/atoms/button';
 import { useAccounts } from '#/utils/app/accounts';
 
 function LoginRoute() {
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const accounts = useAccounts();
 
@@ -13,7 +15,7 @@ function LoginRoute() {
     if (!account) {
       setError('Unbekannte Email-Adresse. Wende dich an Micha.');
     } else {
-      setError('');
+      navigate('/login/code');
     }
   }
 

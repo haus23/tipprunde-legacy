@@ -65,6 +65,10 @@ const router = createBrowserRouter([
             lazy: () => import('./routes/auth/login'),
           },
           {
+            path: 'login/code',
+            lazy: () => import('./routes/auth/otp'),
+          },
+          {
             path: 'tipps',
             children: [
               { path: 'spieler', loader: redirectLegacyRoute, element: null },
