@@ -23,7 +23,7 @@
       "nursery": {
         "useSortedClasses": {
           "level": "info",
-          "fix": "unsafe",
+          "fix": "safe",
           "options": {
             "functions": []
           }
