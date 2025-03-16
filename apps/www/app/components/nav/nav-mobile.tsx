@@ -8,6 +8,7 @@ import { useAuthActions } from '@convex-dev/auth/react';
 import { Authenticated, Unauthenticated } from 'convex/react';
 import { useOptionalChampionship } from '#/utils/app/championship';
 import { useChampionships } from '#/utils/app/championships';
+import { useAuthStore } from '#/utils/auth';
 import { Button } from '../(ui)/atoms/button';
 import { Link, NavLink } from '../(ui)/atoms/link';
 import {
@@ -32,6 +33,7 @@ export function NavMobile() {
   const [open, setOpen] = useState(false);
   const { key } = useLocation();
   const { signOut } = useAuthActions();
+  const logOut = useAuthStore((state) => state.logOut);
 
   const championship = useOptionalChampionship();
   const championships = useChampionships();
@@ -57,6 +59,7 @@ export function NavMobile() {
 
   async function handleLogout() {
     await signOut();
+    logOut();
     setOpen(false);
   }
 

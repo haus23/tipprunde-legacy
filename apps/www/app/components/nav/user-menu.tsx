@@ -4,15 +4,19 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { Authenticated, Unauthenticated } from 'convex/react';
 import { LogInIcon, LogOutIcon } from 'lucide-react';
 import { useState } from 'react';
+import { useAuthStore } from '#/utils/auth';
 import { Button } from '../(ui)/atoms/button';
 import { Link } from '../(ui)/atoms/link';
 
 export function UserMenu() {
   const [isOpen, setOpen] = useState(false);
   const { signOut } = useAuthActions();
+  const user = useAuthStore((state) => state.user);
+  const logOut = useAuthStore((state) => state.logOut);
 
   async function handleSignOut() {
     await signOut();
+    logOut();
   }
 
   return (
@@ -44,6 +48,9 @@ export function UserMenu() {
             </DropdownMenu.Item>
           </Unauthenticated>
           <Authenticated>
+            <DropdownMenu.Label className="p-2 text-sm text-subtle-foreground">
+              Hallo {user?.name}!
+            </DropdownMenu.Label>
             <DropdownMenu.Item className="flex flex-col rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
               <button
                 onClick={handleSignOut}

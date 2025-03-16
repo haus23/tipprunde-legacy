@@ -2,8 +2,11 @@ import { Outlet } from 'react-router';
 
 import { NavDesktop } from '#/components/nav/nav-desktop';
 import { NavMobile } from '#/components/nav/nav-mobile';
+import { useConvexUser } from '#/utils/auth';
 
 export default function Layout() {
+  useConvexUser();
+
   return (
     <div>
       <header className="h-16 border-b border-b-line bg-subtle px-2 font-medium shadow-md sm:h-20 sm:px-4">
