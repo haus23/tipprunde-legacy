@@ -1,16 +1,31 @@
-import { OTPInput } from 'input-otp';
-import { useRef } from 'react';
+import { useAuthActions } from '@convex-dev/auth/react';
+import { useEffect, useRef } from 'react';
+import { Navigate, redirect, useNavigate } from 'react-router';
 import { Button } from '#/components/(ui)/atoms/button';
 import {
   OTPField,
   OTPFieldGroup,
   OTPFieldSlot,
 } from '#/components/(ui)/elements/otp-field';
+import { useAuthStore } from '#/utils/auth';
 
 function OTPRoute() {
+  const account = useAuthStore((state) => state.user);
+  const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
-  function handleOTP(formData: FormData) {
-    console.log(formData.get('otp'));
+  const { signIn } = useAuthActions();
+
+  useEffect(() => {
+    if (!account) {
+      navigate('/login');
+    }
+  }, [account, navigate]);
+
+  async function handleOTP(formData: FormData) {
+    const code = String(formData.get('otp'));
+    const email = account?.email || '';
+    await signIn('postmark-otp', { email, code });
+    navigate('/');
   }
 
   return (

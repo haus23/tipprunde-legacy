@@ -1,20 +1,25 @@
+import { useAuthActions } from '@convex-dev/auth/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Button } from '#/components/(ui)/atoms/button';
 import { useAccounts } from '#/utils/app/accounts';
+import { useAuthStore } from '#/utils/auth';
 
 function LoginRoute() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
+  const { signIn } = useAuthActions();
   const accounts = useAccounts();
+  const prepareAuth = useAuthStore((state) => state.prepareAuth);
 
-  function handleEmail(formData: FormData) {
+  async function handleEmail(formData: FormData) {
     const email = String(formData.get('email'));
     const account = accounts.find((acc) => acc.email === email);
     if (!account) {
       setError('Unbekannte Email-Adresse. Wende dich an Micha.');
     } else {
+      await signIn('postmark-otp', formData);
+      prepareAuth(account);
       navigate('/login/code');
     }
   }
@@ -33,6 +38,7 @@ function LoginRoute() {
             <label htmlFor="email" className="font-semibold text-sm">
               Email:
             </label>
+            <input type="hidden" name="fname" value="Michael" />
             <input
               id="email"
               name="email"
