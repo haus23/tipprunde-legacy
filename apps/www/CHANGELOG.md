@@ -25,6 +25,13 @@
 
 ### Minor Changes
 
+- [d20689a](https://github.com/haus23/tipprunde-legacy/commit/d20689a): Add (empty) login route.
+- [25055a7](https://github.com/haus23/tipprunde-legacy/commit/25055a7): Add accounts hook.
+- [605af82](https://github.com/haus23/tipprunde-legacy/commit/605af82): Provide convex with auth to app.
+- [e29c197](https://github.com/haus23/tipprunde-legacy/commit/e29c197): Add basic implementation of login route.
+- [b590f76](https://github.com/haus23/tipprunde-legacy/commit/b590f76): Add authenticated views to navs.
+- [2ab4f43](https://github.com/haus23/tipprunde-legacy/commit/2ab4f43): Implement basic otp input form.
+- [670e534](https://github.com/haus23/tipprunde-legacy/commit/670e534): Implement otp auth flow.
 - Updated dependencies [8565032]
   - @haus23/tipprunde-model@0.19.0
 
@@ -32,6 +39,11 @@
 
 - [e9fc052](https://github.com/haus23/tipprunde-legacy/commit/e9fc052): Add env dist file.
 - [939566f](https://github.com/haus23/tipprunde-legacy/commit/939566f): Update deps.
+- [d5a31d6](https://github.com/haus23/tipprunde-legacy/commit/d5a31d6): Add navigation items for login route.
+- [aabf593](https://github.com/haus23/tipprunde-legacy/commit/aabf593): Style default button variant
+- [a724654](https://github.com/haus23/tipprunde-legacy/commit/a724654): Add tailwind variants function to biome config.
+- [0452284](https://github.com/haus23/tipprunde-legacy/commit/0452284): Add otp field.
+- [28b99b1](https://github.com/haus23/tipprunde-legacy/commit/28b99b1): Enable automatic fixing of unsorted tailwind classes.
 
 ## 0.16.15
 

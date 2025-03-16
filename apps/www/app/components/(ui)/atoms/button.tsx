@@ -4,11 +4,12 @@ import { focusRingStyles } from '../styles';
 
 const styles = tv({
   extend: focusRingStyles,
-  base: 'inline-flex items-center justify-center font-medium cursor-default',
+  base: 'inline-flex cursor-default items-center justify-center font-medium transition-all',
   variants: {
     variant: {
-      default: 'rounded-md',
-      toolbar: 'bg-primary rounded-lg hover:bg-primary-hover',
+      default:
+        'rounded-md border border-line bg-primary hover:bg-primary-hover',
+      toolbar: 'rounded-lg bg-primary hover:bg-primary-hover',
     },
     size: {
       default: 'px-4 py-2',

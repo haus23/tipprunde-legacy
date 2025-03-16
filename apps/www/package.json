@@ -9,21 +9,28 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@auth/core": "0.37.0",
+    "@convex-dev/auth": "^0.0.80",
     "@haus23/tipprunde-model": "workspace:^",
     "@heroicons/react": "^2.2.0",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-dropdown-menu": "^2.1.6",
     "@radix-ui/react-navigation-menu": "^1.2.5",
     "@radix-ui/react-popover": "^1.1.6",
     "@radix-ui/react-select": "^2.1.6",
     "@tanstack/react-query": "^5.68.0",
     "cmdk": "^1.1.1",
+    "convex": "^1.20.0",
+    "input-otp": "^1.4.2",
+    "lucide-react": "^0.482.0",
     "react": "^19.0.0",
     "react-aria": "^3.38.1",
     "react-dom": "^19.0.0",
     "react-router": "^7.3.0",
     "tailwind-variants": "^0.3.1",
-    "valibot": "1.0.0-rc.4"
+    "valibot": "1.0.0-rc.4",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",

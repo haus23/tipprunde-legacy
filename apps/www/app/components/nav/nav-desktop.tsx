@@ -6,6 +6,7 @@ import { Link, NavLink } from '../(ui)/atoms/link';
 import { Logo } from '../brand/logo';
 import { ChampionshipSelect } from '../commands/championship-select';
 import { ThemeToggle } from './theme-toggle';
+import { UserMenu } from './user-menu';
 
 const navItems = [
   { label: 'Tabelle', viewSegment: '', end: true },
@@ -53,6 +54,7 @@ export function NavDesktop() {
       <div className="flex gap-x-2">
         <ChampionshipSelect />
         <ThemeToggle />
+        <UserMenu />
       </div>
     </div>
   );
