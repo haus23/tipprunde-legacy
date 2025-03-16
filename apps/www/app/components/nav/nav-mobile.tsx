@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { VisuallyHidden } from 'react-aria';
 import { useLocation } from 'react-router';
 
+import { useAuthActions } from '@convex-dev/auth/react';
+import { Authenticated, Unauthenticated } from 'convex/react';
 import { useOptionalChampionship } from '#/utils/app/championship';
 import { useChampionships } from '#/utils/app/championships';
 import { Button } from '../(ui)/atoms/button';
@@ -29,6 +31,7 @@ const navItems = [
 export function NavMobile() {
   const [open, setOpen] = useState(false);
   const { key } = useLocation();
+  const { signOut } = useAuthActions();
 
   const championship = useOptionalChampionship();
   const championships = useChampionships();
@@ -51,6 +54,11 @@ export function NavMobile() {
   useEffect(() => {
     setOpen(key === ''); // Useless, but need to treat the linter
   }, [key]);
+
+  async function handleLogout() {
+    await signOut();
+    setOpen(false);
+  }
 
   return (
     <div className="flex h-16 items-center justify-between sm:hidden">
@@ -107,16 +115,28 @@ export function NavMobile() {
                   <hr className="my-2 border-line" />
                 </Nav.Item>
                 <Nav.Item className="px-2">
-                  <Nav.Link
-                    asChild
-                    className="group my-1 block w-full rounded px-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                  >
-                    <NavLink to={'/login'}>
-                      <span className="block border-transparent border-l-4 px-4 py-2 group-hover:border-line-hover group-aria-[current=page]:border-primary-line-hover">
-                        Log In
+                  <Unauthenticated>
+                    <Nav.Link
+                      asChild
+                      className="group my-1 block w-full rounded px-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    >
+                      <NavLink to={'/login'}>
+                        <span className="block border-transparent border-l-4 px-4 py-2 group-hover:border-line-hover group-aria-[current=page]:border-primary-line-hover">
+                          Log In
+                        </span>
+                      </NavLink>
+                    </Nav.Link>
+                  </Unauthenticated>
+                  <Authenticated>
+                    <Nav.Link
+                      onSelect={handleLogout}
+                      className="group my-1 block w-full rounded px-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    >
+                      <span className="block cursor-default border-transparent border-l-4 px-4 py-2 group-hover:border-line-hover group-aria-[current=page]:border-primary-line-hover">
+                        Log Out
                       </span>
-                    </NavLink>
-                  </Nav.Link>
+                    </Nav.Link>
+                  </Authenticated>
                 </Nav.Item>
                 <Nav.Item className="px-2">
                   <div className="flex items-center justify-between">
