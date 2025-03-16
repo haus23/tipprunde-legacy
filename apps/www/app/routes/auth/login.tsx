@@ -13,12 +13,12 @@ function LoginRoute() {
   const prepareAuth = useAuthStore((state) => state.prepareAuth);
 
   async function handleEmail(formData: FormData) {
-    const email = String(formData.get('email'));
+    const email = String(formData.get('email')).toLowerCase();
     const account = accounts.find((acc) => acc.email === email);
     if (!account) {
       setError('Unbekannte Email-Adresse. Wende dich an Micha.');
     } else {
-      await signIn('postmark-otp', formData);
+      await signIn('postmark-otp', { email });
       prepareAuth(account);
       navigate('/login/code');
     }
