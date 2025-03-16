@@ -1,4 +1,6 @@
+import { ConvexAuthProvider } from '@convex-dev/auth/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ConvexReactClient } from 'convex/react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router';
@@ -19,6 +21,8 @@ import './styles/tailwind.css';
 
 const container = document.getElementById('root');
 if (!container) throw Error('Missing root element!');
+
+const convexClient = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -85,7 +89,9 @@ createRoot(container).render(
   <StrictMode>
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <ConvexAuthProvider client={convexClient}>
+          <RouterProvider router={router} />
+        </ConvexAuthProvider>
       </QueryClientProvider>
     </ThemeProvider>
   </StrictMode>,
