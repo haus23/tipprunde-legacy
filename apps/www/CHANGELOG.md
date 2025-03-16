@@ -1,5 +1,12 @@
 # www
 
+## 0.17.1
+
+### Patch Changes
+
+- [ab154a9](https://github.com/haus23/tipprunde-legacy/commit/ab154a9): Use the lowercased email for login.
+- [d24bc4e](https://github.com/haus23/tipprunde-legacy/commit/d24bc4e): Align auth state with convex. Resolves ä31
+
 ## 0.17.0
 
 ### Minor Changes
