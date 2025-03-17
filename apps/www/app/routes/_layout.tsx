@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, ScrollRestoration } from 'react-router';
 
 import { NavDesktop } from '#/components/nav/nav-desktop';
 import { NavMobile } from '#/components/nav/nav-mobile';
@@ -32,6 +32,11 @@ export default function Layout() {
       <main className="mx-auto mt-20 max-w-5xl pb-10 sm:px-6 lg:px-8">
         <Outlet />
       </main>
+      <ScrollRestoration
+        getKey={(location) => {
+          return location.pathname;
+        }}
+      />
     </div>
   );
 }
