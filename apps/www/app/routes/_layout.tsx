@@ -24,7 +24,7 @@ export default function Layout() {
     <div>
       <header
         data-scroll-state={scrollState}
-        className="fixed inset-0 h-16 px-2 font-medium shadow-gray-4 transition-colors data-[scroll-state=scrolled]:bg-background data-[scroll-state=scrolled]:shadow-2xs sm:px-4"
+        className="fixed inset-0 z-10 h-16 px-2 font-medium shadow-gray-4 transition-colors data-[scroll-state=scrolled]:bg-background data-[scroll-state=scrolled]:shadow-2xs sm:px-4"
       >
         <NavDesktop />
         <NavMobile />
