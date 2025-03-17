@@ -9,7 +9,7 @@ const styles = tv({
     variant: {
       default:
         'rounded-md border border-line bg-primary hover:bg-primary-hover',
-      toolbar: 'rounded-lg bg-primary hover:bg-primary-hover',
+      toolbar: 'rounded-lg hover:bg-accent-4',
     },
     size: {
       default: 'px-4 py-2',

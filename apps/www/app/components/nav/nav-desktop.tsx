@@ -25,11 +25,11 @@ export function NavDesktop() {
   return (
     <div className="hidden items-center justify-between sm:flex">
       <Nav.Root>
-        <Nav.List className="flex h-20 items-stretch">
+        <Nav.List className="flex h-16 items-stretch">
           <Nav.Item className="flex items-center">
             <Link
               to="/"
-              className="flex items-center gap-x-2 pl-1 pr-2 rounded-md"
+              className="flex items-center gap-x-2 rounded-md pr-2 pl-1"
             >
               <Logo className="h-12 w-12" />
               <span className="text-xl">runde.tips</span>
@@ -38,12 +38,12 @@ export function NavDesktop() {
           {navItems.map((item) => (
             <Nav.Item
               key={item.label}
-              className="flex items-center relative px-2 pt-1 mx-1"
+              className="relative mx-1 flex items-center px-2 pt-1"
             >
               <NavLink
                 to={`/${[championshipRouteSegment, item.viewSegment].filter(Boolean).join('/')}`}
                 end={item.end}
-                className="p-2 rounded-md data-hovered:bg-neutral-hover after:border-b-2 after:border-transparent after:block after:absolute after:w-full after:bottom-0 after:left-0 aria-[current]:after:border-primary-line-hover! data-hovered:after:border-line-hover"
+                className="rounded-md p-2 after:absolute after:bottom-0 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-primary-line-hover! data-hovered:bg-neutral-hover data-hovered:after:border-line-hover"
               >
                 {item.label}
               </NavLink>
