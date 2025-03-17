@@ -43,7 +43,7 @@ export function NavDesktop() {
               <NavLink
                 to={`/${[championshipRouteSegment, item.viewSegment].filter(Boolean).join('/')}`}
                 end={item.end}
-                className="p-2 rounded-md data-[hovered]:bg-neutral-hover after:border-b-2 after:border-transparent after:block after:absolute after:w-full after:bottom-0 after:left-0 aria-[current]:after:!border-primary-line-hover data-[hovered]:after:border-line-hover"
+                className="p-2 rounded-md data-hovered:bg-neutral-hover after:border-b-2 after:border-transparent after:block after:absolute after:w-full after:bottom-0 after:left-0 aria-[current]:after:border-primary-line-hover! data-hovered:after:border-line-hover"
               >
                 {item.label}
               </NavLink>

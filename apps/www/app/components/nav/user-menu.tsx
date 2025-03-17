@@ -36,11 +36,11 @@ export function UserMenu() {
             <DropdownMenu.Label className="p-2 text-sm text-subtle-foreground">
               Hallo Unbekannte/r!
             </DropdownMenu.Label>
-            <DropdownMenu.Item className="flex rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+            <DropdownMenu.Item className="flex rounded-md outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
               <Link
                 onClick={() => setOpen(false)}
                 to="/login"
-                className="flex w-full items-center gap-x-4 rounded-md px-2 py-1 data-[hovered]:bg-neutral-hover"
+                className="flex w-full items-center gap-x-4 rounded-md px-2 py-1 data-hovered:bg-neutral-hover"
               >
                 <LogInIcon size={20} />
                 <span>Log In</span>
@@ -51,7 +51,7 @@ export function UserMenu() {
             <DropdownMenu.Label className="p-2 text-sm text-subtle-foreground">
               Hallo {user?.name}!
             </DropdownMenu.Label>
-            <DropdownMenu.Item className="flex flex-col rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+            <DropdownMenu.Item className="flex flex-col rounded-md outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
               <button
                 onClick={handleSignOut}
                 type="button"

@@ -11,8 +11,8 @@ const trigger = tv({
   extend: focusRingStyles,
   base: [
     'group cursor-default',
-    'px-2 p-1 rounded-sm grow flex items-center justify-between font-medium transition-all',
-    'data-[focus-visible]:ring-offset-primary',
+    'px-2 p-1 rounded-xs grow flex items-center justify-between font-medium transition-all',
+    'data-focus-visible:ring-offset-primary',
   ],
 });
 
@@ -26,7 +26,7 @@ export function AccordionTrigger({
 
   return (
     <AccordionPrimitive.Header
-      className="flex p-1 bg-primary rounded data-[hovered]:bg-primary-hover"
+      className="flex p-1 bg-primary rounded-sm data-hovered:bg-primary-hover"
       {...hoverProps}
       {...{ 'data-hovered': isHovered || undefined }}
     >

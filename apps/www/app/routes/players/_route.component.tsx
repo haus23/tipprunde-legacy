@@ -235,7 +235,7 @@ export function PlayersRoute() {
                               <Link
                                 prefetch="viewport"
                                 to={`../spiel?nr=${m.nr}`}
-                                className={`inline-block w-full p-1 rounded-sm data-[hovered]:text-accent-foreground data-[hovered]:underline ${info ? 'data-[focus-visible]:ring-offset-primary-active' : ''}`}
+                                className={`inline-block w-full p-1 rounded-xs data-hovered:text-accent-foreground data-hovered:underline ${info ? 'data-focus-visible:ring-offset-primary-active' : ''}`}
                               >
                                 <span className="hidden md:inline">
                                   {teams[m.hometeamId]?.name || 'TBA'} -

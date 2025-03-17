@@ -85,7 +85,7 @@ export function NavMobile() {
                   <Nav.Link asChild>
                     <Link
                       to="/"
-                      className="m-1 inline-flex items-center rounded px-2 py-1"
+                      className="m-1 inline-flex items-center rounded-sm px-2 py-1"
                     >
                       <div className="flex items-center gap-x-2">
                         <Logo className="h-10 w-12" />
@@ -101,7 +101,7 @@ export function NavMobile() {
                   <Nav.Item key={item.label} className="px-2">
                     <Nav.Link
                       asChild
-                      className="group my-1 block w-full rounded px-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="group my-1 block w-full rounded-sm px-1 ring-offset-background focus:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                       <NavLink
                         to={`/${[championshipRouteSegment, item.viewSegment].filter(Boolean).join('/')}`}
@@ -121,7 +121,7 @@ export function NavMobile() {
                   <Unauthenticated>
                     <Nav.Link
                       asChild
-                      className="group my-1 block w-full rounded px-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="group my-1 block w-full rounded-sm px-1 ring-offset-background focus:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                       <NavLink to={'/login'}>
                         <span className="block border-transparent border-l-4 px-4 py-2 group-hover:border-line-hover group-aria-[current=page]:border-primary-line-hover">
@@ -133,7 +133,7 @@ export function NavMobile() {
                   <Authenticated>
                     <Nav.Link
                       onSelect={handleLogout}
-                      className="group my-1 block w-full rounded px-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      className="group my-1 block w-full rounded-sm px-1 ring-offset-background focus:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
                       <span className="block cursor-default border-transparent border-l-4 px-4 py-2 group-hover:border-line-hover group-aria-[current=page]:border-primary-line-hover">
                         Log Out
@@ -151,7 +151,7 @@ export function NavMobile() {
                 </Nav.Item>
               </Nav.List>
             </Nav.Root>
-            <DialogClose className="absolute top-4 right-2 rounded p-1 ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+            <DialogClose className="absolute top-4 right-2 rounded-sm p-1 ring-offset-background focus:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
               <XMarkIcon className="h-6" />
             </DialogClose>
           </DialogContent>

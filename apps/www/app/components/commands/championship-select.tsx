@@ -78,7 +78,7 @@ export function ChampionshipSelect() {
         <Command label="Turnier-Suchfeld">
           <Command.Input
             placeholder="Turnier"
-            className="w-full rounded-md border-0 bg-subtle px-6 py-2.5 font-semibold text-foreground placeholder:text-subtle-foreground focus:outline-none"
+            className="w-full rounded-md border-0 bg-subtle px-6 py-2.5 font-semibold text-foreground placeholder:text-subtle-foreground focus:outline-hidden"
           />
           <Command.List className="border-t border-line p-2">
             <Command.Empty>
