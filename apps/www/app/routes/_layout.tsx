@@ -29,7 +29,7 @@ export default function Layout() {
         <NavDesktop />
         <NavMobile />
       </header>
-      <main className="mx-auto mt-20 max-w-5xl pb-10 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">
         <Outlet />
       </main>
       <ScrollRestoration

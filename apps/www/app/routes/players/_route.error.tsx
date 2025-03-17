@@ -14,9 +14,9 @@ export function PlayersErrorBoundary() {
   return (
     <div
       id="error"
-      className="flex flex-col justify-center items-center gap-y-4 text-destructive-foreground"
+      className="flex flex-col items-center justify-center gap-y-4 text-error"
     >
-      <div className="flex justify-center text-destructive">
+      <div className="flex justify-center text-error-bg">
         <ExclamationTriangleIcon className="h-40" />
       </div>
       <p className="mx-4 text-center text-3xl leading-snug [text-wrap:balance]">
@@ -24,13 +24,13 @@ export function PlayersErrorBoundary() {
       </p>
       <Link
         to={`/${championship.id}`}
-        className="mt-4 block text-2xl hover:underline"
+        className="mt-4 block text-lg hover:underline"
       >
         Tabelle der {championship.name}
       </Link>
       <Link
         to={`/${championship.id}/spieler`}
-        className="mt-4 block text-2xl hover:underline"
+        className="mt-4 block text-lg hover:underline"
       >
         Spielerübersicht der {championship.name}
       </Link>
