@@ -30,7 +30,7 @@ export function TipsTable({
           >
             <Button
               type="button"
-              className="relative p-1 pr-4 rounded-sm"
+              className="relative p-1 pr-4 rounded-xs"
               aria-label="Sortierung ändern"
               onClick={() => toggleSort('name')}
             >
@@ -51,7 +51,7 @@ export function TipsTable({
           >
             <Button
               type="button"
-              className="relative p-1 pr-4 rounded-sm"
+              className="relative p-1 pr-4 rounded-xs"
               aria-label="Sortierung ändern"
               onClick={() => toggleSort('tip')}
             >
@@ -72,7 +72,7 @@ export function TipsTable({
           >
             <Button
               type="button"
-              className="relative p-1 pr-4 rounded-sm"
+              className="relative p-1 pr-4 rounded-xs"
               aria-label="Sortierung ändern"
               onClick={() => toggleSort('points')}
             >
@@ -102,7 +102,7 @@ export function TipsTable({
                   <Link
                     prefetch="viewport"
                     to={`../spieler?name=${player.playerId}`}
-                    className={`inline-block w-full p-1 rounded-sm data-[hovered]:text-accent-foreground data-[hovered]:underline ${highlighted ? 'data-[focus-visible]:ring-offset-primary-active' : ''}`}
+                    className={`inline-block w-full p-1 rounded-xs data-hovered:text-accent-foreground data-hovered:underline ${highlighted ? 'data-focus-visible:ring-offset-primary-active' : ''}`}
                   >
                     {player.account.name}
                   </Link>

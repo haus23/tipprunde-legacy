@@ -85,7 +85,7 @@ export function TablesRoute() {
                   <div className="py-1.5">
                     <Link
                       prefetch="viewport"
-                      className="block rounded-sm p-1 hover:text-accent-foreground hover:underline"
+                      className="block rounded-xs p-1 hover:text-accent-foreground hover:underline"
                       to={`spieler?name=${p.playerId}`}
                     >
                       {p.account.name}
@@ -107,7 +107,7 @@ export function TablesRoute() {
                         icon={CalendarDaysIcon}
                         ariaTriggerLabel={`Aktuelle Tips von ${p.account.name}`}
                       >
-                        <div className="grid w-[240px] grid-cols-[1fr_repeat(2,_auto)] pb-2 font-normal text-sm">
+                        <div className="grid w-[240px] grid-cols-[1fr_repeat(2,auto)] pb-2 font-normal text-sm">
                           <div className="border-line border-b py-2 pl-2">
                             Spiel
                           </div>

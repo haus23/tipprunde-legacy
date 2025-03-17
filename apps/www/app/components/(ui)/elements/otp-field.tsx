@@ -13,7 +13,7 @@ function OTPField({ className, ...props }: OTPField.Props) {
   return (
     <OTPInput
       containerClassName={cn(
-        'mx-auto flex items-center gap-2 has-[:disabled]:opacity-50',
+        'mx-auto flex items-center gap-2 has-disabled:opacity-50',
       )}
       className={cn('disabled:cursor-not-allowed', className)}
       {...props}
@@ -42,7 +42,7 @@ function OTPFieldSlot({ index, className, ...props }: OTPFieldSlot.Props) {
   return (
     <div
       className={cn(
-        'relative flex size-12 items-center justify-center border-line border-y border-r font-semibold text-sm shadow-sm transition-all first:rounded-l-md first:border-l last:rounded-r-md',
+        'relative flex size-12 items-center justify-center border-line border-y border-r font-semibold text-sm shadow-xs transition-all first:rounded-l-md first:border-l last:rounded-r-md',
         isActive && 'z-10 ring-1 ring-ring',
         className,
       )}

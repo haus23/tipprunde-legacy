@@ -13,7 +13,7 @@ const trigger = tv({
   base: [
     'grow basis-1/2 sm:grow-0 lg:basis-1/3',
     'inline-flex items-center justify-between p-1 pl-2 translate-y-[1px]',
-    'bg-primary rounded border-2 border-primary-line font-semibold data-[hovered]:bg-primary-hover transition-colors',
+    'bg-primary rounded-sm border-2 border-primary-line font-semibold data-hovered:bg-primary-hover transition-colors',
     'cursor-default',
   ],
 });
@@ -30,7 +30,7 @@ const item = tv({
   base: [
     'my-1 cursor-pointer select-none',
     'flex items-center justify-between pl-4 pr-2 py-1 mx-1 rounded-md',
-    'data-[highlighted]:bg-neutral-hover data-[state=checked]:text-accent-subtle-foreground',
+    'data-highlighted:bg-neutral-hover data-[state=checked]:text-accent-subtle-foreground',
   ],
 });
 

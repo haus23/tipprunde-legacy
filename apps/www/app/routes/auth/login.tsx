@@ -42,7 +42,7 @@ function LoginRoute() {
             <input
               id="email"
               name="email"
-              className="boder-line rounded-md border px-4 py-2 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+              className="boder-line rounded-md border px-4 py-2 outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
             />
             <div className="text-sm">
               {error ? (
