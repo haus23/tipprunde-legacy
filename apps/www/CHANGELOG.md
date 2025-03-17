@@ -1,5 +1,19 @@
 # www
 
+## 0.18.0
+
+### Minor Changes
+
+- [b4b812c](https://github.com/haus23/tipprunde-legacy/commit/b4b812c): Upgrade tailwind variants.
+- [d781042](https://github.com/haus23/tipprunde-legacy/commit/d781042): Migrate to tailwindcss v4
+- [de230e1](https://github.com/haus23/tipprunde-legacy/commit/de230e1): Remove tailwindcss animate plugin.
+
+### Patch Changes
+
+- [0fca95b](https://github.com/haus23/tipprunde-legacy/commit/0fca95b): Create extra chunk for react router to reduce main bundle size.
+- [317348e](https://github.com/haus23/tipprunde-legacy/commit/317348e): Switch to vite plugin. Dismiss postcss. Finally resolves #24
+- [42d5972](https://github.com/haus23/tipprunde-legacy/commit/42d5972): Delete obsolete postcss config.
+
 ## 0.17.1
 
 ### Patch Changes
