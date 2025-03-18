@@ -1,7 +1,7 @@
 import { useAuthActions } from '@convex-dev/auth/react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Button } from '#/components/(ui)/atoms/button';
+import { Button } from '#/components/(ui)/button/button';
 import { useAccounts } from '#/utils/app/accounts';
 import { useAuthStore } from '#/utils/auth';
 

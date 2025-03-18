@@ -1,7 +1,7 @@
 import { useAuthActions } from '@convex-dev/auth/react';
 import { useEffect, useRef } from 'react';
-import { Navigate, redirect, useNavigate } from 'react-router';
-import { Button } from '#/components/(ui)/atoms/button';
+import { useNavigate } from 'react-router';
+import { Button } from '#/components/(ui)/button/button';
 import {
   OTPField,
   OTPFieldGroup,

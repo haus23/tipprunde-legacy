@@ -1,7 +1,7 @@
 import { CalendarDaysIcon } from '@heroicons/react/24/outline';
 import { useLoaderData } from 'react-router';
 import { Fragment } from 'react/jsx-runtime';
-import { Link } from '#/components/(ui)/atoms/link';
+import { Link } from '#/components/(ui)/link/link';
 import { EmptyData } from '#/components/(ui)/molecules/empty-data';
 import { InfoBox } from '#/components/(ui)/molecules/info-box';
 import { useChampionship } from '#/utils/app/championship';

@@ -2,7 +2,8 @@ import * as Nav from '@radix-ui/react-navigation-menu';
 
 import { useOptionalChampionship } from '#/utils/app/championship';
 import { useChampionships } from '#/utils/app/championships';
-import { Link, NavLink } from '../(ui)/atoms/link';
+
+import { Link, NavLink } from '../(ui)/link/link';
 import { Logo } from '../brand/logo';
 import { ChampionshipSelect } from '../commands/championship-select';
 import { ThemeToggle } from './theme-toggle';

@@ -5,8 +5,8 @@ import { Authenticated, Unauthenticated } from 'convex/react';
 import { LogInIcon, LogOutIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useAuthStore } from '#/utils/auth';
-import { Button } from '../(ui)/atoms/button';
-import { Link } from '../(ui)/atoms/link';
+import { Button } from '../(ui)/button/button';
+import { Link } from '../(ui)/link/link';
 
 export function UserMenu() {
   const [isOpen, setOpen] = useState(false);

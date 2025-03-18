@@ -11,7 +11,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { useOptionalChampionship } from '#/utils/app/championship';
 import { useChampionships } from '#/utils/app/championships';
 import { useCurrentView } from '#/utils/current-view';
-import { Button } from '../(ui)/atoms/button';
+import { Button } from '../(ui)/button/button';
 import {
   Dialog,
   DialogContent,

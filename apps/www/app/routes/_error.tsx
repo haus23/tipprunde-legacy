@@ -1,6 +1,6 @@
 import { FaceFrownIcon } from '@heroicons/react/24/outline';
 import { isRouteErrorResponse, useLocation, useRouteError } from 'react-router';
-import { Link } from '#/components/(ui)/atoms/link';
+import { Link } from '#/components/(ui)/link/link';
 
 export function ErrorBoundary() {
   const { pathname } = useLocation();

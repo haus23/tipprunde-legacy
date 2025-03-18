@@ -9,8 +9,8 @@ import { Authenticated, Unauthenticated } from 'convex/react';
 import { useOptionalChampionship } from '#/utils/app/championship';
 import { useChampionships } from '#/utils/app/championships';
 import { useAuthStore } from '#/utils/auth';
-import { Button } from '../(ui)/atoms/button';
-import { Link, NavLink } from '../(ui)/atoms/link';
+import { Button } from '../(ui)/button/button';
+import { Link, NavLink } from '../(ui)/link/link';
 import {
   Dialog,
   DialogClose,

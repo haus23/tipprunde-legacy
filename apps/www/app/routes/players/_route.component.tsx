@@ -1,5 +1,5 @@
 import { useLoaderData, useSearchParams } from 'react-router';
-import { Link } from '#/components/(ui)/atoms/link';
+import { Link } from '#/components/(ui)/link/link';
 import {
   Select,
   SelectContent,

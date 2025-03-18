@@ -5,8 +5,8 @@ import {
   ChevronUpDownIcon,
 } from '@heroicons/react/24/outline';
 
-import { Button } from '#/components/(ui)/atoms/button';
-import { Link } from '#/components/(ui)/atoms/link';
+import { Button } from '#/components/(ui)/button/button';
+import { Link } from '#/components/(ui)/link/link';
 import { InfoBox } from '#/components/(ui)/molecules/info-box';
 import { useTipSorting } from '#/utils/app/tip-sorting';
 
