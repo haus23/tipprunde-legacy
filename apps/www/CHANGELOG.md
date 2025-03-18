@@ -1,5 +1,12 @@
 # www
 
+## 0.20.1
+
+### Patch Changes
+
+- [318240f](https://github.com/haus23/tipprunde-legacy/commit/318240f): Re-add tailwind styles and color theme.
+- [3ff0704](https://github.com/haus23/tipprunde-legacy/commit/3ff0704): Re-create the three basic routes.
+
 ## 0.20.0
 
 ### Minor Changes
