@@ -1,10 +1,9 @@
-import * as Nav from '@radix-ui/react-navigation-menu';
-
 import { useOptionalChampionship } from '#/utils/app/championship';
 import { useChampionships } from '#/utils/app/championships';
 
 import { Link, NavLink } from '../(ui)/link/link';
 import { Logo } from '../brand/logo';
+
 import { ChampionshipSelect } from '../commands/championship-select';
 import { ThemeToggle } from './theme-toggle';
 import { UserMenu } from './user-menu';
@@ -25,33 +24,30 @@ export function NavDesktop() {
 
   return (
     <div className="hidden items-center justify-between sm:flex">
-      <Nav.Root>
-        <Nav.List className="flex h-16 items-stretch">
-          <Nav.Item className="flex items-center">
-            <Link
-              to="/"
-              className="flex items-center gap-x-2 rounded-md pr-2 pl-1"
-            >
+      <nav>
+        <ul className="flex h-16 items-stretch">
+          <li className="flex items-center">
+            <Link to="/" className="flex items-center gap-x-2 pr-2 pl-1">
               <Logo className="h-12 w-12" />
               <span className="text-xl">runde.tips</span>
             </Link>
-          </Nav.Item>
+          </li>
           {navItems.map((item) => (
-            <Nav.Item
+            <li
               key={item.label}
               className="relative mx-1 flex items-center px-2 pt-1"
             >
               <NavLink
                 to={`/${[championshipRouteSegment, item.viewSegment].filter(Boolean).join('/')}`}
                 end={item.end}
-                className="rounded-md p-2 after:absolute after:bottom-0 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-primary-line-hover! data-hovered:bg-neutral-hover data-hovered:after:border-line-hover"
+                className="p-2 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 hover:bg-accent-4 aria-[current]:after:border-accent-7"
               >
                 {item.label}
               </NavLink>
-            </Nav.Item>
+            </li>
           ))}
-        </Nav.List>
-      </Nav.Root>
+        </ul>
+      </nav>
       <div className="flex gap-x-2">
         <ChampionshipSelect />
         <ThemeToggle />
