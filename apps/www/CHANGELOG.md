@@ -1,5 +1,16 @@
 # www
 
+## 0.20.0
+
+### Minor Changes
+
+- [12e18b4](https://github.com/haus23/tipprunde-legacy/commit/12e18b4): Switch to tanstack router. Minimal starter app.
+
+### Patch Changes
+
+- [7de6bd4](https://github.com/haus23/tipprunde-legacy/commit/7de6bd4): Prepare migration to tanstack router. Move rr app into folder.
+- [bdf4d47](https://github.com/haus23/tipprunde-legacy/commit/bdf4d47): Addded missing vite config file.
+
 ## 0.19.0
 
 ### Minor Changes
