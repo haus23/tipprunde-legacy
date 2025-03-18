@@ -12,21 +12,6 @@ import { queryOptions } from '@tanstack/react-query';
 import { data } from 'react-router';
 import * as v from 'valibot';
 
-const backendHost = import.meta.env.VITE_UNTERBAU_SERVER;
-const baseUrl = `${backendHost}/api/v1`;
-
-async function fetchChampionships() {
-  console.log('Fetching championships from ', baseUrl);
-  const response = await fetch(`${baseUrl}/championships`);
-  return v.parse(v.array(ChampionshipSchema), await response.json());
-}
-
-export const championshipsQuery = () =>
-  queryOptions({
-    queryKey: ['championships'],
-    queryFn: fetchChampionships,
-  });
-
 async function fetchAccounts() {
   console.log('Fetching accounts');
   const response = await fetch(`${baseUrl}/accounts`);
