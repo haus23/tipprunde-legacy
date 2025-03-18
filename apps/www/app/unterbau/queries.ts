@@ -1,4 +1,4 @@
-import { ChampionshipSchema } from '@haus23/tipprunde-model';
+import { AccountSchema, ChampionshipSchema } from '@haus23/tipprunde-model';
 import { queryOptions } from '@tanstack/react-query';
 import * as v from 'valibot';
 
@@ -14,4 +14,15 @@ export const championshipsQuery = () =>
   queryOptions({
     queryKey: ['championships'],
     queryFn: fetchChampionships,
+  });
+
+async function fetchAccounts() {
+  const response = await fetch(`${baseUrl}/accounts`);
+  return v.parse(v.array(AccountSchema), await response.json());
+}
+
+export const accountsQuery = () =>
+  queryOptions({
+    queryKey: ['accounts'],
+    queryFn: fetchAccounts,
   });

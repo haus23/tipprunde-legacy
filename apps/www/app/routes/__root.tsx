@@ -5,7 +5,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import * as v from 'valibot';
 
 import { ChampionshipIdSchema } from '@haus23/tipprunde-model';
-import { championshipsQuery } from '#/unterbau/queries';
+import { accountsQuery, championshipsQuery } from '#/unterbau/queries';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   {
@@ -17,14 +17,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       deps: { championshipSlug },
       context: { queryClient },
     }) => {
+      // Fast data
       const championships = await queryClient.ensureQueryData(
         championshipsQuery(),
       );
+      const accounts = await queryClient.ensureQueryData(accountsQuery());
+
+      const championship =
+        championships.find((c) => c.id === championshipSlug) ||
+        championships[0];
 
       return {
-        championship:
-          championships.find((c) => c.id === championshipSlug) ||
-          championships[0],
+        championship,
       };
     },
     component: RootComponent,
