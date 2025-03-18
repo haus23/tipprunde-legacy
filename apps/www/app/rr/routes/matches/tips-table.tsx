@@ -21,7 +21,7 @@ export function TipsTable({
 
   return (
     <table className="w-full text-sm">
-      <thead className="bg-accent-subtle text-xs  text-accent-foreground">
+      <thead className="bg-accent-subtle text-accent-foreground text-xs">
         <tr>
           <th
             aria-sort={column === 'name' ? order : 'none'}
@@ -30,7 +30,8 @@ export function TipsTable({
           >
             <Button
               type="button"
-              className="relative p-1 pr-4 rounded-xs"
+              variant="tableHead"
+              className="relative rounded-xs p-1 pr-4"
               aria-label="Sortierung ändern"
               onClick={() => toggleSort('name')}
             >
@@ -51,7 +52,8 @@ export function TipsTable({
           >
             <Button
               type="button"
-              className="relative p-1 pr-4 rounded-xs"
+              variant="tableHead"
+              className="relative rounded-xs p-1 pr-4"
               aria-label="Sortierung ändern"
               onClick={() => toggleSort('tip')}
             >
@@ -72,7 +74,8 @@ export function TipsTable({
           >
             <Button
               type="button"
-              className="relative p-1 pr-4 rounded-xs"
+              className="relative rounded-xs p-1 pr-4"
+              variant="tableHead"
               aria-label="Sortierung ändern"
               onClick={() => toggleSort('points')}
             >
@@ -102,13 +105,13 @@ export function TipsTable({
                   <Link
                     prefetch="viewport"
                     to={`../spieler?name=${player.playerId}`}
-                    className={`inline-block w-full p-1 rounded-xs data-hovered:text-accent-foreground data-hovered:underline ${highlighted ? 'data-focus-visible:ring-offset-primary-active' : ''}`}
+                    className={`inline-block w-full rounded-xs p-1 data-hovered:text-accent-foreground data-hovered:underline ${highlighted ? 'data-focus-visible:ring-offset-primary-active' : ''}`}
                   >
                     {player.account.name}
                   </Link>
                 </div>
               </td>
-              <td className="relative pl-2 pr-6 text-center sm:pl-4 md:pl-6">
+              <td className="relative pr-6 pl-2 text-center sm:pl-4 md:pl-6">
                 <span>{tip?.tip}</span>
                 {highlighted && (
                   <span className="absolute right-0">

@@ -57,13 +57,9 @@ export function ChampionshipSelect() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button
-          variant="toolbar"
-          className="space-x-2"
-          aria-label="Öffne Turnier-Auswahl Dialog"
-        >
+        <Button variant="toolbar" aria-label="Öffne Turnier-Auswahl Dialog">
           <MagnifyingGlassIcon className="h-6" />
-          <span className="hidden sm:block">Turnier</span>
+          <span className="ml-2 hidden sm:block">Turnier</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="bottom-auto">
@@ -80,7 +76,7 @@ export function ChampionshipSelect() {
             placeholder="Turnier"
             className="w-full rounded-md border-0 bg-subtle px-6 py-2.5 font-semibold text-foreground placeholder:text-subtle-foreground focus:outline-hidden"
           />
-          <Command.List className="border-t border-line p-2">
+          <Command.List className="border-line border-t p-2">
             <Command.Empty>
               <div className="px-4 py-14 text-center text-subtle-foreground sm:px-14">
                 <FolderIcon className="mx-auto h-6 w-6" aria-hidden="true" />

@@ -83,8 +83,8 @@ export function PlayersRoute() {
   return (
     <div>
       <title>{`Tipps ${player.account.name} - ${championship.name} - runde.tips`}</title>
-      <header className="sticky top-0 z-10 mx-2 flex items-center gap-x-4 bg-background pb-2 pt-1 text-accent-foreground sm:mx-0 sm:gap-x-4">
-        <h2 className="flex gap-x-2 text-xl font-semibold tracking-tight">
+      <header className="sticky top-0 z-10 mx-2 flex items-center gap-x-4 bg-background pt-1 pb-2 text-accent-foreground sm:mx-0 sm:gap-x-4">
+        <h2 className="flex gap-x-2 font-semibold text-xl tracking-tight">
           <span className="hidden py-1 sm:block">{championship.name} -</span>
           <span className="py-1">Tipps von </span>
         </h2>
@@ -104,21 +104,21 @@ export function PlayersRoute() {
       <div className="mx-2 mt-6 max-w-3xl text-sm md:mx-auto">
         <div className="flex w-full justify-between">
           <div className="space-y-1">
-            <p className="text-xs font-medium uppercase">Platz</p>
+            <p className="font-medium text-xs uppercase">Platz</p>
             <p className="brand-app-text-contrast text-center font-semibold">{`${player.rank}.`}</p>
           </div>
           <div className="space-y-1">
-            <p className="px-4 text-xs font-medium uppercase">Spiele</p>
+            <p className="px-4 font-medium text-xs uppercase">Spiele</p>
             <p className="brand-app-text-contrast text-center font-semibold">{`${playedMatches} (${matches.length})`}</p>
           </div>
           <div className="space-y-1">
-            <p className="text-xs font-medium uppercase">Punkte</p>
+            <p className="font-medium text-xs uppercase">Punkte</p>
             <p className="brand-app-text-contrast text-center font-semibold">
               {player.points}
             </p>
           </div>
           <div className="space-y-1">
-            <p className="text-xs font-medium uppercase">Schnitt</p>
+            <p className="font-medium text-xs uppercase">Schnitt</p>
             <p className="brand-app-text-contrast text-center font-semibold">{`${
               playedMatches ? (player.points / playedMatches).toFixed(2) : ''
             }`}</p>
@@ -174,8 +174,8 @@ export function PlayersRoute() {
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <table className="w-full text-sm my-1">
-                  <thead className="bg-accent-subtle text-xs text-accent-foreground">
+                <table className="my-1 w-full text-sm">
+                  <thead className="bg-accent-subtle text-accent-foreground text-xs">
                     <tr>
                       <th
                         scope="col"
@@ -203,7 +203,7 @@ export function PlayersRoute() {
                       </th>
                       <th
                         scope="col"
-                        className="pl-2 pr-6 text-center sm:pl-4 md:pl-6"
+                        className="pr-6 pl-2 text-center sm:pl-4 md:pl-6"
                       >
                         <span className="font-medium uppercase">Tipp</span>
                       </th>
@@ -235,7 +235,7 @@ export function PlayersRoute() {
                               <Link
                                 prefetch="viewport"
                                 to={`../spiel?nr=${m.nr}`}
-                                className={`inline-block w-full p-1 rounded-xs data-hovered:text-accent-foreground data-hovered:underline ${info ? 'data-focus-visible:ring-offset-primary-active' : ''}`}
+                                className={`inline-block w-full rounded-xs p-1 data-hovered:text-accent-foreground data-hovered:underline ${info ? 'data-focus-visible:ring-offset-primary-active' : ''}`}
                               >
                                 <span className="hidden md:inline">
                                   {teams[m.hometeamId]?.name || 'TBA'} -
@@ -251,7 +251,7 @@ export function PlayersRoute() {
                           <td className="px-2 text-center sm:px-4 md:px-6">
                             {m.result}
                           </td>
-                          <td className="relative pl-2 pr-6 text-center sm:pl-4 md:pl-6">
+                          <td className="relative pr-6 pl-2 text-center sm:pl-4 md:pl-6">
                             <span>{tip?.tip}</span>
                             {info && (
                               <span className="absolute right-0">

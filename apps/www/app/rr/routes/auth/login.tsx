@@ -42,6 +42,7 @@ function LoginRoute() {
             <input
               id="email"
               name="email"
+              required
               className="boder-line rounded-md border px-4 py-2 outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card"
             />
             <div className="text-sm">
@@ -55,9 +56,7 @@ function LoginRoute() {
             </div>
           </div>
           <div>
-            <Button variant="default" type="submit">
-              Code anfordern
-            </Button>
+            <Button type="submit">Code anfordern</Button>
           </div>
         </form>
       </div>

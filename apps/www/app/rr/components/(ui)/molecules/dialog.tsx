@@ -8,7 +8,7 @@ const DialogClose = DialogPrimitive.Close;
 const DialogDescription = DialogPrimitive.Description;
 
 const styles = tv({
-  base: 'fixed inset-4 z-20 mx-auto max-w-xl rounded-md bg-subtle shadow-md ring-1 ring-line animate-in focus:outline-hidden data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0',
+  base: 'data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0 fixed inset-4 z-20 mx-auto max-w-xl animate-in rounded-md bg-background shadow-md ring-1 ring-gray-6 focus:outline-hidden',
 });
 
 namespace DialogContent {
@@ -18,7 +18,7 @@ namespace DialogContent {
 function DialogContent({ children, className, ...props }: DialogContent.Props) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay className="fixed inset-0 z-20 bg-background/20 backdrop-blur-xs transition-all duration-100 data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=open]:fade-in" />
+      <DialogPrimitive.Overlay className="data-[state=closed]:fade-out data-[state=open]:fade-in fixed inset-0 z-20 bg-background/20 backdrop-blur-xs transition-all duration-100 data-[state=closed]:animate-out" />
       <DialogPrimitive.Content className={styles({ className })} {...props}>
         {children}
       </DialogPrimitive.Content>

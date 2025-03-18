@@ -19,7 +19,7 @@ export function ThemeToggle(props: React.ComponentProps<'button'>) {
     >
       <div className="relative h-6 w-6">
         <MoonIcon className="absolute inset-0 h-6 origin-[50%_100px] rotate-90 transform transition-transform duration-500 dark:rotate-0" />
-        <SunIcon className="absolute inset-0 h-6 origin-[50%_100px] rotate-0 transform transition-transform duration-500 dark:-rotate-90" />
+        <SunIcon className="dark:-rotate-90 absolute inset-0 h-6 origin-[50%_100px] rotate-0 transform transition-transform duration-500" />
       </div>
     </Button>
   );

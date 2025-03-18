@@ -5,7 +5,7 @@ import { useHover } from 'react-aria';
 import { tv } from 'tailwind-variants';
 
 const styles = tv({
-  base: 'rounded-md bg-subtle text-accent-foreground shadow-md outline-hidden ring-1 ring-ring animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+  base: 'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 animate-in rounded-md bg-subtle text-accent-foreground shadow-md outline-hidden ring-1 ring-ring',
 });
 
 namespace InfoBox {
