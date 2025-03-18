@@ -1,5 +1,3 @@
-import { ConvexAuthProvider } from '@convex-dev/auth/react';
-import { ConvexReactClient } from 'convex/react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router';
@@ -20,8 +18,6 @@ import './styles/tailwind.css';
 
 const container = document.getElementById('root');
 if (!container) throw Error('Missing root element!');
-
-const convexClient = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
 const router = createBrowserRouter([
   {
@@ -79,9 +75,7 @@ const router = createBrowserRouter([
 createRoot(container).render(
   <StrictMode>
     <ThemeProvider>
-      <ConvexAuthProvider client={convexClient}>
-        <RouterProvider router={router} />
-      </ConvexAuthProvider>
+      <RouterProvider router={router} />
     </ThemeProvider>
   </StrictMode>,
 );
