@@ -2,17 +2,30 @@ import type { QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
+import * as v from 'valibot';
 
+import { ChampionshipIdSchema } from '@haus23/tipprunde-model';
 import { championshipsQuery } from '#/unterbau/queries';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   {
-    loader: async ({ context: { queryClient } }) => {
+    validateSearch: v.object({
+      turnier: v.optional(ChampionshipIdSchema),
+    }),
+    loaderDeps: ({ search: { turnier } }) => ({ championshipSlug: turnier }),
+    loader: async ({
+      deps: { championshipSlug },
+      context: { queryClient },
+    }) => {
       const championships = await queryClient.ensureQueryData(
         championshipsQuery(),
       );
 
-      return { championship: championships[0] };
+      return {
+        championship:
+          championships.find((c) => c.id === championshipSlug) ||
+          championships[0],
+      };
     },
     component: RootComponent,
   },
