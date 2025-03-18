@@ -8,10 +8,6 @@ import { NavMobile } from '#/components/nav/nav-mobile';
 import { tv } from 'tailwind-variants';
 import { useConvexUser } from '#/utils/auth';
 
-const topLayerStyles = tv({
-  base: 'absolute inset-0 h-[480px] bg-gradient-to-b from-accent-4 to-transparent opacity-60',
-});
-
 const headerStyles = tv({
   base: [
     'fixed inset-0 z-10 h-16 px-2 shadow-transparent shadow-xs transition-colors sm:px-4',
@@ -41,29 +37,23 @@ export default function Layout() {
 
   return (
     <>
-      <div
-        className={topLayerStyles()}
-        style={{ width: 'calc(100% + var(--removed-body-scroll-bar-size))' }}
+      <header
+        data-scroll-state={scrollState}
+        className={headerStyles({
+          className: RemoveScroll.classNames.fullWidth,
+        })}
+      >
+        <NavDesktop />
+        <NavMobile />
+      </header>
+      <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">
+        <Outlet />
+      </main>
+      <ScrollRestoration
+        getKey={(location) => {
+          return location.pathname;
+        }}
       />
-      <div className="relative isolate min-h-svh w-full">
-        <header
-          data-scroll-state={scrollState}
-          className={headerStyles({
-            className: RemoveScroll.classNames.fullWidth,
-          })}
-        >
-          <NavDesktop />
-          <NavMobile />
-        </header>
-        <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">
-          <Outlet />
-        </main>
-        <ScrollRestoration
-          getKey={(location) => {
-            return location.pathname;
-          }}
-        />
-      </div>
     </>
   );
 }
