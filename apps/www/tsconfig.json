@@ -1,6 +1,6 @@
 {
   "extends": ["@haus23/tipprunde-tsconfig/app.json"],
-  "include": ["app"],
+  "include": ["app", "vite.config.ts"],
   "compilerOptions": {
     /* Vite */
     "types": ["vite/client"],
