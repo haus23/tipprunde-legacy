@@ -1,5 +1,16 @@
 # www
 
+## 0.20.3
+
+### Patch Changes
+
+- [07920e5](https://github.com/haus23/tipprunde-legacy/commit/07920e5): Rename routes to official name.
+- [fd0ad64](https://github.com/haus23/tipprunde-legacy/commit/fd0ad64): Re-add lean link component - now based on rac link.
+- [8fd983c](https://github.com/haus23/tipprunde-legacy/commit/8fd983c): Move layout components (single use) to the routes folder.
+- [e73b46e](https://github.com/haus23/tipprunde-legacy/commit/e73b46e): Add global title. Title management delayed for now.
+- [bf0e29b](https://github.com/haus23/tipprunde-legacy/commit/bf0e29b): Re-add fixed app header.
+- [0cfcd49](https://github.com/haus23/tipprunde-legacy/commit/0cfcd49): Re-add home link with logo in app header.
+
 ## 0.20.2
 
 ### Patch Changes
