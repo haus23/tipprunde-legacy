@@ -1,5 +1,12 @@
 # www
 
+## 0.20.4
+
+### Patch Changes
+
+- [6af8e4e](https://github.com/haus23/tipprunde-legacy/commit/6af8e4e): Re-implement lean theme system. Now with zustand, no
+- [0b5335d](https://github.com/haus23/tipprunde-legacy/commit/0b5335d): Re-add lean button - based on rac button.
+
 ## 0.20.3
 
 ### Patch Changes
