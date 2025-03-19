@@ -1,5 +1,14 @@
 # www
 
+## 0.20.5
+
+### Patch Changes
+
+- [67d866f](https://github.com/haus23/tipprunde-legacy/commit/67d866f): Base the link ui component on thw tanstack router link.
+- [dd5c570](https://github.com/haus23/tipprunde-legacy/commit/dd5c570): Set default button type.
+- [c30366f](https://github.com/haus23/tipprunde-legacy/commit/c30366f): Rename app layout components folder.
+- [6e8e5dd](https://github.com/haus23/tipprunde-legacy/commit/6e8e5dd): Design the desktop navbar.
+
 ## 0.20.4
 
 ### Patch Changes
