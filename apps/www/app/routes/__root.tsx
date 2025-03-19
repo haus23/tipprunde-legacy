@@ -1,9 +1,16 @@
 import { ChampionshipIdSchema } from '@haus23/tipprunde-model';
 import type { QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
+import {
+  type NavigateOptions,
+  Outlet,
+  type ToOptions,
+  createRootRouteWithContext,
+  useRouter,
+} from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { Suspense } from 'react';
+import { RouterProvider } from 'react-aria-components';
 import * as v from 'valibot';
 
 import { SplashScreen } from '#/components/splash-screen';
@@ -47,9 +54,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   },
 );
 
+declare module 'react-aria-components' {
+  interface RouterConfig {
+    href: ToOptions['to'];
+    routerOptions: Omit<NavigateOptions, 'to'>;
+  }
+}
+
 function RootComponent() {
+  const router = useRouter();
+
   return (
-    <>
+    <RouterProvider
+      navigate={(to, options) => router.navigate({ to, ...options })}
+      useHref={(to) => router.buildLocation({ to }).href}
+    >
       <div
         className="absolute inset-0 h-[480px] bg-gradient-to-b from-accent-4 to-transparent opacity-60"
         style={{ width: 'calc(100% + var(--removed-body-scroll-bar-size))' }}
@@ -64,6 +83,6 @@ function RootComponent() {
       </Suspense>
       <TanStackRouterDevtools />
       <ReactQueryDevtools />
-    </>
+    </RouterProvider>
   );
 }
