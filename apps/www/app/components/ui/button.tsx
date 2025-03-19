@@ -27,8 +27,17 @@ namespace Button {
   }
 }
 
-export function Button({ className, variant, ...props }: Button.Props) {
+export function Button({
+  className,
+  variant,
+  type = 'button',
+  ...props
+}: Button.Props) {
   return (
-    <_Button className={buttonStyles({ variant, className })} {...props} />
+    <_Button
+      className={buttonStyles({ variant, className })}
+      type={type}
+      {...props}
+    />
   );
 }
