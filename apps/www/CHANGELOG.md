@@ -1,5 +1,18 @@
 # www
 
+## 0.20.2
+
+### Patch Changes
+
+- [7d5b7fa](https://github.com/haus23/tipprunde-legacy/commit/7d5b7fa): Load main data in root loader. Add suspense fallback with
+- [0bcf5fd](https://github.com/haus23/tipprunde-legacy/commit/0bcf5fd): Use search param to determine current championship.
+- [e4f876c](https://github.com/haus23/tipprunde-legacy/commit/e4f876c): Add devtools for tanstack router and query.
+- [abb6c90](https://github.com/haus23/tipprunde-legacy/commit/abb6c90): Add convex auth.
+- [2c79d67](https://github.com/haus23/tipprunde-legacy/commit/2c79d67): Load championships via tanstack-query - and take first as current.
+- [c78fbb8](https://github.com/haus23/tipprunde-legacy/commit/c78fbb8): Re-add top backdrop.
+- [a1c5db9](https://github.com/haus23/tipprunde-legacy/commit/a1c5db9): Re-add logo and splash-screen.
+- [0e67736](https://github.com/haus23/tipprunde-legacy/commit/0e67736): Eager fetch accounts.
+
 ## 0.20.1
 
 ### Patch Changes
