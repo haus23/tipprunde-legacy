@@ -11,5 +11,9 @@ function RankingComponent() {
   const { championship } = useLoaderData({ from: '__root__' });
   const ranking = useSuspenseQuery(playersQuery(championship.id));
 
-  return <h1 className="text-2xl">{championship.name} - Aktuelle Tabelle</h1>;
+  return (
+    <div>
+      <h1 className="text-2xl">{championship.name} - Aktuelle Tabelle</h1>
+    </div>
+  );
 }
