@@ -1,8 +1,14 @@
-import { getRouteApi, linkOptions, useLinkProps } from '@tanstack/react-router';
+import {
+  getRouteApi,
+  linkOptions,
+  useLoaderData,
+} from '@tanstack/react-router';
+import { MenuIcon, PanelLeftIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { tv } from 'tailwind-variants';
 
 import { Logo } from '#/components/logo';
+import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
 import { TriggerButton } from '../-chat/trigger-button';
 import { ChampionshipSelect } from './championship-select';
@@ -53,15 +59,23 @@ export function AppHeader() {
   }, []);
 
   const { turnier } = routeApi.useSearch();
+  const { championship } = useLoaderData({ from: '__root__' });
 
   return (
     <header data-scroll-state={scrollState} className={headerStyles()}>
       <div className="flex h-16 justify-between">
-        <nav className="flex items-center gap-x-4">
-          <Link to="/" className="flex items-center gap-x-2 pr-2 pl-1">
+        <div className="flex items-center gap-x-2 md:hidden">
+          <Button variant="ghost" className="inline md:hidden">
+            <PanelLeftIcon className="size-5" />
+          </Button>
+          <h2 className="text-xl">{championship.name}</h2>
+        </div>
+        <nav className="hidden items-center gap-x-4 md:flex">
+          <Link to="/" className="items-center gap-x-2 pr-2 pl-1 md:flex">
             <Logo className="size-10" />
             <span className="text-xl">runde.tips</span>
           </Link>
+
           <div className="flex h-16 items-stretch gap-x-2">
             {navLinks.map((link) => (
               <div key={link.to} className="relative flex items-center px-2">
@@ -78,10 +92,12 @@ export function AppHeader() {
           </div>
         </nav>
         <div className="flex items-center gap-x-2">
-          <ChampionshipSelect />
-          <ThemeSelect />
+          <div className="hidden items-center gap-x-2 md:flex">
+            <ChampionshipSelect />
+            <ThemeSelect />
+            <UserMenu />
+          </div>
           <TriggerButton />
-          <UserMenu />
         </div>
       </div>
     </header>
