@@ -6,6 +6,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { Suspense } from 'react';
 import * as v from 'valibot';
 
+import { AppHeader } from '#/components/layout/app-header';
 import { SplashScreen } from '#/components/splash-screen';
 import {
   accountsQuery,
@@ -55,7 +56,10 @@ function RootComponent() {
       />
       <Suspense fallback={<SplashScreen />}>
         <div className="relative isolate min-h-svh w-full">
-          <Outlet />
+          <AppHeader />
+          <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">
+            <Outlet />
+          </main>
         </div>
       </Suspense>
       <TanStackRouterDevtools />
