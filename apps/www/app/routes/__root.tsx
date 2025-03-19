@@ -14,7 +14,7 @@ import { RouterProvider } from 'react-aria-components';
 import * as v from 'valibot';
 
 import { SplashScreen } from '#/components/splash-screen';
-import { AppHeader } from '#/routes/-components/app-header';
+import { AppHeader } from '#/routes/-app/app-header';
 import {
   accountsQuery,
   championshipsQuery,
