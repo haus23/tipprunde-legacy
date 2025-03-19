@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { tv } from 'tailwind-variants';
 
+import { Logo } from '#/components/logo';
+import { Link } from '#/components/ui/link';
+
 const headerStyles = tv({
   base: [
     'fixed inset-0 z-10 h-16 px-2 shadow-transparent shadow-xs transition-colors sm:px-4',
@@ -28,7 +31,14 @@ export function AppHeader() {
 
   return (
     <header data-scroll-state={scrollState} className={headerStyles()}>
-      <span>runde.tips</span>
+      <div className="flex h-16">
+        <nav className="flex">
+          <Link href="/" className="flex items-center gap-x-2">
+            <Logo className="size-10" />
+            <span className="text-xl">runde.tips</span>
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }
