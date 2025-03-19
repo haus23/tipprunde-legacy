@@ -3,6 +3,7 @@ import { tv } from 'tailwind-variants';
 
 import { Logo } from '#/components/logo';
 import { Link } from '#/components/ui/link';
+import { ThemeSelect } from './theme-select';
 
 const headerStyles = tv({
   base: [
@@ -31,13 +32,16 @@ export function AppHeader() {
 
   return (
     <header data-scroll-state={scrollState} className={headerStyles()}>
-      <div className="flex h-16">
+      <div className="flex h-16 justify-between">
         <nav className="flex">
           <Link href="/" className="flex items-center gap-x-2">
             <Logo className="size-10" />
             <span className="text-xl">runde.tips</span>
           </Link>
         </nav>
+        <div className="flex items-center">
+          <ThemeSelect />
+        </div>
       </div>
     </header>
   );
