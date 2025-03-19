@@ -11,6 +11,7 @@ import { Logo } from '#/components/logo';
 import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
 import { TriggerButton } from '../-chat/trigger-button';
+import { useLayout } from './app-layout';
 import { ChampionshipSelect } from './championship-select';
 import { ThemeSelect } from './theme-select';
 import { UserMenu } from './user-menu';
@@ -43,6 +44,9 @@ const headerStyles = tv({
 type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 
 export function AppHeader() {
+
+  const { toggleSidebar } = useLayout();
+
   const [scrollState, setScrollState] = useState<ScrollState>('at-top');
   useEffect(() => {
     let previousScrollY = window.scrollY;
@@ -65,7 +69,12 @@ export function AppHeader() {
     <header data-scroll-state={scrollState} className={headerStyles()}>
       <div className="flex h-16 justify-between">
         <div className="flex items-center gap-x-2 md:hidden">
-          <Button variant="ghost" className="inline md:hidden">
+          <Button
+            onPress={toggleSidebar}
+            variant="ghost"
+            className="inline md:hidden"
+            aria-label="Sidebar-Toggle"
+          >
             <PanelLeftIcon className="size-5" />
           </Button>
           <h2 className="text-xl">{championship.name}</h2>

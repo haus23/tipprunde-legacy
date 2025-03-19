@@ -21,6 +21,8 @@ import {
   matchesQuery,
   playersQuery,
 } from '#/unterbau/queries';
+import { AppLayout } from './-app/app-layout';
+import { AppSidebar } from './-app/app-sidebar';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   {
@@ -74,12 +76,13 @@ function RootComponent() {
         style={{ width: 'calc(100% + var(--removed-body-scroll-bar-size))' }}
       />
       <Suspense fallback={<SplashScreen />}>
-        <div className="relative isolate min-h-svh w-full">
+        <AppLayout className="relative isolate min-h-svh w-full">
+          <AppSidebar />
           <AppHeader />
           <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">
             <Outlet />
           </main>
-        </div>
+        </AppLayout>
       </Suspense>
       <TanStackRouterDevtools />
       <ReactQueryDevtools />
