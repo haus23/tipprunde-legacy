@@ -6,8 +6,8 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { Suspense } from 'react';
 import * as v from 'valibot';
 
-import { AppHeader } from '#/components/layout/app-header';
 import { SplashScreen } from '#/components/splash-screen';
+import { AppHeader } from '#/routes/-components/app-header';
 import {
   accountsQuery,
   championshipsQuery,
