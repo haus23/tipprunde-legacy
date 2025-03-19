@@ -1,4 +1,4 @@
-import { type LinkProps, Link as _Link } from 'react-aria-components';
+import { type LinkProps, Link as _Link } from '@tanstack/react-router';
 
 import { tv } from 'tailwind-variants';
 import { focusStyles } from './_styles';
