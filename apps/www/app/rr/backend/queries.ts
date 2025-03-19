@@ -1,42 +1,12 @@
 import {
-  AccountSchema,
-  ChampionshipSchema,
   CurrentTipsSchema,
   MatchTipsSchema,
-  MatchesSchema,
   PlayerTipsSchema,
-  PlayerWithAccountSchema,
 } from '@haus23/tipprunde-model';
 
 import { queryOptions } from '@tanstack/react-query';
 import { data } from 'react-router';
 import * as v from 'valibot';
-
-async function fetchAccounts() {
-  console.log('Fetching accounts');
-  const response = await fetch(`${baseUrl}/accounts`);
-  return v.parse(v.array(AccountSchema), await response.json());
-}
-
-export const accountsQuery = () =>
-  queryOptions({
-    queryKey: ['accounts'],
-    queryFn: fetchAccounts,
-  });
-
-async function fetchPlayers(championshipId: string) {
-  console.log('Fetching championship players', championshipId);
-  const response = await fetch(
-    `${baseUrl}/championships/${championshipId}/players`,
-  );
-  return v.parse(v.array(PlayerWithAccountSchema), await response.json());
-}
-
-export const playersQuery = (championshipId: string) =>
-  queryOptions({
-    queryKey: ['players', championshipId],
-    queryFn: () => fetchPlayers(championshipId),
-  });
 
 async function fetchCurrentTips(championshipId: string) {
   console.log('Fetching current tips', championshipId);
@@ -50,20 +20,6 @@ export const currentTipsQuery = (championshipId: string) =>
   queryOptions({
     queryKey: ['current-tips', championshipId],
     queryFn: () => fetchCurrentTips(championshipId),
-  });
-
-async function fetchMatches(championshipId: string) {
-  console.log('Fetching championship matches', championshipId);
-  const response = await fetch(
-    `${baseUrl}/championships/${championshipId}/matches`,
-  );
-  return v.parse(MatchesSchema, await response.json());
-}
-
-export const matchesQuery = (championshipId: string) =>
-  queryOptions({
-    queryKey: ['matches', championshipId],
-    queryFn: () => fetchMatches(championshipId),
   });
 
 async function fetchPlayerTips(championshipId: string, accountId: string) {
