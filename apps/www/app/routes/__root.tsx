@@ -84,8 +84,8 @@ function RootComponent() {
           </main>
         </AppLayout>
       </Suspense>
-      <TanStackRouterDevtools />
-      <ReactQueryDevtools />
+      <TanStackRouterDevtools position="bottom-right" />
+      <ReactQueryDevtools buttonPosition="bottom-right" />
     </RouterProvider>
   );
 }
