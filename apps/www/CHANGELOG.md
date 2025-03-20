@@ -1,5 +1,16 @@
 # www
 
+## 0.20.6
+
+### Patch Changes
+
+- [3b17b45](https://github.com/haus23/tipprunde-legacy/commit/3b17b45): Add the layout logic for the sidebar.
+- [e88fa17](https://github.com/haus23/tipprunde-legacy/commit/e88fa17): Intial design of the mobile sidebar.
+- [502a797](https://github.com/haus23/tipprunde-legacy/commit/502a797): Design mobile app header.
+- [5f1a4f2](https://github.com/haus23/tipprunde-legacy/commit/5f1a4f2): Implement an action context to delegate actions to closing the
+- [e284ce8](https://github.com/haus23/tipprunde-legacy/commit/e284ce8): Extract the nav links.
+- [224d341](https://github.com/haus23/tipprunde-legacy/commit/224d341): Move the devtools to the right.
+
 ## 0.20.5
 
 ### Patch Changes
