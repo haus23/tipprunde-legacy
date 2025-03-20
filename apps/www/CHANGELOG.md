@@ -1,5 +1,18 @@
 # www
 
+## 0.20.7
+
+### Patch Changes
+
+- [4b51697](https://github.com/haus23/tipprunde-legacy/commit/4b51697): Move splash-screen to app-level components.
+- [00c0b5d](https://github.com/haus23/tipprunde-legacy/commit/00c0b5d): Hide auth and chat features behind feature flag.
+- [6612ca5](https://github.com/haus23/tipprunde-legacy/commit/6612ca5): Implement open/close logic for championship select.
+- [e8c828b](https://github.com/haus23/tipprunde-legacy/commit/e8c828b): Start typing convex queries/mutations.
+- [be673ae](https://github.com/haus23/tipprunde-legacy/commit/be673ae): Renamed generated convex api-file. Will controll it by myself.
+- [25f1f20](https://github.com/haus23/tipprunde-legacy/commit/25f1f20): Reuse search in navigation.
+- [25ea7c0](https://github.com/haus23/tipprunde-legacy/commit/25ea7c0): Move reusable - not layout related - components to common
+- [219fa03](https://github.com/haus23/tipprunde-legacy/commit/219fa03): Close sidebar on rotating wide enough devices.
+
 ## 0.20.6
 
 ### Patch Changes
