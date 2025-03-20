@@ -1,9 +1,11 @@
 import { getRouteApi } from '@tanstack/react-router';
 import { Dialog, Modal, ModalOverlay, Separator } from 'react-aria-components';
 
+import { useEffect } from 'react';
 import { Logo } from '#/components/logo';
 import { ActionProvider } from '#/components/ui/action-context';
 import { Link } from '#/components/ui/link';
+import { useIsMobile } from '#/utils/misc';
 import { useLayout } from './app-layout';
 import { navLinks } from './nav-links';
 import { ThemeSelect } from './theme-select';
@@ -12,6 +14,9 @@ const routeApi = getRouteApi('__root__');
 
 export function AppSidebar() {
   const { isSidebarOpen, setSidebarOpen } = useLayout();
+
+  const isMobile = useIsMobile();
+  useEffect(() => { if (!isMobile) setSidebarOpen(false); }, [isMobile, setSidebarOpen]);
 
   const { turnier } = routeApi.useSearch();
 
