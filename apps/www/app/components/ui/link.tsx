@@ -2,6 +2,7 @@ import { type LinkProps, Link as _Link } from '@tanstack/react-router';
 
 import { tv } from 'tailwind-variants';
 import { focusStyles } from './_styles';
+import { useActionContext } from './action-context';
 
 const linkStyles = tv({
   extend: focusStyles,
@@ -14,5 +15,17 @@ namespace Link {
 }
 
 export function Link({ className, ...props }: Link.Props) {
-  return <_Link className={linkStyles({ className })} {...props} />;
+  const ctx = useActionContext();
+
+  function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    ctx?.onAction();
+  }
+
+  return (
+    <_Link
+      onClick={handleClick}
+      className={linkStyles({ className })}
+      {...props}
+    />
+  );
 }

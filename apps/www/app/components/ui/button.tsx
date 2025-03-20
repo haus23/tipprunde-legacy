@@ -1,7 +1,12 @@
-import { type ButtonProps, Button as _Button } from 'react-aria-components';
+import {
+  type ButtonProps,
+  type PressEvent,
+  Button as _Button,
+} from 'react-aria-components';
 import { type VariantProps, tv } from 'tailwind-variants';
 
 import { focusStyles } from './_styles';
+import { useActionContext } from './action-context';
 
 const buttonStyles = tv({
   extend: focusStyles,
@@ -30,11 +35,20 @@ namespace Button {
 export function Button({
   className,
   variant,
+  onPress,
   type = 'button',
   ...props
 }: Button.Props) {
+  const ctx = useActionContext();
+
+  function handlePress(e: PressEvent) {
+    onPress?.(e);
+    ctx?.onAction();
+  }
+
   return (
     <_Button
+      onPress={handlePress}
       className={buttonStyles({ variant, className })}
       type={type}
       {...props}
