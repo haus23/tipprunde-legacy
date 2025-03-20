@@ -1,3 +1,4 @@
+import { getRouteApi } from '@tanstack/react-router';
 import { Dialog, Modal, ModalOverlay, Separator } from 'react-aria-components';
 
 import { Logo } from '#/components/logo';
@@ -7,10 +8,12 @@ import { useLayout } from './app-layout';
 import { navLinks } from './nav-links';
 import { ThemeSelect } from './theme-select';
 
+const routeApi = getRouteApi('__root__');
+
 export function AppSidebar() {
   const { isSidebarOpen, setSidebarOpen } = useLayout();
 
-  if (!isSidebarOpen) return null;
+  const { turnier } = routeApi.useSearch();
 
   return (
     <ModalOverlay
@@ -37,6 +40,7 @@ export function AppSidebar() {
                 <div key={link.to} className="px-2 py-1">
                   <Link
                     to={link.to}
+                    search={{ turnier }}
                     className="flex items-center gap-x-2 p-2 text-gray-11 hover:bg-accent-4 hover:text-gray-12 aria-[current]:bg-accent-5 aria-[current]:text-gray-12"
                   >
                     <link.icon className="size-5" />
