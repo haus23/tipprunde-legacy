@@ -1,9 +1,5 @@
-import {
-  getRouteApi,
-  linkOptions,
-  useLoaderData,
-} from '@tanstack/react-router';
-import { MenuIcon, PanelLeftIcon } from 'lucide-react';
+import { getRouteApi, useLoaderData } from '@tanstack/react-router';
+import { PanelLeftIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { tv } from 'tailwind-variants';
 
@@ -13,24 +9,9 @@ import { Link } from '#/components/ui/link';
 import { TriggerButton } from '../-chat/trigger-button';
 import { useLayout } from './app-layout';
 import { ChampionshipSelect } from './championship-select';
+import { navLinks } from './nav-links';
 import { ThemeSelect } from './theme-select';
 import { UserMenu } from './user-menu';
-
-const navLinks = linkOptions([
-  {
-    to: '/',
-    label: 'Tabelle',
-    activeOptions: { exact: true },
-  },
-  {
-    to: '/spieler',
-    label: 'Spieler',
-  },
-  {
-    to: '/spiele',
-    label: 'Spiele',
-  },
-]);
 
 const routeApi = getRouteApi('__root__');
 
@@ -44,7 +25,6 @@ const headerStyles = tv({
 type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 
 export function AppHeader() {
-
   const { toggleSidebar } = useLayout();
 
   const [scrollState, setScrollState] = useState<ScrollState>('at-top');
