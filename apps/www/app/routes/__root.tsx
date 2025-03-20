@@ -13,6 +13,7 @@ import { Suspense } from 'react';
 import { RouterProvider } from 'react-aria-components';
 import * as v from 'valibot';
 
+import { ChampionshipSelect } from '#/components/championship-select';
 import { AppHeader } from '#/routes/-app/app-header';
 import { SplashScreen } from '#/routes/-app/splash-screen';
 import {
@@ -21,6 +22,7 @@ import {
   matchesQuery,
   playersQuery,
 } from '#/unterbau/queries';
+
 import { AppLayout } from './-app/app-layout';
 import { AppSidebar } from './-app/app-sidebar';
 
@@ -82,6 +84,7 @@ function RootComponent() {
           <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">
             <Outlet />
           </main>
+          <ChampionshipSelect />
         </AppLayout>
       </Suspense>
       <TanStackRouterDevtools position="bottom-right" />

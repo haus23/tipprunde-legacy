@@ -1,14 +1,14 @@
 import { getRouteApi, useLoaderData } from '@tanstack/react-router';
-import { PanelLeftIcon } from 'lucide-react';
+import { PanelLeftIcon, SearchIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { tv } from 'tailwind-variants';
 
 import { Logo } from '#/components/logo';
 import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
+
 import { TriggerButton } from '../-chat/trigger-button';
 import { useLayout } from './app-layout';
-import { ChampionshipSelect } from './championship-select';
 import { navLinks } from './nav-links';
 import { ThemeSelect } from './theme-select';
 import { UserMenu } from './user-menu';
@@ -25,7 +25,7 @@ const headerStyles = tv({
 type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 
 export function AppHeader() {
-  const { toggleSidebar } = useLayout();
+  const { toggleSidebar, setChampionshipSelectOpen } = useLayout();
 
   const [scrollState, setScrollState] = useState<ScrollState>('at-top');
   useEffect(() => {
@@ -82,7 +82,15 @@ export function AppHeader() {
         </nav>
         <div className="flex items-center gap-x-2">
           <div className="hidden items-center gap-x-2 md:flex">
-            <ChampionshipSelect />
+            <Button
+              onPress={() => setChampionshipSelectOpen(true)}
+              variant="ghost"
+              className="flex gap-x-1"
+              aria-label="Turnier-Auswahl öffnen"
+            >
+              <SearchIcon className="size-5" />
+              <span>Turnier</span>
+            </Button>
             <ThemeSelect />
             <UserMenu />
           </div>
