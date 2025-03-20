@@ -13,8 +13,8 @@ import { Suspense } from 'react';
 import { RouterProvider } from 'react-aria-components';
 import * as v from 'valibot';
 
-import { SplashScreen } from '#/components/splash-screen';
 import { AppHeader } from '#/routes/-app/app-header';
+import { SplashScreen } from '#/routes/-app/splash-screen';
 import {
   accountsQuery,
   championshipsQuery,
