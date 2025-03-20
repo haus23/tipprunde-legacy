@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Dialog, Modal, ModalOverlay, Separator } from 'react-aria-components';
 
 import { Logo } from '#/components/logo';
+import { ThemeSelect } from '#/components/theme-select';
 import { ActionProvider } from '#/components/ui/action-context';
 import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
@@ -11,7 +12,6 @@ import { Link } from '#/components/ui/link';
 import { useIsMobile } from '#/utils/misc';
 import { useLayout } from './app-layout';
 import { navLinks } from './nav-links';
-import { ThemeSelect } from './theme-select';
 
 const routeApi = getRouteApi('__root__');
 

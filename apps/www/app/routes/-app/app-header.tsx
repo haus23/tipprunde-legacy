@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 import { tv } from 'tailwind-variants';
 
 import { Logo } from '#/components/logo';
+import { ThemeSelect } from '#/components/theme-select';
 import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
+import { UserMenu } from '#/components/user-menu';
 
 import { TriggerButton } from '../-chat/trigger-button';
 import { useLayout } from './app-layout';
 import { navLinks } from './nav-links';
-import { ThemeSelect } from './theme-select';
-import { UserMenu } from './user-menu';
 
 const routeApi = getRouteApi('__root__');
 
