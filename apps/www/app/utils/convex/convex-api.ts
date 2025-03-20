@@ -1,6 +1,3 @@
-// convexApi1742336762624
-// Copied: 18/03/2025
-
 import { type FunctionReference, anyApi } from 'convex/server';
 
 export const api: PublicApiType = anyApi as unknown as PublicApiType;
@@ -22,12 +19,14 @@ export type PublicApiType = {
           numItems: number;
         };
       },
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       any
     >;
     create: FunctionReference<
       'mutation',
       'public',
       { apiKey: string; body: string; user: string },
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       any
     >;
   };
@@ -36,6 +35,7 @@ export type PublicApiType = {
       'query',
       'public',
       Record<string, never>,
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       any
     >;
     signIn: FunctionReference<
@@ -43,17 +43,26 @@ export type PublicApiType = {
       'public',
       {
         calledBy?: string;
+        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         params?: any;
         provider?: string;
         refreshToken?: string;
         verifier?: string;
       },
+      // biome-ignore lint/suspicious/noExplicitAny: <explanation>
       any
     >;
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     signOut: FunctionReference<'action', 'public', Record<string, never>, any>;
   };
   users: {
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     current: FunctionReference<'query', 'public', Record<string, never>, any>;
   };
+  flags: {
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    getAll: FunctionReference<'query', 'public', { apiKey: string }, any>;
+  };
 };
+// biome-ignore lint/complexity/noBannedTypes: <explanation>
 export type InternalApiType = {};
