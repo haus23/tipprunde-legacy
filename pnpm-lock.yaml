@@ -202,6 +202,9 @@ importers:
       react-router:
         specifier: ^7.3.0
         version: 7.3.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      tailwind-merge:
+        specifier: ^3.0.2
+        version: 3.0.2
       tailwind-variants:
         specifier: ^1.0.0
         version: 1.0.0(tailwindcss@4.0.14)

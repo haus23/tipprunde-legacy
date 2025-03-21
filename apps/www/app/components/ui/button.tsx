@@ -9,8 +9,10 @@ import { focusStyles } from './_styles';
 import { useActionContext } from './action-context';
 
 const buttonStyles = tv({
-  extend: focusStyles,
-  base: 'inline-flex items-center justify-center font-medium text-sm transition-colors',
+  base: [
+    focusStyles,
+    'inline-flex items-center justify-center font-medium text-sm transition-colors',
+  ],
   variants: {
     variant: {
       primary:

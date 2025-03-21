@@ -1,12 +1,12 @@
 import { type LinkProps, Link as _Link } from '@tanstack/react-router';
-
 import { useFocusRing } from 'react-aria';
 import { tv } from 'tailwind-variants';
+
 import { focusStyles } from './_styles';
 import { useActionContext } from './action-context';
 
 const linkStyles = tv({
-  extend: focusStyles,
+  base: [focusStyles],
 });
 
 namespace Link {
