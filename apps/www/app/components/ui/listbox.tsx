@@ -5,10 +5,10 @@ import {
 } from 'react-aria-components';
 import { tv } from 'tailwind-variants';
 
-import { focusStyles } from './_styles';
+import { componentHoverStyles, focusVisibleStyles } from './_styles';
 
 const listStyles = tv({});
-const itemStyles = tv({ base: [focusStyles] });
+const itemStyles = tv({ base: [focusVisibleStyles, componentHoverStyles] });
 
 namespace ListBox {
   export interface Props<T> extends ListBoxProps<T> {

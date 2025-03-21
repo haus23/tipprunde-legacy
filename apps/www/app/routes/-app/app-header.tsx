@@ -75,7 +75,8 @@ export function AppHeader() {
                   {...link}
                   to={link.to}
                   search={{ turnier }}
-                  className="px-4 py-2 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 hover:bg-accent-4 aria-[current]:after:border-accent-7"
+                  variant="navlink"
+                  className="px-4 py-2 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-accent-7"
                 >
                   {link.label}
                 </Link>

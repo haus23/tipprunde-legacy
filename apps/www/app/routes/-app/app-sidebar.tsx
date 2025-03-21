@@ -52,7 +52,8 @@ export function AppSidebar() {
                   <Link
                     to={link.to}
                     search={{ turnier }}
-                    className="flex items-center gap-x-2 p-2 text-gray-11 hover:bg-accent-4 hover:text-gray-12 aria-[current]:bg-accent-5 aria-[current]:text-gray-12"
+                    variant="navlink"
+                    className="flex items-center gap-x-2 p-2 aria-[current]:bg-accent-5 aria-[current]:text-gray-12"
                   >
                     <link.icon className="size-5" />
                     <span>{link.label}</span>

@@ -48,7 +48,7 @@ export function ChampionshipSelect() {
           >
             <Autocomplete filter={contains}>
               <SearchField aria-label="Turniere durchsuchen">
-                <Input placeholder="Turnier" />
+                <Input autoFocus placeholder="Turnier" />
               </SearchField>
               <ListBox items={championships}>
                 {(championship) => (
