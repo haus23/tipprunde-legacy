@@ -36,7 +36,7 @@ export function AppSidebar() {
       <Modal className="fixed inset-y-0 left-0 w-64 bg-background shadow-gray-4 shadow-lg">
         <ActionProvider onAction={() => setSidebarOpen(false)}>
           <Dialog
-            className="flex h-full flex-col justify-between py-2"
+            className="flex h-full flex-col justify-between py-2 font-medium "
             aria-label="Sidebar-Navigation"
           >
             <nav className="flex flex-col gap-x-4">

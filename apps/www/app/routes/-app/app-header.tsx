@@ -18,7 +18,7 @@ const routeApi = getRouteApi('__root__');
 
 const headerStyles = tv({
   base: [
-    'fixed inset-0 z-10 h-16 px-2 shadow-transparent shadow-xs transition-colors sm:px-4',
+    'fixed inset-0 z-10 h-16 px-2 font-medium shadow-transparent shadow-xs transition-colors sm:px-4',
     '[&:not([data-scroll-state=at-top])]:bg-background [&:not([data-scroll-state=at-top])]:shadow-gray-4',
   ],
 });
