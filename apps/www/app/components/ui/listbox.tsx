@@ -4,9 +4,10 @@ import {
   ListBoxItem as _ListBoxItem,
 } from 'react-aria-components';
 import { tv } from 'tailwind-variants';
+import { focusStyles } from './_styles';
 
 const listStyles = tv({});
-const itemStyles = tv({});
+const itemStyles = tv({ extend: focusStyles });
 
 namespace ListBox {
   export interface Props<T> extends ListBoxProps<T> {

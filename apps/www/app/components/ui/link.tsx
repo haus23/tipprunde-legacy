@@ -1,5 +1,6 @@
 import { type LinkProps, Link as _Link } from '@tanstack/react-router';
 
+import { useFocusRing } from 'react-aria';
 import { tv } from 'tailwind-variants';
 import { focusStyles } from './_styles';
 import { useActionContext } from './action-context';
@@ -16,6 +17,7 @@ namespace Link {
 
 export function Link({ className, ...props }: Link.Props) {
   const ctx = useActionContext();
+  const { isFocusVisible, focusProps } = useFocusRing();
 
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
     ctx?.onAction();
@@ -25,6 +27,8 @@ export function Link({ className, ...props }: Link.Props) {
     <_Link
       onClick={handleClick}
       className={linkStyles({ className })}
+      {...(isFocusVisible && { 'data-focus-visible': true })}
+      {...focusProps}
       {...props}
     />
   );
