@@ -1,5 +1,15 @@
 # www
 
+## 0.20.8
+
+### Patch Changes
+
+- [b05d0ff](https://github.com/haus23/tipprunde-legacy/commit/b05d0ff): First take on styling the chamnpionship select.
+- [8ab75b6](https://github.com/haus23/tipprunde-legacy/commit/8ab75b6): No need to extend. Just include in base styles array.
+- [51de962](https://github.com/haus23/tipprunde-legacy/commit/51de962): Switch to data-attributes to style focus visible ring.
+- [064b220](https://github.com/haus23/tipprunde-legacy/commit/064b220): Align hover styles.
+- [70ff095](https://github.com/haus23/tipprunde-legacy/commit/70ff095): Implement unstyled championship select component.
+
 ## 0.20.7
 
 ### Patch Changes
