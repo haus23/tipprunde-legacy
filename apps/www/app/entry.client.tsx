@@ -8,7 +8,12 @@ export const queryClient = new QueryClient();
 const convexClient = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
 import { routeTree } from './routeTree.gen';
-const router = createRouter({ routeTree, context: { queryClient } });
+const router = createRouter({
+  routeTree,
+  scrollRestoration: true,
+  getScrollRestorationKey: (location) => location.pathname,
+  context: { queryClient },
+});
 
 declare module '@tanstack/react-router' {
   interface Register {
