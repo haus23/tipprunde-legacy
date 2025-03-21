@@ -51,7 +51,7 @@ export function ChampionshipSelect() {
       <Modal className="fixed inset-4 bottom-auto mx-auto max-w-lg rounded-md bg-background shadow-gray-4 shadow-md ring-1 ring-gray-6 dark:shadow-none">
         <ActionProvider onAction={() => setChampionshipSelectOpen(false)}>
           <Dialog
-            className="flex h-full flex-col justify-between py-2 font-medium"
+            className="flex h-full flex-col justify-between py-2 font-medium outline-hidden"
             aria-label="Turnier-Auswahl"
           >
             <Autocomplete filter={contains}>
