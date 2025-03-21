@@ -1,5 +1,19 @@
 # www
 
+## 0.20.9
+
+### Patch Changes
+
+- [01260d9](https://github.com/haus23/tipprunde-legacy/commit/01260d9): Update valibot to release version.
+- [26afd26](https://github.com/haus23/tipprunde-legacy/commit/26afd26): Remove focus outline from dialogs.
+- [e0c2ddd](https://github.com/haus23/tipprunde-legacy/commit/e0c2ddd): Make all navigation related texts bolder.
+- [e632991](https://github.com/haus23/tipprunde-legacy/commit/e632991): Prevent the layout shift with dialogs opened.
+- [81466af](https://github.com/haus23/tipprunde-legacy/commit/81466af): Move index to pathless route group.
+- [2354ef2](https://github.com/haus23/tipprunde-legacy/commit/2354ef2): Re-add scroll restauration.
+- [4fcba88](https://github.com/haus23/tipprunde-legacy/commit/4fcba88): Rename app-layout to app-shell.
+- [be29b5e](https://github.com/haus23/tipprunde-legacy/commit/be29b5e): Switch to svh.
+- [7e9e943](https://github.com/haus23/tipprunde-legacy/commit/7e9e943): Increase font weight on buttons.
+
 ## 0.20.8
 
 ### Patch Changes
