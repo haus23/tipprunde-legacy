@@ -41,7 +41,7 @@ export function AppSidebar() {
           >
             <nav className="flex flex-col gap-x-4">
               <div className="px-2">
-                <Link to="/" className="flex items-center gap-x-2 pr-2 pl-1">
+                <Link to="/" className="flex items-center gap-x-2 py-0 pl-1">
                   <Logo className="size-10" />
                   <span className="text-xl">runde.tips</span>
                 </Link>
@@ -53,7 +53,7 @@ export function AppSidebar() {
                     to={link.to}
                     search={{ turnier }}
                     variant="navlink"
-                    className="flex items-center gap-x-2 p-2 aria-[current]:bg-accent-5 aria-[current]:text-gray-12"
+                    className="flex items-center gap-x-2 aria-[current]:bg-accent-5 aria-[current]:text-gray-12"
                   >
                     <link.icon className="size-5" />
                     <span>{link.label}</span>

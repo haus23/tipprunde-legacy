@@ -6,17 +6,18 @@ import {
   Modal,
   ModalOverlay,
   SearchField,
+  type Selection,
+  Separator,
   useFilter,
 } from 'react-aria-components';
 
 import { useLayout } from '#/routes/-app/app-layout';
 import { championshipsQuery } from '#/unterbau/queries';
 
-import { useNavigate } from '@tanstack/react-router';
+import { useLoaderData, useNavigate } from '@tanstack/react-router';
+import { CheckIcon } from 'lucide-react';
 import { ActionProvider } from './ui/action-context';
 import { ListBox, ListBoxItem } from './ui/listbox';
-
-const styles = 'ring-1 ring-gray-6 focus:outline-hidden';
 
 export function ChampionshipSelect() {
   const { isChampionshipSelectOpen, setChampionshipSelectOpen } = useLayout();
@@ -25,12 +26,19 @@ export function ChampionshipSelect() {
     ...championshipsQuery(),
     initialData: [],
   });
+  const { championship } = useLoaderData({ from: '__root__' });
+  const selectedChampionship = new Set([championship.id]);
 
   const { contains } = useFilter({ sensitivity: 'base' });
 
-  function handleAction(championshipId: string) {
+  function handleSelection(keys: Selection) {
+    const key = keys !== 'all' && [...keys][0];
     setChampionshipSelectOpen(false);
-    navigate({ to: '/', search: { turnier: championshipId } });
+    if (key) {
+      const turnier =
+        String(key) === championships[0].id ? undefined : String(key);
+      navigate({ to: '/', search: { turnier } });
+    }
   }
 
   return (
@@ -40,7 +48,7 @@ export function ChampionshipSelect() {
       isDismissable
       className="fixed inset-0 bg-background/50 backdrop-blur-[2px]"
     >
-      <Modal className="fixed inset-4 bottom-auto mx-auto max-w-xl rounded-md bg-background shadow-gray-4 shadow-lg">
+      <Modal className="fixed inset-4 bottom-auto mx-auto max-w-lg rounded-md bg-background shadow-gray-4 shadow-md ring-1 ring-gray-6 dark:shadow-none">
         <ActionProvider onAction={() => setChampionshipSelectOpen(false)}>
           <Dialog
             className="flex h-full flex-col justify-between py-2"
@@ -48,16 +56,32 @@ export function ChampionshipSelect() {
           >
             <Autocomplete filter={contains}>
               <SearchField aria-label="Turniere durchsuchen">
-                <Input autoFocus placeholder="Turnier" />
+                <Input
+                  autoFocus
+                  placeholder="Turnier"
+                  className="w-full px-6 py-2 outline-hidden"
+                />
               </SearchField>
-              <ListBox items={championships}>
+              <Separator className="mt-2" />
+              <ListBox
+                items={championships}
+                selectionMode="single"
+                defaultSelectedKeys={selectedChampionship}
+                onSelectionChange={handleSelection}
+                className="mt-2 max-h-[70vh] overflow-y-auto"
+              >
                 {(championship) => (
                   <ListBoxItem
                     id={championship.id}
                     textValue={championship.name}
-                    onAction={() => handleAction(championship.id)}
+                    className="flex items-center justify-between aria-selected:text-accent-11"
                   >
-                    <span>{championship.name}</span>
+                    {({ isSelected }) => (
+                      <>
+                        <span>{championship.name}</span>
+                        {isSelected && <CheckIcon className="size-5" />}
+                      </>
+                    )}
                   </ListBoxItem>
                 )}
               </ListBox>

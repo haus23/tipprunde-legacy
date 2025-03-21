@@ -6,7 +6,7 @@ import { componentHoverStyles, focusVisibleStyles } from './_styles';
 import { useActionContext } from './action-context';
 
 const linkStyles = tv({
-  base: [focusVisibleStyles],
+  base: [focusVisibleStyles, 'p-2'],
   variants: {
     variant: {
       default: '',

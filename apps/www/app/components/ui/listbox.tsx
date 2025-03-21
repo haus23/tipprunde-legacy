@@ -7,8 +7,15 @@ import { tv } from 'tailwind-variants';
 
 import { componentHoverStyles, focusVisibleStyles } from './_styles';
 
-const listStyles = tv({});
-const itemStyles = tv({ base: [focusVisibleStyles, componentHoverStyles] });
+const listStyles = tv({ base: 'px-2' });
+const itemStyles = tv({
+  base: [
+    focusVisibleStyles,
+    'data-focus-visible:text-gray-12',
+    componentHoverStyles,
+    'my-1.5 select-none px-4 py-1.5',
+  ],
+});
 
 namespace ListBox {
   export interface Props<T> extends ListBoxProps<T> {

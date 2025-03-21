@@ -63,7 +63,7 @@ export function AppHeader() {
           <h2 className="text-xl">{championship.name}</h2>
         </div>
         <nav className="hidden items-center gap-x-4 md:flex">
-          <Link to="/" className="items-center gap-x-2 pr-2 pl-1 md:flex">
+          <Link to="/" className="items-center gap-x-2 py-0 pl-1 md:flex">
             <Logo className="size-10" />
             <span className="text-xl">runde.tips</span>
           </Link>
@@ -76,7 +76,7 @@ export function AppHeader() {
                   to={link.to}
                   search={{ turnier }}
                   variant="navlink"
-                  className="px-4 py-2 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-accent-7"
+                  className="px-4 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-accent-7"
                 >
                   {link.label}
                 </Link>
