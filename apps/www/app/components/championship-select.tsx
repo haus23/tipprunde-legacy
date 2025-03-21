@@ -68,7 +68,7 @@ export function ChampionshipSelect() {
                 selectionMode="single"
                 defaultSelectedKeys={selectedChampionship}
                 onSelectionChange={handleSelection}
-                className="mt-2 max-h-[70vh] overflow-y-auto"
+                className="mt-2 max-h-[70svh] overflow-y-auto"
               >
                 {(championship) => (
                   <ListBoxItem
