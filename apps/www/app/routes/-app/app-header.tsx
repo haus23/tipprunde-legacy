@@ -1,6 +1,6 @@
 import { getRouteApi, useLoaderData } from '@tanstack/react-router';
 import { PanelLeftIcon, SearchIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { tv } from 'tailwind-variants';
 
 import { Logo } from '#/components/logo';
@@ -48,8 +48,20 @@ export function AppHeader() {
   const { turnier } = routeApi.useSearch();
   const { championship } = useLoaderData({ from: '__root__' });
 
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (headerRef.current)
+      headerRef.current.style.right =
+        document.documentElement.style.paddingRight;
+  });
+
   return (
-    <header data-scroll-state={scrollState} className={headerStyles()}>
+    <header
+      ref={headerRef}
+      data-scroll-state={scrollState}
+      className={headerStyles()}
+    >
       <div className="flex h-16 justify-between">
         <div className="flex items-center gap-x-2 md:hidden">
           <Button
