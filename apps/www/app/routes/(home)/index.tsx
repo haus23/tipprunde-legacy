@@ -3,7 +3,7 @@ import { createFileRoute, useLoaderData } from '@tanstack/react-router';
 
 import { playersQuery } from '#/unterbau/queries';
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/(home)/')({
   component: RankingComponent,
 });
 
@@ -13,7 +13,12 @@ function RankingComponent() {
 
   return (
     <div>
-      <h1 className="text-2xl">{championship.name} - Aktuelle Tabelle</h1>
+      <h1 className="mx-2 text-2xl sm:mx-0">
+        <span className="hidden md:inline">{championship.name} - </span>
+        <span>
+          {championship.completed ? 'Abschlusstabelle' : 'Aktuelle Tabelle'}
+        </span>
+      </h1>
     </div>
   );
 }
