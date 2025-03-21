@@ -12,7 +12,7 @@ const buttonStyles = tv({
   base: [
     focusVisibleStyles,
     'inline-flex items-center justify-center font-medium text-sm transition-colors',
-    'p-2',
+    'p-2 font-semibold',
   ],
   variants: {
     variant: {
