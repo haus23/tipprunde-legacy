@@ -23,7 +23,7 @@ import {
   playersQuery,
 } from '#/unterbau/queries';
 
-import { AppLayout } from './-app/app-layout';
+import { AppShell } from './-app/app-shell';
 import { AppSidebar } from './-app/app-sidebar';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
@@ -75,14 +75,14 @@ function RootComponent() {
     >
       <div className="absolute inset-0 h-[480px] bg-gradient-to-b from-accent-4 to-transparent opacity-60" />
       <Suspense fallback={<SplashScreen />}>
-        <AppLayout className="relative isolate min-h-svh w-full">
+        <AppShell className="relative isolate min-h-svh w-full">
           <AppSidebar />
           <AppHeader />
           <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">
             <Outlet />
           </main>
           <ChampionshipSelect />
-        </AppLayout>
+        </AppShell>
       </Suspense>
       <TanStackRouterDevtools position="bottom-right" />
       <ReactQueryDevtools buttonPosition="bottom-right" />

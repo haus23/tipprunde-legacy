@@ -11,7 +11,7 @@ import { UserMenu } from '#/components/user-menu';
 
 import { useFeatureFlag } from '#/utils/convex';
 import { TriggerButton } from '../-chat/trigger-button';
-import { useLayout } from './app-layout';
+import { useAppShell } from './app-shell';
 import { navLinks } from './nav-links';
 
 const routeApi = getRouteApi('__root__');
@@ -28,7 +28,7 @@ type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 export function AppHeader() {
   const isChatEnabled = useFeatureFlag('chat');
 
-  const { toggleSidebar, setChampionshipSelectOpen } = useLayout();
+  const { toggleSidebar, setChampionshipSelectOpen } = useAppShell();
 
   const [scrollState, setScrollState] = useState<ScrollState>('at-top');
   useEffect(() => {

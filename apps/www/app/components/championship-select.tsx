@@ -11,7 +11,7 @@ import {
   useFilter,
 } from 'react-aria-components';
 
-import { useLayout } from '#/routes/-app/app-layout';
+import { useAppShell } from '#/routes/-app/app-shell';
 import { championshipsQuery } from '#/unterbau/queries';
 
 import { useLoaderData, useNavigate } from '@tanstack/react-router';
@@ -20,7 +20,7 @@ import { ActionProvider } from './ui/action-context';
 import { ListBox, ListBoxItem } from './ui/listbox';
 
 export function ChampionshipSelect() {
-  const { isChampionshipSelectOpen, setChampionshipSelectOpen } = useLayout();
+  const { isChampionshipSelectOpen, setChampionshipSelectOpen } = useAppShell();
   const navigate = useNavigate();
   const { data: championships } = useQuery({
     ...championshipsQuery(),

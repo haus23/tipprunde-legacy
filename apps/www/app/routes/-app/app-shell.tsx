@@ -8,19 +8,19 @@ import {
   useState,
 } from 'react';
 
-type LayoutContext = {
+type ShellContextType = {
   isSidebarOpen: boolean;
   setSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
   isChampionshipSelectOpen: boolean;
   setChampionshipSelectOpen: Dispatch<React.SetStateAction<boolean>>;
 };
 
-const LayoutContext = createContext<LayoutContext>(undefined as never);
+const ShellContext = createContext<ShellContextType>(undefined as never);
 
-export function useLayout() {
-  const context = use(LayoutContext);
+export function useAppShell() {
+  const context = use(ShellContext);
   if (!context) {
-    throw new Error('useLayout must be used within the AppLayout.');
+    throw new Error('useAppShell must be used within the AppShell.');
   }
 
   const {
@@ -43,11 +43,11 @@ export function useLayout() {
   };
 }
 
-namespace AppLayout {
+namespace AppShell {
   export interface Props extends ComponentProps<'div'> {}
 }
 
-export function AppLayout({ ...props }: AppLayout.Props) {
+export function AppShell({ ...props }: AppShell.Props) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isChampionshipSelectOpen, setChampionshipSelectOpen] = useState(false);
 
@@ -67,7 +67,7 @@ export function AppLayout({ ...props }: AppLayout.Props) {
   }, []);
 
   return (
-    <LayoutContext
+    <ShellContext
       value={{
         isSidebarOpen,
         setSidebarOpen,
@@ -76,6 +76,6 @@ export function AppLayout({ ...props }: AppLayout.Props) {
       }}
     >
       <div {...props} />
-    </LayoutContext>
+    </ShellContext>
   );
 }

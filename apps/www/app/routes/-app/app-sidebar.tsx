@@ -10,14 +10,14 @@ import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
 
 import { useIsMobile } from '#/utils/misc';
-import { useLayout } from './app-layout';
+import { useAppShell } from './app-shell';
 import { navLinks } from './nav-links';
 
 const routeApi = getRouteApi('__root__');
 
 export function AppSidebar() {
   const { isSidebarOpen, setSidebarOpen, setChampionshipSelectOpen } =
-    useLayout();
+    useAppShell();
 
   const isMobile = useIsMobile();
   useEffect(() => {
