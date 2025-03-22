@@ -12,14 +12,5 @@ function RankingComponent() {
   const { championship } = useLoaderData({ from: '__root__' });
   const ranking = useSuspenseQuery(playersQuery(championship.id));
 
-  return (
-    <div>
-      <h1 className="mx-2 text-2xl sm:mx-0">
-        <span className="hidden md:inline">{championship.name} - </span>
-        <span>
-          {championship.completed ? 'Abschlusstabelle' : 'Aktuelle Tabelle'}
-        </span>
-      </h1>
-    </div>
-  );
+  return <RankingView championship={championship} ranking={ranking.data} />;
 }
