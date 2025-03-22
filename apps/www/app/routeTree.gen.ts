@@ -11,11 +11,19 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ChampionshipImport } from './routes/$championship'
 import { Route as SpielerRouteImport } from './routes/spieler_/route'
 import { Route as SpieleRouteImport } from './routes/spiele_/route'
 import { Route as homeIndexImport } from './routes/(home)/index'
+import { Route as ChampionshipIndexImport } from './routes/$championship/index'
 
 // Create/Update Routes
+
+const ChampionshipRoute = ChampionshipImport.update({
+  id: '/$championship',
+  path: '/$championship',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SpielerRouteRoute = SpielerRouteImport.update({
   id: '/spieler_',
@@ -33,6 +41,12 @@ const homeIndexRoute = homeIndexImport.update({
   id: '/(home)/',
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const ChampionshipIndexRoute = ChampionshipIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ChampionshipRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -53,6 +67,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpielerRouteImport
       parentRoute: typeof rootRoute
     }
+    '/$championship': {
+      id: '/$championship'
+      path: '/$championship'
+      fullPath: '/$championship'
+      preLoaderRoute: typeof ChampionshipImport
+      parentRoute: typeof rootRoute
+    }
+    '/$championship/': {
+      id: '/$championship/'
+      path: '/'
+      fullPath: '/$championship/'
+      preLoaderRoute: typeof ChampionshipIndexImport
+      parentRoute: typeof ChampionshipImport
+    }
     '/(home)/': {
       id: '/(home)/'
       path: '/'
@@ -65,15 +93,30 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
+interface ChampionshipRouteChildren {
+  ChampionshipIndexRoute: typeof ChampionshipIndexRoute
+}
+
+const ChampionshipRouteChildren: ChampionshipRouteChildren = {
+  ChampionshipIndexRoute: ChampionshipIndexRoute,
+}
+
+const ChampionshipRouteWithChildren = ChampionshipRoute._addFileChildren(
+  ChampionshipRouteChildren,
+)
+
 export interface FileRoutesByFullPath {
   '/spiele': typeof SpieleRouteRoute
   '/spieler': typeof SpielerRouteRoute
+  '/$championship': typeof ChampionshipRouteWithChildren
+  '/$championship/': typeof ChampionshipIndexRoute
   '/': typeof homeIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/spiele': typeof SpieleRouteRoute
   '/spieler': typeof SpielerRouteRoute
+  '/$championship': typeof ChampionshipIndexRoute
   '/': typeof homeIndexRoute
 }
 
@@ -81,27 +124,37 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/spiele_': typeof SpieleRouteRoute
   '/spieler_': typeof SpielerRouteRoute
+  '/$championship': typeof ChampionshipRouteWithChildren
+  '/$championship/': typeof ChampionshipIndexRoute
   '/(home)/': typeof homeIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/spiele' | '/spieler' | '/'
+  fullPaths: '/spiele' | '/spieler' | '/$championship' | '/$championship/' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/spiele' | '/spieler' | '/'
-  id: '__root__' | '/spiele_' | '/spieler_' | '/(home)/'
+  to: '/spiele' | '/spieler' | '/$championship' | '/'
+  id:
+    | '__root__'
+    | '/spiele_'
+    | '/spieler_'
+    | '/$championship'
+    | '/$championship/'
+    | '/(home)/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   SpieleRouteRoute: typeof SpieleRouteRoute
   SpielerRouteRoute: typeof SpielerRouteRoute
+  ChampionshipRoute: typeof ChampionshipRouteWithChildren
   homeIndexRoute: typeof homeIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   SpieleRouteRoute: SpieleRouteRoute,
   SpielerRouteRoute: SpielerRouteRoute,
+  ChampionshipRoute: ChampionshipRouteWithChildren,
   homeIndexRoute: homeIndexRoute,
 }
 
@@ -117,6 +170,7 @@ export const routeTree = rootRoute
       "children": [
         "/spiele_",
         "/spieler_",
+        "/$championship",
         "/(home)/"
       ]
     },
@@ -125,6 +179,16 @@ export const routeTree = rootRoute
     },
     "/spieler_": {
       "filePath": "spieler_/route.tsx"
+    },
+    "/$championship": {
+      "filePath": "$championship.tsx",
+      "children": [
+        "/$championship/"
+      ]
+    },
+    "/$championship/": {
+      "filePath": "$championship/index.tsx",
+      "parent": "/$championship"
     },
     "/(home)/": {
       "filePath": "(home)/index.tsx"
