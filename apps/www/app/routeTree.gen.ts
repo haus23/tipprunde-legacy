@@ -16,6 +16,8 @@ import { Route as SpielerRouteImport } from './routes/spieler_/route'
 import { Route as SpieleRouteImport } from './routes/spiele_/route'
 import { Route as homeIndexImport } from './routes/(home)/index'
 import { Route as ChampionshipIndexImport } from './routes/$championship/index'
+import { Route as ChampionshipSpielerImport } from './routes/$championship/spieler'
+import { Route as ChampionshipSpieleImport } from './routes/$championship/spiele'
 
 // Create/Update Routes
 
@@ -49,6 +51,18 @@ const ChampionshipIndexRoute = ChampionshipIndexImport.update({
   getParentRoute: () => ChampionshipRoute,
 } as any)
 
+const ChampionshipSpielerRoute = ChampionshipSpielerImport.update({
+  id: '/spieler',
+  path: '/spieler',
+  getParentRoute: () => ChampionshipRoute,
+} as any)
+
+const ChampionshipSpieleRoute = ChampionshipSpieleImport.update({
+  id: '/spiele',
+  path: '/spiele',
+  getParentRoute: () => ChampionshipRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -74,6 +88,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChampionshipImport
       parentRoute: typeof rootRoute
     }
+    '/$championship/spiele': {
+      id: '/$championship/spiele'
+      path: '/spiele'
+      fullPath: '/$championship/spiele'
+      preLoaderRoute: typeof ChampionshipSpieleImport
+      parentRoute: typeof ChampionshipImport
+    }
+    '/$championship/spieler': {
+      id: '/$championship/spieler'
+      path: '/spieler'
+      fullPath: '/$championship/spieler'
+      preLoaderRoute: typeof ChampionshipSpielerImport
+      parentRoute: typeof ChampionshipImport
+    }
     '/$championship/': {
       id: '/$championship/'
       path: '/'
@@ -94,10 +122,14 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface ChampionshipRouteChildren {
+  ChampionshipSpieleRoute: typeof ChampionshipSpieleRoute
+  ChampionshipSpielerRoute: typeof ChampionshipSpielerRoute
   ChampionshipIndexRoute: typeof ChampionshipIndexRoute
 }
 
 const ChampionshipRouteChildren: ChampionshipRouteChildren = {
+  ChampionshipSpieleRoute: ChampionshipSpieleRoute,
+  ChampionshipSpielerRoute: ChampionshipSpielerRoute,
   ChampionshipIndexRoute: ChampionshipIndexRoute,
 }
 
@@ -109,6 +141,8 @@ export interface FileRoutesByFullPath {
   '/spiele': typeof SpieleRouteRoute
   '/spieler': typeof SpielerRouteRoute
   '/$championship': typeof ChampionshipRouteWithChildren
+  '/$championship/spiele': typeof ChampionshipSpieleRoute
+  '/$championship/spieler': typeof ChampionshipSpielerRoute
   '/$championship/': typeof ChampionshipIndexRoute
   '/': typeof homeIndexRoute
 }
@@ -116,6 +150,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/spiele': typeof SpieleRouteRoute
   '/spieler': typeof SpielerRouteRoute
+  '/$championship/spiele': typeof ChampionshipSpieleRoute
+  '/$championship/spieler': typeof ChampionshipSpielerRoute
   '/$championship': typeof ChampionshipIndexRoute
   '/': typeof homeIndexRoute
 }
@@ -125,20 +161,37 @@ export interface FileRoutesById {
   '/spiele_': typeof SpieleRouteRoute
   '/spieler_': typeof SpielerRouteRoute
   '/$championship': typeof ChampionshipRouteWithChildren
+  '/$championship/spiele': typeof ChampionshipSpieleRoute
+  '/$championship/spieler': typeof ChampionshipSpielerRoute
   '/$championship/': typeof ChampionshipIndexRoute
   '/(home)/': typeof homeIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/spiele' | '/spieler' | '/$championship' | '/$championship/' | '/'
+  fullPaths:
+    | '/spiele'
+    | '/spieler'
+    | '/$championship'
+    | '/$championship/spiele'
+    | '/$championship/spieler'
+    | '/$championship/'
+    | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/spiele' | '/spieler' | '/$championship' | '/'
+  to:
+    | '/spiele'
+    | '/spieler'
+    | '/$championship/spiele'
+    | '/$championship/spieler'
+    | '/$championship'
+    | '/'
   id:
     | '__root__'
     | '/spiele_'
     | '/spieler_'
     | '/$championship'
+    | '/$championship/spiele'
+    | '/$championship/spieler'
     | '/$championship/'
     | '/(home)/'
   fileRoutesById: FileRoutesById
@@ -183,8 +236,18 @@ export const routeTree = rootRoute
     "/$championship": {
       "filePath": "$championship.tsx",
       "children": [
+        "/$championship/spiele",
+        "/$championship/spieler",
         "/$championship/"
       ]
+    },
+    "/$championship/spiele": {
+      "filePath": "$championship/spiele.tsx",
+      "parent": "/$championship"
+    },
+    "/$championship/spieler": {
+      "filePath": "$championship/spieler.tsx",
+      "parent": "/$championship"
     },
     "/$championship/": {
       "filePath": "$championship/index.tsx",
