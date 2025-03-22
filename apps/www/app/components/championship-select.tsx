@@ -12,7 +12,7 @@ import {
 } from 'react-aria-components';
 
 import { useAppShell } from '#/routes/-app/app-shell';
-import { championshipsQuery } from '#/unterbau/queries';
+import { championshipsQuery } from '#/utils/queries';
 
 import { useLoaderData, useNavigate } from '@tanstack/react-router';
 import { CheckIcon } from 'lucide-react';
