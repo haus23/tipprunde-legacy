@@ -21,7 +21,7 @@ import {
   championshipsQuery,
   matchesQuery,
   playersQuery,
-} from '#/unterbau/queries';
+} from '#/utils/queries';
 
 import { AppShell } from './-app/app-shell';
 import { AppSidebar } from './-app/app-sidebar';
