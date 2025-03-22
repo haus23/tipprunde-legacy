@@ -26,37 +26,35 @@ import {
 import { AppShell } from './-app/app-shell';
 import { AppSidebar } from './-app/app-sidebar';
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
-  {
-    validateSearch: v.object({
-      turnier: v.optional(ChampionshipIdSchema),
-    }),
-    loaderDeps: ({ search: { turnier } }) => ({ championshipSlug: turnier }),
-    loader: async ({
-      deps: { championshipSlug },
-      context: { queryClient },
-    }) => {
-      // Await fast data
-      const championships = await queryClient.ensureQueryData(
-        championshipsQuery(),
-      );
-      await queryClient.ensureQueryData(accountsQuery());
-
-      const championship =
-        championships.find((c) => c.id === championshipSlug) ||
-        championships[0];
-
-      // Slow data
-      queryClient.prefetchQuery(playersQuery(championship.id));
-      queryClient.prefetchQuery(matchesQuery(championship.id));
-
-      return {
-        championship,
-      };
-    },
-    component: RootComponent,
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
+  validateSearch: v.object({
+    turnier: v.optional(ChampionshipIdSchema),
+  }),
+  loaderDeps: ({ search: { turnier } }) => ({ championshipSlug: turnier }),
+  beforeLoad: async ({ search: { turnier }, context: { queryClient } }) => {
+    const championships = await queryClient.ensureQueryData(
+      championshipsQuery(),
+    );
+    const championship =
+      championships.find((c) => c.id === turnier) || championships[0];
+    return { championship };
   },
-);
+  loader: async ({ context: { queryClient, championship } }) => {
+    // Await fast data
+    await queryClient.ensureQueryData(accountsQuery());
+
+    // Slow data
+    queryClient.prefetchQuery(playersQuery(championship.id));
+    queryClient.prefetchQuery(matchesQuery(championship.id));
+
+    return {
+      championship,
+    };
+  },
+  component: RootComponent,
+});
 
 declare module 'react-aria-components' {
   interface RouterConfig {
