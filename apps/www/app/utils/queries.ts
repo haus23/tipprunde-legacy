@@ -2,6 +2,7 @@ import {
   AccountSchema,
   ChampionshipSchema,
   MatchesSchema,
+  PlayerTipsSchema,
   PlayerWithAccountSchema,
 } from '@haus23/tipprunde-model';
 import { queryOptions } from '@tanstack/react-query';
@@ -56,4 +57,18 @@ export const matchesQuery = (championshipId: string) =>
   queryOptions({
     queryKey: ['matches', championshipId],
     queryFn: () => fetchMatches(championshipId),
+  });
+
+async function fetchPlayerTips(championshipId: string, accountId: string) {
+  const query = `?name=${accountId}`;
+
+  const url = `${baseUrl}/championships/${championshipId}/player-tips${query}`;
+  const response = await fetch(url);
+  return v.parse(PlayerTipsSchema, await response.json());
+}
+
+export const playerTipsQuery = (championshipId: string, accountId: string) =>
+  queryOptions({
+    queryKey: ['player-tips', championshipId, accountId],
+    queryFn: () => fetchPlayerTips(championshipId, accountId),
   });
