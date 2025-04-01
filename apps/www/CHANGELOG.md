@@ -1,5 +1,19 @@
 # www
 
+## 0.20.11
+
+### Patch Changes
+
+- [0054d18](https://github.com/haus23/tipprunde-legacy/commit/0054d18): Update react.
+- [9d35a26](https://github.com/haus23/tipprunde-legacy/commit/9d35a26): Update convex packages.
+- [5dfd09f](https://github.com/haus23/tipprunde-legacy/commit/5dfd09f): Update tailwind packages.
+- [4b9faa8](https://github.com/haus23/tipprunde-legacy/commit/4b9faa8): Update vite.
+- [83e8da2](https://github.com/haus23/tipprunde-legacy/commit/83e8da2): Drop react-router.
+- [a9a7e9a](https://github.com/haus23/tipprunde-legacy/commit/a9a7e9a): Update tanstack query.
+- [806de57](https://github.com/haus23/tipprunde-legacy/commit/806de57): Drop unused ui libs.
+- [3bdfec3](https://github.com/haus23/tipprunde-legacy/commit/3bdfec3): Patch update lucide icons.
+- [0023ca5](https://github.com/haus23/tipprunde-legacy/commit/0023ca5): Update tanstack router.
+
 ## 0.20.10
 
 ### Patch Changes
