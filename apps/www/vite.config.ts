@@ -22,4 +22,13 @@ export default defineConfig({
     tailwindcss(),
     tsconfigPaths(),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          rac: ['react-aria', 'react-aria-components'],
+        },
+      },
+    },
+  },
 });
