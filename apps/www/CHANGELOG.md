@@ -1,5 +1,20 @@
 # www
 
+## 0.20.10
+
+### Patch Changes
+
+- [9a79279](https://github.com/haus23/tipprunde-legacy/commit/9a79279): Store current championship in the router context.
+- [f8fa775](https://github.com/haus23/tipprunde-legacy/commit/f8fa775): Implement initial ranking view.
+- [31c35ad](https://github.com/haus23/tipprunde-legacy/commit/31c35ad): Move unterbau queries to utils folder.
+- [fbf236a](https://github.com/haus23/tipprunde-legacy/commit/fbf236a): Prepare navigating by param.
+- [98e1a1e](https://github.com/haus23/tipprunde-legacy/commit/98e1a1e): Add remaining championship routes.
+- [321fd05](https://github.com/haus23/tipprunde-legacy/commit/321fd05): Missed to update import path.
+- [5110266](https://github.com/haus23/tipprunde-legacy/commit/5110266): Split react aria chunk to reduce initial bundle size.
+- [3c6f0bb](https://github.com/haus23/tipprunde-legacy/commit/3c6f0bb): Move index route back again.
+- [e2dbc94](https://github.com/haus23/tipprunde-legacy/commit/e2dbc94): Revert championship navigation to search params based.
+- [7b5b2eb](https://github.com/haus23/tipprunde-legacy/commit/7b5b2eb): Loading tips for selected player.
+
 ## 0.20.9
 
 ### Patch Changes
