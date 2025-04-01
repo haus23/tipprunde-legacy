@@ -1,5 +1,11 @@
 # www
 
+## 0.20.12
+
+### Patch Changes
+
+- [ae33656](https://github.com/haus23/tipprunde-legacy/commit/ae33656): Re-add zustand as dep.
+
 ## 0.20.11
 
 ### Patch Changes
