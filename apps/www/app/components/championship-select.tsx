@@ -1,4 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
+import { useLoaderData, useNavigate } from '@tanstack/react-router';
+import { CheckIcon } from 'lucide-react';
 import {
   Autocomplete,
   Dialog,
@@ -14,8 +16,6 @@ import {
 import { useAppShell } from '#/routes/-app/app-shell';
 import { championshipsQuery } from '#/utils/queries';
 
-import { useLoaderData, useNavigate } from '@tanstack/react-router';
-import { CheckIcon } from 'lucide-react';
 import { ActionProvider } from './ui/action-context';
 import { ListBox, ListBoxItem } from './ui/listbox';
 
