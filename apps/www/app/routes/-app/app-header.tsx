@@ -18,8 +18,9 @@ const routeApi = getRouteApi('__root__');
 
 const headerStyles = tv({
   base: [
-    'fixed inset-0 z-10 h-16 px-2 font-medium shadow-transparent shadow-xs transition-colors sm:px-4',
-    '[&:not([data-scroll-state=at-top])]:bg-background [&:not([data-scroll-state=at-top])]:shadow-gray-4',
+    'bg-gradient-to-b from-[#ebf2ff] to-[#eef4ff] dark:from-[#182241] dark:to-[#17203a]',
+    'fixed inset-0 z-10 h-16 px-2 font-medium shadow-transparent shadow-xs sm:px-4',
+    '[&:not([data-scroll-state=at-top])]:bg-background [&:not([data-scroll-state=at-top])]:bg-none [&:not([data-scroll-state=at-top])]:shadow-gray-4',
   ],
 });
 

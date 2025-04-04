@@ -11,6 +11,7 @@ import { routeTree } from './routeTree.gen';
 const router = createRouter({
   routeTree,
   scrollRestoration: true,
+  scrollRestorationBehavior: 'smooth',
   getScrollRestorationKey: (location) => location.pathname,
   context: { queryClient },
 });

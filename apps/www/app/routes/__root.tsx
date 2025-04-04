@@ -71,7 +71,7 @@ function RootComponent() {
       navigate={(to, options) => router.navigate({ to, ...options })}
       useHref={(to) => router.buildLocation({ to }).href}
     >
-      <div className="absolute inset-0 h-[480px] bg-gradient-to-b from-accent-4 to-transparent opacity-60" />
+      <div className="absolute inset-0 h-[480px] bg-gradient-to-b from-accent-4 to-background opacity-60" />
       <Suspense fallback={<SplashScreen />}>
         <AppShell className="relative isolate min-h-svh w-full">
           <AppSidebar />
