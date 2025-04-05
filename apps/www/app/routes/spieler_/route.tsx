@@ -1,10 +1,15 @@
 import type { Match } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { createFileRoute, useLoaderData } from '@tanstack/react-router';
+import {
+  createFileRoute,
+  useLoaderData,
+  useNavigate,
+} from '@tanstack/react-router';
 import { type ColumnDef, createColumnHelper } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import * as v from 'valibot';
 
+import type { Key } from 'react-aria';
 import { DataTable } from '#/components/ui/data-table';
 import { ListBoxItem } from '#/components/ui/listbox';
 import { Select } from '#/components/ui/select';
@@ -37,8 +42,13 @@ export const Route = createFileRoute('/spieler_')({
 
 function PlayersComponent() {
   const { championship } = useLoaderData({ from: '__root__' });
+  const navigate = useNavigate({ from: Route.fullPath });
   const { data: players } = useSuspenseQuery(playersQuery(championship.id));
+
   const { account } = Route.useLoaderData();
+  function selectAccount(key: Key) {
+    navigate({ search: (prev) => ({ ...prev, name: String(key) }) });
+  }
 
   const {
     data: { matches, rounds, teams },
@@ -95,7 +105,12 @@ function PlayersComponent() {
   return (
     <div>
       <h1 className="text-2xl">Spieler {account.name}</h1>
-      <Select label="Spieler" defaultSelectedKey={account.id} items={players}>
+      <Select
+        label="Spieler"
+        defaultSelectedKey={account.id}
+        onSelectionChange={selectAccount}
+        items={players}
+      >
         {(p) => <ListBoxItem id={p.account.id}>{p.account.name}</ListBoxItem>}
       </Select>
       {rounds.map((r) => {
