@@ -1,7 +1,12 @@
-import type { ListBoxItemProps, ListBoxProps } from 'react-aria-components';
+import type {
+  ListBoxItemProps,
+  ListBoxProps,
+  ListBoxSectionProps,
+} from 'react-aria-components';
 import {
   ListBox as _ListBox,
   ListBoxItem as _ListBoxItem,
+  ListBoxSection as _ListBoxSection,
 } from 'react-aria-components';
 import { tv } from 'tailwind-variants';
 
@@ -16,6 +21,7 @@ const itemStyles = tv({
     'my-1.5 select-none px-4 py-1.5',
   ],
 });
+const listSectionStyles = tv({});
 
 namespace ListBox {
   export interface Props<T> extends ListBoxProps<T> {
@@ -41,4 +47,19 @@ export function ListBoxItem<T extends object>({
   ...props
 }: ListBoxItem.Props<T>) {
   return <_ListBoxItem className={itemStyles({ className })} {...props} />;
+}
+
+namespace ListBoxSection {
+  export interface Props<T> extends ListBoxSectionProps<T> {
+    className?: string;
+  }
+}
+
+export function ListBoxSection<T extends object>({
+  className,
+  ...props
+}: ListBoxSection.Props<T>) {
+  return (
+    <_ListBoxSection className={listSectionStyles({ className })} {...props} />
+  );
 }
