@@ -7,9 +7,9 @@ import {
 } from '@tanstack/react-router';
 import { type ColumnDef, createColumnHelper } from '@tanstack/react-table';
 import { useMemo } from 'react';
+import type { Key } from 'react-aria-components';
 import * as v from 'valibot';
 
-import type { Key } from 'react-aria';
 import { DataTable } from '#/components/ui/data-table';
 import { ListBoxItem } from '#/components/ui/listbox';
 import { Select } from '#/components/ui/select';
