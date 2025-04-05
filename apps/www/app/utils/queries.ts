@@ -1,6 +1,7 @@
 import {
   AccountSchema,
   ChampionshipSchema,
+  MatchTipsSchema,
   MatchesSchema,
   PlayerTipsSchema,
   PlayerWithAccountSchema,
@@ -71,4 +72,18 @@ export const playerTipsQuery = (championshipId: string, accountId: string) =>
   queryOptions({
     queryKey: ['player-tips', championshipId, accountId],
     queryFn: () => fetchPlayerTips(championshipId, accountId),
+  });
+
+async function fetchMatchTips(championshipId: string, nr: number | null) {
+  const query = nr ? `?nr=${nr}` : '';
+
+  const url = `${baseUrl}/championships/${championshipId}/match-tips${query}`;
+  const response = await fetch(url);
+  return v.parse(MatchTipsSchema, await response.json());
+}
+
+export const matchTipsQuery = (championshipId: string, nr: number | null) =>
+  queryOptions({
+    queryKey: ['match-tips', championshipId, nr],
+    queryFn: () => fetchMatchTips(championshipId, nr),
   });
