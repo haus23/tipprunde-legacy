@@ -4,7 +4,13 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { ConvexReactClient } from 'convex/react';
 import { createRoot } from 'react-dom/client';
 
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 30,
+    },
+  },
+});
 const convexClient = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
 import { routeTree } from './routeTree.gen';
