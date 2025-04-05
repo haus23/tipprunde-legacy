@@ -1,5 +1,18 @@
 # www
 
+## 0.20.13
+
+### Patch Changes
+
+- [4ca6b07](https://github.com/haus23/tipprunde-legacy/commit/4ca6b07): Start adding custom select component.
+- [b81de76](https://github.com/haus23/tipprunde-legacy/commit/b81de76): Navigate on player selection.
+- [2335fb9](https://github.com/haus23/tipprunde-legacy/commit/2335fb9): Implement basic player tips table.
+- [622fb37](https://github.com/haus23/tipprunde-legacy/commit/622fb37): Update deps.
+- [e032d8a](https://github.com/haus23/tipprunde-legacy/commit/e032d8a): Finally increase stale time to 30 minutes.
+- [7bc8240](https://github.com/haus23/tipprunde-legacy/commit/7bc8240): Display formatted rank (and get rid of the extra views folder).
+- [3832507](https://github.com/haus23/tipprunde-legacy/commit/3832507): None transparent header now.
+- [916f833](https://github.com/haus23/tipprunde-legacy/commit/916f833): Re-add date-format function.
+
 ## 0.20.12
 
 ### Patch Changes
