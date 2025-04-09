@@ -168,4 +168,12 @@
   ::file-selector-button {
     border-color: var(--color-gray-6, currentColor);
   }
+
+  html {
+    scrollbar-width: 0;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+  }
 }
