@@ -1,5 +1,17 @@
 # www
 
+## 0.20.14
+
+### Patch Changes
+
+- [e602fc9](https://github.com/haus23/tipprunde-legacy/commit/e602fc9): Re-add match tips query.
+- [42743c5](https://github.com/haus23/tipprunde-legacy/commit/42743c5): Align type imports.
+- [beecc5f](https://github.com/haus23/tipprunde-legacy/commit/beecc5f): Add listboxsection wrappers to ui components.
+- [4749628](https://github.com/haus23/tipprunde-legacy/commit/4749628): Add match selector to match route.
+- [f06dadf](https://github.com/haus23/tipprunde-legacy/commit/f06dadf): Continue styling the app views.
+- [1f54e8d](https://github.com/haus23/tipprunde-legacy/commit/1f54e8d): Finally remove the scrollbar again.
+- [aef70ca](https://github.com/haus23/tipprunde-legacy/commit/aef70ca): Implement the select again.
+
 ## 0.20.13
 
 ### Patch Changes
