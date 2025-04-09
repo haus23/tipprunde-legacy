@@ -19,6 +19,7 @@ const itemStyles = tv({
     'data-focus-visible:text-gray-12',
     componentHoverStyles,
     'my-1.5 select-none px-4 py-1.5',
+    'flex items-center justify-between aria-selected:text-accent-11',
   ],
 });
 const listSectionStyles = tv({});

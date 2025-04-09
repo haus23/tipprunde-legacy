@@ -74,7 +74,6 @@ export function ChampionshipSelect() {
                   <ListBoxItem
                     id={championship.id}
                     textValue={championship.name}
-                    className="flex items-center justify-between aria-selected:text-accent-11"
                   >
                     {({ isSelected }) => (
                       <>
