@@ -7,6 +7,7 @@ import {
 import { Collection, type Key } from 'react-aria-components';
 import * as v from 'valibot';
 
+import { CheckIcon } from 'lucide-react';
 import { Header } from '#/components/ui/header';
 import { ListBoxItem, ListBoxSection } from '#/components/ui/listbox';
 import { Select } from '#/components/ui/select';
@@ -46,18 +47,27 @@ function MatchesComponent() {
   return (
     <div>
       <Select
-        label="Spiel"
+        aria-label="Spielauswahl"
         defaultSelectedKey={match.nr}
         onSelectionChange={selectMatch}
         items={rounds}
       >
         {(r) => (
           <ListBoxSection id={r.id}>
-            <Header>Runde {r.nr}</Header>
+            <Header className="p-1 text-gray-11/75 text-sm">
+              Runde {r.nr}
+            </Header>
             <Collection items={matches.filter((m) => m.roundId === r.id)}>
               {(m) => (
                 <ListBoxItem id={m.nr}>
-                  {`${teams[m.hometeamId]?.shortname || 'TBA'} - ${teams[m.awayteamId]?.shortname || 'TBA'}`}
+                  {({ isSelected }) => (
+                    <>
+                      <span>
+                        {`${teams[m.hometeamId]?.shortname || 'TBA'} - ${teams[m.awayteamId]?.shortname || 'TBA'}`}
+                      </span>
+                      {isSelected && <CheckIcon className="size-5" />}
+                    </>
+                  )}
                 </ListBoxItem>
               )}
             </Collection>

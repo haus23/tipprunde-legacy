@@ -10,6 +10,7 @@ import { useMemo } from 'react';
 import type { Key } from 'react-aria-components';
 import * as v from 'valibot';
 
+import { CheckIcon } from 'lucide-react';
 import { DataTable } from '#/components/ui/data-table';
 import { ListBoxItem } from '#/components/ui/listbox';
 import { Select } from '#/components/ui/select';
@@ -104,24 +105,40 @@ function PlayersComponent() {
 
   return (
     <div>
-      <h1 className="text-2xl">Spieler {account.name}</h1>
-      <Select
-        label="Spieler"
-        defaultSelectedKey={account.id}
-        onSelectionChange={selectAccount}
-        items={players}
-      >
-        {(p) => <ListBoxItem id={p.account.id}>{p.account.name}</ListBoxItem>}
-      </Select>
-      {rounds.map((r) => {
-        const matchesInRound = matches.filter((m) => m.roundId === r.id);
-        return (
-          <div key={r.id}>
-            <h3>Runde {r.nr}</h3>
-            <DataTable columns={columns} data={matchesInRound} />
-          </div>
-        );
-      })}
+      <div className="mx-2 flex items-center gap-x-4 sm:mx-0">
+        <h1 className="font-semibold text-xl">
+          <span className="hidden sm:inline">{championship.name} - </span>
+          <span>Tipps für</span>
+        </h1>
+        <Select
+          aria-label="Spielerauswahl"
+          defaultSelectedKey={account.id}
+          onSelectionChange={selectAccount}
+          items={players}
+        >
+          {(p) => (
+            <ListBoxItem id={p.account.id}>
+              {({ isSelected }) => (
+                <>
+                  <span>{p.account.name}</span>
+                  {isSelected && <CheckIcon className="size-5" />}
+                </>
+              )}
+            </ListBoxItem>
+          )}
+        </Select>
+      </div>
+      <div>
+        {rounds.map((r) => {
+          const matchesInRound = matches.filter((m) => m.roundId === r.id);
+          return (
+            <div key={r.id}>
+              <h3>Runde {r.nr}</h3>
+              <DataTable columns={columns} data={matchesInRound} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

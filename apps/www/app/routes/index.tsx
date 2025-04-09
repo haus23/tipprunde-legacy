@@ -36,7 +36,7 @@ function RankingComponent() {
 
   return (
     <div>
-      <h1 className="mx-2 text-2xl sm:mx-0">
+      <h1 className="font-semibold text-xl">
         <span className="hidden md:inline">{championship.name} - </span>
         <span>
           {championship.completed ? 'Abschlusstabelle' : 'Aktuelle Tabelle'}
