@@ -7,7 +7,8 @@ import { OverlayArrow, Popover } from 'react-aria-components';
 import { tv } from 'tailwind-variants';
 
 import { Button } from '#/components/ui/button';
-import { currentTipsQuery } from '#/utils/queries';
+import { Link } from '#/components/ui/link';
+import { currentTipsQuery, matchesQuery } from '#/utils/queries';
 
 const popoverStyles = tv({
   base: [
@@ -32,6 +33,12 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
   const { data: currentTips } = useSuspenseQuery(
     currentTipsQuery(championship),
   );
+
+  // TODO: unterbau should return the match nr with the currentTips-Query.
+  // See line 114 and issue #35
+  const {
+    data: { matches },
+  } = useSuspenseQuery(matchesQuery(championship.id));
 
   const [isOpen, setOpen] = useState(false);
 
@@ -101,7 +108,12 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
             const tip = m.tips[player.id];
             return (
               <Fragment key={m.matchId}>
-                <div
+                <Link
+                  to="/spiele"
+                  search={(prev) => ({
+                    ...prev,
+                    nr: matches.find((match) => match.id === m.matchId)?.nr,
+                  })}
                   className={[
                     'py-1 pl-2',
                     (tip?.joker || tip?.lonelyHit) && 'bg-accent-3',
@@ -112,7 +124,7 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
                   {!m.hometeam && !m.awayteam
                     ? '(noch offen)'
                     : `${m.hometeam || '(noch offen)'} - ${m.awayteam || '(noch offen)'}`}
-                </div>
+                </Link>
                 <div
                   className={[
                     'py-1 text-center',
