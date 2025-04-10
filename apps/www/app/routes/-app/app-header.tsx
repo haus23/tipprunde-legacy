@@ -64,7 +64,11 @@ export function AppHeader() {
           <h2 className="text-xl">{championship.name}</h2>
         </div>
         <nav className="hidden items-center gap-x-4 md:flex">
-          <Link to="/" className="items-center gap-x-2 py-0 pl-1 md:flex">
+          <Link
+            to="/"
+            variant="plain"
+            className="items-center gap-x-2 py-0 pl-1 md:flex"
+          >
             <Logo className="size-10" />
             <span className="text-xl">runde.tips</span>
           </Link>

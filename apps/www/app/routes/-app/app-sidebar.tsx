@@ -41,7 +41,11 @@ export function AppSidebar() {
           >
             <nav className="flex flex-col gap-x-4">
               <div className="px-2">
-                <Link to="/" className="flex items-center gap-x-2 py-0 pl-1">
+                <Link
+                  to="/"
+                  variant="plain"
+                  className="flex items-center gap-x-2 py-0 pl-1"
+                >
                   <Logo className="size-10" />
                   <span className="text-xl">runde.tips</span>
                 </Link>

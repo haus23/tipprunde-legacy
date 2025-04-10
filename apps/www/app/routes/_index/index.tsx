@@ -37,7 +37,7 @@ function RankingComponent() {
       header: 'Name',
       meta: {
         thClasses: 'text-left',
-        tdClasses: 'w-full font-medium hover:underline',
+        tdClasses: 'w-full font-medium',
       },
       cell: (info) => (
         <div className="py-1">

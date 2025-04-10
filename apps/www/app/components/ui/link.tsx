@@ -9,7 +9,8 @@ const linkStyles = tv({
   base: [focusVisibleStyles, 'p-2'],
   variants: {
     variant: {
-      default: '',
+      plain: '',
+      default: 'underline-offset-2 hover:underline',
       navlink: componentHoverStyles,
     },
   },
