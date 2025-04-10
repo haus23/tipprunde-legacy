@@ -1,5 +1,14 @@
 # www
 
+## 0.20.15
+
+### Patch Changes
+
+- [0a41c07](https://github.com/haus23/tipprunde-legacy/commit/0a41c07): Update deps.
+- [b85770b](https://github.com/haus23/tipprunde-legacy/commit/b85770b): Initial displaying match tips.
+- [aba93a8](https://github.com/haus23/tipprunde-legacy/commit/aba93a8): Display appropriate columns whether championship is completed or
+- [4ccf6e8](https://github.com/haus23/tipprunde-legacy/commit/4ccf6e8): Style current ranking table.
+
 ## 0.20.14
 
 ### Patch Changes
