@@ -5,6 +5,7 @@ import {
 } from 'react-aria-components';
 import { type VariantProps, tv } from 'tailwind-variants';
 
+import type { RefObject } from 'react';
 import { componentHoverStyles, focusVisibleStyles } from './_styles';
 import { useActionContext } from './action-context';
 
@@ -16,6 +17,7 @@ const buttonStyles = tv({
   ],
   variants: {
     variant: {
+      plain: '',
       primary:
         'border bg-accent-9 px-4 text-white transition-transform hover:bg-accent-10 active:scale-[0.98]',
       secondary: '',
@@ -32,6 +34,7 @@ namespace Button {
     extends ButtonProps,
       VariantProps<typeof buttonStyles> {
     className?: string;
+    ref?: RefObject<HTMLButtonElement | null>;
   }
 }
 
