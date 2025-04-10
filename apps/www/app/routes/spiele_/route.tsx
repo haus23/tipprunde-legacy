@@ -95,7 +95,7 @@ function MatchesComponent() {
               </Header>
               <Collection items={matches.filter((m) => m.roundId === r.id)}>
                 {(m) => {
-                  const matchStr = `${teams[m.hometeamId]?.shortname || 'TBA'} - ${teams[m.awayteamId]?.shortname || 'TBA'}`;
+                  const matchStr = `${teams[m.hometeamId]?.shortname || '(noch offen)'} - ${teams[m.awayteamId]?.shortname || '(noch offen)'}`;
                   return (
                     <ListBoxItem id={m.nr} textValue={matchStr}>
                       {({ isSelected }) => (

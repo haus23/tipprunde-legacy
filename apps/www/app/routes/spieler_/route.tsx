@@ -75,12 +75,12 @@ function PlayersComponent() {
           cell: ({ row }) => (
             <>
               <span className="hidden md:inline">
-                {teams[row.original.hometeamId]?.name || 'TBA'} -
-                {teams[row.original.awayteamId]?.name || 'TBA'}
+                {teams[row.original.hometeamId]?.name || '(noch offen)'} -
+                {teams[row.original.awayteamId]?.name || '(noch offen)'}
               </span>
               <span className="md:hidden">
-                {teams[row.original.hometeamId]?.shortname || 'TBA'} -
-                {teams[row.original.awayteamId]?.shortname || 'TBA'}
+                {teams[row.original.hometeamId]?.shortname || '(noch offen)'} -
+                {teams[row.original.awayteamId]?.shortname || '(noch offen)'}
               </span>
             </>
           ),
@@ -106,7 +106,7 @@ function PlayersComponent() {
   return (
     <div>
       <div className="mx-2 flex items-center gap-x-4 sm:mx-0">
-        <h1 className="font-semibold text-xl">
+        <h1 className="font-medium text-xl">
           <span className="hidden sm:inline">{championship.name} - </span>
           <span>Tipps für</span>
         </h1>
@@ -117,7 +117,7 @@ function PlayersComponent() {
           items={players}
         >
           {(p) => (
-            <ListBoxItem id={p.account.id}>
+            <ListBoxItem id={p.account.id} textValue={p.account.name}>
               {({ isSelected }) => (
                 <>
                   <span>{p.account.name}</span>
