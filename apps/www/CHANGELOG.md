@@ -1,5 +1,13 @@
 # www
 
+## 0.20.16
+
+### Patch Changes
+
+- [0b13d7f](https://github.com/haus23/tipprunde-legacy/commit/0b13d7f): Add a plain button variant.
+- [ac7d45b](https://github.com/haus23/tipprunde-legacy/commit/ac7d45b): Add the current tips feature.
+- [697c1cf](https://github.com/haus23/tipprunde-legacy/commit/697c1cf): Add the currentTips query. Last one from the legacy react-router
+
 ## 0.20.15
 
 ### Patch Changes
