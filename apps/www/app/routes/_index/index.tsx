@@ -3,13 +3,17 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useLoaderData } from '@tanstack/react-router';
 import { type ColumnDef, createColumnHelper } from '@tanstack/react-table';
 import { CalendarIcon } from 'lucide-react';
-import { useMemo } from 'react';
+import { Suspense, useMemo } from 'react';
 
 import { DataTable } from '#/components/ui/data-table';
 import { Link } from '#/components/ui/link';
-import { playersQuery } from '#/utils/queries';
+import { currentTipsQuery, playersQuery } from '#/utils/queries';
+import { CurrentTips } from './-current-tips';
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/_index/')({
+  loader: async ({ context: { queryClient, championship } }) => {
+    queryClient.prefetchQuery(currentTipsQuery(championship));
+  },
   component: RankingComponent,
 });
 
@@ -31,12 +35,14 @@ function RankingComponent() {
     });
     const nameColumn = columnHelper.accessor('account.name', {
       header: 'Name',
-      meta: { thClasses: 'text-left', tdClasses: 'w-full' },
+      meta: {
+        thClasses: 'text-left',
+        tdClasses: 'w-full font-medium hover:underline',
+      },
       cell: (info) => (
         <div className="py-1">
           <Link
             className="block py-1 text-gray-12"
-            variant="navlink"
             to="/spieler"
             search={(prev) => ({ ...prev, name: info.row.original.playerId })}
           >
@@ -70,7 +76,17 @@ function RankingComponent() {
     const currentTipsColumn = columnHelper.display({
       id: 'current-tips',
       header: () => <span className="sr-only">Aktuelle Tips</span>,
-      cell: () => <CalendarIcon className="size-5" />,
+      cell: (info) => (
+        <Suspense
+          fallback={
+            <div className="p-1.5 text-gray-11">
+              <CalendarIcon className="size-5" />
+            </div>
+          }
+        >
+          <CurrentTips player={info.row.original} />
+        </Suspense>
+      ),
     });
     return (
       championship.completed
