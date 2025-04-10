@@ -34,42 +34,8 @@ export function TablesRoute() {
           </span>
         </h1>
       </header>
-      <table className="mt-4 w-full text-sm">
-        <thead className="bg-accent-subtle text-accent-foreground text-xs uppercase">
-          <tr>
-            <th
-              scope="col"
-              className="py-3 pr-2 pl-4 text-right font-medium md:px-6"
-            >
-              Platz
-            </th>
-            <th scope="col" className="px-2 text-left font-medium md:px-6">
-              Name
-            </th>
-            {championship.extraPointsPublished && (
-              <th scope="col" className="px-2 text-center font-medium md:px-6 ">
-                <span className="hidden sm:inline">Zusatzpunkte</span>
-                <span className="sm:hidden">Zusatzpkt</span>
-              </th>
-            )}
-            <th
-              scope="col"
-              className="px-2 text-center font-medium last:pr-4 md:px-6"
-            >
-              <span className="hidden sm:inline">
-                {championship.extraPointsPublished ? 'Gesamtpunkte' : 'Punkte'}
-              </span>
-              <span className="sm:hidden">
-                {championship.extraPointsPublished ? 'Gesamt' : 'Punkte'}
-              </span>
-            </th>
-            {!championship.completed && (
-              <th>
-                <span className="sr-only">Aktuelle Spiele</span>
-              </th>
-            )}
-          </tr>
-        </thead>
+      <table className="text-sm">
+       
         <tbody className="divide-y divide-neutral-hover font-semibold text-subtle-foreground">
           {players.map((p, ix) => {
             const currentRank =
@@ -80,24 +46,6 @@ export function TablesRoute() {
                   : '';
             return (
               <tr key={p.id}>
-                <td className="pr-2 pl-4 text-right md:px-6">{currentRank}</td>
-                <td className="w-full px-2 md:px-6">
-                  <div className="py-1.5">
-                    <Link
-                      prefetch="viewport"
-                      className="block rounded-xs p-1 hover:text-accent-foreground hover:underline"
-                      to={`spieler?name=${p.playerId}`}
-                    >
-                      {p.account.name}
-                    </Link>
-                  </div>
-                </td>
-                {championship.extraPointsPublished && (
-                  <td className="px-2 text-center md:px-6">{p.extraPoints}</td>
-                )}
-                <td className="px-2 text-center last:pr-4 md:px-6">
-                  {p.totalPoints}
-                </td>
                 {!championship.completed && currentTips.length > 0 && (
                   <td>
                     <div className="flex items-center pr-2">

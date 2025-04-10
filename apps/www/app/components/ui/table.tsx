@@ -24,7 +24,9 @@ export function TableHeader({ className, ...props }: TableHeader.Props) {
   return <thead className={tableHeaderStyles({ className })} {...props} />;
 }
 
-const tableBodyStyles = tv({});
+const tableBodyStyles = tv({
+  base: 'divide-y',
+});
 
 namespace TableBody {
   export interface Props extends React.ComponentProps<'tbody'> {}
@@ -67,7 +69,9 @@ export function TableHead({ className, ...props }: TableHead.Props) {
   return <th className={tableHeadStyles({ className })} {...props} />;
 }
 
-const tableCellStyles = tv({});
+const tableCellStyles = tv({
+  base: 'px-2 first:pl-4 last:pr-4 md:px-4',
+});
 
 namespace TableCell {
   export interface Props extends React.ComponentProps<'td'> {}

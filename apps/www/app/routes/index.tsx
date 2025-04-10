@@ -2,10 +2,11 @@ import type { PlayerWithAccount } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useLoaderData } from '@tanstack/react-router';
 import { type ColumnDef, createColumnHelper } from '@tanstack/react-table';
+import { CalendarIcon } from 'lucide-react';
 import { useMemo } from 'react';
 
-import { CalendarDaysIcon } from 'lucide-react';
 import { DataTable } from '#/components/ui/data-table';
+import { Link } from '#/components/ui/link';
 import { playersQuery } from '#/utils/queries';
 
 export const Route = createFileRoute('/')({
@@ -26,24 +27,50 @@ function RankingComponent() {
         (table.getCoreRowModel().rows[row.index - 1]?.original.rank || 0)
           ? ''
           : `${cell.getValue()}.`,
-      meta: { thClasses: 'text-right' },
+      meta: { thClasses: 'text-right', tdClasses: 'text-right' },
     });
     const nameColumn = columnHelper.accessor('account.name', {
       header: 'Name',
-      meta: { thClasses: 'text-left' },
+      meta: { thClasses: 'text-left', tdClasses: 'w-full' },
+      cell: (info) => (
+        <div className="py-1">
+          <Link
+            className="block py-1 text-gray-12"
+            variant="navlink"
+            to="/spieler"
+            search={(prev) => ({ ...prev, name: info.row.original.playerId })}
+          >
+            {info.getValue()}
+          </Link>
+        </div>
+      ),
     });
     const extraPointsColumn = columnHelper.accessor('extraPoints', {
-      header: 'Zusatzpunkte',
-      meta: { thClasses: 'text-center' },
+      header: () => (
+        <>
+          <span className="hidden sm:inline">Zusatzpunkte</span>
+          <span className="sm:hidden">Zusatzpkt</span>
+        </>
+      ),
+      meta: { thClasses: 'text-center', tdClasses: 'text-center' },
     });
     const pointsColumn = columnHelper.accessor('totalPoints', {
-      header: 'Punkte',
-      meta: { thClasses: 'text-center' },
+      header: () => (
+        <>
+          <span className="hidden sm:inline">
+            {championship.extraPointsPublished ? 'Gesamtpunkte' : 'Punkte'}
+          </span>
+          <span className="sm:hidden">
+            {championship.extraPointsPublished ? 'Gesamt' : 'Punkte'}
+          </span>
+        </>
+      ),
+      meta: { thClasses: 'text-center', tdClasses: 'text-center' },
     });
     const currentTipsColumn = columnHelper.display({
       id: 'current-tips',
       header: () => <span className="sr-only">Aktuelle Tips</span>,
-      cell: () => <CalendarDaysIcon className="size-5" />,
+      cell: () => <CalendarIcon className="size-5" />,
     });
     return (
       championship.completed
@@ -54,8 +81,8 @@ function RankingComponent() {
 
   return (
     <div>
-      <div>
-        <h1 className="font-semibold text-xl">
+      <div className="mx-2 sm:mx-0">
+        <h1 className="font-medium text-xl">
           <span className="hidden md:inline">{championship.name} - </span>
           <span>
             {championship.completed ? 'Abschlusstabelle' : 'Aktuelle Tabelle'}
