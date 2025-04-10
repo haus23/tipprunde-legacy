@@ -1,6 +1,8 @@
 import {
   AccountSchema,
+  type Championship,
   ChampionshipSchema,
+  CurrentTipsSchema,
   MatchTipsSchema,
   MatchesSchema,
   PlayerTipsSchema,
@@ -11,6 +13,10 @@ import * as v from 'valibot';
 
 const backendHost = import.meta.env.VITE_UNTERBAU_SERVER;
 const baseUrl = `${backendHost}/api/v1`;
+
+// Small debug helper, usage: await sleep(1000)
+const sleep = (delay: number) =>
+  new Promise((resolve) => setTimeout(resolve, delay));
 
 async function fetchChampionships() {
   const response = await fetch(`${baseUrl}/championships`);
@@ -86,4 +92,19 @@ export const matchTipsQuery = (championshipId: string, nr: number | null) =>
   queryOptions({
     queryKey: ['match-tips', championshipId, nr],
     queryFn: () => fetchMatchTips(championshipId, nr),
+  });
+
+async function fetchCurrentTips(championship: Championship) {
+  if (championship.completed) return [];
+
+  const response = await fetch(
+    `${baseUrl}/championships/${championship.id}/current-tips`,
+  );
+  return v.parse(CurrentTipsSchema, await response.json());
+}
+
+export const currentTipsQuery = (championship: Championship) =>
+  queryOptions({
+    queryKey: ['current-tips', championship.id],
+    queryFn: () => fetchCurrentTips(championship),
   });
