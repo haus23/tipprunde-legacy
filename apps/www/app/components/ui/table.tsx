@@ -1,6 +1,8 @@
 import { tv } from 'tailwind-variants';
 
-const tableStyles = tv({});
+const tableStyles = tv({
+  base: 'w-full',
+});
 
 namespace Table {
   export interface Props extends React.ComponentProps<'table'> {}
@@ -10,7 +12,9 @@ export function Table({ className, ...props }: Table.Props) {
   return <table className={tableStyles({ className })} {...props} />;
 }
 
-const tableHeaderStyles = tv({});
+const tableHeaderStyles = tv({
+  base: 'bg-accent-3 text-accent-12 text-xs uppercase',
+});
 
 namespace TableHeader {
   export interface Props extends React.ComponentProps<'thead'> {}
@@ -50,7 +54,10 @@ export function TableRow({ className, ...props }: TableRow.Props) {
   return <tr className={tableRowStyles({ className })} {...props} />;
 }
 
-const tableHeadStyles = tv({});
+// TODO: think about md:px-6
+const tableHeadStyles = tv({
+  base: 'px-2 font-medium first:py-2 first:pl-4 last:pr-4 md:px-4',
+});
 
 namespace TableHead {
   export interface Props extends React.ComponentProps<'th'> {}

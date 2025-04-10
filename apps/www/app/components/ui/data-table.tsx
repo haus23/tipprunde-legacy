@@ -1,5 +1,6 @@
 import {
   type ColumnDef,
+  type RowData,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -13,6 +14,12 @@ import {
   TableHeader,
   TableRow,
 } from './table';
+
+declare module '@tanstack/react-table' {
+  interface ColumnMeta<TData extends RowData, TValue> {
+    thClasses: string;
+  }
+}
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -37,7 +44,10 @@ export function DataTable<TData, TValue>({
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead
+                    key={header.id}
+                    className={header.column.columnDef.meta?.thClasses}
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
