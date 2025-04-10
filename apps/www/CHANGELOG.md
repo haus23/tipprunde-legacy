@@ -1,5 +1,14 @@
 # www
 
+## 0.20.17
+
+### Patch Changes
+
+- [935b75d](https://github.com/haus23/tipprunde-legacy/commit/935b75d): Link to match in current tips popover.
+- [0df4a85](https://github.com/haus23/tipprunde-legacy/commit/0df4a85): Align wording and styles.
+- [673445e](https://github.com/haus23/tipprunde-legacy/commit/673445e): Align and simplify link styling.
+- [350afd0](https://github.com/haus23/tipprunde-legacy/commit/350afd0): Better bg styles. Stay with app-bg in lightmode.
+
 ## 0.20.16
 
 ### Patch Changes
