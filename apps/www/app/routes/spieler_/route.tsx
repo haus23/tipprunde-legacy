@@ -69,7 +69,7 @@ function PlayersComponent() {
           header: 'Nr',
           meta: {
             cellClasses: 'hidden sm:table-cell',
-            tdClasses: 'text-center font-medium tabular-nums',
+            tdClasses: 'text-center tabular-nums',
           },
         }),
         columnHelper.accessor('date', {
@@ -78,7 +78,7 @@ function PlayersComponent() {
             formatDate(cell.getValue(), { shortIfCurrent: true }),
           meta: {
             cellClasses: 'hidden sm:table-cell',
-            tdClasses: 'text-center font-medium tabular-nums',
+            tdClasses: 'text-center tabular-nums',
           },
         }),
         columnHelper.display({
@@ -101,13 +101,14 @@ function PlayersComponent() {
             </Link>
           ),
           meta: {
-            cellClasses: 'text-left',
+            thClasses: 'text-left',
+            tdClasses: 'w-full font-medium',
           },
         }),
         columnHelper.accessor('result', {
           header: 'Ergebnis',
           meta: {
-            tdClasses: 'text-center font-medium tabular-nums',
+            tdClasses: 'text-center tabular-nums',
           },
         }),
         columnHelper.display({
@@ -124,7 +125,7 @@ function PlayersComponent() {
           cell: ({ row }) =>
             row.original.result && (tips.tips[row.original.id]?.points ?? 0),
           meta: {
-            tdClasses: 'text-center font-medium tabular-nums',
+            tdClasses: 'text-center tabular-nums',
           },
         }),
       ] as ColumnDef<Match>[],

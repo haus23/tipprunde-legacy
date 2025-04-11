@@ -33,7 +33,7 @@ function RankingComponent() {
           : `${cell.getValue()}.`,
       meta: {
         cellClasses: 'text-right',
-        tdClasses: 'font-medium tabular-nums',
+        tdClasses: 'tabular-nums',
       },
     });
     const nameColumn = columnHelper.accessor('account.name', {
@@ -60,7 +60,7 @@ function RankingComponent() {
         </>
       ),
       meta: {
-        tdClasses: 'text-center font-medium tabular-nums',
+        tdClasses: 'text-center tabular-nums',
       },
     });
     const pointsColumn = columnHelper.accessor('totalPoints', {
@@ -75,7 +75,7 @@ function RankingComponent() {
         </>
       ),
       meta: {
-        tdClasses: 'text-center font-medium tabular-nums',
+        tdClasses: 'text-center tabular-nums',
       },
     });
     const currentTipsColumn = columnHelper.display({
