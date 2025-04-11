@@ -58,7 +58,7 @@ export function TableRow({ className, ...props }: TableRow.Props) {
 
 // TODO: think about md:px-6
 const tableHeadStyles = tv({
-  base: 'px-2 font-medium first:py-2 first:pl-4 last:pr-4 md:px-4',
+  base: 'p-2 font-medium md:px-4',
 });
 
 namespace TableHead {
@@ -70,7 +70,7 @@ export function TableHead({ className, ...props }: TableHead.Props) {
 }
 
 const tableCellStyles = tv({
-  base: 'px-2 first:pl-4 last:pr-4 md:px-4',
+  base: 'p-1 md:px-4',
 });
 
 namespace TableCell {

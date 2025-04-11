@@ -32,8 +32,8 @@ function RankingComponent() {
           ? ''
           : `${cell.getValue()}.`,
       meta: {
-        thClasses: 'text-right',
-        tdClasses: 'text-right font-medium tabular-nums',
+        cellClasses: 'text-right',
+        tdClasses: 'font-medium tabular-nums',
       },
     });
     const nameColumn = columnHelper.accessor('account.name', {
@@ -43,15 +43,13 @@ function RankingComponent() {
         tdClasses: 'w-full font-medium',
       },
       cell: (info) => (
-        <div className="py-1">
-          <Link
-            className="block py-1 text-gray-12"
-            to="/spieler"
-            search={(prev) => ({ ...prev, name: info.row.original.playerId })}
-          >
-            {info.getValue()}
-          </Link>
-        </div>
+        <Link
+          className="block py-1 pl-0"
+          to="/spieler"
+          search={(prev) => ({ ...prev, name: info.row.original.playerId })}
+        >
+          {info.getValue()}
+        </Link>
       ),
     });
     const extraPointsColumn = columnHelper.accessor('extraPoints', {
@@ -62,7 +60,6 @@ function RankingComponent() {
         </>
       ),
       meta: {
-        thClasses: 'text-center',
         tdClasses: 'text-center font-medium tabular-nums',
       },
     });
@@ -78,7 +75,6 @@ function RankingComponent() {
         </>
       ),
       meta: {
-        thClasses: 'text-center',
         tdClasses: 'text-center font-medium tabular-nums',
       },
     });
