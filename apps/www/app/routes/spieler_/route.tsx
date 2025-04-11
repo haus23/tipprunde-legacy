@@ -115,7 +115,7 @@ function PlayersComponent() {
           header: 'Tipp',
           cell: ({ row }) => tips.tips[row.original.id]?.tip,
           meta: {
-            tdClasses: 'text-center font-medium tabular-nums',
+            tdClasses: 'text-center tabular-nums',
           },
         }),
         columnHelper.display({
