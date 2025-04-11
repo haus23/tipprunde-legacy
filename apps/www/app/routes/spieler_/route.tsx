@@ -94,7 +94,7 @@ function PlayersComponent() {
             <Link
               to="/spiele"
               search={(prev) => ({ ...prev, nr: row.original.nr })}
-              className="block py-1 pl-0"
+              className="block py-1"
             >
               <span className="hidden md:inline">
                 {teams[row.original.hometeamId]?.name || '(noch offen)'} -
@@ -107,7 +107,7 @@ function PlayersComponent() {
             </Link>
           ),
           meta: {
-            thClasses: 'text-left',
+            thClasses: 'text-left md:pl-6',
             tdClasses: 'w-full font-medium',
           },
         }),

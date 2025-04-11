@@ -39,12 +39,12 @@ function RankingComponent() {
     const nameColumn = columnHelper.accessor('account.name', {
       header: 'Name',
       meta: {
-        thClasses: 'text-left',
+        thClasses: 'text-left md:pl-6',
         tdClasses: 'w-full font-medium',
       },
       cell: (info) => (
         <Link
-          className="block py-1 pl-0"
+          className="block py-1"
           to="/spieler"
           search={(prev) => ({ ...prev, name: info.row.original.playerId })}
         >
