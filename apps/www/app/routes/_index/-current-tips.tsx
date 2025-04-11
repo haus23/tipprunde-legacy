@@ -85,7 +85,8 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
         isOpen={isOpen}
         onOpenChange={setOpen}
         isNonModal
-        offset={4}
+        offset={6}
+        placement="top"
         className={popoverStyles()}
       >
         <OverlayArrow>
@@ -100,8 +101,8 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
             <path d="M0 0 L6 6 L12 0" />
           </svg>
         </OverlayArrow>
-        <div className="grid w-[240px] grid-cols-[1fr_repeat(2,auto)] pb-2 text-sm">
-          <div className="border-b py-2 pl-2">Spiel</div>
+        <div className="grid w-[240px] grid-cols-[1fr_repeat(2,auto)] pb-1 text-sm">
+          <div className="border-b p-2 pr-0">Spiel</div>
           <div className="border-b p-2 text-center">Tipp</div>
           <div className="border-b p-2 text-center">Pkt</div>
           {currentTips.map((m) => {

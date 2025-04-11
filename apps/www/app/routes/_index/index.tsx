@@ -31,7 +31,10 @@ function RankingComponent() {
         (table.getCoreRowModel().rows[row.index - 1]?.original.rank || 0)
           ? ''
           : `${cell.getValue()}.`,
-      meta: { thClasses: 'text-right', tdClasses: 'text-right' },
+      meta: {
+        thClasses: 'text-right',
+        tdClasses: 'text-right font-medium tabular-nums',
+      },
     });
     const nameColumn = columnHelper.accessor('account.name', {
       header: 'Name',
@@ -58,7 +61,10 @@ function RankingComponent() {
           <span className="sm:hidden">Zusatzpkt</span>
         </>
       ),
-      meta: { thClasses: 'text-center', tdClasses: 'text-center' },
+      meta: {
+        thClasses: 'text-center',
+        tdClasses: 'text-center font-medium tabular-nums',
+      },
     });
     const pointsColumn = columnHelper.accessor('totalPoints', {
       header: () => (
@@ -71,7 +77,10 @@ function RankingComponent() {
           </span>
         </>
       ),
-      meta: { thClasses: 'text-center', tdClasses: 'text-center' },
+      meta: {
+        thClasses: 'text-center',
+        tdClasses: 'text-center font-medium tabular-nums',
+      },
     });
     const currentTipsColumn = columnHelper.display({
       id: 'current-tips',
