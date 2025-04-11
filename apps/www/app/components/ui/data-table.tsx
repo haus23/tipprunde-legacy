@@ -6,6 +6,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
+import { twMerge } from 'tailwind-merge';
 import {
   Table,
   TableBody,
@@ -17,6 +18,7 @@ import {
 
 declare module '@tanstack/react-table' {
   interface ColumnMeta<TData extends RowData, TValue> {
+    cellClasses?: string;
     thClasses?: string;
     tdClasses?: string;
   }
@@ -47,7 +49,10 @@ export function DataTable<TData, TValue>({
                 return (
                   <TableHead
                     key={header.id}
-                    className={header.column.columnDef.meta?.thClasses}
+                    className={twMerge(
+                      header.column.columnDef.meta?.cellClasses,
+                      header.column.columnDef.meta?.thClasses,
+                    )}
                   >
                     {header.isPlaceholder
                       ? null
@@ -71,7 +76,10 @@ export function DataTable<TData, TValue>({
                 {row.getVisibleCells().map((cell) => (
                   <TableCell
                     key={cell.id}
-                    className={cell.column.columnDef.meta?.tdClasses}
+                    className={twMerge(
+                      cell.column.columnDef.meta?.cellClasses,
+                      cell.column.columnDef.meta?.tdClasses,
+                    )}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
@@ -81,7 +89,7 @@ export function DataTable<TData, TValue>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                Keine Daten.
               </TableCell>
             </TableRow>
           )}
