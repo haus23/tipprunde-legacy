@@ -1,5 +1,19 @@
 # www
 
+## 0.20.18
+
+### Patch Changes
+
+- [c809264](https://github.com/haus23/tipprunde-legacy/commit/c809264): Adjust header paddings.
+- [e458dae](https://github.com/haus23/tipprunde-legacy/commit/e458dae): Implement accordion component.
+- [ea55f73](https://github.com/haus23/tipprunde-legacy/commit/ea55f73): Align medium weight. Remove weight from numbers.
+- [bc13288](https://github.com/haus23/tipprunde-legacy/commit/bc13288): Increase readability of numbers.
+- [d2d0f42](https://github.com/haus23/tipprunde-legacy/commit/d2d0f42): Align table styling.
+- [c2ca517](https://github.com/haus23/tipprunde-legacy/commit/c2ca517): Update scollbar-width value.
+- [9e3bc31](https://github.com/haus23/tipprunde-legacy/commit/9e3bc31): Add commonly used cell classes.
+- [487ec2b](https://github.com/haus23/tipprunde-legacy/commit/487ec2b): Switch to Geist font
+- [0e3b5df](https://github.com/haus23/tipprunde-legacy/commit/0e3b5df): Styled the players view.
+
 ## 0.20.17
 
 ### Patch Changes
