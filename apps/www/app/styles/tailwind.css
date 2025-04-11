@@ -172,7 +172,7 @@
   }
 
   html {
-    scrollbar-width: 0;
+    scrollbar-width: none;
   }
 
   body::-webkit-scrollbar {
