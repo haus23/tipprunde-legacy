@@ -11,6 +11,12 @@ import type { Key } from 'react-aria-components';
 import * as v from 'valibot';
 
 import { CheckIcon } from 'lucide-react';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionGroup,
+  AccordionSummary,
+} from '#/components/ui/accordion';
 import { DataTable } from '#/components/ui/data-table';
 import { Link } from '#/components/ui/link';
 import { ListBoxItem } from '#/components/ui/listbox';
@@ -183,17 +189,27 @@ function PlayersComponent() {
           </div>
         </div>
       </div>
-      <div>
+      <AccordionGroup
+        allowsMultipleExpanded
+        defaultExpandedKeys={[
+          championship.completed ? '' : (rounds.at(-1)?.id ?? ''),
+        ]}
+        className="mt-6"
+      >
         {rounds.map((r) => {
           const matchesInRound = matches.filter((m) => m.roundId === r.id);
           return (
-            <div key={r.id}>
-              <h3>Runde {r.nr}</h3>
-              <DataTable columns={columns} data={matchesInRound} />
-            </div>
+            <Accordion id={r.id} key={r.id} className="my-2">
+              <AccordionSummary>
+                Runde <span className="tabular-nums">{r.nr}</span>
+              </AccordionSummary>
+              <AccordionDetails>
+                <DataTable columns={columns} data={matchesInRound} />
+              </AccordionDetails>
+            </Accordion>
           );
         })}
-      </div>
+      </AccordionGroup>
     </div>
   );
 }
