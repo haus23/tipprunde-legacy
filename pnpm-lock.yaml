@@ -145,6 +145,9 @@ importers:
       '@convex-dev/auth':
         specifier: ^0.0.81
         version: 0.0.81(@auth/core@0.37.0)(convex@1.23.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      '@fontsource-variable/geist':
+        specifier: ^5.2.5
+        version: 5.2.5
       '@haus23/tipprunde-model':
         specifier: workspace:^
         version: link:../../packages/model
@@ -1432,6 +1435,9 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
+
+  '@fontsource-variable/geist@5.2.5':
+    resolution: {integrity: sha512-773ht1maARKCDSxxmyc6cWiSRudk4GU+pW/0PHHnTEISprej9ARfGZVVhW04nmrk1Nlj888MLyuutTx1UnYy0g==}
 
   '@formatjs/ecma402-abstract@2.3.4':
     resolution: {integrity: sha512-qrycXDeaORzIqNhBOx0btnhpD1c+/qFIHAN9znofuMJX6QBwtbrmlpWfD4oiUUD2vJUOIYFA/gYtg2KAMGG7sA==}
@@ -6296,6 +6302,8 @@ snapshots:
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.9': {}
+
+  '@fontsource-variable/geist@5.2.5': {}
 
   '@formatjs/ecma402-abstract@2.3.4':
     dependencies:
