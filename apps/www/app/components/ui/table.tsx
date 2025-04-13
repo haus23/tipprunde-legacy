@@ -13,7 +13,7 @@ export function Table({ className, ...props }: Table.Props) {
 }
 
 const tableHeaderStyles = tv({
-  base: 'bg-accent-3 text-accent-12 text-xs uppercase',
+  base: 'bg-accent-5 text-accent-12 text-xs uppercase',
 });
 
 namespace TableHeader {
