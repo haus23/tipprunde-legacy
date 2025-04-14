@@ -1,5 +1,19 @@
 # www
 
+## 0.20.19
+
+### Patch Changes
+
+- [0190fed](https://github.com/haus23/tipprunde-legacy/commit/0190fed): Update deps.
+- [5b0d681](https://github.com/haus23/tipprunde-legacy/commit/5b0d681): Add calculated round stats.
+- [d1dd8b3](https://github.com/haus23/tipprunde-legacy/commit/d1dd8b3): Add highlighted rows with info icon.
+- [00bee9e](https://github.com/haus23/tipprunde-legacy/commit/00bee9e): Move the bg gradient into the suspense. Better coloring for
+- [94c564a](https://github.com/haus23/tipprunde-legacy/commit/94c564a): Extract popover component.
+- [97377c4](https://github.com/haus23/tipprunde-legacy/commit/97377c4): Set default preload strategy to 'intent'.
+- [1d34140](https://github.com/haus23/tipprunde-legacy/commit/1d34140): Always open - if possible - a round accordion.
+- [c7c2cd2](https://github.com/haus23/tipprunde-legacy/commit/c7c2cd2): Switch selected key after navigating to default player /spieler
+- [cdb87ce](https://github.com/haus23/tipprunde-legacy/commit/cdb87ce): Seeting table header to active component bg.
+
 ## 0.20.18
 
 ### Patch Changes
