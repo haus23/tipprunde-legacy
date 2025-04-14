@@ -20,6 +20,7 @@ import {
 import { DataTable } from '#/components/ui/data-table';
 import { Link } from '#/components/ui/link';
 import { ListBoxItem } from '#/components/ui/listbox';
+import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
 import { formatDate } from '#/utils/misc';
 import { matchesQuery, playerTipsQuery, playersQuery } from '#/utils/queries';
@@ -129,8 +130,15 @@ function PlayersComponent() {
               <>
                 <span>{tip?.tip}</span>
                 {(tip?.joker || tip?.lonelyHit) && (
-                  <span className="absolute right-0">
-                    <InfoIcon className="size-5" />
+                  <span className="-right-2 -translate-y-1.5 absolute">
+                    <Popover offset={4} triggerLabel="Zusatzinfos zum Tipp">
+                      <div className="px-4 py-2">
+                        {tip?.joker === true && <p>Joker</p>}
+                        {tip?.lonelyHit === true && (
+                          <p>Einziger richtiger Tipp</p>
+                        )}
+                      </div>
+                    </Popover>
                   </span>
                 )}
               </>
