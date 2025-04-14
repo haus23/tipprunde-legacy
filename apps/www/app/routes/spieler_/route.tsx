@@ -66,7 +66,10 @@ function PlayersComponent() {
     playerTipsQuery(championship.id, player.account.id),
   );
 
+  // Calculate helper data
   const playedMatches = matches.filter((m) => m.result).length;
+  const currentRoundId =
+    matches.findLast((m) => m.result)?.roundId || matches.at(0)?.roundId || '';
 
   const columns = useMemo(
     () =>
@@ -191,9 +194,7 @@ function PlayersComponent() {
       </div>
       <AccordionGroup
         allowsMultipleExpanded
-        defaultExpandedKeys={[
-          championship.completed ? '' : (rounds.at(-1)?.id ?? ''),
-        ]}
+        defaultExpandedKeys={[currentRoundId]}
         className="mt-6"
       >
         {rounds.map((r) => {
