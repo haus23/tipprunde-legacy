@@ -15,6 +15,7 @@ const convexClient = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
 import { routeTree } from './routeTree.gen';
 const router = createRouter({
+  defaultPreload: 'intent',
   routeTree,
   scrollRestoration: true,
   scrollRestorationBehavior: 'smooth',
