@@ -10,7 +10,7 @@ import { useMemo } from 'react';
 import type { Key } from 'react-aria-components';
 import * as v from 'valibot';
 
-import { CheckIcon } from 'lucide-react';
+import { CheckIcon, InfoIcon } from 'lucide-react';
 import {
   Accordion,
   AccordionDetails,
@@ -123,9 +123,22 @@ function PlayersComponent() {
         columnHelper.display({
           id: 'tip',
           header: 'Tipp',
-          cell: ({ row }) => tips.tips[row.original.id]?.tip,
+          cell: ({ row }) => {
+            const tip = tips.tips[row.original.id];
+            return (
+              <>
+                <span>{tip?.tip}</span>
+                {(tip?.joker || tip?.lonelyHit) && (
+                  <span className="absolute right-0">
+                    <InfoIcon className="size-5" />
+                  </span>
+                )}
+              </>
+            );
+          },
           meta: {
-            tdClasses: 'text-center tabular-nums',
+            cellClasses: 'px-6 md:px-6',
+            tdClasses: 'relative text-center tabular-nums',
           },
         }),
         columnHelper.display({
@@ -234,7 +247,15 @@ function PlayersComponent() {
                 )}
               </AccordionSummary>
               <AccordionDetails>
-                <DataTable columns={columns} data={matchesInRound} />
+                <DataTable
+                  className="text-sm"
+                  columns={columns}
+                  data={matchesInRound}
+                  getRowClasses={(row) => {
+                    const tip = tips.tips[row.original.id];
+                    return tip?.joker || tip?.lonelyHit ? 'bg-accent-4' : '';
+                  }}
+                />
               </AccordionDetails>
             </Accordion>
           );
