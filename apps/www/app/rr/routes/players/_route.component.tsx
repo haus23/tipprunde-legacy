@@ -1,13 +1,6 @@
 import { useLoaderData, useSearchParams } from 'react-router';
 import { Link } from '#/components/(ui)/link/link';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '#/components/(ui)/elements/select';
-import {
   Accordion,
   AccordionContent,
   AccordionItem,
@@ -15,22 +8,10 @@ import {
 } from '#/components/(ui)/molecules/accordion';
 import { EmptyData } from '#/components/(ui)/molecules/empty-data';
 import { InfoBox } from '#/components/(ui)/molecules/info-box';
-import { useChampionship } from '#/utils/app/championship';
-import { useMatches } from '#/utils/app/matches';
-import { usePlayers } from '#/utils/app/players';
 import { formatDate } from '#/utils/misc';
 import type { playersLoader } from './_route.data';
 
 export function PlayersRoute() {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const championship = useChampionship();
-
-  const { matches, teams, rounds } = useMatches(championship.id);
-  const playedMatches = matches.filter((m) => m.result).length;
-
-  const players = usePlayers(championship.id);
-
   const loaderData = useLoaderData<ReturnType<typeof playersLoader>>();
   if (loaderData.state === 'error') {
     return (
@@ -39,31 +20,6 @@ export function PlayersRoute() {
         bitte.
       </EmptyData>
     );
-  }
-
-  const { playerId, tips } = loaderData;
-  const player = players.find((p) => p.id === playerId) || players[0];
-
-  function handleSelect(id: string) {
-    const accId = players.find((p) => p.id === id)?.account.id;
-    setSearchParams({ ...searchParams, name: accId }, { viewTransition: true });
-  }
-
-  // find current round
-  let currentRoundId: string | undefined = undefined;
-  if (!championship.completed) {
-    // Find last played match
-    const match = [...matches].reverse().find((m) => m.result);
-    if (!match) {
-      // No match played, but is there a first round?
-      if (rounds.length > 0) {
-        currentRoundId = rounds[0].id;
-      }
-    } else {
-      // Test if there is already a next round match
-      const matchIx = matches.indexOf(match);
-      currentRoundId = matches.at(matchIx + 1)?.roundId || match.roundId;
-    }
   }
 
   function scrollToRound(roundId: string) {
@@ -83,24 +39,7 @@ export function PlayersRoute() {
   return (
     <div>
       <title>{`Tipps ${player.account.name} - ${championship.name} - runde.tips`}</title>
-      <header className="sticky top-0 z-10 mx-2 flex items-center gap-x-4 bg-background pt-1 pb-2 text-accent-foreground sm:mx-0 sm:gap-x-4">
-        <h2 className="flex gap-x-2 font-semibold text-xl tracking-tight">
-          <span className="hidden py-1 sm:block">{championship.name} -</span>
-          <span className="py-1">Tipps von </span>
-        </h2>
-        <Select value={playerId} onValueChange={handleSelect}>
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {players.map((p) => (
-              <SelectItem value={p.id} key={p.id}>
-                {p.account.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </header>
+
       <div className="mx-2 mt-6 max-w-3xl text-sm md:mx-auto">
         <div className="flex w-full justify-between">
           <div className="space-y-1">

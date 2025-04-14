@@ -66,7 +66,7 @@ function PlayersComponent() {
     playerTipsQuery(championship.id, player.account.id),
   );
 
-  // Calculate helper data
+  // Calculate page helper data
   const playedMatches = matches.filter((m) => m.result).length;
   const currentRoundId =
     matches.findLast((m) => m.result)?.roundId || matches.at(0)?.roundId || '';
@@ -198,11 +198,40 @@ function PlayersComponent() {
         className="mt-6"
       >
         {rounds.map((r) => {
+          // Calculate round helpder data
           const matchesInRound = matches.filter((m) => m.roundId === r.id);
+          const playedMatchesInRoundCount = matchesInRound.filter(
+            (m) => m.result,
+          ).length;
+          const pointsInRound = matchesInRound.reduce(
+            (sum, cur) => sum + (tips.tips[cur.id]?.points ?? 0),
+            0,
+          );
+
           return (
             <Accordion id={r.id} key={r.id} className="my-2">
-              <AccordionSummary>
-                Runde <span className="tabular-nums">{r.nr}</span>
+              <AccordionSummary className="flex grow items-center justify-between tabular-nums">
+                <div className="justify-self-start">
+                  Runde <span>{r.nr}</span>
+                </div>
+                {playedMatchesInRoundCount > 0 && (
+                  <div className="flex gap-x-3 text-sm sm:gap-x-4">
+                    <div className="flex justify-end gap-x-1.5 sm:gap-x-2">
+                      <span className="hidden sm:block">Spiele:</span>
+                      <span className="sm:hidden">Sp:</span>
+                      {playedMatchesInRoundCount}
+                    </div>
+                    <div className="flex justify-end gap-x-1.5 sm:gap-x-2">
+                      <span className="hidden sm:block">Punkte:</span>
+                      <span className="sm:hidden">Pkt:</span>
+                      {pointsInRound}
+                    </div>
+                    <div className="flex justify-end gap-x-1.5 sm:gap-x-2">
+                      <span>&#x2300;</span>
+                      {(pointsInRound / playedMatchesInRoundCount).toFixed(2)}
+                    </div>
+                  </div>
+                )}
               </AccordionSummary>
               <AccordionDetails>
                 <DataTable columns={columns} data={matchesInRound} />
