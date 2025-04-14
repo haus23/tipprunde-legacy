@@ -21,7 +21,7 @@ const accordionSummaryButtonStyles = tv({
     focusVisibleStyles,
     'group border border-accent-7 bg-accent-3 transition-colors hover:bg-accent-4',
     'flex items-center gap-x-2',
-    'px-2 py-1',
+    'px-2 py-1 max-sm:rounded-none',
   ],
 });
 
