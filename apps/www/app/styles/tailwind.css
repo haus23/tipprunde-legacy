@@ -178,4 +178,21 @@
   body::-webkit-scrollbar {
     display: none;
   }
+
+  .animated-height {
+    @media (prefers-reduced-motion: no-preference) {
+      --_duration: 250ms;
+      --_durationLong: 500ms;
+      interpolate-size: allow-keywords;
+      overflow-y: clip;
+      transition: content-visibility var(--_duration) allow-discrete, opacity
+        var(--_durationLong), block-size var(--_duration);
+      block-size: auto;
+      opacity: 1;
+      &[aria-hidden="true"] {
+        block-size: 0;
+        opacity: 0;
+      }
+    }
+  }
 }

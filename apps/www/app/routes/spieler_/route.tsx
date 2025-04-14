@@ -223,7 +223,7 @@ function PlayersComponent() {
           );
 
           return (
-            <Accordion id={r.id} key={r.id} className="my-2">
+            <Accordion id={r.id} key={r.id}>
               <AccordionSummary className="flex grow items-center justify-between tabular-nums">
                 <div className="justify-self-start">
                   Runde <span>{r.nr}</span>
@@ -247,7 +247,7 @@ function PlayersComponent() {
                   </div>
                 )}
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className="animated-height mt-2">
                 <DataTable
                   className="text-sm"
                   columns={columns}

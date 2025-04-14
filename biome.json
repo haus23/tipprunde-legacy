@@ -20,6 +20,11 @@
     "enabled": true,
     "rules": {
       "recommended": true,
+      "correctness": {
+        "noUnknownProperty": {
+          "level": "info"
+        }
+      },
       "nursery": {
         "useSortedClasses": {
           "level": "info",

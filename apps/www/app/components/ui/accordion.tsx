@@ -26,7 +26,7 @@ const accordionSummaryButtonStyles = tv({
 });
 
 const accordionDetailsStyles = tv({
-  base: 'mt-2 aria-hidden:mt-0',
+  base: '',
 });
 
 namespace AccordionGroup {
