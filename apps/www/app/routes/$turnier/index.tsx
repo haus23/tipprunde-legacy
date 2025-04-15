@@ -1,10 +1,11 @@
-import { createFileRoute, useLoaderData } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
+import { useChampionship } from '#/utils/app/championship';
 
 export const Route = createFileRoute('/$turnier/')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { championship } = useLoaderData({ from: '/$turnier' });
-  return <h2>{championship?.name}</h2>;
+  const championship = useChampionship();
+  return <h2>{championship.name}</h2>;
 }
