@@ -1,4 +1,3 @@
-import { getRouteApi } from '@tanstack/react-router';
 import { FoldersIcon } from 'lucide-react';
 import { useEffect } from 'react';
 import { Dialog, Modal, ModalOverlay, Separator } from 'react-aria-components';
@@ -9,13 +8,13 @@ import { ActionProvider } from '#/components/ui/action-context';
 import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
 
+import { useChampionship } from '#/utils/app/championship';
 import { useIsMobile } from '#/utils/misc';
 import { useAppShell } from './app-shell';
 import { navLinks } from './nav-links';
 
-const routeApi = getRouteApi('__root__');
-
 export function AppSidebar() {
+  const championship = useChampionship();
   const { isSidebarOpen, setSidebarOpen, setChampionshipSelectOpen } =
     useAppShell();
 
@@ -23,8 +22,6 @@ export function AppSidebar() {
   useEffect(() => {
     if (!isMobile) setSidebarOpen(false);
   }, [isMobile, setSidebarOpen]);
-
-  const { turnier } = routeApi.useSearch();
 
   return (
     <ModalOverlay
@@ -51,11 +48,10 @@ export function AppSidebar() {
                 </Link>
               </div>
               <Separator className="my-2" />
-              {navLinks.map((link) => (
+              {navLinks(championship.id).map((link) => (
                 <div key={link.to} className="px-2 py-1">
                   <Link
-                    to={link.to}
-                    search={{ turnier }}
+                    {...link}
                     variant="navlink"
                     className="flex items-center gap-x-2 aria-[current]:bg-accent-5 aria-[current]:text-gray-12"
                   >
