@@ -11,6 +11,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { Suspense } from 'react';
 import { RouterProvider } from 'react-aria-components';
 
+import { NotFoundComponent } from '#/components/app/error';
 import { SplashScreen } from '#/components/app/splash-screen';
 import { championshipsQuery } from '#/utils/queries';
 
@@ -24,6 +25,7 @@ export const Route = createRootRouteWithContext<{
     return { championships };
   },
   component: RootComponent,
+  notFoundComponent: NotFoundComponent,
 });
 
 declare module 'react-aria-components' {
