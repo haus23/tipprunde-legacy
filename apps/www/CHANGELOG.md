@@ -1,5 +1,14 @@
 # www
 
+## 0.20.20
+
+### Patch Changes
+
+- [f451847](https://github.com/haus23/tipprunde-legacy/commit/f451847): Add tip info popover.
+- [a46f360](https://github.com/haus23/tipprunde-legacy/commit/a46f360): Align loading of championship with custom hook.
+- [e950c00](https://github.com/haus23/tipprunde-legacy/commit/e950c00): Remove rounding on smallest devices.
+- [c386628](https://github.com/haus23/tipprunde-legacy/commit/c386628): Simplify accordion margins. Add animation.
+
 ## 0.20.19
 
 ### Patch Changes
