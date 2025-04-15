@@ -1,10 +1,6 @@
 import type { Tip } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import {
-  createFileRoute,
-  useLoaderData,
-  useNavigate,
-} from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { type ColumnDef, createColumnHelper } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { Collection, type Key } from 'react-aria-components';
@@ -15,6 +11,7 @@ import { DataTable } from '#/components/ui/data-table';
 import { Header } from '#/components/ui/header';
 import { ListBoxItem, ListBoxSection } from '#/components/ui/listbox';
 import { Select } from '#/components/ui/select';
+import { useChampionship } from '#/utils/app/championship';
 import { matchTipsQuery, matchesQuery, playersQuery } from '#/utils/queries';
 
 const columnHelper = createColumnHelper<Tip>();
@@ -39,7 +36,7 @@ export const Route = createFileRoute('/spiele_')({
 });
 
 function MatchesComponent() {
-  const { championship } = useLoaderData({ from: '__root__' });
+  const championship = useChampionship();
   const navigate = useNavigate({ from: Route.fullPath });
 
   const { match } = Route.useLoaderData();

@@ -1,12 +1,13 @@
 import type { PlayerWithAccount } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { createFileRoute, useLoaderData } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import { type ColumnDef, createColumnHelper } from '@tanstack/react-table';
 import { CalendarIcon } from 'lucide-react';
 import { Suspense, useMemo } from 'react';
 
 import { DataTable } from '#/components/ui/data-table';
 import { Link } from '#/components/ui/link';
+import { useChampionship } from '#/utils/app/championship';
 import { currentTipsQuery, playersQuery } from '#/utils/queries';
 import { CurrentTips } from './-current-tips';
 
@@ -20,7 +21,7 @@ export const Route = createFileRoute('/_index/')({
 const columnHelper = createColumnHelper<PlayerWithAccount>();
 
 function RankingComponent() {
-  const { championship } = useLoaderData({ from: '__root__' });
+  const championship = useChampionship();
   const ranking = useSuspenseQuery(playersQuery(championship.id));
 
   const columns = useMemo(() => {

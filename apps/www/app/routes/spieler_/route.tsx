@@ -1,10 +1,6 @@
 import type { Match } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import {
-  createFileRoute,
-  useLoaderData,
-  useNavigate,
-} from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { type ColumnDef, createColumnHelper } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import type { Key } from 'react-aria-components';
@@ -22,6 +18,7 @@ import { Link } from '#/components/ui/link';
 import { ListBoxItem } from '#/components/ui/listbox';
 import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
+import { useChampionship } from '#/utils/app/championship';
 import { formatDate } from '#/utils/misc';
 import { matchesQuery, playerTipsQuery, playersQuery } from '#/utils/queries';
 
@@ -51,7 +48,7 @@ export const Route = createFileRoute('/spieler_')({
 });
 
 function PlayersComponent() {
-  const { championship } = useLoaderData({ from: '__root__' });
+  const championship = useChampionship();
   const navigate = useNavigate({ from: Route.fullPath });
   const { data: players } = useSuspenseQuery(playersQuery(championship.id));
 

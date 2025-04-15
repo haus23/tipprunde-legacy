@@ -1,15 +1,15 @@
 import type { PlayerWithAccount } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { useLoaderData } from '@tanstack/react-router';
 import { CalendarIcon } from 'lucide-react';
 import { Fragment } from 'react';
 
 import { Link } from '#/components/ui/link';
 import { Popover } from '#/components/ui/popover';
+import { useChampionship } from '#/utils/app/championship';
 import { currentTipsQuery, matchesQuery } from '#/utils/queries';
 
 export function CurrentTips({ player }: { player: PlayerWithAccount }) {
-  const { championship } = useLoaderData({ from: '__root__' });
+  const championship = useChampionship();
   const { data: currentTips } = useSuspenseQuery(
     currentTipsQuery(championship),
   );

@@ -1,4 +1,4 @@
-import { getRouteApi, useLoaderData } from '@tanstack/react-router';
+import { getRouteApi } from '@tanstack/react-router';
 import { PanelLeftIcon, SearchIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { tv } from 'tailwind-variants';
@@ -10,6 +10,7 @@ import { Link } from '#/components/ui/link';
 import { UserMenu } from '#/components/user-menu';
 import { useFeatureFlag } from '#/utils/convex';
 
+import { useChampionship } from '#/utils/app/championship';
 import { TriggerButton } from '../-chat/trigger-button';
 import { useAppShell } from './app-shell';
 import { navLinks } from './nav-links';
@@ -47,7 +48,7 @@ export function AppHeader() {
   }, []);
 
   const { turnier } = routeApi.useSearch();
-  const { championship } = useLoaderData({ from: '__root__' });
+  const championship = useChampionship();
 
   return (
     <header data-scroll-state={scrollState} className={headerStyles()}>

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { useLoaderData, useNavigate } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
 import { CheckIcon } from 'lucide-react';
 import {
   Autocomplete,
@@ -16,6 +16,7 @@ import {
 import { useAppShell } from '#/routes/-app/app-shell';
 import { championshipsQuery } from '#/utils/queries';
 
+import { useChampionship } from '#/utils/app/championship';
 import { ActionProvider } from './ui/action-context';
 import { ListBox, ListBoxItem } from './ui/listbox';
 
@@ -26,7 +27,7 @@ export function ChampionshipSelect() {
     ...championshipsQuery(),
     initialData: [],
   });
-  const { championship } = useLoaderData({ from: '__root__' });
+  const championship = useChampionship();
   const selectedChampionship = new Set([championship.id]);
 
   const { contains } = useFilter({ sensitivity: 'base' });
