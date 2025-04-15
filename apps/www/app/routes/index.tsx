@@ -1,13 +1,13 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
-  component: RouteComponent,
+  beforeLoad: ({ context: { championships } }) => {
+    throw redirect({
+      to: '/$turnier',
+      params: { turnier: championships[0].id },
+      mask: {
+        to: '/',
+      },
+    });
+  },
 });
-
-function RouteComponent() {
-  return (
-    <div className="mx-2 sm:mx-0">
-      <h1 className="font-medium text-xl">Startseite</h1>
-    </div>
-  );
-}
