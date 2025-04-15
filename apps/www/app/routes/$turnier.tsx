@@ -1,5 +1,6 @@
 import { Outlet, createFileRoute, notFound } from '@tanstack/react-router';
 
+import { AppShell } from '#/components/app/app-shell';
 import { NotFoundComponent } from '#/components/app/error';
 import { matchesQuery, playersQuery } from '#/utils/queries';
 
@@ -23,5 +24,9 @@ export const Route = createFileRoute('/$turnier')({
 });
 
 function RouteComponent() {
-  return <Outlet />;
+  return (
+    <AppShell>
+      <Outlet />
+    </AppShell>
+  );
 }

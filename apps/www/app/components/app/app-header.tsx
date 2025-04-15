@@ -1,4 +1,3 @@
-import { getRouteApi } from '@tanstack/react-router';
 import { PanelLeftIcon, SearchIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { tv } from 'tailwind-variants';
@@ -7,12 +6,10 @@ import { Logo } from '#/components/logo';
 import { ThemeSelect } from '#/components/theme-select';
 import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
-
 import { useChampionship } from '#/utils/app/championship';
+
 import { useAppShell } from './app-shell';
 import { navLinks } from './nav-links';
-
-const routeApi = getRouteApi('__root__');
 
 const headerStyles = tv({
   base: [
@@ -42,7 +39,6 @@ export function AppHeader() {
     return () => window.removeEventListener('scroll', scrollListener);
   }, []);
 
-  const { turnier } = routeApi.useSearch();
   const championship = useChampionship();
 
   return (
@@ -70,12 +66,11 @@ export function AppHeader() {
           </Link>
 
           <div className="flex h-16 items-stretch gap-x-2">
-            {navLinks.map((link) => (
+            {navLinks(championship.id).map((link) => (
               <div key={link.to} className="relative flex items-center px-2">
                 <Link
                   {...link}
                   to={link.to}
-                  search={{ turnier }}
                   variant="navlink"
                   className="px-4 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-accent-7"
                 >

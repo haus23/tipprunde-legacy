@@ -1,18 +1,11 @@
-import {
-  type ComponentProps,
-  type Dispatch,
-  createContext,
-  use,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, use, useCallback, useEffect, useState } from 'react';
+import { AppHeader } from './app-header';
 
 type ShellContextType = {
   isSidebarOpen: boolean;
-  setSidebarOpen: Dispatch<React.SetStateAction<boolean>>;
+  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isChampionshipSelectOpen: boolean;
-  setChampionshipSelectOpen: Dispatch<React.SetStateAction<boolean>>;
+  setChampionshipSelectOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ShellContext = createContext<ShellContextType>(undefined as never);
@@ -43,11 +36,7 @@ export function useAppShell() {
   };
 }
 
-namespace AppShell {
-  export interface Props extends ComponentProps<'div'> {}
-}
-
-export function AppShell({ ...props }: AppShell.Props) {
+export function AppShell({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isChampionshipSelectOpen, setChampionshipSelectOpen] = useState(false);
 
@@ -75,7 +64,12 @@ export function AppShell({ ...props }: AppShell.Props) {
         setChampionshipSelectOpen,
       }}
     >
-      <div {...props} />
+      <div className="releative isolate min-h-svh">
+        <AppHeader />
+        <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">
+          {children}
+        </main>
+      </div>
     </ShellContext>
   );
 }

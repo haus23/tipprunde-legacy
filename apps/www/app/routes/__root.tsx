@@ -44,6 +44,7 @@ function RootComponent() {
       useHref={(to) => router.buildLocation({ to }).href}
     >
       <Suspense fallback={<SplashScreen />}>
+        <div className="absolute inset-0 h-[480px] bg-gradient-to-b from-accent-4 to-background opacity-60" />
         <Outlet />
       </Suspense>
       <TanStackRouterDevtools position="bottom-left" />
