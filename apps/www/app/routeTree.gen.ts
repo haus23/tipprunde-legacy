@@ -12,7 +12,6 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TurnierImport } from './routes/$turnier'
-import { Route as SpielerRouteImport } from './routes/spieler_/route'
 import { Route as SpieleRouteImport } from './routes/spiele_/route'
 import { Route as IndexImport } from './routes/index'
 import { Route as TurnierIndexImport } from './routes/$turnier/index'
@@ -24,12 +23,6 @@ import { Route as TurnierSpieleImport } from './routes/$turnier/spiele'
 const TurnierRoute = TurnierImport.update({
   id: '/$turnier',
   path: '/$turnier',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const SpielerRouteRoute = SpielerRouteImport.update({
-  id: '/spieler_',
-  path: '/spieler',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -79,13 +72,6 @@ declare module '@tanstack/react-router' {
       path: '/spiele'
       fullPath: '/spiele'
       preLoaderRoute: typeof SpieleRouteImport
-      parentRoute: typeof rootRoute
-    }
-    '/spieler_': {
-      id: '/spieler_'
-      path: '/spieler'
-      fullPath: '/spieler'
-      preLoaderRoute: typeof SpielerRouteImport
       parentRoute: typeof rootRoute
     }
     '/$turnier': {
@@ -139,7 +125,6 @@ const TurnierRouteWithChildren =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/spiele': typeof SpieleRouteRoute
-  '/spieler': typeof SpielerRouteRoute
   '/$turnier': typeof TurnierRouteWithChildren
   '/$turnier/spiele': typeof TurnierSpieleRoute
   '/$turnier/spieler': typeof TurnierSpielerRoute
@@ -149,7 +134,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/spiele': typeof SpieleRouteRoute
-  '/spieler': typeof SpielerRouteRoute
   '/$turnier/spiele': typeof TurnierSpieleRoute
   '/$turnier/spieler': typeof TurnierSpielerRoute
   '/$turnier': typeof TurnierIndexRoute
@@ -159,7 +143,6 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/spiele_': typeof SpieleRouteRoute
-  '/spieler_': typeof SpielerRouteRoute
   '/$turnier': typeof TurnierRouteWithChildren
   '/$turnier/spiele': typeof TurnierSpieleRoute
   '/$turnier/spieler': typeof TurnierSpielerRoute
@@ -171,24 +154,16 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/spiele'
-    | '/spieler'
     | '/$turnier'
     | '/$turnier/spiele'
     | '/$turnier/spieler'
     | '/$turnier/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/spiele'
-    | '/spieler'
-    | '/$turnier/spiele'
-    | '/$turnier/spieler'
-    | '/$turnier'
+  to: '/' | '/spiele' | '/$turnier/spiele' | '/$turnier/spieler' | '/$turnier'
   id:
     | '__root__'
     | '/'
     | '/spiele_'
-    | '/spieler_'
     | '/$turnier'
     | '/$turnier/spiele'
     | '/$turnier/spieler'
@@ -199,14 +174,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SpieleRouteRoute: typeof SpieleRouteRoute
-  SpielerRouteRoute: typeof SpielerRouteRoute
   TurnierRoute: typeof TurnierRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SpieleRouteRoute: SpieleRouteRoute,
-  SpielerRouteRoute: SpielerRouteRoute,
   TurnierRoute: TurnierRouteWithChildren,
 }
 
@@ -222,7 +195,6 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/spiele_",
-        "/spieler_",
         "/$turnier"
       ]
     },
@@ -231,9 +203,6 @@ export const routeTree = rootRoute
     },
     "/spiele_": {
       "filePath": "spiele_/route.tsx"
-    },
-    "/spieler_": {
-      "filePath": "spieler_/route.tsx"
     },
     "/$turnier": {
       "filePath": "$turnier.tsx",

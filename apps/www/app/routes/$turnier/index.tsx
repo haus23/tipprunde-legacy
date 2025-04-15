@@ -48,7 +48,8 @@ function RankingComponent() {
       cell: (info) => (
         <Link
           className="block py-1"
-          to="/spieler"
+          to="/$turnier/spieler"
+          params={{ turnier: championship.id }}
           search={(prev) => ({ ...prev, name: info.row.original.playerId })}
         >
           {info.getValue()}
