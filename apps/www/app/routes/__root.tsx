@@ -39,7 +39,7 @@ export const Route = createRootRouteWithContext<{
     );
     const championship =
       championships.find((c) => c.id === turnier) || championships[0];
-    return { championship };
+    return { championships, championship };
   },
   loader: async ({ context: { queryClient, championship } }) => {
     // Await fast data
