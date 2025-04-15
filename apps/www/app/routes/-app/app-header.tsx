@@ -7,11 +7,8 @@ import { Logo } from '#/components/logo';
 import { ThemeSelect } from '#/components/theme-select';
 import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
-import { UserMenu } from '#/components/user-menu';
-import { useFeatureFlag } from '#/utils/convex';
 
 import { useChampionship } from '#/utils/app/championship';
-import { TriggerButton } from '../-chat/trigger-button';
 import { useAppShell } from './app-shell';
 import { navLinks } from './nav-links';
 
@@ -28,8 +25,6 @@ const headerStyles = tv({
 type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 
 export function AppHeader() {
-  const isChatEnabled = useFeatureFlag('chat');
-
   const { toggleSidebar, setChampionshipSelectOpen } = useAppShell();
 
   const [scrollState, setScrollState] = useState<ScrollState>('at-top');
@@ -102,9 +97,7 @@ export function AppHeader() {
               <span>Turnier</span>
             </Button>
             <ThemeSelect />
-            {isChatEnabled && <UserMenu />}
           </div>
-          {isChatEnabled && <TriggerButton />}
         </div>
       </div>
     </header>
