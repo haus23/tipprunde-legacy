@@ -1,5 +1,6 @@
 import { createContext, use, useCallback, useEffect, useState } from 'react';
 import { AppHeader } from './app-header';
+import { ChampionshipSelect } from './championship-select';
 
 type ShellContextType = {
   isSidebarOpen: boolean;
@@ -69,6 +70,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">
           {children}
         </main>
+        <ChampionshipSelect />
       </div>
     </ShellContext>
   );

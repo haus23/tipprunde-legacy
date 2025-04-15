@@ -13,12 +13,12 @@ import {
   useFilter,
 } from 'react-aria-components';
 
-import { useAppShell } from '#/routes/-app/app-shell';
 import { championshipsQuery } from '#/utils/queries';
 
 import { useChampionship } from '#/utils/app/championship';
-import { ActionProvider } from './ui/action-context';
-import { ListBox, ListBoxItem } from './ui/listbox';
+import { ActionProvider } from '../ui/action-context';
+import { ListBox, ListBoxItem } from '../ui/listbox';
+import { useAppShell } from './app-shell';
 
 export function ChampionshipSelect() {
   const { isChampionshipSelectOpen, setChampionshipSelectOpen } = useAppShell();
@@ -36,9 +36,8 @@ export function ChampionshipSelect() {
     const key = keys !== 'all' && [...keys][0];
     setChampionshipSelectOpen(false);
     if (key) {
-      const turnier =
-        String(key) === championships[0].id ? undefined : String(key);
-      navigate({ to: '/', search: { turnier } });
+      const turnier = String(key);
+      navigate({ to: '/$turnier', params: { turnier } });
     }
   }
 
