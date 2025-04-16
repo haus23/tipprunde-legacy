@@ -2,15 +2,24 @@ import type { Tip } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { type ColumnDef, createColumnHelper } from '@tanstack/react-table';
-import { CheckIcon } from 'lucide-react';
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ChevronsUpDownIcon,
+  TriangleAlertIcon,
+} from 'lucide-react';
 import { useMemo } from 'react';
 import { Collection, type Key } from 'react-aria-components';
 import * as v from 'valibot';
+import { Button } from '#/components/ui/button';
 import { DataTable } from '#/components/ui/data-table';
 import { Header } from '#/components/ui/header';
 import { ListBoxItem, ListBoxSection } from '#/components/ui/listbox';
+import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
 import { useChampionship } from '#/utils/app/championship';
+import { formatDate } from '#/utils/misc';
 import { matchTipsQuery, matchesQuery, playersQuery } from '#/utils/queries';
 
 export const Route = createFileRoute('/$turnier/spiele')({
@@ -49,35 +58,116 @@ function MatchesComponent() {
   } = useSuspenseQuery(matchTipsQuery(championship.id, match.nr));
 
   const {
-    data: { matches, rounds, teams },
+    data: { matches, rounds, teams, leagues },
   } = useSuspenseQuery(matchesQuery(championship.id));
 
   const matchTips = useMemo(
     () => players.map((p) => tips[p.id] || { playerId: p.id }),
     [players, tips],
   );
-
+  console.log(matchTips);
   const columns = useMemo(
     () =>
       [
-        columnHelper.accessor('playerId', {
-          header: 'Spieler',
-          cell: (info) =>
-            players.find((p) => p.id === info.getValue())?.account.name,
-        }),
+        columnHelper.accessor(
+          (row) => players.find((p) => p.id === row.playerId)?.account.name,
+          {
+            id: 'player',
+            header: (info) => (
+              <Button
+                onPress={info.header.column.getToggleSortingHandler()}
+                className="p-1 text-xs uppercase"
+                variant="primary"
+              >
+                <span>Spieler</span>
+                {info.column.getIsSorted() ? (
+                  info.column.getIsSorted() === 'asc' ? (
+                    <ChevronUpIcon className="size-4" />
+                  ) : (
+                    <ChevronDownIcon className="size-4" />
+                  )
+                ) : (
+                  <ChevronsUpDownIcon className="size-4" />
+                )}
+              </Button>
+            ),
+            sortingFn: 'textCaseSensitive',
+            meta: {
+              thClasses: 'text-left py-1',
+              tdClasses: 'w-full',
+            },
+          },
+        ),
         columnHelper.accessor('tip', {
-          header: 'Tipp',
+          header: (info) => (
+            <Button
+              onPress={info.header.column.getToggleSortingHandler()}
+              className="p-1 text-xs uppercase"
+              variant="primary"
+            >
+              <span>Tipp</span>
+              {info.column.getIsSorted() ? (
+                info.column.getIsSorted() === 'asc' ? (
+                  <ChevronUpIcon className="size-4" />
+                ) : (
+                  <ChevronDownIcon className="size-4" />
+                )
+              ) : (
+                <ChevronsUpDownIcon className="size-4" />
+              )}
+            </Button>
+          ),
+          sortingFn: (rowA, rowB) => {
+            const [aHome, aAway] = rowA.original.tip.split(':').map(Number);
+            const [bHome, bAway] = rowB.original.tip.split(':').map(Number);
+
+            return (aHome - aAway - (bHome - bAway) || aHome - bHome) * -1;
+          },
+          sortUndefined: 'last',
+          meta: {
+            tdClasses: 'text-center tabular-nums',
+          },
         }),
         columnHelper.accessor('points', {
-          header: 'Punkte',
+          header: (info) => (
+            <Button
+              onPress={info.header.column.getToggleSortingHandler()}
+              className="p-1 text-xs uppercase"
+              variant="primary"
+            >
+              <span>Punkte</span>
+              {info.column.getIsSorted() ? (
+                info.column.getIsSorted() === 'asc' ? (
+                  <ChevronUpIcon className="size-4" />
+                ) : (
+                  <ChevronDownIcon className="size-4" />
+                )
+              ) : (
+                <ChevronsUpDownIcon className="size-4" />
+              )}
+            </Button>
+          ),
+          cell: (info) =>
+            matches.find((m) => m.id === info.row.original.matchId)?.result
+              ? info.getValue()
+              : undefined,
+          sortingFn: 'basic',
+          sortUndefined: 'last',
+          meta: {
+            tdClasses: 'text-center tabular-nums',
+          },
         }),
       ] as ColumnDef<Tip>[],
-    [players],
+    [players, matches],
   );
 
   return (
     <div>
-      <div>
+      <div className="mx-2 flex items-center gap-x-2 sm:mx-0 sm:gap-x-4">
+        <h1 className="font-medium text-xl tracking-tight sm:tracking-normal">
+          <span className="hidden sm:inline">{championship.name} - </span>
+          <span>Tipps für</span>
+        </h1>
         <Select
           aria-label="Spielauswahl"
           name="match"
@@ -109,9 +199,53 @@ function MatchesComponent() {
           )}
         </Select>
       </div>
-      <div>
-        <DataTable columns={columns} data={matchTips} />
+      <div className="mx-2 mt-6 max-w-3xl text-sm md:mx-auto">
+        <div className="flex w-full justify-between">
+          <div className="space-y-1">
+            <p className="font-medium text-xs uppercase">Wann</p>
+            <p className="font-semibold text-accent-12">
+              {formatDate(match.date)}
+            </p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-xs uppercase">Wo</p>
+            <p className="font-semibold text-accent-12">
+              {leagues[match.leagueId]?.name}
+            </p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-xs uppercase">Ergebnis</p>
+            <p className="text-center font-semibold text-accent-12">
+              {match.result}
+            </p>
+          </div>
+          <div className="space-y-1">
+            <p className="font-medium text-xs uppercase">Punkte</p>
+            <p className="text-center font-semibold text-accent-12">
+              {match.result && match.points}
+            </p>
+          </div>
+        </div>
+        {rounds.find((r) => r.id === match.roundId)?.isDoubleRound ? (
+          <div className="mt-4 flex items-center justify-center gap-x-2 text-gray-11">
+            <span className="sm:hidden">
+              <Popover
+                triggerIcon={TriangleAlertIcon}
+                triggerLabel="Doppel-Punkte Rundeninfo"
+              >
+                <div className="px-4 py-2">
+                  Alle erzielten Punkte werden verdoppelt.
+                </div>
+              </Popover>
+            </span>
+            <span>Das Spiel läuft in einer Doppelrunde.</span>
+            <span className="hidden sm:block">
+              Alle erzielten Punkte werden verdoppelt.
+            </span>
+          </div>
+        ) : null}
       </div>
+      <DataTable columns={columns} data={matchTips} className="mt-6" />
     </div>
   );
 }
