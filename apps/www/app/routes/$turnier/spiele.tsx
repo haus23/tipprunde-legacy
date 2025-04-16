@@ -15,6 +15,7 @@ import * as v from 'valibot';
 import { Button } from '#/components/ui/button';
 import { DataTable } from '#/components/ui/data-table';
 import { Header } from '#/components/ui/header';
+import { Link } from '#/components/ui/link';
 import { ListBoxItem, ListBoxSection } from '#/components/ui/listbox';
 import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
@@ -95,6 +96,19 @@ function MatchesComponent() {
                 )}
               </Button>
             ),
+            cell: (info) => (
+              <Link
+                className="block py-1"
+                to="/$turnier/spieler"
+                params={{ turnier: championship.id }}
+                search={{
+                  name: players.find((p) => p.id === info.row.original.playerId)
+                    ?.account.id,
+                }}
+              >
+                {info.getValue()}
+              </Link>
+            ),
             sortingFn: 'textCaseSensitive',
             meta: {
               thClasses: 'text-left py-1',
@@ -121,6 +135,26 @@ function MatchesComponent() {
               )}
             </Button>
           ),
+          cell: ({ row }) => {
+            const tip = row.original;
+            return (
+              <>
+                <span>{tip?.tip}</span>
+                {(tip?.joker || tip?.lonelyHit) && (
+                  <span className="-right-2 -translate-y-1.5 absolute">
+                    <Popover offset={4} triggerLabel="Zusatzinfos zum Tipp">
+                      <div className="px-4 py-2">
+                        {tip?.joker === true && <p>Joker</p>}
+                        {tip?.lonelyHit === true && (
+                          <p>Einziger richtiger Tipp</p>
+                        )}
+                      </div>
+                    </Popover>
+                  </span>
+                )}
+              </>
+            );
+          },
           sortingFn: (rowA, rowB) => {
             const [aHome, aAway] = rowA.original.tip.split(':').map(Number);
             const [bHome, bAway] = rowB.original.tip.split(':').map(Number);
@@ -129,7 +163,8 @@ function MatchesComponent() {
           },
           sortUndefined: 'last',
           meta: {
-            tdClasses: 'text-center tabular-nums',
+            cellClasses: 'px-6 md:px-6',
+            tdClasses: 'relative text-center tabular-nums',
           },
         }),
         columnHelper.accessor('points', {
@@ -162,7 +197,7 @@ function MatchesComponent() {
           },
         }),
       ] as ColumnDef<Tip>[],
-    [players, matches],
+    [players, matches, championship],
   );
 
   return (
@@ -254,7 +289,15 @@ function MatchesComponent() {
           </div>
         ) : null}
       </div>
-      <DataTable columns={columns} data={matchTips} className="mt-6" />
+      <DataTable
+        columns={columns}
+        data={matchTips}
+        className="mt-6 text-sm"
+        getRowClasses={(row) => {
+          const tip = row.original;
+          return tip?.joker || tip?.lonelyHit ? 'bg-accent-4' : '';
+        }}
+      />
     </div>
   );
 }
