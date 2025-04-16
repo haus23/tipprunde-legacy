@@ -171,6 +171,7 @@ function PlayersComponent() {
         </h1>
         <Select
           aria-label="Spielerauswahl"
+          name="player"
           key={player.account.id}
           defaultSelectedKey={player.account.id}
           onSelectionChange={selectAccount}

@@ -80,6 +80,7 @@ function MatchesComponent() {
       <div>
         <Select
           aria-label="Spielauswahl"
+          name="match"
           defaultSelectedKey={match.nr}
           onSelectionChange={selectMatch}
           items={rounds}

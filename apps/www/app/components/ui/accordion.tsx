@@ -58,7 +58,7 @@ export function AccordionSummary({
   ...props
 }: AccordionSummary.Props) {
   return (
-    <Heading className="flex flex-col">
+    <Heading level={2} className="flex flex-col">
       <Button
         slot="trigger"
         className={accordionSummaryButtonStyles()}
