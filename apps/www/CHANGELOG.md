@@ -1,5 +1,11 @@
 # www
 
+## 0.22.0
+
+### Minor Changes
+
+- [a825d94](https://github.com/haus23/tipprunde-legacy/commit/a825d94): Rename match route to singular name.
+
 ## 0.21.2
 
 ### Patch Changes
