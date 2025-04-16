@@ -1,5 +1,33 @@
 # www
 
+## 0.21.0
+
+### Minor Changes
+
+- [f848833](https://github.com/haus23/tipprunde-legacy/commit/f848833): Finally move theme-select into app components folder.
+
+### Patch Changes
+
+- [3475b40](https://github.com/haus23/tipprunde-legacy/commit/3475b40): Drop unused convex api
+- [7ecc5b8](https://github.com/haus23/tipprunde-legacy/commit/7ecc5b8): Adjust sidebar links. Preloading failed.
+- [375de68](https://github.com/haus23/tipprunde-legacy/commit/375de68): Validate championship on layout loader.
+- [925d8a9](https://github.com/haus23/tipprunde-legacy/commit/925d8a9): Mask index route with redirect to current championship.
+- [bd084e6](https://github.com/haus23/tipprunde-legacy/commit/bd084e6): Use theme early to support dark error messages.
+- [573ffc1](https://github.com/haus23/tipprunde-legacy/commit/573ffc1): Bring back the splash-screen.
+- [d2cb686](https://github.com/haus23/tipprunde-legacy/commit/d2cb686): Finally re-add matches component.
+- [9997c8e](https://github.com/haus23/tipprunde-legacy/commit/9997c8e): Move championship into route context.
+- [ac17042](https://github.com/haus23/tipprunde-legacy/commit/ac17042): Add championships to root route context.
+- [50862df](https://github.com/haus23/tipprunde-legacy/commit/50862df): Re-create missing routes.
+- [718de18](https://github.com/haus23/tipprunde-legacy/commit/718de18): Update championship hook.
+- [5a3021d](https://github.com/haus23/tipprunde-legacy/commit/5a3021d): Re-add players view.
+- [d135f56](https://github.com/haus23/tipprunde-legacy/commit/d135f56): Create new table route.
+- [88c76bb](https://github.com/haus23/tipprunde-legacy/commit/88c76bb): Move index route to new "home".
+- [67d5817](https://github.com/haus23/tipprunde-legacy/commit/67d5817): Drop convex by now.
+- [2c2f86e](https://github.com/haus23/tipprunde-legacy/commit/2c2f86e): Re-add mobile sidebar.
+- [0d89d1f](https://github.com/haus23/tipprunde-legacy/commit/0d89d1f): Clean up root route.
+- [532a3b2](https://github.com/haus23/tipprunde-legacy/commit/532a3b2): Re-add app-shell.
+- [b0ef8fb](https://github.com/haus23/tipprunde-legacy/commit/b0ef8fb): Re-add championship-select component.
+
 ## 0.20.20
 
 ### Patch Changes

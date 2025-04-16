@@ -1,7 +1,7 @@
 {
   "name": "@haus23/tipprunde-www",
   "description": "Haus23 Tipprunde",
-  "version": "0.20.20",
+  "version": "0.21.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
