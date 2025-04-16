@@ -187,7 +187,12 @@ function MatchesComponent() {
                     <ListBoxItem id={m.nr} textValue={matchStr}>
                       {({ isSelected }) => (
                         <>
-                          <span>{matchStr}</span>
+                          <div className="flex items-center gap-x-2">
+                            <span>{matchStr}</span>
+                            {m.result !== '' && (
+                              <span className="font-semibold text-gray-11/80 text-sm group-[.select-value]:hidden">{`(${m.points} Pkt)`}</span>
+                            )}
+                          </div>
                           {isSelected && <CheckIcon className="size-5" />}
                         </>
                       )}

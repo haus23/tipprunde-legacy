@@ -43,7 +43,7 @@ export function Select<T extends object>({
   return (
     <_Select {...props} className={'flex grow'}>
       <Button className={triggerStyles()}>
-        <SelectValue />
+        <SelectValue className="group select-value" />
         <ChevronDownIcon className="size-5" />
       </Button>
       <Popover className={popoverStyles()}>
