@@ -12,6 +12,7 @@ import { RouterProvider } from 'react-aria-components';
 
 import { NotFoundComponent } from '#/components/app/error';
 import { championshipsQuery } from '#/utils/queries';
+import { useTheme } from '#/utils/theme';
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -35,6 +36,7 @@ declare module 'react-aria-components' {
 
 function RootComponent() {
   const router = useRouter();
+  useTheme();
 
   return (
     <RouterProvider
