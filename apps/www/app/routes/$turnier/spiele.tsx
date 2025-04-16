@@ -31,11 +31,15 @@ export const Route = createFileRoute('/$turnier/spiele')({
     const matches = await queryClient.ensureQueryData(
       matchesQuery(championship.id),
     );
-    // TODO: default match is last match in current championship
-    const match =
-      matches.matches.find((m) => m.nr === nr) || matches.matches[0];
 
-    queryClient.prefetchQuery(matchTipsQuery(championship.id, nr ?? null));
+    const match =
+      matches.matches.find((m) => m.nr === nr) ||
+      matches.matches
+        .toSorted((a, b) => (a.date ?? '').localeCompare(b.date ?? ''))
+        .findLast((m) => m.result) ||
+      matches.matches[0];
+
+    queryClient.prefetchQuery(matchTipsQuery(championship.id, match.nr));
     return { match };
   },
   component: MatchesComponent,
@@ -65,7 +69,7 @@ function MatchesComponent() {
     () => players.map((p) => tips[p.id] || { playerId: p.id }),
     [players, tips],
   );
-  console.log(matchTips);
+
   const columns = useMemo(
     () =>
       [
