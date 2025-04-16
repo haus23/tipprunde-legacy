@@ -1,5 +1,16 @@
 # www
 
+## 0.21.2
+
+### Patch Changes
+
+- [d3b7353](https://github.com/haus23/tipprunde-legacy/commit/d3b7353): Implement table sorting.
+- [7bde423](https://github.com/haus23/tipprunde-legacy/commit/7bde423): Display tip infos
+- [084f126](https://github.com/haus23/tipprunde-legacy/commit/084f126): Display match points in select.
+- [c9b4e7d](https://github.com/haus23/tipprunde-legacy/commit/c9b4e7d): Update deps.
+- [f13581d](https://github.com/haus23/tipprunde-legacy/commit/f13581d): Show last match per default.
+- [837c635](https://github.com/haus23/tipprunde-legacy/commit/837c635): Better spacing in the accordion group.
+
 ## 0.21.1
 
 ### Patch Changes
