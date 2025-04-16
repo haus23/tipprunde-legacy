@@ -13,7 +13,7 @@ import { focusVisibleStyles } from './_styles';
 const triggerStyles = tv({
   base: [
     focusVisibleStyles,
-    'border border-accent-7 bg-accent-3 transition-colors hover:bg-accent-4',
+    'border border-accent-7 bg-accent-9 text-[var(--blue-1)] transition-colors hover:bg-accent-10 active:brightness-110',
     'inline-flex grow items-center justify-between md:grow-0 md:basis-3/4 lg:basis-2/3',
     'py-1 pr-2 pl-4',
   ],

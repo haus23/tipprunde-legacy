@@ -19,7 +19,7 @@ import { focusVisibleStyles } from './_styles';
 const accordionSummaryButtonStyles = tv({
   base: [
     focusVisibleStyles,
-    'group border border-accent-7 bg-accent-3 transition-colors hover:bg-accent-4',
+    'group border border-accent-7 bg-accent-9 text-[var(--blue-1)] transition-colors hover:bg-accent-10',
     'flex items-center gap-x-2',
     'px-2 py-1 max-sm:rounded-none',
   ],
