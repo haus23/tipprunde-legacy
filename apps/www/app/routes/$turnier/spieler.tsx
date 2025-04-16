@@ -95,7 +95,7 @@ function PlayersComponent() {
           header: 'Spiel',
           cell: ({ row }) => (
             <Link
-              to="/$turnier/spiele"
+              to="/$turnier/spiel"
               params={{ turnier: championship.id }}
               search={(prev) => ({ ...prev, nr: row.original.nr })}
               className="block py-1"

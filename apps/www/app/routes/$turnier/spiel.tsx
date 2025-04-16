@@ -23,7 +23,7 @@ import { useChampionship } from '#/utils/app/championship';
 import { formatDate } from '#/utils/misc';
 import { matchTipsQuery, matchesQuery, playersQuery } from '#/utils/queries';
 
-export const Route = createFileRoute('/$turnier/spiele')({
+export const Route = createFileRoute('/$turnier/spiel')({
   validateSearch: v.object({
     nr: v.optional(v.number()),
   }),

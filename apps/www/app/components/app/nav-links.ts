@@ -18,7 +18,7 @@ export const navLinks = (turnier: string) =>
       icon: UsersIcon,
     },
     {
-      to: '/$turnier/spiele',
+      to: '/$turnier/spiel',
       params: { turnier },
       activeOptions: { exact: false },
       label: 'Spiele',
