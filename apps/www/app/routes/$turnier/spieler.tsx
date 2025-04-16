@@ -218,7 +218,7 @@ function PlayersComponent() {
       <AccordionGroup
         allowsMultipleExpanded
         defaultExpandedKeys={[currentRoundId]}
-        className="mt-6"
+        className="mt-6 flex flex-col gap-y-1"
       >
         {rounds.map((r) => {
           // Calculate round helpder data
@@ -256,9 +256,9 @@ function PlayersComponent() {
                   </div>
                 )}
               </AccordionSummary>
-              <AccordionDetails className="animated-height mt-2">
+              <AccordionDetails className="animated-height">
                 <DataTable
-                  className="text-sm"
+                  className="py-1 text-sm"
                   columns={columns}
                   data={matchesInRound}
                   getRowClasses={(row) => {
