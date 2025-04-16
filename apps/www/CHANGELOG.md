@@ -1,5 +1,15 @@
 # www
 
+## 0.21.1
+
+### Patch Changes
+
+- [1be43f2](https://github.com/haus23/tipprunde-legacy/commit/1be43f2): A11y fixes.
+- [34546f5](https://github.com/haus23/tipprunde-legacy/commit/34546f5): Small style fixes.
+- [1735159](https://github.com/haus23/tipprunde-legacy/commit/1735159): Add params.
+- [a5addc0](https://github.com/haus23/tipprunde-legacy/commit/a5addc0): Wrong backend url.
+- [939381b](https://github.com/haus23/tipprunde-legacy/commit/939381b): Use solid colors for interactive components.
+
 ## 0.21.0
 
 ### Minor Changes
