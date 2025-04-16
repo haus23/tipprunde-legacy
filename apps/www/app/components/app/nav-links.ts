@@ -6,19 +6,21 @@ export const navLinks = (turnier: string) =>
     {
       to: '/$turnier',
       params: { turnier },
-      label: 'Tabelle',
       activeOptions: { exact: true },
+      label: 'Tabelle',
       icon: TableIcon,
     },
     {
       to: '/$turnier/spieler',
       params: { turnier },
+      activeOptions: { exact: false },
       label: 'Spieler',
       icon: UsersIcon,
     },
     {
       to: '/$turnier/spiele',
       params: { turnier },
+      activeOptions: { exact: false },
       label: 'Spiele',
       icon: DicesIcon,
     },

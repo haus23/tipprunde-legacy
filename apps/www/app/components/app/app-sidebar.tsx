@@ -51,7 +51,9 @@ export function AppSidebar() {
               {navLinks(championship.id).map((link) => (
                 <div key={link.to} className="px-2 py-1">
                   <Link
-                    {...link}
+                    to={link.to}
+                    params={link.params}
+                    activeOptions={link.activeOptions}
                     variant="navlink"
                     className="flex items-center gap-x-2 aria-[current]:bg-accent-5 aria-[current]:text-gray-12"
                   >
