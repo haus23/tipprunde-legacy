@@ -2,8 +2,8 @@ import { PanelLeftIcon, SearchIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { tv } from 'tailwind-variants';
 
+import { ThemeSelect } from '#/components/app/theme-select';
 import { Logo } from '#/components/logo';
-import { ThemeSelect } from '#/components/theme-select';
 import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
 import { useChampionship } from '#/utils/app/championship';
