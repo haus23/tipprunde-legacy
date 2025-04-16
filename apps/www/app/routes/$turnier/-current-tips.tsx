@@ -31,7 +31,8 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
           return (
             <Fragment key={m.matchId}>
               <Link
-                to="/spiele"
+                to="/$turnier/spiele"
+                params={{ turnier: championship.id }}
                 search={(prev) => ({
                   ...prev,
                   nr: matches.find((match) => match.id === m.matchId)?.nr,
