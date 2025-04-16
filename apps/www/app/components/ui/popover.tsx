@@ -9,10 +9,10 @@ import { Button } from './button';
 const popoverStyles = tv({
   base: [
     'group rounded-md border bg-background shadow-md dark:bg-gray-2',
-    'data-[placement=bottom]:mb-1.5 data-[placement=top]:translate-y-1',
-    'data-[placement=bottom]:-translate-y-2 data-[placement=bottom]:mt-1.5',
+    'data-[placement=top]:translate-y-1',
+    'data-[placement=bottom]:-translate-y-2 data-[placement=bottom]:mt-0.5',
     'data-[placement=left]:mr-1.5 data-[placement=left]:translate-x-2',
-    'data-[placement=left]:-translate-x-2 data-[placement=right]:ml-1.5',
+    'data-[placement=right]:-translate-x-2 data-[placement=right]:ml-1.5',
   ],
 });
 const overlayArrowStyles = tv({
@@ -20,7 +20,7 @@ const overlayArrowStyles = tv({
     'block fill-background stroke-1 stroke-gray-6',
     'group-data-[placement=bottom]:rotate-180',
     'group-data-[placement=left]:-rotate-90',
-    'group-data-[placement=left]:rotate-90',
+    'group-data-[placement=right]:rotate-90',
   ],
 });
 

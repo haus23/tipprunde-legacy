@@ -10,13 +10,13 @@ export function NotFoundComponent({ data }: NotFoundRouteProps) {
   }
 
   return (
-    <div className="grid min-h-svh place-items-center text-error">
+    <div className="grid min-h-svh place-items-center">
       <div className="flex flex-col items-center gap-y-4">
-        <FrownIcon className="size-40" />
-        <p className="mx-4 text-balance text-3xl text-gray-12 leading-snug">
+        <FrownIcon className="size-40 text-error" />
+        <p className="mx-4 text-balance text-center text-3xl leading-snug">
           {errorMsg}
         </p>
-        <Link to="/" className="block text-2xl text-gray-12">
+        <Link to="/" className="block text-2xl">
           Zur Startseite
         </Link>
       </div>
