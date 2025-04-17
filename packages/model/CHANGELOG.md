@@ -6,6 +6,12 @@
 
 - [5e54dcb](https://github.com/haus23/tipprunde-legacy/commit/5e54dcb): Expose refactored types from model.
 
+## 0.19.5
+
+### Patch Changes
+
+- [9faf8f4](https://github.com/haus23/tipprunde-legacy/commit/9faf8f4): Update deps.
+
 ## 0.19.4
 
 ### Patch Changes

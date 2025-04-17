@@ -32,6 +32,13 @@
 
 - [b0f4f76](https://github.com/haus23/tipprunde-legacy/commit/b0f4f76): Update node typings.
 
+## 0.21.18
+
+### Patch Changes
+
+- Updated dependencies [9faf8f4]
+  - @haus23/tipprunde-model@0.19.5
+
 ## 0.21.17
 
 ### Patch Changes
