@@ -1,5 +1,12 @@
 # www
 
+## 0.22.1
+
+### Patch Changes
+
+- [c156fb4](https://github.com/haus23/tipprunde-legacy/commit/c156fb4): Update deps.
+- [bcfdc87](https://github.com/haus23/tipprunde-legacy/commit/bcfdc87): Finally remove legacy react-router code.
+
 ## 0.22.0
 
 ### Minor Changes
