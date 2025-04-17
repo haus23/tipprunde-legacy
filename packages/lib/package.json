@@ -9,7 +9,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "firebase": "^9.23.0"
+    "firebase": "^11.6.0"
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
