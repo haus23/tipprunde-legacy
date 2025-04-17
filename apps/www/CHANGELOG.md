@@ -1,5 +1,314 @@
 # www
 
+## 0.22.1
+
+### Patch Changes
+
+- [c156fb4](https://github.com/haus23/tipprunde-legacy/commit/c156fb4): Update deps.
+- [bcfdc87](https://github.com/haus23/tipprunde-legacy/commit/bcfdc87): Finally remove legacy react-router code.
+
+## 0.22.0
+
+### Minor Changes
+
+- [a825d94](https://github.com/haus23/tipprunde-legacy/commit/a825d94): Rename match route to singular name.
+
+## 0.21.2
+
+### Patch Changes
+
+- [d3b7353](https://github.com/haus23/tipprunde-legacy/commit/d3b7353): Implement table sorting.
+- [7bde423](https://github.com/haus23/tipprunde-legacy/commit/7bde423): Display tip infos
+- [084f126](https://github.com/haus23/tipprunde-legacy/commit/084f126): Display match points in select.
+- [c9b4e7d](https://github.com/haus23/tipprunde-legacy/commit/c9b4e7d): Update deps.
+- [f13581d](https://github.com/haus23/tipprunde-legacy/commit/f13581d): Show last match per default.
+- [837c635](https://github.com/haus23/tipprunde-legacy/commit/837c635): Better spacing in the accordion group.
+
+## 0.21.1
+
+### Patch Changes
+
+- [1be43f2](https://github.com/haus23/tipprunde-legacy/commit/1be43f2): A11y fixes.
+- [34546f5](https://github.com/haus23/tipprunde-legacy/commit/34546f5): Small style fixes.
+- [1735159](https://github.com/haus23/tipprunde-legacy/commit/1735159): Add params.
+- [a5addc0](https://github.com/haus23/tipprunde-legacy/commit/a5addc0): Wrong backend url.
+- [939381b](https://github.com/haus23/tipprunde-legacy/commit/939381b): Use solid colors for interactive components.
+
+## 0.21.0
+
+### Minor Changes
+
+- [f848833](https://github.com/haus23/tipprunde-legacy/commit/f848833): Finally move theme-select into app components folder.
+
+### Patch Changes
+
+- [3475b40](https://github.com/haus23/tipprunde-legacy/commit/3475b40): Drop unused convex api
+- [7ecc5b8](https://github.com/haus23/tipprunde-legacy/commit/7ecc5b8): Adjust sidebar links. Preloading failed.
+- [375de68](https://github.com/haus23/tipprunde-legacy/commit/375de68): Validate championship on layout loader.
+- [925d8a9](https://github.com/haus23/tipprunde-legacy/commit/925d8a9): Mask index route with redirect to current championship.
+- [bd084e6](https://github.com/haus23/tipprunde-legacy/commit/bd084e6): Use theme early to support dark error messages.
+- [573ffc1](https://github.com/haus23/tipprunde-legacy/commit/573ffc1): Bring back the splash-screen.
+- [d2cb686](https://github.com/haus23/tipprunde-legacy/commit/d2cb686): Finally re-add matches component.
+- [9997c8e](https://github.com/haus23/tipprunde-legacy/commit/9997c8e): Move championship into route context.
+- [ac17042](https://github.com/haus23/tipprunde-legacy/commit/ac17042): Add championships to root route context.
+- [50862df](https://github.com/haus23/tipprunde-legacy/commit/50862df): Re-create missing routes.
+- [718de18](https://github.com/haus23/tipprunde-legacy/commit/718de18): Update championship hook.
+- [5a3021d](https://github.com/haus23/tipprunde-legacy/commit/5a3021d): Re-add players view.
+- [d135f56](https://github.com/haus23/tipprunde-legacy/commit/d135f56): Create new table route.
+- [88c76bb](https://github.com/haus23/tipprunde-legacy/commit/88c76bb): Move index route to new "home".
+- [67d5817](https://github.com/haus23/tipprunde-legacy/commit/67d5817): Drop convex by now.
+- [2c2f86e](https://github.com/haus23/tipprunde-legacy/commit/2c2f86e): Re-add mobile sidebar.
+- [0d89d1f](https://github.com/haus23/tipprunde-legacy/commit/0d89d1f): Clean up root route.
+- [532a3b2](https://github.com/haus23/tipprunde-legacy/commit/532a3b2): Re-add app-shell.
+- [b0ef8fb](https://github.com/haus23/tipprunde-legacy/commit/b0ef8fb): Re-add championship-select component.
+
+## 0.20.20
+
+### Patch Changes
+
+- [f451847](https://github.com/haus23/tipprunde-legacy/commit/f451847): Add tip info popover.
+- [a46f360](https://github.com/haus23/tipprunde-legacy/commit/a46f360): Align loading of championship with custom hook.
+- [e950c00](https://github.com/haus23/tipprunde-legacy/commit/e950c00): Remove rounding on smallest devices.
+- [c386628](https://github.com/haus23/tipprunde-legacy/commit/c386628): Simplify accordion margins. Add animation.
+
+## 0.20.19
+
+### Patch Changes
+
+- [0190fed](https://github.com/haus23/tipprunde-legacy/commit/0190fed): Update deps.
+- [5b0d681](https://github.com/haus23/tipprunde-legacy/commit/5b0d681): Add calculated round stats.
+- [d1dd8b3](https://github.com/haus23/tipprunde-legacy/commit/d1dd8b3): Add highlighted rows with info icon.
+- [00bee9e](https://github.com/haus23/tipprunde-legacy/commit/00bee9e): Move the bg gradient into the suspense. Better coloring for
+- [94c564a](https://github.com/haus23/tipprunde-legacy/commit/94c564a): Extract popover component.
+- [97377c4](https://github.com/haus23/tipprunde-legacy/commit/97377c4): Set default preload strategy to 'intent'.
+- [1d34140](https://github.com/haus23/tipprunde-legacy/commit/1d34140): Always open - if possible - a round accordion.
+- [c7c2cd2](https://github.com/haus23/tipprunde-legacy/commit/c7c2cd2): Switch selected key after navigating to default player /spieler
+- [cdb87ce](https://github.com/haus23/tipprunde-legacy/commit/cdb87ce): Seeting table header to active component bg.
+
+## 0.20.18
+
+### Patch Changes
+
+- [c809264](https://github.com/haus23/tipprunde-legacy/commit/c809264): Adjust header paddings.
+- [e458dae](https://github.com/haus23/tipprunde-legacy/commit/e458dae): Implement accordion component.
+- [ea55f73](https://github.com/haus23/tipprunde-legacy/commit/ea55f73): Align medium weight. Remove weight from numbers.
+- [bc13288](https://github.com/haus23/tipprunde-legacy/commit/bc13288): Increase readability of numbers.
+- [d2d0f42](https://github.com/haus23/tipprunde-legacy/commit/d2d0f42): Align table styling.
+- [c2ca517](https://github.com/haus23/tipprunde-legacy/commit/c2ca517): Update scollbar-width value.
+- [9e3bc31](https://github.com/haus23/tipprunde-legacy/commit/9e3bc31): Add commonly used cell classes.
+- [487ec2b](https://github.com/haus23/tipprunde-legacy/commit/487ec2b): Switch to Geist font
+- [0e3b5df](https://github.com/haus23/tipprunde-legacy/commit/0e3b5df): Styled the players view.
+
+## 0.20.17
+
+### Patch Changes
+
+- [935b75d](https://github.com/haus23/tipprunde-legacy/commit/935b75d): Link to match in current tips popover.
+- [0df4a85](https://github.com/haus23/tipprunde-legacy/commit/0df4a85): Align wording and styles.
+- [673445e](https://github.com/haus23/tipprunde-legacy/commit/673445e): Align and simplify link styling.
+- [350afd0](https://github.com/haus23/tipprunde-legacy/commit/350afd0): Better bg styles. Stay with app-bg in lightmode.
+
+## 0.20.16
+
+### Patch Changes
+
+- [0b13d7f](https://github.com/haus23/tipprunde-legacy/commit/0b13d7f): Add a plain button variant.
+- [ac7d45b](https://github.com/haus23/tipprunde-legacy/commit/ac7d45b): Add the current tips feature.
+- [697c1cf](https://github.com/haus23/tipprunde-legacy/commit/697c1cf): Add the currentTips query. Last one from the legacy react-router
+
+## 0.20.15
+
+### Patch Changes
+
+- [0a41c07](https://github.com/haus23/tipprunde-legacy/commit/0a41c07): Update deps.
+- [b85770b](https://github.com/haus23/tipprunde-legacy/commit/b85770b): Initial displaying match tips.
+- [aba93a8](https://github.com/haus23/tipprunde-legacy/commit/aba93a8): Display appropriate columns whether championship is completed or
+- [4ccf6e8](https://github.com/haus23/tipprunde-legacy/commit/4ccf6e8): Style current ranking table.
+
+## 0.20.14
+
+### Patch Changes
+
+- [e602fc9](https://github.com/haus23/tipprunde-legacy/commit/e602fc9): Re-add match tips query.
+- [42743c5](https://github.com/haus23/tipprunde-legacy/commit/42743c5): Align type imports.
+- [beecc5f](https://github.com/haus23/tipprunde-legacy/commit/beecc5f): Add listboxsection wrappers to ui components.
+- [4749628](https://github.com/haus23/tipprunde-legacy/commit/4749628): Add match selector to match route.
+- [f06dadf](https://github.com/haus23/tipprunde-legacy/commit/f06dadf): Continue styling the app views.
+- [1f54e8d](https://github.com/haus23/tipprunde-legacy/commit/1f54e8d): Finally remove the scrollbar again.
+- [aef70ca](https://github.com/haus23/tipprunde-legacy/commit/aef70ca): Implement the select again.
+
+## 0.20.13
+
+### Patch Changes
+
+- [4ca6b07](https://github.com/haus23/tipprunde-legacy/commit/4ca6b07): Start adding custom select component.
+- [b81de76](https://github.com/haus23/tipprunde-legacy/commit/b81de76): Navigate on player selection.
+- [2335fb9](https://github.com/haus23/tipprunde-legacy/commit/2335fb9): Implement basic player tips table.
+- [622fb37](https://github.com/haus23/tipprunde-legacy/commit/622fb37): Update deps.
+- [e032d8a](https://github.com/haus23/tipprunde-legacy/commit/e032d8a): Finally increase stale time to 30 minutes.
+- [7bc8240](https://github.com/haus23/tipprunde-legacy/commit/7bc8240): Display formatted rank (and get rid of the extra views folder).
+- [3832507](https://github.com/haus23/tipprunde-legacy/commit/3832507): None transparent header now.
+- [916f833](https://github.com/haus23/tipprunde-legacy/commit/916f833): Re-add date-format function.
+
+## 0.20.12
+
+### Patch Changes
+
+- [ae33656](https://github.com/haus23/tipprunde-legacy/commit/ae33656): Re-add zustand as dep.
+
+## 0.20.11
+
+### Patch Changes
+
+- [0054d18](https://github.com/haus23/tipprunde-legacy/commit/0054d18): Update react.
+- [9d35a26](https://github.com/haus23/tipprunde-legacy/commit/9d35a26): Update convex packages.
+- [5dfd09f](https://github.com/haus23/tipprunde-legacy/commit/5dfd09f): Update tailwind packages.
+- [4b9faa8](https://github.com/haus23/tipprunde-legacy/commit/4b9faa8): Update vite.
+- [83e8da2](https://github.com/haus23/tipprunde-legacy/commit/83e8da2): Drop react-router.
+- [a9a7e9a](https://github.com/haus23/tipprunde-legacy/commit/a9a7e9a): Update tanstack query.
+- [806de57](https://github.com/haus23/tipprunde-legacy/commit/806de57): Drop unused ui libs.
+- [3bdfec3](https://github.com/haus23/tipprunde-legacy/commit/3bdfec3): Patch update lucide icons.
+- [0023ca5](https://github.com/haus23/tipprunde-legacy/commit/0023ca5): Update tanstack router.
+
+## 0.20.10
+
+### Patch Changes
+
+- [9a79279](https://github.com/haus23/tipprunde-legacy/commit/9a79279): Store current championship in the router context.
+- [f8fa775](https://github.com/haus23/tipprunde-legacy/commit/f8fa775): Implement initial ranking view.
+- [31c35ad](https://github.com/haus23/tipprunde-legacy/commit/31c35ad): Move unterbau queries to utils folder.
+- [fbf236a](https://github.com/haus23/tipprunde-legacy/commit/fbf236a): Prepare navigating by param.
+- [98e1a1e](https://github.com/haus23/tipprunde-legacy/commit/98e1a1e): Add remaining championship routes.
+- [321fd05](https://github.com/haus23/tipprunde-legacy/commit/321fd05): Missed to update import path.
+- [5110266](https://github.com/haus23/tipprunde-legacy/commit/5110266): Split react aria chunk to reduce initial bundle size.
+- [3c6f0bb](https://github.com/haus23/tipprunde-legacy/commit/3c6f0bb): Move index route back again.
+- [e2dbc94](https://github.com/haus23/tipprunde-legacy/commit/e2dbc94): Revert championship navigation to search params based.
+- [7b5b2eb](https://github.com/haus23/tipprunde-legacy/commit/7b5b2eb): Loading tips for selected player.
+
+## 0.20.9
+
+### Patch Changes
+
+- [01260d9](https://github.com/haus23/tipprunde-legacy/commit/01260d9): Update valibot to release version.
+- [26afd26](https://github.com/haus23/tipprunde-legacy/commit/26afd26): Remove focus outline from dialogs.
+- [e0c2ddd](https://github.com/haus23/tipprunde-legacy/commit/e0c2ddd): Make all navigation related texts bolder.
+- [e632991](https://github.com/haus23/tipprunde-legacy/commit/e632991): Prevent the layout shift with dialogs opened.
+- [81466af](https://github.com/haus23/tipprunde-legacy/commit/81466af): Move index to pathless route group.
+- [2354ef2](https://github.com/haus23/tipprunde-legacy/commit/2354ef2): Re-add scroll restauration.
+- [4fcba88](https://github.com/haus23/tipprunde-legacy/commit/4fcba88): Rename app-layout to app-shell.
+- [be29b5e](https://github.com/haus23/tipprunde-legacy/commit/be29b5e): Switch to svh.
+- [7e9e943](https://github.com/haus23/tipprunde-legacy/commit/7e9e943): Increase font weight on buttons.
+
+## 0.20.8
+
+### Patch Changes
+
+- [b05d0ff](https://github.com/haus23/tipprunde-legacy/commit/b05d0ff): First take on styling the chamnpionship select.
+- [8ab75b6](https://github.com/haus23/tipprunde-legacy/commit/8ab75b6): No need to extend. Just include in base styles array.
+- [51de962](https://github.com/haus23/tipprunde-legacy/commit/51de962): Switch to data-attributes to style focus visible ring.
+- [064b220](https://github.com/haus23/tipprunde-legacy/commit/064b220): Align hover styles.
+- [70ff095](https://github.com/haus23/tipprunde-legacy/commit/70ff095): Implement unstyled championship select component.
+
+## 0.20.7
+
+### Patch Changes
+
+- [4b51697](https://github.com/haus23/tipprunde-legacy/commit/4b51697): Move splash-screen to app-level components.
+- [00c0b5d](https://github.com/haus23/tipprunde-legacy/commit/00c0b5d): Hide auth and chat features behind feature flag.
+- [6612ca5](https://github.com/haus23/tipprunde-legacy/commit/6612ca5): Implement open/close logic for championship select.
+- [e8c828b](https://github.com/haus23/tipprunde-legacy/commit/e8c828b): Start typing convex queries/mutations.
+- [be673ae](https://github.com/haus23/tipprunde-legacy/commit/be673ae): Renamed generated convex api-file. Will controll it by myself.
+- [25f1f20](https://github.com/haus23/tipprunde-legacy/commit/25f1f20): Reuse search in navigation.
+- [25ea7c0](https://github.com/haus23/tipprunde-legacy/commit/25ea7c0): Move reusable - not layout related - components to common
+- [219fa03](https://github.com/haus23/tipprunde-legacy/commit/219fa03): Close sidebar on rotating wide enough devices.
+
+## 0.20.6
+
+### Patch Changes
+
+- [3b17b45](https://github.com/haus23/tipprunde-legacy/commit/3b17b45): Add the layout logic for the sidebar.
+- [e88fa17](https://github.com/haus23/tipprunde-legacy/commit/e88fa17): Intial design of the mobile sidebar.
+- [502a797](https://github.com/haus23/tipprunde-legacy/commit/502a797): Design mobile app header.
+- [5f1a4f2](https://github.com/haus23/tipprunde-legacy/commit/5f1a4f2): Implement an action context to delegate actions to closing the
+- [e284ce8](https://github.com/haus23/tipprunde-legacy/commit/e284ce8): Extract the nav links.
+- [224d341](https://github.com/haus23/tipprunde-legacy/commit/224d341): Move the devtools to the right.
+
+## 0.20.5
+
+### Patch Changes
+
+- [67d866f](https://github.com/haus23/tipprunde-legacy/commit/67d866f): Base the link ui component on thw tanstack router link.
+- [dd5c570](https://github.com/haus23/tipprunde-legacy/commit/dd5c570): Set default button type.
+- [c30366f](https://github.com/haus23/tipprunde-legacy/commit/c30366f): Rename app layout components folder.
+- [6e8e5dd](https://github.com/haus23/tipprunde-legacy/commit/6e8e5dd): Design the desktop navbar.
+
+## 0.20.4
+
+### Patch Changes
+
+- [6af8e4e](https://github.com/haus23/tipprunde-legacy/commit/6af8e4e): Re-implement lean theme system. Now with zustand, no
+- [0b5335d](https://github.com/haus23/tipprunde-legacy/commit/0b5335d): Re-add lean button - based on rac button.
+
+## 0.20.3
+
+### Patch Changes
+
+- [07920e5](https://github.com/haus23/tipprunde-legacy/commit/07920e5): Rename routes to official name.
+- [fd0ad64](https://github.com/haus23/tipprunde-legacy/commit/fd0ad64): Re-add lean link component - now based on rac link.
+- [8fd983c](https://github.com/haus23/tipprunde-legacy/commit/8fd983c): Move layout components (single use) to the routes folder.
+- [e73b46e](https://github.com/haus23/tipprunde-legacy/commit/e73b46e): Add global title. Title management delayed for now.
+- [bf0e29b](https://github.com/haus23/tipprunde-legacy/commit/bf0e29b): Re-add fixed app header.
+- [0cfcd49](https://github.com/haus23/tipprunde-legacy/commit/0cfcd49): Re-add home link with logo in app header.
+
+## 0.20.2
+
+### Patch Changes
+
+- [7d5b7fa](https://github.com/haus23/tipprunde-legacy/commit/7d5b7fa): Load main data in root loader. Add suspense fallback with
+- [0bcf5fd](https://github.com/haus23/tipprunde-legacy/commit/0bcf5fd): Use search param to determine current championship.
+- [e4f876c](https://github.com/haus23/tipprunde-legacy/commit/e4f876c): Add devtools for tanstack router and query.
+- [abb6c90](https://github.com/haus23/tipprunde-legacy/commit/abb6c90): Add convex auth.
+- [2c79d67](https://github.com/haus23/tipprunde-legacy/commit/2c79d67): Load championships via tanstack-query - and take first as current.
+- [c78fbb8](https://github.com/haus23/tipprunde-legacy/commit/c78fbb8): Re-add top backdrop.
+- [a1c5db9](https://github.com/haus23/tipprunde-legacy/commit/a1c5db9): Re-add logo and splash-screen.
+- [0e67736](https://github.com/haus23/tipprunde-legacy/commit/0e67736): Eager fetch accounts.
+
+## 0.20.1
+
+### Patch Changes
+
+- [318240f](https://github.com/haus23/tipprunde-legacy/commit/318240f): Re-add tailwind styles and color theme.
+- [3ff0704](https://github.com/haus23/tipprunde-legacy/commit/3ff0704): Re-create the three basic routes.
+
+## 0.20.0
+
+### Minor Changes
+
+- [12e18b4](https://github.com/haus23/tipprunde-legacy/commit/12e18b4): Switch to tanstack router. Minimal starter app.
+
+### Patch Changes
+
+- [7de6bd4](https://github.com/haus23/tipprunde-legacy/commit/7de6bd4): Prepare migration to tanstack router. Move rr app into folder.
+- [bdf4d47](https://github.com/haus23/tipprunde-legacy/commit/bdf4d47): Addded missing vite config file.
+
+## 0.19.0
+
+### Minor Changes
+
+- [d9d86aa](https://github.com/haus23/tipprunde-legacy/commit/d9d86aa): Add lean button and link components.
+
+### Patch Changes
+
+- [d17c916](https://github.com/haus23/tipprunde-legacy/commit/d17c916): Add z-index to header.
+- [c2e3a15](https://github.com/haus23/tipprunde-legacy/commit/c2e3a15): Start the new design system.
+- [b126497](https://github.com/haus23/tipprunde-legacy/commit/b126497): Use scrollrestoration.
+- [4627bb7](https://github.com/haus23/tipprunde-legacy/commit/4627bb7): Prevent layout shift with dialogs. And: more robust scroll handling.
+- [3a24d00](https://github.com/haus23/tipprunde-legacy/commit/3a24d00): Styling the error boundaries.
+- [1727e0e](https://github.com/haus23/tipprunde-legacy/commit/1727e0e): Replace the legacy implementations for button and link.
+- [33b6129](https://github.com/haus23/tipprunde-legacy/commit/33b6129): Initial layout styling.
+- [0bea9de](https://github.com/haus23/tipprunde-legacy/commit/0bea9de): Reset tailwind theme.
+- [c10c716](https://github.com/haus23/tipprunde-legacy/commit/c10c716): Switch to plain html. Drop radix navigation menu.
+
 ## 0.18.0
 
 ### Minor Changes

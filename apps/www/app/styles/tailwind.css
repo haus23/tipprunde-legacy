@@ -1,102 +1,166 @@
-@import 'tailwindcss';
+@import "@fontsource-variable/geist/index.css";
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+:root {
+  --gray-1: #fcfcfd;
+  --gray-2: #f9f9fb;
+  --gray-3: #eff0f3;
+  --gray-4: #e7e8ec;
+  --gray-5: #e0e1e6;
+  --gray-6: #d8d9e0;
+  --gray-7: #cdced7;
+  --gray-8: #b9bbc6;
+  --gray-9: #8b8d98;
+  --gray-10: #80828d;
+  --gray-11: #62636c;
+  --gray-12: #1e1f24;
+  --dark-gray-1: #111113;
+  --dark-gray-2: #19191b;
+  --dark-gray-3: #222325;
+  --dark-gray-4: #292a2e;
+  --dark-gray-5: #303136;
+  --dark-gray-6: #393a40;
+  --dark-gray-7: #46484f;
+  --dark-gray-8: #5f606a;
+  --dark-gray-9: #6c6e79;
+  --dark-gray-10: #797b86;
+  --dark-gray-11: #b2b3bd;
+  --dark-gray-12: #eeeef0;
+  --blue-1: #fdfdfe;
+  --blue-2: #f7f9ff;
+  --blue-3: #edf2fe;
+  --blue-4: #dfeaff;
+  --blue-5: #d0dfff;
+  --blue-6: #bdd1ff;
+  --blue-7: #a6bff9;
+  --blue-8: #87a5ef;
+  --blue-9: #3d63dd;
+  --blue-10: #3657c3;
+  --blue-11: #395bc7;
+  --blue-12: #1d2e5c;
+  --dark-blue-1: #0c111c;
+  --dark-blue-2: #111725;
+  --dark-blue-3: #172448;
+  --dark-blue-4: #1d2e61;
+  --dark-blue-5: #243974;
+  --dark-blue-6: #2d4484;
+  --dark-blue-7: #375098;
+  --dark-blue-8: #405eb2;
+  --dark-blue-9: #3d63dd;
+  --dark-blue-10: #3f5cb0;
+  --dark-blue-11: #93b4ff;
+  --dark-blue-12: #d5e2ff;
 
-  --color-subtle: hsl(var(--subtle));
-  --color-subtle-foreground: hsl(var(--subtle-foreground));
+  /* Tomato 9 and 11 */
+  --error: #d13415;
+  --dark-error: #ff977d;
+  --error-bg: #e54d2e;
+  --dark-error-bg: #e54d2e;
+}
 
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+    :root {
+      --gray-1: oklch(99.1% 0.0015 277.7);
+      --gray-2: oklch(98.2% 0.003 277.7);
+      --gray-3: oklch(95.6% 0.0045 277.7);
+      --gray-4: oklch(93.1% 0.0061 277.7);
+      --gray-5: oklch(91% 0.0077 277.7);
+      --gray-6: oklch(88.8% 0.0093 277.7);
+      --gray-7: oklch(85.3% 0.0117 277.7);
+      --gray-8: oklch(79.4% 0.016 277.7);
+      --gray-9: oklch(64.6% 0.0165 277.7);
+      --gray-10: oklch(61% 0.0161 277.7);
+      --gray-11: oklch(50.3% 0.0139 277.7);
+      --gray-12: oklch(24.1% 0.0099 277.7);
+      --dark-gray-1: oklch(17.8% 0.0042 277.7);
+      --dark-gray-2: oklch(21.5% 0.004 277.7);
+      --dark-gray-3: oklch(25.5% 0.0055 277.7);
+      --dark-gray-4: oklch(28.4% 0.0075 277.7);
+      --dark-gray-5: oklch(31.4% 0.0089 277.7);
+      --dark-gray-6: oklch(35% 0.01 277.7);
+      --dark-gray-7: oklch(40.2% 0.0121 277.7);
+      --dark-gray-8: oklch(49.2% 0.0157 277.7);
+      --dark-gray-9: oklch(54% 0.0167 277.7);
+      --dark-gray-10: oklch(58.6% 0.0165 277.7);
+      --dark-gray-11: oklch(77% 0.0138 277.7);
+      --dark-gray-12: oklch(94.9% 0.0026 277.7);
+      --blue-1: oklch(99.4% 0.0015 266.8);
+      --blue-2: oklch(98.3% 0.008 266.8);
+      --blue-3: oklch(96.1% 0.0172 266.8);
+      --blue-4: oklch(93.5% 0.0338 266.8);
+      --blue-5: oklch(90.3% 0.0512 266.8);
+      --blue-6: oklch(86.3% 0.0714 266.8);
+      --blue-7: oklch(80.7% 0.0869 266.8);
+      --blue-8: oklch(73% 0.1134 266.8);
+      --blue-9: oklch(54.3% 0.1913 266.8);
+      --blue-10: oklch(49.7% 0.1729 266.8);
+      --blue-11: oklch(51% 0.1729 266.8);
+      --blue-12: oklch(31.3% 0.0856 266.8);
+      --dark-blue-1: oklch(17.8% 0.0247 266.8);
+      --dark-blue-2: oklch(20.7% 0.0302 266.8);
+      --dark-blue-3: oklch(27.1% 0.0694 266.8);
+      --dark-blue-4: oklch(31.8% 0.0933 266.8);
+      --dark-blue-5: oklch(36.1% 0.1046 266.8);
+      --dark-blue-6: oklch(40.4% 0.1106 266.8);
+      --dark-blue-7: oklch(45% 0.1203 266.8);
+      --dark-blue-8: oklch(50.3% 0.1373 266.8);
+      --dark-blue-9: oklch(54.3% 0.1913 266.8);
+      --dark-blue-10: oklch(49.7% 0.1373 266.8);
+      --dark-blue-11: oklch(77.7% 0.1234 266.8);
+      --dark-blue-12: oklch(91.1% 0.0428 266.8);
 
-  --color-accent-subtle: hsl(var(--accent-subtle));
-  --color-accent-subtle-foreground: hsl(var(--accent-subtle-foreground));
-
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-primary-hover: hsl(var(--primary-hover));
-  --color-primary-active: hsl(var(--primary-active));
-
-  --color-neutral: hsl(var(--neutral));
-  --color-neutral-hover: hsl(var(--neutral-hover));
-  --color-neutral-active: hsl(var(--neutral-active));
-
-  --color-line: hsl(var(--border));
-  --color-line-hover: hsl(var(--border-hover));
-
-  --color-primary-line: hsl(var(--primary-border));
-  --color-primary-line-hover: hsl(var(--primary-border-hover));
-
-  --color-ring: hsl(var(--ring));
-  --color-primary-ring: hsl(var(--primary-ring));
-  --color-input: hsl(var(--input));
-
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
-
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-  @keyframes caret-blink {
-    0%,
-    70%,
-    100% {
-      opacity: 1;
-    }
-    20%,
-    50% {
-      opacity: 0;
+      /* Tomato 9 and 11 */
+      --error: color(display-p3 0.755 0.259 0.152);
+      --dark-error: color(display-p3 1 0.585 0.455);
+      --error-bg: color(display-p3 0.831 0.345 0.231);
+      --dark-error-bg: color(display-p3 0.831 0.345 0.231);
     }
   }
 }
 
-@utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
-    max-width: none;
-  }
-  @media (width >= 1400px) {
-    max-width: 1400px;
-  }
+:root {
+  color-scheme: light;
+}
+.dark {
+  color-scheme: dark;
+}
+
+@theme {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --color-background: light-dark(#fff, #111);
+  --color-gray-1: light-dark(var(--gray-1), var(--dark-gray-1));
+  --color-gray-2: light-dark(var(--gray-2), var(--dark-gray-2));
+  --color-gray-3: light-dark(var(--gray-3), var(--dark-gray-3));
+  --color-gray-4: light-dark(var(--gray-4), var(--dark-gray-4));
+  --color-gray-5: light-dark(var(--gray-5), var(--dark-gray-5));
+  --color-gray-6: light-dark(var(--gray-6), var(--dark-gray-6));
+  --color-gray-7: light-dark(var(--gray-7), var(--dark-gray-7));
+  --color-gray-8: light-dark(var(--gray-8), var(--dark-gray-8));
+  --color-gray-9: light-dark(var(--gray-9), var(--dark-gray-9));
+  --color-gray-10: light-dark(var(--gray-10), var(--dark-gray-10));
+  --color-gray-11: light-dark(var(--gray-11), var(--dark-gray-11));
+  --color-gray-12: light-dark(var(--gray-12), var(--dark-gray-12));
+  --color-accent-1: light-dark(var(--blue-1), var(--dark-blue-1));
+  --color-accent-2: light-dark(var(--blue-2), var(--dark-blue-2));
+  --color-accent-3: light-dark(var(--blue-3), var(--dark-blue-3));
+  --color-accent-4: light-dark(var(--blue-4), var(--dark-blue-4));
+  --color-accent-5: light-dark(var(--blue-5), var(--dark-blue-5));
+  --color-accent-6: light-dark(var(--blue-6), var(--dark-blue-6));
+  --color-accent-7: light-dark(var(--blue-7), var(--dark-blue-7));
+  --color-accent-8: light-dark(var(--blue-8), var(--dark-blue-8));
+  --color-accent-9: light-dark(var(--blue-9), var(--dark-blue-9));
+  --color-accent-10: light-dark(var(--blue-10), var(--dark-blue-10));
+  --color-accent-11: light-dark(var(--blue-11), var(--dark-blue-11));
+  --color-accent-12: light-dark(var(--blue-12), var(--dark-blue-12));
+  --color-error: light-dark(var(--error), var(--dark-error));
+  --color-error-bg: light-dark(var(--error-bg), var(--dark-error-bg));
 }
 
 /*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
+  The default border color
 */
 @layer base {
   *,
@@ -104,132 +168,31 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
-
-@layer base {
-  :root {
-    --background: 300 20% 99%; /* Mauve 1 */
-    --foreground: 260 25% 11%; /* Mauve 12 */
-
-    --subtle: 300 7.7% 97.5%; /* Mauve 2 */
-    --subtle-foreground: 252 4% 44.8%; /* Mauve 11 */
-
-    --accent: 255 65% 99.4%;
-    --accent-foreground: 254 60% 18.5%;
-    --accent-subtle: 252 100% 99%;
-    --accent-subtle-foreground: 250 43% 48%;
-
-    --primary: 252 96.9% 97.4%;
-    --primary-hover: 252 91.5% 95.5%;
-    --primary-active: 252 85.1% 93%;
-    --primary-foreground: 254 60% 18.5%;
-
-    --neutral: 294 5.5% 95.3%; /* Mauve 3 */
-    --neutral-hover: 289 4.7% 93.3%; /* Mauve 4 */
-    --neutral-active: 283 4.4% 91.3%; /* Mauve 5 */
-
-    --border: 278 4.1% 89.1%; /* Mauve 6 */
-    --primary-border: 252 77.8% 89.4%; /* Violet 6 */
-    --ring: 271 3.9% 86.3%; /* Mauve 7 */
-    --primary-ring: 252 71% 83.7%; /* Violet 7 */
-
-    --border-hover: 255 3.7% 78.8%; /* Mauve 8 */
-    --primary-border-hover: 252 68.6% 76.3%; /* Violet 8 */
-
-    --destructive: 358 75% 59%;
-    --destructive-foreground: 354 50% 14.6%;
-
-    /* -------------------------------- */
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
-
-    --input: 214.3 31.8% 91.4%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    color-scheme: light;
-  }
-
-  .dark {
-    --background: 246 6% 9%;
-    --foreground: 256 6% 93.2%;
-
-    --subtle: 240 5.1% 11.6%;
-    --subtle-foreground: 253 4% 63.7%;
-
-    --accent: 250 20% 10.2%;
-    --accent-foreground: 252 87% 96.4%;
-    --accent-subtle: 255 30.3% 12.9%;
-    --accent-subtle-foreground: 250 95% 76.8%;
-
-    --primary: 253 37% 18.4%;
-    --primary-hover: 252 40.1% 22.5%;
-    --primary-active: 252 42.2% 26.2%;
-    --primary-foreground: 252 87% 96.4%;
-
-    --neutral: 241 5% 14.3%;
-    --neutral-hover: 242 4.9% 16.5%;
-    --neutral-active: 243 4.9% 18.8%;
-
-    --border: 244 4.9% 21.5%;
-    --primary-border: 251 44.3% 31.1%;
-    --ring: 245 4.9% 25.4%;
-    --primary-ring: 250 46.8% 38.9%;
-
-    --border-hover: 247 4.8% 32.5%;
-    --primary-border-hover: 250 51.8% 51.2%;
-
-    --destructive: 358 75% 59%;
-    --destructive-foreground: 351 89% 96%;
-
-    /* -------------------------------- */
-
-    --popover: 224 71% 4%;
-    --popover-foreground: 215 20.2% 65.1%;
-
-    --card: 224 71% 4%;
-    --card-foreground: 213 31% 91%;
-
-    --input: 216 34% 17%;
-
-    --secondary: 222.2 47.4% 11.2%;
-    --secondary-foreground: 210 40% 98%;
-
-    color-scheme: dark;
+    border-color: var(--color-gray-6, currentColor);
   }
 
   html {
-    scrollbar-width: 0;
+    scrollbar-width: none;
   }
 
   body::-webkit-scrollbar {
     display: none;
   }
-}
 
-.mauve {
-  --mauve9: hsl(252, 4%, 57.3%);
-  --mauve10: hsl(253, 3.5%, 53.5%);
-}
-
-.mauveDark {
-  --mauve9: hsl(252, 4%, 45.2%);
-  --mauve10: hsl(247, 3.4%, 50.7%);
-}
-
-.violet {
-  --violet9: hsl(252, 56%, 57.5%);
-  --violet10: hsl(251, 48.1%, 53.5%);
-}
-
-.violetDark {
-  --violet9: hsl(252, 56%, 57.5%);
-  --violet10: hsl(251, 63.2%, 63.2%);
+  .animated-height {
+    @media (prefers-reduced-motion: no-preference) {
+      --_duration: 250ms;
+      --_durationLong: 500ms;
+      interpolate-size: allow-keywords;
+      overflow-y: clip;
+      transition: content-visibility var(--_duration) allow-discrete, opacity
+        var(--_durationLong), block-size var(--_duration);
+      block-size: auto;
+      opacity: 1;
+      &[aria-hidden="true"] {
+        block-size: 0;
+        opacity: 0;
+      }
+    }
+  }
 }
