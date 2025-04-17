@@ -39,7 +39,7 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
                 })}
                 className={[
                   'py-1 pl-2',
-                  (tip?.joker || tip?.lonelyHit) && 'bg-accent-3',
+                  (tip?.joker || tip?.lonelyHit) && 'bg-accent-4',
                 ]
                   .filter(Boolean)
                   .join(' ')}
@@ -51,7 +51,7 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
               <div
                 className={[
                   'py-1 text-center',
-                  (tip?.joker || tip?.lonelyHit) && 'bg-accent-3',
+                  (tip?.joker || tip?.lonelyHit) && 'bg-accent-4',
                 ]
                   .filter(Boolean)
                   .join(' ')}
@@ -61,7 +61,7 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
               <div
                 className={[
                   'py-1 text-center',
-                  (tip?.joker || tip?.lonelyHit) && 'bg-accent-3',
+                  (tip?.joker || tip?.lonelyHit) && 'bg-accent-4',
                 ]
                   .filter(Boolean)
                   .join(' ')}
