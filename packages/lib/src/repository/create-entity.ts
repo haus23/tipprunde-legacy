@@ -1,4 +1,10 @@
-import { collection, doc, type DocumentReference, setDoc } from 'firebase/firestore';
+import {
+  type DocumentReference,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from 'firebase/firestore';
 import { db } from '../firebase/db';
 import type { BaseModel } from '../model/base/model';
 import { baseModelConverter } from './base-model-converter';
@@ -11,7 +17,7 @@ import { baseModelConverter } from './base-model-converter';
  */
 export const createEntity = async <T extends BaseModel>(
   path: string,
-  entity: T
+  entity: T,
 ): Promise<void> => {
   let entityRef: DocumentReference<T>;
 
@@ -19,8 +25,8 @@ export const createEntity = async <T extends BaseModel>(
     entityRef = doc(db, path, entity.id).withConverter(baseModelConverter<T>());
   } else {
     entityRef = doc(collection(db, path)).withConverter(
-      baseModelConverter<T>()
+      baseModelConverter<T>(),
     );
   }
-  await setDoc(entityRef, entity);
+  await setDoc(entityRef, { ...entity, updated_at: serverTimestamp() });
 };
