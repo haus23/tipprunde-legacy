@@ -1,5 +1,15 @@
 # lib
 
+## 0.5.0
+
+### Minor Changes
+
+- [2fcef32](https://github.com/haus23/tipprunde-legacy/commit/2fcef32): Upgrade firebase.
+
+### Patch Changes
+
+- [224fa78](https://github.com/haus23/tipprunde-legacy/commit/224fa78): Update dev deps.
+
 ## 0.4.8
 
 ### Patch Changes
