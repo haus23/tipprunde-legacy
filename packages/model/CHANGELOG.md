@@ -1,5 +1,12 @@
 # model
 
+## 0.19.6
+
+### Patch Changes
+
+- [da151fe](https://github.com/haus23/tipprunde-legacy/commit/da151fe): Update valibot to release version.
+- [c3342fb](https://github.com/haus23/tipprunde-legacy/commit/c3342fb): Add build script.
+
 ## 0.19.5
 
 ### Patch Changes
