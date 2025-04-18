@@ -1,5 +1,14 @@
 # www
 
+## 0.22.3
+
+### Patch Changes
+
+- [f87d240](https://github.com/haus23/tipprunde-legacy/commit/f87d240): Align highlight bg color.
+- Updated dependencies [da151fe]
+- Updated dependencies [c3342fb]
+  - @haus23/tipprunde-model@0.19.6
+
 ## 0.22.2
 
 ### Patch Changes
