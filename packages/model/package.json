@@ -14,10 +14,10 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "valibot": "1.0.0-rc.4"
+    "valibot": "1.0.0"
   },
   "peerDependencies": {
-    "valibot": ">=1.0.0-rc"
+    "valibot": ">=1.0.0"
   },
   "peerDependenciesMeta": {
     "valibot": {
