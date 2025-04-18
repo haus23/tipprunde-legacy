@@ -1,5 +1,11 @@
 # lib
 
+## 0.6.0
+
+### Minor Changes
+
+- [65ea31c](https://github.com/haus23/tipprunde-legacy/commit/65ea31c): Add updated timestamps to entities.
+
 ## 0.5.0
 
 ### Minor Changes
