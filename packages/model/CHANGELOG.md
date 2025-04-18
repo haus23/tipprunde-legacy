@@ -1,5 +1,11 @@
 # model
 
+## 0.19.7
+
+### Patch Changes
+
+- [b091860](https://github.com/haus23/tipprunde-legacy/commit/b091860): Update package exports.
+
 ## 0.19.6
 
 ### Patch Changes
