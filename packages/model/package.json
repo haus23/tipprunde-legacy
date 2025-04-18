@@ -3,13 +3,14 @@
   "description": "Domain-Modell der Haus23 Tipprunde",
   "version": "0.19.5",
   "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": "./src/index.ts"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
     "test": "vitest",
     "typecheck": "tsc"
   },
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
+    "tsup": "^8.4.0",
     "typescript": "~5.8.3",
     "vitest": "^3.1.1"
   }
