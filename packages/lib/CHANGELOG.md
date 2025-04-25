@@ -1,5 +1,11 @@
 # lib
 
+## 0.6.1
+
+### Patch Changes
+
+- [2c1143c](https://github.com/haus23/tipprunde-legacy/commit/2c1143c): Allow updated_at prop.
+
 ## 0.6.0
 
 ### Minor Changes
