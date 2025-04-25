@@ -1,5 +1,12 @@
 # hinterhof
 
+## 0.6.10
+
+### Patch Changes
+
+- Updated dependencies [2c1143c]
+  - lib@0.6.1
+
 ## 0.6.9
 
 ### Patch Changes
