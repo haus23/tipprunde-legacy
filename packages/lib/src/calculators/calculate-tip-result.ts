@@ -25,8 +25,9 @@ export function calculateTipResult(
 
   // Remove all extra flags if any
   if (typeof tip.lonelyHit !== 'undefined') {
-    const { lonelyHit, ...cleanedCopy } = { ...tip };
+    const { lonelyHit, updated_at, ...cleanedCopy } = { ...tip };
     tip = cleanedCopy;
+    // TODO: really needed - or better validate tip
     if (Object.keys(tip).length !== 6) {
       throw Error('Unexpected props found on tip');
     }
