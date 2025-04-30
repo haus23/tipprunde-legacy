@@ -1,5 +1,12 @@
 # www
 
+## 0.22.5
+
+### Patch Changes
+
+- [f0c144f](https://github.com/haus23/tipprunde-legacy/commit/f0c144f): Use published version. Not workspace version.
+- [6a3a615](https://github.com/haus23/tipprunde-legacy/commit/6a3a615): Add logo png to public folder. Used by emails.
+
 ## 0.22.4
 
 ### Patch Changes
