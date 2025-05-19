@@ -1,5 +1,11 @@
 # model
 
+## 0.21.1
+
+### Patch Changes
+
+- [9eea11e](https://github.com/haus23/tipprunde-legacy/commit/9eea11e): Add updated_at prop to championship entity.
+
 ## 0.21.0
 
 ### Minor Changes
