@@ -2,6 +2,7 @@ import * as v from 'valibot';
 
 import { ChampionshipIdSchema } from '../../primitives';
 import { IdSchema } from '../id';
+import { UpdatedAtSchema } from '../updatedAt';
 
 export const ChampionshipSchema = v.object({
   id: ChampionshipIdSchema,
@@ -11,6 +12,7 @@ export const ChampionshipSchema = v.object({
   published: v.optional(v.boolean(), false),
   extraPointsPublished: v.optional(v.boolean(), false),
   completed: v.optional(v.boolean(), false),
+  updated_at: v.optional(UpdatedAtSchema),
 });
 
 export type ChampionshipInput = v.InferInput<typeof ChampionshipSchema>;
