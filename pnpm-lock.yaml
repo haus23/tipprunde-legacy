@@ -143,8 +143,8 @@ importers:
         specifier: ^5.2.5
         version: 5.2.6
       '@haus23/tipprunde-model':
-        specifier: 0.19.7
-        version: 0.19.7(valibot@1.1.0(typescript@5.8.3))
+        specifier: 0.21.0
+        version: 0.21.0(valibot@1.1.0(typescript@5.8.3))
       '@tanstack/react-query':
         specifier: ^5.74.4
         version: 5.76.1(react@19.1.0)
@@ -1105,8 +1105,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  '@haus23/tipprunde-model@0.19.7':
-    resolution: {integrity: sha512-z6lMeOoCnydSClGxgUdxHkHAX67HGgHGt/BvmtkZ4r0rsyMNt3PFYWoKbI9JQ9sIxB0CSe8F794AoOAKP7FCIg==}
+  '@haus23/tipprunde-model@0.21.0':
+    resolution: {integrity: sha512-zrBdfnzT7iwoaP94WgEuAqzWlhz2jOXnjiEcqLfRQKU33SnDKVeCdbyldh9cA2AGmlN+RX26+PmcRhQPjHtdyA==}
     peerDependencies:
       valibot: '>=1.0.0'
     peerDependenciesMeta:
@@ -5203,7 +5203,7 @@ snapshots:
       protobufjs: 7.5.2
       yargs: 17.7.2
 
-  '@haus23/tipprunde-model@0.19.7(valibot@1.1.0(typescript@5.8.3))':
+  '@haus23/tipprunde-model@0.21.0(valibot@1.1.0(typescript@5.8.3))':
     optionalDependencies:
       valibot: 1.1.0(typescript@5.8.3)
 
