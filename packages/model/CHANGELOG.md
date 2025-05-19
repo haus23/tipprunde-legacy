@@ -1,5 +1,11 @@
 # model
 
+## 0.21.2
+
+### Patch Changes
+
+- [229f188](https://github.com/haus23/tipprunde-legacy/commit/229f188): Add optional role prop to account entity.
+
 ## 0.21.1
 
 ### Patch Changes
