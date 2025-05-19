@@ -13,9 +13,7 @@
       }
     }
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "publishConfig": {
     "access": "public"
   },
@@ -25,7 +23,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "valibot": "1.0.0"
+    "valibot": "1.1.0"
   },
   "peerDependencies": {
     "valibot": ">=1.0.0"
