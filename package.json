@@ -25,6 +25,11 @@
   },
   "packageManager": "pnpm@10.11.0",
   "pnpm": {
-    "onlyBuiltDependencies": ["@firebase/util", "esbuild", "protobufjs"]
+    "onlyBuiltDependencies": [
+      "@firebase/util",
+      "@tailwindcss/oxide",
+      "esbuild",
+      "protobufjs"
+    ]
   }
 }
