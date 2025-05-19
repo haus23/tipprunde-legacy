@@ -1,6 +1,7 @@
 import * as v from 'valibot';
 
 import { IdSchema } from '../id';
+import { UpdatedAtSchema } from '../updatedAt';
 
 // Firebase collection path: /players
 
@@ -11,6 +12,7 @@ export const AccountSchema = v.object({
     v.union([v.literal(''), v.pipe(v.string(), v.email())]),
     '',
   ),
+  updated_at: v.optional(UpdatedAtSchema),
 });
 
 export type AccountInput = v.InferInput<typeof AccountSchema>;
