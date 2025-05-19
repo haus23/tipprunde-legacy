@@ -1,5 +1,12 @@
 # www
 
+## 0.22.8
+
+### Patch Changes
+
+- Updated dependencies [229f188]
+  - @haus23/tipprunde-model@0.21.2
+
 ## 0.22.7
 
 ### Patch Changes
