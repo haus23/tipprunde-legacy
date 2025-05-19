@@ -1,5 +1,11 @@
 # model
 
+## 0.21.0
+
+### Minor Changes
+
+- Add updated_at prop to accounts entity.
+
 ## 0.19.7
 
 ### Patch Changes
