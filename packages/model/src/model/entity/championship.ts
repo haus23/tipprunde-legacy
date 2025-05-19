@@ -12,7 +12,7 @@ export const ChampionshipSchema = v.object({
   published: v.optional(v.boolean(), false),
   extraPointsPublished: v.optional(v.boolean(), false),
   completed: v.optional(v.boolean(), false),
-  updated_at: v.optional(UpdatedAtSchema),
+  updated_at: UpdatedAtSchema,
 });
 
 export type ChampionshipInput = v.InferInput<typeof ChampionshipSchema>;
