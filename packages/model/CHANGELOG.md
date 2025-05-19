@@ -1,5 +1,11 @@
 # model
 
+## 0.21.3
+
+### Patch Changes
+
+- [507f208](https://github.com/haus23/tipprunde-legacy/commit/507f208): Update updatedAt-Schema.
+
 ## 0.21.2
 
 ### Patch Changes
