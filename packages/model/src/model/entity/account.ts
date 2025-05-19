@@ -12,6 +12,7 @@ export const AccountSchema = v.object({
     v.union([v.literal(''), v.pipe(v.string(), v.email())]),
     '',
   ),
+  role: v.optional(v.string(), ''),
   updated_at: v.optional(UpdatedAtSchema),
 });
 
