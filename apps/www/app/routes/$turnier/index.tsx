@@ -100,7 +100,15 @@ function RankingComponent() {
     return (
       championship.completed
         ? [rankColumn, nameColumn, extraPointsColumn, pointsColumn]
-        : [rankColumn, nameColumn, pointsColumn, currentTipsColumn]
+        : championship.extraPointsPublished
+          ? [
+              rankColumn,
+              nameColumn,
+              extraPointsColumn,
+              pointsColumn,
+              currentTipsColumn,
+            ]
+          : [rankColumn, nameColumn, extraPointsColumn, pointsColumn]
     ) as ColumnDef<PlayerWithAccount>[];
   }, [championship]);
 
