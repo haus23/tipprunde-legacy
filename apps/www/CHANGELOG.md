@@ -1,5 +1,11 @@
 # www
 
+## 0.22.10
+
+### Patch Changes
+
+- [5be1b75](https://github.com/haus23/tipprunde-legacy/commit/5be1b75): Show extra tips when published.
+
 ## 0.22.9
 
 ### Patch Changes
