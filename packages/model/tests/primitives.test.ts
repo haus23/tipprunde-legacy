@@ -29,7 +29,7 @@ it('validates correct results/tips', () => {
   expect(v.safeParse(ResultSchema, '10:10').success).toBeTruthy();
 });
 
-it('fails with validation on invalid resul´ts/tips', () => {
+it('fails with validation on invalid results/tips', () => {
   expect(v.safeParse(ResultSchema, ' ').success).toBeFalsy();
   expect(v.safeParse(ResultSchema, 'hoch').success).toBeFalsy();
   expect(v.safeParse(ResultSchema, ' 0:0').success).toBeFalsy();

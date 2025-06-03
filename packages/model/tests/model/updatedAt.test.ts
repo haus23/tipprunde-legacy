@@ -12,6 +12,9 @@ it('validates updatedAt property from Firestore timestamp to Date', () => {
 });
 
 it('validates updatedAt property if undefined', () => {
-  const result = v.safeParse(v.object({ updatedAt: UpdatedAtSchema }), {});
+  const result = v.safeParse(
+    v.object({ updatedAt: v.optional(UpdatedAtSchema) }),
+    {},
+  );
   expect(result.success).toEqual(true);
 });

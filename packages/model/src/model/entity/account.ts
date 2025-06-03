@@ -13,7 +13,7 @@ export const AccountSchema = v.object({
     '',
   ),
   role: v.optional(v.string(), ''),
-  updated_at: UpdatedAtSchema,
+  updated_at: v.optional(UpdatedAtSchema),
 });
 
 export type AccountInput = v.InferInput<typeof AccountSchema>;
