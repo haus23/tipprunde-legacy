@@ -1,5 +1,12 @@
 # model
 
+## 0.21.4
+
+### Patch Changes
+
+- [eda39d5](https://github.com/haus23/tipprunde-legacy/commit/eda39d5): Move optional method to client schema. Resolves #37.
+- [e8bc85f](https://github.com/haus23/tipprunde-legacy/commit/e8bc85f): Add updatedAt property to team schema.
+
 ## 0.21.3
 
 ### Patch Changes
