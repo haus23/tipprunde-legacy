@@ -1,5 +1,11 @@
 # model
 
+## 0.21.5
+
+### Patch Changes
+
+- [552cb48](https://github.com/haus23/tipprunde-legacy/commit/552cb48): Add updatedAt property to league schema.
+
 ## 0.21.4
 
 ### Patch Changes
