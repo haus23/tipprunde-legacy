@@ -97,18 +97,13 @@ function RankingComponent() {
         </Suspense>
       ),
     });
+    console.log(championship);
     return (
       championship.completed
         ? [rankColumn, nameColumn, extraPointsColumn, pointsColumn]
         : championship.extraPointsPublished
-          ? [
-              rankColumn,
-              nameColumn,
-              extraPointsColumn,
-              pointsColumn,
-              currentTipsColumn,
-            ]
-          : [rankColumn, nameColumn, extraPointsColumn, pointsColumn]
+          ? [rankColumn, nameColumn, extraPointsColumn, pointsColumn]
+          : [rankColumn, nameColumn, pointsColumn, currentTipsColumn]
     ) as ColumnDef<PlayerWithAccount>[];
   }, [championship]);
 
