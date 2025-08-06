@@ -1,5 +1,11 @@
 # model
 
+## 0.21.6
+
+### Patch Changes
+
+- Make timestamps optional.
+
 ## 0.21.5
 
 ### Patch Changes
