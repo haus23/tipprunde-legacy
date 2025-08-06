@@ -1,5 +1,11 @@
 # www
 
+## 0.22.14
+
+### Patch Changes
+
+- [dc686d6](https://github.com/haus23/tipprunde-legacy/commit/dc686d6): Misconfigured column rendering.
+
 ## 0.22.13
 
 ### Patch Changes
