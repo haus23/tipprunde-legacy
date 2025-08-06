@@ -97,7 +97,7 @@ function RankingComponent() {
         </Suspense>
       ),
     });
-    console.log(championship);
+
     return (
       championship.completed
         ? [rankColumn, nameColumn, extraPointsColumn, pointsColumn]
