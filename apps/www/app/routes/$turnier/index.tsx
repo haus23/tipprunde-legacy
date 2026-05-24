@@ -66,6 +66,7 @@ function RankingComponent() {
       meta: {
         tdClasses: 'text-center tabular-nums',
       },
+      cell: (info) => (info.getValue() || '')
     });
     const pointsColumn = columnHelper.accessor('totalPoints', {
       header: () => (
