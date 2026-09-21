@@ -9,6 +9,7 @@
   "linked": [],
   "access": "restricted",
   "baseBranch": "v1",
+  "privatePackages": { "version": true, "tag": false },
   "updateInternalDependencies": "patch",
   "ignore": []
 }

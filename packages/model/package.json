@@ -1,5 +1,6 @@
 {
   "name": "@haus23/tipprunde-model",
+  "private": true,
   "description": "Domain-Modell der Haus23 Tipprunde",
   "version": "0.21.6",
   "type": "module",
@@ -16,9 +17,6 @@
   "files": [
     "dist"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts",
     "test": "vitest",
