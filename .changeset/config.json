@@ -1,11 +1,14 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@3.0.5/schema.json",
-  "changelog": "./custom-changelog-git.js",
+  "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    { "repo": "haus23/tipprunde-legacy", "disableThanks": true }
+  ],
   "commit": false,
   "fixed": [],
   "linked": [],
   "access": "restricted",
-  "baseBranch": "main",
+  "baseBranch": "v1",
   "updateInternalDependencies": "patch",
   "ignore": []
 }
