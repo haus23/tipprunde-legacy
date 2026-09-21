@@ -25,7 +25,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "valibot": "1.1.0"
+    "valibot": "1.4.2"
   },
   "peerDependencies": {
     "valibot": ">=1.0.0"
