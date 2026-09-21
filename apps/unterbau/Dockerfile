@@ -10,7 +10,6 @@ WORKDIR /workspace
 
 # Fetch deps
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm --filter=@haus23/tipprunde-model build
 
 # Start app
 EXPOSE 26515
