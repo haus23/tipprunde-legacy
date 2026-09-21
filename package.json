@@ -23,13 +23,5 @@
     "@changesets/types": "^6.1.0",
     "turbo": "^2.11.2"
   },
-  "packageManager": "pnpm@10.11.0",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@firebase/util",
-      "@tailwindcss/oxide",
-      "esbuild",
-      "protobufjs"
-    ]
-  }
+  "packageManager": "pnpm@12.5.1"
 }
