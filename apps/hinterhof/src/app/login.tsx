@@ -13,6 +13,18 @@ type LoginFormType = {
   password: string;
 };
 
+function getReturnPath(value: string | null): string {
+  if (
+    !value?.startsWith('/') ||
+    value.startsWith('//') ||
+    /[^a-zA-Z0-9/_-]/.test(value)
+  ) {
+    return '/';
+  }
+
+  return value;
+}
+
 export default function Login() {
   const [isAuthenticated, setAuthenticated] = useState(false);
 
@@ -30,7 +42,7 @@ export default function Login() {
       auth.onAuthStateChanged((user) => {
         const params = new URL(window.location.toString()).searchParams;
         setAuthenticated(true);
-        user && navigate(params.get('from') || '/', { replace: true });
+        user && navigate(getReturnPath(params.get('from')), { replace: true });
       }),
     [navigate],
   );
