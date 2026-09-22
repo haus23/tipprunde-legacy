@@ -1,5 +1,11 @@
 # unterbau
 
+## 0.21.29
+
+### Patch Changes
+
+- [`2ba73c0`](https://github.com/haus23/tipprunde-legacy/commit/2ba73c0173f46656eae290bc42656f3898952214) - Run Unterbau in a pnpm-based Docker image with a pnpm-managed Node.js runtime and exclude local configuration files from the build context.
+
 ## 0.21.28
 
 ### Patch Changes
