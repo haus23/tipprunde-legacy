@@ -1,5 +1,11 @@
 # lib
 
+## 0.6.2
+
+### Patch Changes
+
+- [`71637ca`](https://github.com/haus23/tipprunde-legacy/commit/71637ca404d959dd6d91dce5c05d23d816765ba7) - Update Vitest to 5 for library tests.
+
 ## 0.6.1
 
 ### Patch Changes

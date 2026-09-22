@@ -1,5 +1,11 @@
 # www
 
+## 0.22.16
+
+### Patch Changes
+
+- [`36db2fc`](https://github.com/haus23/tipprunde-legacy/commit/36db2fc5100a48fd6d7c3b159e8b500a250d6f4a) - Update Vite to 6.4.3 and the React plugin to 4.7.0 for Pages builds.
+
 ## 0.22.15
 
 ### Patch Changes

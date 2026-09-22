@@ -1,5 +1,11 @@
 # unterbau
 
+## 0.21.30
+
+### Patch Changes
+
+- [`71637ca`](https://github.com/haus23/tipprunde-legacy/commit/71637ca404d959dd6d91dce5c05d23d816765ba7) - Update Vitest to 5 and Supertest to 7.2.2 with matching type definitions for API tests.
+
 ## 0.21.29
 
 ### Patch Changes
