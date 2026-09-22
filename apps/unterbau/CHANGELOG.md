@@ -1,5 +1,20 @@
 # unterbau
 
+## 0.21.31
+
+### Patch Changes
+
+- [`68f0db6`](https://github.com/haus23/tipprunde-legacy/commit/68f0db6ce5a19fab47330fccda14fc98ecf62341) - Remove unneeded .node-version file.
+
+- [`9b02823`](https://github.com/haus23/tipprunde-legacy/commit/9b028239f27ff45fe6ae6009793301bd1b665959) - Use a shared TypeScript configuration for the non-DOM packages while keeping their ES2023 library settings.
+
+- [`b0bafc5`](https://github.com/haus23/tipprunde-legacy/commit/b0bafc58335b49432911414f57ff83fee75cf14b) - Use TypeScript 7 from a shared workspace catalog across the apps and packages.
+
+- [`756d18a`](https://github.com/haus23/tipprunde-legacy/commit/756d18abf765cef37d2fd36ad51774045f63be5c) - Update types and mark node explicit as types source.
+
+- Updated dependencies :
+  - @haus23/tipprunde-model@0.21.9
+
 ## 0.21.30
 
 ### Patch Changes

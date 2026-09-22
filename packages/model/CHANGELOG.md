@@ -1,5 +1,13 @@
 # model
 
+## 0.21.9
+
+### Patch Changes
+
+- [`9b02823`](https://github.com/haus23/tipprunde-legacy/commit/9b028239f27ff45fe6ae6009793301bd1b665959) - Use a shared TypeScript configuration for the non-DOM packages while keeping their ES2023 library settings.
+
+- [`b0bafc5`](https://github.com/haus23/tipprunde-legacy/commit/b0bafc58335b49432911414f57ff83fee75cf14b) - Use TypeScript 7 from a shared workspace catalog across the apps and packages.
+
 ## 0.21.8
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # ui-legacy
 
+## 0.3.3
+
+### Patch Changes
+
+- [`a50d878`](https://github.com/haus23/tipprunde-legacy/commit/a50d878f40c6196cd40e7382224736316390879e) - Simplify React TypeScript configuration.
+
+- [`b0bafc5`](https://github.com/haus23/tipprunde-legacy/commit/b0bafc58335b49432911414f57ff83fee75cf14b) - Use TypeScript 7 from a shared workspace catalog across the apps and packages.
+
 ## 0.3.2
 
 ### Patch Changes
