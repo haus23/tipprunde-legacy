@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    /* Strictness */
+    "strict": true,
+
+    /* Target and lib */
+    "target": "ES2023",
+
+    /* Type checking only */
+    "noEmit": true,
+    "skipLibCheck": true,
+
+    /* Modules */
+    "module": "Preserve",
+    "allowImportingTsExtensions": true,
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true
+  }
+}
