@@ -1,6 +1,10 @@
 packages:
   - 'packages/*'
   - 'apps/*'
+
+catalog:
+  typescript: ~7.0.2
+
 allowBuilds:
   '@biomejs/biome': true
   '@firebase/util': true
