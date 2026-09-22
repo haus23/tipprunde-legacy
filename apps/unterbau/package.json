@@ -31,5 +31,12 @@
     "tsx": "^4.19.3",
     "typescript": "~5.8.2",
     "vitest": "^3.0.8"
+  },
+  "engines": {
+    "runtime": {
+      "name": "node",
+      "version": "^22",
+      "onFail": "download"
+    }
   }
 }

@@ -1,16 +1,11 @@
-FROM node:22-slim
+FROM ghcr.io/pnpm/pnpm:12.5.1
 
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
-
-# Copy workspace source
 COPY . /workspace
 WORKDIR /workspace
 
-# Fetch deps
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+    pnpm install --filter=@haus23/tipprunde-unterbau... --frozen-lockfile
+RUN pnpm --filter=@haus23/tipprunde-unterbau exec node --version
 
-# Start app
 EXPOSE 26515
-CMD ["pnpm","start:unterbau"]
+CMD ["pnpm", "--filter=@haus23/tipprunde-unterbau", "start"]

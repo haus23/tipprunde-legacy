@@ -1,0 +1,13 @@
+.git
+.changeset
+.turbo
+**/.turbo
+node_modules
+**/node_modules
+**/dist
+**/.cache
+.env*
+**/.env*
+README.md
+WORKFLOW.md
+docker-compose*.yml
