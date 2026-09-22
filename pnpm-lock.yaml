@@ -260,9 +260,6 @@ importers:
       firebase-admin:
         specifier: ^13.10.0
         version: 13.10.0
-      node:
-        specifier: runtime:^22
-        version: runtime:22.23.2
       unstorage:
         specifier: ^1.17.5
         version: 1.17.5
@@ -285,6 +282,9 @@ importers:
       '@types/supertest':
         specifier: ^6.0.2
         version: 6.0.3
+      node:
+        specifier: runtime:^22
+        version: runtime:22.23.2
       supertest:
         specifier: ^7.0.0
         version: 7.1.1
