@@ -1,4 +1,4 @@
 {
-  "extends": "@haus23/tipprunde-tsconfig/app.json",
+  "extends": "@haus23/tipprunde-tsconfig/react.json",
   "include": ["src"]
 }
