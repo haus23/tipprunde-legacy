@@ -1,5 +1,13 @@
 # model
 
+## 0.21.7
+
+### Patch Changes
+
+- [`73e867a`](https://github.com/haus23/tipprunde-legacy/commit/73e867a55e4cc31fba7a10df24d51db6268a6386) - Use the internal model's TypeScript source directly in WWW and Unterbau, without a separate model build step.
+
+- [`73e867a`](https://github.com/haus23/tipprunde-legacy/commit/73e867a55e4cc31fba7a10df24d51db6268a6386) - Update the legacy workspace tooling and build configuration, refresh backend dependencies, and fix Hinterhof login redirects.
+
 ## 0.21.6
 
 ### Patch Changes

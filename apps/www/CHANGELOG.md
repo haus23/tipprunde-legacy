@@ -1,5 +1,15 @@
 # www
 
+## 0.22.15
+
+### Patch Changes
+
+- [`73e867a`](https://github.com/haus23/tipprunde-legacy/commit/73e867a55e4cc31fba7a10df24d51db6268a6386) - Bundle the internal model's TypeScript source directly with WWW.
+
+- [`b04fa21`](https://github.com/haus23/tipprunde-legacy/commit/b04fa210b6b65a06f2fca47a44f795f900614720) - Add back the current tips with extra points published.
+
+- [`73e867a`](https://github.com/haus23/tipprunde-legacy/commit/73e867a55e4cc31fba7a10df24d51db6268a6386) - Use the Cloudflare Pages build system's Node.js version and update workspace build tooling.
+
 ## 0.22.14
 
 ### Patch Changes

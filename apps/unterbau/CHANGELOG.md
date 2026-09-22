@@ -1,5 +1,13 @@
 # unterbau
 
+## 0.21.28
+
+### Patch Changes
+
+- [`73e867a`](https://github.com/haus23/tipprunde-legacy/commit/73e867a55e4cc31fba7a10df24d51db6268a6386) - Load the internal model's TypeScript source directly with tsx, without a separate Docker build step.
+
+- [`73e867a`](https://github.com/haus23/tipprunde-legacy/commit/73e867a55e4cc31fba7a10df24d51db6268a6386) - Update backend runtime dependencies.
+
 ## 0.21.27
 
 ### Patch Changes

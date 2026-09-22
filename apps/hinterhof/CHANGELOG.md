@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.6.11
+
+### Patch Changes
+
+- [`73e867a`](https://github.com/haus23/tipprunde-legacy/commit/73e867a55e4cc31fba7a10df24d51db6268a6386) - Update the router and preserve the intended destination after login; use the Cloudflare Pages build system's Node.js version.
+
 ## 0.6.10
 
 ### Patch Changes

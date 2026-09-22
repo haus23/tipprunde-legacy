@@ -2,7 +2,7 @@
   "name": "@haus23/tipprunde-model",
   "private": true,
   "description": "Domain-Modell der Haus23 Tipprunde",
-  "version": "0.21.6",
+  "version": "0.21.7",
   "type": "module",
   "exports": {
     ".": "./src/index.ts"
