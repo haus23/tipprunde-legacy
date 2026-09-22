@@ -3,6 +3,8 @@
   "include": ["server.ts", "src/**/*", "test/**/*"],
   "compilerOptions": {
     /* Vanilla ECMAScript */
-    "lib": ["ES2023"]
+    "lib": ["ES2023"],
+    /* Explicit list type definitions */
+    "types": ["node"]
   }
 }
