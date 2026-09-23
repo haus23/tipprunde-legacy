@@ -1,6 +1,6 @@
+import type { CurrentTipsInput } from '@haus23/tipprunde-model';
 import type { Request, Response } from 'express';
 
-import type { CurrentTipsInput } from '@haus23/tipprunde-model';
 import { getMatches } from '#app/lib/queries/championships/matches.ts';
 import { getTips } from '#app/lib/queries/championships/tips.ts';
 import { getTeams } from '#app/lib/queries/teams.ts';

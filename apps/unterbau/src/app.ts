@@ -1,6 +1,6 @@
 import cors from 'cors';
-import express from 'express';
 import type { ErrorRequestHandler } from 'express';
+import express from 'express';
 
 import { cacheRouter } from './api/cache.ts';
 import { router } from './api/v1/_router.ts';
@@ -18,7 +18,7 @@ app.use('/api/cache', cacheRouter);
 app.use('/api/v1', router);
 
 // Error Handler
-const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+const errorHandler: ErrorRequestHandler = (err, _req, res, next) => {
   if (err instanceof ValidationError) {
     console.error(err.errorDescription);
     res.status(err.status).json({
