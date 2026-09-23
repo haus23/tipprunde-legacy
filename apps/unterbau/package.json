@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@haus23/tipprunde-model": "workspace:^",
-    "cors": "^2.8.5",
-    "express": "^5.0.1",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
     "firebase-admin": "^14.4.0",
     "unstorage": "^1.17.5",
-    "valibot": "1.4.2"
+    "valibot": "catalog:validation"
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
