@@ -3,13 +3,16 @@ packages:
   - 'apps/*'
 
 catalog:
-  '@types/react': ^19.3.0
-  '@types/react-dom': ^19.3.0
-  react: ^19.3.0
-  react-dom: ^19.3.0
   typescript: ~7.0.2
 
 catalogs:
+  react:
+    '@types/react': ^19.3.0
+    '@types/react-dom': ^19.3.0
+    react: ^19.3.0
+    react-dom: ^19.3.0
+  react-libs:
+    react-hook-form: ^7.88.0
   validation:
     valibot: ^1.5.0
 
