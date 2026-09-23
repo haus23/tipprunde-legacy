@@ -6,19 +6,13 @@ import { Fragment } from 'react';
 import { Link } from '#/components/ui/link';
 import { Popover } from '#/components/ui/popover';
 import { useChampionship } from '#/utils/app/championship';
-import { currentTipsQuery, matchesQuery } from '#/utils/queries';
+import { currentTipsQuery } from '#/utils/queries';
 
 export function CurrentTips({ player }: { player: PlayerWithAccount }) {
   const championship = useChampionship();
   const { data: currentTips } = useSuspenseQuery(
     currentTipsQuery(championship),
   );
-
-  // TODO: unterbau should return the match nr with the currentTips-Query.
-  // See line 114 and issue #35
-  const {
-    data: { matches },
-  } = useSuspenseQuery(matchesQuery(championship.id));
 
   return (
     <Popover triggerIcon={CalendarIcon} triggerLabel="Aktuelle Tips anzeigen">
@@ -35,7 +29,7 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
                 params={{ turnier: championship.id }}
                 search={(prev) => ({
                   ...prev,
-                  nr: matches.find((match) => match.id === m.matchId)?.nr,
+                  nr: m.nr,
                 })}
                 className={[
                   'py-1 pl-2',
