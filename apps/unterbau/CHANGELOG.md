@@ -1,5 +1,19 @@
 # unterbau
 
+## 0.22.0
+
+### Minor Changes
+
+- [`093b5a0`](https://github.com/haus23/tipprunde-legacy/commit/093b5a02d0bcd48420a07c00ec92b809bd9db7af) - Upgrade to Firebase Admin v14.
+
+- [`3740a86`](https://github.com/haus23/tipprunde-legacy/commit/3740a86b066b67404e0ecefcb76680cb94761c7e) - Update all deps to current versions. Take valibot from catalog now..
+
+### Patch Changes
+
+- [`8c1295d`](https://github.com/haus23/tipprunde-legacy/commit/8c1295d5de777492416165ac686fe4d76346cdaf) - Fix lint issues and format code.
+- Updated dependencies [[`41527e8`](https://github.com/haus23/tipprunde-legacy/commit/41527e8d34def10ee3067b9772f33e5c0a48487a)]:
+  - @haus23/tipprunde-model@0.21.10
+
 ## 0.21.31
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # model
 
+## 0.21.10
+
+### Patch Changes
+
+- [`41527e8`](https://github.com/haus23/tipprunde-legacy/commit/41527e8d34def10ee3067b9772f33e5c0a48487a) - Unmark package as private. None of the packages will be published. So the private marking is inconsistent.
+
 ## 0.21.9
 
 ### Patch Changes
