@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Button, Card, ToggleField } from 'ui-legacy';
 
 import { useRounds } from '@/hooks/current-data/use-rounds';
@@ -24,14 +24,14 @@ export default function CreateRoundView() {
     <div className="mt-5">
       <Card>
         <Card.Header>Neue Runde</Card.Header>
-        <div className="flex p-4 items-center justify-between">
-          <h2 className="text-lg pl-2 font-semibold">Runde {nr.current}</h2>
+        <div className="flex items-center justify-between p-4">
+          <h2 className="pl-2 font-semibold text-lg">Runde {nr.current}</h2>
           <Button primary onClick={create}>
             Anlegen
           </Button>
         </div>
-        <div className="flex p-4 items-center gap-x-4">
-          <span className="text-base pl-2 font-semibold">
+        <div className="flex items-center gap-x-4 p-4">
+          <span className="pl-2 font-semibold text-base">
             Doppel-Punkte Runde:
           </span>
           <ToggleField

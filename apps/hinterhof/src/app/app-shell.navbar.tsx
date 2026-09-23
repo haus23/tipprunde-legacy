@@ -7,17 +7,14 @@ import {
   SquaresPlusIcon,
   UserIcon,
 } from '@heroicons/react/24/outline';
-import type { ElementType } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-
 import type { Championship, ChampionshipPlayer, Match, Round } from 'lib';
+import type { ElementType } from 'react';
+import { Link, NavLink } from 'react-router';
 import { AppTitle, classNames } from 'ui-legacy';
-
-import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
-import { useRounds } from '@/hooks/current-data/use-rounds';
-
 import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
+import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
 import { useMatches } from '@/hooks/current-data/use-matches';
+import { useRounds } from '@/hooks/current-data/use-rounds';
 import { useProfile } from '@/hooks/use-profile';
 
 const championshipNavLinks: {
@@ -41,26 +38,26 @@ const championshipNavLinks: {
     to: './spiele',
     icon: CalendarIcon,
     label: 'Spiele',
-    visible: (championship, rounds) => rounds.length > 0,
+    visible: (_championship, rounds) => rounds.length > 0,
   },
   {
     to: './tipps',
     icon: PencilSquareIcon,
     label: 'Tipps',
-    visible: (championship, rounds, matches, players) =>
+    visible: (_championship, _rounds, matches, players) =>
       matches.length > 0 && players.length > 0,
   },
   {
     to: './ergebnisse',
     icon: ScaleIcon,
     label: 'Ergebnisse',
-    visible: (championship, rounds, matches) => matches.length > 0,
+    visible: (_championship, _rounds, matches) => matches.length > 0,
   },
   {
     to: './zusatzpunkte',
     icon: SquaresPlusIcon,
     label: 'Zusatzpunkte',
-    visible: (championship, rounds, matches, players) => players.length > 0,
+    visible: (_championship, _rounds, _matches, players) => players.length > 0,
   },
 ];
 
@@ -103,7 +100,7 @@ export default function AppShellNavbar() {
         <div className="px-2">
           <AppTitle />
         </div>
-        <div className="mt-5 flex-1 flex flex-col justify-between gap-y-4">
+        <div className="mt-5 flex flex-1 flex-col justify-between gap-y-4">
           <nav className="space-y-1 px-2">
             <NavLink
               to="."
@@ -113,7 +110,7 @@ export default function AppShellNavbar() {
                   isActive
                     ? 'bg-gray-100 text-gray-900'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                  'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
+                  'group flex items-center rounded-md px-2 py-2 font-medium text-sm',
                 )
               }
             >
@@ -124,7 +121,7 @@ export default function AppShellNavbar() {
                       isActive
                         ? 'text-gray-500'
                         : 'text-gray-400 group-hover:text-gray-500',
-                      'mr-3 shrink-0 h-6 w-6',
+                      'mr-3 h-6 w-6 shrink-0',
                     )}
                     aria-hidden="true"
                   />
@@ -150,7 +147,7 @@ export default function AppShellNavbar() {
                       isActive
                         ? 'bg-gray-100 text-gray-900'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
+                      'group flex items-center rounded-md px-2 py-2 font-medium text-sm',
                     )
                   }
                 >
@@ -161,7 +158,7 @@ export default function AppShellNavbar() {
                           isActive
                             ? 'text-gray-500'
                             : 'text-gray-400 group-hover:text-gray-500',
-                          'mr-3 shrink-0 h-6 w-6',
+                          'mr-3 h-6 w-6 shrink-0',
                         )}
                         aria-hidden="true"
                       />
@@ -172,7 +169,7 @@ export default function AppShellNavbar() {
               ))}
           </nav>
           <div>
-            <span className="block px-4 font-medium text-gray-500 pb-2 mb-2 border-b border-gray-200">
+            <span className="mb-2 block border-gray-200 border-b px-4 pb-2 font-medium text-gray-500">
               Stammdaten
             </span>
             <nav className="space-y-1 px-2">
@@ -185,7 +182,7 @@ export default function AppShellNavbar() {
                       isActive
                         ? 'bg-gray-100 text-gray-900'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'flex items-center px-2 py-2 text-sm font-medium rounded-md',
+                      'flex items-center rounded-md px-2 py-2 font-medium text-sm',
                     )
                   }
                 >
@@ -196,7 +193,7 @@ export default function AppShellNavbar() {
           </div>
         </div>
       </div>
-      <div className="flex shrink-0 border-t border-gray-200 p-4">
+      <div className="flex shrink-0 border-gray-200 border-t p-4">
         {profile && (
           <div className="flex items-center">
             <div>
@@ -211,10 +208,10 @@ export default function AppShellNavbar() {
               )}
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-gray-700">
+              <p className="font-medium text-gray-700 text-sm">
                 {profile.displayName || profile.email}
               </p>
-              <div className="text-xs font-medium text-gray-500">
+              <div className="font-medium text-gray-500 text-xs">
                 <Link to="./profil" className="hover:text-gray-900">
                   Profil
                 </Link>

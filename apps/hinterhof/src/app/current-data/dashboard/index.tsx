@@ -1,8 +1,3 @@
-import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
-import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
-import { useMatches } from '@/hooks/current-data/use-matches';
-import { useRounds } from '@/hooks/current-data/use-rounds';
-import { classNames } from '@/utils/class-names';
 import {
   CalendarIcon,
   FolderPlusIcon,
@@ -13,7 +8,12 @@ import {
 } from '@heroicons/react/24/outline';
 import type { Championship, ChampionshipPlayer, Match, Round } from 'lib';
 import type { ElementType } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
+import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
+import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
+import { useMatches } from '@/hooks/current-data/use-matches';
+import { useRounds } from '@/hooks/current-data/use-rounds';
+import { classNames } from '@/utils/class-names';
 
 const items: {
   title: string;
@@ -34,7 +34,7 @@ const items: {
     icon: ScaleIcon,
     background: 'bg-purple-500',
     route: './ergebnisse',
-    visible: (championship, rounds, matches) => matches.length > 0,
+    visible: (_championship, _rounds, matches) => matches.length > 0,
   },
   {
     title: 'Tipps eintragen',
@@ -42,7 +42,7 @@ const items: {
     icon: PencilSquareIcon,
     background: 'bg-indigo-500',
     route: './tipps',
-    visible: (championship, rounds, matches, players) =>
+    visible: (_championship, _rounds, matches, players) =>
       matches.length > 0 && players.length > 0,
   },
   {
@@ -51,7 +51,7 @@ const items: {
     icon: MegaphoneIcon,
     background: 'bg-blue-500',
     route: './spiele',
-    visible: (championship, rounds) => rounds.length > 0,
+    visible: (_championship, rounds) => rounds.length > 0,
   },
   {
     title: 'Neue Runde',
@@ -67,7 +67,7 @@ const items: {
     icon: SquaresPlusIcon,
     background: 'bg-yellow-500',
     route: './zusatzpunkte',
-    visible: (championship, rounds, matches, players) => players.length > 0,
+    visible: (_championship, _rounds, _matches, players) => players.length > 0,
   },
   {
     title: 'Neues Turnier',
@@ -111,14 +111,14 @@ export default function Dashboard() {
                 <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
               <div>
-                <h3 className="text-sm font-medium text-gray-900 ">
+                <h3 className="font-medium text-gray-900 text-sm">
                   <Link to={item.route} className="focus:outline-hidden">
                     <span className="absolute inset-0" aria-hidden="true" />
                     {item.title}
                     <span aria-hidden="true"> &rarr;</span>
                   </Link>
                 </h3>
-                <p className="mt-1 text-sm text-gray-500">{item.description}</p>
+                <p className="mt-1 text-gray-500 text-sm">{item.description}</p>
               </div>
             </div>
           </li>

@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router';
 import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
 import CurrentShellFallback from './current-shell.fallback';
 import CurrentShellPreloader from './current-shell.preloader';
@@ -9,7 +9,7 @@ export default function CurrentShell() {
 
   return (
     <div className="relative">
-      <h2 className="text-2xl font-semibold">
+      <h2 className="font-semibold text-2xl">
         {currentChampionship?.name || 'Hinterhof'}
       </h2>
       <Suspense fallback={<CurrentShellFallback />}>

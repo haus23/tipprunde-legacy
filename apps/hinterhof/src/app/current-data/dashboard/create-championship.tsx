@@ -1,7 +1,6 @@
-import { type SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-
 import type { Championship } from 'lib';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
 import { SelectField } from 'ui-legacy';
 
 import Button from '@/components/button';
@@ -65,9 +64,9 @@ export default function CreateChampionshipView() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-semibold">Neues Turnier</h2>
+      <h2 className="font-semibold text-2xl">Neues Turnier</h2>
       <div className="mt-5">
-        <div className="shadow-sm rounded-md bg-white">
+        <div className="rounded-md bg-white shadow-sm">
           <form onSubmit={handleSubmit(saveChampionship)} noValidate>
             <div className="space-y-4 p-4">
               <TextField
@@ -116,7 +115,7 @@ export default function CreateChampionshipView() {
                 options={rules}
               />
             </div>
-            <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
+            <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
               <Button primary type="submit">
                 Speichern
               </Button>
