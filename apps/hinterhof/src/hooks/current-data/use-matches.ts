@@ -1,14 +1,12 @@
-import { matchesState } from '@/state/current-data/matches-state';
-import { useRecoilValue } from 'recoil';
-
 import {
   type ChampionshipRules,
-  type Match,
-  type Round,
   calculateMatchResults,
   createEntity,
+  type Match,
+  type Round,
   updateEntity,
 } from 'lib';
+import { useCurrentDataStore } from '@/state/current-data-store';
 import { useRules } from '../master-data/use-rules';
 import { useCurrentChampionship } from './use-current-championship';
 import { useRounds } from './use-rounds';
@@ -21,7 +19,7 @@ export function useMatches() {
 
   const { tips, updateTip } = useTips();
 
-  const matches = useRecoilValue(matchesState(currentChampionship?.id));
+  const matches = useCurrentDataStore((state) => state.matches);
 
   const createMatch = async (match: Match) =>
     createEntity<Match>(

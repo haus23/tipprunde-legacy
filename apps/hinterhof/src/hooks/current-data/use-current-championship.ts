@@ -1,12 +1,19 @@
-import { currentChampionshipState } from '@/state/current-data/current-championship-state';
 import { type Championship, patchEntity } from 'lib';
 import { useCallback } from 'react';
-import { useRecoilState } from 'recoil';
+import { useMasterDataStore } from '@/state/master-data-store';
+import { useSessionStore } from '@/state/session-store';
 
 export function useCurrentChampionship() {
-  const [currentChampionship, setCurrentChampionship] = useRecoilState(
-    currentChampionshipState,
+  const championships = useMasterDataStore((state) => state.championships);
+  const currentChampionshipId = useSessionStore(
+    (state) => state.currentChampionshipId,
   );
+  const setCurrentChampionship = useSessionStore(
+    (state) => state.setCurrentChampionship,
+  );
+  const currentChampionship =
+    championships.find(({ id }) => id === currentChampionshipId) ??
+    championships.at(0);
 
   const updateCurrentChampionship = useCallback(
     (changes: Partial<Championship>) =>

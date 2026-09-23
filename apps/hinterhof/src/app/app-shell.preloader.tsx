@@ -1,15 +1,17 @@
-import { useChampionships } from '@/hooks/master-data/use-championships';
-import { useLeagues } from '@/hooks/master-data/use-leagues';
-import { usePlayers } from '@/hooks/master-data/use-players';
-import { useRules } from '@/hooks/master-data/use-rules';
-import { useTeams } from '@/hooks/master-data/use-teams';
+import { useEffect } from 'react';
+
+import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
+import { subscribeToCurrentData } from '@/state/current-data-store';
+import { subscribeToMasterData } from '@/state/master-data-store';
 
 export default function AppShellPreloader() {
-  useChampionships();
-  usePlayers();
-  useTeams();
-  useLeagues();
-  useRules();
+  const { currentChampionship } = useCurrentChampionship();
+
+  useEffect(() => subscribeToMasterData(), []);
+  useEffect(
+    () => subscribeToCurrentData(currentChampionship?.id),
+    [currentChampionship?.id],
+  );
 
   return null;
 }

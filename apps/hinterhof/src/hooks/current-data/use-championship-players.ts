@@ -1,12 +1,11 @@
-import { championshipPlayersState } from '@/state/current-data/championship-players-state';
 import { type ChampionshipPlayer, createEntity, patchEntity } from 'lib';
-import { useRecoilValue } from 'recoil';
+import { useCurrentDataStore } from '@/state/current-data-store';
 import { useCurrentChampionship } from './use-current-championship';
 
 export function useChampionshipPlayers() {
   const { currentChampionship } = useCurrentChampionship();
-  const championshipPlayers = useRecoilValue(
-    championshipPlayersState(currentChampionship?.id),
+  const championshipPlayers = useCurrentDataStore(
+    (state) => state.championshipPlayers,
   );
 
   const lastNr = championshipPlayers.reduce(

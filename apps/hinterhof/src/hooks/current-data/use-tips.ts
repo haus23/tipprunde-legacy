@@ -1,12 +1,10 @@
-import { useRecoilValue } from 'recoil';
-
-import { tipsState } from '@/state/current-data/tips-state';
-import { type Tip, createEntity, updateEntity } from 'lib';
+import { createEntity, type Tip, updateEntity } from 'lib';
+import { useCurrentDataStore } from '@/state/current-data-store';
 import { useCurrentChampionship } from './use-current-championship';
 
 export function useTips() {
   const { currentChampionship } = useCurrentChampionship();
-  const tips = useRecoilValue(tipsState(currentChampionship?.id));
+  const tips = useCurrentDataStore((state) => state.tips);
 
   const createTip = async (tip: Tip) =>
     createEntity<Tip>(`championships/${currentChampionship?.id}/tips`, tip);

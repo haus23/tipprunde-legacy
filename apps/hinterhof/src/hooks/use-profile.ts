@@ -1,15 +1,14 @@
 import { updateProfile } from 'lib';
-import { useRecoilState } from 'recoil';
-
 import type { Profile } from '@/model/profile';
-import { authState } from '@/state/auth-state';
+import { useSessionStore } from '@/state/session-store';
 
 export function useProfile() {
-  const [profile, setProfile] = useRecoilState(authState);
+  const profile = useSessionStore((state) => state.profile);
+  const setProfile = useSessionStore((state) => state.setProfile);
 
   const updateDisplayName = async (displayName: string) => {
     await updateProfile({ displayName });
-    setProfile((p) => (p ? { ...p, displayName } : null));
+    if (profile) setProfile({ ...profile, displayName });
   };
 
   return { profile: profile as Profile, updateDisplayName };

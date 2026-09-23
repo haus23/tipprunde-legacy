@@ -1,10 +1,8 @@
 import { type Championship, createEntity } from 'lib';
-import { useRecoilValue } from 'recoil';
-
-import { championshipsState } from '@/state/master-data/championships-state';
+import { useMasterDataStore } from '@/state/master-data-store';
 
 export function useChampionships() {
-  const championships = useRecoilValue(championshipsState);
+  const championships = useMasterDataStore((state) => state.championships);
 
   const createChampionship = (championship: Championship) =>
     createEntity<Championship>('championships', championship);

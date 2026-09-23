@@ -1,10 +1,8 @@
-import { type Player, createEntity, updateEntity } from 'lib';
-import { useRecoilValue } from 'recoil';
-
-import { playersState } from '@/state/master-data/players-state';
+import { createEntity, type Player, updateEntity } from 'lib';
+import { useMasterDataStore } from '@/state/master-data-store';
 
 export function usePlayers() {
-  const players = useRecoilValue(playersState);
+  const players = useMasterDataStore((state) => state.players);
 
   const createPlayer = (player: Player) =>
     createEntity<Player>('players', player);

@@ -1,33 +1,36 @@
 import { auth } from 'lib';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { createBrowserRouter } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
-import { useSetRecoilState } from 'recoil';
 import { SplashScreen } from 'ui-legacy';
 
 import appRoutes from './app.routes';
-import { authState } from './state/auth-state';
+import { useSessionStore } from './state/session-store';
 
 const router = createBrowserRouter(appRoutes);
 
 export default function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);
-  const setAuthState = useSetRecoilState(authState);
+  const setProfile = useSessionStore((state) => state.setProfile);
 
-  auth.onAuthStateChanged((user) => {
-    setAuthState(
-      user !== null
-        ? {
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            photoURL: user.photoURL,
-          }
-        : null,
-    );
-    setAuthenticated(true);
-  });
+  useEffect(
+    () =>
+      auth.onAuthStateChanged((user) => {
+        setProfile(
+          user !== null
+            ? {
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+              }
+            : null,
+        );
+        setAuthenticated(true);
+      }),
+    [setProfile],
+  );
 
   return isAuthenticated ? (
     <Suspense fallback={<SplashScreen />}>

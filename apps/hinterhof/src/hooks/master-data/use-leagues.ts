@@ -1,10 +1,8 @@
-import { type League, createEntity, updateEntity } from 'lib';
-import { useRecoilValue } from 'recoil';
-
-import { leaguesState } from '@/state/master-data/leagues-state';
+import { createEntity, type League, updateEntity } from 'lib';
+import { useMasterDataStore } from '@/state/master-data-store';
 
 export function useLeagues() {
-  const leagues = useRecoilValue(leaguesState);
+  const leagues = useMasterDataStore((state) => state.leagues);
 
   const createLeague = (league: League) =>
     createEntity<League>('leagues', league);

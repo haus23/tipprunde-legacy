@@ -1,10 +1,8 @@
-import { type Team, createEntity, updateEntity } from 'lib';
-import { useRecoilValue } from 'recoil';
-
-import { teamsState } from '@/state/master-data/teams-state';
+import { createEntity, type Team, updateEntity } from 'lib';
+import { useMasterDataStore } from '@/state/master-data-store';
 
 export function useTeams() {
-  const teams = useRecoilValue(teamsState);
+  const teams = useMasterDataStore((state) => state.teams);
 
   const createTeam = (team: Team) => createEntity<Team>('teams', team);
 
