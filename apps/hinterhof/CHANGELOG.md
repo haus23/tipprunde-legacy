@@ -1,5 +1,19 @@
 # hinterhof
 
+## 0.7.0
+
+### Minor Changes
+
+- [`d7259be`](https://github.com/haus23/tipprunde-legacy/commit/d7259be793f5a5fccf603f46b49135501632db6f) - Replace Recoil with Zustand and centralize the Firestore realtime subscriptions.
+
+### Patch Changes
+
+- [`2461299`](https://github.com/haus23/tipprunde-legacy/commit/24612996d604a13634e2b7023d6d877bc41ea718) - Update the shared React UI and form dependencies in preparation for React 19.
+
+- [`d473d81`](https://github.com/haus23/tipprunde-legacy/commit/d473d81adafbc33dba4c157085f6b6f0d18b2684) - Unify the React runtime and types across the workspace on React 19.3.
+- Updated dependencies [[`2461299`](https://github.com/haus23/tipprunde-legacy/commit/24612996d604a13634e2b7023d6d877bc41ea718), [`d473d81`](https://github.com/haus23/tipprunde-legacy/commit/d473d81adafbc33dba4c157085f6b6f0d18b2684), [`2352da7`](https://github.com/haus23/tipprunde-legacy/commit/2352da7af432b125d663826772b5c78c15bc0c26)]:
+  - ui-legacy@0.3.4
+
 ## 0.6.14
 
 ### Patch Changes

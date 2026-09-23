@@ -1,5 +1,11 @@
 # www
 
+## 0.22.19
+
+### Patch Changes
+
+- [`d473d81`](https://github.com/haus23/tipprunde-legacy/commit/d473d81adafbc33dba4c157085f6b6f0d18b2684) - Unify the React runtime and types across the workspace on React 19.3.
+
 ## 0.22.18
 
 ### Patch Changes
