@@ -5,6 +5,10 @@ packages:
 catalog:
   typescript: ~7.0.2
 
+catalogs:
+  validation:
+    valibot: ^1.5.0
+
 allowBuilds:
   '@biomejs/biome': true
   '@firebase/util': true
