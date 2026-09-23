@@ -1,5 +1,15 @@
 # hinterhof
 
+## 0.6.14
+
+### Patch Changes
+
+- [`5e25889`](https://github.com/haus23/tipprunde-legacy/commit/5e2588921378cda0de1e7e1749b4a5210496de02) - Prepare hinterhof RR6 app for upgrade to RR7.
+
+- [`cde5faf`](https://github.com/haus23/tipprunde-legacy/commit/cde5faf7ffce9e34d9ff2eec4e529a77e61cbbf5) - Upgrade the Hinterhof SPA from React Router 6 to React Router 7.
+
+- [`3c2c50e`](https://github.com/haus23/tipprunde-legacy/commit/3c2c50e77641a87d3700cd5390bcfa784d0366a6) - Drop obsolete direct postcss dep and update transient used version.
+
 ## 0.6.13
 
 ### Patch Changes
