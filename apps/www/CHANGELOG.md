@@ -1,5 +1,13 @@
 # www
 
+## 0.22.18
+
+### Patch Changes
+
+- [`cc79c0e`](https://github.com/haus23/tipprunde-legacy/commit/cc79c0e1e614b186ef5984da81855bd9296ae1f5) - Simplify current tips match link building by using the new nr prop.
+- Updated dependencies [[`1b73fcc`](https://github.com/haus23/tipprunde-legacy/commit/1b73fccd00e4b21b0d1b657ccd2904a888acd8a5)]:
+  - @haus23/tipprunde-model@0.22.0
+
 ## 0.22.17
 
 ### Patch Changes

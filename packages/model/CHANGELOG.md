@@ -1,5 +1,11 @@
 # model
 
+## 0.22.0
+
+### Minor Changes
+
+- [`1b73fcc`](https://github.com/haus23/tipprunde-legacy/commit/1b73fccd00e4b21b0d1b657ccd2904a888acd8a5) - Add match nr to current-tips query.
+
 ## 0.21.10
 
 ### Patch Changes
