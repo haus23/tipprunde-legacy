@@ -45,6 +45,7 @@ export async function handler(req: Request, res: Response) {
     );
     return {
       matchId: match.id,
+      nr: match.nr,
       hometeam: teams.find((t) => t.id === match.hometeamId)?.shortname,
       awayteam: teams.find((t) => t.id === match.awayteamId)?.shortname,
       result: match.result,

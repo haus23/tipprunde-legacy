@@ -7,6 +7,7 @@ import { IdSchema } from '../../id';
 export const CurrentTipsSchema = v.array(
   v.object({
     matchId: IdSchema,
+    nr: v.pipe(v.number(), v.integer(), v.minValue(1)),
     hometeam: v.optional(v.string(), ''),
     awayteam: v.optional(v.string(), ''),
     result: v.optional(ResultSchema, ''),
