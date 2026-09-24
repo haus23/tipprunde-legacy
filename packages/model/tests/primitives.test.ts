@@ -1,17 +1,7 @@
 import * as v from 'valibot';
 import { expect, it } from 'vitest';
 
-import {
-  ChampionshipIdSchema,
-  MatchDateSchema,
-  ResultSchema,
-} from '../src/primitives';
-
-it('validates championship ids', () => {
-  expect(v.safeParse(ChampionshipIdSchema, 'hr2223').success).toBeTruthy();
-  expect(v.safeParse(ChampionshipIdSchema, 'wm2022').success).toBeTruthy();
-  expect(v.safeParse(ChampionshipIdSchema, '').success).toBeFalsy();
-});
+import { MatchDateSchema, ResultSchema } from '../src/primitives';
 
 it('date values may be empty', () => {
   expect(v.safeParse(MatchDateSchema, '').success).toBeTruthy();

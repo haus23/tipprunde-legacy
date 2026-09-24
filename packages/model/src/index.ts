@@ -1,3 +1,4 @@
+export * from './championship/championship-id';
 export * from './league/league';
 export * from './legacy/model/aggregat/player-with-account';
 export * from './legacy/model/entity/championship';

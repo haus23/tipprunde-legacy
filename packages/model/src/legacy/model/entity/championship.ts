@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 
-import { ChampionshipIdSchema } from '../../../primitives';
+import { ChampionshipIdSchema } from '../../../championship/championship-id';
 import { IdSchema } from '../id';
 
 export const ChampionshipSchema = v.object({
