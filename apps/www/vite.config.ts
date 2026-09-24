@@ -1,12 +1,10 @@
-import { defineConfig } from 'vite';
-
 import tailwindcss from '@tailwindcss/vite';
 import {
   type Config,
   TanStackRouterVite as tanstackRouter,
 } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vite';
 
 const routerConfig = {
   target: 'react',
@@ -16,17 +14,20 @@ const routerConfig = {
 } satisfies Partial<Config>;
 
 export default defineConfig({
-  plugins: [
-    tanstackRouter(routerConfig),
-    react(),
-    tailwindcss(),
-    tsconfigPaths(),
-  ],
+  plugins: [tanstackRouter(routerConfig), react(), tailwindcss()],
+  resolve: {
+    tsconfigPaths: true,
+  },
   build: {
-    rollupOptions: {
+    rolldownOptions: {
       output: {
-        manualChunks: {
-          rac: ['react-aria', 'react-aria-components'],
+        codeSplitting: {
+          groups: [
+            {
+              name: 'rac',
+              test: /node_modules[\\/]react-aria(?:-components)?[\\/]/,
+            },
+          ],
         },
       },
     },

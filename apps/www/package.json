@@ -32,10 +32,9 @@
     "@tanstack/router-plugin": "^1.168.40",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
-    "@vitejs/plugin-react": "^5.2.0",
+    "@vitejs/plugin-react": "^6.1.1",
     "tailwindcss": "^4.3.3",
     "typescript": "catalog:",
-    "vite": "7.3.6",
-    "vite-tsconfig-paths": "^6.1.1"
+    "vite": "8.3.0"
   }
 }
