@@ -1,6 +1,1 @@
-import type { BaseModel } from './base/model';
-
-export type League = BaseModel & {
-  name: string;
-  shortname: string;
-};
+export type { League } from '@haus23/tipprunde-model';

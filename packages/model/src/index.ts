@@ -1,3 +1,4 @@
+export * from './league/league';
 export * from './legacy/model/aggregat/player-with-account';
 export * from './legacy/model/entity/account';
 export * from './legacy/model/entity/championship';
@@ -5,7 +6,6 @@ export * from './legacy/model/entity/championship/match';
 export * from './legacy/model/entity/championship/player';
 export * from './legacy/model/entity/championship/round';
 export * from './legacy/model/entity/championship/tip';
-export * from './legacy/model/entity/league';
 export * from './legacy/model/entity/ruleset';
 export * from './legacy/model/queries/championship/current-tips';
 export * from './legacy/model/queries/championship/match-tips';
