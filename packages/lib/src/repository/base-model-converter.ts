@@ -13,9 +13,13 @@ export const baseModelConverter = <
     const { id, ...doc } = modelObject;
     return doc;
   },
-  fromFirestore: (snapshot) =>
-    ({
+  fromFirestore: (snapshot) => {
+    const data = { ...snapshot.data() };
+    delete data.updated_at;
+
+    return {
       id: snapshot.id,
-      ...snapshot.data(),
-    }) as T,
+      ...data,
+    } as T;
+  },
 });
