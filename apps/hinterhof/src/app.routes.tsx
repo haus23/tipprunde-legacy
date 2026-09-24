@@ -1,8 +1,5 @@
-import { auth } from 'lib';
-import { type RouteObject, redirect } from 'react-router';
-
+import { Navigate, type RouteObject } from 'react-router';
 import AppShell from './app/app-shell';
-
 import ChampionshipView from './app/current-data/championship';
 import CurrentShell from './app/current-data/current-shell';
 import Dashboard from './app/current-data/dashboard';
@@ -21,6 +18,12 @@ import RulesView from './app/master-data/rules';
 import TeamsView from './app/master-data/teams';
 import ProfileView from './app/profile';
 import RefactorView from './app/refactor';
+import { useSessionStore } from './state/session-store';
+
+function ProtectedAppShell() {
+  const profile = useSessionStore((state) => state.profile);
+  return profile ? <AppShell /> : <Navigate to="/login" replace />;
+}
 
 const appRoutes: RouteObject[] = [
   {
@@ -29,13 +32,7 @@ const appRoutes: RouteObject[] = [
   },
   {
     path: '/',
-    element: <AppShell />,
-    loader: async () => {
-      if (!auth.currentUser) {
-        return redirect(`/login?from=${window.location.pathname}`);
-      }
-      return null;
-    },
+    element: <ProtectedAppShell />,
     children: [
       {
         element: <CurrentShell />,

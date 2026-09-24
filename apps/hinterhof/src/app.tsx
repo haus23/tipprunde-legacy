@@ -1,41 +1,28 @@
-import { auth } from 'lib';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { createBrowserRouter } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
 import { SplashScreen } from 'ui-legacy';
-
+import { type BootstrapPhase, useBootstrap } from './app.bootstrap';
 import appRoutes from './app.routes';
-import { useSessionStore } from './state/session-store';
 
 const router = createBrowserRouter(appRoutes);
 
+const bootstrapMessages: Record<Exclude<BootstrapPhase, 'ready'>, string> = {
+  auth: 'Prüfe Anmeldung ...',
+  'master-data': 'Lade Stammdaten ...',
+  'current-data': 'Lade Daten des Turniers ...',
+};
+
 export default function App() {
-  const [isAuthenticated, setAuthenticated] = useState(false);
-  const setProfile = useSessionStore((state) => state.setProfile);
+  const bootstrapPhase = useBootstrap();
 
-  useEffect(
-    () =>
-      auth.onAuthStateChanged((user) => {
-        setProfile(
-          user !== null
-            ? {
-                uid: user.uid,
-                email: user.email,
-                displayName: user.displayName,
-                photoURL: user.photoURL,
-              }
-            : null,
-        );
-        setAuthenticated(true);
-      }),
-    [setProfile],
-  );
-
-  return isAuthenticated ? (
+  return bootstrapPhase === 'ready' ? (
     <Suspense fallback={<SplashScreen />}>
       <Toaster containerClassName="-mt-2" position="top-right" />
       <RouterProvider router={router} />
     </Suspense>
-  ) : null;
+  ) : (
+    <SplashScreen message={bootstrapMessages[bootstrapPhase]} />
+  );
 }

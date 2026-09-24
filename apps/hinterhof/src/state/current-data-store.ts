@@ -10,6 +10,7 @@ import {
 import { create } from 'zustand';
 
 type CurrentDataState = {
+  championshipId: Championship['id'] | undefined;
   championshipPlayers: ChampionshipPlayer[];
   championshipPlayersLoaded: boolean;
   matches: Match[];
@@ -21,6 +22,7 @@ type CurrentDataState = {
 };
 
 const initialCurrentDataState: CurrentDataState = {
+  championshipId: undefined,
   championshipPlayers: [],
   championshipPlayersLoaded: false,
   matches: [],
@@ -42,6 +44,11 @@ export function subscribeToCurrentData(
     useCurrentDataStore.setState(initialCurrentDataState);
     return () => undefined;
   }
+
+  useCurrentDataStore.setState({
+    ...initialCurrentDataState,
+    championshipId,
+  });
 
   const path = `championships/${championshipId}`;
   const unsubscribe = [

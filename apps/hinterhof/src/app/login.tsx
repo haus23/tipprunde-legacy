@@ -1,34 +1,20 @@
-import { auth, signIn } from 'lib';
-import { useEffect, useState } from 'react';
+import { signIn } from 'lib';
+import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
+import { Navigate } from 'react-router';
 import { AppTitle } from 'ui-legacy';
 
 import Button from '@/components/button';
 import TextField from '@/components/form/text-field';
+import { useSessionStore } from '@/state/session-store';
 
 type LoginFormType = {
   email: string;
   password: string;
 };
 
-function getReturnPath(value: string | null): string {
-  if (
-    !value?.startsWith('/') ||
-    value.startsWith('//') ||
-    /[^a-zA-Z0-9/_-]/.test(value)
-  ) {
-    return '/';
-  }
-
-  return value;
-}
-
 export default function Login() {
-  const [isAuthenticated, setAuthenticated] = useState(false);
-
-  const navigate = useNavigate();
-
+  const profile = useSessionStore((state) => state.profile);
   const [error, setError] = useState('');
   const {
     register,
@@ -36,23 +22,15 @@ export default function Login() {
     formState: { errors },
   } = useForm<LoginFormType>();
 
-  useEffect(
-    () =>
-      auth.onAuthStateChanged((user) => {
-        const params = new URL(window.location.toString()).searchParams;
-        setAuthenticated(true);
-        user && navigate(getReturnPath(params.get('from')), { replace: true });
-      }),
-    [navigate],
-  );
-
   const onSubmit: SubmitHandler<LoginFormType> = ({ email, password }) => {
     signIn(email, password).catch(() =>
       setError('Email und/oder Passwort falsch!'),
     );
   };
 
-  return isAuthenticated ? (
+  return profile ? (
+    <Navigate to="/" replace />
+  ) : (
     <div className="flex flex-col">
       <div className="flex h-16 shrink-0 bg-white px-4 shadow-sm sm:px-6 md:px-8">
         <div className="flex flex-1 items-center gap-x-2">
@@ -112,5 +90,5 @@ export default function Login() {
         </div>
       </main>
     </div>
-  ) : null;
+  );
 }
