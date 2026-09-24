@@ -1,9 +1,1 @@
-import type { BaseModel } from './base/model';
-
-export type Championship = BaseModel & {
-  name: string;
-  nr: number;
-  rulesId: string;
-  published: boolean;
-  completed: boolean;
-};
+export type { Championship } from '@haus23/tipprunde-model';

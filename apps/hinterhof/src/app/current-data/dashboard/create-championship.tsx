@@ -30,6 +30,7 @@ export default function CreateChampionshipView() {
       nr: lastNr + 1,
       rulesId: rules[0].id,
       published: false,
+      extraPointsPublished: false,
       completed: false,
     },
   });

@@ -1,16 +1,16 @@
 import * as v from 'valibot';
 
-import { ChampionshipIdSchema } from '../../../championship/championship-id';
-import { IdSchema } from '../id';
+import { SlugIdSchema } from '../shared/id';
+import { ChampionshipIdSchema } from './championship-id';
 
 export const ChampionshipSchema = v.object({
   id: ChampionshipIdSchema,
   name: v.pipe(v.string(), v.nonEmpty()),
   nr: v.pipe(v.number(), v.integer(), v.minValue(1)),
-  rulesId: IdSchema,
-  published: v.optional(v.boolean(), false),
-  extraPointsPublished: v.optional(v.boolean(), false),
-  completed: v.optional(v.boolean(), false),
+  rulesId: SlugIdSchema,
+  published: v.boolean(),
+  extraPointsPublished: v.boolean(),
+  completed: v.boolean(),
 });
 
 export type ChampionshipInput = v.InferInput<typeof ChampionshipSchema>;

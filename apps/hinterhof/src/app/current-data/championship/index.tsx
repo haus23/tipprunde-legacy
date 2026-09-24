@@ -31,6 +31,19 @@ export default function ChampionshipView() {
     );
   }
 
+  function toggleExtraPointsPublishedState() {
+    notify(
+      updateCurrentChampionship({
+        extraPointsPublished: !currentChampionship?.extraPointsPublished,
+      }),
+      `Zusatzpunkte ${
+        currentChampionship?.extraPointsPublished
+          ? 'versteckt'
+          : 'veröffentlicht'
+      }`,
+    );
+  }
+
   const attendingPlayers = championshipPlayers
     .map((cp) => {
       const player = players.find((p) => p.id === cp.playerId) as Member;
@@ -64,6 +77,13 @@ export default function ChampionshipView() {
             checked={currentChampionship.completed}
             onChange={toggleCompletedState}
             label="Abgeschlossen"
+          />
+        </div>
+        <div className="p-4">
+          <ToggleField
+            checked={currentChampionship.extraPointsPublished}
+            onChange={toggleExtraPointsPublishedState}
+            label="Zusatzpunkte veröffentlicht"
           />
         </div>
       </Card>
