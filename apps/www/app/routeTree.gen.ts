@@ -8,48 +8,79 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as TurnierRouteImport } from './routes/$turnier'
+import { Route as TurnierIndexRouteImport } from './routes/$turnier/index'
+import { Route as TurnierSpielRouteImport } from './routes/$turnier/spiel'
+import { Route as TurnierSpielerRouteImport } from './routes/$turnier/spieler'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as TurnierImport } from './routes/$turnier'
-import { Route as IndexImport } from './routes/index'
-import { Route as TurnierIndexImport } from './routes/$turnier/index'
-import { Route as TurnierSpielerImport } from './routes/$turnier/spieler'
-import { Route as TurnierSpielImport } from './routes/$turnier/spiel'
-
-// Create/Update Routes
-
-const TurnierRoute = TurnierImport.update({
-  id: '/$turnier',
-  path: '/$turnier',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const TurnierIndexRoute = TurnierIndexImport.update({
+const TurnierRoute = TurnierRouteImport.update({
+  id: '/$turnier',
+  path: '/$turnier',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TurnierIndexRoute = TurnierIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => TurnierRoute,
 } as any)
-
-const TurnierSpielerRoute = TurnierSpielerImport.update({
+const TurnierSpielRoute = TurnierSpielRouteImport.update({
+  id: '/spiel',
+  path: '/spiel',
+  getParentRoute: () => TurnierRoute,
+} as any)
+const TurnierSpielerRoute = TurnierSpielerRouteImport.update({
   id: '/spieler',
   path: '/spieler',
   getParentRoute: () => TurnierRoute,
 } as any)
 
-const TurnierSpielRoute = TurnierSpielImport.update({
-  id: '/spiel',
-  path: '/spiel',
-  getParentRoute: () => TurnierRoute,
-} as any)
-
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/$turnier': typeof TurnierRouteWithChildren
+  '/$turnier/spiel': typeof TurnierSpielRoute
+  '/$turnier/spieler': typeof TurnierSpielerRoute
+  '/$turnier/': typeof TurnierIndexRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/$turnier/spiel': typeof TurnierSpielRoute
+  '/$turnier/spieler': typeof TurnierSpielerRoute
+  '/$turnier': typeof TurnierIndexRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/$turnier': typeof TurnierRouteWithChildren
+  '/$turnier/spiel': typeof TurnierSpielRoute
+  '/$turnier/spieler': typeof TurnierSpielerRoute
+  '/$turnier/': typeof TurnierIndexRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    '/' | '/$turnier' | '/$turnier/spiel' | '/$turnier/spieler' | '/$turnier/'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/$turnier/spiel' | '/$turnier/spieler' | '/$turnier'
+  id:
+    | '__root__'
+    | '/'
+    | '/$turnier'
+    | '/$turnier/spiel'
+    | '/$turnier/spieler'
+    | '/$turnier/'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  TurnierRoute: typeof TurnierRouteWithChildren
+}
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
@@ -57,41 +88,39 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/$turnier': {
       id: '/$turnier'
       path: '/$turnier'
       fullPath: '/$turnier'
-      preLoaderRoute: typeof TurnierImport
-      parentRoute: typeof rootRoute
-    }
-    '/$turnier/spiel': {
-      id: '/$turnier/spiel'
-      path: '/spiel'
-      fullPath: '/$turnier/spiel'
-      preLoaderRoute: typeof TurnierSpielImport
-      parentRoute: typeof TurnierImport
-    }
-    '/$turnier/spieler': {
-      id: '/$turnier/spieler'
-      path: '/spieler'
-      fullPath: '/$turnier/spieler'
-      preLoaderRoute: typeof TurnierSpielerImport
-      parentRoute: typeof TurnierImport
+      preLoaderRoute: typeof TurnierRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/$turnier/': {
       id: '/$turnier/'
       path: '/'
       fullPath: '/$turnier/'
-      preLoaderRoute: typeof TurnierIndexImport
-      parentRoute: typeof TurnierImport
+      preLoaderRoute: typeof TurnierIndexRouteImport
+      parentRoute: typeof TurnierRoute
+    }
+    '/$turnier/spiel': {
+      id: '/$turnier/spiel'
+      path: '/spiel'
+      fullPath: '/$turnier/spiel'
+      preLoaderRoute: typeof TurnierSpielRouteImport
+      parentRoute: typeof TurnierRoute
+    }
+    '/$turnier/spieler': {
+      id: '/$turnier/spieler'
+      path: '/spieler'
+      fullPath: '/$turnier/spieler'
+      preLoaderRoute: typeof TurnierSpielerRouteImport
+      parentRoute: typeof TurnierRoute
     }
   }
 }
-
-// Create and export the route tree
 
 interface TurnierRouteChildren {
   TurnierSpielRoute: typeof TurnierSpielRoute
@@ -108,97 +137,10 @@ const TurnierRouteChildren: TurnierRouteChildren = {
 const TurnierRouteWithChildren =
   TurnierRoute._addFileChildren(TurnierRouteChildren)
 
-export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/$turnier': typeof TurnierRouteWithChildren
-  '/$turnier/spiel': typeof TurnierSpielRoute
-  '/$turnier/spieler': typeof TurnierSpielerRoute
-  '/$turnier/': typeof TurnierIndexRoute
-}
-
-export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/$turnier/spiel': typeof TurnierSpielRoute
-  '/$turnier/spieler': typeof TurnierSpielerRoute
-  '/$turnier': typeof TurnierIndexRoute
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/$turnier': typeof TurnierRouteWithChildren
-  '/$turnier/spiel': typeof TurnierSpielRoute
-  '/$turnier/spieler': typeof TurnierSpielerRoute
-  '/$turnier/': typeof TurnierIndexRoute
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/$turnier'
-    | '/$turnier/spiel'
-    | '/$turnier/spieler'
-    | '/$turnier/'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$turnier/spiel' | '/$turnier/spieler' | '/$turnier'
-  id:
-    | '__root__'
-    | '/'
-    | '/$turnier'
-    | '/$turnier/spiel'
-    | '/$turnier/spieler'
-    | '/$turnier/'
-  fileRoutesById: FileRoutesById
-}
-
-export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  TurnierRoute: typeof TurnierRouteWithChildren
-}
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TurnierRoute: TurnierRouteWithChildren,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/$turnier"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/$turnier": {
-      "filePath": "$turnier.tsx",
-      "children": [
-        "/$turnier/spiel",
-        "/$turnier/spieler",
-        "/$turnier/"
-      ]
-    },
-    "/$turnier/spiel": {
-      "filePath": "$turnier/spiel.tsx",
-      "parent": "/$turnier"
-    },
-    "/$turnier/spieler": {
-      "filePath": "$turnier/spieler.tsx",
-      "parent": "/$turnier"
-    },
-    "/$turnier/": {
-      "filePath": "$turnier/index.tsx",
-      "parent": "/$turnier"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
