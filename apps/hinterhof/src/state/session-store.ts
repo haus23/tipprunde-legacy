@@ -1,7 +1,7 @@
 import type { Championship } from 'lib';
 import { create } from 'zustand';
 
-import type { Profile } from '@/model/profile';
+import type { Profile } from '#/model/profile';
 
 type SessionState = {
   profile: Profile | null;

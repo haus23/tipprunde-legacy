@@ -1,12 +1,12 @@
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 
-import Button from '@/components/button';
-import TextField from '@/components/form/text-field';
-import AppCard from '@/components/layout/app-card';
-import { useTeams } from '@/hooks/master-data/use-teams';
-import { classNames } from '@/utils/class-names';
-import { slug } from '@/utils/slug';
-import { trimProps } from '@/utils/trim-props';
+import Button from '#/components/button';
+import TextField from '#/components/form/text-field';
+import AppCard from '#/components/layout/app-card';
+import { useTeams } from '#/hooks/master-data/use-teams';
+import { classNames } from '#/utils/class-names';
+import { slug } from '#/utils/slug';
+import { trimProps } from '#/utils/trim-props';
 import type { Team } from 'lib';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';

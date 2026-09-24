@@ -1,5 +1,5 @@
 import { createEntity, type Player, updateEntity } from 'lib';
-import { useMasterDataStore } from '@/state/master-data-store';
+import { useMasterDataStore } from '#/state/master-data-store';
 
 export function usePlayers() {
   const players = useMasterDataStore((state) => state.players);

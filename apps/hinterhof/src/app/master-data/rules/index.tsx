@@ -11,14 +11,14 @@ import {
   tipRuleDescriptions,
 } from 'lib';
 
-import Button from '@/components/button';
-import TextField from '@/components/form/text-field';
-import TextareaField from '@/components/form/textarea-field';
-import AppCard from '@/components/layout/app-card';
-import { useRules } from '@/hooks/master-data/use-rules';
-import { classNames } from '@/utils/class-names';
-import { slug } from '@/utils/slug';
-import { trimProps } from '@/utils/trim-props';
+import Button from '#/components/button';
+import TextField from '#/components/form/text-field';
+import TextareaField from '#/components/form/textarea-field';
+import AppCard from '#/components/layout/app-card';
+import { useRules } from '#/hooks/master-data/use-rules';
+import { classNames } from '#/utils/class-names';
+import { slug } from '#/utils/slug';
+import { trimProps } from '#/utils/trim-props';
 import { SelectField } from 'ui-legacy';
 
 const initialFormState: ChampionshipRules = {

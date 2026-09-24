@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
+import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 
 export default function CurrentShell() {
   const { currentChampionship } = useCurrentChampionship();

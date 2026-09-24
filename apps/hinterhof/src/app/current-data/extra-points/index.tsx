@@ -1,7 +1,7 @@
-import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
-import { useRanking } from '@/hooks/current-data/use-ranking';
-import { usePlayers } from '@/hooks/master-data/use-players';
-import { notify } from '@/utils/notify';
+import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
+import { useRanking } from '#/hooks/current-data/use-ranking';
+import { usePlayers } from '#/hooks/master-data/use-players';
+import { notify } from '#/utils/notify';
 import type { Player } from 'lib';
 import { useEffect, useMemo } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';

@@ -2,8 +2,8 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Button, Card, ToggleField } from 'ui-legacy';
 
-import { useRounds } from '@/hooks/current-data/use-rounds';
-import { notify } from '@/utils/notify';
+import { useRounds } from '#/hooks/current-data/use-rounds';
+import { notify } from '#/utils/notify';
 
 export default function CreateRoundView() {
   const navigate = useNavigate();

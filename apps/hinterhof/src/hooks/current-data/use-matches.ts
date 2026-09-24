@@ -6,7 +6,7 @@ import {
   type Round,
   updateEntity,
 } from 'lib';
-import { useCurrentDataStore } from '@/state/current-data-store';
+import { useCurrentDataStore } from '#/state/current-data-store';
 import { useRules } from '../master-data/use-rules';
 import { useCurrentChampionship } from './use-current-championship';
 import { useRounds } from './use-rounds';

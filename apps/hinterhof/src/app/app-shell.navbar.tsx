@@ -11,11 +11,11 @@ import type { Championship, ChampionshipPlayer, Match, Round } from 'lib';
 import type { ElementType } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AppTitle, classNames } from 'ui-legacy';
-import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
-import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
-import { useMatches } from '@/hooks/current-data/use-matches';
-import { useRounds } from '@/hooks/current-data/use-rounds';
-import { useProfile } from '@/hooks/use-profile';
+import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
+import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { useMatches } from '#/hooks/current-data/use-matches';
+import { useRounds } from '#/hooks/current-data/use-rounds';
+import { useProfile } from '#/hooks/use-profile';
 
 const championshipNavLinks: {
   to: string;

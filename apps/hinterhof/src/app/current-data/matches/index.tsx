@@ -12,12 +12,12 @@ import {
   formatDate,
 } from 'ui-legacy';
 
-import AppCard from '@/components/layout/app-card';
-import { useMatches } from '@/hooks/current-data/use-matches';
-import { useRounds } from '@/hooks/current-data/use-rounds';
-import { useLeagues } from '@/hooks/master-data/use-leagues';
-import { useTeams } from '@/hooks/master-data/use-teams';
-import { notify } from '@/utils/notify';
+import AppCard from '#/components/layout/app-card';
+import { useMatches } from '#/hooks/current-data/use-matches';
+import { useRounds } from '#/hooks/current-data/use-rounds';
+import { useLeagues } from '#/hooks/master-data/use-leagues';
+import { useTeams } from '#/hooks/master-data/use-teams';
+import { notify } from '#/utils/notify';
 
 export default function MatchesView() {
   const { leagues } = useLeagues();

@@ -1,4 +1,4 @@
-import { clearCache } from '@/utils/clear-cache';
+import { clearCache } from '#/utils/clear-cache';
 import { useChampionshipPlayers } from './use-championship-players';
 import { useCurrentChampionship } from './use-current-championship';
 import { useTips } from './use-tips';

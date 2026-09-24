@@ -1,6 +1,6 @@
 import { updateProfile } from 'lib';
-import type { Profile } from '@/model/profile';
-import { useSessionStore } from '@/state/session-store';
+import type { Profile } from '#/model/profile';
+import { useSessionStore } from '#/state/session-store';
 
 export function useProfile() {
   const profile = useSessionStore((state) => state.profile);

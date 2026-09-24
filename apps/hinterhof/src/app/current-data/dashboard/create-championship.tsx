@@ -3,12 +3,12 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { SelectField } from 'ui-legacy';
 
-import Button from '@/components/button';
-import TextField from '@/components/form/text-field';
+import Button from '#/components/button';
+import TextField from '#/components/form/text-field';
 
-import { useChampionships } from '@/hooks/master-data/use-championships';
-import { useRules } from '@/hooks/master-data/use-rules';
-import { notify } from '@/utils/notify';
+import { useChampionships } from '#/hooks/master-data/use-championships';
+import { useRules } from '#/hooks/master-data/use-rules';
+import { notify } from '#/utils/notify';
 
 export default function CreateChampionshipView() {
   const { championships, createChampionship } = useChampionships();

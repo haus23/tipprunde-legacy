@@ -1,5 +1,5 @@
-import { classNames } from '@/utils/class-names';
-import type { MergeElementProps } from '@/utils/merge-element-props';
+import { classNames } from '#/utils/class-names';
+import type { MergeElementProps } from '#/utils/merge-element-props';
 import { type ForwardedRef, forwardRef } from 'react';
 
 type ButtonProps = MergeElementProps<

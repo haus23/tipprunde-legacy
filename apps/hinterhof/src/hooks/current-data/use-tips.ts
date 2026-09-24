@@ -1,5 +1,5 @@
 import { createEntity, type Tip, updateEntity } from 'lib';
-import { useCurrentDataStore } from '@/state/current-data-store';
+import { useCurrentDataStore } from '#/state/current-data-store';
 import { useCurrentChampionship } from './use-current-championship';
 
 export function useTips() {

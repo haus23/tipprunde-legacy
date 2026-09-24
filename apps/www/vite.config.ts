@@ -15,9 +15,6 @@ const routerConfig = {
 
 export default defineConfig({
   plugins: [tanstackRouter(routerConfig), react(), tailwindcss()],
-  resolve: {
-    tsconfigPaths: true,
-  },
   build: {
     rolldownOptions: {
       output: {

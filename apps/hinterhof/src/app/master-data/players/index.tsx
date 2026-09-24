@@ -1,14 +1,14 @@
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 
-import Button from '@/components/button';
-import TextField from '@/components/form/text-field';
-import AppCard from '@/components/layout/app-card';
-import { usePlayers } from '@/hooks/master-data/use-players';
-import { classNames } from '@/utils/class-names';
-import { clearCache } from '@/utils/clear-cache';
-import { emailValidator } from '@/utils/email-validator';
-import { slug } from '@/utils/slug';
-import { trimProps } from '@/utils/trim-props';
+import Button from '#/components/button';
+import TextField from '#/components/form/text-field';
+import AppCard from '#/components/layout/app-card';
+import { usePlayers } from '#/hooks/master-data/use-players';
+import { classNames } from '#/utils/class-names';
+import { clearCache } from '#/utils/clear-cache';
+import { emailValidator } from '#/utils/email-validator';
+import { slug } from '#/utils/slug';
+import { trimProps } from '#/utils/trim-props';
 import type { Player } from 'lib';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';

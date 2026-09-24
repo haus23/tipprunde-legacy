@@ -1,6 +1,6 @@
-import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
-import { useMatches } from '@/hooks/current-data/use-matches';
-import { useRounds } from '@/hooks/current-data/use-rounds';
+import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { useMatches } from '#/hooks/current-data/use-matches';
+import { useRounds } from '#/hooks/current-data/use-rounds';
 import { type Match, deleteEntity } from 'lib';
 import { Button } from 'ui-legacy';
 

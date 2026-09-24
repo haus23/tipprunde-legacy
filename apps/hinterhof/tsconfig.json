@@ -3,12 +3,6 @@
   "include": ["src"],
   "compilerOptions": {
     /* Vite */
-    "types": ["vite/client"],
-
-    /* DX */
-    "paths": {
-      "@/*": ["./src/*"],
-      "#/*": ["./src/*"]
-    }
+    "types": ["vite/client"]
   }
 }

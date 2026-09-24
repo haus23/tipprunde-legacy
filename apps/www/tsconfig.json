@@ -3,11 +3,6 @@
   "include": ["app", "vite.config.ts"],
   "compilerOptions": {
     /* Vite */
-    "types": ["vite/client"],
-
-    /* DX */
-    "paths": {
-      "#/*": ["./app/*"]
-    }
+    "types": ["vite/client"]
   }
 }

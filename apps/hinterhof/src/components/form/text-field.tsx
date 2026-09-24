@@ -1,5 +1,5 @@
-import { classNames } from '@/utils/class-names';
-import type { MergeElementProps } from '@/utils/merge-element-props';
+import { classNames } from '#/utils/class-names';
+import type { MergeElementProps } from '#/utils/merge-element-props';
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { type ForwardedRef, forwardRef, useId } from 'react';
 

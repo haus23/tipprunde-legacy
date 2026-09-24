@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import {
   subscribeToCurrentData,
   useCurrentDataStore,
-} from '@/state/current-data-store';
+} from '#/state/current-data-store';
 import {
   subscribeToMasterData,
   useMasterDataStore,
-} from '@/state/master-data-store';
-import { useSessionStore } from '@/state/session-store';
+} from '#/state/master-data-store';
+import { useSessionStore } from '#/state/session-store';
 
 export type BootstrapPhase = 'auth' | 'master-data' | 'current-data' | 'ready';
 

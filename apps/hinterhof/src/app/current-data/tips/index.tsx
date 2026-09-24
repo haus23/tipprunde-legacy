@@ -5,16 +5,16 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import type { Match, Player, Team, Tip } from 'lib';
 import { Button, Card, Select, TextField, classNames } from 'ui-legacy';
 
-import AppCard from '@/components/layout/app-card';
+import AppCard from '#/components/layout/app-card';
 
-import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
-import { useMatches } from '@/hooks/current-data/use-matches';
-import { useRanking } from '@/hooks/current-data/use-ranking';
-import { useRounds } from '@/hooks/current-data/use-rounds';
-import { useTips } from '@/hooks/current-data/use-tips';
-import { usePlayers } from '@/hooks/master-data/use-players';
-import { useTeams } from '@/hooks/master-data/use-teams';
-import { notify } from '@/utils/notify';
+import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
+import { useMatches } from '#/hooks/current-data/use-matches';
+import { useRanking } from '#/hooks/current-data/use-ranking';
+import { useRounds } from '#/hooks/current-data/use-rounds';
+import { useTips } from '#/hooks/current-data/use-tips';
+import { usePlayers } from '#/hooks/master-data/use-players';
+import { useTeams } from '#/hooks/master-data/use-teams';
+import { notify } from '#/utils/notify';
 
 type TipData = { id: string; tip: string; joker: boolean };
 

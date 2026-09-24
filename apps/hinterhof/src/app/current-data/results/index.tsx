@@ -3,12 +3,12 @@ import { Button, Card, TextField, classNames } from 'ui-legacy';
 
 import type { Team } from 'lib';
 
-import AppCard from '@/components/layout/app-card';
-import { useMatches } from '@/hooks/current-data/use-matches';
-import { useRanking } from '@/hooks/current-data/use-ranking';
-import { useRounds } from '@/hooks/current-data/use-rounds';
-import { useTeams } from '@/hooks/master-data/use-teams';
-import { notify } from '@/utils/notify';
+import AppCard from '#/components/layout/app-card';
+import { useMatches } from '#/hooks/current-data/use-matches';
+import { useRanking } from '#/hooks/current-data/use-ranking';
+import { useRounds } from '#/hooks/current-data/use-rounds';
+import { useTeams } from '#/hooks/master-data/use-teams';
+import { notify } from '#/utils/notify';
 import { useFieldArray, useForm } from 'react-hook-form';
 
 type ResultsFormType = {

@@ -1,5 +1,5 @@
 import { type ChampionshipRules, createEntity, updateEntity } from 'lib';
-import { useMasterDataStore } from '@/state/master-data-store';
+import { useMasterDataStore } from '#/state/master-data-store';
 
 export function useRules() {
   const rules = useMasterDataStore((state) => state.rules);

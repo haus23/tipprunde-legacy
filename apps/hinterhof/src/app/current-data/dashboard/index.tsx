@@ -9,11 +9,11 @@ import {
 import type { Championship, ChampionshipPlayer, Match, Round } from 'lib';
 import type { ElementType } from 'react';
 import { Link } from 'react-router';
-import { useChampionshipPlayers } from '@/hooks/current-data/use-championship-players';
-import { useCurrentChampionship } from '@/hooks/current-data/use-current-championship';
-import { useMatches } from '@/hooks/current-data/use-matches';
-import { useRounds } from '@/hooks/current-data/use-rounds';
-import { classNames } from '@/utils/class-names';
+import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
+import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { useMatches } from '#/hooks/current-data/use-matches';
+import { useRounds } from '#/hooks/current-data/use-rounds';
+import { classNames } from '#/utils/class-names';
 
 const items: {
   title: string;

@@ -1,5 +1,5 @@
 import { type ChampionshipPlayer, createEntity, patchEntity } from 'lib';
-import { useCurrentDataStore } from '@/state/current-data-store';
+import { useCurrentDataStore } from '#/state/current-data-store';
 import { useCurrentChampionship } from './use-current-championship';
 
 export function useChampionshipPlayers() {

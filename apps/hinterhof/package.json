@@ -2,6 +2,9 @@
   "name": "@haus23/tipprunde-hinterhof",
   "version": "0.7.1",
   "type": "module",
+  "imports": {
+    "#/*": "./src/*.js"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

@@ -4,9 +4,9 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { Navigate } from 'react-router';
 import { AppTitle } from 'ui-legacy';
 
-import Button from '@/components/button';
-import TextField from '@/components/form/text-field';
-import { useSessionStore } from '@/state/session-store';
+import Button from '#/components/button';
+import TextField from '#/components/form/text-field';
+import { useSessionStore } from '#/state/session-store';
 
 type LoginFormType = {
   email: string;
