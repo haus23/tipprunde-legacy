@@ -26,14 +26,14 @@
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
-    "@tailwindcss/vite": "^4.1.4",
+    "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-query-devtools": "^5.74.4",
     "@tanstack/react-router-devtools": "^1.116.0",
     "@tanstack/router-plugin": "^1.116.1",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
     "@vitejs/plugin-react": "^4.7.0",
-    "tailwindcss": "^4.1.4",
+    "tailwindcss": "^4.3.3",
     "typescript": "catalog:",
     "vite": "6.4.3",
     "vite-tsconfig-paths": "^5.1.4"
