@@ -1,5 +1,17 @@
 # www
 
+## 0.22.20
+
+### Patch Changes
+
+- [`fe06cdf`](https://github.com/haus23/tipprunde-legacy/commit/fe06cdf54a836cec1f42f396fef99e92963ec577) - Update Tailwind CSS and its Vite plugin across both applications.
+
+- [`a11f581`](https://github.com/haus23/tipprunde-legacy/commit/a11f581efa5c6ec67d012b143aec72ce223bb4a0) - Update TanStack Router, its development tools, and the Vite router plugin.
+
+- [`a0882af`](https://github.com/haus23/tipprunde-legacy/commit/a0882afe3fd93530e06d63ed8b810528435c0567) - Upgrade both application builds to Vite 7 and update the related React and TypeScript path plugins.
+
+- [`c664741`](https://github.com/haus23/tipprunde-legacy/commit/c664741d80c61377aac1611438648a2fa473e52b) - Upgrade both application builds to Vite 8, migrate their chunk configuration to Rolldown, and use native package subpath imports.
+
 ## 0.22.19
 
 ### Patch Changes

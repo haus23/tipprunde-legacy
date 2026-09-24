@@ -1,5 +1,11 @@
 # ui-legacy
 
+## 0.3.5
+
+### Patch Changes
+
+- [`1c3b6ac`](https://github.com/haus23/tipprunde-legacy/commit/1c3b6ac1d09ae0ee1bf004cb928c335a95b915b3) - Load authentication, master data, and tournament data behind one shared splash screen before rendering the Hinterhof application.
+
 ## 0.3.4
 
 ### Patch Changes

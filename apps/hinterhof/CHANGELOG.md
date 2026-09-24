@@ -1,5 +1,21 @@
 # hinterhof
 
+## 0.8.0
+
+### Minor Changes
+
+- [`1c3b6ac`](https://github.com/haus23/tipprunde-legacy/commit/1c3b6ac1d09ae0ee1bf004cb928c335a95b915b3) - Load authentication, master data, and tournament data behind one shared splash screen before rendering the Hinterhof application.
+
+### Patch Changes
+
+- [`fe06cdf`](https://github.com/haus23/tipprunde-legacy/commit/fe06cdf54a836cec1f42f396fef99e92963ec577) - Update Tailwind CSS and its Vite plugin across both applications.
+
+- [`a0882af`](https://github.com/haus23/tipprunde-legacy/commit/a0882afe3fd93530e06d63ed8b810528435c0567) - Upgrade both application builds to Vite 7 and update the related React and TypeScript path plugins.
+
+- [`c664741`](https://github.com/haus23/tipprunde-legacy/commit/c664741d80c61377aac1611438648a2fa473e52b) - Upgrade both application builds to Vite 8, migrate their chunk configuration to Rolldown, and use native package subpath imports.
+- Updated dependencies [[`1c3b6ac`](https://github.com/haus23/tipprunde-legacy/commit/1c3b6ac1d09ae0ee1bf004cb928c335a95b915b3)]:
+  - ui-legacy@0.3.5
+
 ## 0.7.1
 
 ### Patch Changes
