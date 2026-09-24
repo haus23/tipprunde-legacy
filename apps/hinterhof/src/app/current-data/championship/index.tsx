@@ -1,10 +1,10 @@
+import { PlusIcon } from '@heroicons/react/24/outline';
+import type { Member } from 'lib';
+import { Card, classNames, ToggleField } from 'ui-legacy';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { usePlayers } from '#/hooks/master-data/use-players';
 import { notify } from '#/utils/notify';
-import { PlusIcon } from '@heroicons/react/24/outline';
-import type { Player } from 'lib';
-import { Card, ToggleField, classNames } from 'ui-legacy';
 
 export default function ChampionshipView() {
   const { players } = usePlayers();
@@ -33,7 +33,7 @@ export default function ChampionshipView() {
 
   const attendingPlayers = championshipPlayers
     .map((cp) => {
-      const player = players.find((p) => p.id === cp.playerId) as Player;
+      const player = players.find((p) => p.id === cp.playerId) as Member;
       return { ...cp, player };
     })
     .sort((p1, p2) => p1.nr - p2.nr);
@@ -69,7 +69,7 @@ export default function ChampionshipView() {
       </Card>
       <Card>
         <Card.Header>Mitspieler</Card.Header>
-        <div className="flex p-2 sm:p-4 gap-x-2 divide-x divide-gray-200 sm:gap-x-4">
+        <div className="flex gap-x-2 divide-x divide-gray-200 p-2 sm:gap-x-4 sm:p-4">
           <div
             className={classNames(
               hasRemainingPlayers ? 'basis-1/2' : 'grow justify-self-center',
@@ -102,7 +102,7 @@ export default function ChampionshipView() {
                       <button
                         type="button"
                         onClick={() => addPlayer(p.id)}
-                        className="rounded-full p-1 bg-white hover:bg-gray-100 text-gray-400 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        className="rounded-full bg-white p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       >
                         <PlusIcon className="h-4 w-4" />
                       </button>

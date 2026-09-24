@@ -1,5 +1,8 @@
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
-
+import type { Member } from 'lib';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
@@ -9,10 +12,6 @@ import { clearCache } from '#/utils/clear-cache';
 import { emailValidator } from '#/utils/email-validator';
 import { slug } from '#/utils/slug';
 import { trimProps } from '#/utils/trim-props';
-import type { Player } from 'lib';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 
 export default function PlayersView() {
   const {
@@ -23,13 +22,13 @@ export default function PlayersView() {
     setFocus,
     setValue,
     formState: { dirtyFields, errors },
-  } = useForm<Player>({ defaultValues: { id: '' } });
+  } = useForm<Member>({ defaultValues: { id: '' } });
 
   const { players, createPlayer, updatePlayer } = usePlayers();
   const [isFormOpen, setFormOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
-  function beginEdit(player: Player) {
+  function beginEdit(player: Member) {
     reset(player);
     setEditMode(true);
     setFormOpen(true);
@@ -48,7 +47,7 @@ export default function PlayersView() {
     }
   }
 
-  async function savePlayer(player: Player) {
+  async function savePlayer(player: Member) {
     trimProps(player);
     if (!editMode) {
       await toast.promise(createPlayer(player), {
@@ -71,13 +70,13 @@ export default function PlayersView() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-semibold">Spieler</h2>
+      <h2 className="font-semibold text-2xl">Spieler</h2>
       <div className="mt-5">
-        <div className="shadow-sm sm:overflow-hidden rounded-md bg-white">
+        <div className="rounded-md bg-white shadow-sm sm:overflow-hidden">
           <button
             type="button"
             onClick={() => setFormOpen(!isFormOpen)}
-            className="w-full flex items-center justify-between px-4 py-2 font-semibold"
+            className="flex w-full items-center justify-between px-4 py-2 font-semibold"
           >
             <span>{editMode ? 'Spieler bearbeiten' : 'Neuer Spieler'}</span>
             <ChevronDownIcon
@@ -133,7 +132,7 @@ export default function PlayersView() {
                     })}
                   />
                 </div>
-                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
+                <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button onClick={endEdit}>Abbrechen</Button>
                   <Button primary type="submit">
                     Speichern
@@ -151,13 +150,13 @@ export default function PlayersView() {
               <tr>
                 <th
                   scope="col"
-                  className="pl-4 pr-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="py-3.5 pr-3 pl-4 text-left font-semibold text-gray-900 text-sm"
                 >
                   Name
                 </th>
                 <th
                   scope="col"
-                  className="hidden sm:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
+                  className="hidden px-3 py-3.5 text-left font-semibold text-gray-900 text-sm sm:table-cell sm:pr-6 lg:pr-8"
                 >
                   Email
                 </th>
@@ -169,13 +168,13 @@ export default function PlayersView() {
             <tbody className="divide-y divide-gray-200 bg-white pr-1">
               {players.map((p) => (
                 <tr key={p.id}>
-                  <td className="whitespace-nowrap pl-4 pr-3 py-4 text-sm text-gray-500">
+                  <td className="whitespace-nowrap py-4 pr-3 pl-4 text-gray-500 text-sm">
                     {p.name}
                   </td>
-                  <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-3 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                  <td className="hidden whitespace-nowrap py-4 pr-4 pl-3 text-gray-500 text-sm sm:table-cell sm:pr-6 lg:pr-8">
                     {p.email}
                   </td>
-                  <td className="text-right pr-3">
+                  <td className="pr-3 text-right">
                     <Button onClick={() => beginEdit(p)}>
                       <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
                     </Button>

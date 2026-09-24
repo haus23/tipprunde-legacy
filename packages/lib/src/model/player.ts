@@ -1,6 +1,1 @@
-import type { BaseModel } from './base/model';
-
-export type Player = BaseModel & {
-  name: string;
-  email: string;
-};
+export type { Member } from '@haus23/tipprunde-model';

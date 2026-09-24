@@ -1,10 +1,10 @@
 import {
-  AccountSchema,
   type Championship,
   ChampionshipSchema,
   CurrentTipsSchema,
-  MatchTipsSchema,
   MatchesSchema,
+  MatchTipsSchema,
+  MemberSchema,
   PlayerTipsSchema,
   PlayerWithAccountSchema,
 } from '@haus23/tipprunde-model';
@@ -13,10 +13,6 @@ import * as v from 'valibot';
 
 const backendHost = import.meta.env.VITE_UNTERBAU_SERVER;
 const baseUrl = `${backendHost}/api/v1`;
-
-// Small debug helper, usage: await sleep(1000)
-const sleep = (delay: number) =>
-  new Promise((resolve) => setTimeout(resolve, delay));
 
 async function fetchChampionships() {
   const response = await fetch(`${baseUrl}/championships`);
@@ -31,7 +27,7 @@ export const championshipsQuery = () =>
 
 async function fetchAccounts() {
   const response = await fetch(`${baseUrl}/accounts`);
-  return v.parse(v.array(AccountSchema), await response.json());
+  return v.parse(v.array(MemberSchema), await response.json());
 }
 
 export const accountsQuery = () =>

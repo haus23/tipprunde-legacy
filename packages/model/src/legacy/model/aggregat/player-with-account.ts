@@ -1,11 +1,11 @@
 import * as v from 'valibot';
 
-import { AccountSchema } from '../entity/account';
+import { MemberSchema } from '../../../member/member';
 import { PlayerSchema } from '../entity/championship/player';
 
 export const PlayerWithAccountSchema = v.object({
   ...PlayerSchema.entries,
-  account: AccountSchema,
+  account: MemberSchema,
 });
 
 export type PlayerWithAccountInput = v.InferInput<

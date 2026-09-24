@@ -1,6 +1,5 @@
 export * from './league/league';
 export * from './legacy/model/aggregat/player-with-account';
-export * from './legacy/model/entity/account';
 export * from './legacy/model/entity/championship';
 export * from './legacy/model/entity/championship/match';
 export * from './legacy/model/entity/championship/player';
@@ -15,5 +14,6 @@ export * from './legacy/rules/extra-questions';
 export * from './legacy/rules/match';
 export * from './legacy/rules/round';
 export * from './legacy/rules/tip';
+export * from './member/member';
 export * from './primitives';
 export * from './team/team';
