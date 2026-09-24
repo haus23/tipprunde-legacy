@@ -1,11 +1,9 @@
 import * as v from 'valibot';
 
-import { IdSchema } from '../id';
-
-// Firebase collection path: /teams
+import { SlugIdSchema } from '../shared/id';
 
 export const TeamSchema = v.object({
-  id: IdSchema,
+  id: SlugIdSchema,
   name: v.pipe(v.string(), v.nonEmpty()),
   shortname: v.pipe(v.string(), v.nonEmpty()),
 });

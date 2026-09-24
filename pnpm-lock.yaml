@@ -397,6 +397,9 @@ importers:
 
   packages/lib:
     dependencies:
+      '@haus23/tipprunde-model':
+        specifier: workspace:^
+        version: link:../model
       firebase:
         specifier: ^12.19.0
         version: 12.19.0

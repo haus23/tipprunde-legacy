@@ -1,9 +1,8 @@
 import * as v from 'valibot';
-
+import { TeamSchema } from '../../../../team/team';
 import { MatchSchema } from '../../entity/championship/match';
 import { RoundSchema } from '../../entity/championship/round';
 import { LeagueSchema } from '../../entity/league';
-import { TeamSchema } from '../../entity/team';
 
 export const MatchesSchema = v.object({
   rounds: v.array(RoundSchema),
