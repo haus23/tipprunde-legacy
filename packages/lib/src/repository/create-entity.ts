@@ -1,8 +1,7 @@
 import {
-  type DocumentReference,
   collection,
+  type DocumentReference,
   doc,
-  serverTimestamp,
   setDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase/db';
@@ -28,5 +27,5 @@ export const createEntity = async <T extends BaseModel>(
       baseModelConverter<T>(),
     );
   }
-  await setDoc(entityRef, { ...entity, updated_at: serverTimestamp() });
+  await setDoc(entityRef, entity);
 };

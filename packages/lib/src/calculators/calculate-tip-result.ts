@@ -25,7 +25,7 @@ export function calculateTipResult(
 
   // Remove all extra flags if any
   if (typeof tip.lonelyHit !== 'undefined') {
-    const { lonelyHit, updated_at, ...cleanedCopy } = { ...tip };
+    const { lonelyHit, ...cleanedCopy } = { ...tip };
     tip = cleanedCopy;
     // TODO: really needed - or better validate tip
     if (Object.keys(tip).length !== 6) {

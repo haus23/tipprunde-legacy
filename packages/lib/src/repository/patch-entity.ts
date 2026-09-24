@@ -1,4 +1,4 @@
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/db';
 import type { BaseModel } from '../model/base/model';
 import { baseModelConverter } from './base-model-converter';
@@ -21,9 +21,5 @@ export async function patchEntity<T extends BaseModel>(
 ): Promise<void> {
   const id = typeof entity === 'string' ? entity : entity.id;
   const docRef = doc(db, path, id).withConverter(baseModelConverter<T>());
-  await setDoc(
-    docRef,
-    { ...updates, updated_at: serverTimestamp() },
-    { merge: true },
-  );
+  await setDoc(docRef, updates, { merge: true });
 }

@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 
-import { MatchDateSchema, ResultSchema } from '../../../primitives';
+import { MatchDateSchema, ResultSchema } from '../../../../primitives';
 import { IdSchema, OptionalIdSchema } from '../../id';
 
 // Firebase collection path: /championships/[id]/matches

@@ -1,28 +1,19 @@
-// Rules
-export * from './rules/extra-questions';
-export * from './rules/match';
-export * from './rules/round';
-export * from './rules/tip';
-
-// Primitives
+export * from './legacy/model/aggregat/player-with-account';
+export * from './legacy/model/entity/account';
+export * from './legacy/model/entity/championship';
+export * from './legacy/model/entity/championship/match';
+export * from './legacy/model/entity/championship/player';
+export * from './legacy/model/entity/championship/round';
+export * from './legacy/model/entity/championship/tip';
+export * from './legacy/model/entity/league';
+export * from './legacy/model/entity/ruleset';
+export * from './legacy/model/entity/team';
+export * from './legacy/model/queries/championship/current-tips';
+export * from './legacy/model/queries/championship/match-tips';
+export * from './legacy/model/queries/championship/matches';
+export * from './legacy/model/queries/championship/player-tips';
+export * from './legacy/rules/extra-questions';
+export * from './legacy/rules/match';
+export * from './legacy/rules/round';
+export * from './legacy/rules/tip';
 export * from './primitives';
-
-// Entities (raw leaves)
-export * from './model/entity/account';
-export * from './model/entity/championship';
-export * from './model/entity/league';
-export * from './model/entity/ruleset';
-export * from './model/entity/team';
-export * from './model/entity/championship/match';
-export * from './model/entity/championship/player';
-export * from './model/entity/championship/round';
-export * from './model/entity/championship/tip';
-
-// Aggregat (joined data)
-export * from './model/aggregat/player-with-account';
-
-// Queries (collected data)
-export * from './model/queries/championship/matches';
-export * from './model/queries/championship/current-tips';
-export * from './model/queries/championship/match-tips';
-export * from './model/queries/championship/player-tips';

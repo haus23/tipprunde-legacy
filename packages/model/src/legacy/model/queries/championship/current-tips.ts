@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 
-import { ResultSchema } from '../../../primitives';
+import { ResultSchema } from '../../../../primitives';
 import { TipSchema } from '../../entity/championship/tip';
 import { IdSchema } from '../../id';
 

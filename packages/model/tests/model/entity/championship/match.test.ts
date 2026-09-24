@@ -1,7 +1,7 @@
 import * as v from 'valibot';
 import { expect, it } from 'vitest';
 
-import { MatchSchema } from '../../../../src/model/entity/championship/match';
+import { MatchSchema } from '../../../../src/legacy/model/entity/championship/match';
 
 const mock = {
   id: 'abcdef',

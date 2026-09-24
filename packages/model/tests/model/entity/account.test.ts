@@ -1,7 +1,7 @@
 import * as v from 'valibot';
 import { expect, it } from 'vitest';
 
-import { AccountSchema } from '../../../src/model/entity/account';
+import { AccountSchema } from '../../../src/legacy/model/entity/account';
 
 it('can have empty email prop', () => {
   const mock = { id: 'micha', name: 'Micha', email: '' };
