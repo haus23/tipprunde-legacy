@@ -11,7 +11,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "valibot": "1.4.2"
+    "valibot": "catalog:validation"
   },
   "peerDependencies": {
     "valibot": ">=1.0.0"

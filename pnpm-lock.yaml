@@ -355,8 +355,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0(tailwindcss@4.3.3)
       valibot:
-        specifier: ^1.0.0
-        version: 1.4.2(typescript@7.0.2)
+        specifier: catalog:validation
+        version: 1.5.0(typescript@7.0.2)
       zustand:
         specifier: ^5.0.3
         version: 5.0.4(@types/react@19.3.0)(react@19.3.0)(use-sync-external-store@1.5.0(react@19.3.0))
@@ -414,8 +414,8 @@ importers:
   packages/model:
     dependencies:
       valibot:
-        specifier: 1.4.2
-        version: 1.4.2(typescript@7.0.2)
+        specifier: catalog:validation
+        version: 1.5.0(typescript@7.0.2)
     devDependencies:
       '@haus23/tipprunde-tsconfig':
         specifier: workspace:^
@@ -4246,14 +4246,6 @@ packages:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
-
-  valibot@1.4.2:
-    resolution: {integrity: sha512-gjdCvJ6d3RyHAneqxMYMW9QMCwYMb3jpOO0IyHZV1bnRHFBHrX3VkIILt5XYR0WhwHiH7Mty8ovuPZ/O3gamrg==}
-    peerDependencies:
-      typescript: '>=5'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
 
   valibot@1.5.0:
     resolution: {integrity: sha512-nil6AkP2TChWL43Z5uJ6GTxX01CUA+g8LWUM+N/rB9NBbkUMaUsi9PUNzlUPgoKASgmx9f7eGOYpJ04/fSa6FQ==}
@@ -8846,10 +8838,6 @@ snapshots:
 
   uuid@9.0.1:
     optional: true
-
-  valibot@1.4.2(typescript@7.0.2):
-    optionalDependencies:
-      typescript: 7.0.2
 
   valibot@1.5.0(typescript@7.0.2):
     optionalDependencies:
