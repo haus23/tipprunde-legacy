@@ -1,5 +1,11 @@
 # hinterhof
 
+## 0.7.1
+
+### Patch Changes
+
+- [`028a009`](https://github.com/haus23/tipprunde-legacy/commit/028a0097f9eedcb23476f5b0175f538366525197) - Upgrade React Router to version 8.
+
 ## 0.7.0
 
 ### Minor Changes
