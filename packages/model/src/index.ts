@@ -3,6 +3,8 @@ export * from './championship/championship-id';
 export * from './championship/championship-player';
 export * from './championship/match';
 export * from './championship/round';
+export * from './championship/scoring/calculate-match-results';
+export * from './championship/scoring/calculate-tip-result';
 export * from './championship/tip';
 export * from './league/league';
 export * from './legacy/model/aggregat/player-with-account';

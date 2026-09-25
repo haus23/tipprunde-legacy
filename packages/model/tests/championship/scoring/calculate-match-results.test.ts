@@ -1,10 +1,10 @@
 import { describe, expect, test } from 'vitest';
-import type { Match } from '../model/match';
-import type { RuleSet } from '../model/rule-set';
-import { matchRuleDescriptions } from '../model/rules/match-rule';
-import { roundRuleDescriptions } from '../model/rules/round-rule';
-import type { Tip } from '../model/tip';
-import { calculateMatchResults } from './calculate-match-results';
+import type { Match } from '../../../src/championship/match';
+import { calculateMatchResults } from '../../../src/championship/scoring/calculate-match-results';
+import type { Tip } from '../../../src/championship/tip';
+import { matchRules } from '../../../src/rules/match';
+import { roundRules } from '../../../src/rules/round';
+import type { RuleSet } from '../../../src/rules/rule-set';
 
 // Passing in an unreal points value in order to test object identity
 function makeTipMock(
@@ -46,7 +46,7 @@ function makeMatchMock(result: string, points = -1): Match {
 
 const tipStrings = ['2:1', '3:1', '4:1', '2:2', '0:3', '5:0', '3:2'];
 
-describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[0].name}`, () => {
+describe(`Spielberechnung nach Regeln: ${matchRules[0].name}`, () => {
   const rules: RuleSet = {
     id: '',
     name: '',
@@ -107,7 +107,7 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[0].name}`, () => 
   });
 });
 
-describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name}`, () => {
+describe(`Spielberechnung nach Regeln: ${matchRules[1].name}`, () => {
   const rules: RuleSet = {
     id: '',
     name: '',
@@ -167,7 +167,7 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name}`, () => 
   });
 });
 
-describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name} und ${roundRuleDescriptions[1].name}`, () => {
+describe(`Spielberechnung nach Regeln: ${matchRules[1].name} und ${roundRules[1].name}`, () => {
   const rules: RuleSet = {
     id: '',
     name: '',

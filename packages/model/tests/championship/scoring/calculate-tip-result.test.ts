@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
-import { type TipRuleId, tipRuleDescriptions } from '../model/rules/tip-rule';
-import type { Tip } from '../model/tip';
-import { calculateTipResult } from './calculate-tip-result';
+import { calculateTipResult } from '../../../src/championship/scoring/calculate-tip-result';
+import type { Tip } from '../../../src/championship/tip';
+import { type TipRuleId, tipRules } from '../../../src/rules/tip';
 
 // Passing in an unreal points value in order to test object identity
 function makeTipMock(
@@ -80,7 +80,7 @@ const mockData = [
   },
 ];
 
-describe(`Tippberechnung nach Regeln: ${tipRuleDescriptions[0].name}`, () => {
+describe(`Tippberechnung nach Regeln: ${tipRules[0].name}`, () => {
   const ruleId: TipRuleId = 'drei-oder-ein-punkt-joker-verdoppelt';
 
   const expectedPoints = [3, 6, 1, 2, 1, 2, 0, 0, 0, 0, 0, 0];
@@ -137,7 +137,7 @@ describe(`Tippberechnung nach Regeln: ${tipRuleDescriptions[0].name}`, () => {
   });
 });
 
-describe(`Tippberechnung nach Regeln: ${tipRuleDescriptions[1].name}`, () => {
+describe(`Tippberechnung nach Regeln: ${tipRules[1].name}`, () => {
   const ruleId: TipRuleId = 'drei-zwei-oder-ein-punkt-joker-verdoppelt';
 
   const expectedPoints = [

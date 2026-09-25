@@ -1,6 +1,6 @@
-import type { Match } from '../model/match';
-import type { RuleSet } from '../model/rule-set';
-import type { Tip } from '../model/tip';
+import type { RuleSet } from '../../rules/rule-set';
+import type { Match } from '../match';
+import type { Tip } from '../tip';
 import { calculateTipResult } from './calculate-tip-result';
 
 export function calculateMatchResults(

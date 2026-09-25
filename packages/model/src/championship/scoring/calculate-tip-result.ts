@@ -1,5 +1,5 @@
-import type { TipRuleId } from '../model/rules/tip-rule';
-import type { Tip } from '../model/tip';
+import type { TipRuleId } from '../../rules/tip';
+import type { Tip } from '../tip';
 
 function toGoalTuple(result: string) {
   const goals = result.split(':');

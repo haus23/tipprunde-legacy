@@ -1,5 +1,3 @@
-export * from './calculators/calculate-match-results';
-export * from './calculators/calculate-tip-result';
 export * from './firebase/auth';
 export * from './model/base/model';
 export * from './model/championship';
@@ -14,6 +12,7 @@ export * from './model/rules/match-rule';
 export * from './model/rules/round-rule';
 export * from './model/rules/rule';
 export * from './model/rules/tip-rule';
+export * from './model/scoring';
 export * from './model/team';
 export * from './model/tip';
 export * from './repository/collection';
