@@ -141,17 +141,6 @@ export default function TipsView() {
     );
   };
 
-  async function calculateCurrentRanking() {
-    const calculations = await notify(
-      Promise.all(matches.map((m) => updateMatchResult(m, m.result))),
-      'Alle Spiele neu berechnet.',
-    );
-    await notify(
-      calculateRanking(calculations.flatMap(({ tips }) => tips)),
-      'Tabelle neu berechnet',
-    );
-  }
-
   const { fields } = useFieldArray({ control, name: 'tips' });
 
   // Handling copy/paste from clipboard
@@ -228,22 +217,21 @@ export default function TipsView() {
             ))}
           </nav>
         </div>
-        <div className="px-4 py-4">
-          <h3 className="flex items-center gap-x-4 font-semibold">
-            <span>Tipps von</span>
-            <div className="grow">
-              <Select
-                options={players}
-                selected={player}
-                onChange={setPlayer}
-              />
-            </div>
-          </h3>
+        <div className="flex items-center gap-x-4 px-4 py-4">
+          <span className="font-semibold">Tipps von</span>
+          <div className="grow">
+            <Select options={players} selected={player} onChange={setPlayer} />
+          </div>
         </div>
       </Card>
       <AppCard>
         <form onSubmit={handleSubmit(saveResults)}>
-          <div className="overflow-x-auto overflow-y-hidden">
+          <div className="flex justify-end border-gray-200 border-b px-4 py-3">
+            <Button type="submit" primary={true}>
+              Speichern
+            </Button>
+          </div>
+          <div className="overflow-x-auto overflow-y-hidden pb-4">
             <table className="min-w-full divide-y divide-gray-300">
               <thead className="bg-gray-50">
                 <tr>
@@ -323,22 +311,6 @@ export default function TipsView() {
                     </tr>
                   ) : null,
                 )}
-                <tr>
-                  <td />
-                  <td className="py-2 pr-4 text-right">
-                    <Button
-                      type="button"
-                      onClick={handleSubmit(calculateCurrentRanking)}
-                    >
-                      Alles neu berechnen
-                    </Button>
-                  </td>
-                  <td className="py-2 pr-4 text-center">
-                    <Button type="submit" primary={true}>
-                      Speichern
-                    </Button>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>

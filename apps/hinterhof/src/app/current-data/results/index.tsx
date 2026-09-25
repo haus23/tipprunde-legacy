@@ -70,17 +70,6 @@ export default function ResultsView() {
     }
   }
 
-  async function calculateCurrentRanking() {
-    const calculations = await notify(
-      Promise.all(matches.map((m) => updateMatchResult(m, m.result))),
-      'Alle Spiele neu berechnet.',
-    );
-    await notify(
-      calculateRanking(calculations.flatMap(({ tips }) => tips)),
-      'Tabelle neu berechnet',
-    );
-  }
-
   return (
     <div className="mt-5 space-y-8">
       <div>
@@ -109,13 +98,6 @@ export default function ResultsView() {
             </nav>
           </div>
           <div className="flex items-center justify-end gap-x-8 px-4 py-4">
-            <Button
-              type="button"
-              primary={true}
-              onClick={calculateCurrentRanking}
-            >
-              Alles neu berechnen
-            </Button>
             <Button
               type="button"
               primary={true}

@@ -1,8 +1,9 @@
 import { PlusIcon } from '@heroicons/react/24/outline';
 import type { Member } from 'lib';
-import { Card, classNames, ToggleField } from 'ui-legacy';
+import { Button, Card, classNames, ToggleField } from 'ui-legacy';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { useRecalculateChampionship } from '#/hooks/current-data/use-recalculate-championship';
 import { usePlayers } from '#/hooks/master-data/use-players';
 import { notify } from '#/utils/notify';
 
@@ -12,6 +13,7 @@ export default function ChampionshipView() {
     useCurrentChampionship();
   const { championshipPlayers, addChampionshipPlayer } =
     useChampionshipPlayers();
+  const { recalculateChampionship } = useRecalculateChampionship();
 
   function togglePublishedState() {
     notify(
@@ -59,6 +61,14 @@ export default function ChampionshipView() {
 
   function addPlayer(id: string) {
     addChampionshipPlayer(id);
+  }
+
+  function recalculate() {
+    notify(
+      recalculateChampionship(),
+      'Turnierwertung vollständig neu berechnet.',
+      'Turnierwertung wird neu berechnet ...',
+    );
   }
 
   return currentChampionship ? (
@@ -133,6 +143,21 @@ export default function ChampionshipView() {
               </div>
             </div>
           )}
+        </div>
+      </Card>
+      <Card>
+        <Card.Header>Wartung</Card.Header>
+        <div className="flex items-center justify-between gap-x-4 p-4">
+          <div>
+            <p className="font-medium">Turnierwertung neu berechnen</p>
+            <p className="mt-1 text-gray-500 text-sm">
+              Wertet alle Spiele und Tipps neu aus und aktualisiert die
+              Rangliste.
+            </p>
+          </div>
+          <Button type="button" onClick={recalculate}>
+            Neu berechnen
+          </Button>
         </div>
       </Card>
     </div>

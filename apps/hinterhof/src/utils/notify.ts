@@ -1,8 +1,12 @@
 import toast from 'react-hot-toast';
 
-export function notify<T>(promise: Promise<T>, successMsg: string) {
+export function notify<T>(
+  promise: Promise<T>,
+  successMsg: string,
+  loadingMsg = 'Speichern ...',
+) {
   return toast.promise(promise, {
-    loading: 'Speichern ...',
+    loading: loadingMsg,
     success: successMsg,
     error: 'Hoppla, das hat nicht geklappt.',
   });
