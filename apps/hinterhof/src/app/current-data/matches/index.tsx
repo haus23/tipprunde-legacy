@@ -1,14 +1,13 @@
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
+import type { League, Match, Team } from 'lib';
 import { useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-
-import type { League, Match, Team } from 'lib';
 import {
   Button,
   Card,
   ComboboxField,
-  DateField,
   classNames,
+  DateField,
   formatDate,
 } from 'ui-legacy';
 
@@ -19,11 +18,15 @@ import { useLeagues } from '#/hooks/master-data/use-leagues';
 import { useTeams } from '#/hooks/master-data/use-teams';
 import { notify } from '#/utils/notify';
 
+type MatchFormData = Omit<Match, 'id' | 'roundId' | 'result' | 'points'> & {
+  id?: string;
+};
+
 export default function MatchesView() {
   const { leagues } = useLeagues();
   const { teams } = useTeams();
   const { rounds } = useRounds();
-  const { matches, createMatch } = useMatches();
+  const { matches, createMatch, updateMatch } = useMatches();
 
   const leaguesHash = useMemo(
     () =>
@@ -60,7 +63,7 @@ export default function MatchesView() {
     '',
   );
 
-  const initialFormValues: Partial<Match> = {
+  const initialFormValues: Partial<MatchFormData> = {
     nr,
     date,
     leagueId: '',
@@ -68,18 +71,30 @@ export default function MatchesView() {
     awayteamId: '',
   };
 
-  const { control, handleSubmit, register, reset, setFocus } = useForm<Match>({
-    defaultValues: initialFormValues,
-  });
+  const { control, handleSubmit, register, reset, setFocus } =
+    useForm<MatchFormData>({ defaultValues: initialFormValues });
 
-  async function saveMatch(match: Match) {
-    if (match.id) {
-      await notify(createMatch(match), `Spiel ${match.nr} geändert.`);
+  async function saveMatch(matchData: MatchFormData) {
+    if (matchData.id) {
+      const match = matches.find(({ id }) => id === matchData.id);
+      if (!match) throw new Error(`Match ${matchData.id} not found`);
+
+      await notify(
+        updateMatch({ ...match, ...matchData, id: matchData.id }),
+        `Spiel ${matchData.nr} geändert.`,
+      );
       endEdit();
     } else {
-      match.roundId = currentRound.id;
-      match.result = '';
-      match.points = 0;
+      const match: Omit<Match, 'id'> = {
+        nr: matchData.nr,
+        date: matchData.date,
+        leagueId: matchData.leagueId,
+        hometeamId: matchData.hometeamId,
+        awayteamId: matchData.awayteamId,
+        roundId: currentRound.id,
+        result: '',
+        points: 0,
+      };
       await notify(createMatch(match), `Spiel ${match.nr} hinzugefügt.`);
       reset({ ...initialFormValues, date: match.date, nr: ++nr });
       setFocus('date', { shouldSelect: true });
@@ -104,7 +119,7 @@ export default function MatchesView() {
   return (
     <div ref={topRef} className="mt-5 space-y-8">
       <Card>
-        <div className="flex items-center border-b border-gray-200 font-semibold px-2 sm:px-4 gap-x-4 sm:gap-x-8">
+        <div className="flex items-center gap-x-4 border-gray-200 border-b px-2 font-semibold sm:gap-x-8 sm:px-4">
           <span>Runde</span>
           <nav
             className="-mb-px flex items-center justify-around"
@@ -118,8 +133,8 @@ export default function MatchesView() {
                 className={classNames(
                   round === currentRound
                     ? 'border-indigo-500 text-indigo-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                  'whitespace-nowrap py-4 px-4 md:px-6 border-b-2 font-medium text-sm',
+                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                  'whitespace-nowrap border-b-2 px-4 py-4 font-medium text-sm md:px-6',
                 )}
               >
                 {round.nr}
@@ -132,7 +147,7 @@ export default function MatchesView() {
             <button
               type="button"
               onClick={() => setFormOpen(!isFormOpen)}
-              className="w-full flex items-center justify-between px-4 py-2 font-semibold"
+              className="flex w-full items-center justify-between px-4 py-2 font-semibold"
             >
               <span>{editMode ? 'Spiel bearbeiten' : 'Neues Spiel'}</span>
               <ChevronDownIcon
@@ -148,10 +163,10 @@ export default function MatchesView() {
               <form noValidate onSubmit={handleSubmit(saveMatch)}>
                 <div className="space-y-4 p-4 pt-2">
                   <div className="flex items-center">
-                    <span className="text-sm font-semibold">Nummer</span>
+                    <span className="font-semibold text-sm">Nummer</span>
                     <input
                       disabled
-                      className="bg-white font-semibold text-sm text-center w-8 rounded-sm p-1 border-transparent"
+                      className="w-8 rounded-sm border-transparent bg-white p-1 text-center font-semibold text-sm"
                       {...register('nr')}
                     />
                   </div>
@@ -192,7 +207,7 @@ export default function MatchesView() {
                     }
                   />
                 </div>
-                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
+                <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button type="button" onClick={endEdit}>
                     Abbrechen
                   </Button>
@@ -212,25 +227,25 @@ export default function MatchesView() {
               <tr>
                 <th
                   scope="col"
-                  className="pl-4 pr-2 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="py-3.5 pr-2 pl-4 text-left font-semibold text-gray-900 text-sm"
                 >
                   Nr
                 </th>
                 <th
                   scope="col"
-                  className="hidden sm:table-cell px-2 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
+                  className="hidden px-2 py-3.5 text-left font-semibold text-gray-900 text-sm sm:table-cell sm:pr-6 lg:pr-8"
                 >
                   Datum
                 </th>
                 <th
                   scope="col"
-                  className="hidden sm:table-cell px-2 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
+                  className="hidden px-2 py-3.5 text-left font-semibold text-gray-900 text-sm sm:table-cell sm:pr-6 lg:pr-8"
                 >
                   Liga
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-3.5 text-left text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
+                  className="px-2 py-3.5 text-left font-semibold text-gray-900 text-sm sm:pr-6 lg:pr-8"
                 >
                   Spiel
                 </th>
@@ -244,10 +259,10 @@ export default function MatchesView() {
                 .filter((m) => m.roundId === currentRound.id)
                 .map((m) => (
                   <tr key={m.id}>
-                    <td className="whitespace-nowrap pl-4 pr-2 py-4 text-sm text-gray-500">
+                    <td className="whitespace-nowrap py-4 pr-2 pl-4 text-gray-500 text-sm">
                       {m.nr}
                     </td>
-                    <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                    <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-gray-500 text-sm sm:table-cell sm:pr-6 lg:pr-8">
                       <span className="hidden lg:inline">
                         {formatDate(m.date)}
                       </span>
@@ -255,7 +270,7 @@ export default function MatchesView() {
                         {formatDate(m.date, true)}
                       </span>
                     </td>
-                    <td className="hidden sm:table-cell whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                    <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-gray-500 text-sm sm:table-cell sm:pr-6 lg:pr-8">
                       <span className="hidden lg:inline">
                         {leaguesHash[m.leagueId]?.name || ''}
                       </span>
@@ -263,7 +278,7 @@ export default function MatchesView() {
                         {leaguesHash[m.leagueId]?.shortname || ''}
                       </span>
                     </td>
-                    <td className="whitespace-nowrap py-4 pl-2 pr-4 text-sm text-gray-500 sm:pr-6 lg:pr-8">
+                    <td className="whitespace-nowrap py-4 pr-4 pl-2 text-gray-500 text-sm sm:pr-6 lg:pr-8">
                       <span className="hidden lg:inline">
                         {`${teamsHash[m.hometeamId]?.name || ''} - ${
                           teamsHash[m.awayteamId]?.name || ''
@@ -275,7 +290,7 @@ export default function MatchesView() {
                         }`.replace(/^ - $/, '')}
                       </span>
                     </td>
-                    <td className="text-right pr-3">
+                    <td className="pr-3 text-right">
                       <Button onClick={() => beginEdit(m)}>
                         <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
                       </Button>
