@@ -1,5 +1,14 @@
 # www
 
+## 0.22.21
+
+### Patch Changes
+
+- [`f5f0a5c`](https://github.com/haus23/tipprunde-legacy/commit/f5f0a5cc3fc186af8e3b11fbbf957bbc2d6a769f) - Use Member as the canonical model for the long-lived tip group membership records stored in the players collection.
+
+- [`7268578`](https://github.com/haus23/tipprunde-legacy/commit/7268578742f2eddfe9146570d36554a083affcb8) - Use the shared Valibot catalog version across the model package and web application.
+- Updated dependency `@haus23/tipprunde-model` to 0.22.1.
+
 ## 0.22.20
 
 ### Patch Changes

@@ -1,5 +1,33 @@
 # model
 
+## 0.22.1
+
+### Patch Changes
+
+- [`24eee7d`](https://github.com/haus23/tipprunde-legacy/commit/24eee7dfa9c3dfadd6c7c4fc30b671e669cafeb8) - Move the championship ID schema into the championship domain model.
+
+- [`c70b63a`](https://github.com/haus23/tipprunde-legacy/commit/c70b63a40bca53e68fafc00171a81546e13929fd) - Use one canonical model for players participating in a championship.
+
+- [`5cf78fb`](https://github.com/haus23/tipprunde-legacy/commit/5cf78fb3d829c790cb9bea7abde35626b9bfc03b) - Use the shared model package as the canonical source for championship data and allow publishing extra points from the administration UI.
+
+- [`326455c`](https://github.com/haus23/tipprunde-legacy/commit/326455cf67c524191e2134cde0cec144d69c83e3) - Use the shared model package as the canonical source for league data.
+
+- [`d4cc14f`](https://github.com/haus23/tipprunde-legacy/commit/d4cc14f32808e5b555bd160bd233d5341b5099e0) - Use one canonical match model and create new matches without placeholder ids.
+
+- [`f5f0a5c`](https://github.com/haus23/tipprunde-legacy/commit/f5f0a5cc3fc186af8e3b11fbbf957bbc2d6a769f) - Use Member as the canonical model for the long-lived tip group membership records stored in the players collection.
+
+- [`9431e97`](https://github.com/haus23/tipprunde-legacy/commit/9431e971968ce23061db5561cb4f3e00a1ab753c) - Stop validating and writing the unused Firestore update timestamps.
+
+- [`9431e97`](https://github.com/haus23/tipprunde-legacy/commit/9431e971968ce23061db5561cb4f3e00a1ab753c) - Isolate the existing model and rule definitions in a temporary legacy namespace in preparation for their incremental replacement.
+
+- [`e54b289`](https://github.com/haus23/tipprunde-legacy/commit/e54b289797c546d9f647fa5a37a3ca4aedb44b94) - Use one canonical round model, remove unused expansion fields, and distinguish Firestore-generated ids from explicitly assigned ids.
+
+- [`7268578`](https://github.com/haus23/tipprunde-legacy/commit/7268578742f2eddfe9146570d36554a083affcb8) - Use the shared Valibot catalog version across the model package and web application.
+
+- [`52f03d5`](https://github.com/haus23/tipprunde-legacy/commit/52f03d5026616f841d72429139f3a5368dafb93f) - Use the shared model package as the canonical source for team data.
+
+- [`06efb72`](https://github.com/haus23/tipprunde-legacy/commit/06efb7239315e4adec9dbb5ddb5585d1d0e1d6f8) - Use one canonical tip model and create new tips without placeholder ids.
+
 ## 0.22.0
 
 ### Minor Changes

@@ -1,5 +1,22 @@
 # hinterhof
 
+## 0.8.1
+
+### Patch Changes
+
+- [`5cf78fb`](https://github.com/haus23/tipprunde-legacy/commit/5cf78fb3d829c790cb9bea7abde35626b9bfc03b) - Use the shared model package as the canonical source for championship data and allow publishing extra points from the administration UI.
+
+- [`d4cc14f`](https://github.com/haus23/tipprunde-legacy/commit/d4cc14f32808e5b555bd160bd233d5341b5099e0) - Use one canonical match model and create new matches without placeholder ids.
+
+- [`f5f0a5c`](https://github.com/haus23/tipprunde-legacy/commit/f5f0a5cc3fc186af8e3b11fbbf957bbc2d6a769f) - Use Member as the canonical model for the long-lived tip group membership records stored in the players collection.
+
+- [`d4d8296`](https://github.com/haus23/tipprunde-legacy/commit/d4d8296b8d6681bca7b2111c8d66bd0316cb4ba5) - Upgrade the Firebase web SDK to version 12 and expose the internal library through package exports.
+
+- [`e54b289`](https://github.com/haus23/tipprunde-legacy/commit/e54b289797c546d9f647fa5a37a3ca4aedb44b94) - Use one canonical round model, remove unused expansion fields, and distinguish Firestore-generated ids from explicitly assigned ids.
+
+- [`06efb72`](https://github.com/haus23/tipprunde-legacy/commit/06efb7239315e4adec9dbb5ddb5585d1d0e1d6f8) - Use one canonical tip model and create new tips without placeholder ids.
+- Updated dependency `lib` to 0.6.4.
+
 ## 0.8.0
 
 ### Minor Changes
