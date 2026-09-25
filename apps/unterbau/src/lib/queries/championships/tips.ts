@@ -1,7 +1,7 @@
 import type {
   ChampionshipInput,
+  ChampionshipPlayerInput,
   MatchInput,
-  PlayerInput,
   TipInput,
 } from '@haus23/tipprunde-model';
 import { cachedFunction } from '#app/lib/cached.ts';
@@ -27,7 +27,7 @@ export const getTips = cachedFunction(
 );
 
 export async function getTipsByPlayer(
-  player: PlayerInput,
+  player: ChampionshipPlayerInput,
   championship: ChampionshipInput,
 ) {
   const tips = await getTips(championship);

@@ -10,7 +10,7 @@ import { ValidationError } from './validation-error.ts';
  *
  * @param req The request object
  * @param championship Championship to lookup the account
- * @returns Player
+ * @returns Championship player
  */
 export async function validatePlayer(
   req: Request,
