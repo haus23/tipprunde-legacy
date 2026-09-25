@@ -1,12 +1,12 @@
-import type { ChampionshipRules } from '../model/championchip-rules';
 import type { Match } from '../model/match';
+import type { RuleSet } from '../model/rule-set';
 import type { Tip } from '../model/tip';
 import { calculateTipResult } from './calculate-tip-result';
 
 export function calculateMatchResults(
   originalMatch: Match,
   originalTips: Tip[],
-  rules: ChampionshipRules,
+  rules: RuleSet,
   options: { isDoubleRound?: boolean } = {},
 ): { match: Match; tips: Tip[] } {
   const isDoubleRound =

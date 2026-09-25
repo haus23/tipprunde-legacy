@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import type { ChampionshipRules } from '../model/championchip-rules';
 import type { Match } from '../model/match';
+import type { RuleSet } from '../model/rule-set';
 import { matchRuleDescriptions } from '../model/rules/match-rule';
 import { roundRuleDescriptions } from '../model/rules/round-rule';
 import type { Tip } from '../model/tip';
@@ -47,14 +47,14 @@ function makeMatchMock(result: string, points = -1): Match {
 const tipStrings = ['2:1', '3:1', '4:1', '2:2', '0:3', '5:0', '3:2'];
 
 describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[0].name}`, () => {
-  const rules: ChampionshipRules = {
+  const rules: RuleSet = {
     id: '',
     name: '',
     description: '',
     tipRuleId: 'drei-oder-ein-punkt-joker-verdoppelt',
     matchRuleId: 'keine-besonderheiten',
     roundRuleId: 'keine-besonderheiten',
-    extraQuestionRuleId: 'keine-zusatzfragen',
+    extraQuestionsRuleId: 'keine-zusatzfragen',
   };
 
   test('Berechnung summiert korrekt die erzielten Punkte', () => {
@@ -108,14 +108,14 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[0].name}`, () => 
 });
 
 describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name}`, () => {
-  const rules: ChampionshipRules = {
+  const rules: RuleSet = {
     id: '',
     name: '',
     description: '',
     tipRuleId: 'drei-oder-ein-punkt-joker-verdoppelt',
     matchRuleId: 'alleiniger-treffer-drei-punkte',
     roundRuleId: 'keine-besonderheiten',
-    extraQuestionRuleId: 'keine-zusatzfragen',
+    extraQuestionsRuleId: 'keine-zusatzfragen',
   };
 
   test('Berechnung summiert korrekt die erzielten Punkte', () => {
@@ -168,14 +168,14 @@ describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name}`, () => 
 });
 
 describe(`Spielberechnung nach Regeln: ${matchRuleDescriptions[1].name} und ${roundRuleDescriptions[1].name}`, () => {
-  const rules: ChampionshipRules = {
+  const rules: RuleSet = {
     id: '',
     name: '',
     description: '',
     tipRuleId: 'drei-oder-ein-punkt-joker-verdoppelt',
     matchRuleId: 'alleiniger-treffer-drei-punkte',
     roundRuleId: 'alles-verdoppelt',
-    extraQuestionRuleId: 'keine-zusatzfragen',
+    extraQuestionsRuleId: 'keine-zusatzfragen',
   };
 
   test('Berechnung summiert korrekt die erzielten Punkte', () => {

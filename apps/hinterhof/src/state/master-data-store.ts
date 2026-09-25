@@ -1,10 +1,10 @@
 import {
   type Championship,
-  type ChampionshipRules,
   collection,
   type League,
   type Member,
   orderByDesc,
+  type RuleSet,
   type Team,
 } from 'lib';
 import { create } from 'zustand';
@@ -16,7 +16,7 @@ type MasterDataState = {
   leaguesLoaded: boolean;
   players: Member[];
   playersLoaded: boolean;
-  rules: ChampionshipRules[];
+  rules: RuleSet[];
   rulesLoaded: boolean;
   teams: Team[];
   teamsLoaded: boolean;
@@ -54,7 +54,7 @@ export function subscribeToMasterData() {
     collection<Member>('players').subscribe((players) =>
       useMasterDataStore.setState({ players, playersLoaded: true }),
     ),
-    collection<ChampionshipRules>('rules').subscribe((rules) =>
+    collection<RuleSet>('rules').subscribe((rules) =>
       useMasterDataStore.setState({ rules, rulesLoaded: true }),
     ),
     collection<Team>('teams').subscribe((teams) =>

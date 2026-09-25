@@ -1,16 +1,15 @@
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
-
 import {
-  type ChampionshipRules,
   extraQuestionRuleDescriptions,
   matchRuleDescriptions,
+  type RuleSet,
   roundRuleDescriptions,
   tipRuleDescriptions,
 } from 'lib';
-
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { SelectField } from 'ui-legacy';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import TextareaField from '#/components/form/textarea-field';
@@ -19,16 +18,15 @@ import { useRules } from '#/hooks/master-data/use-rules';
 import { classNames } from '#/utils/class-names';
 import { slug } from '#/utils/slug';
 import { trimProps } from '#/utils/trim-props';
-import { SelectField } from 'ui-legacy';
 
-const initialFormState: ChampionshipRules = {
+const initialFormState: RuleSet = {
   id: '',
   name: '',
   description: '',
   tipRuleId: tipRuleDescriptions[0].id,
   matchRuleId: matchRuleDescriptions[0].id,
   roundRuleId: roundRuleDescriptions[0].id,
-  extraQuestionRuleId: extraQuestionRuleDescriptions[0].id,
+  extraQuestionsRuleId: extraQuestionRuleDescriptions[0].id,
 };
 
 export default function RulesView() {
@@ -40,7 +38,7 @@ export default function RulesView() {
     reset,
     setValue,
     formState: { dirtyFields, errors },
-  } = useForm<ChampionshipRules>({
+  } = useForm<RuleSet>({
     defaultValues: initialFormState,
   });
 
@@ -48,7 +46,7 @@ export default function RulesView() {
   const [isFormOpen, setFormOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
-  function beginEdit(rules: ChampionshipRules) {
+  function beginEdit(rules: RuleSet) {
     reset(rules);
     setEditMode(true);
     setFormOpen(true);
@@ -60,7 +58,7 @@ export default function RulesView() {
     setFormOpen(false);
   }
 
-  async function saveRules(rules: ChampionshipRules) {
+  async function saveRules(rules: RuleSet) {
     trimProps(rules);
 
     if (!editMode) {
@@ -88,13 +86,13 @@ export default function RulesView() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-semibold">Regelwerke</h2>
+      <h2 className="font-semibold text-2xl">Regelwerke</h2>
       <div className="mt-5">
-        <div className="shadow-sm rounded-md bg-white">
+        <div className="rounded-md bg-white shadow-sm">
           <button
             type="button"
             onClick={() => setFormOpen(!isFormOpen)}
-            className="w-full flex items-center justify-between px-4 py-2 font-semibold"
+            className="flex w-full items-center justify-between px-4 py-2 font-semibold"
           >
             <span>{editMode ? 'Regelwerk bearbeiten' : 'Neues Regelwerk'}</span>
             <ChevronDownIcon
@@ -166,12 +164,12 @@ export default function RulesView() {
                   />
                   <SelectField
                     control={control}
-                    name="extraQuestionRuleId"
+                    name="extraQuestionsRuleId"
                     label="Zusatzfragen"
                     options={extraQuestionRuleDescriptions}
                   />
                 </div>
-                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
+                <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button onClick={endEdit}>Abbrechen</Button>
                   <Button primary type="submit">
                     Speichern
@@ -189,13 +187,13 @@ export default function RulesView() {
               <tr>
                 <th
                   scope="col"
-                  className="pl-4 pr-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="py-3.5 pr-3 pl-4 text-left font-semibold text-gray-900 text-sm"
                 >
                   Name
                 </th>
                 <th
                   scope="col"
-                  className="hidden sm:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="hidden px-3 py-3.5 text-left font-semibold text-gray-900 text-sm sm:table-cell"
                 >
                   Kennung
                 </th>
@@ -207,13 +205,13 @@ export default function RulesView() {
             <tbody className="divide-y divide-gray-200 bg-white pr-1">
               {rules.map((rules) => (
                 <tr key={rules.id}>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="whitespace-nowrap px-3 py-4 text-gray-500 text-sm">
                     {rules.name}
                   </td>
-                  <td className="hidden sm:table-cell text-ellipsis px-3 py-4 text-sm text-gray-500">
+                  <td className="hidden text-ellipsis px-3 py-4 text-gray-500 text-sm sm:table-cell">
                     {rules.description}
                   </td>
-                  <td className="text-right pr-3">
+                  <td className="pr-3 text-right">
                     <Button onClick={() => beginEdit(rules)}>
                       <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
                     </Button>

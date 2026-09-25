@@ -1,9 +1,9 @@
 import {
-  type ChampionshipRules,
   calculateMatchResults,
   createEntityWithGeneratedId,
   type Match,
   type Round,
+  type RuleSet,
   updateEntity,
 } from 'lib';
 import { useCurrentDataStore } from '#/state/current-data-store';
@@ -40,9 +40,7 @@ export function useMatches() {
     const { match: updatedMatch, tips: updatedTips } = calculateMatchResults(
       { ...match, result },
       matchTips,
-      rules.find(
-        (r) => r.id === currentChampionship?.rulesId,
-      ) as ChampionshipRules,
+      rules.find((r) => r.id === currentChampionship?.rulesId) as RuleSet,
       { isDoubleRound: round.isDoubleRound },
     );
     await Promise.all([
