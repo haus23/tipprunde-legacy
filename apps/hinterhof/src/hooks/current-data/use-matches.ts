@@ -47,6 +47,7 @@ export function useMatches() {
       updateMatch(updatedMatch),
       ...updatedTips.filter((t, ix) => t !== matchTips[ix]).map(updateTip),
     ]);
+    return { match: updatedMatch, tips: updatedTips };
   };
 
   return { matches, createMatch, updateMatch, updateMatchResult };

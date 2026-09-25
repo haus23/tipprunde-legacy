@@ -1,15 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Button, Card, TextField, classNames } from 'ui-legacy';
-
 import type { Team } from 'lib';
-
+import { useEffect, useMemo, useState } from 'react';
+import { useFieldArray, useForm } from 'react-hook-form';
+import { Button, Card, classNames, TextField } from 'ui-legacy';
 import AppCard from '#/components/layout/app-card';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRanking } from '#/hooks/current-data/use-ranking';
 import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useTeams } from '#/hooks/master-data/use-teams';
 import { notify } from '#/utils/notify';
-import { useFieldArray, useForm } from 'react-hook-form';
 
 type ResultsFormType = {
   results: { matchId: string; result: string }[];
@@ -23,11 +21,9 @@ export default function ResultsView() {
   const { matches, updateMatchResult } = useMatches();
 
   const fixtures = useMemo(() => {
-    const teamsHash = teams.reduce(
-      // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
-      (hash, team) => ({ ...hash, [team.id]: team }),
-      {} as Record<string, Team>,
-    );
+    const teamsHash = Object.fromEntries(
+      teams.map((team) => [team.id, team]),
+    ) as Record<string, Team>;
     return matches.map((m) => ({
       ...m,
       hometeam: teamsHash[m.hometeamId],
@@ -58,32 +54,38 @@ export default function ResultsView() {
 
   async function saveAndCalculate(data: ResultsFormType) {
     if (dirtyFields.results) {
-      const updateOperations = dirtyFields.results.reduce((promises, _, ix) => {
-        const updates = data.results[ix];
-        promises.push(updateMatchResult(matches[ix], updates.result));
-        return promises;
-      }, [] as Promise<void>[]);
-      await notify(
+      const updateOperations = data.results.flatMap((updates, ix) =>
+        dirtyFields.results?.[ix]?.result
+          ? [updateMatchResult(matches[ix], updates.result)]
+          : [],
+      );
+      const calculations = await notify(
         Promise.all(updateOperations),
         'Ergebnisse gespeichert und berechnet',
       );
-      await notify(calculateRanking(), 'Tabelle neu berechnet');
+      await notify(
+        calculateRanking(calculations.flatMap(({ tips }) => tips)),
+        'Tabelle neu berechnet',
+      );
     }
   }
 
   async function calculateCurrentRanking() {
-    await notify(
+    const calculations = await notify(
       Promise.all(matches.map((m) => updateMatchResult(m, m.result))),
       'Alle Spiele neu berechnet.',
     );
-    await notify(calculateRanking(), 'Tabelle neu berechnet');
+    await notify(
+      calculateRanking(calculations.flatMap(({ tips }) => tips)),
+      'Tabelle neu berechnet',
+    );
   }
 
   return (
     <div className="mt-5 space-y-8">
       <div>
         <Card>
-          <div className="flex items-center border-b border-gray-200 font-semibold px-2 sm:px-4 gap-x-4 sm:gap-x-8">
+          <div className="flex items-center gap-x-4 border-gray-200 border-b px-2 font-semibold sm:gap-x-8 sm:px-4">
             <span>Runde</span>
             <nav
               className="-mb-px flex items-center justify-around"
@@ -97,8 +99,8 @@ export default function ResultsView() {
                   className={classNames(
                     round === currentRound
                       ? 'border-indigo-500 text-indigo-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                    'whitespace-nowrap py-4 px-4 md:px-6 border-b-2 font-medium text-sm',
+                      : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
+                    'whitespace-nowrap border-b-2 px-4 py-4 font-medium text-sm md:px-6',
                   )}
                 >
                   {round.nr}
@@ -106,7 +108,7 @@ export default function ResultsView() {
               ))}
             </nav>
           </div>
-          <div className="py-4 px-4 flex items-center justify-end gap-x-8">
+          <div className="flex items-center justify-end gap-x-8 px-4 py-4">
             <Button
               type="button"
               primary={true}
@@ -132,19 +134,19 @@ export default function ResultsView() {
                 <tr>
                   <th
                     scope="col"
-                    className="pl-4 pr-2 py-3.5 w-12 text-right text-sm font-semibold text-gray-900"
+                    className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-gray-900 text-sm"
                   >
                     Nr
                   </th>
                   <th
                     scope="col"
-                    className="px-2 py-3.5 text-left text-sm font-semibold text-gray-900 "
+                    className="px-2 py-3.5 text-left font-semibold text-gray-900 text-sm"
                   >
                     Spiel
                   </th>
                   <th
                     scope="col"
-                    className="py-3.5 pl-2 pr-4 text-sm font-semibold text-gray-900 sm:pr-6 lg:pr-8"
+                    className="py-3.5 pr-4 pl-2 font-semibold text-gray-900 text-sm sm:pr-6 lg:pr-8"
                   >
                     Ergebnis
                   </th>
@@ -154,10 +156,10 @@ export default function ResultsView() {
                 {fields.map((field, ix) =>
                   fixtures[ix].roundId === currentRound.id ? (
                     <tr key={field.id}>
-                      <td className="whitespace-nowrap text-right pl-4 pr-2 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-gray-500 text-sm">
                         {fixtures[ix].nr}
                       </td>
-                      <td className="whitespace-nowrap py-4 px-2 text-sm text-gray-500">
+                      <td className="whitespace-nowrap px-2 py-4 text-gray-500 text-sm">
                         <span className="hidden lg:inline">
                           {`${fixtures[ix].hometeam?.name || ''} - ${
                             fixtures[ix].awayteam?.name || ''
@@ -169,7 +171,7 @@ export default function ResultsView() {
                           }`.replace(/^ - $/, '')}
                         </span>
                       </td>
-                      <td className="w-20 pl-2 pr-4 sm:pr-6 lg:pr-8">
+                      <td className="w-20 pr-4 pl-2 sm:pr-6 lg:pr-8">
                         <TextField
                           control={control}
                           name={`results.${ix}.result`}

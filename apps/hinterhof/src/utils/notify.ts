@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 
-export function notify(promise: Promise<unknown>, successMsg: string) {
+export function notify<T>(promise: Promise<T>, successMsg: string) {
   return toast.promise(promise, {
     loading: 'Speichern ...',
     success: successMsg,
