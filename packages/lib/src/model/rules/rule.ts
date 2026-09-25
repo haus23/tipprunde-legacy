@@ -1,5 +1,1 @@
-export type Rule = {
-  id: string;
-  name: string;
-  description?: string;
-};
+export type { RuleDefinition as Rule } from '@haus23/tipprunde-model';
