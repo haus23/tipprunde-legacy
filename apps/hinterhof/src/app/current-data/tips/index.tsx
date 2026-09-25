@@ -89,37 +89,67 @@ export default function TipsView() {
     reset({ tips: tipsByPlayer });
   }, [matches, player, tips, reset]);
 
-  const saveResults = (data: TipsFormProps) => {
-    const saveOperations = matches.reduce((promises, m, ix) => {
-      if (m.roundId === currentRound.id && dirtyFields.tips?.at(ix)) {
-        const t = data.tips[ix];
-        const tip: Omit<Tip, 'id'> = {
-          playerId: player.id,
-          matchId: m.id,
-          tip: t.tip.trim(),
-          joker: t.joker,
-        };
-        if (t.tipId) {
-          promises.push(updateTip({ ...tip, id: t.tipId }));
-        } else {
-          promises.push(createTip(tip));
-        }
+  const saveResults = async (data: TipsFormProps) => {
+    const saveOperations = matches.flatMap((match, index) => {
+      const dirtyTip = dirtyFields.tips?.[index];
+      if (
+        match.roundId !== currentRound.id ||
+        (!dirtyTip?.tip && !dirtyTip?.joker)
+      ) {
+        return [];
       }
-      return promises;
-    }, [] as Promise<void>[]);
 
-    notify(
+      const formTip = data.tips[index];
+      const tip: Omit<Tip, 'id'> = {
+        playerId: player.id,
+        matchId: match.id,
+        tip: formTip.tip.trim(),
+        joker: formTip.joker,
+      };
+      return [
+        formTip.tipId
+          ? updateTip({ ...tip, id: formTip.tipId })
+          : createTip(tip),
+      ];
+    });
+
+    const savedTips = await notify(
       Promise.all(saveOperations),
       `Tipps für ${player.name} gespeichert.`,
+    );
+    const affectedMatchIds = new Set(savedTips.map((tip) => tip.matchId));
+    const affectedMatches = matches.filter(
+      (match) => affectedMatchIds.has(match.id) && match.result.length > 0,
+    );
+
+    if (affectedMatches.length === 0) return;
+
+    const calculations = await notify(
+      Promise.all(
+        affectedMatches.map((match) =>
+          updateMatchResult(match, match.result, savedTips),
+        ),
+      ),
+      'Betroffene Spiele neu berechnet.',
+    );
+    await notify(
+      calculateRanking([
+        ...savedTips,
+        ...calculations.flatMap(({ tips }) => tips),
+      ]),
+      'Tabelle neu berechnet',
     );
   };
 
   async function calculateCurrentRanking() {
-    await notify(
+    const calculations = await notify(
       Promise.all(matches.map((m) => updateMatchResult(m, m.result))),
       'Alle Spiele neu berechnet.',
     );
-    await notify(calculateRanking(), 'Tabelle neu berechnet');
+    await notify(
+      calculateRanking(calculations.flatMap(({ tips }) => tips)),
+      'Tabelle neu berechnet',
+    );
   }
 
   const { fields } = useFieldArray({ control, name: 'tips' });

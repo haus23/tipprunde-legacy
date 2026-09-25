@@ -12,7 +12,12 @@ export function useTips() {
       tip,
     );
 
-  const updateTip = async (tip: Tip) =>
-    updateEntity<Tip>(`championships/${currentChampionship?.id}/tips`, tip);
+  const updateTip = async (tip: Tip) => {
+    await updateEntity<Tip>(
+      `championships/${currentChampionship?.id}/tips`,
+      tip,
+    );
+    return tip;
+  };
   return { tips, createTip, updateTip };
 }

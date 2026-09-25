@@ -4,6 +4,7 @@ import {
   type Match,
   type Round,
   type RuleSet,
+  type Tip,
   updateEntity,
 } from 'lib';
 import { useCurrentDataStore } from '#/state/current-data-store';
@@ -33,8 +34,16 @@ export function useMatches() {
       match,
     );
 
-  const updateMatchResult = async (match: Match, result: string) => {
-    const matchTips = tips.filter((t) => t.matchId === match.id);
+  const updateMatchResult = async (
+    match: Match,
+    result: string,
+    tipUpdates: readonly Tip[] = [],
+  ) => {
+    const tipsById = new Map(tips.map((tip) => [tip.id, tip]));
+    for (const tip of tipUpdates) tipsById.set(tip.id, tip);
+    const matchTips = [...tipsById.values()].filter(
+      (tip) => tip.matchId === match.id,
+    );
     const round = rounds.find((r) => r.id === match.roundId) as Round;
 
     const { match: updatedMatch, tips: updatedTips } = calculateMatchResults(

@@ -32,10 +32,12 @@ export const createEntity = async <T extends BaseModel>(
 export const createEntityWithGeneratedId = async <T extends BaseModel>(
   path: string,
   entity: Omit<T, 'id'>,
-): Promise<void> => {
+): Promise<T> => {
   const entityRef: DocumentReference<T> = doc(
     collection(db, path),
   ).withConverter(baseModelConverter<T>());
 
-  await setDoc(entityRef, { id: entityRef.id, ...entity } as T);
+  const createdEntity = { id: entityRef.id, ...entity } as T;
+  await setDoc(entityRef, createdEntity);
+  return createdEntity;
 };
