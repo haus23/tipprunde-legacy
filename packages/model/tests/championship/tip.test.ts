@@ -22,9 +22,9 @@ it('allows a computed lonely-hit flag', () => {
   );
 });
 
-it('requires all original tip fields', () => {
+it('allows points to be absent before evaluation', () => {
   const { points: _, ...incompleteTip } = tip;
-  expect(v.safeParse(TipSchema, incompleteTip).success).toBe(false);
+  expect(v.parse(TipSchema, incompleteTip)).toEqual(incompleteTip);
 });
 
 it('rejects invalid document references', () => {

@@ -7,7 +7,7 @@ export const TipSchema = v.object({
   id: DocumentIdSchema,
   tip: ResultSchema,
   joker: v.boolean(),
-  points: v.pipe(v.number(), v.minValue(0)),
+  points: v.optional(v.pipe(v.number(), v.minValue(0))),
   lonelyHit: v.optional(v.boolean()),
   matchId: DocumentIdSchema,
   playerId: DocumentIdSchema,

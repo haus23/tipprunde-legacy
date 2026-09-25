@@ -93,7 +93,6 @@ export default function MatchesView() {
         awayteamId: matchData.awayteamId,
         roundId: currentRound.id,
         result: '',
-        points: 0,
       };
       await notify(createMatch(match), `Spiel ${match.nr} hinzugefügt.`);
       reset({ ...initialFormValues, date: match.date, nr: ++nr });

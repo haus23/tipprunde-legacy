@@ -18,7 +18,6 @@ it('normalizes fields missing from older or unplayed matches', () => {
     ...mock,
     date: '',
     result: '',
-    points: 0,
     leagueId: '',
     hometeamId: '',
     awayteamId: '',

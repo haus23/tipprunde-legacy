@@ -28,14 +28,22 @@ export function calculateTipResult(
     tip = tipWithoutLonelyHit;
   }
 
-  let points = 0;
-
   // Empty tip with joker?
   if (tip.tip.length === 0 && tip.joker) {
     tip = { ...tip, joker: false };
   }
 
-  if (tip.tip.length > 0 && result.length > 0) {
+  if (result.length === 0) {
+    if (typeof tip.points !== 'undefined') {
+      const { points: _, ...tipWithoutPoints } = tip;
+      tip = tipWithoutPoints;
+    }
+    return tip;
+  }
+
+  let points = 0;
+
+  if (tip.tip.length > 0) {
     const tipGoals = toGoalTuple(tip.tip);
     const resultGoals = toGoalTuple(result);
     const tipToto = toTotoResult(tipGoals);

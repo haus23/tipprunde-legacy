@@ -46,6 +46,25 @@ function makeMatchMock(result: string, points = -1): Match {
 
 const tipStrings = ['2:1', '3:1', '4:1', '2:2', '0:3', '5:0', '3:2'];
 
+test('entfernt Auswertungen, wenn das Ergebnis gelöscht wird', () => {
+  const match = makeMatchMock('', 7);
+  const tips = [makeTipMock('2:1', false, 3, true)];
+
+  const result = calculateMatchResults(match, tips, {
+    id: 'alles-auf-anfang',
+    name: 'Alles auf Anfang',
+    description: 'Ein einfaches Regelwerk.',
+    tipRuleId: 'drei-oder-ein-punkt-joker-verdoppelt',
+    matchRuleId: 'alleiniger-treffer-drei-punkte',
+    roundRuleId: 'keine-besonderheiten',
+    extraQuestionsRuleId: 'keine-zusatzfragen',
+  });
+
+  expect(result.match.points).toBeUndefined();
+  expect(result.tips[0].points).toBeUndefined();
+  expect(result.tips[0].lonelyHit).toBeUndefined();
+});
+
 describe(`Spielberechnung nach Regeln: ${matchRules[0].name}`, () => {
   const rules: RuleSet = {
     id: '',

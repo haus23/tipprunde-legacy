@@ -14,7 +14,7 @@ export const MatchSchema = v.object({
   nr: v.pipe(v.number(), v.integer(), v.minValue(1)),
   date: v.optional(MatchDateSchema, ''),
   result: v.optional(ResultSchema, ''),
-  points: v.optional(v.pipe(v.number(), v.minValue(0)), 0),
+  points: v.optional(v.pipe(v.number(), v.minValue(0))),
   roundId: DocumentIdSchema,
   leagueId: OptionalSlugReferenceSchema,
   hometeamId: OptionalSlugReferenceSchema,

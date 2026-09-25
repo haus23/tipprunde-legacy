@@ -129,10 +129,10 @@ describe(`Tippberechnung nach Regeln: ${tipRules[0].name}`, () => {
     expect(calculatedTip).not.toBe(tip);
   });
 
-  test('nullt die Punkte bei leerem Match', () => {
+  test('entfernt die Auswertung bei leerem Ergebnis', () => {
     const tip = makeTipMock('2:1', false, 3);
     const calculatedTip = calculateTipResult(tip, '', ruleId);
-    expect(calculatedTip.points).toBe(0);
+    expect(calculatedTip.points).toBeUndefined();
     expect(calculatedTip).not.toBe(tip);
   });
 });
@@ -190,10 +190,10 @@ describe(`Tippberechnung nach Regeln: ${tipRules[1].name}`, () => {
     expect(calculatedTip).not.toBe(tip);
   });
 
-  test('nullt die Punkte bei leerem Match', () => {
+  test('entfernt die Auswertung bei leerem Ergebnis', () => {
     const tip = makeTipMock('2:1', false, 3);
     const calculatedTip = calculateTipResult(tip, '', ruleId);
-    expect(calculatedTip.points).toBe(0);
+    expect(calculatedTip.points).toBeUndefined();
     expect(calculatedTip).not.toBe(tip);
   });
 });

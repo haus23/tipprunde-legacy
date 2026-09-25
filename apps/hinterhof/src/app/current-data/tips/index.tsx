@@ -98,7 +98,6 @@ export default function TipsView() {
           matchId: m.id,
           tip: t.tip.trim(),
           joker: t.joker,
-          points: 0,
         };
         if (t.tipId) {
           promises.push(updateTip({ ...tip, id: t.tipId }));
