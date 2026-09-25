@@ -1,7 +1,7 @@
 import * as v from 'valibot';
 
+import { TipSchema } from '../../../../championship/tip';
 import { ResultSchema } from '../../../../primitives';
-import { TipSchema } from '../../entity/championship/tip';
 import { IdSchema } from '../../id';
 
 export const CurrentTipsSchema = v.array(

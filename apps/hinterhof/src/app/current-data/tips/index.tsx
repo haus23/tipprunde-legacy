@@ -15,7 +15,7 @@ import { usePlayers } from '#/hooks/master-data/use-players';
 import { useTeams } from '#/hooks/master-data/use-teams';
 import { notify } from '#/utils/notify';
 
-type TipData = { id: string; tip: string; joker: boolean };
+type TipData = { tipId?: string; tip: string; joker: boolean };
 
 type TipsFormProps = {
   tips: TipData[];
@@ -66,7 +66,7 @@ export default function TipsView() {
     formState: { dirtyFields },
   } = useForm<TipsFormProps>({
     defaultValues: {
-      tips: new Array(matches.length).fill({ id: '', tip: '', joker: false }),
+      tips: new Array(matches.length).fill({ tip: '', joker: false }),
     },
   });
 
@@ -80,9 +80,9 @@ export default function TipsView() {
       );
       let tipFormData: TipData;
       if (t) {
-        tipFormData = { id: t.id, tip: t.tip, joker: t.joker };
+        tipFormData = { tipId: t.id, tip: t.tip, joker: t.joker };
       } else {
-        tipFormData = { id: '', tip: '', joker: false };
+        tipFormData = { tip: '', joker: false };
       }
       return tipFormData;
     });
@@ -93,16 +93,15 @@ export default function TipsView() {
     const saveOperations = matches.reduce((promises, m, ix) => {
       if (m.roundId === currentRound.id && dirtyFields.tips?.at(ix)) {
         const t = data.tips[ix];
-        const tip: Tip = {
-          id: t.id,
+        const tip: Omit<Tip, 'id'> = {
           playerId: player.id,
           matchId: m.id,
           tip: t.tip.trim(),
           joker: t.joker,
           points: 0,
         };
-        if (tip.id) {
-          promises.push(updateTip(tip));
+        if (t.tipId) {
+          promises.push(updateTip({ ...tip, id: t.tipId }));
         } else {
           promises.push(createTip(tip));
         }

@@ -1,6 +1,6 @@
 import * as v from 'valibot';
 
-import { TipSchema } from '../../entity/championship/tip';
+import { TipSchema } from '../../../../championship/tip';
 import { IdSchema } from '../../id';
 
 export const PlayerTipsSchema = v.object({

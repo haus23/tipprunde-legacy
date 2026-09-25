@@ -14,9 +14,9 @@ function makeTipMock(
   lonelyHit?: boolean,
 ): Tip {
   const newTip: Tip = {
-    id: '',
-    playerId: '',
-    matchId: '',
+    id: '5RXTmIjsZkx47sjrOAvA',
+    playerId: 'wK2mJ7QpL9xR4sT8vN3b',
+    matchId: 'nC8vB4mQ2xL7sR5tK9pD',
     tip,
     joker,
     points,

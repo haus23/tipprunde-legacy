@@ -6,13 +6,11 @@ export function useTips() {
   const { currentChampionship } = useCurrentChampionship();
   const tips = useCurrentDataStore((state) => state.tips);
 
-  const createTip = async (tip: Tip) => {
-    const { id: _, ...newTip } = tip;
-    return createEntityWithGeneratedId<Tip>(
+  const createTip = async (tip: Omit<Tip, 'id'>) =>
+    createEntityWithGeneratedId<Tip>(
       `championships/${currentChampionship?.id}/tips`,
-      newTip,
+      tip,
     );
-  };
 
   const updateTip = async (tip: Tip) =>
     updateEntity<Tip>(`championships/${currentChampionship?.id}/tips`, tip);
