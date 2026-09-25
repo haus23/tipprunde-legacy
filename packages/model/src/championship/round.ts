@@ -1,14 +1,11 @@
 import * as v from 'valibot';
 
-import { IdSchema } from '../../id';
+import { DocumentIdSchema } from '../shared/document-id';
 
 export const RoundSchema = v.object({
-  id: IdSchema,
+  id: DocumentIdSchema,
   nr: v.pipe(v.number(), v.integer(), v.minValue(1)),
-  published: v.optional(v.boolean(), false),
-  tipsPublished: v.optional(v.boolean(), false),
   isDoubleRound: v.optional(v.boolean(), false),
-  completed: v.optional(v.boolean(), false),
 });
 
 export type RoundInput = v.InferInput<typeof RoundSchema>;

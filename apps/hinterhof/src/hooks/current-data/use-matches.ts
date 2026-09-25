@@ -2,6 +2,7 @@ import {
   type ChampionshipRules,
   calculateMatchResults,
   createEntity,
+  createEntityWithGeneratedId,
   type Match,
   type Round,
   updateEntity,
@@ -21,11 +22,13 @@ export function useMatches() {
 
   const matches = useCurrentDataStore((state) => state.matches);
 
-  const createMatch = async (match: Match) =>
-    createEntity<Match>(
-      `championships/${currentChampionship?.id}/matches`,
-      match,
-    );
+  const createMatch = async (match: Match) => {
+    const path = `championships/${currentChampionship?.id}/matches`;
+    if (match.id) return createEntity<Match>(path, match);
+
+    const { id: _, ...newMatch } = match;
+    return createEntityWithGeneratedId<Match>(path, newMatch);
+  };
 
   const updateMatch = async (match: Match) =>
     updateEntity<Match>(

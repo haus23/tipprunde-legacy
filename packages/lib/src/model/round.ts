@@ -1,10 +1,1 @@
-import type { BaseModel } from './base/model';
-
-export interface Round extends BaseModel {
-  id: string;
-  nr: number;
-  published: boolean;
-  completed: boolean;
-  tipsPublished: boolean;
-  isDoubleRound?: boolean;
-}
+export type { Round } from '@haus23/tipprunde-model';

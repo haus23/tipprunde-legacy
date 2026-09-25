@@ -17,7 +17,6 @@ import PlayersView from './app/master-data/players';
 import RulesView from './app/master-data/rules';
 import TeamsView from './app/master-data/teams';
 import ProfileView from './app/profile';
-import RefactorView from './app/refactor';
 import { useSessionStore } from './state/session-store';
 
 function ProtectedAppShell() {
@@ -57,7 +56,6 @@ const appRoutes: RouteObject[] = [
           { path: 'regelwerke', element: <RulesView /> },
         ],
       },
-      { path: 'refactor', element: <RefactorView /> },
       { path: 'profil', element: <ProfileView /> },
       { path: 'logout', element: <Logout /> },
     ],
