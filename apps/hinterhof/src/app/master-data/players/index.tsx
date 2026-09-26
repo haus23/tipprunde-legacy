@@ -8,8 +8,8 @@ import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
 import { usePlayers } from '#/hooks/master-data/use-players';
 import { classNames } from '#/utils/class-names';
-import { clearCache } from '#/utils/clear-cache';
 import { emailValidator } from '#/utils/email-validator';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { slug } from '#/utils/slug';
 import { trimProps } from '#/utils/trim-props';
 
@@ -50,22 +50,31 @@ export default function PlayersView() {
   async function savePlayer(player: Member) {
     trimProps(player);
     if (!editMode) {
-      await toast.promise(createPlayer(player), {
-        loading: 'Speichern',
-        success: `${player.name} angelegt.`,
-        error: 'Hopply, das hat nicht geklappt.',
-      });
+      await toast.promise(
+        createPlayer(player).then(() =>
+          invalidateCache([{ type: 'collection', name: 'accounts' }]),
+        ),
+        {
+          loading: 'Speichern',
+          success: `${player.name} angelegt.`,
+          error: 'Hopply, das hat nicht geklappt.',
+        },
+      );
       setFocus('name');
       reset();
     } else {
-      await toast.promise(updatePlayer(player), {
-        loading: 'Speichern',
-        success: `${player.name} geändert.`,
-        error: 'Hopply, das hat nicht geklappt.',
-      });
+      await toast.promise(
+        updatePlayer(player).then(() =>
+          invalidateCache([{ type: 'collection', name: 'accounts' }]),
+        ),
+        {
+          loading: 'Speichern',
+          success: `${player.name} geändert.`,
+          error: 'Hopply, das hat nicht geklappt.',
+        },
+      );
       endEdit();
     }
-    clearCache('accounts', 'Spielerdaten');
   }
 
   return (

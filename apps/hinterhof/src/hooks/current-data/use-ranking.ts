@@ -1,5 +1,5 @@
 import { calculateRanking as calculateRankingEntries, type Tip } from 'lib';
-import { clearCache } from '#/utils/clear-cache';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { useChampionshipPlayers } from './use-championship-players';
 import { useCurrentChampionship } from './use-current-championship';
 import { useTips } from './use-tips';
@@ -21,10 +21,11 @@ export function useRanking() {
     await Promise.all(
       ranking.map((entry) => updateChampionshipPlayer(entry.id, entry)),
     );
-    clearCache(
-      `${currentChampionship?.id}`,
-      currentChampionship?.name || 'aktuellen Stand',
-    );
+    if (currentChampionship) {
+      await invalidateCache([
+        { type: 'championship', id: currentChampionship.id },
+      ]);
+    }
   };
 
   return { calculateRanking };
