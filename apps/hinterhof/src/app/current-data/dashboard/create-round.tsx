@@ -2,19 +2,25 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Button, Card, ToggleField } from 'ui-legacy';
 
+import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useRounds } from '#/hooks/current-data/use-rounds';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
 export default function CreateRoundView() {
   const navigate = useNavigate();
+  const { currentChampionship } = useCurrentChampionship();
   const { rounds, createRound } = useRounds();
   const [doubleRound, setDoubleRound] = useState(false);
 
   const nr = useRef((rounds.at(-1)?.nr || 0) + 1);
 
   const create = async () => {
+    if (!currentChampionship) return;
     await notify(
-      createRound(nr.current, doubleRound),
+      createRound(nr.current, doubleRound).then(() =>
+        invalidateCache([{ type: 'championship', id: currentChampionship.id }]),
+      ),
       `Runde ${nr.current} angelegt`,
     );
     navigate('../spiele');

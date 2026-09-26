@@ -12,10 +12,12 @@ import {
 } from 'ui-legacy';
 
 import AppCard from '#/components/layout/app-card';
+import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useLeagues } from '#/hooks/master-data/use-leagues';
 import { useTeams } from '#/hooks/master-data/use-teams';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
 type MatchFormData = Omit<Match, 'id' | 'roundId' | 'result' | 'points'> & {
@@ -27,6 +29,7 @@ export default function MatchesView() {
   const { teams } = useTeams();
   const { rounds } = useRounds();
   const { matches, createMatch, updateMatch } = useMatches();
+  const { currentChampionship } = useCurrentChampionship();
 
   const leaguesHash = useMemo(
     () =>
@@ -75,12 +78,18 @@ export default function MatchesView() {
     useForm<MatchFormData>({ defaultValues: initialFormValues });
 
   async function saveMatch(matchData: MatchFormData) {
+    if (!currentChampionship) return;
+
     if (matchData.id) {
       const match = matches.find(({ id }) => id === matchData.id);
       if (!match) throw new Error(`Match ${matchData.id} not found`);
 
       await notify(
-        updateMatch({ ...match, ...matchData, id: matchData.id }),
+        updateMatch({ ...match, ...matchData, id: matchData.id }).then(() =>
+          invalidateCache([
+            { type: 'championship', id: currentChampionship.id },
+          ]),
+        ),
         `Spiel ${matchData.nr} geändert.`,
       );
       endEdit();
@@ -94,7 +103,14 @@ export default function MatchesView() {
         roundId: currentRound.id,
         result: '',
       };
-      await notify(createMatch(match), `Spiel ${match.nr} hinzugefügt.`);
+      await notify(
+        createMatch(match).then(() =>
+          invalidateCache([
+            { type: 'championship', id: currentChampionship.id },
+          ]),
+        ),
+        `Spiel ${match.nr} hinzugefügt.`,
+      );
       reset({ ...initialFormValues, date: match.date, nr: ++nr });
       setFocus('date', { shouldSelect: true });
     }

@@ -5,6 +5,7 @@ import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-pl
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useRecalculateChampionship } from '#/hooks/current-data/use-recalculate-championship';
 import { usePlayers } from '#/hooks/master-data/use-players';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
 export default function ChampionshipView() {
@@ -16,30 +17,42 @@ export default function ChampionshipView() {
   const { recalculateChampionship } = useRecalculateChampionship();
 
   function togglePublishedState() {
+    if (!currentChampionship) return;
     notify(
-      updateCurrentChampionship({ published: !currentChampionship?.published }),
+      updateCurrentChampionship({
+        published: !currentChampionship.published,
+      }).then(() => invalidateCache([{ type: 'championships' }])),
       `Turnier ${
-        currentChampionship?.published ? 'versteckt' : 'Veröffentlicht'
+        currentChampionship.published ? 'versteckt' : 'Veröffentlicht'
       }`,
     );
   }
 
   function toggleCompletedState() {
+    if (!currentChampionship) return;
     notify(
-      updateCurrentChampionship({ completed: !currentChampionship?.completed }),
+      updateCurrentChampionship({
+        completed: !currentChampionship.completed,
+      }).then(() =>
+        invalidateCache([
+          { type: 'championships' },
+          { type: 'championship', id: currentChampionship.id },
+        ]),
+      ),
       `Turnier ${
-        currentChampionship?.completed ? 'wieder geöffnet' : 'abgeschlossen'
+        currentChampionship.completed ? 'wieder geöffnet' : 'abgeschlossen'
       }`,
     );
   }
 
   function toggleExtraPointsPublishedState() {
+    if (!currentChampionship) return;
     notify(
       updateCurrentChampionship({
-        extraPointsPublished: !currentChampionship?.extraPointsPublished,
-      }),
+        extraPointsPublished: !currentChampionship.extraPointsPublished,
+      }).then(() => invalidateCache([{ type: 'championships' }])),
       `Zusatzpunkte ${
-        currentChampionship?.extraPointsPublished
+        currentChampionship.extraPointsPublished
           ? 'versteckt'
           : 'veröffentlicht'
       }`,
@@ -59,8 +72,14 @@ export default function ChampionshipView() {
 
   const hasRemainingPlayers = true;
 
-  function addPlayer(id: string) {
-    addChampionshipPlayer(id);
+  function addPlayer(id: string, name: string) {
+    if (!currentChampionship) return;
+    notify(
+      addChampionshipPlayer(id).then(() =>
+        invalidateCache([{ type: 'championship', id: currentChampionship.id }]),
+      ),
+      `${name} hinzugefügt.`,
+    );
   }
 
   function recalculate() {
@@ -131,7 +150,7 @@ export default function ChampionshipView() {
                     >
                       <button
                         type="button"
-                        onClick={() => addPlayer(p.id)}
+                        onClick={() => addPlayer(p.id, p.name)}
                         className="rounded-full bg-white p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       >
                         <PlusIcon className="h-4 w-4" />
