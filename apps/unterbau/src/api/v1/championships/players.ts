@@ -1,4 +1,4 @@
-import type { PlayerWithAccountInput } from '@haus23/tipprunde-model';
+import type { ChampionshipPlayersInput } from '@haus23/tipprunde-model';
 import type { Request, Response } from 'express';
 
 import { getAccounts } from '#app/lib/queries/accounts.ts';
@@ -23,8 +23,8 @@ export async function handler(req: Request, res: Response) {
     return {
       ...r,
       account,
-    } satisfies PlayerWithAccountInput;
-  });
+    };
+  }) satisfies ChampionshipPlayersInput | undefined;
 
   res.json(players);
 }

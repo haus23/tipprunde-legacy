@@ -1,8 +1,7 @@
-import type { PlayerWithAccount } from '@haus23/tipprunde-model';
-import type { ColumnDef } from '@tanstack/react-table';
-
+import type { ChampionshipPlayerWithAccount } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
+import type { ColumnDef } from '@tanstack/react-table';
 import { createColumnHelper } from '@tanstack/react-table';
 import { CalendarIcon } from 'lucide-react';
 import { Suspense, useMemo } from 'react';
@@ -20,7 +19,7 @@ export const Route = createFileRoute('/$turnier/')({
   component: RankingComponent,
 });
 
-const columnHelper = createColumnHelper<PlayerWithAccount>();
+const columnHelper = createColumnHelper<ChampionshipPlayerWithAccount>();
 
 function RankingComponent() {
   const championship = useChampionship();
@@ -66,7 +65,7 @@ function RankingComponent() {
       meta: {
         tdClasses: 'text-center tabular-nums',
       },
-      cell: (info) => (info.getValue() || '')
+      cell: (info) => info.getValue() || '',
     });
     const pointsColumn = columnHelper.accessor('totalPoints', {
       header: () => (
@@ -111,7 +110,7 @@ function RankingComponent() {
               currentTipsColumn,
             ]
           : [rankColumn, nameColumn, pointsColumn, currentTipsColumn]
-    ) as ColumnDef<PlayerWithAccount>[];
+    ) as ColumnDef<ChampionshipPlayerWithAccount>[];
   }, [championship]);
 
   return (

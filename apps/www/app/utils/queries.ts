@@ -1,12 +1,12 @@
 import {
   type Championship,
+  ChampionshipPlayersSchema,
   ChampionshipSchema,
   CurrentTipsSchema,
   MatchesSchema,
   MatchTipsSchema,
   MemberSchema,
   PlayerTipsSchema,
-  PlayerWithAccountSchema,
 } from '@haus23/tipprunde-model';
 import { queryOptions } from '@tanstack/react-query';
 import * as v from 'valibot';
@@ -40,7 +40,7 @@ async function fetchPlayers(championshipId: string) {
   const response = await fetch(
     `${baseUrl}/championships/${championshipId}/players`,
   );
-  return v.parse(v.array(PlayerWithAccountSchema), await response.json());
+  return v.parse(ChampionshipPlayersSchema, await response.json());
 }
 
 export const playersQuery = (championshipId: string) =>

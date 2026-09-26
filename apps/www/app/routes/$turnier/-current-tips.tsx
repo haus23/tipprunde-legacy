@@ -1,4 +1,4 @@
-import type { PlayerWithAccount } from '@haus23/tipprunde-model';
+import type { ChampionshipPlayerWithAccount } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { CalendarIcon } from 'lucide-react';
 import { Fragment } from 'react';
@@ -8,7 +8,11 @@ import { Popover } from '#/components/ui/popover';
 import { useChampionship } from '#/utils/app/championship';
 import { currentTipsQuery } from '#/utils/queries';
 
-export function CurrentTips({ player }: { player: PlayerWithAccount }) {
+export function CurrentTips({
+  player,
+}: {
+  player: ChampionshipPlayerWithAccount;
+}) {
   const championship = useChampionship();
   const { data: currentTips } = useSuspenseQuery(
     currentTipsQuery(championship),
