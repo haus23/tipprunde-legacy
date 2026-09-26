@@ -11,6 +11,7 @@ type RankingTip = Pick<Tip, 'playerId'> & Partial<Pick<Tip, 'points'>>;
 export function calculateRanking(
   players: readonly ChampionshipPlayer[],
   tips: readonly RankingTip[],
+  options: { includeExtraPoints: boolean },
 ): RankingEntry[] {
   const pointsByPlayer = new Map<string, number>();
 
@@ -24,11 +25,13 @@ export function calculateRanking(
   const ranking = players
     .map((player) => {
       const points = pointsByPlayer.get(player.id) ?? 0;
+      const totalPoints =
+        points + (options.includeExtraPoints ? player.extraPoints : 0);
       return {
         id: player.id,
         points,
         extraPoints: player.extraPoints,
-        totalPoints: points + player.extraPoints,
+        totalPoints,
         rank: 0,
       };
     })

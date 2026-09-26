@@ -3,6 +3,7 @@ import type { Member } from 'lib';
 import { Button, Card, classNames, ToggleField } from 'ui-legacy';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { useRanking } from '#/hooks/current-data/use-ranking';
 import { useRecalculateChampionship } from '#/hooks/current-data/use-recalculate-championship';
 import { usePlayers } from '#/hooks/master-data/use-players';
 import { invalidateCache } from '#/utils/invalidate-cache';
@@ -15,6 +16,7 @@ export default function ChampionshipView() {
   const { championshipPlayers, addChampionshipPlayer } =
     useChampionshipPlayers();
   const { recalculateChampionship } = useRecalculateChampionship();
+  const { calculateRanking } = useRanking();
 
   function togglePublishedState() {
     if (!currentChampionship) return;
@@ -47,10 +49,17 @@ export default function ChampionshipView() {
 
   function toggleExtraPointsPublishedState() {
     if (!currentChampionship) return;
+    const extraPointsPublished = !currentChampionship.extraPointsPublished;
+    const updatePublishingState = async () => {
+      await updateCurrentChampionship({ extraPointsPublished });
+      await calculateRanking({ includeExtraPoints: extraPointsPublished });
+      await invalidateCache([
+        { type: 'championships' },
+        { type: 'championship', id: currentChampionship.id },
+      ]);
+    };
     notify(
-      updateCurrentChampionship({
-        extraPointsPublished: !currentChampionship.extraPointsPublished,
-      }).then(() => invalidateCache([{ type: 'championships' }])),
+      updatePublishingState(),
       `Zusatzpunkte ${
         currentChampionship.extraPointsPublished
           ? 'versteckt'

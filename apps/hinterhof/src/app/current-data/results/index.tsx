@@ -3,10 +3,12 @@ import { useEffect, useMemo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Button, Card, classNames, TextField } from 'ui-legacy';
 import AppCard from '#/components/layout/app-card';
+import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRanking } from '#/hooks/current-data/use-ranking';
 import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useTeams } from '#/hooks/master-data/use-teams';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
 type ResultsFormType = {
@@ -19,6 +21,7 @@ export default function ResultsView() {
 
   const { teams } = useTeams();
   const { matches, updateMatchResult } = useMatches();
+  const { currentChampionship } = useCurrentChampionship();
 
   const fixtures = useMemo(() => {
     const teamsHash = Object.fromEntries(
@@ -53,21 +56,26 @@ export default function ResultsView() {
   const { calculateRanking } = useRanking();
 
   async function saveAndCalculate(data: ResultsFormType) {
-    if (dirtyFields.results) {
-      const updateOperations = data.results.flatMap((updates, ix) =>
-        dirtyFields.results?.[ix]?.result
-          ? [updateMatchResult(matches[ix], updates.result)]
-          : [],
-      );
-      const calculations = await notify(
-        Promise.all(updateOperations),
-        'Ergebnisse gespeichert und berechnet',
-      );
-      await notify(
-        calculateRanking(calculations.flatMap(({ tips }) => tips)),
-        'Tabelle neu berechnet',
-      );
-    }
+    if (!dirtyFields.results || !currentChampionship) return;
+
+    const updateOperations = data.results.flatMap((updates, ix) =>
+      dirtyFields.results?.[ix]?.result
+        ? [updateMatchResult(matches[ix], updates.result)]
+        : [],
+    );
+    const updateResults = async () => {
+      const calculations = await Promise.all(updateOperations);
+      await calculateRanking({
+        tips: calculations.flatMap(({ tips }) => tips),
+      });
+      await invalidateCache([
+        { type: 'championship', id: currentChampionship.id },
+      ]);
+    };
+    await notify(
+      updateResults(),
+      'Ergebnisse gespeichert und Tabelle neu berechnet',
+    );
   }
 
   return (

@@ -43,12 +43,16 @@ const players = [
 ] satisfies ChampionshipPlayer[];
 
 it('calculates points, totals and competition ranks', () => {
-  const ranking = calculateRanking(players, [
-    { playerId: 'player-one', points: 3 },
-    { playerId: 'player-two', points: 1 },
-    { playerId: 'player-two', points: 1 },
-    { playerId: 'player-three', points: 3 },
-  ]);
+  const ranking = calculateRanking(
+    players,
+    [
+      { playerId: 'player-one', points: 3 },
+      { playerId: 'player-two', points: 1 },
+      { playerId: 'player-two', points: 1 },
+      { playerId: 'player-three', points: 3 },
+    ],
+    { includeExtraPoints: true },
+  );
 
   expect(ranking).toEqual([
     { id: 'player-one', points: 3, extraPoints: 0, totalPoints: 3, rank: 1 },
@@ -65,13 +69,30 @@ it('calculates points, totals and competition ranks', () => {
 });
 
 it('treats missing tip points as not yet contributing to the ranking', () => {
-  const ranking = calculateRanking(players.slice(0, 2), [
-    { playerId: 'player-one' },
-    { playerId: 'player-two', points: 2 },
-  ]);
+  const ranking = calculateRanking(
+    players.slice(0, 2),
+    [{ playerId: 'player-one' }, { playerId: 'player-two', points: 2 }],
+    { includeExtraPoints: true },
+  );
 
   expect(ranking).toEqual([
     { id: 'player-two', points: 2, extraPoints: 1, totalPoints: 3, rank: 1 },
     { id: 'player-one', points: 0, extraPoints: 0, totalPoints: 0, rank: 2 },
+  ]);
+});
+
+it('excludes unpublished extra points from totals and ranks', () => {
+  const ranking = calculateRanking(
+    players.slice(0, 2),
+    [
+      { playerId: 'player-one', points: 2 },
+      { playerId: 'player-two', points: 2 },
+    ],
+    { includeExtraPoints: false },
+  );
+
+  expect(ranking).toEqual([
+    { id: 'player-one', points: 2, extraPoints: 0, totalPoints: 2, rank: 1 },
+    { id: 'player-two', points: 2, extraPoints: 1, totalPoints: 2, rank: 1 },
   ]);
 });

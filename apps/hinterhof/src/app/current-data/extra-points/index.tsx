@@ -3,8 +3,10 @@ import { useEffect, useMemo } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Button, Card, TextField } from 'ui-legacy';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
+import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useRanking } from '#/hooks/current-data/use-ranking';
 import { usePlayers } from '#/hooks/master-data/use-players';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
 type ExtraPointsFormType = {
@@ -13,8 +15,8 @@ type ExtraPointsFormType = {
 
 export default function ExtraPointsView() {
   const { players: masterPlayers } = usePlayers();
-  const { championshipPlayers, updateChampionshipPlayer } =
-    useChampionshipPlayers();
+  const { championshipPlayers } = useChampionshipPlayers();
+  const { currentChampionship } = useCurrentChampionship();
   const { calculateRanking } = useRanking();
 
   const players = useMemo(() => {
@@ -47,21 +49,23 @@ export default function ExtraPointsView() {
   const { fields } = useFieldArray({ control, name: 'extraPoints' });
 
   async function save(data: ExtraPointsFormType) {
-    console.log(data.extraPoints);
-    await notify(
-      Promise.all(
-        players.map((p, ix) =>
-          updateChampionshipPlayer(p.id, {
-            extraPoints: Number(data.extraPoints[ix].points),
-          }),
-        ),
-      ),
-      'Zusatzpunkte gespeichert',
-    );
-  }
+    if (!currentChampionship) return;
 
-  async function calculate() {
-    await notify(calculateRanking(), 'Tabelle neu berechnet');
+    const updatedPlayers = players.map((player, index) => ({
+      ...player,
+      extraPoints: Number(data.extraPoints[index].points),
+    }));
+    const saveExtraPoints = async () => {
+      await calculateRanking({ players: updatedPlayers });
+      await invalidateCache([
+        { type: 'championship', id: currentChampionship.id },
+      ]);
+    };
+
+    await notify(
+      saveExtraPoints(),
+      'Zusatzpunkte gespeichert und Tabelle neu berechnet',
+    );
   }
 
   return (
@@ -69,13 +73,6 @@ export default function ExtraPointsView() {
       <Card>
         <Card.Header>Zusatzpunkte</Card.Header>
         <div className="flex items-center justify-end gap-x-8 px-4 py-4">
-          <Button
-            type="button"
-            primary={true}
-            onClick={handleSubmit(calculate)}
-          >
-            Tabelle berechnen
-          </Button>
           <Button type="button" primary={true} onClick={handleSubmit(save)}>
             Speichern
           </Button>

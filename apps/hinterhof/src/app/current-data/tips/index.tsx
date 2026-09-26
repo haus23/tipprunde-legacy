@@ -7,12 +7,14 @@ import { Button, Card, classNames, Select, TextField } from 'ui-legacy';
 import AppCard from '#/components/layout/app-card';
 
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
+import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRanking } from '#/hooks/current-data/use-ranking';
 import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useTips } from '#/hooks/current-data/use-tips';
 import { usePlayers } from '#/hooks/master-data/use-players';
 import { useTeams } from '#/hooks/master-data/use-teams';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
 type TipData = { tipId?: string; tip: string; joker: boolean };
@@ -27,6 +29,7 @@ export default function TipsView() {
 
   const { players: masterPlayers } = usePlayers();
   const { championshipPlayers } = useChampionshipPlayers();
+  const { currentChampionship } = useCurrentChampionship();
   const { calculateRanking } = useRanking();
 
   const players = useMemo(() => {
@@ -90,6 +93,8 @@ export default function TipsView() {
   }, [matches, player, tips, reset]);
 
   const saveResults = async (data: TipsFormProps) => {
+    if (!currentChampionship) return;
+
     const saveOperations = matches.flatMap((match, index) => {
       const dirtyTip = dirtyFields.tips?.[index];
       if (
@@ -113,31 +118,33 @@ export default function TipsView() {
       ];
     });
 
-    const savedTips = await notify(
-      Promise.all(saveOperations),
-      `Tipps für ${player.name} gespeichert.`,
-    );
-    const affectedMatchIds = new Set(savedTips.map((tip) => tip.matchId));
-    const affectedMatches = matches.filter(
-      (match) => affectedMatchIds.has(match.id) && match.result.length > 0,
-    );
+    const saveTips = async () => {
+      const savedTips = await Promise.all(saveOperations);
+      const affectedMatchIds = new Set(savedTips.map((tip) => tip.matchId));
+      const affectedMatches = matches.filter(
+        (match) => affectedMatchIds.has(match.id) && match.result.length > 0,
+      );
 
-    if (affectedMatches.length === 0) return;
+      if (affectedMatches.length > 0) {
+        const calculations = await Promise.all(
+          affectedMatches.map((match) =>
+            updateMatchResult(match, match.result, savedTips),
+          ),
+        );
+        await calculateRanking({
+          tips: [...savedTips, ...calculations.flatMap(({ tips }) => tips)],
+        });
+      }
 
-    const calculations = await notify(
-      Promise.all(
-        affectedMatches.map((match) =>
-          updateMatchResult(match, match.result, savedTips),
-        ),
-      ),
-      'Betroffene Spiele neu berechnet.',
-    );
+      await invalidateCache([
+        { type: 'championship', id: currentChampionship.id },
+      ]);
+    };
+
     await notify(
-      calculateRanking([
-        ...savedTips,
-        ...calculations.flatMap(({ tips }) => tips),
-      ]),
-      'Tabelle neu berechnet',
+      saveTips(),
+      `Tipps für ${player.name} gespeichert.`,
+      'Tipps werden gespeichert und berechnet ...',
     );
   };
 
