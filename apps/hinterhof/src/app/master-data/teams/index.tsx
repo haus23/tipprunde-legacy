@@ -1,16 +1,16 @@
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
-
+import type { Team } from 'lib';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
 import { useTeams } from '#/hooks/master-data/use-teams';
 import { classNames } from '#/utils/class-names';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { slug } from '#/utils/slug';
 import { trimProps } from '#/utils/trim-props';
-import type { Team } from 'lib';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 
 export default function TeamsView() {
   const {
@@ -56,18 +56,28 @@ export default function TeamsView() {
   async function saveTeam(team: Team) {
     trimProps(team);
     if (editMode) {
-      await toast.promise(updateTeam(team), {
-        loading: 'Speichern',
-        success: `${team.name} geändert.`,
-        error: 'Hopply, das hat nicht geklappt.',
-      });
+      await toast.promise(
+        updateTeam(team).then(() =>
+          invalidateCache([{ type: 'collection', name: 'teams' }]),
+        ),
+        {
+          loading: 'Speichern',
+          success: `${team.name} geändert.`,
+          error: 'Hopply, das hat nicht geklappt.',
+        },
+      );
       endEdit();
     } else {
-      await toast.promise(createTeam(team), {
-        loading: 'Speichern',
-        success: `${team.name} angelegt`,
-        error: 'Hopply, das hat nicht geklappt.',
-      });
+      await toast.promise(
+        createTeam(team).then(() =>
+          invalidateCache([{ type: 'collection', name: 'teams' }]),
+        ),
+        {
+          loading: 'Speichern',
+          success: `${team.name} angelegt`,
+          error: 'Hopply, das hat nicht geklappt.',
+        },
+      );
       setFocus('name');
       reset();
     }
@@ -75,13 +85,13 @@ export default function TeamsView() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-semibold">Mannschaften / Vereine</h2>
+      <h2 className="font-semibold text-2xl">Mannschaften / Vereine</h2>
       <div className="mt-5">
-        <div className="shadow-sm sm:overflow-hidden rounded-md bg-white">
+        <div className="rounded-md bg-white shadow-sm sm:overflow-hidden">
           <button
             type="button"
             onClick={() => setFormOpen(!isFormOpen)}
-            className="w-full flex items-center justify-between px-4 py-2 font-semibold"
+            className="flex w-full items-center justify-between px-4 py-2 font-semibold"
           >
             <span>
               {editMode ? 'Mannschaft bearbeiten' : 'Neue Mannschaft'}
@@ -144,7 +154,7 @@ export default function TeamsView() {
                     })}
                   />
                 </div>
-                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
+                <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button onClick={endEdit}>Abbrechen</Button>
                   <Button primary={true} type="submit">
                     Speichern
@@ -162,13 +172,13 @@ export default function TeamsView() {
               <tr>
                 <th
                   scope="col"
-                  className="pl-4 pr-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="py-3.5 pr-3 pl-4 text-left font-semibold text-gray-900 text-sm"
                 >
                   Name
                 </th>
                 <th
                   scope="col"
-                  className="hidden sm:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="hidden px-3 py-3.5 text-left font-semibold text-gray-900 text-sm sm:table-cell"
                 >
                   Kürzel
                 </th>
@@ -180,13 +190,13 @@ export default function TeamsView() {
             <tbody className="divide-y divide-gray-200 bg-white pr-1">
               {teams.map((team) => (
                 <tr key={team.id}>
-                  <td className="whitespace-nowrap pl-4 pr-3 py-4 text-sm text-gray-500">
+                  <td className="whitespace-nowrap py-4 pr-3 pl-4 text-gray-500 text-sm">
                     {team.name}
                   </td>
-                  <td className="hidden sm:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="hidden whitespace-nowrap px-3 py-4 text-gray-500 text-sm sm:table-cell">
                     {team.shortname}
                   </td>
-                  <td className="text-right pr-3">
+                  <td className="pr-3 text-right">
                     <Button onClick={() => beginEdit(team)}>
                       <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
                     </Button>

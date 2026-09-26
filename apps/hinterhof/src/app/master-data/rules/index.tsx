@@ -16,6 +16,7 @@ import TextareaField from '#/components/form/textarea-field';
 import AppCard from '#/components/layout/app-card';
 import { useRules } from '#/hooks/master-data/use-rules';
 import { classNames } from '#/utils/class-names';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { slug } from '#/utils/slug';
 import { trimProps } from '#/utils/trim-props';
 
@@ -62,17 +63,27 @@ export default function RulesView() {
     trimProps(rules);
 
     if (!editMode) {
-      await toast.promise(createRules(rules), {
-        loading: 'Speichern',
-        success: `${rules.name} angelegt.`,
-        error: 'Hopply, das hat nicht geklappt.',
-      });
+      await toast.promise(
+        createRules(rules).then(() =>
+          invalidateCache([{ type: 'collection', name: 'rules' }]),
+        ),
+        {
+          loading: 'Speichern',
+          success: `${rules.name} angelegt.`,
+          error: 'Hopply, das hat nicht geklappt.',
+        },
+      );
     } else {
-      await toast.promise(updateRules(rules), {
-        loading: 'Speichern',
-        success: `${rules.name} geändert.`,
-        error: 'Hopply, das hat nicht geklappt.',
-      });
+      await toast.promise(
+        updateRules(rules).then(() =>
+          invalidateCache([{ type: 'collection', name: 'rules' }]),
+        ),
+        {
+          loading: 'Speichern',
+          success: `${rules.name} geändert.`,
+          error: 'Hopply, das hat nicht geklappt.',
+        },
+      );
     }
     endEdit();
   }

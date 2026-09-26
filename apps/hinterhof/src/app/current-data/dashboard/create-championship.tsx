@@ -8,6 +8,7 @@ import TextField from '#/components/form/text-field';
 
 import { useChampionships } from '#/hooks/master-data/use-championships';
 import { useRules } from '#/hooks/master-data/use-rules';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
 export default function CreateChampionshipView() {
@@ -57,7 +58,9 @@ export default function CreateChampionshipView() {
     championship,
   ) => {
     await notify(
-      createChampionship(championship),
+      createChampionship(championship).then(() =>
+        invalidateCache([{ type: 'championships' }]),
+      ),
       `${championship.name} angelegt.`,
     );
     navigate('../turnier');

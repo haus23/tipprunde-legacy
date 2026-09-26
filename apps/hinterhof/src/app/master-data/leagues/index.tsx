@@ -1,17 +1,17 @@
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 
 import type { League } from 'lib';
-
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
 import { useLeagues } from '#/hooks/master-data/use-leagues';
 import { classNames } from '#/utils/class-names';
+import { invalidateCache } from '#/utils/invalidate-cache';
 import { slug } from '#/utils/slug';
 import { trimProps } from '#/utils/trim-props';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 
 export default function LeaguesView() {
   const {
@@ -56,18 +56,28 @@ export default function LeaguesView() {
   async function saveLeague(league: League) {
     trimProps(league);
     if (editMode) {
-      await toast.promise(updateLeague(league), {
-        loading: 'Speichern',
-        success: `${league.name} geändert.`,
-        error: 'Hopply, das hat nicht geklappt.',
-      });
+      await toast.promise(
+        updateLeague(league).then(() =>
+          invalidateCache([{ type: 'collection', name: 'leagues' }]),
+        ),
+        {
+          loading: 'Speichern',
+          success: `${league.name} geändert.`,
+          error: 'Hopply, das hat nicht geklappt.',
+        },
+      );
       endEdit();
     } else {
-      await toast.promise(createLeague(league), {
-        loading: 'Speichern',
-        success: `${league.name} angelegt`,
-        error: 'Hopply, das hat nicht geklappt.',
-      });
+      await toast.promise(
+        createLeague(league).then(() =>
+          invalidateCache([{ type: 'collection', name: 'leagues' }]),
+        ),
+        {
+          loading: 'Speichern',
+          success: `${league.name} angelegt`,
+          error: 'Hopply, das hat nicht geklappt.',
+        },
+      );
       setFocus('name');
       reset();
     }
@@ -75,13 +85,13 @@ export default function LeaguesView() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-semibold">Ligen / Runden</h2>
+      <h2 className="font-semibold text-2xl">Ligen / Runden</h2>
       <div className="mt-5">
-        <div className="shadow-sm sm:overflow-hidden rounded-md bg-white">
+        <div className="rounded-md bg-white shadow-sm sm:overflow-hidden">
           <button
             type="button"
             onClick={() => setFormOpen(!isFormOpen)}
-            className="w-full flex items-center justify-between px-4 py-2 font-semibold"
+            className="flex w-full items-center justify-between px-4 py-2 font-semibold"
           >
             <span>{editMode ? 'Liga bearbeiten' : 'Neue Liga'}</span>
             <ChevronDownIcon
@@ -142,7 +152,7 @@ export default function LeaguesView() {
                     })}
                   />
                 </div>
-                <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
+                <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button onClick={endEdit}>Abbrechen</Button>
                   <Button primary={true} type="submit">
                     Speichern
@@ -160,13 +170,13 @@ export default function LeaguesView() {
               <tr>
                 <th
                   scope="col"
-                  className="pl-4 pr-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="py-3.5 pr-3 pl-4 text-left font-semibold text-gray-900 text-sm"
                 >
                   Name
                 </th>
                 <th
                   scope="col"
-                  className="hidden sm:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  className="hidden px-3 py-3.5 text-left font-semibold text-gray-900 text-sm sm:table-cell"
                 >
                   Kürzel
                 </th>
@@ -178,13 +188,13 @@ export default function LeaguesView() {
             <tbody className="divide-y divide-gray-200 bg-white pr-1">
               {leagues.map((league) => (
                 <tr key={league.id}>
-                  <td className="whitespace-nowrap pl-4 pr-3 py-4 text-sm text-gray-500">
+                  <td className="whitespace-nowrap py-4 pr-3 pl-4 text-gray-500 text-sm">
                     {league.name}
                   </td>
-                  <td className="hidden sm:table-cell whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <td className="hidden whitespace-nowrap px-3 py-4 text-gray-500 text-sm sm:table-cell">
                     {league.shortname}
                   </td>
-                  <td className="text-right pr-3">
+                  <td className="pr-3 text-right">
                     <Button onClick={() => beginEdit(league)}>
                       <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
                     </Button>
