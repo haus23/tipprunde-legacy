@@ -19,8 +19,6 @@ catalogs:
 autoDedupe: true
 
 allowBuilds:
-  '@biomejs/biome': true
   '@firebase/util': true
-  '@tailwindcss/oxide': true
   esbuild: true
   protobufjs: true
