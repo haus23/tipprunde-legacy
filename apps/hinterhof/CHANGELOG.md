@@ -1,5 +1,31 @@
 # hinterhof
 
+## 0.8.2
+
+### Patch Changes
+
+- [`b739a42`](https://github.com/haus23/tipprunde-legacy/commit/b739a427f908ba1178d600f94ff96dc3d0514418) - Move the full tournament recalculation repair action to the tournament page.
+
+- [`1c0c67f`](https://github.com/haus23/tipprunde-legacy/commit/1c0c67faed91c20d413ef546f19627c93535d1b5) - Invalidate API caches after saving master data and creating tournaments.
+
+- [`0de95eb`](https://github.com/haus23/tipprunde-legacy/commit/0de95ebe3925749cf366811b22d1a13ebc2d2799) - Invalidate tournament caches once after complete scoring pipelines and include extra points only after publication.
+
+- [`90f50e9`](https://github.com/haus23/tipprunde-legacy/commit/90f50e9cf7d3469e99a5f81eca6d26a5bb0be2df) - Invalidate API caches after updating tournament settings, participants, rounds, and matches.
+
+- [`26a6592`](https://github.com/haus23/tipprunde-legacy/commit/26a6592342090176dc89c067dd40ee278ff48b7f) - Use semantic cache invalidation and propagate failed API responses to the calling UI flow.
+
+- [`f1f5e12`](https://github.com/haus23/tipprunde-legacy/commit/f1f5e1234bcfb6166568e303ce4b4fd14514d7ea) - Calculate tournament rankings with tested shared domain logic.
+
+- [`5b752e8`](https://github.com/haus23/tipprunde-legacy/commit/5b752e8e3a880fffec66447d02f0acc1812749c0) - Recalculate only changed match results and rank the immediately updated tips.
+
+- [`8e5294f`](https://github.com/haus23/tipprunde-legacy/commit/8e5294fa51703dedd53adcd1724005f4ad79a183) - Use one canonical rule set model and migrate the extra questions rule reference to its plural field name.
+
+- [`2de518d`](https://github.com/haus23/tipprunde-legacy/commit/2de518d225e93d9e65677e8ad762900dd2998349) - Recalculate affected matches and the current ranking when existing results have corrected tips.
+
+- [`0bc82d7`](https://github.com/haus23/tipprunde-legacy/commit/0bc82d7b85a64bb3faf7d95b800eb916348eaf9b) - Keep match and tip points absent until a result has been evaluated.
+
+- Update the shared administration library to 0.6.5.
+
 ## 0.8.1
 
 ### Patch Changes

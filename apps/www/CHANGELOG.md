@@ -1,5 +1,13 @@
 # www
 
+## 0.22.22
+
+### Patch Changes
+
+- [`3bed527`](https://github.com/haus23/tipprunde-legacy/commit/3bed52735c97e6ddfa524ba2295f6231e25cc16b) - Show zero points for evaluated matches without a submitted tip.
+
+- Update the shared domain model to 0.22.2.
+
 ## 0.22.21
 
 ### Patch Changes

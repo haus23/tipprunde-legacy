@@ -1,5 +1,17 @@
 # unterbau
 
+## 0.24.0
+
+### Minor Changes
+
+- [`55301ca`](https://github.com/haus23/tipprunde-legacy/commit/55301ca66febd6cba4261e633a0661d715ff6d59) - Add exact semantic cache invalidation targets alongside the legacy endpoint.
+
+### Patch Changes
+
+- [`8e5294f`](https://github.com/haus23/tipprunde-legacy/commit/8e5294fa51703dedd53adcd1724005f4ad79a183) - Use one canonical rule set model and migrate the extra questions rule reference to its plural field name.
+
+- Update the shared domain model to 0.22.2.
+
 ## 0.23.1
 
 ### Patch Changes

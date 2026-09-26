@@ -1,5 +1,21 @@
 # model
 
+## 0.22.2
+
+### Patch Changes
+
+- [`0de95eb`](https://github.com/haus23/tipprunde-legacy/commit/0de95ebe3925749cf366811b22d1a13ebc2d2799) - Include extra points in tournament rankings only after publication.
+
+- [`f1f5e12`](https://github.com/haus23/tipprunde-legacy/commit/f1f5e1234bcfb6166568e303ce4b4fd14514d7ea) - Calculate tournament rankings with tested shared domain logic.
+
+- [`8e5294f`](https://github.com/haus23/tipprunde-legacy/commit/8e5294fa51703dedd53adcd1724005f4ad79a183) - Use one canonical rule set model and migrate the extra questions rule reference to its plural field name.
+
+- [`a2dc8df`](https://github.com/haus23/tipprunde-legacy/commit/a2dc8dfbc797282402f8159b46ba465bdbaeedd7) - Use one canonical set of static rule definitions across the model and administration library.
+
+- [`4b8a103`](https://github.com/haus23/tipprunde-legacy/commit/4b8a1035d33884f5cee17fba02ace7ddc597d22e) - Move the Firebase-independent tip and match scoring logic into the shared domain model.
+
+- [`0bc82d7`](https://github.com/haus23/tipprunde-legacy/commit/0bc82d7b85a64bb3faf7d95b800eb916348eaf9b) - Keep match and tip points absent until a result has been evaluated.
+
 ## 0.22.1
 
 ### Patch Changes
