@@ -7,7 +7,7 @@ import { CheckIcon } from 'lucide-react';
 import { useMemo } from 'react';
 import type { Key } from 'react-aria-components';
 import * as v from 'valibot';
-
+import { EmptyView } from '#/components/app/empty-view';
 import {
   Accordion,
   AccordionDetails,
@@ -38,22 +38,42 @@ export const Route = createFileRoute('/$turnier/spieler')({
     const player =
       players.find((p) => p.account.id === accountId) || players[0];
 
-    queryClient.prefetchQuery(
-      playerTipsQuery(championship.id, player.account.id),
-    );
+    if (player) {
+      queryClient.prefetchQuery(
+        playerTipsQuery(championship.id, player.account.id),
+      );
+    }
     return { player };
   },
-  component: PlayersComponent,
+  component: PlayersRoute,
 });
 
 const columnHelper = createColumnHelper<Match>();
 
-function PlayersComponent() {
+function PlayersRoute() {
+  const { player } = Route.useLoaderData();
+
+  if (!player) {
+    return (
+      <div>
+        <h1 className="mx-2 font-medium text-xl sm:mx-0">Mitspieler</h1>
+        <EmptyView>Noch keine Mitspieler.</EmptyView>
+      </div>
+    );
+  }
+
+  return <PlayersComponent player={player} />;
+}
+
+function PlayersComponent({
+  player,
+}: {
+  player: NonNullable<ReturnType<typeof Route.useLoaderData>['player']>;
+}) {
   const championship = useChampionship();
   const navigate = useNavigate({ from: Route.fullPath });
   const { data: players } = useSuspenseQuery(playersQuery(championship.id));
 
-  const { player } = Route.useLoaderData();
   function selectAccount(key: Key) {
     navigate({ search: (prev) => ({ ...prev, name: String(key) }) });
   }
@@ -188,102 +208,112 @@ function PlayersComponent() {
           )}
         </Select>
       </div>
-      <div className="mx-2 mt-6 text-sm md:mx-auto">
-        <div className="flex w-full items-center justify-between">
-          {player.rank === undefined ? (
-            <p className="font-medium text-gray-11">Noch keine Wertung</p>
-          ) : (
-            <div className="space-y-1">
-              <p className="font-medium text-gray-11 text-xs uppercase">
-                Platz
-              </p>
-              <p className="text-center font-semibold">{`${player.rank}.`}</p>
-            </div>
-          )}
-          <div className="space-y-1">
-            <p className="px-4 font-medium text-gray-11 text-xs uppercase">
-              Spiele
-            </p>
-            <p className="text-center font-semibold">{`${playedMatches} (${matches.length})`}</p>
-          </div>
-          {player.rank !== undefined && (
-            <>
-              <div className="space-y-1">
-                <p className="font-medium text-gray-11 text-xs uppercase">
-                  Punkte
-                </p>
-                <p className="text-center font-semibold">{player.points}</p>
-              </div>
-              <div className="space-y-1">
-                <p className="font-medium text-gray-11 text-xs uppercase">
-                  Schnitt
-                </p>
-                <p className="text-center font-semibold">
-                  {playedMatches && player.points !== undefined
-                    ? (player.points / playedMatches).toFixed(2)
-                    : ''}
-                </p>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-      <AccordionGroup
-        allowsMultipleExpanded
-        defaultExpandedKeys={[currentRoundId]}
-        className="mt-6 flex flex-col gap-y-1"
-      >
-        {rounds.map((r) => {
-          // Calculate round helpder data
-          const matchesInRound = matches.filter((m) => m.roundId === r.id);
-          const playedMatchesInRoundCount = matchesInRound.filter(
-            (m) => m.result,
-          ).length;
-          const pointsInRound = matchesInRound.reduce(
-            (sum, cur) => sum + (tips.tips[cur.id]?.points ?? 0),
-            0,
-          );
-
-          return (
-            <Accordion id={r.id} key={r.id}>
-              <AccordionSummary className="flex grow items-center justify-between tabular-nums">
-                <div className="justify-self-start">
-                  Runde <span>{r.nr}</span>
+      {matches.length === 0 ? (
+        <EmptyView>Noch keine Spiele.</EmptyView>
+      ) : (
+        <>
+          <div className="mx-2 mt-6 text-sm md:mx-auto">
+            <div className="flex w-full items-center justify-between">
+              {player.rank === undefined ? (
+                <p className="font-medium text-gray-11">Noch keine Wertung</p>
+              ) : (
+                <div className="space-y-1">
+                  <p className="font-medium text-gray-11 text-xs uppercase">
+                    Platz
+                  </p>
+                  <p className="text-center font-semibold">{`${player.rank}.`}</p>
                 </div>
-                {playedMatchesInRoundCount > 0 && (
-                  <div className="flex gap-x-3 text-sm sm:gap-x-4">
-                    <div className="flex justify-end gap-x-1.5 sm:gap-x-2">
-                      <span className="hidden sm:block">Spiele:</span>
-                      <span className="sm:hidden">Sp:</span>
-                      {playedMatchesInRoundCount}
-                    </div>
-                    <div className="flex justify-end gap-x-1.5 sm:gap-x-2">
-                      <span className="hidden sm:block">Punkte:</span>
-                      <span className="sm:hidden">Pkt:</span>
-                      {pointsInRound}
-                    </div>
-                    <div className="flex justify-end gap-x-1.5 sm:gap-x-2">
-                      <span>&#x2300;</span>
-                      {(pointsInRound / playedMatchesInRoundCount).toFixed(2)}
-                    </div>
+              )}
+              <div className="space-y-1">
+                <p className="px-4 font-medium text-gray-11 text-xs uppercase">
+                  Spiele
+                </p>
+                <p className="text-center font-semibold">{`${playedMatches} (${matches.length})`}</p>
+              </div>
+              {player.rank !== undefined && (
+                <>
+                  <div className="space-y-1">
+                    <p className="font-medium text-gray-11 text-xs uppercase">
+                      Punkte
+                    </p>
+                    <p className="text-center font-semibold">{player.points}</p>
                   </div>
-                )}
-              </AccordionSummary>
-              <AccordionDetails className="animated-height">
-                <DataTable
-                  className="py-1 text-sm"
-                  columns={columns}
-                  data={matchesInRound}
-                  getRowClasses={(row) => {
-                    const tip = tips.tips[row.original.id];
-                    return tip?.joker || tip?.lonelyHit ? 'bg-accent-4' : '';
-                  }}
-                />
-              </AccordionDetails>
-            </Accordion>
-          );
-        })}
-      </AccordionGroup>
+                  <div className="space-y-1">
+                    <p className="font-medium text-gray-11 text-xs uppercase">
+                      Schnitt
+                    </p>
+                    <p className="text-center font-semibold">
+                      {playedMatches && player.points !== undefined
+                        ? (player.points / playedMatches).toFixed(2)
+                        : ''}
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+          <AccordionGroup
+            allowsMultipleExpanded
+            defaultExpandedKeys={[currentRoundId]}
+            className="mt-6 flex flex-col gap-y-1"
+          >
+            {rounds.map((r) => {
+              // Calculate round helpder data
+              const matchesInRound = matches.filter((m) => m.roundId === r.id);
+              const playedMatchesInRoundCount = matchesInRound.filter(
+                (m) => m.result,
+              ).length;
+              const pointsInRound = matchesInRound.reduce(
+                (sum, cur) => sum + (tips.tips[cur.id]?.points ?? 0),
+                0,
+              );
+
+              return (
+                <Accordion id={r.id} key={r.id}>
+                  <AccordionSummary className="flex grow items-center justify-between tabular-nums">
+                    <div className="justify-self-start">
+                      Runde <span>{r.nr}</span>
+                    </div>
+                    {playedMatchesInRoundCount > 0 && (
+                      <div className="flex gap-x-3 text-sm sm:gap-x-4">
+                        <div className="flex justify-end gap-x-1.5 sm:gap-x-2">
+                          <span className="hidden sm:block">Spiele:</span>
+                          <span className="sm:hidden">Sp:</span>
+                          {playedMatchesInRoundCount}
+                        </div>
+                        <div className="flex justify-end gap-x-1.5 sm:gap-x-2">
+                          <span className="hidden sm:block">Punkte:</span>
+                          <span className="sm:hidden">Pkt:</span>
+                          {pointsInRound}
+                        </div>
+                        <div className="flex justify-end gap-x-1.5 sm:gap-x-2">
+                          <span>&#x2300;</span>
+                          {(pointsInRound / playedMatchesInRoundCount).toFixed(
+                            2,
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </AccordionSummary>
+                  <AccordionDetails className="animated-height">
+                    <DataTable
+                      className="py-1 text-sm"
+                      columns={columns}
+                      data={matchesInRound}
+                      getRowClasses={(row) => {
+                        const tip = tips.tips[row.original.id];
+                        return tip?.joker || tip?.lonelyHit
+                          ? 'bg-accent-4'
+                          : '';
+                      }}
+                    />
+                  </AccordionDetails>
+                </Accordion>
+              );
+            })}
+          </AccordionGroup>
+        </>
+      )}
     </div>
   );
 }

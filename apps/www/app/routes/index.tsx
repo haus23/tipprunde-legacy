@@ -7,6 +7,7 @@ export const Route = createFileRoute('/')({
       params: { turnier: championships[0].id },
       mask: {
         to: '/',
+        unmaskOnReload: true,
       },
     });
   },

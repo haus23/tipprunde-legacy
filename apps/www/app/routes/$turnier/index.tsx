@@ -6,6 +6,7 @@ import { createColumnHelper } from '@tanstack/react-table';
 import { CalendarIcon } from 'lucide-react';
 import { Suspense, useMemo } from 'react';
 
+import { EmptyView } from '#/components/app/empty-view';
 import { DataTable } from '#/components/ui/data-table';
 import { Link } from '#/components/ui/link';
 import { useChampionship } from '#/utils/app/championship';
@@ -24,7 +25,9 @@ const columnHelper = createColumnHelper<ChampionshipPlayerWithAccount>();
 function RankingComponent() {
   const championship = useChampionship();
   const ranking = useSuspenseQuery(playersQuery(championship.id));
+  const currentTips = useSuspenseQuery(currentTipsQuery(championship));
   const hasRanking = ranking.data.some((player) => player.rank !== undefined);
+  const hasCurrentTips = currentTips.data.length > 0;
 
   const columns = useMemo(() => {
     const rankColumn = columnHelper.accessor('rank', {
@@ -104,7 +107,9 @@ function RankingComponent() {
 
     if (!hasRanking) {
       return (
-        championship.completed ? [nameColumn] : [nameColumn, currentTipsColumn]
+        championship.completed || !hasCurrentTips
+          ? [nameColumn]
+          : [nameColumn, currentTipsColumn]
       ) as ColumnDef<ChampionshipPlayerWithAccount>[];
     }
 
@@ -121,7 +126,7 @@ function RankingComponent() {
             ]
           : [rankColumn, nameColumn, pointsColumn, currentTipsColumn]
     ) as ColumnDef<ChampionshipPlayerWithAccount>[];
-  }, [championship, hasRanking]);
+  }, [championship, hasCurrentTips, hasRanking]);
 
   return (
     <div>
@@ -138,7 +143,11 @@ function RankingComponent() {
         </h1>
       </div>
       <div className="mt-4">
-        <DataTable columns={columns} data={ranking.data} />
+        {ranking.data.length > 0 ? (
+          <DataTable columns={columns} data={ranking.data} />
+        ) : (
+          <EmptyView>Noch keine Mitspieler.</EmptyView>
+        )}
       </div>
     </div>
   );

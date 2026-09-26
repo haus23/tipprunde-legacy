@@ -12,6 +12,7 @@ import {
 import { useMemo } from 'react';
 import { Collection, type Key } from 'react-aria-components';
 import * as v from 'valibot';
+import { EmptyView } from '#/components/app/empty-view';
 import { Button } from '#/components/ui/button';
 import { DataTable } from '#/components/ui/data-table';
 import { Header } from '#/components/ui/header';
@@ -40,19 +41,39 @@ export const Route = createFileRoute('/$turnier/spiel')({
         .findLast((m) => m.result) ||
       matches.matches[0];
 
-    queryClient.prefetchQuery(matchTipsQuery(championship.id, match.nr));
+    if (match) {
+      queryClient.prefetchQuery(matchTipsQuery(championship.id, match.nr));
+    }
     return { match };
   },
-  component: MatchesComponent,
+  component: MatchesRoute,
 });
 
 const columnHelper = createColumnHelper<Tip>();
 
-function MatchesComponent() {
+function MatchesRoute() {
+  const { match } = Route.useLoaderData();
+
+  if (!match) {
+    return (
+      <div>
+        <h1 className="mx-2 font-medium text-xl sm:mx-0">Spiele</h1>
+        <EmptyView>Noch keine Spiele.</EmptyView>
+      </div>
+    );
+  }
+
+  return <MatchesComponent match={match} />;
+}
+
+function MatchesComponent({
+  match,
+}: {
+  match: NonNullable<ReturnType<typeof Route.useLoaderData>['match']>;
+}) {
   const championship = useChampionship();
   const navigate = useNavigate({ from: Route.fullPath });
 
-  const { match } = Route.useLoaderData();
   function selectMatch(key: Key) {
     navigate({ search: (prev) => ({ ...prev, nr: Number(key) }) });
   }
