@@ -1,4 +1,4 @@
-import type { MatchesInput } from '@haus23/tipprunde-model';
+import type { ChampionshipMatchesInput } from '@haus23/tipprunde-model';
 import type { Request, Response } from 'express';
 
 import { getMatches } from '#app/lib/queries/championships/matches.ts';
@@ -37,5 +37,5 @@ export async function handler(req: Request, res: Response) {
     matches: matches,
     leagues: Object.fromEntries(currentLeagues),
     teams: Object.fromEntries(currentTeams),
-  } satisfies MatchesInput);
+  } satisfies ChampionshipMatchesInput);
 }

@@ -1,4 +1,4 @@
-import type { CurrentTipsInput } from '@haus23/tipprunde-model';
+import type { ChampionshipCurrentTipsInput } from '@haus23/tipprunde-model';
 import type { Request, Response } from 'express';
 
 import { getMatches } from '#app/lib/queries/championships/matches.ts';
@@ -51,7 +51,7 @@ export async function handler(req: Request, res: Response) {
       result: match.result,
       tips: Object.fromEntries(tipsPerMatch),
     };
-  }) satisfies CurrentTipsInput;
+  }) satisfies ChampionshipCurrentTipsInput;
 
   res.json(currentTips);
 }

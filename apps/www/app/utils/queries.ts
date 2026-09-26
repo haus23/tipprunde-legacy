@@ -1,12 +1,12 @@
 import {
   type Championship,
+  ChampionshipCurrentTipsSchema,
+  ChampionshipMatchesSchema,
+  ChampionshipMatchTipsSchema,
   ChampionshipPlayersSchema,
+  ChampionshipPlayerTipsSchema,
   ChampionshipSchema,
-  CurrentTipsSchema,
-  MatchesSchema,
-  MatchTipsSchema,
   MemberSchema,
-  PlayerTipsSchema,
 } from '@haus23/tipprunde-model';
 import { queryOptions } from '@tanstack/react-query';
 import * as v from 'valibot';
@@ -53,7 +53,7 @@ async function fetchMatches(championshipId: string) {
   const response = await fetch(
     `${baseUrl}/championships/${championshipId}/matches`,
   );
-  return v.parse(MatchesSchema, await response.json());
+  return v.parse(ChampionshipMatchesSchema, await response.json());
 }
 
 export const matchesQuery = (championshipId: string) =>
@@ -67,7 +67,7 @@ async function fetchPlayerTips(championshipId: string, accountId: string) {
 
   const url = `${baseUrl}/championships/${championshipId}/player-tips${query}`;
   const response = await fetch(url);
-  return v.parse(PlayerTipsSchema, await response.json());
+  return v.parse(ChampionshipPlayerTipsSchema, await response.json());
 }
 
 export const playerTipsQuery = (championshipId: string, accountId: string) =>
@@ -81,7 +81,7 @@ async function fetchMatchTips(championshipId: string, nr: number | null) {
 
   const url = `${baseUrl}/championships/${championshipId}/match-tips${query}`;
   const response = await fetch(url);
-  return v.parse(MatchTipsSchema, await response.json());
+  return v.parse(ChampionshipMatchTipsSchema, await response.json());
 }
 
 export const matchTipsQuery = (championshipId: string, nr: number | null) =>
@@ -96,7 +96,7 @@ async function fetchCurrentTips(championship: Championship) {
   const response = await fetch(
     `${baseUrl}/championships/${championship.id}/current-tips`,
   );
-  return v.parse(CurrentTipsSchema, await response.json());
+  return v.parse(ChampionshipCurrentTipsSchema, await response.json());
 }
 
 export const currentTipsQuery = (championship: Championship) =>
