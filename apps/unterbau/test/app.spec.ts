@@ -23,7 +23,10 @@ it('returns a custom JSON response for unknown routes', async () => {
 });
 
 it('does not expose error details in the response', async () => {
-  const response = await request(app).post('/api/cache').send({});
+  const response = await request(app)
+    .post('/api/cache/invalidate')
+    .set('Content-Type', 'application/json')
+    .send('{');
   expect(response.status).toBe(500);
   expect(response.body).toEqual({
     status: 500,
