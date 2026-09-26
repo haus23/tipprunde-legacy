@@ -19,7 +19,7 @@ function makeTipMock(
     points,
   };
 
-  if (lonelyHit) {
+  if (typeof lonelyHit !== 'undefined') {
     newTip.lonelyHit = lonelyHit;
   }
 
@@ -117,6 +117,13 @@ describe(`Tippberechnung nach Regeln: ${tipRules[0].name}`, () => {
 
   test('setzt alle extra Flags zurück', () => {
     const tip = makeTipMock('2:1', true, 6, true);
+    const calculatedTip = calculateTipResult(tip, '2:1', ruleId);
+    expect(calculatedTip.lonelyHit).toBeUndefined();
+    expect(calculatedTip).not.toBe(tip);
+  });
+
+  test('entfernt historisch gespeicherte false lonelyHit Flags', () => {
+    const tip = makeTipMock('2:1', false, 3, false);
     const calculatedTip = calculateTipResult(tip, '2:1', ruleId);
     expect(calculatedTip.lonelyHit).toBeUndefined();
     expect(calculatedTip).not.toBe(tip);
