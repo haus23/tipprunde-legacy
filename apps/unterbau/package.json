@@ -17,7 +17,7 @@
     "@haus23/tipprunde-model": "workspace:^",
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "firebase-admin": "^14.4.0",
+    "firebase-admin": "^14.5.0",
     "unstorage": "^1.17.5",
     "valibot": "catalog:validation"
   },
@@ -27,9 +27,9 @@
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.2",
     "@types/supertest": "^7.2.1",
-    "supertest": "^7.2.2",
-    "tsx": "^4.19.3",
+    "supertest": "^7.3.0",
+    "tsx": "^4.23.15",
     "typescript": "catalog:",
-    "vitest": "^5.0.1"
+    "vitest": "^5.0.2"
   }
 }
