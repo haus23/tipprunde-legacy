@@ -13,10 +13,15 @@ export const getPlayers = cachedFunction(
 
     const snapshot = await db
       .collection(`championships/${championship.id}/players`)
-      .orderBy('rank', 'asc')
       .withConverter(modelConverter<ChampionshipPlayerInput>())
       .get();
-    return snapshot.docs.map((doc) => doc.data());
+    return snapshot.docs
+      .map((doc) => doc.data())
+      .sort(
+        (a, b) =>
+          (a.rank ?? Number.POSITIVE_INFINITY) -
+            (b.rank ?? Number.POSITIVE_INFINITY) || a.nr - b.nr,
+      );
   },
   {
     getBase: (championship) => (championship.completed ? 'archive' : ''),

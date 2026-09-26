@@ -24,15 +24,18 @@ const columnHelper = createColumnHelper<ChampionshipPlayerWithAccount>();
 function RankingComponent() {
   const championship = useChampionship();
   const ranking = useSuspenseQuery(playersQuery(championship.id));
+  const hasRanking = ranking.data.some((player) => player.rank !== undefined);
 
   const columns = useMemo(() => {
     const rankColumn = columnHelper.accessor('rank', {
       header: 'Platz',
       cell: ({ cell, table, row }) =>
-        cell.getValue() ===
-        (table.getCoreRowModel().rows[row.index - 1]?.original.rank || 0)
-          ? ''
-          : `${cell.getValue()}.`,
+        cell.getValue() === undefined
+          ? '–'
+          : cell.getValue() ===
+              (table.getCoreRowModel().rows[row.index - 1]?.original.rank || 0)
+            ? ''
+            : `${cell.getValue()}.`,
       meta: {
         cellClasses: 'text-right',
         tdClasses: 'tabular-nums',
@@ -81,6 +84,7 @@ function RankingComponent() {
       meta: {
         tdClasses: 'text-center tabular-nums',
       },
+      cell: (info) => info.getValue() ?? '',
     });
     const currentTipsColumn = columnHelper.display({
       id: 'current-tips',
@@ -98,6 +102,12 @@ function RankingComponent() {
       ),
     });
 
+    if (!hasRanking) {
+      return (
+        championship.completed ? [nameColumn] : [nameColumn, currentTipsColumn]
+      ) as ColumnDef<ChampionshipPlayerWithAccount>[];
+    }
+
     return (
       championship.completed
         ? [rankColumn, nameColumn, extraPointsColumn, pointsColumn]
@@ -111,7 +121,7 @@ function RankingComponent() {
             ]
           : [rankColumn, nameColumn, pointsColumn, currentTipsColumn]
     ) as ColumnDef<ChampionshipPlayerWithAccount>[];
-  }, [championship]);
+  }, [championship, hasRanking]);
 
   return (
     <div>
@@ -119,7 +129,11 @@ function RankingComponent() {
         <h1 className="font-medium text-xl">
           <span className="hidden md:inline">{championship.name} - </span>
           <span>
-            {championship.completed ? 'Abschlusstabelle' : 'Aktuelle Tabelle'}
+            {hasRanking
+              ? championship.completed
+                ? 'Abschlusstabelle'
+                : 'Aktuelle Tabelle'
+              : 'Mitspieler'}
           </span>
         </h1>
       </div>

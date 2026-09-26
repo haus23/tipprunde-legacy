@@ -1,12 +1,11 @@
 import type { Match } from '@haus23/tipprunde-model';
-import type { ColumnDef } from '@tanstack/react-table';
-import type { Key } from 'react-aria-components';
-
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import type { ColumnDef } from '@tanstack/react-table';
 import { createColumnHelper } from '@tanstack/react-table';
 import { CheckIcon } from 'lucide-react';
 import { useMemo } from 'react';
+import type { Key } from 'react-aria-components';
 import * as v from 'valibot';
 
 import {
@@ -22,7 +21,7 @@ import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
 import { useChampionship } from '#/utils/app/championship';
 import { formatDate } from '#/utils/misc';
-import { matchesQuery, playerTipsQuery, playersQuery } from '#/utils/queries';
+import { matchesQuery, playersQuery, playerTipsQuery } from '#/utils/queries';
 
 export const Route = createFileRoute('/$turnier/spieler')({
   validateSearch: v.object({
@@ -130,7 +129,7 @@ function PlayersComponent() {
               <>
                 <span>{tip?.tip}</span>
                 {(tip?.joker || tip?.lonelyHit) && (
-                  <span className="-right-2 -translate-y-1.5 absolute">
+                  <span className="absolute -right-2 -translate-y-1.5">
                     <Popover offset={4} triggerLabel="Zusatzinfos zum Tipp">
                       <div className="px-4 py-2">
                         {tip?.joker === true && <p>Joker</p>}
@@ -190,29 +189,43 @@ function PlayersComponent() {
         </Select>
       </div>
       <div className="mx-2 mt-6 text-sm md:mx-auto">
-        <div className="flex w-full justify-between">
-          <div className="space-y-1">
-            <p className="font-medium text-gray-11 text-xs uppercase">Platz</p>
-            <p className="text-center font-semibold">{`${player.rank}.`}</p>
-          </div>
+        <div className="flex w-full items-center justify-between">
+          {player.rank === undefined ? (
+            <p className="font-medium text-gray-11">Noch keine Wertung</p>
+          ) : (
+            <div className="space-y-1">
+              <p className="font-medium text-gray-11 text-xs uppercase">
+                Platz
+              </p>
+              <p className="text-center font-semibold">{`${player.rank}.`}</p>
+            </div>
+          )}
           <div className="space-y-1">
             <p className="px-4 font-medium text-gray-11 text-xs uppercase">
               Spiele
             </p>
             <p className="text-center font-semibold">{`${playedMatches} (${matches.length})`}</p>
           </div>
-          <div className="space-y-1">
-            <p className="font-medium text-gray-11 text-xs uppercase">Punkte</p>
-            <p className="text-center font-semibold">{player.points}</p>
-          </div>
-          <div className="space-y-1">
-            <p className="font-medium text-gray-11 text-xs uppercase">
-              Schnitt
-            </p>
-            <p className="text-center font-semibold">{`${
-              playedMatches ? (player.points / playedMatches).toFixed(2) : ''
-            }`}</p>
-          </div>
+          {player.rank !== undefined && (
+            <>
+              <div className="space-y-1">
+                <p className="font-medium text-gray-11 text-xs uppercase">
+                  Punkte
+                </p>
+                <p className="text-center font-semibold">{player.points}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="font-medium text-gray-11 text-xs uppercase">
+                  Schnitt
+                </p>
+                <p className="text-center font-semibold">
+                  {playedMatches && player.points !== undefined
+                    ? (player.points / playedMatches).toFixed(2)
+                    : ''}
+                </p>
+              </div>
+            </>
+          )}
         </div>
       </div>
       <AccordionGroup

@@ -15,6 +15,7 @@ export function useRecalculateChampionship() {
       matches.map((match) => updateMatchResult(match, match.result)),
     );
     await calculateRanking({
+      matches: calculations.map(({ match }) => match),
       tips: calculations.flatMap(({ tips }) => tips),
     });
     await invalidateCache([

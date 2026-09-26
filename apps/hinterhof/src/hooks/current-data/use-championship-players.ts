@@ -2,6 +2,7 @@ import {
   type ChampionshipPlayer,
   createEntityWithGeneratedId,
   patchEntity,
+  updateEntity,
 } from 'lib';
 import { useCurrentDataStore } from '#/state/current-data-store';
 import { useCurrentChampionship } from './use-current-championship';
@@ -21,10 +22,6 @@ export function useChampionshipPlayers() {
     const championshipPlayer: Omit<ChampionshipPlayer, 'id'> = {
       nr: lastNr + 1,
       playerId: playerId,
-      points: 0,
-      extraPoints: 0,
-      totalPoints: 0,
-      rank: 1,
     };
     return createEntityWithGeneratedId<ChampionshipPlayer>(
       `championships/${currentChampionship?.id}/players`,
@@ -42,9 +39,26 @@ export function useChampionshipPlayers() {
       changes,
     );
   };
+
+  const removeChampionshipPlayerRanking = (player: ChampionshipPlayer) => {
+    const playerWithoutRanking: ChampionshipPlayer = {
+      id: player.id,
+      playerId: player.playerId,
+      nr: player.nr,
+      ...(player.extraPoints === undefined
+        ? {}
+        : { extraPoints: player.extraPoints }),
+    };
+    return updateEntity(
+      `championships/${currentChampionship?.id}/players`,
+      playerWithoutRanking,
+    );
+  };
+
   return {
     championshipPlayers,
     addChampionshipPlayer,
     updateChampionshipPlayer,
+    removeChampionshipPlayerRanking,
   };
 }

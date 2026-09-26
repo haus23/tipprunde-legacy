@@ -66,6 +66,7 @@ export default function ResultsView() {
     const updateResults = async () => {
       const calculations = await Promise.all(updateOperations);
       await calculateRanking({
+        matches: calculations.map(({ match }) => match),
         tips: calculations.flatMap(({ tips }) => tips),
       });
       await invalidateCache([

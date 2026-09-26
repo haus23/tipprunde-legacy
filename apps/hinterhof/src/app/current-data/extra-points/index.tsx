@@ -41,7 +41,7 @@ export default function ExtraPointsView() {
     reset({
       extraPoints: players.map((p) => ({
         playerId: p.id,
-        points: p.extraPoints,
+        points: p.extraPoints ?? 0,
       })),
     });
   }, [players, reset]);

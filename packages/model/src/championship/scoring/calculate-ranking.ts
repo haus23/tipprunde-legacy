@@ -1,18 +1,23 @@
 import type { ChampionshipPlayer } from '../championship-player';
 import type { Tip } from '../tip';
 
-export type RankingEntry = Pick<
-  ChampionshipPlayer,
-  'id' | 'rank' | 'points' | 'extraPoints' | 'totalPoints'
->;
+export type RankingEntry = {
+  id: string;
+  rank: number;
+  points: number;
+  extraPoints: number;
+  totalPoints: number;
+};
 
 type RankingTip = Pick<Tip, 'playerId'> & Partial<Pick<Tip, 'points'>>;
 
 export function calculateRanking(
   players: readonly ChampionshipPlayer[],
   tips: readonly RankingTip[],
-  options: { includeExtraPoints: boolean },
-): RankingEntry[] {
+  options: { includeExtraPoints: boolean; hasEvaluatedMatches: boolean },
+): RankingEntry[] | undefined {
+  if (!options.hasEvaluatedMatches) return undefined;
+
   const pointsByPlayer = new Map<string, number>();
 
   for (const tip of tips) {
@@ -26,11 +31,11 @@ export function calculateRanking(
     .map((player) => {
       const points = pointsByPlayer.get(player.id) ?? 0;
       const totalPoints =
-        points + (options.includeExtraPoints ? player.extraPoints : 0);
+        points + (options.includeExtraPoints ? (player.extraPoints ?? 0) : 0);
       return {
         id: player.id,
         points,
-        extraPoints: player.extraPoints,
+        extraPoints: player.extraPoints ?? 0,
         totalPoints,
         rank: 0,
       };

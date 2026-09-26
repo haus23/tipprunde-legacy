@@ -51,7 +51,7 @@ it('calculates points, totals and competition ranks', () => {
       { playerId: 'player-two', points: 1 },
       { playerId: 'player-three', points: 3 },
     ],
-    { includeExtraPoints: true },
+    { includeExtraPoints: true, hasEvaluatedMatches: true },
   );
 
   expect(ranking).toEqual([
@@ -68,11 +68,32 @@ it('calculates points, totals and competition ranks', () => {
   ]);
 });
 
+it('does not create a ranking before any match has been evaluated', () => {
+  expect(
+    calculateRanking(players, [{ playerId: 'player-one' }], {
+      includeExtraPoints: true,
+      hasEvaluatedMatches: false,
+    }),
+  ).toBeUndefined();
+});
+
+it('creates a zero-point ranking for an evaluated match without tips', () => {
+  expect(
+    calculateRanking(players.slice(0, 2), [], {
+      includeExtraPoints: false,
+      hasEvaluatedMatches: true,
+    }),
+  ).toEqual([
+    { id: 'player-one', points: 0, extraPoints: 0, totalPoints: 0, rank: 1 },
+    { id: 'player-two', points: 0, extraPoints: 1, totalPoints: 0, rank: 1 },
+  ]);
+});
+
 it('treats missing tip points as not yet contributing to the ranking', () => {
   const ranking = calculateRanking(
     players.slice(0, 2),
     [{ playerId: 'player-one' }, { playerId: 'player-two', points: 2 }],
-    { includeExtraPoints: true },
+    { includeExtraPoints: true, hasEvaluatedMatches: true },
   );
 
   expect(ranking).toEqual([
@@ -88,7 +109,7 @@ it('excludes unpublished extra points from totals and ranks', () => {
       { playerId: 'player-one', points: 2 },
       { playerId: 'player-two', points: 2 },
     ],
-    { includeExtraPoints: false },
+    { includeExtraPoints: false, hasEvaluatedMatches: true },
   );
 
   expect(ranking).toEqual([

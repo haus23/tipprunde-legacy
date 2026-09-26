@@ -19,11 +19,18 @@ it('validates a championship player', () => {
   );
 });
 
-it('requires all ranking values', () => {
-  const { totalPoints: _, ...incompletePlayer } = championshipPlayer;
-  expect(v.safeParse(ChampionshipPlayerSchema, incompletePlayer).success).toBe(
-    false,
-  );
+it('accepts a player before the first ranking calculation', () => {
+  expect(
+    v.parse(ChampionshipPlayerSchema, {
+      id: championshipPlayer.id,
+      playerId: championshipPlayer.playerId,
+      nr: championshipPlayer.nr,
+    }),
+  ).toEqual({
+    id: championshipPlayer.id,
+    playerId: championshipPlayer.playerId,
+    nr: championshipPlayer.nr,
+  });
 });
 
 it('requires a root member slug', () => {
