@@ -5,8 +5,8 @@ import { type ColumnDef, createColumnHelper } from '@tanstack/react-table';
 import {
   CheckIcon,
   ChevronDownIcon,
-  ChevronUpIcon,
   ChevronsUpDownIcon,
+  ChevronUpIcon,
   TriangleAlertIcon,
 } from 'lucide-react';
 import { useMemo } from 'react';
@@ -21,7 +21,7 @@ import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
 import { useChampionship } from '#/utils/app/championship';
 import { formatDate } from '#/utils/misc';
-import { matchTipsQuery, matchesQuery, playersQuery } from '#/utils/queries';
+import { matchesQuery, matchTipsQuery, playersQuery } from '#/utils/queries';
 
 export const Route = createFileRoute('/$turnier/spiel')({
   validateSearch: v.object({
@@ -141,7 +141,7 @@ function MatchesComponent() {
               <>
                 <span>{tip?.tip}</span>
                 {(tip?.joker || tip?.lonelyHit) && (
-                  <span className="-right-2 -translate-y-1.5 absolute">
+                  <span className="absolute -right-2 -translate-y-1.5">
                     <Popover offset={4} triggerLabel="Zusatzinfos zum Tipp">
                       <div className="px-4 py-2">
                         {tip?.joker === true && <p>Joker</p>}
@@ -229,7 +229,7 @@ function MatchesComponent() {
                           <div className="flex items-center gap-x-2">
                             <span>{matchStr}</span>
                             {m.result !== '' && (
-                              <span className="font-semibold text-gray-11/80 text-sm group-[.select-value]:hidden">{`(${m.points} Pkt)`}</span>
+                              <span className="font-semibold text-gray-11/80 text-sm group-[.select-value]:hidden">{`(${m.points ?? 0} Pkt)`}</span>
                             )}
                           </div>
                           {isSelected && <CheckIcon className="size-5" />}
@@ -266,7 +266,7 @@ function MatchesComponent() {
           <div className="space-y-1">
             <p className="font-medium text-xs uppercase">Punkte</p>
             <p className="text-center font-semibold text-accent-12">
-              {match.result && match.points}
+              {match.result ? (match.points ?? 0) : null}
             </p>
           </div>
         </div>

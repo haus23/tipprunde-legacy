@@ -60,7 +60,7 @@ export function CurrentTips({ player }: { player: PlayerWithAccount }) {
                   .filter(Boolean)
                   .join(' ')}
               >
-                {m.result && tip?.points}
+                {m.result ? (tip?.points ?? 0) : null}
               </div>
             </Fragment>
           );
