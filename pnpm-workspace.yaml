@@ -16,6 +16,8 @@ catalogs:
   validation:
     valibot: ^1.5.0
 
+autoDedupe: true
+
 allowBuilds:
   '@biomejs/biome': true
   '@firebase/util': true
