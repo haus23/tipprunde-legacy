@@ -4,7 +4,9 @@ import type {
   PartialWithFieldValue,
 } from 'firebase/firestore';
 
-import type { BaseModel } from '../model/base/model';
+export type BaseModel = {
+  id: string;
+};
 
 export const baseModelConverter = <
   T extends BaseModel,

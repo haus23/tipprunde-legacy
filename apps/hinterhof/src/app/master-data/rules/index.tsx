@@ -1,11 +1,11 @@
-import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 import {
-  extraQuestionRuleDescriptions,
-  matchRuleDescriptions,
+  extraQuestionRules,
+  matchRules,
   type RuleSet,
-  roundRuleDescriptions,
-  tipRuleDescriptions,
-} from 'lib';
+  roundRules,
+  tipRules,
+} from '@haus23/tipprunde-model';
+import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
@@ -24,10 +24,10 @@ const initialFormState: RuleSet = {
   id: '',
   name: '',
   description: '',
-  tipRuleId: tipRuleDescriptions[0].id,
-  matchRuleId: matchRuleDescriptions[0].id,
-  roundRuleId: roundRuleDescriptions[0].id,
-  extraQuestionsRuleId: extraQuestionRuleDescriptions[0].id,
+  tipRuleId: tipRules[0].id,
+  matchRuleId: matchRules[0].id,
+  roundRuleId: roundRules[0].id,
+  extraQuestionsRuleId: extraQuestionRules[0].id,
 };
 
 export default function RulesView() {
@@ -159,25 +159,25 @@ export default function RulesView() {
                     label="Tippregel"
                     control={control}
                     name="tipRuleId"
-                    options={tipRuleDescriptions}
+                    options={tipRules}
                   />
                   <SelectField
                     control={control}
                     name="matchRuleId"
                     label="Spielregel"
-                    options={matchRuleDescriptions}
+                    options={matchRules}
                   />
                   <SelectField
                     control={control}
                     name="roundRuleId"
                     label="Rundenregel"
-                    options={roundRuleDescriptions}
+                    options={roundRules}
                   />
                   <SelectField
                     control={control}
                     name="extraQuestionsRuleId"
                     label="Zusatzfragen"
-                    options={extraQuestionRuleDescriptions}
+                    options={extraQuestionRules}
                   />
                 </div>
                 <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">

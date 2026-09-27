@@ -1,12 +1,11 @@
-import {
-  type Championship,
-  collection,
-  type League,
-  type Member,
-  orderByDesc,
-  type RuleSet,
-  type Team,
-} from 'lib';
+import type {
+  Championship,
+  League,
+  Member,
+  RuleSet,
+  Team,
+} from '@haus23/tipprunde-model';
+import { collection, orderByDesc } from 'lib';
 import { create } from 'zustand';
 
 type MasterDataState = {

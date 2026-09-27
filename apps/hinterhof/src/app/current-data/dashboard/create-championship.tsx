@@ -1,4 +1,4 @@
-import type { Championship } from 'lib';
+import type { Championship } from '@haus23/tipprunde-model';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { SelectField } from 'ui-legacy';

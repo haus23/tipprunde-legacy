@@ -1,6 +1,5 @@
+import type { League } from '@haus23/tipprunde-model';
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
-
-import type { League } from 'lib';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';

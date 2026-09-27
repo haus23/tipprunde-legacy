@@ -1,4 +1,5 @@
-import { createEntity, type Team, updateEntity } from 'lib';
+import type { Team } from '@haus23/tipprunde-model';
+import { createEntity, updateEntity } from 'lib';
 import { useMasterDataStore } from '#/state/master-data-store';
 
 export function useTeams() {

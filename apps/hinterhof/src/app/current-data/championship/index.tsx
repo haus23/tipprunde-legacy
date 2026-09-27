@@ -1,5 +1,5 @@
+import type { Member } from '@haus23/tipprunde-model';
 import { PlusIcon } from '@heroicons/react/24/outline';
-import type { Member } from 'lib';
 import { Button, Card, classNames, ToggleField } from 'ui-legacy';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';

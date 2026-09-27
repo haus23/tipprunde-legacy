@@ -10,7 +10,6 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@haus23/tipprunde-model": "workspace:^",
     "firebase": "^12.19.0"
   },
   "devDependencies": {

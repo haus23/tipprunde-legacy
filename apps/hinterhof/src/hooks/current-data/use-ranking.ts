@@ -3,7 +3,7 @@ import {
   calculateRanking as calculateRankingEntries,
   type Match,
   type Tip,
-} from 'lib';
+} from '@haus23/tipprunde-model';
 import { useCurrentDataStore } from '#/state/current-data-store';
 import { useChampionshipPlayers } from './use-championship-players';
 import { useCurrentChampionship } from './use-current-championship';

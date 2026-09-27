@@ -1,12 +1,11 @@
-import {
-  type Championship,
-  type ChampionshipPlayer,
-  collection,
-  type Match,
-  orderByAsc,
-  type Round,
-  type Tip,
-} from 'lib';
+import type {
+  Championship,
+  ChampionshipPlayer,
+  Match,
+  Round,
+  Tip,
+} from '@haus23/tipprunde-model';
+import { collection, orderByAsc } from 'lib';
 import { create } from 'zustand';
 
 type CurrentDataState = {

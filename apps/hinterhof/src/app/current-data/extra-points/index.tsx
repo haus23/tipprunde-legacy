@@ -1,4 +1,4 @@
-import type { Member } from 'lib';
+import type { Member } from '@haus23/tipprunde-model';
 import { useEffect, useMemo } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Button, Card, TextField } from 'ui-legacy';

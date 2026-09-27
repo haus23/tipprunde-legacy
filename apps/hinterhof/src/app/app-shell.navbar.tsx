@@ -1,3 +1,9 @@
+import type {
+  Championship,
+  ChampionshipPlayer,
+  Match,
+  Round,
+} from '@haus23/tipprunde-model';
 import {
   CalendarIcon,
   FolderIcon,
@@ -7,7 +13,6 @@ import {
   SquaresPlusIcon,
   UserIcon,
 } from '@heroicons/react/24/outline';
-import type { Championship, ChampionshipPlayer, Match, Round } from 'lib';
 import type { ElementType } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AppTitle, classNames } from 'ui-legacy';

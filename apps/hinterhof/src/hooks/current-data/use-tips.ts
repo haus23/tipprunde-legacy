@@ -1,4 +1,5 @@
-import { createEntityWithGeneratedId, type Tip, updateEntity } from 'lib';
+import type { Tip } from '@haus23/tipprunde-model';
+import { createEntityWithGeneratedId, updateEntity } from 'lib';
 import { useCurrentDataStore } from '#/state/current-data-store';
 import { useCurrentChampionship } from './use-current-championship';
 

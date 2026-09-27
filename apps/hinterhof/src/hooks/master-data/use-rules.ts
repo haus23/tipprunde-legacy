@@ -1,4 +1,5 @@
-import { createEntity, type RuleSet, updateEntity } from 'lib';
+import type { RuleSet } from '@haus23/tipprunde-model';
+import { createEntity, updateEntity } from 'lib';
 import { useMasterDataStore } from '#/state/master-data-store';
 
 type StoredRules = RuleSet & {

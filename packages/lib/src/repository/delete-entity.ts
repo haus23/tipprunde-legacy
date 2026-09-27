@@ -1,6 +1,6 @@
 import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase/db';
-import type { BaseModel } from '../model/base/model';
+import type { BaseModel } from './base-model';
 
 export async function deleteEntity(
   path: string,

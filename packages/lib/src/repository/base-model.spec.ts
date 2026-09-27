@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 
-import { baseModelConverter } from './base-model-converter';
+import { baseModelConverter } from './base-model';
 
 it('drops a legacy update timestamp when reading a document', () => {
   const converter = baseModelConverter<{ id: string; name: string }>();

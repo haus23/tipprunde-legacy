@@ -1,12 +1,11 @@
 import {
   calculateMatchResults,
-  createEntityWithGeneratedId,
   type Match,
   type Round,
   type RuleSet,
   type Tip,
-  updateEntity,
-} from 'lib';
+} from '@haus23/tipprunde-model';
+import { createEntityWithGeneratedId, updateEntity } from 'lib';
 import { useCurrentDataStore } from '#/state/current-data-store';
 import { useRules } from '../master-data/use-rules';
 import { useCurrentChampionship } from './use-current-championship';

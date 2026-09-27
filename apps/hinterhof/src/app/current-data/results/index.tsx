@@ -1,4 +1,4 @@
-import type { Team } from 'lib';
+import type { Team } from '@haus23/tipprunde-model';
 import { useEffect, useMemo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Button, Card, classNames, TextField } from 'ui-legacy';
