@@ -1,7 +1,7 @@
 import * as v from 'valibot';
 
-import { TipSchema } from '../../../championship/tip';
-import { DocumentIdSchema } from '../../../shared/document-id';
+import { TipSchema } from '#/championship/tip';
+import { DocumentIdSchema } from '#/shared/document-id';
 
 export const ChampionshipMatchTipsSchema = v.object({
   matchId: DocumentIdSchema,

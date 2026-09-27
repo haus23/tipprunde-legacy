@@ -1,4 +1,4 @@
-import type { RuleSet } from '../../rules/rule-set';
+import type { RuleSet } from '#/rules/rule-set';
 import type { Match } from '../match';
 import type { Tip } from '../tip';
 import { calculateTipResult } from './calculate-tip-result';

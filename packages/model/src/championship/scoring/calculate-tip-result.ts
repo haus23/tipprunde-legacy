@@ -1,4 +1,4 @@
-import type { TipRuleId } from '../../rules/tip';
+import type { TipRuleId } from '#/rules/tip';
 import type { Tip } from '../tip';
 
 function toGoalTuple(result: string) {

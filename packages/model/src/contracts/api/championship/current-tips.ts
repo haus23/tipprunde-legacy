@@ -1,8 +1,8 @@
 import * as v from 'valibot';
 
-import { TipSchema } from '../../../championship/tip';
-import { ResultSchema } from '../../../primitives';
-import { DocumentIdSchema } from '../../../shared/document-id';
+import { TipSchema } from '#/championship/tip';
+import { ResultSchema } from '#/primitives';
+import { DocumentIdSchema } from '#/shared/document-id';
 
 export const ChampionshipCurrentTipsSchema = v.array(
   v.object({

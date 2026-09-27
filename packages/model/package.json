@@ -3,6 +3,9 @@
   "description": "Domain-Modell der Haus23 Tipprunde",
   "version": "0.22.2",
   "type": "module",
+  "imports": {
+    "#/*": "./src/*.js"
+  },
   "exports": {
     ".": "./src/index.ts"
   },
@@ -12,14 +15,6 @@
   },
   "dependencies": {
     "valibot": "catalog:validation"
-  },
-  "peerDependencies": {
-    "valibot": ">=1.0.0"
-  },
-  "peerDependenciesMeta": {
-    "valibot": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
