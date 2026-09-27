@@ -4,7 +4,7 @@
   "version": "0.22.3",
   "type": "module",
   "imports": {
-    "#/*": "./src/*.js"
+    "#model/*": "./src/*.js"
   },
   "exports": {
     ".": "./src/index.ts"

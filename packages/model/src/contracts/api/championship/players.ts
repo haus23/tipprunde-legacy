@@ -1,7 +1,7 @@
 import * as v from 'valibot';
 
-import { ChampionshipPlayerSchema } from '#/championship/championship-player';
-import { MemberSchema } from '#/member/member';
+import { ChampionshipPlayerSchema } from '#model/championship/championship-player';
+import { MemberSchema } from '#model/member/member';
 
 export const ChampionshipPlayerWithAccountSchema = v.object({
   ...ChampionshipPlayerSchema.entries,
