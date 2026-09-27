@@ -1,5 +1,14 @@
 # lib
 
+## 0.6.6
+
+### Patch Changes
+
+- [`91337da`](https://github.com/haus23/tipprunde-legacy/commit/91337dabfdd97ea623c4a65248a3d0373a857f49) - Remove an unused repository operation and make the Vite environment declarations explicit.
+
+- [`e7f9d95`](https://github.com/haus23/tipprunde-legacy/commit/e7f9d958732b31ebc4275b4aed0583ceccd7f8e7) - Import domain models directly from the model package and keep the Firebase
+  library focused on authentication and repository operations.
+
 ## 0.6.5
 
 ### Patch Changes

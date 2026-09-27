@@ -1,5 +1,17 @@
 # hinterhof
 
+## 0.8.3
+
+### Patch Changes
+
+- [`e7f9d95`](https://github.com/haus23/tipprunde-legacy/commit/e7f9d958732b31ebc4275b4aed0583ceccd7f8e7) - Import domain models directly from the model package and keep the Firebase
+  library focused on authentication and repository operations.
+
+- [`fca49a7`](https://github.com/haus23/tipprunde-legacy/commit/fca49a7464b2a823b6bf1c8597e106a76d3faef1) - Represent championship players without ranking values until the first match is evaluated.
+- Updated dependencies [[`91337da`](https://github.com/haus23/tipprunde-legacy/commit/91337dabfdd97ea623c4a65248a3d0373a857f49), [`e7f9d95`](https://github.com/haus23/tipprunde-legacy/commit/e7f9d958732b31ebc4275b4aed0583ceccd7f8e7), [`7ef44f1`](https://github.com/haus23/tipprunde-legacy/commit/7ef44f14ef12d0c9dd551998793a00b356da41c7), [`fca49a7`](https://github.com/haus23/tipprunde-legacy/commit/fca49a7464b2a823b6bf1c8597e106a76d3faef1), [`d206a63`](https://github.com/haus23/tipprunde-legacy/commit/d206a63ce21d052dde1a05509c5ad3a593eadc21)]:
+  - @haus23/tipprunde-model@0.22.3
+  - lib@0.6.6
+
 ## 0.8.2
 
 ### Patch Changes

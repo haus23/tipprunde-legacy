@@ -1,5 +1,17 @@
 # model
 
+## 0.22.3
+
+### Patch Changes
+
+- [`91337da`](https://github.com/haus23/tipprunde-legacy/commit/91337dabfdd97ea623c4a65248a3d0373a857f49) - Simplify the runtime dependency declaration and use explicit package imports for internal domain modules.
+
+- [`7ef44f1`](https://github.com/haus23/tipprunde-legacy/commit/7ef44f14ef12d0c9dd551998793a00b356da41c7) - Classify the remaining championship query responses as shared API contracts.
+
+- [`fca49a7`](https://github.com/haus23/tipprunde-legacy/commit/fca49a7464b2a823b6bf1c8597e106a76d3faef1) - Represent championship players without ranking values until the first match is evaluated.
+
+- [`d206a63`](https://github.com/haus23/tipprunde-legacy/commit/d206a63ce21d052dde1a05509c5ad3a593eadc21) - Classify the joined championship player response as a shared API contract.
+
 ## 0.22.2
 
 ### Patch Changes
