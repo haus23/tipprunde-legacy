@@ -1,5 +1,13 @@
 # unterbau
 
+## 0.24.2
+
+### Patch Changes
+
+- [`618028d`](https://github.com/haus23/tipprunde-legacy/commit/618028d304aa69970774fddb5f2873d03d84c669) - Use a Node-compatible internal import specifier for shared model modules.
+- Updated dependencies [[`618028d`](https://github.com/haus23/tipprunde-legacy/commit/618028d304aa69970774fddb5f2873d03d84c669)]:
+  - @haus23/tipprunde-model@0.22.4
+
 ## 0.24.1
 
 ### Patch Changes
