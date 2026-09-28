@@ -1,5 +1,23 @@
 # unterbau
 
+## 1.0.0
+
+### Major Changes
+
+- [`7a1e357`](https://github.com/haus23/tipprunde-legacy/commit/7a1e3578b1dfda4220acc89e919d69b7e2f22cbd) - Declare the validated read API, caching behavior, authorized invalidation, and
+  public API documentation stable for the 1.0 release.
+
+### Minor Changes
+
+- [`cbd0457`](https://github.com/haus23/tipprunde-legacy/commit/cbd0457650c7a38a13dd5af47acd20d9ab4c3978) - Publish an OpenAPI 3.1 description of the read-only API and an interactive,
+  branded Scalar API reference. Add documentation metadata to map-shaped API
+  contracts.
+
+### Patch Changes
+
+- Updated dependencies [[`cbd0457`](https://github.com/haus23/tipprunde-legacy/commit/cbd0457650c7a38a13dd5af47acd20d9ab4c3978)]:
+  - @haus23/tipprunde-model@1.0.1
+
 ## 0.24.3
 
 ### Patch Changes

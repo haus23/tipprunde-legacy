@@ -1,5 +1,13 @@
 # model
 
+## 1.0.1
+
+### Patch Changes
+
+- [`cbd0457`](https://github.com/haus23/tipprunde-legacy/commit/cbd0457650c7a38a13dd5af47acd20d9ab4c3978) - Publish an OpenAPI 3.1 description of the read-only API and an interactive,
+  branded Scalar API reference. Add documentation metadata to map-shaped API
+  contracts.
+
 ## 1.0.0
 
 ### Major Changes
