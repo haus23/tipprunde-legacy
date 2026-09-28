@@ -13,6 +13,8 @@ catalogs:
     react-dom: ^19.3.0
   react-libs:
     react-hook-form: ^7.88.0
+  testing:
+    vitest: ^5.0.2
   validation:
     valibot: ^1.5.0
 
