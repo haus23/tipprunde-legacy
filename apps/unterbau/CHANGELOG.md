@@ -1,5 +1,14 @@
 # unterbau
 
+## 1.0.1
+
+### Patch Changes
+
+- [`e25e72e`](https://github.com/haus23/tipprunde-legacy/commit/e25e72eaf253b8d2fa9a65221a1ac04972b835d7) - Redact member notification email addresses from all public Unterbau API
+  responses and document the empty public value in the shared model schema.
+- Updated dependencies [[`e25e72e`](https://github.com/haus23/tipprunde-legacy/commit/e25e72eaf253b8d2fa9a65221a1ac04972b835d7)]:
+  - @haus23/tipprunde-model@1.0.2
+
 ## 1.0.0
 
 ### Major Changes
