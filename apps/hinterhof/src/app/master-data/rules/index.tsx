@@ -8,7 +8,6 @@ import {
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 import { SelectField } from 'ui-legacy';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
@@ -17,6 +16,7 @@ import AppCard from '#/components/layout/app-card';
 import { useRules } from '#/hooks/master-data/use-rules';
 import { classNames } from '#/utils/class-names';
 import { invalidateCache } from '#/utils/invalidate-cache';
+import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';
 import { trimProps } from '#/utils/trim-props';
 
@@ -63,26 +63,18 @@ export default function RulesView() {
     trimProps(rules);
 
     if (!editMode) {
-      await toast.promise(
+      await notify(
         createRules(rules).then(() =>
           invalidateCache([{ type: 'collection', name: 'rules' }]),
         ),
-        {
-          loading: 'Speichern',
-          success: `${rules.name} angelegt.`,
-          error: 'Hopply, das hat nicht geklappt.',
-        },
+        `${rules.name} angelegt.`,
       );
     } else {
-      await toast.promise(
+      await notify(
         updateRules(rules).then(() =>
           invalidateCache([{ type: 'collection', name: 'rules' }]),
         ),
-        {
-          loading: 'Speichern',
-          success: `${rules.name} geändert.`,
-          error: 'Hopply, das hat nicht geklappt.',
-        },
+        `${rules.name} geändert.`,
       );
     }
     endEdit();

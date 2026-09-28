@@ -2,13 +2,13 @@ import type { League } from '@haus23/tipprunde-model';
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
 import { useLeagues } from '#/hooks/master-data/use-leagues';
 import { classNames } from '#/utils/class-names';
 import { invalidateCache } from '#/utils/invalidate-cache';
+import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';
 import { trimProps } from '#/utils/trim-props';
 
@@ -55,27 +55,19 @@ export default function LeaguesView() {
   async function saveLeague(league: League) {
     trimProps(league);
     if (editMode) {
-      await toast.promise(
+      await notify(
         updateLeague(league).then(() =>
           invalidateCache([{ type: 'collection', name: 'leagues' }]),
         ),
-        {
-          loading: 'Speichern',
-          success: `${league.name} geändert.`,
-          error: 'Hopply, das hat nicht geklappt.',
-        },
+        `${league.name} geändert.`,
       );
       endEdit();
     } else {
-      await toast.promise(
+      await notify(
         createLeague(league).then(() =>
           invalidateCache([{ type: 'collection', name: 'leagues' }]),
         ),
-        {
-          loading: 'Speichern',
-          success: `${league.name} angelegt`,
-          error: 'Hopply, das hat nicht geklappt.',
-        },
+        `${league.name} angelegt`,
       );
       setFocus('name');
       reset();

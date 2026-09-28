@@ -1,6 +1,14 @@
 import request from 'supertest';
 import { beforeEach, expect, it, vi } from 'vitest';
 
+const { verifyIdToken } = vi.hoisted(() => ({
+  verifyIdToken: vi.fn(),
+}));
+
+vi.mock('firebase-admin/auth', () => ({
+  getAuth: () => ({ verifyIdToken }),
+}));
+
 vi.mock('#app/lib/storage.ts', async () => {
   const { createStorage } = await import('unstorage');
   const { default: memoryDriver } = await import('unstorage/drivers/memory');
@@ -12,7 +20,10 @@ import { storage } from '#app/lib/storage.ts';
 
 beforeEach(async () => {
   await storage.clear();
+  verifyIdToken.mockResolvedValue({ uid: 'test-admin' });
 });
+
+const authorize = { Authorization: 'Bearer valid-token' };
 
 it('invalidates exact semantic cache targets', async () => {
   const keys = [
@@ -26,6 +37,7 @@ it('invalidates exact semantic cache targets', async () => {
 
   const response = await request(app)
     .post('/api/cache/invalidate')
+    .set(authorize)
     .send({
       targets: [
         { type: 'championship', id: 'em2024' },
@@ -49,6 +61,7 @@ it('invalidates the championship list independently', async () => {
 
   const response = await request(app)
     .post('/api/cache/invalidate')
+    .set(authorize)
     .send({ targets: [{ type: 'championships' }] });
 
   expect(response.status).toBe(200);
@@ -61,6 +74,7 @@ it('invalidates the championship list independently', async () => {
 it('rejects unknown invalidation targets', async () => {
   const response = await request(app)
     .post('/api/cache/invalidate')
+    .set(authorize)
     .send({ targets: [{ type: 'collection', name: 'unknown' }] });
 
   expect(response.status).toBe(400);
@@ -68,4 +82,43 @@ it('rejects unknown invalidation targets', async () => {
     status: 400,
     error: 'Invalid cache invalidation request',
   });
+});
+
+it('requires a Firebase ID token', async () => {
+  const response = await request(app)
+    .post('/api/cache/invalidate')
+    .send({ targets: [{ type: 'championships' }] });
+
+  expect(response.status).toBe(401);
+  expect(response.body).toEqual({
+    status: 401,
+    error: 'Authentication required',
+  });
+});
+
+it('rejects an invalid Firebase ID token', async () => {
+  verifyIdToken.mockRejectedValue(new Error('Invalid token'));
+
+  const response = await request(app)
+    .post('/api/cache/invalidate')
+    .set(authorize)
+    .send({ targets: [{ type: 'championships' }] });
+
+  expect(response.status).toBe(401);
+  expect(response.body).toEqual({
+    status: 401,
+    error: 'Authentication required',
+  });
+});
+
+it('rejects Firebase users outside the allowlist', async () => {
+  verifyIdToken.mockResolvedValue({ uid: 'other-user' });
+
+  const response = await request(app)
+    .post('/api/cache/invalidate')
+    .set(authorize)
+    .send({ targets: [{ type: 'championships' }] });
+
+  expect(response.status).toBe(403);
+  expect(response.body).toEqual({ status: 403, error: 'Forbidden' });
 });

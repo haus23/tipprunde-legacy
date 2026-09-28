@@ -2,13 +2,13 @@ import type { Team } from '@haus23/tipprunde-model';
 import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
 import { useTeams } from '#/hooks/master-data/use-teams';
 import { classNames } from '#/utils/class-names';
 import { invalidateCache } from '#/utils/invalidate-cache';
+import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';
 import { trimProps } from '#/utils/trim-props';
 
@@ -56,27 +56,19 @@ export default function TeamsView() {
   async function saveTeam(team: Team) {
     trimProps(team);
     if (editMode) {
-      await toast.promise(
+      await notify(
         updateTeam(team).then(() =>
           invalidateCache([{ type: 'collection', name: 'teams' }]),
         ),
-        {
-          loading: 'Speichern',
-          success: `${team.name} geändert.`,
-          error: 'Hopply, das hat nicht geklappt.',
-        },
+        `${team.name} geändert.`,
       );
       endEdit();
     } else {
-      await toast.promise(
+      await notify(
         createTeam(team).then(() =>
           invalidateCache([{ type: 'collection', name: 'teams' }]),
         ),
-        {
-          loading: 'Speichern',
-          success: `${team.name} angelegt`,
-          error: 'Hopply, das hat nicht geklappt.',
-        },
+        `${team.name} angelegt`,
       );
       setFocus('name');
       reset();
