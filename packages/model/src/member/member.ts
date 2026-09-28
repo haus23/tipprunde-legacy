@@ -5,9 +5,11 @@ import { SlugIdSchema } from '../shared/id';
 export const MemberSchema = v.object({
   id: SlugIdSchema,
   name: v.pipe(v.string(), v.nonEmpty()),
-  email: v.optional(
-    v.union([v.literal(''), v.pipe(v.string(), v.email())]),
-    '',
+  email: v.pipe(
+    v.optional(v.union([v.literal(''), v.pipe(v.string(), v.email())]), ''),
+    v.description(
+      'Kontaktadresse für Benachrichtigungen. Darf in öffentlichen Frontend-Oberflächen nicht angezeigt werden.',
+    ),
   ),
 });
 

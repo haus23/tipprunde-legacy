@@ -48,3 +48,27 @@ svg {
 svg g {
   fill: var(--violet12);
 }
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+a {
+  color: var(--violet11);
+  font-weight: 500;
+  text-underline-offset: 0.2em;
+}
+
+a.button {
+  background-color: var(--violet9);
+  border-radius: 0.375rem;
+  color: white;
+  padding: 0.625rem 1rem;
+  text-decoration: none;
+}
+
+a.button:hover {
+  background-color: var(--violet10);
+}

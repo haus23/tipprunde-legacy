@@ -3,6 +3,7 @@ import type { ErrorRequestHandler, RequestHandler } from 'express';
 import express from 'express';
 
 import { cacheRouter } from './api/cache.ts';
+import { docsHandler, openApiHandler } from './api/docs.ts';
 import { router } from './api/v1/_router.ts';
 import { ValidationError } from './lib/util/validation-error.ts';
 
@@ -15,6 +16,8 @@ app.use(cors());
 app.use(express.json());
 
 // API
+app.get('/openapi.json', openApiHandler);
+app.get('/docs', docsHandler);
 app.use('/api/cache', cacheRouter);
 app.use('/api/v1', router);
 

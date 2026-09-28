@@ -8,8 +8,20 @@ import { TeamSchema } from '#model/team/team';
 export const ChampionshipMatchesSchema = v.object({
   rounds: v.array(RoundSchema),
   matches: v.array(MatchSchema),
-  teams: v.record(v.string(), TeamSchema),
-  leagues: v.record(v.string(), LeagueSchema),
+  teams: v.pipe(
+    v.record(v.string(), TeamSchema),
+    v.title('Teams nach Team-ID'),
+    v.description(
+      'Objekt mit der Team-ID als Schlüssel und dem zugehörigen Team als Wert.',
+    ),
+  ),
+  leagues: v.pipe(
+    v.record(v.string(), LeagueSchema),
+    v.title('Ligen nach Liga-ID'),
+    v.description(
+      'Objekt mit der Liga-ID als Schlüssel und der zugehörigen Liga als Wert.',
+    ),
+  ),
 });
 
 export type ChampionshipMatchesInput = v.InferInput<

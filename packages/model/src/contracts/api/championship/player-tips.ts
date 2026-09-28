@@ -5,7 +5,13 @@ import { DocumentIdSchema } from '#model/shared/document-id';
 
 export const ChampionshipPlayerTipsSchema = v.object({
   playerId: DocumentIdSchema,
-  tips: v.record(v.string(), TipSchema),
+  tips: v.pipe(
+    v.record(v.string(), TipSchema),
+    v.title('Tipps nach Spiel-ID'),
+    v.description(
+      'Objekt mit der Spiel-ID als Schlüssel und dem zugehörigen Tipp als Wert.',
+    ),
+  ),
 });
 
 export type ChampionshipPlayerTipsInput = v.InferInput<

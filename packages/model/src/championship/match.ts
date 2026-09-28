@@ -14,7 +14,12 @@ export const MatchSchema = v.object({
   nr: v.pipe(v.number(), v.integer(), v.minValue(1)),
   date: v.optional(MatchDateSchema, ''),
   result: v.optional(ResultSchema, ''),
-  points: v.optional(v.pipe(v.number(), v.minValue(0))),
+  points: v.pipe(
+    v.optional(v.pipe(v.number(), v.minValue(0))),
+    v.description(
+      'Summe der für alle Tipps dieses Spiels vergebenen Punkte. Fehlt, solange das Spiel nicht ausgewertet wurde.',
+    ),
+  ),
   roundId: DocumentIdSchema,
   leagueId: OptionalSlugReferenceSchema,
   hometeamId: OptionalSlugReferenceSchema,

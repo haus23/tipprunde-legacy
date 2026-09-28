@@ -11,7 +11,13 @@ export const ChampionshipCurrentTipsSchema = v.array(
     hometeam: v.optional(v.string(), ''),
     awayteam: v.optional(v.string(), ''),
     result: v.optional(ResultSchema, ''),
-    tips: v.record(v.string(), TipSchema),
+    tips: v.pipe(
+      v.record(v.string(), TipSchema),
+      v.title('Tipps nach Spieler-ID'),
+      v.description(
+        'Objekt mit der Spieler-ID als Schlüssel und dem zugehörigen Tipp als Wert.',
+      ),
+    ),
   }),
 );
 

@@ -13,6 +13,24 @@ it('does not expose Express in the response headers', async () => {
   expect(response.headers).not.toHaveProperty('x-powered-by');
 });
 
+it('delivers the public OpenAPI document', async () => {
+  const response = await request(app).get('/openapi.json');
+
+  expect(response.status).toBe(200);
+  expect(response.body.openapi).toBe('3.1.1');
+  expect(Object.keys(response.body.paths)).toHaveLength(10);
+  expect(response.body.paths).not.toHaveProperty('/api/cache/invalidate');
+});
+
+it('delivers the API documentation', async () => {
+  const response = await request(app).get('/docs');
+
+  expect(response.status).toBe(200);
+  expect(response.type).toBe('text/html');
+  expect(response.text).toContain('runde.tips API-Dokumentation');
+  expect(response.text).toContain('/openapi.json');
+});
+
 it('returns a custom JSON response for unknown routes', async () => {
   const response = await request(app).get('/not-found');
   expect(response.status).toBe(404);
