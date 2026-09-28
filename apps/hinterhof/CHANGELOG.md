@@ -1,5 +1,15 @@
 # hinterhof
 
+## 0.8.4
+
+### Patch Changes
+
+- [`164fdd8`](https://github.com/haus23/tipprunde-legacy/commit/164fdd8c29deb59da935bc836d820c7c9f40fa74) - Authorize cache invalidation with Firebase ID tokens and an explicit server-side
+  UID allowlist. Report cache failures as partial successes after persisted
+  changes and still complete the form workflow.
+- Updated dependencies [[`7eb7406`](https://github.com/haus23/tipprunde-legacy/commit/7eb74066a5be3ba88dd7fb5ee123d72fd6f5ddaa)]:
+  - @haus23/tipprunde-model@1.0.0
+
 ## 0.8.3
 
 ### Patch Changes

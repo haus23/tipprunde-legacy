@@ -1,5 +1,11 @@
 # model
 
+## 1.0.0
+
+### Major Changes
+
+- [`7eb7406`](https://github.com/haus23/tipprunde-legacy/commit/7eb74066a5be3ba88dd7fb5ee123d72fd6f5ddaa) - Finalize the shared domain model as the canonical, runtime-validated contract for all Tipprunde applications.
+
 ## 0.22.4
 
 ### Patch Changes

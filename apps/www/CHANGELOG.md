@@ -1,5 +1,12 @@
 # www
 
+## 0.22.24
+
+### Patch Changes
+
+- Updated dependencies [[`7eb7406`](https://github.com/haus23/tipprunde-legacy/commit/7eb74066a5be3ba88dd7fb5ee123d72fd6f5ddaa)]:
+  - @haus23/tipprunde-model@1.0.0
+
 ## 0.22.23
 
 ### Patch Changes
