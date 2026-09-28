@@ -12,6 +12,7 @@ body {
   color: var(--violet12);
   margin: 0;
   height: 100%;
+  position: relative;
 }
 
 main {
@@ -71,4 +72,67 @@ a.button {
 
 a.button:hover {
   background-color: var(--violet10);
+}
+
+.color-mode-switch {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  cursor: pointer;
+  color: var(--mauve11);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.color-mode-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.switch-track {
+  position: relative;
+  display: block;
+  width: 2.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--mauve8);
+  border-radius: 999px;
+  background-color: var(--mauve5);
+  transition: background-color 150ms ease;
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--mauve12);
+  transition: transform 150ms ease;
+}
+
+.color-mode-switch input:checked + .switch-track {
+  background-color: var(--violet9);
+  border-color: var(--violet9);
+}
+
+.color-mode-switch input:checked + .switch-track .switch-thumb {
+  transform: translateX(1rem);
+  background-color: white;
+}
+
+.color-mode-switch input:focus-visible + .switch-track {
+  outline: 2px solid var(--violet11);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch-track,
+  .switch-thumb {
+    transition: none;
+  }
 }

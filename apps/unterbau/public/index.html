@@ -5,14 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Backend - runde.tips</title>
     <script>
-      document.documentElement.classList.toggle(
-        'dark-theme',
-        localStorage.theme === 'dark' || (!localStorage.theme && matchMedia('(prefers-color-scheme: dark)').matches)
-      );
+      const colorMode = localStorage.colorMode;
+      const prefersDarkMode = matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.classList.toggle('dark-theme', colorMode === 'dark' || (!colorMode && prefersDarkMode));
     </script>
     <link rel="stylesheet" href="styles/base.css" />
   </head>
   <body>
+    <label class="color-mode-switch">
+      <span>Dark Mode</span>
+      <input type="checkbox" role="switch" aria-checked="false" />
+      <span class="switch-track" aria-hidden="true">
+        <span class="switch-thumb"></span>
+      </span>
+    </label>
     <main>
       <div class="brand">
         <svg viewBox="0 0 3160 2610" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Haus23 Logo">
@@ -63,5 +69,32 @@
         <a href="/openapi.json">OpenAPI 3.1</a>
       </nav>
     </main>
+    <script>
+      const colorModeSwitch = document.querySelector('.color-mode-switch input');
+      const colorScheme = matchMedia('(prefers-color-scheme: dark)');
+
+      function isDarkMode() {
+        const colorMode = localStorage.colorMode;
+        return colorMode === 'dark' || (!colorMode && colorScheme.matches);
+      }
+
+      function applyColorMode() {
+        const isDark = isDarkMode();
+        document.documentElement.classList.toggle('dark-theme', isDark);
+        colorModeSwitch.checked = isDark;
+        colorModeSwitch.setAttribute('aria-checked', String(isDark));
+      }
+
+      colorModeSwitch.addEventListener('change', () => {
+        localStorage.colorMode = colorModeSwitch.checked ? 'dark' : 'light';
+        applyColorMode();
+      });
+
+      colorScheme.addEventListener('change', () => {
+        if (!localStorage.colorMode) applyColorMode();
+      });
+
+      applyColorMode();
+    </script>
   </body>
 </html>
