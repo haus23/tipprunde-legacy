@@ -50,8 +50,9 @@ Die Response-Schemas der OpenAPI-Beschreibung werden aus den kanonischen
 Valibot-Schemas des Model-Pakets erzeugt. HTTP-Pfade, Parameter und Fehlerfälle
 werden im Unterbau ergänzt.
 
-Die E-Mail-Adresse eines Mitglieds dient ausschließlich Benachrichtigungen und
-darf von öffentlichen Frontend-Clients nicht angezeigt werden.
+Die E-Mail-Adresse eines Mitglieds dient ausschließlich Benachrichtigungen. Der
+Unterbau ersetzt sie in allen öffentlichen API-Antworten durch einen leeren
+String.
 
 ## Datenfluss und Validierung
 

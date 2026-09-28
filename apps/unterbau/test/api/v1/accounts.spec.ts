@@ -20,3 +20,10 @@ it('returns an array', async () => {
   const response = await request(app).get('/api/v1/accounts');
   expect(Array.isArray(response.body)).toBeTruthy();
 });
+
+it('does not expose notification email addresses', async () => {
+  const response = await request(app).get('/api/v1/accounts');
+  expect(
+    response.body.every((account: { email: string }) => account.email === ''),
+  ).toBeTruthy();
+});

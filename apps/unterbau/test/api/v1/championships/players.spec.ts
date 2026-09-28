@@ -27,6 +27,17 @@ it('returns an array', async () => {
   expect(Array.isArray(response.body)).toBeTruthy();
 });
 
+it('does not expose notification email addresses', async () => {
+  const response = await request(app).get(
+    '/api/v1/championships/hr2425/players',
+  );
+  expect(
+    response.body.every(
+      (player: { account: { email: string } }) => player.account.email === '',
+    ),
+  ).toBeTruthy();
+});
+
 it('returns status 406 for an invalid championship', async () => {
   const response = await request(app).get(
     '/api/v1/championships/abcdef/players',

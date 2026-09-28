@@ -2,8 +2,9 @@ import { MemberSchema } from '@haus23/tipprunde-model';
 
 import { cachedFunction } from '../cached.ts';
 import { db, modelConverter } from '../firebase/index.ts';
+import { toPublicMember } from '../util/to-public-member.ts';
 
-export const getAccounts = cachedFunction(
+const getCachedAccounts = cachedFunction(
   async () => {
     console.info(`[${new Date().toLocaleString()}] Querying accounts`);
 
@@ -11,10 +12,14 @@ export const getAccounts = cachedFunction(
       .collection('players')
       .withConverter(modelConverter(MemberSchema))
       .get();
-    return snapshot.docs.map((doc) => doc.data());
+    return snapshot.docs.map((doc) => toPublicMember(doc.data()));
   },
   {
     name: 'accounts',
     getKey: () => 'list',
   },
 );
+
+export async function getAccounts() {
+  return (await getCachedAccounts()).map(toPublicMember);
+}

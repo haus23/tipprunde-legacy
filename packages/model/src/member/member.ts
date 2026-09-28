@@ -8,7 +8,7 @@ export const MemberSchema = v.object({
   email: v.pipe(
     v.optional(v.union([v.literal(''), v.pipe(v.string(), v.email())]), ''),
     v.description(
-      'Kontaktadresse für Benachrichtigungen. Darf in öffentlichen Frontend-Oberflächen nicht angezeigt werden.',
+      'Kontaktadresse für Benachrichtigungen. Der Unterbau ersetzt sie in öffentlichen API-Antworten durch einen leeren String.',
     ),
   ),
 });
