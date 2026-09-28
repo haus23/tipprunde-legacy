@@ -1,5 +1,6 @@
-import type { ChampionshipPlayerTipsInput } from '@haus23/tipprunde-model';
+import { ChampionshipPlayerTipsSchema } from '@haus23/tipprunde-model';
 import type { Request, Response } from 'express';
+import * as v from 'valibot';
 
 import { getTipsByPlayer } from '#app/lib/queries/championships/tips.ts';
 import { validateChampionship } from '#app/lib/util/validate-championship.ts';
@@ -12,8 +13,10 @@ export async function handler(req: Request, res: Response) {
   const tips = await getTipsByPlayer(player, championship);
   const tipsPerMatch = new Map(tips.map((t) => [t.matchId, t]));
 
-  res.json({
-    playerId: player.id,
-    tips: Object.fromEntries(tipsPerMatch),
-  } satisfies ChampionshipPlayerTipsInput);
+  res.json(
+    v.parse(ChampionshipPlayerTipsSchema, {
+      playerId: player.id,
+      tips: Object.fromEntries(tipsPerMatch),
+    }),
+  );
 }

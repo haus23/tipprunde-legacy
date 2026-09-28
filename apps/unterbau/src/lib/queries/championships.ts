@@ -1,4 +1,4 @@
-import type { ChampionshipInput } from '@haus23/tipprunde-model';
+import { ChampionshipSchema } from '@haus23/tipprunde-model';
 
 import { cachedFunction } from '../cached.ts';
 import { db, modelConverter } from '../firebase/index.ts';
@@ -11,7 +11,7 @@ export const getChampionships = cachedFunction(
       .collection('championships')
       .where('published', '==', true)
       .orderBy('nr', 'desc')
-      .withConverter(modelConverter<ChampionshipInput>())
+      .withConverter(modelConverter(ChampionshipSchema))
       .get();
     return snapshot.docs.map((doc) => doc.data());
   },

@@ -1,6 +1,6 @@
-import type {
-  ChampionshipInput,
-  ChampionshipPlayerInput,
+import {
+  type ChampionshipInput,
+  ChampionshipPlayerSchema,
 } from '@haus23/tipprunde-model';
 import { cachedFunction } from '#app/lib/cached.ts';
 import { db, modelConverter } from '#app/lib/firebase/index.ts';
@@ -13,7 +13,7 @@ export const getPlayers = cachedFunction(
 
     const snapshot = await db
       .collection(`championships/${championship.id}/players`)
-      .withConverter(modelConverter<ChampionshipPlayerInput>())
+      .withConverter(modelConverter(ChampionshipPlayerSchema))
       .get();
     return snapshot.docs
       .map((doc) => doc.data())

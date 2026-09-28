@@ -1,5 +1,6 @@
-import type { ChampionshipCurrentTipsInput } from '@haus23/tipprunde-model';
+import { ChampionshipCurrentTipsSchema } from '@haus23/tipprunde-model';
 import type { Request, Response } from 'express';
+import * as v from 'valibot';
 
 import { getMatches } from '#app/lib/queries/championships/matches.ts';
 import { getTips } from '#app/lib/queries/championships/tips.ts';
@@ -39,19 +40,22 @@ export async function handler(req: Request, res: Response) {
     currentSliceStart + 4,
   );
 
-  const currentTips = currentSlice.map((match) => {
-    const tipsPerMatch = new Map(
-      tips.filter((t) => t.matchId === match.id).map((t) => [t.playerId, t]),
-    );
-    return {
-      matchId: match.id,
-      nr: match.nr,
-      hometeam: teams.find((t) => t.id === match.hometeamId)?.shortname,
-      awayteam: teams.find((t) => t.id === match.awayteamId)?.shortname,
-      result: match.result,
-      tips: Object.fromEntries(tipsPerMatch),
-    };
-  }) satisfies ChampionshipCurrentTipsInput;
+  const currentTips = v.parse(
+    ChampionshipCurrentTipsSchema,
+    currentSlice.map((match) => {
+      const tipsPerMatch = new Map(
+        tips.filter((t) => t.matchId === match.id).map((t) => [t.playerId, t]),
+      );
+      return {
+        matchId: match.id,
+        nr: match.nr,
+        hometeam: teams.find((t) => t.id === match.hometeamId)?.shortname,
+        awayteam: teams.find((t) => t.id === match.awayteamId)?.shortname,
+        result: match.result,
+        tips: Object.fromEntries(tipsPerMatch),
+      };
+    }),
+  );
 
   res.json(currentTips);
 }

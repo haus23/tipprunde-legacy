@@ -1,5 +1,6 @@
-import type { ChampionshipPlayersInput } from '@haus23/tipprunde-model';
+import { ChampionshipPlayersSchema } from '@haus23/tipprunde-model';
 import type { Request, Response } from 'express';
+import * as v from 'valibot';
 
 import { getAccounts } from '#app/lib/queries/accounts.ts';
 import { getPlayers } from '#app/lib/queries/championships/players.ts';
@@ -12,19 +13,22 @@ export async function handler(req: Request, res: Response) {
   const accounts = await getAccounts();
   const members = await getPlayers(championship);
 
-  const players = members?.map((r) => {
-    const account = accounts.find((p) => p.id === r.playerId);
-    if (!account)
-      throw new ValidationError({
-        statusCode: 500,
-        error: 'No account for player!',
-      });
+  const players = v.parse(
+    ChampionshipPlayersSchema,
+    members.map((r) => {
+      const account = accounts.find((p) => p.id === r.playerId);
+      if (!account)
+        throw new ValidationError({
+          statusCode: 500,
+          error: 'No account for player!',
+        });
 
-    return {
-      ...r,
-      account,
-    };
-  }) satisfies ChampionshipPlayersInput | undefined;
+      return {
+        ...r,
+        account,
+      };
+    }),
+  );
 
   res.json(players);
 }

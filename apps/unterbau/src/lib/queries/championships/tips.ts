@@ -2,8 +2,8 @@ import type {
   ChampionshipInput,
   ChampionshipPlayerInput,
   MatchInput,
-  TipInput,
 } from '@haus23/tipprunde-model';
+import { TipSchema } from '@haus23/tipprunde-model';
 import { cachedFunction } from '#app/lib/cached.ts';
 import { db, modelConverter } from '#app/lib/firebase/index.ts';
 
@@ -15,7 +15,7 @@ export const getTips = cachedFunction(
 
     const snapshot = await db
       .collection(`championships/${championship.id}/tips`)
-      .withConverter(modelConverter<TipInput>())
+      .withConverter(modelConverter(TipSchema))
       .get();
     return snapshot.docs.map((doc) => doc.data());
   },

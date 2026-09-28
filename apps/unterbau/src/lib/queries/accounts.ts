@@ -1,4 +1,4 @@
-import type { MemberInput } from '@haus23/tipprunde-model';
+import { MemberSchema } from '@haus23/tipprunde-model';
 
 import { cachedFunction } from '../cached.ts';
 import { db, modelConverter } from '../firebase/index.ts';
@@ -9,7 +9,7 @@ export const getAccounts = cachedFunction(
 
     const snapshot = await db
       .collection('players')
-      .withConverter(modelConverter<MemberInput>())
+      .withConverter(modelConverter(MemberSchema))
       .get();
     return snapshot.docs.map((doc) => doc.data());
   },

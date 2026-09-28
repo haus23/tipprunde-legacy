@@ -1,5 +1,6 @@
-import type { ChampionshipMatchesInput } from '@haus23/tipprunde-model';
+import { ChampionshipMatchesSchema } from '@haus23/tipprunde-model';
 import type { Request, Response } from 'express';
+import * as v from 'valibot';
 
 import { getMatches } from '#app/lib/queries/championships/matches.ts';
 import { getRounds } from '#app/lib/queries/championships/rounds.ts';
@@ -32,10 +33,12 @@ export async function handler(req: Request, res: Response) {
     teams.filter((t) => currentTeamIds.has(t.id)).map((t) => [t.id, t]),
   );
 
-  res.json({
-    rounds: await getRounds(championship),
-    matches: matches,
-    leagues: Object.fromEntries(currentLeagues),
-    teams: Object.fromEntries(currentTeams),
-  } satisfies ChampionshipMatchesInput);
+  res.json(
+    v.parse(ChampionshipMatchesSchema, {
+      rounds: await getRounds(championship),
+      matches: matches,
+      leagues: Object.fromEntries(currentLeagues),
+      teams: Object.fromEntries(currentTeams),
+    }),
+  );
 }
