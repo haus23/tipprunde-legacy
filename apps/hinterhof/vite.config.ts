@@ -5,18 +5,4 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  build: {
-    rolldownOptions: {
-      output: {
-        codeSplitting: {
-          groups: [
-            {
-              name: 'lib',
-              test: /packages[\\/]lib[\\/]/,
-            },
-          ],
-        },
-      },
-    },
-  },
 });

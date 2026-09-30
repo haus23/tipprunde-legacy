@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import { auth } from '#/firebase/auth';
 import {
   subscribeToCurrentData,
   useCurrentDataStore,
@@ -11,13 +10,9 @@ import {
 } from '#/state/master-data-store';
 import { useSessionStore } from '#/state/session-store';
 
-export type BootstrapPhase = 'auth' | 'master-data' | 'current-data' | 'ready';
+export type DataBootstrapPhase = 'master-data' | 'current-data' | 'ready';
 
-export function useBootstrap(): BootstrapPhase {
-  const [isAuthResolved, setAuthResolved] = useState(false);
-  const profile = useSessionStore((state) => state.profile);
-  const isAuthenticated = profile !== null;
-  const setProfile = useSessionStore((state) => state.setProfile);
+export function useDataBootstrap(): DataBootstrapPhase {
   const currentChampionshipId = useSessionStore(
     (state) => state.currentChampionshipId,
   );
@@ -45,36 +40,13 @@ export function useBootstrap(): BootstrapPhase {
     championships.find(({ id }) => id === currentChampionshipId) ??
     championships.at(0);
 
-  useEffect(
-    () =>
-      auth.onAuthStateChanged((user) => {
-        setProfile(
-          user
-            ? {
-                uid: user.uid,
-                email: user.email,
-                displayName: user.displayName,
-                photoURL: user.photoURL,
-              }
-            : null,
-        );
-        setAuthResolved(true);
-      }),
-    [setProfile],
-  );
+  useEffect(() => subscribeToMasterData(), []);
 
   useEffect(() => {
-    if (!isAuthResolved || !isAuthenticated) return;
-    return subscribeToMasterData();
-  }, [isAuthResolved, isAuthenticated]);
-
-  useEffect(() => {
-    if (!isAuthenticated || !isMasterDataReady) return;
+    if (!isMasterDataReady) return;
     return subscribeToCurrentData(currentChampionship?.id);
-  }, [currentChampionship?.id, isAuthenticated, isMasterDataReady]);
+  }, [currentChampionship?.id, isMasterDataReady]);
 
-  if (!isAuthResolved) return 'auth';
-  if (!isAuthenticated) return 'ready';
   if (!isMasterDataReady) return 'master-data';
   if (
     currentChampionship &&
