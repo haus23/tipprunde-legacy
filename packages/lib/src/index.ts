@@ -1,4 +1,3 @@
-export * from './firebase/auth';
 export * from './repository/collection';
 export * from './repository/constraint';
 export * from './repository/create-entity';
