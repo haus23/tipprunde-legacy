@@ -2,9 +2,8 @@ import { useForm } from 'react-hook-form';
 
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
-
+import type { Profile } from '#/firebase/auth';
 import { useProfile } from '#/hooks/use-profile';
-import type { Profile } from '#/model/profile';
 import { notify } from '#/utils/notify';
 
 export default function ProfileView() {
@@ -29,9 +28,9 @@ export default function ProfileView() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-semibold">Profil</h2>
+      <h2 className="font-semibold text-2xl">Profil</h2>
       <div className="mt-5">
-        <div className="shadow-sm rounded-md bg-white">
+        <div className="rounded-md bg-white shadow-sm">
           <form onSubmit={handleSubmit(saveProfile)} noValidate>
             <div className="space-y-4 p-4">
               <TextField
@@ -55,7 +54,7 @@ export default function ProfileView() {
                 })}
               />
             </div>
-            <div className="bg-gray-50 px-4 py-3 text-right sm:px-6 space-x-4">
+            <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
               <Button disabled={!isDirty} primary type="submit">
                 Speichern
               </Button>

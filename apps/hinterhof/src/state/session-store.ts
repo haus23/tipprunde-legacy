@@ -1,7 +1,7 @@
 import type { Championship } from '@haus23/tipprunde-model';
 import { create } from 'zustand';
 
-import type { Profile } from '#/model/profile';
+import type { Profile } from '#/firebase/auth';
 
 type SessionState = {
   profile: Profile | null;

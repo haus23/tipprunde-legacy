@@ -1,5 +1,4 @@
-import { updateProfile } from 'lib';
-import type { Profile } from '#/model/profile';
+import { type Profile, updateProfile } from '#/firebase/auth';
 import { useSessionStore } from '#/state/session-store';
 
 export function useProfile() {

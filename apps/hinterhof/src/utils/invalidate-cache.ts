@@ -1,4 +1,4 @@
-import { auth } from 'lib';
+import { auth } from '#/firebase/auth';
 
 export type CacheInvalidationTarget =
   | { type: 'championships' }

@@ -1,6 +1,6 @@
-import { auth } from 'lib';
 import { useEffect, useState } from 'react';
 
+import { auth } from '#/firebase/auth';
 import {
   subscribeToCurrentData,
   useCurrentDataStore,

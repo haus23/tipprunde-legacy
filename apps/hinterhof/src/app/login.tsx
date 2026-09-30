@@ -1,4 +1,3 @@
-import { signIn } from 'lib';
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { Navigate } from 'react-router';
@@ -6,6 +5,7 @@ import { AppTitle } from 'ui-legacy';
 
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
+import { signIn } from '#/firebase/auth';
 import { useSessionStore } from '#/state/session-store';
 
 type LoginFormType = {
