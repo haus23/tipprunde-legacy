@@ -1,5 +1,5 @@
 import type { Tip } from '@haus23/tipprunde-model';
-import { createEntityWithGeneratedId, updateEntity } from 'lib';
+import { createEntityWithGeneratedId, updateEntity } from '#/firebase/write';
 import { useCurrentDataStore } from '#/state/current-data-store';
 import { useCurrentChampionship } from './use-current-championship';
 

@@ -5,10 +5,15 @@ import type {
   Round,
   Tip,
 } from '@haus23/tipprunde-model';
-import { collection, orderByAsc } from 'lib';
 import { create } from 'zustand';
 
-import { liveSource, syncFields } from './live-source';
+import { onCommit } from '#/firebase/write';
+import {
+  applyWrites,
+  type Bindings,
+  loadCollections,
+} from './collection-bindings';
+import { loadSource } from './load-source';
 import { useSessionStore } from './session-store';
 
 type CurrentData = {
@@ -25,56 +30,68 @@ const initialCurrentData: CurrentData = {
   tips: [],
 };
 
+function bindingsFor(
+  championshipId: Championship['id'],
+): Bindings<CurrentData> {
+  const path = `championships/${championshipId}`;
+  return {
+    championshipPlayers: { path: `${path}/players` },
+    matches: { path: `${path}/matches`, compare: (a, b) => a.nr - b.nr },
+    rounds: { path: `${path}/rounds`, compare: (a, b) => a.nr - b.nr },
+    tips: { path: `${path}/tips` },
+  };
+}
+
 export const useCurrentDataStore = create<CurrentData>(
   () => initialCurrentData,
 );
 
-const currentData = liveSource<Championship['id'] | undefined>(
-  (championshipId, ready, fail) => {
-    if (!championshipId) {
-      useCurrentDataStore.setState(initialCurrentData);
-      ready();
-      return () => undefined;
-    }
+let loadedChampionshipId: Championship['id'] | undefined;
 
-    const sync = syncFields(
-      useCurrentDataStore,
-      ['championshipPlayers', 'matches', 'rounds', 'tips'],
-      ready,
-    );
-
-    const path = `championships/${championshipId}`;
-    const stops = [
-      collection<ChampionshipPlayer>(`${path}/players`).subscribe(
-        sync('championshipPlayers'),
-        fail,
-      ),
-      collection<Match>(`${path}/matches`, orderByAsc('nr')).subscribe(
-        sync('matches'),
-        fail,
-      ),
-      collection<Round>(`${path}/rounds`, orderByAsc('nr')).subscribe(
-        sync('rounds'),
-        fail,
-      ),
-      collection<Tip>(`${path}/tips`).subscribe(sync('tips'), fail),
-    ];
-
-    return () => {
-      for (const stop of stops) stop();
-    };
+const currentData = loadSource(
+  (championshipId: Championship['id'] | undefined) =>
+    championshipId
+      ? loadCollections(bindingsFor(championshipId))
+      : Promise.resolve(initialCurrentData),
+  (data, championshipId) => {
+    loadedChampionshipId = championshipId;
+    useCurrentDataStore.setState(data);
   },
 );
 
-/** Stabiles Promise für `use()`: erfüllt, sobald die Turnierdaten geladen sind. */
 export const ensureCurrentData = (
   championshipId: Championship['id'] | undefined,
 ) => currentData.ensure(championshipId);
 
-// Beim Logout Listener beenden und Daten verwerfen.
-useSessionStore.subscribe((state, prev) => {
-  if (prev.profile && !state.profile) {
-    currentData.stop();
+export const reloadCurrentData = (
+  championshipId: Championship['id'] | undefined,
+) => currentData.reload(championshipId);
+
+// Eigene Writes für das geladene Turnier direkt in den Store übernehmen.
+onCommit((operations) => {
+  if (!loadedChampionshipId) return;
+  try {
+    if (
+      applyWrites(
+        useCurrentDataStore,
+        bindingsFor(loadedChampionshipId),
+        operations,
+      )
+    ) {
+      return;
+    }
+    void reloadCurrentData(loadedChampionshipId).catch(console.error);
+  } catch (error) {
+    console.error(error);
+    void reloadCurrentData(loadedChampionshipId).catch(console.error);
+  }
+});
+
+// Beim Logout Daten und das gecachte Promise verwerfen.
+useSessionStore.subscribe((state, previous) => {
+  if (previous.profile && !state.profile) {
+    currentData.reset();
+    loadedChampionshipId = undefined;
     useCurrentDataStore.setState(initialCurrentData);
   }
 });

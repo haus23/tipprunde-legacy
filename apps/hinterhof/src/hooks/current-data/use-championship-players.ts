@@ -1,5 +1,9 @@
 import type { ChampionshipPlayer } from '@haus23/tipprunde-model';
-import { createEntityWithGeneratedId, patchEntity, updateEntity } from 'lib';
+import {
+  createEntityWithGeneratedId,
+  patchEntity,
+  updateEntity,
+} from '#/firebase/write';
 import { useCurrentDataStore } from '#/state/current-data-store';
 import { useCurrentChampionship } from './use-current-championship';
 

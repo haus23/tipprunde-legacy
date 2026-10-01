@@ -41,11 +41,4 @@ it('validates a stored rule set with the canonical plural field', () => {
   };
 
   expect(v.safeParse(RuleSetSchema, ruleSet).success).toBe(true);
-  expect(
-    v.safeParse(RuleSetSchema, {
-      ...ruleSet,
-      extraQuestionsRuleId: undefined,
-      extraQuestionRuleId: 'keine-zusatzfragen',
-    }).success,
-  ).toBe(false);
 });

@@ -5,10 +5,15 @@ import type {
   RuleSet,
   Team,
 } from '@haus23/tipprunde-model';
-import { collection, orderByDesc } from 'lib';
 import { create } from 'zustand';
 
-import { liveSource, syncFields } from './live-source';
+import { onCommit } from '#/firebase/write';
+import {
+  applyWrites,
+  type Bindings,
+  loadCollections,
+} from './collection-bindings';
+import { loadSource } from './load-source';
 import { useSessionStore } from './session-store';
 
 type MasterData = {
@@ -27,38 +32,41 @@ const initialMasterData: MasterData = {
   teams: [],
 };
 
+const bindings: Bindings<MasterData> = {
+  championships: { path: 'championships', compare: (a, b) => b.nr - a.nr },
+  leagues: { path: 'leagues' },
+  players: { path: 'players' },
+  rules: { path: 'rules' },
+  teams: { path: 'teams' },
+};
+
 export const useMasterDataStore = create<MasterData>(() => initialMasterData);
 
-const masterData = liveSource<void>((_, ready, fail) => {
-  const sync = syncFields(
-    useMasterDataStore,
-    ['championships', 'leagues', 'players', 'rules', 'teams'],
-    ready,
-  );
-
-  const stops = [
-    collection<Championship>('championships', orderByDesc('nr')).subscribe(
-      sync('championships'),
-      fail,
-    ),
-    collection<League>('leagues').subscribe(sync('leagues'), fail),
-    collection<Member>('players').subscribe(sync('players'), fail),
-    collection<RuleSet>('rules').subscribe(sync('rules'), fail),
-    collection<Team>('teams').subscribe(sync('teams'), fail),
-  ];
-
-  return () => {
-    for (const stop of stops) stop();
-  };
-});
+const masterData = loadSource(
+  () => loadCollections(bindings),
+  (data) => useMasterDataStore.setState(data),
+);
 
 /** Stabiles Promise für `use()`: erfüllt, sobald alle Stammdaten geladen sind. */
 export const ensureMasterData = () => masterData.ensure(undefined);
 
-// Beim Logout Listener beenden und Daten verwerfen.
-useSessionStore.subscribe((state, prev) => {
-  if (prev.profile && !state.profile) {
-    masterData.stop();
+export const reloadMasterData = () => masterData.reload(undefined);
+
+// Eigene Writes direkt in den Store übernehmen.
+onCommit((operations) => {
+  try {
+    if (applyWrites(useMasterDataStore, bindings, operations)) return;
+    void reloadMasterData().catch(console.error);
+  } catch (error) {
+    console.error(error);
+    void reloadMasterData().catch(console.error);
+  }
+});
+
+// Beim Logout Daten und das gecachte Promise verwerfen.
+useSessionStore.subscribe((state, previous) => {
+  if (previous.profile && !state.profile) {
+    masterData.reset();
     useMasterDataStore.setState(initialMasterData);
   }
 });

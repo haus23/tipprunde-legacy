@@ -15,7 +15,6 @@
     "@heroicons/react": "^2.2.0",
     "@haus23/tipprunde-model": "workspace:^",
     "firebase": "^12.19.0",
-    "lib": "workspace:*",
     "react": "catalog:react",
     "react-dom": "catalog:react",
     "react-hook-form": "catalog:react-libs",

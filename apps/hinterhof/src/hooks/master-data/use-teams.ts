@@ -1,5 +1,5 @@
 import type { Team } from '@haus23/tipprunde-model';
-import { createEntity, updateEntity } from 'lib';
+import { createEntity, updateEntity } from '#/firebase/write';
 import { useMasterDataStore } from '#/state/master-data-store';
 
 export function useTeams() {

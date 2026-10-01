@@ -1,6 +1,6 @@
 import type { Championship } from '@haus23/tipprunde-model';
-import { patchEntity } from 'lib';
 import { useCallback } from 'react';
+import { patchEntity } from '#/firebase/write';
 import { useMasterDataStore } from '#/state/master-data-store';
 import { useSessionStore } from '#/state/session-store';
 

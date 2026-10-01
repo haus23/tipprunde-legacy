@@ -13,7 +13,7 @@ import {
   SquaresPlusIcon,
   UserIcon,
 } from '@heroicons/react/24/outline';
-import type { ElementType } from 'react';
+import { type ElementType, Suspense, use } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AppTitle, classNames } from 'ui-legacy';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
@@ -21,18 +21,22 @@ import { useCurrentChampionship } from '#/hooks/current-data/use-current-champio
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useProfile } from '#/hooks/use-profile';
+import { ensureCurrentData } from '#/state/current-data-store';
 
-const championshipNavLinks: {
+type ChampionshipNavLink = {
   to: string;
   icon: ElementType;
   label: string;
+};
+
+const currentDataNavLinks: (ChampionshipNavLink & {
   visible: (
     championship: Championship | undefined,
     rounds: Round[],
     matches: Match[],
     players: ChampionshipPlayer[],
   ) => boolean;
-}[] = [
+})[] = [
   {
     to: './turnier',
     icon: FolderIcon,
@@ -66,6 +70,54 @@ const championshipNavLinks: {
   },
 ];
 
+function ChampionshipLink({ item }: { item: ChampionshipNavLink }) {
+  return (
+    <NavLink
+      to={item.to}
+      className={({ isActive }) =>
+        classNames(
+          isActive
+            ? 'bg-gray-100 text-gray-900'
+            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+          'group flex items-center rounded-md px-2 py-2 font-medium text-sm',
+        )
+      }
+    >
+      {({ isActive }) => (
+        <>
+          <item.icon
+            className={classNames(
+              isActive
+                ? 'text-gray-500'
+                : 'text-gray-400 group-hover:text-gray-500',
+              'mr-3 h-6 w-6 shrink-0',
+            )}
+            aria-hidden="true"
+          />
+          {item.label}
+        </>
+      )}
+    </NavLink>
+  );
+}
+
+function CurrentDataNavLinks({
+  championship,
+}: {
+  championship: Championship | undefined;
+}) {
+  use(ensureCurrentData(championship?.id));
+  const { rounds } = useRounds();
+  const { championshipPlayers } = useChampionshipPlayers();
+  const { matches } = useMatches();
+
+  return currentDataNavLinks
+    .filter((item) =>
+      item.visible(championship, rounds, matches, championshipPlayers),
+    )
+    .map((item) => <ChampionshipLink key={item.label} item={item} />);
+}
+
 const masterDataNavLinks: {
   to: string;
   label: string;
@@ -95,9 +147,6 @@ const masterDataNavLinks: {
 export default function AppShellNavbar() {
   const { profile } = useProfile();
   const { currentChampionship: championship } = useCurrentChampionship();
-  const { rounds } = useRounds();
-  const { championshipPlayers } = useChampionshipPlayers();
-  const { matches } = useMatches();
 
   return (
     <>
@@ -134,44 +183,9 @@ export default function AppShellNavbar() {
                 </>
               )}
             </NavLink>
-            {championshipNavLinks
-              .filter((item) =>
-                item.visible(
-                  championship,
-                  rounds,
-                  matches,
-                  championshipPlayers,
-                ),
-              )
-              .map((item) => (
-                <NavLink
-                  key={item.label}
-                  to={item.to}
-                  className={({ isActive }) =>
-                    classNames(
-                      isActive
-                        ? 'bg-gray-100 text-gray-900'
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group flex items-center rounded-md px-2 py-2 font-medium text-sm',
-                    )
-                  }
-                >
-                  {({ isActive }) => (
-                    <>
-                      <item.icon
-                        className={classNames(
-                          isActive
-                            ? 'text-gray-500'
-                            : 'text-gray-400 group-hover:text-gray-500',
-                          'mr-3 h-6 w-6 shrink-0',
-                        )}
-                        aria-hidden="true"
-                      />
-                      {item.label}
-                    </>
-                  )}
-                </NavLink>
-              ))}
+            <Suspense fallback={null}>
+              <CurrentDataNavLinks championship={championship} />
+            </Suspense>
           </nav>
           <div>
             <span className="mb-2 block border-gray-200 border-b px-4 pb-2 font-medium text-gray-500">

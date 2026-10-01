@@ -1,5 +1,5 @@
 import type { Championship } from '@haus23/tipprunde-model';
-import { createEntity } from 'lib';
+import { createEntity } from '#/firebase/write';
 import { useMasterDataStore } from '#/state/master-data-store';
 
 export function useChampionships() {
