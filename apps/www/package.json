@@ -18,7 +18,7 @@
     "@tanstack/react-query": "^5.74.4",
     "@tanstack/react-router": "^1.170.38",
     "@tanstack/react-table": "^8.21.3",
-    "lucide-react": "^0.488.0",
+    "lucide-react": "catalog:icons",
     "react": "catalog:react",
     "react-aria": "^3.39.0",
     "react-aria-components": "^1.8.0",

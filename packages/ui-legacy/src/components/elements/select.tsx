@@ -1,5 +1,5 @@
 import { Listbox, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react';
 import { Fragment } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { classNames } from '../../utils/class-names';
@@ -19,10 +19,10 @@ export function Select<T extends FieldValues>({
     <Listbox value={selected} onChange={onChange} by={(a, b) => a.id === b.id}>
       {({ open }) => (
         <div className="relative mt-1">
-          <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-xs focus:border-indigo-500 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+          <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pr-10 pl-3 text-left shadow-xs focus:border-indigo-500 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 sm:text-sm">
             <span className="block truncate">{selected.name}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <ChevronUpDownIcon
+              <ChevronsUpDownIcon
                 className="h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
@@ -42,8 +42,8 @@ export function Select<T extends FieldValues>({
                   key={option.id}
                   className={({ active }) =>
                     classNames(
-                      active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                      'relative cursor-default select-none py-2 pl-3 pr-9',
+                      active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                      'relative cursor-default select-none py-2 pr-9 pl-3',
                     )
                   }
                   value={option}

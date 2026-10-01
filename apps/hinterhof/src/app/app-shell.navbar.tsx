@@ -7,12 +7,12 @@ import type {
 import {
   CalendarIcon,
   FolderIcon,
-  HomeIcon,
-  PencilSquareIcon,
+  Grid2X2PlusIcon,
+  HouseIcon,
   ScaleIcon,
-  SquaresPlusIcon,
+  SquarePenIcon,
   UserIcon,
-} from '@heroicons/react/24/outline';
+} from 'lucide-react';
 import { type ElementType, Suspense, use } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AppTitle, classNames } from 'ui-legacy';
@@ -51,7 +51,7 @@ const currentDataNavLinks: (ChampionshipNavLink & {
   },
   {
     to: './tipps',
-    icon: PencilSquareIcon,
+    icon: SquarePenIcon,
     label: 'Tipps',
     visible: (_championship, _rounds, matches, players) =>
       matches.length > 0 && players.length > 0,
@@ -64,7 +64,7 @@ const currentDataNavLinks: (ChampionshipNavLink & {
   },
   {
     to: './zusatzpunkte',
-    icon: SquaresPlusIcon,
+    icon: Grid2X2PlusIcon,
     label: 'Zusatzpunkte',
     visible: (_championship, _rounds, _matches, players) => players.length > 0,
   },
@@ -170,7 +170,7 @@ export default function AppShellNavbar() {
             >
               {({ isActive }) => (
                 <>
-                  <HomeIcon
+                  <HouseIcon
                     className={classNames(
                       isActive
                         ? 'text-gray-500'

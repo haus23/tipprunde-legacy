@@ -1,5 +1,5 @@
 import { Listbox, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react';
 import { Fragment } from 'react';
 import {
   type Control,
@@ -50,16 +50,16 @@ export function SelectField<
       {({ open }) => (
         <>
           <Listbox.Label
-            className={classNames('block text-sm font-medium text-gray-700')}
+            className={classNames('block font-medium text-gray-700 text-sm')}
           >
             {label}
           </Listbox.Label>
           <div className="relative mt-1">
             <div className="inline-flex w-full rounded-md border border-gray-300 shadow-xs">
-              <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-xs focus:border-indigo-500 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+              <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pr-10 pl-3 text-left shadow-xs focus:border-indigo-500 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 <span className="block truncate">{value}</span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                  <ChevronUpDownIcon
+                  <ChevronsUpDownIcon
                     className="h-5 w-5 text-gray-400"
                     aria-hidden="true"
                   />
@@ -79,8 +79,8 @@ export function SelectField<
                     key={option.id}
                     className={({ active }) =>
                       classNames(
-                        active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                        'relative cursor-default select-none py-2 pl-8 pr-4',
+                        active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                        'relative cursor-default select-none py-2 pr-4 pl-8',
                       )
                     }
                     value={option[valueField || 'id']}
@@ -100,7 +100,7 @@ export function SelectField<
                           <span
                             className={classNames(
                               active ? 'text-white' : 'text-indigo-600',
-                              'absolute left-0 top-3 flex items-center pl-1.5',
+                              'absolute top-3 left-0 flex items-center pl-1.5',
                             )}
                           >
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />
@@ -110,7 +110,7 @@ export function SelectField<
                           <p
                             className={classNames(
                               active
-                                ? 'text-gray-300 bg-indigo-600'
+                                ? 'bg-indigo-600 text-gray-300'
                                 : 'text-gray-500',
                               'mt-1',
                             )}

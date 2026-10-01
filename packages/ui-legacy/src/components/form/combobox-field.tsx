@@ -1,5 +1,5 @@
 import { Combobox } from '@headlessui/react';
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react';
 import { useState } from 'react';
 import {
   type Control,
@@ -50,12 +50,12 @@ export function ComboboxField<
 
   return (
     <Combobox as="div" value={value} onChange={onChange}>
-      <Combobox.Label className="block text-sm font-medium text-gray-700">
+      <Combobox.Label className="block font-medium text-gray-700 text-sm">
         {label}
       </Combobox.Label>
       <div className="relative mt-1">
         <Combobox.Input
-          className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-xs focus:border-indigo-500 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+          className="w-full rounded-md border border-gray-300 bg-white py-2 pr-10 pl-3 shadow-xs focus:border-indigo-500 focus:outline-hidden focus:ring-1 focus:ring-indigo-500 sm:text-sm"
           onChange={(event) => setQuery(event.target.value)}
           displayValue={(value: string) =>
             options.find((option) => option[valueField || 'id'] === value)?.[
@@ -64,7 +64,7 @@ export function ComboboxField<
           }
         />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-hidden">
-          <ChevronUpDownIcon
+          <ChevronsUpDownIcon
             className="h-5 w-5 text-gray-400"
             aria-hidden="true"
           />
@@ -78,7 +78,7 @@ export function ComboboxField<
                 value={option[valueField || 'id']}
                 className={({ active }) =>
                   classNames(
-                    'relative cursor-default select-none py-2 pl-8 pr-4',
+                    'relative cursor-default select-none py-2 pr-4 pl-8',
                     active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                   )
                 }

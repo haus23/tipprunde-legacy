@@ -1,5 +1,5 @@
 import type { Member, Team, Tip } from '@haus23/tipprunde-model';
-import { ClipboardIcon } from '@heroicons/react/24/outline';
+import { ClipboardIcon } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { Button, Card, classNames, Select, TextField } from 'ui-legacy';

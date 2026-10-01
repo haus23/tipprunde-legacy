@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",
-    "@heroicons/react": "^2.2.0"
+    "lucide-react": "catalog:icons"
   },
   "peerDependencies": {
     "react": "catalog:react",

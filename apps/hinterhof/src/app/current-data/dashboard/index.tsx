@@ -7,11 +7,11 @@ import type {
 import {
   CalendarIcon,
   FolderPlusIcon,
+  Grid2X2PlusIcon,
   MegaphoneIcon,
-  PencilSquareIcon,
   ScaleIcon,
-  SquaresPlusIcon,
-} from '@heroicons/react/24/outline';
+  SquarePenIcon,
+} from 'lucide-react';
 import type { ElementType } from 'react';
 import { Link } from 'react-router';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
@@ -44,7 +44,7 @@ const items: {
   {
     title: 'Tipps eintragen',
     description: 'Tipps der Mitspieler erfassen.',
-    icon: PencilSquareIcon,
+    icon: SquarePenIcon,
     background: 'bg-indigo-500',
     route: './tipps',
     visible: (_championship, _rounds, matches, players) =>
@@ -69,7 +69,7 @@ const items: {
   {
     title: 'Zusatzpunkte',
     description: 'Ergebnisse der Zusatzfragen bei allen Mitspielern eintragen',
-    icon: SquaresPlusIcon,
+    icon: Grid2X2PlusIcon,
     background: 'bg-yellow-500',
     route: './zusatzpunkte',
     visible: (_championship, _rounds, _matches, players) => players.length > 0,

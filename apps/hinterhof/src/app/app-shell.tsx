@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { MenuIcon, XIcon } from 'lucide-react';
 import { Fragment, use, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 
@@ -58,7 +58,7 @@ export default function AppShell() {
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      <XMarkIcon
+                      <XIcon
                         className="h-6 w-6 text-white"
                         aria-hidden="true"
                       />
@@ -90,7 +90,7 @@ export default function AppShell() {
             onClick={() => setSidebarOpen(true)}
           >
             <span className="sr-only">Open sidebar</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            <MenuIcon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
 

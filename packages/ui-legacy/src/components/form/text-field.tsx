@@ -1,4 +1,4 @@
-import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
+import { CircleAlertIcon } from 'lucide-react';
 import { useId } from 'react';
 import {
   type Control,
@@ -39,7 +39,7 @@ export function TextField<T extends FieldValues, TPath extends Path<T>>({
         htmlFor={id}
         className={classNames(
           error ? 'text-red-500' : 'text-gray-700',
-          'block text-sm font-medium',
+          'block font-medium text-sm',
         )}
       >
         {label}
@@ -53,14 +53,14 @@ export function TextField<T extends FieldValues, TPath extends Path<T>>({
             error
               ? 'border-red-300 pr-10 text-red-700 placeholder-red-300 focus:border-red-500 focus:outline-hidden focus:ring-red-500'
               : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500',
-            'block w-full px-3 py-2 border rounded-md shadow-xs sm:text-sm',
+            'block w-full rounded-md border px-3 py-2 shadow-xs sm:text-sm',
           )}
           value={value}
           onChange={onChange}
         />
         {error && (
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-            <ExclamationCircleIcon
+            <CircleAlertIcon
               className="h-5 w-5 text-red-500"
               aria-hidden="true"
             />
@@ -68,7 +68,7 @@ export function TextField<T extends FieldValues, TPath extends Path<T>>({
         )}
       </div>
       {error?.message && (
-        <p className="mt-2 text-sm text-red-600" id="email-error">
+        <p className="mt-2 text-red-600 text-sm" id="email-error">
           {error.message}
         </p>
       )}

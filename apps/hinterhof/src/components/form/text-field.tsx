@@ -1,7 +1,7 @@
+import { CircleAlertIcon } from 'lucide-react';
+import { type ForwardedRef, forwardRef, useId } from 'react';
 import { classNames } from '#/utils/class-names';
 import type { MergeElementProps } from '#/utils/merge-element-props';
-import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
-import { type ForwardedRef, forwardRef, useId } from 'react';
 
 type TextFieldProps = MergeElementProps<
   'input',
@@ -24,7 +24,7 @@ function TextField(
       <label
         htmlFor={id}
         className={classNames(
-          'block text-sm font-medium',
+          'block font-medium text-sm',
           hasError ? 'text-red-500' : 'text-gray-700',
         )}
       >
@@ -41,13 +41,13 @@ function TextField(
           className={classNames(
             'block w-full appearance-none rounded-md border px-3 py-2 placeholder-gray-400 shadow-xs focus:outline-hidden sm:text-sm',
             hasError
-              ? 'text-red-500 border-red-300 focus:border-red-500 focus:ring-red-500'
+              ? 'border-red-300 text-red-500 focus:border-red-500 focus:ring-red-500'
               : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500',
           )}
         />
         {hasError && (
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-            <ExclamationCircleIcon
+            <CircleAlertIcon
               data-testid="errorIcon"
               className="h-5 w-5 text-red-500"
               aria-hidden="true"
@@ -56,7 +56,7 @@ function TextField(
         )}
       </div>
       {error && (
-        <p className="mt-2 text-sm font-normal text-red-400">{error}</p>
+        <p className="mt-2 font-normal text-red-400 text-sm">{error}</p>
       )}
     </div>
   );

@@ -5,7 +5,7 @@ import {
   roundRules,
   tipRules,
 } from '@haus23/tipprunde-model';
-import { ChevronDownIcon, PencilIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { SelectField } from 'ui-legacy';
