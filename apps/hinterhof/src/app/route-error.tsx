@@ -1,8 +1,39 @@
-import { useRouteError } from 'react-router';
+import { useEffect } from 'react';
+import { isRouteErrorResponse, useRouteError } from 'react-router';
+
+function errorMessage(error: unknown): string {
+  if (isRouteErrorResponse(error)) {
+    const details = errorMessage(error.data);
+    return `${error.status} ${error.statusText}${details ? `: ${details}` : ''}`;
+  }
+
+  if (error instanceof Error) return error.message;
+  if (typeof error === 'string') return error;
+
+  if (error && typeof error === 'object') {
+    const { code, message } = error as { code?: unknown; message?: unknown };
+    if (typeof code === 'string' && typeof message === 'string') {
+      return `${code}: ${message}`;
+    }
+    if (typeof message === 'string') return message;
+
+    try {
+      return JSON.stringify(error);
+    } catch {
+      return String(error);
+    }
+  }
+
+  return String(error);
+}
 
 export default function RouteError() {
   const error = useRouteError();
-  const message = error instanceof Error ? error.message : String(error);
+  const message = errorMessage(error);
+
+  useEffect(() => {
+    console.error('Route error', error);
+  }, [error]);
 
   return (
     <div role="alert" className="p-8">

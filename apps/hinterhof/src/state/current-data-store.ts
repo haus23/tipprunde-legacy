@@ -14,7 +14,6 @@ import {
   loadCollections,
 } from './collection-bindings';
 import { loadSource } from './load-source';
-import { useSessionStore } from './session-store';
 
 type CurrentData = {
   championshipPlayers: ChampionshipPlayer[];
@@ -67,6 +66,12 @@ export const reloadCurrentData = (
   championshipId: Championship['id'] | undefined,
 ) => currentData.reload(championshipId);
 
+export function resetCurrentData() {
+  currentData.reset();
+  loadedChampionshipId = undefined;
+  useCurrentDataStore.setState(initialCurrentData);
+}
+
 // Eigene Writes für das geladene Turnier direkt in den Store übernehmen.
 onCommit((operations) => {
   if (!loadedChampionshipId) return;
@@ -84,14 +89,5 @@ onCommit((operations) => {
   } catch (error) {
     console.error(error);
     void reloadCurrentData(loadedChampionshipId).catch(console.error);
-  }
-});
-
-// Beim Logout Daten und das gecachte Promise verwerfen.
-useSessionStore.subscribe((state, previous) => {
-  if (previous.profile && !state.profile) {
-    currentData.reset();
-    loadedChampionshipId = undefined;
-    useCurrentDataStore.setState(initialCurrentData);
   }
 });

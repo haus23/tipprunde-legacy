@@ -1,15 +1,23 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { createBrowserRouter } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
 import { SplashScreen } from 'ui-legacy';
 
-import appRoutes from './app.routes';
+import { resetCurrentData } from '#/state/current-data-store';
+import { resetMasterData } from '#/state/master-data-store';
+import createAppRoutes from './app.routes';
+
+const router = createBrowserRouter(createAppRoutes());
 
 export default function AuthenticatedApp() {
-  const [router] = useState(() => createBrowserRouter(appRoutes));
-
-  useEffect(() => () => router.dispose(), [router]);
+  useEffect(
+    () => () => {
+      resetCurrentData();
+      resetMasterData();
+    },
+    [],
+  );
 
   return (
     <>

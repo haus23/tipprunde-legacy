@@ -14,7 +14,6 @@ import {
   loadCollections,
 } from './collection-bindings';
 import { loadSource } from './load-source';
-import { useSessionStore } from './session-store';
 
 type MasterData = {
   championships: Championship[];
@@ -52,6 +51,11 @@ export const ensureMasterData = () => masterData.ensure(undefined);
 
 export const reloadMasterData = () => masterData.reload(undefined);
 
+export function resetMasterData() {
+  masterData.reset();
+  useMasterDataStore.setState(initialMasterData);
+}
+
 // Eigene Writes direkt in den Store übernehmen.
 onCommit((operations) => {
   try {
@@ -60,13 +64,5 @@ onCommit((operations) => {
   } catch (error) {
     console.error(error);
     void reloadMasterData().catch(console.error);
-  }
-});
-
-// Beim Logout Daten und das gecachte Promise verwerfen.
-useSessionStore.subscribe((state, previous) => {
-  if (previous.profile && !state.profile) {
-    masterData.reset();
-    useMasterDataStore.setState(initialMasterData);
   }
 });
