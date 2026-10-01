@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import type { ElementType } from 'react';
 import { Link } from 'react-router';
+import { Card } from '#/components/card';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
@@ -91,7 +92,7 @@ export default function Dashboard() {
   const { matches } = useMatches();
 
   return (
-    <ul className="mt-2 grid grid-cols-1 gap-6 py-6 sm:grid-cols-2">
+    <ul className="mt-2 grid grid-cols-1 gap-x-6 gap-y-4 py-6 sm:grid-cols-2 sm:gap-y-6">
       {items
         .filter((item) =>
           item.visible(
@@ -106,7 +107,7 @@ export default function Dashboard() {
             key={item.title}
             className="flow-root self-stretch sm:only:col-span-2 sm:only:mx-auto"
           >
-            <div className="relative flex h-full space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-200">
+            <Card className="relative flex h-full space-x-4 p-3 transition-colors focus-within:outline-2 focus-within:outline-ring focus-within:outline-offset-2 hover:bg-accent motion-reduce:transition-none sm:p-4">
               <div
                 className={cn(
                   item.background,
@@ -125,7 +126,7 @@ export default function Dashboard() {
                 </h3>
                 <p className="mt-1 text-gray-500 text-sm">{item.description}</p>
               </div>
-            </div>
+            </Card>
           </li>
         ))}
     </ul>

@@ -1,7 +1,15 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { Button, Card, ToggleField } from 'ui-legacy';
+import { ToggleField } from 'ui-legacy';
 
+import Button from '#/components/button';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '#/components/card';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useRounds } from '#/hooks/current-data/use-rounds';
 import { invalidateCache } from '#/utils/invalidate-cache';
@@ -29,22 +37,26 @@ export default function CreateRoundView() {
   return (
     <div className="mt-5">
       <Card>
-        <Card.Header>Neue Runde</Card.Header>
-        <div className="flex items-center justify-between p-4">
-          <h2 className="pl-2 font-semibold text-lg">Runde {nr.current}</h2>
-          <Button primary onClick={create}>
+        <CardHeader>
+          <CardTitle>Neue Runde</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <h2 className="font-semibold text-lg">Runde {nr.current}</h2>
+          <div className="flex items-center gap-x-4">
+            <span className="font-semibold text-base">
+              Doppel-Punkte Runde:
+            </span>
+            <ToggleField
+              checked={doubleRound}
+              onChange={() => setDoubleRound(!doubleRound)}
+            />
+          </div>
+        </CardContent>
+        <CardFooter className="justify-end">
+          <Button variant="primary" onClick={create}>
             Anlegen
           </Button>
-        </div>
-        <div className="flex items-center gap-x-4 p-4">
-          <span className="pl-2 font-semibold text-base">
-            Doppel-Punkte Runde:
-          </span>
-          <ToggleField
-            checked={doubleRound}
-            onChange={() => setDoubleRound(!doubleRound)}
-          />
-        </div>
+        </CardFooter>
       </Card>
     </div>
   );

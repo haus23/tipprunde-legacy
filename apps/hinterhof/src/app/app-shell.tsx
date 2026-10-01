@@ -83,7 +83,7 @@ export default function AppShell() {
       {/* Content with header */}
       <div className="flex flex-col md:pl-64">
         {/* Toggle menu button */}
-        <div className="sticky top-0 z-10 bg-gray-100 pt-1 pl-1 sm:pt-3 sm:pl-3 md:hidden">
+        <div className="sticky top-0 z-10 bg-background pt-1 pl-1 sm:pt-3 sm:pl-3 md:hidden">
           <button
             type="button"
             className="-mt-0.5 -ml-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-inset"
