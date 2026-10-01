@@ -4,6 +4,7 @@ import type {
   Match,
   Round,
 } from '@haus23/tipprunde-model';
+import { cn } from 'cn';
 import {
   CalendarIcon,
   FolderIcon,
@@ -15,7 +16,7 @@ import {
 } from 'lucide-react';
 import { type ElementType, Suspense, use } from 'react';
 import { Link, NavLink } from 'react-router';
-import { AppTitle, classNames } from 'ui-legacy';
+import { AppTitle } from 'ui-legacy';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
@@ -75,7 +76,7 @@ function ChampionshipLink({ item }: { item: ChampionshipNavLink }) {
     <NavLink
       to={item.to}
       className={({ isActive }) =>
-        classNames(
+        cn(
           isActive
             ? 'bg-gray-100 text-gray-900'
             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
@@ -86,7 +87,7 @@ function ChampionshipLink({ item }: { item: ChampionshipNavLink }) {
       {({ isActive }) => (
         <>
           <item.icon
-            className={classNames(
+            className={cn(
               isActive
                 ? 'text-gray-500'
                 : 'text-gray-400 group-hover:text-gray-500',
@@ -160,7 +161,7 @@ export default function AppShellNavbar() {
               to="."
               end
               className={({ isActive }) =>
-                classNames(
+                cn(
                   isActive
                     ? 'bg-gray-100 text-gray-900'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
@@ -171,7 +172,7 @@ export default function AppShellNavbar() {
               {({ isActive }) => (
                 <>
                   <HouseIcon
-                    className={classNames(
+                    className={cn(
                       isActive
                         ? 'text-gray-500'
                         : 'text-gray-400 group-hover:text-gray-500',
@@ -197,7 +198,7 @@ export default function AppShellNavbar() {
                   key={item.label}
                   to={item.to}
                   className={({ isActive }) =>
-                    classNames(
+                    cn(
                       isActive
                         ? 'bg-gray-100 text-gray-900'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',

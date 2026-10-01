@@ -11,8 +11,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@headlessui/react": "^2.2.10",
     "@haus23/tipprunde-model": "workspace:^",
+    "@headlessui/react": "^2.2.10",
+    "cn": "^0.4.0",
     "firebase": "^12.19.0",
     "lucide-react": "catalog:icons",
     "react": "catalog:react",

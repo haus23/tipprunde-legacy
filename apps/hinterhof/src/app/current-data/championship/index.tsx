@@ -1,6 +1,7 @@
 import type { Member } from '@haus23/tipprunde-model';
+import { cn } from 'cn';
 import { PlusIcon } from 'lucide-react';
-import { Button, Card, classNames, ToggleField } from 'ui-legacy';
+import { Button, Card, ToggleField } from 'ui-legacy';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useRanking } from '#/hooks/current-data/use-ranking';
@@ -129,7 +130,7 @@ export default function ChampionshipView() {
         <Card.Header>Mitspieler</Card.Header>
         <div className="flex gap-x-2 divide-x divide-gray-200 p-2 sm:gap-x-4 sm:p-4">
           <div
-            className={classNames(
+            className={cn(
               hasRemainingPlayers ? 'basis-1/2' : 'grow justify-self-center',
             )}
           >

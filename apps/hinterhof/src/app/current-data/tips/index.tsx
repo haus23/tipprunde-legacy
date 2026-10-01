@@ -1,11 +1,10 @@
 import type { Member, Team, Tip } from '@haus23/tipprunde-model';
+import { cn } from 'cn';
 import { ClipboardIcon } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { Button, Card, classNames, Select, TextField } from 'ui-legacy';
-
+import { Button, Card, Select, TextField } from 'ui-legacy';
 import AppCard from '#/components/layout/app-card';
-
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
@@ -212,7 +211,7 @@ export default function TipsView() {
                 type="button"
                 key={round.id}
                 onClick={() => setCurrentRound(round)}
-                className={classNames(
+                className={cn(
                   round === currentRound
                     ? 'border-indigo-500 text-indigo-600'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',

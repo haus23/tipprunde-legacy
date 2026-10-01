@@ -5,6 +5,7 @@ import {
   roundRules,
   tipRules,
 } from '@haus23/tipprunde-model';
+import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -14,7 +15,6 @@ import TextField from '#/components/form/text-field';
 import TextareaField from '#/components/form/textarea-field';
 import AppCard from '#/components/layout/app-card';
 import { useRules } from '#/hooks/master-data/use-rules';
-import { classNames } from '#/utils/class-names';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';
@@ -99,7 +99,7 @@ export default function RulesView() {
           >
             <span>{editMode ? 'Regelwerk bearbeiten' : 'Neues Regelwerk'}</span>
             <ChevronDownIcon
-              className={classNames(
+              className={cn(
                 'h-5 w-5 transition-transform',
                 isFormOpen && 'rotate-180 transform',
               )}

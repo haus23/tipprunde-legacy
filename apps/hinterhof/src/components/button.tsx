@@ -1,6 +1,6 @@
-import { classNames } from '#/utils/class-names';
-import type { MergeElementProps } from '#/utils/merge-element-props';
+import { cn } from 'cn';
 import { type ForwardedRef, forwardRef } from 'react';
+import type { MergeElementProps } from '#/utils/merge-element-props';
 
 type ButtonProps = MergeElementProps<
   'button',
@@ -26,8 +26,8 @@ function Button(
     <button
       type={type}
       ref={ref}
-      className={classNames(
-        'inline-flex items-center rounded-md border px-4 py-2 text-sm font-medium shadow-xs focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:text-gray-500',
+      className={cn(
+        'inline-flex items-center rounded-md border px-4 py-2 font-medium text-sm shadow-xs focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:text-gray-500',
         primary
           ? 'border-transparent bg-indigo-600 text-white hover:bg-indigo-700'
           : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50',

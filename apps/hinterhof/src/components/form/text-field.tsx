@@ -1,6 +1,6 @@
+import { cn } from 'cn';
 import { CircleAlertIcon } from 'lucide-react';
 import { type ForwardedRef, forwardRef, useId } from 'react';
-import { classNames } from '#/utils/class-names';
 import type { MergeElementProps } from '#/utils/merge-element-props';
 
 type TextFieldProps = MergeElementProps<
@@ -23,7 +23,7 @@ function TextField(
     <div>
       <label
         htmlFor={id}
-        className={classNames(
+        className={cn(
           'block font-medium text-sm',
           hasError ? 'text-red-500' : 'text-gray-700',
         )}
@@ -38,7 +38,7 @@ function TextField(
           ref={ref}
           autoComplete="off"
           {...props}
-          className={classNames(
+          className={cn(
             'block w-full appearance-none rounded-md border px-3 py-2 placeholder-gray-400 shadow-xs focus:outline-hidden sm:text-sm',
             hasError
               ? 'border-red-300 text-red-500 focus:border-red-500 focus:ring-red-500'

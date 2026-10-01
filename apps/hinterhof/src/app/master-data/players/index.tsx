@@ -1,4 +1,5 @@
 import type { Member } from '@haus23/tipprunde-model';
+import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -6,7 +7,6 @@ import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
 import { usePlayers } from '#/hooks/master-data/use-players';
-import { classNames } from '#/utils/class-names';
 import { emailValidator } from '#/utils/email-validator';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
@@ -81,7 +81,7 @@ export default function PlayersView() {
           >
             <span>{editMode ? 'Spieler bearbeiten' : 'Neuer Spieler'}</span>
             <ChevronDownIcon
-              className={classNames(
+              className={cn(
                 'h-5 w-5 transition-transform',
                 isFormOpen && 'rotate-180 transform',
               )}

@@ -1,22 +1,16 @@
 import type { League, Match, Team } from '@haus23/tipprunde-model';
+import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  Button,
-  Card,
-  ComboboxField,
-  classNames,
-  DateField,
-  formatDate,
-} from 'ui-legacy';
-
+import { Button, Card, ComboboxField, DateField } from 'ui-legacy';
 import AppCard from '#/components/layout/app-card';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useLeagues } from '#/hooks/master-data/use-leagues';
 import { useTeams } from '#/hooks/master-data/use-teams';
+import { formatDate } from '#/utils/format-date';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
@@ -145,7 +139,7 @@ export default function MatchesView() {
                 type="button"
                 key={round.id}
                 onClick={() => setCurrentRound(round)}
-                className={classNames(
+                className={cn(
                   round === currentRound
                     ? 'border-indigo-500 text-indigo-600'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
@@ -166,7 +160,7 @@ export default function MatchesView() {
             >
               <span>{editMode ? 'Spiel bearbeiten' : 'Neues Spiel'}</span>
               <ChevronDownIcon
-                className={classNames(
+                className={cn(
                   'h-5 w-5 transition-transform',
                   isFormOpen && 'rotate-180 transform',
                 )}

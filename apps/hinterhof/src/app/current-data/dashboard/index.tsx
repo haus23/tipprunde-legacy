@@ -4,6 +4,7 @@ import type {
   Match,
   Round,
 } from '@haus23/tipprunde-model';
+import { cn } from 'cn';
 import {
   CalendarIcon,
   FolderPlusIcon,
@@ -18,7 +19,6 @@ import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-pl
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRounds } from '#/hooks/current-data/use-rounds';
-import { classNames } from '#/utils/class-names';
 
 const items: {
   title: string;
@@ -108,7 +108,7 @@ export default function Dashboard() {
           >
             <div className="relative flex h-full space-x-4 rounded-xl p-2 focus-within:ring-2 focus-within:ring-indigo-500 hover:bg-gray-200">
               <div
-                className={classNames(
+                className={cn(
                   item.background,
                   'flex h-16 w-16 shrink-0 items-center justify-center rounded-lg',
                 )}

@@ -1,4 +1,5 @@
 import type { League } from '@haus23/tipprunde-model';
+import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -6,7 +7,6 @@ import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
 import { useLeagues } from '#/hooks/master-data/use-leagues';
-import { classNames } from '#/utils/class-names';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';
@@ -86,7 +86,7 @@ export default function LeaguesView() {
           >
             <span>{editMode ? 'Liga bearbeiten' : 'Neue Liga'}</span>
             <ChevronDownIcon
-              className={classNames(
+              className={cn(
                 'h-5 w-5 transition-transform',
                 isFormOpen && 'rotate-180 transform',
               )}

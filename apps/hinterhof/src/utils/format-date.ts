@@ -1,0 +1,9 @@
+export function formatDate(dateStr: string, short = false) {
+  if (!dateStr) return '';
+
+  return new Date(dateStr).toLocaleDateString('de-DE', {
+    day: '2-digit',
+    month: '2-digit',
+    year: short ? undefined : 'numeric',
+  });
+}
