@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
-import { SplashScreen } from 'ui-legacy';
 
+import SplashScreen from '#/components/splash-screen';
 import { useSessionStore } from '#/state/session-store';
 import Login from './app/login';
 import { useAuthBootstrap } from './app.auth-bootstrap';

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { Navigate } from 'react-router';
-import { AppTitle } from 'ui-legacy';
 
+import AppTitle from '#/components/app-title';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import { signIn } from '#/firebase/auth';

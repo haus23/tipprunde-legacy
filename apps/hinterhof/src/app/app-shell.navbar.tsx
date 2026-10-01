@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { type ElementType, Suspense, use } from 'react';
 import { Link, NavLink } from 'react-router';
-import { AppTitle } from 'ui-legacy';
+import AppTitle from '#/components/app-title';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
