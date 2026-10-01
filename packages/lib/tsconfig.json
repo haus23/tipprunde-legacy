@@ -1,8 +1,0 @@
-{
-  "extends": "@haus23/tipprunde-tsconfig",
-  "include": ["src"],
-  "compilerOptions": {
-    /* Vanilla ECMAScript */
-    "lib": ["ES2023"]
-  }
-}

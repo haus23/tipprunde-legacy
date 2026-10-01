@@ -1,5 +1,13 @@
 # ui-legacy
 
+## 0.3.6
+
+### Patch Changes
+
+- [`a53771c`](https://github.com/haus23/tipprunde-legacy/commit/a53771cfd995af63a7a970ce4010141ca032d6c4) - Load Firestore data, the authenticated application shell, and route views only
+  after authentication has completed. Keep the splash-screen branding stationary
+  while its loading message changes.
+
 ## 0.3.5
 
 ### Patch Changes

@@ -1,5 +1,35 @@
 # hinterhof
 
+## 0.9.0
+
+### Minor Changes
+
+- [`55b1782`](https://github.com/haus23/tipprunde-legacy/commit/55b1782adeef40f7feaa52c006f62ff49b7214bf) - Replace Firestore realtime subscriptions with atomic Firestore Lite loads and
+  project successful writes directly into the local stores. Load championship
+  data for its navigation independently of the active route.
+
+### Patch Changes
+
+- [`90724e3`](https://github.com/haus23/tipprunde-legacy/commit/90724e33bc9678765a34c1ebe5f1be5ed8736aa6) - Own the Firebase authentication integration directly in the Hinterhof and use
+  local-storage persistence without the unused redirect resolver.
+
+- [`0ca8e4d`](https://github.com/haus23/tipprunde-legacy/commit/0ca8e4dc12ad4fc88c89fb6e827fb0d425ae9e0e) - Fix re-authentication after an in-app logout by keeping the data router alive and resetting loaded application data when the authenticated app unmounts.
+
+- [`94a187f`](https://github.com/haus23/tipprunde-legacy/commit/94a187fcba5afbe08996c7786e700bfb4098ea39) - Provide an application loading fallback while React Router resolves the initial lazy route.
+
+- [`a53771c`](https://github.com/haus23/tipprunde-legacy/commit/a53771cfd995af63a7a970ce4010141ca032d6c4) - Load Firestore data, the authenticated application shell, and route views only
+  after authentication has completed. Keep the splash-screen branding stationary
+  while its loading message changes.
+
+- [`48faef1`](https://github.com/haus23/tipprunde-legacy/commit/48faef1cdd05bfacd484e256a2029f4ce1e1520e) - Load master data at the application shell and championship data only within
+  current-data routes. Keep the router mounted while championship data changes
+  and surface initial Firestore subscription failures through route boundaries.
+
+- [`ee90c98`](https://github.com/haus23/tipprunde-legacy/commit/ee90c98cc3cf00d60eb64c07703b8aa22a805e47) - Remove the obsolete shared authentication export so the Hinterhof initializes
+  Firebase Auth exactly once with its local persistence configuration.
+- Updated dependencies [[`a53771c`](https://github.com/haus23/tipprunde-legacy/commit/a53771cfd995af63a7a970ce4010141ca032d6c4)]:
+  - ui-legacy@0.3.6
+
 ## 0.8.4
 
 ### Patch Changes

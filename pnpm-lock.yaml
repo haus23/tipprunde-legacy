@@ -408,22 +408,6 @@ importers:
         specifier: 8.3.0
         version: 8.3.0(@types/node@22.15.19)(esbuild@0.28.2)(jiti@2.4.2)(tsx@4.19.4)(yaml@2.7.1)
 
-  packages/lib:
-    dependencies:
-      firebase:
-        specifier: ^12.19.0
-        version: 12.19.0
-    devDependencies:
-      '@haus23/tipprunde-tsconfig':
-        specifier: workspace:^
-        version: link:../tsconfig
-      typescript:
-        specifier: 'catalog:'
-        version: 7.0.2
-      vitest:
-        specifier: catalog:testing
-        version: 5.0.2(@opentelemetry/api@1.9.0)(@types/node@22.15.19)(vite@8.3.0(@types/node@22.15.19)(jiti@2.4.2)(tsx@4.19.4)(yaml@2.7.1))
-
   packages/model:
     dependencies:
       valibot:

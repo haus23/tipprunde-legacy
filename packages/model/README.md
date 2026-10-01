@@ -10,7 +10,6 @@ Es wird innerhalb des Monorepos von folgenden Anwendungen und Paketen genutzt:
 - `@haus23/tipprunde-unterbau` zum Validieren, Normalisieren und Ausliefern der
   Firestore-Daten
 - `@haus23/tipprunde-www` zum Verarbeiten der API-Antworten
-- `lib` für die typisierten Firestore-Repositories
 
 Das Paket wird als internes Workspace-Paket verwendet. Es exportiert seinen
 TypeScript-Quellcode; die jeweilige Anwendung übernimmt das Transpilieren.
