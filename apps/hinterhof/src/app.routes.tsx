@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react';
 import { Navigate, type RouteObject } from 'react-router';
+import { SplashScreen } from 'ui-legacy';
 
 import RouteError from './app/route-error';
 
@@ -7,6 +8,10 @@ function lazyComponent(load: () => Promise<{ default: ComponentType }>) {
   return {
     Component: async () => (await load()).default,
   };
+}
+
+function HydrateFallback() {
+  return <SplashScreen message="Lade Anwendung ..." />;
 }
 
 export default function createAppRoutes(): RouteObject[] {
@@ -18,6 +23,7 @@ export default function createAppRoutes(): RouteObject[] {
     {
       path: '/',
       ErrorBoundary: RouteError,
+      HydrateFallback,
       lazy: lazyComponent(() => import('./app/app-shell')),
       children: [
         {
