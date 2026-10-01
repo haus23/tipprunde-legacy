@@ -8,61 +8,57 @@ import type {
 import { collection, orderByDesc } from 'lib';
 import { create } from 'zustand';
 
-type MasterDataState = {
+import { liveSource, syncFields } from './live-source';
+import { useSessionStore } from './session-store';
+
+type MasterData = {
   championships: Championship[];
-  championshipsLoaded: boolean;
   leagues: League[];
-  leaguesLoaded: boolean;
   players: Member[];
-  playersLoaded: boolean;
   rules: RuleSet[];
-  rulesLoaded: boolean;
   teams: Team[];
-  teamsLoaded: boolean;
 };
 
-const initialMasterDataState: MasterDataState = {
+const initialMasterData: MasterData = {
   championships: [],
-  championshipsLoaded: false,
   leagues: [],
-  leaguesLoaded: false,
   players: [],
-  playersLoaded: false,
   rules: [],
-  rulesLoaded: false,
   teams: [],
-  teamsLoaded: false,
 };
 
-export const useMasterDataStore = create<MasterDataState>(
-  () => initialMasterDataState,
-);
+export const useMasterDataStore = create<MasterData>(() => initialMasterData);
 
-export function subscribeToMasterData() {
-  const unsubscribe = [
+const masterData = liveSource<void>((_, ready, fail) => {
+  const sync = syncFields(
+    useMasterDataStore,
+    ['championships', 'leagues', 'players', 'rules', 'teams'],
+    ready,
+  );
+
+  const stops = [
     collection<Championship>('championships', orderByDesc('nr')).subscribe(
-      (championships) =>
-        useMasterDataStore.setState({
-          championships,
-          championshipsLoaded: true,
-        }),
+      sync('championships'),
+      fail,
     ),
-    collection<League>('leagues').subscribe((leagues) =>
-      useMasterDataStore.setState({ leagues, leaguesLoaded: true }),
-    ),
-    collection<Member>('players').subscribe((players) =>
-      useMasterDataStore.setState({ players, playersLoaded: true }),
-    ),
-    collection<RuleSet>('rules').subscribe((rules) =>
-      useMasterDataStore.setState({ rules, rulesLoaded: true }),
-    ),
-    collection<Team>('teams').subscribe((teams) =>
-      useMasterDataStore.setState({ teams, teamsLoaded: true }),
-    ),
+    collection<League>('leagues').subscribe(sync('leagues'), fail),
+    collection<Member>('players').subscribe(sync('players'), fail),
+    collection<RuleSet>('rules').subscribe(sync('rules'), fail),
+    collection<Team>('teams').subscribe(sync('teams'), fail),
   ];
 
   return () => {
-    for (const stop of unsubscribe) stop();
-    useMasterDataStore.setState(initialMasterDataState);
+    for (const stop of stops) stop();
   };
-}
+});
+
+/** Stabiles Promise für `use()`: erfüllt, sobald alle Stammdaten geladen sind. */
+export const ensureMasterData = () => masterData.ensure(undefined);
+
+// Beim Logout Listener beenden und Daten verwerfen.
+useSessionStore.subscribe((state, prev) => {
+  if (prev.profile && !state.profile) {
+    masterData.stop();
+    useMasterDataStore.setState(initialMasterData);
+  }
+});

@@ -1,4 +1,4 @@
-import type { QueryConstraint } from 'firebase/firestore';
+import type { FirestoreError, QueryConstraint } from 'firebase/firestore';
 import {
   collection as firestoreCollection,
   getDocs,
@@ -22,11 +22,14 @@ export const collection = <T extends BaseModel>(
       const snapshot = await getDocs(q);
       return snapshot.docs.map((d) => d.data());
     },
-    subscribe: (subscriber: (entities: T[]) => void) => {
-      const unsubscribe = onSnapshot(q, (snapshot) => {
-        subscriber(snapshot.docs.map((d) => d.data()));
-      });
-      return unsubscribe;
-    },
+    subscribe: (
+      subscriber: (entities: T[]) => void,
+      onError?: (error: FirestoreError) => void,
+    ) =>
+      onSnapshot(
+        q,
+        (snapshot) => subscriber(snapshot.docs.map((d) => d.data())),
+        onError,
+      ),
   };
 };

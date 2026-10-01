@@ -8,70 +8,73 @@ import type {
 import { collection, orderByAsc } from 'lib';
 import { create } from 'zustand';
 
-type CurrentDataState = {
-  championshipId: Championship['id'] | undefined;
+import { liveSource, syncFields } from './live-source';
+import { useSessionStore } from './session-store';
+
+type CurrentData = {
   championshipPlayers: ChampionshipPlayer[];
-  championshipPlayersLoaded: boolean;
   matches: Match[];
-  matchesLoaded: boolean;
   rounds: Round[];
-  roundsLoaded: boolean;
   tips: Tip[];
-  tipsLoaded: boolean;
 };
 
-const initialCurrentDataState: CurrentDataState = {
-  championshipId: undefined,
+const initialCurrentData: CurrentData = {
   championshipPlayers: [],
-  championshipPlayersLoaded: false,
   matches: [],
-  matchesLoaded: false,
   rounds: [],
-  roundsLoaded: false,
   tips: [],
-  tipsLoaded: false,
 };
 
-export const useCurrentDataStore = create<CurrentDataState>(
-  () => initialCurrentDataState,
+export const useCurrentDataStore = create<CurrentData>(
+  () => initialCurrentData,
 );
 
-export function subscribeToCurrentData(
+const currentData = liveSource<Championship['id'] | undefined>(
+  (championshipId, ready, fail) => {
+    if (!championshipId) {
+      useCurrentDataStore.setState(initialCurrentData);
+      ready();
+      return () => undefined;
+    }
+
+    const sync = syncFields(
+      useCurrentDataStore,
+      ['championshipPlayers', 'matches', 'rounds', 'tips'],
+      ready,
+    );
+
+    const path = `championships/${championshipId}`;
+    const stops = [
+      collection<ChampionshipPlayer>(`${path}/players`).subscribe(
+        sync('championshipPlayers'),
+        fail,
+      ),
+      collection<Match>(`${path}/matches`, orderByAsc('nr')).subscribe(
+        sync('matches'),
+        fail,
+      ),
+      collection<Round>(`${path}/rounds`, orderByAsc('nr')).subscribe(
+        sync('rounds'),
+        fail,
+      ),
+      collection<Tip>(`${path}/tips`).subscribe(sync('tips'), fail),
+    ];
+
+    return () => {
+      for (const stop of stops) stop();
+    };
+  },
+);
+
+/** Stabiles Promise für `use()`: erfüllt, sobald die Turnierdaten geladen sind. */
+export const ensureCurrentData = (
   championshipId: Championship['id'] | undefined,
-) {
-  if (!championshipId) {
-    useCurrentDataStore.setState(initialCurrentDataState);
-    return () => undefined;
+) => currentData.ensure(championshipId);
+
+// Beim Logout Listener beenden und Daten verwerfen.
+useSessionStore.subscribe((state, prev) => {
+  if (prev.profile && !state.profile) {
+    currentData.stop();
+    useCurrentDataStore.setState(initialCurrentData);
   }
-
-  useCurrentDataStore.setState({
-    ...initialCurrentDataState,
-    championshipId,
-  });
-
-  const path = `championships/${championshipId}`;
-  const unsubscribe = [
-    collection<ChampionshipPlayer>(`${path}/players`).subscribe(
-      (championshipPlayers) =>
-        useCurrentDataStore.setState({
-          championshipPlayers,
-          championshipPlayersLoaded: true,
-        }),
-    ),
-    collection<Match>(`${path}/matches`, orderByAsc('nr')).subscribe(
-      (matches) =>
-        useCurrentDataStore.setState({ matches, matchesLoaded: true }),
-    ),
-    collection<Round>(`${path}/rounds`, orderByAsc('nr')).subscribe((rounds) =>
-      useCurrentDataStore.setState({ rounds, roundsLoaded: true }),
-    ),
-    collection<Tip>(`${path}/tips`).subscribe((tips) =>
-      useCurrentDataStore.setState({ tips, tipsLoaded: true }),
-    ),
-  ];
-
-  return () => {
-    for (const stop of unsubscribe) stop();
-    useCurrentDataStore.setState(initialCurrentDataState);
-  };
-}
+});

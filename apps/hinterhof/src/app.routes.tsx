@@ -1,6 +1,8 @@
 import type { ComponentType } from 'react';
 import { Navigate, type RouteObject } from 'react-router';
 
+import RouteError from './app/route-error';
+
 function lazyComponent(load: () => Promise<{ default: ComponentType }>) {
   return {
     Component: async () => (await load()).default,
@@ -14,9 +16,11 @@ const appRoutes: RouteObject[] = [
   },
   {
     path: '/',
+    ErrorBoundary: RouteError,
     lazy: lazyComponent(() => import('./app/app-shell')),
     children: [
       {
+        ErrorBoundary: RouteError,
         lazy: lazyComponent(() => import('./app/current-data/current-shell')),
         children: [
           {

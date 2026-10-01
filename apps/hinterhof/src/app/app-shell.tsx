@@ -1,11 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, use, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 
+import { ensureMasterData } from '#/state/master-data-store';
 import AppShellNavbar from './app-shell.navbar';
 
 export default function AppShell() {
+  use(ensureMasterData());
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   useEffect(() => {
