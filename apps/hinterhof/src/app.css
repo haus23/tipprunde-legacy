@@ -1,7 +1,104 @@
 @import "tailwindcss";
 
-@source '../../../packages/ui-legacy/src/**/*.{ts,tsx}';
+@source "../../../packages/ui-legacy/src/**/*.{ts,tsx}";
 
-@theme {
+@theme inline {
   --breakpoint-xs: 380px;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-overlay: var(--overlay);
+  --color-teaser-results: var(--teaser-results);
+  --color-teaser-tips: var(--teaser-tips);
+  --color-teaser-matches: var(--teaser-matches);
+  --color-teaser-round: var(--teaser-round);
+  --color-teaser-extra-points: var(--teaser-extra-points);
+  --color-teaser-championship: var(--teaser-championship);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(96.7% 0.003 264.542);
+  --foreground: oklch(21% 0.034 264.665);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(21% 0.034 264.665);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(21% 0.034 264.665);
+  --primary: oklch(51.1% 0.262 276.966);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(1 0 0);
+  --secondary-foreground: oklch(37.3% 0.034 259.733);
+  --muted: oklch(96.7% 0.003 264.542);
+  --muted-foreground: oklch(55.1% 0.027 264.364);
+  --accent: oklch(98.5% 0.002 247.839);
+  --accent-foreground: oklch(21% 0.034 264.665);
+  --destructive: oklch(63.7% 0.237 25.331);
+  --border: oklch(92.8% 0.006 264.531);
+  --input: oklch(87.2% 0.01 258.338);
+  --ring: oklch(58.5% 0.233 277.117);
+  --overlay: oklch(44.6% 0.03 256.802 / 75%);
+  --teaser-results: oklch(62.7% 0.265 303.9);
+  --teaser-tips: oklch(58.5% 0.233 277.117);
+  --teaser-matches: oklch(62.3% 0.214 259.815);
+  --teaser-round: oklch(72.3% 0.219 149.579);
+  --teaser-extra-points: oklch(79.5% 0.184 86.047);
+  --teaser-championship: oklch(65.6% 0.241 354.308);
+  --chart-1: var(--teaser-results);
+  --chart-2: var(--teaser-tips);
+  --chart-3: var(--teaser-matches);
+  --chart-4: var(--teaser-round);
+  --chart-5: var(--teaser-extra-points);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(44.6% 0.03 256.802);
+  --sidebar-primary: oklch(96.7% 0.003 264.542);
+  --sidebar-primary-foreground: oklch(21% 0.034 264.665);
+  --sidebar-accent: oklch(98.5% 0.002 247.839);
+  --sidebar-accent-foreground: oklch(21% 0.034 264.665);
+  --sidebar-border: oklch(92.8% 0.006 264.531);
+  --sidebar-ring: oklch(58.5% 0.233 277.117);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
