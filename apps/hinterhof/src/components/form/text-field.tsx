@@ -1,65 +1,71 @@
 import { cn } from 'cn';
 import { CircleAlertIcon } from 'lucide-react';
-import { type ForwardedRef, forwardRef, useId } from 'react';
-import type { MergeElementProps } from '#/utils/merge-element-props';
+import { useId } from 'react';
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+  fieldControlStyles,
+} from './field';
 
-type TextFieldProps = MergeElementProps<
-  'input',
-  {
-    label: string;
-    error?: string;
-  }
->;
+interface TextFieldProps extends React.ComponentProps<'input'> {
+  description?: string;
+  error?: string;
+  label: string;
+}
 
-type Ref = HTMLInputElement;
+export default function TextField({
+  'aria-describedby': ariaDescribedBy,
+  className,
+  description,
+  error,
+  id: providedId,
+  label,
+  name,
+  required,
+  ...props
+}: TextFieldProps) {
+  const generatedId = useId();
+  const id = providedId ?? `${generatedId}-${name ?? 'field'}`;
+  const descriptionId = description ? `${id}-description` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
+  const describedBy = [ariaDescribedBy, descriptionId, errorId]
+    .filter(Boolean)
+    .join(' ');
 
-function TextField(
-  { label, error, name, required, ...props }: TextFieldProps,
-  ref: ForwardedRef<Ref>,
-) {
-  const hasError = typeof error !== 'undefined';
-  const id = `${useId()}-${name}`;
   return (
-    <div>
-      <label
-        htmlFor={id}
-        className={cn(
-          'block font-medium text-sm',
-          hasError ? 'text-red-500' : 'text-gray-700',
-        )}
-      >
-        {label} {required && '*'}
-      </label>
-      <div className="relative mt-1">
+    <Field>
+      <FieldLabel htmlFor={id} required={required}>
+        {label}
+      </FieldLabel>
+      {description && (
+        <FieldDescription id={descriptionId}>{description}</FieldDescription>
+      )}
+      <div className="relative">
         <input
           id={id}
           name={name}
           required={required}
-          ref={ref}
           autoComplete="off"
+          aria-describedby={describedBy || undefined}
+          aria-invalid={error ? true : undefined}
           {...props}
-          className={cn(
-            'block w-full appearance-none rounded-md border px-3 py-2 placeholder-gray-400 shadow-xs focus:outline-hidden sm:text-sm',
-            hasError
-              ? 'border-red-300 text-red-500 focus:border-red-500 focus:ring-red-500'
-              : 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500',
-          )}
+          className={fieldControlStyles({
+            className: cn('appearance-none', error && 'pr-10', className),
+            invalid: Boolean(error),
+          })}
         />
-        {hasError && (
+        {error && (
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
             <CircleAlertIcon
-              data-testid="errorIcon"
-              className="h-5 w-5 text-red-500"
+              className="h-5 w-5 text-destructive"
               aria-hidden="true"
             />
           </div>
         )}
       </div>
-      {error && (
-        <p className="mt-2 font-normal text-red-400 text-sm">{error}</p>
-      )}
-    </div>
+      {error && <FieldError id={errorId}>{error}</FieldError>}
+    </Field>
   );
 }
-
-export default forwardRef<Ref, TextFieldProps>(TextField);
