@@ -1,7 +1,8 @@
 import type { Member } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { PlusIcon } from 'lucide-react';
-import { Button, Card, ToggleField } from 'ui-legacy';
+import { Button, Card } from 'ui-legacy';
+import ToggleField from '#/components/form/toggle-field';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useRanking } from '#/hooks/current-data/use-ranking';
