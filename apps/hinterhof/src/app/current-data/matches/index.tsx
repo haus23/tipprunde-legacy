@@ -3,7 +3,8 @@ import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Card, ComboboxField, DateField } from 'ui-legacy';
+import { Card, ComboboxField, DateField } from 'ui-legacy';
+import Button from '#/components/button';
 import AppCard from '#/components/layout/app-card';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
@@ -220,7 +221,7 @@ export default function MatchesView() {
                   <Button type="button" onClick={endEdit}>
                     Abbrechen
                   </Button>
-                  <Button primary type="submit">
+                  <Button variant="primary" type="submit">
                     Speichern
                   </Button>
                 </div>
@@ -300,8 +301,12 @@ export default function MatchesView() {
                       </span>
                     </td>
                     <td className="pr-3 text-right">
-                      <Button onClick={() => beginEdit(m)}>
-                        <PencilIcon className="h-4 w-4 text-indigo-600 hover:text-indigo-900" />
+                      <Button
+                        size="icon"
+                        aria-label={`Spiel ${m.nr} bearbeiten`}
+                        onClick={() => beginEdit(m)}
+                      >
+                        <PencilIcon className="h-4 w-4" aria-hidden="true" />
                       </Button>
                     </td>
                   </tr>

@@ -70,7 +70,7 @@ export default function Login() {
                     />
                     <div>
                       <Button
-                        primary
+                        variant="primary"
                         type="submit"
                         className="w-full justify-center"
                       >

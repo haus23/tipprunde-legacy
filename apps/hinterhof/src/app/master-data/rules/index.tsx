@@ -174,7 +174,7 @@ export default function RulesView() {
                 </div>
                 <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button onClick={endEdit}>Abbrechen</Button>
-                  <Button primary type="submit">
+                  <Button variant="primary" type="submit">
                     Speichern
                   </Button>
                 </div>

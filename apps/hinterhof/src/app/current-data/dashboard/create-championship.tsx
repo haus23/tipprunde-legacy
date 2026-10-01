@@ -120,7 +120,7 @@ export default function CreateChampionshipView() {
               />
             </div>
             <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
-              <Button primary type="submit">
+              <Button variant="primary" type="submit">
                 Speichern
               </Button>
             </div>
