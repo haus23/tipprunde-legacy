@@ -54,7 +54,7 @@ export default function Select<Option extends SelectionOption>({
         onBlur={onBlur}
         className={fieldControlStyles({
           className:
-            'flex items-center justify-between text-left data-[popup-open]:border-ring',
+            'flex items-center justify-between text-left data-popup-open:border-ring',
         })}
       >
         <BaseSelect.Value>

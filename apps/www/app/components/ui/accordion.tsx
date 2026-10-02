@@ -64,7 +64,7 @@ export function AccordionSummary({
         className={accordionSummaryButtonStyles()}
         {...props}
       >
-        <ChevronRightIcon className="size-5 transition-transform group-aria-[expanded=true]:rotate-90" />
+        <ChevronRightIcon className="size-5 transition-transform group-aria-expanded:rotate-90" />
         <div className={className}>{children}</div>
       </Button>
     </Heading>
