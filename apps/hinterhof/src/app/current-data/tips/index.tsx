@@ -1,11 +1,12 @@
 import type { Member, Team, Tip } from '@haus23/tipprunde-model';
-import { cn } from 'cn';
-import { ClipboardIcon } from 'lucide-react';
+import { CheckIcon, ClipboardIcon } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { Button, Card, TextField } from 'ui-legacy';
+import Button from '#/components/button';
+import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
 import Select from '#/components/form/select';
-import AppCard from '#/components/layout/app-card';
+import TextField from '#/components/form/text-field';
+import RoundTabs from '#/components/round-tabs';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
@@ -66,7 +67,7 @@ export default function TipsView() {
     register,
     reset,
     setValue,
-    formState: { dirtyFields },
+    formState: { dirtyFields, errors },
   } = useForm<TipsFormProps>({
     defaultValues: {
       tips: new Array(matches.length).fill({ tip: '', joker: false }),
@@ -201,32 +202,14 @@ export default function TipsView() {
   return (
     <div className="mt-5 space-y-8">
       <Card>
-        <div className="flex items-center gap-x-4 border-gray-200 border-b px-2 font-semibold sm:gap-x-8 sm:px-4">
-          <span>Runde</span>
-          <nav
-            className="-mb-px flex items-center justify-around"
-            aria-label="Tabs"
-          >
-            {rounds.map((round) => (
-              <button
-                type="button"
-                key={round.id}
-                onClick={() => setCurrentRound(round)}
-                className={cn(
-                  round === currentRound
-                    ? 'border-indigo-500 text-indigo-600'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-                  'whitespace-nowrap border-b-2 px-4 py-4 font-medium text-sm md:px-6',
-                )}
-              >
-                {round.nr}
-              </button>
-            ))}
-          </nav>
-        </div>
-        <div className="flex items-center gap-x-4 px-4 py-4">
-          <span className="font-semibold">Tipps von</span>
-          <div className="grow">
+        <RoundTabs
+          rounds={rounds}
+          value={currentRound?.id}
+          onValueChange={setCurrentRound}
+        />
+        <CardContent className="flex items-center gap-x-4">
+          <span className="shrink-0 font-semibold">Tipps von</span>
+          <div className="min-w-0 grow">
             <Select
               aria-label="Mitspieler"
               options={players}
@@ -239,100 +222,123 @@ export default function TipsView() {
               }}
             />
           </div>
-        </div>
+        </CardContent>
       </Card>
-      <AppCard>
-        <form onSubmit={handleSubmit(saveResults)}>
-          <div className="flex justify-end border-gray-200 border-b px-4 py-3">
-            <Button type="submit" primary={true}>
+      <form onSubmit={handleSubmit(saveResults)}>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between gap-4">
+            <div>
+              <CardTitle>Tipps</CardTitle>
+              <p className="mt-1 text-muted-foreground text-sm">
+                Tipps und Joker für den ausgewählten Mitspieler erfassen.
+              </p>
+            </div>
+            <Button variant="primary" type="submit">
               Speichern
             </Button>
-          </div>
-          <div className="overflow-x-auto overflow-y-hidden pb-4">
-            <table className="min-w-full divide-y divide-gray-300">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th
-                    scope="col"
-                    className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-gray-900 text-sm"
-                  >
-                    Nr
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-2 py-3.5 text-left font-semibold text-gray-900 text-sm sm:pr-6 lg:pr-8"
-                  >
-                    Spiel
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-2 py-3.5 text-left font-semibold text-gray-900 text-sm sm:pr-6 lg:pr-8"
-                  >
-                    <div className="flex items-center gap-x-2">
-                      <span>Tipp</span>
-                      <button
-                        type="button"
-                        onClick={() => handleClipboardData()}
-                      >
-                        <ClipboardIcon className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </th>
-                  <th
-                    scope="col"
-                    className="py-3.5 pl-2 font-semibold text-gray-900 text-sm sm:pl-6 lg:pl-8"
-                  >
-                    Joker
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 bg-white pr-1">
-                {fields.map((field, ix) =>
-                  fixtures[ix].roundId === currentRound.id ? (
-                    <tr key={field.id}>
-                      <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-gray-500 text-sm">
-                        {fixtures[ix].nr}
-                      </td>
-                      <td className="whitespace-nowrap py-4 pr-4 pl-2 text-gray-500 text-sm sm:pr-6 lg:pr-8">
-                        <span className="hidden lg:inline">
-                          {`${fixtures[ix].hometeam?.name || ''} - ${
-                            fixtures[ix].awayteam?.name || ''
-                          }`.replace(/^ - $/, '')}
-                        </span>
-                        <span className="lg:hidden">
-                          {`${fixtures[ix].hometeam?.shortname || ''} - ${
-                            fixtures[ix].awayteam?.shortname || ''
-                          }`.replace(/^ - $/, '')}
-                        </span>
-                      </td>
-                      <td className="w-20 text-center">
-                        <TextField
-                          control={control}
-                          name={`tips.${ix}.tip`}
-                          registerOptions={{
-                            pattern: {
-                              value: /\b\d{1,2}:\d{1,2}\b/,
-                              message: 'Ungültiger Tipp.',
-                            },
-                          }}
-                          label=""
-                        />
-                      </td>
-                      <td className="w-20 pl-2 text-center sm:pl-6 lg:pl-8">
-                        <input
-                          type="checkbox"
-                          {...register(`tips.${ix}.joker`)}
-                          className="form-checkbox h-4 w-4 rounded-sm border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                        />
-                      </td>
-                    </tr>
-                  ) : null,
-                )}
-              </tbody>
-            </table>
-          </div>
-        </form>
-      </AppCard>
+          </CardHeader>
+          <CardContent className="p-0 sm:p-0">
+            <div className="overflow-x-auto pb-4">
+              <table className="min-w-full divide-y divide-border">
+                <thead className="bg-surface-subtle">
+                  <tr>
+                    <th
+                      scope="col"
+                      className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm"
+                    >
+                      Nr
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
+                    >
+                      Spiel
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
+                    >
+                      <div className="flex items-center gap-x-2">
+                        <span>Tipp</span>
+                        <Button
+                          size="icon"
+                          className="h-7 w-7 border-transparent bg-transparent shadow-none"
+                          onClick={() => handleClipboardData()}
+                          aria-label="Tipps aus der Zwischenablage einfügen"
+                          title="Tipps aus der Zwischenablage einfügen"
+                        >
+                          <ClipboardIcon
+                            className="h-4 w-4"
+                            aria-hidden="true"
+                          />
+                        </Button>
+                      </div>
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-3.5 pl-2 font-semibold text-foreground text-sm sm:pl-6 lg:pl-8"
+                    >
+                      Joker
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border bg-card">
+                  {fields.map((field, ix) =>
+                    fixtures[ix].roundId === currentRound.id ? (
+                      <tr key={field.id}>
+                        <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm">
+                          {fixtures[ix].nr}
+                        </td>
+                        <td className="whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:pr-6 lg:pr-8">
+                          <span className="hidden lg:inline">
+                            {`${fixtures[ix].hometeam?.name || ''} - ${
+                              fixtures[ix].awayteam?.name || ''
+                            }`.replace(/^ - $/, '')}
+                          </span>
+                          <span className="lg:hidden">
+                            {`${fixtures[ix].hometeam?.shortname || ''} - ${
+                              fixtures[ix].awayteam?.shortname || ''
+                            }`.replace(/^ - $/, '')}
+                          </span>
+                        </td>
+                        <td className="w-24 px-2 py-2 text-center">
+                          <TextField
+                            {...register(`tips.${ix}.tip`, {
+                              pattern: {
+                                value: /\b\d{1,2}:\d{1,2}\b/,
+                                message: 'Ungültiger Tipp.',
+                              },
+                            })}
+                            label={`Tipp für Spiel ${fixtures[ix].nr}`}
+                            labelClassName="sr-only"
+                            error={errors.tips?.[ix]?.tip?.message}
+                            className="w-16 text-center font-medium tabular-nums"
+                          />
+                        </td>
+                        <td className="w-20 pl-2 text-center sm:pl-6 lg:pl-8">
+                          <label className="relative inline-flex h-9 w-9 items-center justify-center rounded-md">
+                            <input
+                              type="checkbox"
+                              {...register(`tips.${ix}.joker`)}
+                              aria-label={`Joker für Spiel ${fixtures[ix].nr}`}
+                              className="peer sr-only"
+                            />
+                            <span className="h-5 w-5 rounded-sm border border-input bg-background shadow-xs transition-colors peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:outline-2 peer-focus-visible:outline-ring peer-focus-visible:outline-offset-2 motion-reduce:transition-none" />
+                            <CheckIcon
+                              className="pointer-events-none absolute h-4 w-4 text-primary-foreground opacity-0 transition-opacity peer-checked:opacity-100 motion-reduce:transition-none"
+                              aria-hidden="true"
+                            />
+                          </label>
+                        </td>
+                      </tr>
+                    ) : null,
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+      </form>
     </div>
   );
 }

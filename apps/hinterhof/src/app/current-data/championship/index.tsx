@@ -1,7 +1,8 @@
 import type { Member } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { PlusIcon } from 'lucide-react';
-import { Button, Card } from 'ui-legacy';
+import Button from '#/components/button';
+import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
 import ToggleField from '#/components/form/toggle-field';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
@@ -104,46 +105,50 @@ export default function ChampionshipView() {
   return currentChampionship ? (
     <div className="mt-5 flex flex-col space-y-4">
       <Card>
-        <Card.Header>Turnier</Card.Header>
-        <div className="p-4">
+        <CardHeader>
+          <CardTitle>Turnier</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col items-start gap-y-4">
           <ToggleField
             checked={currentChampionship.published}
             onChange={togglePublishedState}
             label="Veröffentlicht"
           />
-        </div>
-        <div className="p-4">
           <ToggleField
             checked={currentChampionship.completed}
             onChange={toggleCompletedState}
             label="Abgeschlossen"
           />
-        </div>
-        <div className="p-4">
           <ToggleField
             checked={currentChampionship.extraPointsPublished}
             onChange={toggleExtraPointsPublishedState}
             label="Zusatzpunkte veröffentlicht"
           />
-        </div>
+        </CardContent>
       </Card>
       <Card>
-        <Card.Header>Mitspieler</Card.Header>
-        <div className="flex gap-x-2 divide-x divide-gray-200 p-2 sm:gap-x-4 sm:p-4">
+        <CardHeader>
+          <CardTitle>Mitspieler</CardTitle>
+        </CardHeader>
+        <CardContent className="flex divide-x divide-border p-2 sm:p-4">
           <div
             className={cn(
-              hasRemainingPlayers ? 'basis-1/2' : 'grow justify-self-center',
+              hasRemainingPlayers
+                ? 'basis-1/2 pr-2 sm:pr-4'
+                : 'grow justify-self-center',
             )}
           >
             <h4 className="text-center font-medium">Wer ist dabei?</h4>
             <div className="h-full w-full overflow-y-auto">
-              <ul className="relative z-0 mt-2 divide-y divide-gray-200">
+              <ul className="relative z-0 mt-2 divide-y divide-border">
                 {attendingPlayers.map((p) => (
                   <li
-                    className="flex select-none items-center px-2 py-2 sm:px-4"
+                    className="flex h-11 select-none items-center px-2 sm:px-4"
                     key={p.id}
                   >
-                    <span className="mr-4">{p.player.name}</span>
+                    <span className="min-w-0 truncate" title={p.player.name}>
+                      {p.player.name}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -153,42 +158,51 @@ export default function ChampionshipView() {
             <div className="basis-1/2 pl-2 sm:pl-4">
               <h4 className="text-center font-medium">Wer (noch) nicht?</h4>
               <div className="h-full w-full overflow-y-auto">
-                <ul className="relative z-0 mt-2 divide-y divide-gray-200">
+                <ul className="relative z-0 mt-2 divide-y divide-border">
                   {remainingPlayers.map((p) => (
                     <li
-                      className="flex select-none items-center px-2 py-2 sm:px-4"
+                      className="flex h-11 select-none items-center px-2 sm:px-4"
                       key={p.id}
                     >
-                      <button
-                        type="button"
+                      <Button
+                        size="icon"
+                        className="h-7 w-7 shrink-0 rounded-full"
                         onClick={() => addPlayer(p.id, p.name)}
-                        className="rounded-full bg-white p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        aria-label={`${p.name} hinzufügen`}
                       >
-                        <PlusIcon className="h-4 w-4" />
-                      </button>
-                      <span className="ml-4">{p.name}</span>
+                        <PlusIcon className="h-4 w-4" aria-hidden="true" />
+                      </Button>
+                      <span className="ml-4 min-w-0 truncate" title={p.name}>
+                        {p.name}
+                      </span>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
           )}
-        </div>
+        </CardContent>
       </Card>
       <Card>
-        <Card.Header>Wartung</Card.Header>
-        <div className="flex items-center justify-between gap-x-4 p-4">
+        <CardHeader>
+          <CardTitle>Wartung</CardTitle>
+        </CardHeader>
+        <CardContent className="flex items-center justify-between gap-x-4">
           <div>
             <p className="font-medium">Turnierwertung neu berechnen</p>
-            <p className="mt-1 text-gray-500 text-sm">
+            <p className="mt-1 text-muted-foreground text-sm">
               Wertet alle Spiele und Tipps neu aus und aktualisiert die
               Rangliste.
             </p>
           </div>
-          <Button type="button" onClick={recalculate}>
+          <Button
+            type="button"
+            className="shrink-0 whitespace-nowrap"
+            onClick={recalculate}
+          >
             Neu berechnen
           </Button>
-        </div>
+        </CardContent>
       </Card>
     </div>
   ) : null;

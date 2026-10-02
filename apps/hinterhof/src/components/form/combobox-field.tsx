@@ -1,4 +1,5 @@
 import { Combobox } from '@base-ui/react/combobox';
+import { cn } from 'cn';
 import { CheckIcon, ChevronsUpDownIcon, XIcon } from 'lucide-react';
 import { useId, useMemo, useRef } from 'react';
 import {
@@ -7,6 +8,7 @@ import {
   type FieldValues,
   useController,
 } from 'react-hook-form';
+import { focusRingInset } from '#/styles/focus';
 import { Field, FieldLabel, fieldControlStyles } from './field';
 import {
   type SelectionOption,
@@ -85,11 +87,19 @@ export default function ComboboxField<
           <Combobox.Clear
             aria-label="Auswahl löschen"
             title="Auswahl löschen"
-            className="absolute inset-y-0 right-10 flex items-center px-2 text-muted-foreground/60 hover:text-muted-foreground focus-visible:outline-2 focus-visible:outline-ring"
+            className={cn(
+              focusRingInset,
+              'absolute inset-y-0 right-10 flex items-center px-2 text-muted-foreground/60 hover:text-muted-foreground',
+            )}
           >
             <XIcon className="size-4" aria-hidden="true" />
           </Combobox.Clear>
-          <Combobox.Trigger className="absolute inset-y-0 right-0 flex items-center px-3 text-muted-foreground focus-visible:outline-2 focus-visible:outline-ring">
+          <Combobox.Trigger
+            className={cn(
+              focusRingInset,
+              'absolute inset-y-0 right-0 flex items-center px-3 text-muted-foreground',
+            )}
+          >
             <ChevronsUpDownIcon className="size-5" aria-hidden="true" />
           </Combobox.Trigger>
         </div>

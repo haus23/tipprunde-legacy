@@ -3,16 +3,17 @@ import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Card } from 'ui-legacy';
 import Button from '#/components/button';
+import { Card, CardContent, CardFooter } from '#/components/card';
 import ComboboxField from '#/components/form/combobox-field';
 import DateField from '#/components/form/date-field';
-import AppCard from '#/components/layout/app-card';
+import RoundTabs from '#/components/round-tabs';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useLeagues } from '#/hooks/master-data/use-leagues';
 import { useTeams } from '#/hooks/master-data/use-teams';
+import { focusRing } from '#/styles/focus';
 import { formatDate } from '#/utils/format-date';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
@@ -131,133 +132,115 @@ export default function MatchesView() {
   return (
     <div ref={topRef} className="mt-5 space-y-8">
       <Card>
-        <div className="flex items-center gap-x-4 border-gray-200 border-b px-2 font-semibold sm:gap-x-8 sm:px-4">
-          <span>Runde</span>
-          <nav
-            className="-mb-px flex items-center justify-around"
-            aria-label="Tabs"
-          >
-            {rounds.map((round) => (
-              <button
-                type="button"
-                key={round.id}
-                onClick={() => setCurrentRound(round)}
-                className={cn(
-                  round === currentRound
-                    ? 'border-indigo-500 text-indigo-600'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700',
-                  'whitespace-nowrap border-b-2 px-4 py-4 font-medium text-sm md:px-6',
-                )}
-              >
-                {round.nr}
-              </button>
-            ))}
-          </nav>
-        </div>
-        <div className="mt-2">
-          <div className="pb-2">
-            <button
-              type="button"
-              onClick={() => setFormOpen(!isFormOpen)}
-              className="flex w-full items-center justify-between px-4 py-2 font-semibold"
-            >
-              <span>{editMode ? 'Spiel bearbeiten' : 'Neues Spiel'}</span>
-              <ChevronDownIcon
-                className={cn(
-                  'h-5 w-5 transition-transform',
-                  isFormOpen && 'rotate-180 transform',
-                )}
-              />
-            </button>
-          </div>
-          {isFormOpen && (
-            <div>
-              <form noValidate onSubmit={handleSubmit(saveMatch)}>
-                <div className="space-y-4 p-4 pt-2">
-                  <div className="flex items-center">
-                    <span className="font-semibold text-sm">Nummer</span>
-                    <input
-                      disabled
-                      className="w-8 rounded-sm border-transparent bg-white p-1 text-center font-semibold text-sm"
-                      {...register('nr')}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-y-4 sm:flex-row sm:justify-between">
-                    <DateField label="Wann?" control={control} name="date" />
-                    <ComboboxField
-                      label="Wo?"
-                      control={control}
-                      name="leagueId"
-                      options={leagues}
-                      filter={(query, league) =>
-                        `${league.name} ${league.shortname}`
-                          .toLowerCase()
-                          .includes(query.toLowerCase())
-                      }
-                    />
-                  </div>
-                  <ComboboxField
-                    label="Wer?"
-                    control={control}
-                    name="hometeamId"
-                    options={teams}
-                    filter={(q, team) =>
-                      `${team.name} ${team.shortname}`
-                        .toLowerCase()
-                        .includes(q.toLowerCase())
-                    }
-                  />
-                  <ComboboxField
-                    label="Gegen wen?"
-                    control={control}
-                    name="awayteamId"
-                    options={teams}
-                    filter={(q, team) =>
-                      `${team.name} ${team.shortname}`
-                        .toLowerCase()
-                        .includes(q.toLowerCase())
-                    }
-                  />
-                </div>
-                <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
-                  <Button type="button" onClick={endEdit}>
-                    Abbrechen
-                  </Button>
-                  <Button variant="primary" type="submit">
-                    Speichern
-                  </Button>
-                </div>
-              </form>
-            </div>
+        <RoundTabs
+          rounds={rounds}
+          value={currentRound?.id}
+          onValueChange={setCurrentRound}
+        />
+        <button
+          type="button"
+          onClick={() => setFormOpen(!isFormOpen)}
+          className={cn(
+            focusRing,
+            'm-2 flex w-[calc(100%-1rem)] items-center justify-between rounded-md px-2 py-1 font-semibold transition-colors hover:bg-accent motion-reduce:transition-none sm:px-4',
           )}
-        </div>
+          aria-expanded={isFormOpen}
+          aria-controls="match-form"
+        >
+          <span>{editMode ? 'Spiel bearbeiten' : 'Neues Spiel'}</span>
+          <ChevronDownIcon
+            className={cn(
+              'h-5 w-5 transition-transform motion-reduce:transition-none',
+              isFormOpen && 'rotate-180',
+            )}
+            aria-hidden="true"
+          />
+        </button>
+        {isFormOpen && (
+          <form id="match-form" noValidate onSubmit={handleSubmit(saveMatch)}>
+            <CardContent className="space-y-4 border-border border-t">
+              <div className="flex items-center">
+                <span className="font-semibold text-sm">Nummer</span>
+                <input
+                  disabled
+                  className="w-8 rounded-sm border-transparent bg-transparent p-1 text-center font-semibold text-sm"
+                  {...register('nr')}
+                />
+              </div>
+              <div className="flex flex-col gap-y-4 sm:flex-row sm:justify-between">
+                <DateField label="Wann?" control={control} name="date" />
+                <ComboboxField
+                  label="Wo?"
+                  control={control}
+                  name="leagueId"
+                  options={leagues}
+                  filter={(query, league) =>
+                    `${league.name} ${league.shortname}`
+                      .toLowerCase()
+                      .includes(query.toLowerCase())
+                  }
+                />
+              </div>
+              <ComboboxField
+                label="Wer?"
+                control={control}
+                name="hometeamId"
+                options={teams}
+                filter={(q, team) =>
+                  `${team.name} ${team.shortname}`
+                    .toLowerCase()
+                    .includes(q.toLowerCase())
+                }
+              />
+              <ComboboxField
+                label="Gegen wen?"
+                control={control}
+                name="awayteamId"
+                options={teams}
+                filter={(q, team) =>
+                  `${team.name} ${team.shortname}`
+                    .toLowerCase()
+                    .includes(q.toLowerCase())
+                }
+              />
+            </CardContent>
+            <CardFooter className="justify-end gap-x-4">
+              <Button type="button" onClick={endEdit}>
+                Abbrechen
+              </Button>
+              <Button variant="primary" type="submit">
+                Speichern
+              </Button>
+            </CardFooter>
+          </form>
+        )}
       </Card>
-      <AppCard>
+      <Card>
         <div className="overflow-x-auto overflow-y-hidden">
-          <table className="min-w-full divide-y divide-gray-300">
-            <thead className="bg-gray-50">
+          <table className="min-w-full divide-y divide-border">
+            <thead className="bg-surface-subtle">
               <tr>
                 <th
                   scope="col"
-                  className="py-3.5 pr-2 pl-4 text-left font-semibold text-gray-900 text-sm"
+                  className="py-3.5 pr-2 pl-4 text-left font-semibold text-foreground text-sm"
                 >
                   Nr
                 </th>
                 <th
                   scope="col"
-                  className="hidden px-2 py-3.5 text-left font-semibold text-gray-900 text-sm sm:table-cell sm:pr-6 lg:pr-8"
+                  className="hidden px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:table-cell sm:pr-6 lg:pr-8"
                 >
                   Datum
                 </th>
                 <th
                   scope="col"
-                  className="hidden px-2 py-3.5 text-left font-semibold text-gray-900 text-sm sm:table-cell sm:pr-6 lg:pr-8"
+                  className="hidden px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:table-cell sm:pr-6 lg:pr-8"
                 >
                   Liga
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-3.5 text-left font-semibold text-gray-900 text-sm sm:pr-6 lg:pr-8"
+                  className="px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
                 >
                   Spiel
                 </th>
@@ -266,15 +249,15 @@ export default function MatchesView() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200 bg-white pr-1">
+            <tbody className="divide-y divide-border bg-card pr-1">
               {matches
                 .filter((m) => m.roundId === currentRound.id)
                 .map((m) => (
                   <tr key={m.id}>
-                    <td className="whitespace-nowrap py-4 pr-2 pl-4 text-gray-500 text-sm">
+                    <td className="whitespace-nowrap py-4 pr-2 pl-4 text-muted-foreground text-sm">
                       {m.nr}
                     </td>
-                    <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-gray-500 text-sm sm:table-cell sm:pr-6 lg:pr-8">
+                    <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:table-cell sm:pr-6 lg:pr-8">
                       <span className="hidden lg:inline">
                         {formatDate(m.date)}
                       </span>
@@ -282,7 +265,7 @@ export default function MatchesView() {
                         {formatDate(m.date, true)}
                       </span>
                     </td>
-                    <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-gray-500 text-sm sm:table-cell sm:pr-6 lg:pr-8">
+                    <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:table-cell sm:pr-6 lg:pr-8">
                       <span className="hidden lg:inline">
                         {leaguesHash[m.leagueId]?.name || ''}
                       </span>
@@ -290,7 +273,7 @@ export default function MatchesView() {
                         {leaguesHash[m.leagueId]?.shortname || ''}
                       </span>
                     </td>
-                    <td className="whitespace-nowrap py-4 pr-4 pl-2 text-gray-500 text-sm sm:pr-6 lg:pr-8">
+                    <td className="whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:pr-6 lg:pr-8">
                       <span className="hidden lg:inline">
                         {`${teamsHash[m.hometeamId]?.name || ''} - ${
                           teamsHash[m.awayteamId]?.name || ''
@@ -316,7 +299,7 @@ export default function MatchesView() {
             </tbody>
           </table>
         </div>
-      </AppCard>
+      </Card>
     </div>
   );
 }

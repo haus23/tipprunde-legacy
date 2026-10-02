@@ -1,7 +1,9 @@
 import type { Member } from '@haus23/tipprunde-model';
 import { useEffect, useMemo } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { Button, Card, TextField } from 'ui-legacy';
+import Button from '#/components/button';
+import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
+import { fieldControlStyles } from '#/components/form/field';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useRanking } from '#/hooks/current-data/use-ranking';
@@ -31,11 +33,10 @@ export default function ExtraPointsView() {
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [masterPlayers, championshipPlayers]);
 
-  const { control, handleSubmit, reset } = useForm<ExtraPointsFormType>({
-    defaultValues: {
-      extraPoints: new Array(players.length).fill({ matchId: '', result: '' }),
-    },
-  });
+  const { control, handleSubmit, register, reset } =
+    useForm<ExtraPointsFormType>({
+      defaultValues: { extraPoints: [] },
+    });
 
   useEffect(() => {
     reset({
@@ -70,44 +71,54 @@ export default function ExtraPointsView() {
 
   return (
     <div className="mt-5 flex flex-col space-y-4">
-      <Card>
-        <Card.Header>Zusatzpunkte</Card.Header>
-        <div className="flex items-center justify-end gap-x-8 px-4 py-4">
-          <Button type="button" primary={true} onClick={handleSubmit(save)}>
-            Speichern
-          </Button>
-        </div>
-        <div className="p-4">
-          <form>
-            <div className="overflow-x-auto overflow-y-hidden">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead>
+      <form onSubmit={handleSubmit(save)}>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between gap-4">
+            <div>
+              <CardTitle>Zusatzpunkte</CardTitle>
+              <p className="mt-1 text-muted-foreground text-sm">
+                Punkte aus den Zusatzfragen je Mitspieler erfassen.
+              </p>
+            </div>
+            <Button variant="primary" type="submit">
+              Speichern
+            </Button>
+          </CardHeader>
+          <CardContent className="p-0 sm:p-0">
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-border">
+                <thead className="bg-surface-subtle">
                   <tr>
                     <th
                       scope="col"
-                      className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-gray-900 text-sm"
+                      className="px-4 py-3 text-left font-semibold text-foreground text-sm sm:px-6"
                     >
-                      Spieler
+                      Mitspieler
                     </th>
                     <th
                       scope="col"
-                      className="py-3.5 pr-4 pl-2 font-semibold text-gray-900 text-sm sm:pr-6 lg:pr-8"
+                      className="w-28 px-4 py-3 text-right font-semibold text-foreground text-sm sm:px-6"
                     >
                       Punkte
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white pr-1">
+                <tbody className="divide-y divide-border bg-card">
                   {fields.map((field, ix) => (
                     <tr key={field.id}>
-                      <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-gray-500 text-sm">
+                      <td className="px-4 py-3 font-medium text-sm sm:px-6">
                         {players[ix].name}
                       </td>
-                      <td className="w-20 pr-4 pl-2 sm:pr-6 lg:pr-8">
-                        <TextField
-                          control={control}
-                          name={`extraPoints.${ix}.points`}
-                          label=""
+                      <td className="px-4 py-2 sm:px-6">
+                        <input
+                          {...register(`extraPoints.${ix}.points`)}
+                          type="text"
+                          inputMode="numeric"
+                          aria-label={`Zusatzpunkte für ${players[ix].name}`}
+                          className={fieldControlStyles({
+                            className:
+                              'ml-auto w-20 text-right font-medium tabular-nums',
+                          })}
                         />
                       </td>
                     </tr>
@@ -115,9 +126,9 @@ export default function ExtraPointsView() {
                 </tbody>
               </table>
             </div>
-          </form>
-        </div>
-      </Card>
+          </CardContent>
+        </Card>
+      </form>
     </div>
   );
 }

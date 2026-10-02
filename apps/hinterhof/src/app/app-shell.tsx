@@ -1,9 +1,11 @@
 import { Dialog } from '@base-ui/react/dialog';
+import { cn } from 'cn';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { use, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 
 import { ensureMasterData } from '#/state/master-data-store';
+import { focusRing, focusRingOnDark } from '#/styles/focus';
 import AppShellNavbar from './app-shell.navbar';
 
 export default function AppShell() {
@@ -24,7 +26,12 @@ export default function AppShell() {
           aria-label="Navigation"
         >
           <div className="absolute top-0 right-0 translate-x-full pt-2 pl-1">
-            <Dialog.Close className="flex h-10 w-10 items-center justify-center rounded-full text-white outline-hidden hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset">
+            <Dialog.Close
+              className={cn(
+                focusRingOnDark,
+                'flex h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/10',
+              )}
+            >
               <span className="sr-only">Navigation schließen</span>
               <XIcon className="h-6 w-6" aria-hidden="true" />
             </Dialog.Close>
@@ -42,7 +49,12 @@ export default function AppShell() {
       <div className="flex flex-col md:pl-64">
         {/* Toggle menu button */}
         <div className="sticky top-0 z-10 bg-background pt-1 pl-1 sm:pt-3 sm:pl-3 md:hidden">
-          <Dialog.Trigger className="-mt-0.5 -ml-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-inset">
+          <Dialog.Trigger
+            className={cn(
+              focusRing,
+              '-mt-0.5 -ml-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-muted-foreground hover:text-foreground',
+            )}
+          >
             <span className="sr-only">Navigation öffnen</span>
             <MenuIcon className="h-6 w-6" aria-hidden="true" />
           </Dialog.Trigger>

@@ -13,6 +13,7 @@ interface TextFieldProps extends React.ComponentProps<'input'> {
   description?: string;
   error?: string;
   label: string;
+  labelClassName?: string;
 }
 
 export default function TextField({
@@ -22,6 +23,7 @@ export default function TextField({
   error,
   id: providedId,
   label,
+  labelClassName,
   name,
   required,
   ...props
@@ -36,7 +38,7 @@ export default function TextField({
 
   return (
     <Field>
-      <FieldLabel htmlFor={id} required={required}>
+      <FieldLabel htmlFor={id} required={required} className={labelClassName}>
         {label}
       </FieldLabel>
       {description && (
