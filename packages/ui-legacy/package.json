@@ -8,7 +8,6 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@headlessui/react": "^2.2.10",
     "lucide-react": "catalog:icons"
   },
   "peerDependencies": {

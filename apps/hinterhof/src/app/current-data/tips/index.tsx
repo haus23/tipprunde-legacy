@@ -3,7 +3,8 @@ import { cn } from 'cn';
 import { ClipboardIcon } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { Button, Card, Select, TextField } from 'ui-legacy';
+import { Button, Card, TextField } from 'ui-legacy';
+import Select from '#/components/form/select';
 import AppCard from '#/components/layout/app-card';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
@@ -226,7 +227,17 @@ export default function TipsView() {
         <div className="flex items-center gap-x-4 px-4 py-4">
           <span className="font-semibold">Tipps von</span>
           <div className="grow">
-            <Select options={players} selected={player} onChange={setPlayer} />
+            <Select
+              aria-label="Mitspieler"
+              options={players}
+              value={player.id}
+              onValueChange={(playerId) => {
+                const selectedPlayer = players.find(
+                  ({ id }) => id === playerId,
+                );
+                if (selectedPlayer) setPlayer(selectedPlayer);
+              }}
+            />
           </div>
         </div>
       </Card>

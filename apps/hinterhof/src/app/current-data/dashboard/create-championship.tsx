@@ -1,9 +1,8 @@
 import type { Championship } from '@haus23/tipprunde-model';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import { SelectField } from 'ui-legacy';
-
 import Button from '#/components/button';
+import SelectField from '#/components/form/select-field';
 import TextField from '#/components/form/text-field';
 
 import { useChampionships } from '#/hooks/master-data/use-championships';
