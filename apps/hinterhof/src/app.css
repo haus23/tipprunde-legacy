@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@source "../../../packages/ui-legacy/src/**/*.{ts,tsx}";
-
 @theme inline {
   --breakpoint-xs: 380px;
   --color-background: var(--background);

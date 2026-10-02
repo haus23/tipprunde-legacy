@@ -1,4 +1,0 @@
-{
-  "extends": "@haus23/tipprunde-tsconfig/react.json",
-  "include": ["src"]
-}
