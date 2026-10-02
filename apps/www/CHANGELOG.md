@@ -1,5 +1,11 @@
 # www
 
+## 0.22.25
+
+### Patch Changes
+
+- [`a0d6760`](https://github.com/haus23/tipprunde-legacy/commit/a0d676078aa9177482feaa998c38554d3bdecd43) - Upgrade Lucide through a shared workspace catalog and replace the remaining Heroicons with matching Lucide icons.
+
 ## 0.22.24
 
 ### Patch Changes

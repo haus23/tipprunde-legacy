@@ -1,5 +1,33 @@
 # hinterhof
 
+## 0.9.1
+
+### Patch Changes
+
+- [`65d15b2`](https://github.com/haus23/tipprunde-legacy/commit/65d15b2889b54ae13b92fb23413e934fe4824236) - Replace the Headless UI mobile navigation with an accessible Base UI dialog.
+
+- [`0848005`](https://github.com/haus23/tipprunde-legacy/commit/08480057783c0944bda4906e626d45a6b3a615e2) - Replace the Hinterhof selection controls with local Base UI components, including fast keyboard-driven match entry.
+
+- [`00999a4`](https://github.com/haus23/tipprunde-legacy/commit/00999a40ef6f7983b8f62eba4bf83e22d5e4d9b6) - Prepare a semantic color token system from the existing Hinterhof palette and use dedicated tokens for dashboard teasers and overlays.
+
+- [`24f0fa3`](https://github.com/haus23/tipprunde-legacy/commit/24f0fa3ca583f23881aa609c7d5314431e6f9ea9) - Own the brand and loading components directly in the Hinterhof and align loading states with its semantic design tokens.
+
+- [`d5a44ea`](https://github.com/haus23/tipprunde-legacy/commit/d5a44ea1d47a2a9a8d41e2b937cd099098954f61) - Replace the shared class-name helper with `cn` and own date formatting directly in the Hinterhof as the first step toward removing ui-legacy.
+
+- [`27678dc`](https://github.com/haus23/tipprunde-legacy/commit/27678dcdf6167ec01a14c068e3667b21359eccb5) - Replace Headless UI switches with a local, accessible native checkbox styled as a semantic toggle.
+
+- [`b5f6837`](https://github.com/haus23/tipprunde-legacy/commit/b5f68377f20e43348629ebd1a834ba42f095f3e4) - Unify the championship, extra points, and matches views with local components and consistent focus styles.
+
+- [`eb8c362`](https://github.com/haus23/tipprunde-legacy/commit/eb8c36208caac86e1684e57c34b6fb24ec4ae254) - Unify Hinterhof buttons around semantic variants and accessible icon actions, and migrate the match form and table to the local component.
+
+- [`77aad4a`](https://github.com/haus23/tipprunde-legacy/commit/77aad4a199ed6c1779d37a6be58d2da35f36e298) - Introduce a shared semantic card structure and apply it to the dashboard and new-round flow.
+
+- [`d8c1713`](https://github.com/haus23/tipprunde-legacy/commit/d8c1713ead673f289767e08af41585a987e81ec2) - Unify native form fields around shared semantic structure, states, accessibility attributes, and control styles.
+
+- [`a0d6760`](https://github.com/haus23/tipprunde-legacy/commit/a0d676078aa9177482feaa998c38554d3bdecd43) - Upgrade Lucide through a shared workspace catalog and replace the remaining Heroicons with matching Lucide icons.
+
+- [`74f6960`](https://github.com/haus23/tipprunde-legacy/commit/74f6960e7938b1a449bd306b62ad0648bbadb317) - Remove the obsolete ui-legacy workspace package after moving its remaining components and utilities into the Hinterhof.
+
 ## 0.9.0
 
 ### Minor Changes
