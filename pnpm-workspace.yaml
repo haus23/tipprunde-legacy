@@ -15,6 +15,8 @@ catalogs:
     react-dom: ^19.3.0
   react-libs:
     react-hook-form: ^7.88.0
+  state:
+    zustand: ^5.0.15
   toolchain:
     vite: ^8.3.2
     vitest: ^5.0.3
