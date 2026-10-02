@@ -13,8 +13,6 @@ catalogs:
     '@types/react-dom': ^19.3.0
     react: ^19.3.0
     react-dom: ^19.3.0
-  react-libs:
-    react-hook-form: ^7.88.0
   state:
     zustand: ^5.0.15
   toolchain:
