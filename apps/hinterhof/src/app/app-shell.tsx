@@ -1,6 +1,6 @@
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog } from '@base-ui/react/dialog';
 import { MenuIcon, XIcon } from 'lucide-react';
-import { Fragment, use, useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
 
 import { ensureMasterData } from '#/state/master-data-store';
@@ -15,65 +15,23 @@ export default function AppShell() {
   }, [location]);
 
   return (
-    <div>
+    <Dialog.Root open={sidebarOpen} onOpenChange={setSidebarOpen}>
       {/* Mobile slide out navbar */}
-      <Transition.Root show={sidebarOpen} as={Fragment}>
-        <Dialog className="relative z-40 md:hidden" onClose={setSidebarOpen}>
-          <Transition.Child
-            as={Fragment}
-            enter="transition-opacity ease-linear duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-overlay" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 z-40 flex">
-            <Transition.Child
-              as={Fragment}
-              enter="transition ease-in-out duration-300 transform"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transition ease-in-out duration-300 transform"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
-            >
-              <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white">
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-in-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in-out duration-300"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <div className="absolute top-0 right-0 -mr-12 pt-2">
-                    <button
-                      type="button"
-                      className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-hidden focus:ring-2 focus:ring-white focus:ring-inset"
-                      onClick={() => setSidebarOpen(false)}
-                    >
-                      <span className="sr-only">Close sidebar</span>
-                      <XIcon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
-                    </button>
-                  </div>
-                </Transition.Child>
-                <AppShellNavbar />
-              </Dialog.Panel>
-            </Transition.Child>
-            <div className="w-14 shrink-0">
-              {/* Force sidebar to shrink to fit close icon */}
-            </div>
+      <Dialog.Portal>
+        <Dialog.Backdrop className="fixed inset-0 z-40 bg-overlay transition-opacity duration-300 ease-linear data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none md:hidden" />
+        <Dialog.Popup
+          className="fixed inset-y-0 left-0 z-40 flex w-[calc(100%-3.5rem)] max-w-xs flex-col bg-sidebar text-sidebar-foreground shadow-xl transition-transform duration-300 ease-in-out data-ending-style:-translate-x-full data-starting-style:-translate-x-full motion-reduce:transition-none md:hidden"
+          aria-label="Navigation"
+        >
+          <div className="absolute top-0 right-0 translate-x-full pt-2 pl-1">
+            <Dialog.Close className="flex h-10 w-10 items-center justify-center rounded-full text-white outline-hidden hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset">
+              <span className="sr-only">Navigation schließen</span>
+              <XIcon className="h-6 w-6" aria-hidden="true" />
+            </Dialog.Close>
           </div>
-        </Dialog>
-      </Transition.Root>
+          <AppShellNavbar />
+        </Dialog.Popup>
+      </Dialog.Portal>
       {/* Static desktop navbar */}
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
         <div className="flex min-h-0 flex-1 flex-col border-gray-200 border-r bg-white">
@@ -84,14 +42,10 @@ export default function AppShell() {
       <div className="flex flex-col md:pl-64">
         {/* Toggle menu button */}
         <div className="sticky top-0 z-10 bg-background pt-1 pl-1 sm:pt-3 sm:pl-3 md:hidden">
-          <button
-            type="button"
-            className="-mt-0.5 -ml-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-inset"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <span className="sr-only">Open sidebar</span>
+          <Dialog.Trigger className="-mt-0.5 -ml-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-inset">
+            <span className="sr-only">Navigation öffnen</span>
             <MenuIcon className="h-6 w-6" aria-hidden="true" />
-          </button>
+          </Dialog.Trigger>
         </div>
 
         {/* Content */}
@@ -103,6 +57,6 @@ export default function AppShell() {
           </div>
         </main>
       </div>
-    </div>
+    </Dialog.Root>
   );
 }
