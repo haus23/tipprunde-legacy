@@ -1,8 +1,17 @@
-import type { League } from '@haus23/tipprunde-model';
+import {
+  Form,
+  Field as FormField,
+  focus,
+  getInput,
+  isDirty,
+  reset,
+  setErrors,
+  useForm,
+} from '@formisch/react';
+import { type League, LeagueSchema } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
@@ -12,47 +21,84 @@ import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';
 import { trimProps } from '#/utils/trim-props';
 
+const emptyLeague: League = { id: '', name: '', shortname: '' };
+
 export default function LeaguesView() {
-  const {
-    getValues,
-    handleSubmit,
-    register,
-    reset,
-    setFocus,
-    setValue,
-    formState: { dirtyFields, errors },
-  } = useForm<League>({ defaultValues: { id: '' } });
+  const leagueForm = useForm({
+    schema: LeagueSchema,
+    initialInput: emptyLeague,
+  });
 
   const { leagues, createLeague, updateLeague } = useLeagues();
   const [isFormOpen, setFormOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
   function beginEdit(league: League) {
-    reset(league);
+    reset(leagueForm, { initialInput: league });
     setEditMode(true);
     setFormOpen(true);
   }
 
   function endEdit() {
-    reset({ id: '' });
+    reset(leagueForm, { initialInput: emptyLeague });
     setEditMode(false);
     setFormOpen(false);
   }
 
   function handleNameChange() {
-    const name = getValues('name').trim();
-    if (!editMode && name && !dirtyFields.shortname) {
-      setValue('shortname', name, { shouldValidate: true });
+    const name = (getInput(leagueForm, { path: ['name'] }) ?? '').trim();
+    if (!editMode && name && !isDirty(leagueForm, { path: ['shortname'] })) {
+      reset(leagueForm, { path: ['shortname'], initialInput: name });
     }
   }
   function handleShortnameChange() {
-    const sluggedName = slug(getValues('shortname'));
-    if (!editMode && sluggedName && !dirtyFields.id) {
-      setValue('id', sluggedName, { shouldValidate: true });
+    const sluggedName = slug(
+      getInput(leagueForm, { path: ['shortname'] }) ?? '',
+    );
+    if (!editMode && sluggedName && !isDirty(leagueForm, { path: ['id'] })) {
+      reset(leagueForm, { path: ['id'], initialInput: sluggedName });
     }
   }
 
   async function saveLeague(league: League) {
+    if (!editMode) {
+      const duplicateName = leagues.some((item) => item.name === league.name);
+      const duplicateShortname = leagues.some(
+        (item) => item.shortname === league.shortname,
+      );
+      const duplicateId = leagues.some((item) => item.id === league.id);
+
+      setErrors(leagueForm, {
+        path: ['name'],
+        errors: duplicateName
+          ? ['Liga mit diesem Namen ist schon angelegt.']
+          : null,
+      });
+      setErrors(leagueForm, {
+        path: ['shortname'],
+        errors: duplicateShortname
+          ? ['Liga mit diesem Kürzel ist schon angelegt.']
+          : null,
+      });
+      setErrors(leagueForm, {
+        path: ['id'],
+        errors: duplicateId
+          ? ['Liga mit dieser Kennung ist schon angelegt.']
+          : null,
+      });
+
+      if (duplicateName || duplicateShortname || duplicateId) {
+        focus(leagueForm, {
+          path: duplicateName
+            ? ['name']
+            : duplicateShortname
+              ? ['shortname']
+              : ['id'],
+        });
+        return;
+      }
+    }
+
     trimProps(league);
     if (editMode) {
       await notify(
@@ -69,8 +115,8 @@ export default function LeaguesView() {
         ),
         `${league.name} angelegt`,
       );
-      setFocus('name');
-      reset();
+      reset(leagueForm, { initialInput: emptyLeague });
+      focus(leagueForm, { path: ['name'] });
     }
   }
 
@@ -94,54 +140,51 @@ export default function LeaguesView() {
           </button>
           {isFormOpen && (
             <div>
-              <form noValidate={true} onSubmit={handleSubmit(saveLeague)}>
+              <Form of={leagueForm} onSubmit={saveLeague}>
                 <div className="space-y-4 p-4">
-                  <TextField
-                    autoFocus={true}
-                    label="Name"
-                    required={true}
-                    error={errors.name?.message}
-                    {...register('name', {
-                      required: true,
-                      onBlur: handleNameChange,
-                      validate: {
-                        uniqueName: (name) =>
-                          editMode ||
-                          !leagues.some((league) => league.name === name) ||
-                          'Liga mit diesem Namen ist schon angelegt.',
-                      },
-                    })}
-                  />
-                  <TextField
-                    label="Kürzel"
-                    required={true}
-                    error={errors.shortname?.message}
-                    {...register('shortname', {
-                      required: true,
-                      onBlur: handleShortnameChange,
-                      validate: {
-                        uniqueName: (shortname) =>
-                          editMode ||
-                          !leagues.some((p) => p.shortname === shortname) ||
-                          'Liga mit diesem Kürzel ist schon angelegt.',
-                      },
-                    })}
-                  />
-                  <TextField
-                    label="Kennung"
-                    required={true}
-                    disabled={editMode}
-                    error={errors.id?.message}
-                    {...register('id', {
-                      required: true,
-                      validate: {
-                        uniqueId: (id) =>
-                          editMode ||
-                          !leagues.some((league) => league.id === id) ||
-                          'Liga mit dieser Kennung ist schon angelegt.',
-                      },
-                    })}
-                  />
+                  <FormField of={leagueForm} path={['name']}>
+                    {(field) => (
+                      <TextField
+                        {...field.props}
+                        autoFocus={true}
+                        label="Name"
+                        required={true}
+                        value={field.input ?? ''}
+                        error={field.errors?.[0]}
+                        onBlur={() => {
+                          field.props.onBlur();
+                          handleNameChange();
+                        }}
+                      />
+                    )}
+                  </FormField>
+                  <FormField of={leagueForm} path={['shortname']}>
+                    {(field) => (
+                      <TextField
+                        {...field.props}
+                        label="Kürzel"
+                        required={true}
+                        value={field.input ?? ''}
+                        error={field.errors?.[0]}
+                        onBlur={() => {
+                          field.props.onBlur();
+                          handleShortnameChange();
+                        }}
+                      />
+                    )}
+                  </FormField>
+                  <FormField of={leagueForm} path={['id']}>
+                    {(field) => (
+                      <TextField
+                        {...field.props}
+                        label="Kennung"
+                        required={true}
+                        disabled={editMode}
+                        value={field.input ?? ''}
+                        error={field.errors?.[0]}
+                      />
+                    )}
+                  </FormField>
                 </div>
                 <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button onClick={endEdit}>Abbrechen</Button>
@@ -149,7 +192,7 @@ export default function LeaguesView() {
                     Speichern
                   </Button>
                 </div>
-              </form>
+              </Form>
             </div>
           )}
         </div>
