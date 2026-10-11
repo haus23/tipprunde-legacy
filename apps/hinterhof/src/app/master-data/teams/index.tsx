@@ -1,8 +1,9 @@
-import type { Team } from '@haus23/tipprunde-model';
+import { type Team, TeamSchema } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useRef, useState } from 'react';
+import { useFormStatus } from 'react-dom';
+import * as v from 'valibot';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
@@ -10,68 +11,139 @@ import { useTeams } from '#/hooks/master-data/use-teams';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';
-import { trimProps } from '#/utils/trim-props';
+
+const emptyTeam: Team = { id: '', name: '', shortname: '' };
+
+type TeamErrors = Partial<Record<keyof Team, string>>;
+
+function SaveButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <Button variant="primary" type="submit" disabled={pending}>
+      {pending ? 'Speichern ...' : 'Speichern'}
+    </Button>
+  );
+}
 
 export default function TeamsView() {
-  const {
-    getValues,
-    handleSubmit,
-    register,
-    reset,
-    setFocus,
-    setValue,
-    formState: { dirtyFields, errors },
-  } = useForm<Team>({ defaultValues: { id: '' } });
-
   const { teams, createTeam, updateTeam } = useTeams();
   const [isFormOpen, setFormOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const [team, setTeam] = useState<Team>(emptyTeam);
+  const [errors, setErrors] = useState<TeamErrors>({});
+  const formRef = useRef<HTMLFormElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const shortnameEditedRef = useRef(false);
+  const idEditedRef = useRef(false);
 
   function beginEdit(team: Team) {
-    reset(team);
+    setTeam(team);
+    setErrors({});
+    shortnameEditedRef.current = true;
+    idEditedRef.current = true;
     setEditMode(true);
     setFormOpen(true);
   }
 
   function endEdit() {
-    reset({ id: '' });
+    setTeam(emptyTeam);
+    setErrors({});
+    shortnameEditedRef.current = false;
+    idEditedRef.current = false;
     setEditMode(false);
     setFormOpen(false);
   }
 
   function handleNameChange() {
-    const name = getValues('name').trim();
-    if (!editMode && name && !dirtyFields.shortname) {
-      setValue('shortname', name, { shouldValidate: true });
+    const name = team.name.trim();
+    if (!editMode && name && !shortnameEditedRef.current) {
+      setTeam((current) => ({ ...current, shortname: name }));
     }
   }
 
   function handleShortnameChange() {
-    const sluggedName = slug(getValues('shortname'));
-    if (!editMode && sluggedName && !dirtyFields.id) {
-      setValue('id', sluggedName, { shouldValidate: true });
+    const sluggedName = slug(team.shortname);
+    if (!editMode && sluggedName && !idEditedRef.current) {
+      setTeam((current) => ({ ...current, id: sluggedName }));
     }
   }
 
-  async function saveTeam(team: Team) {
-    trimProps(team);
+  function focusField(name: keyof Team) {
+    const field = formRef.current?.elements.namedItem(name);
+    if (field instanceof HTMLElement) field.focus();
+  }
+
+  async function saveTeam(formData: FormData) {
+    const input = {
+      id: String(formData.get('id') ?? '').trim(),
+      name: String(formData.get('name') ?? '').trim(),
+      shortname: String(formData.get('shortname') ?? '').trim(),
+    };
+    const result = v.safeParse(TeamSchema, input);
+
+    if (!result.success) {
+      const nestedErrors = v.flatten(result.issues).nested;
+      setErrors({
+        id: nestedErrors?.id?.[0],
+        name: nestedErrors?.name?.[0],
+        shortname: nestedErrors?.shortname?.[0],
+      });
+      const firstField = result.issues[0]?.path?.[0]?.key;
+      if (
+        firstField === 'id' ||
+        firstField === 'name' ||
+        firstField === 'shortname'
+      ) {
+        focusField(firstField);
+      }
+      return;
+    }
+
+    if (!editMode) {
+      const duplicateErrors: TeamErrors = {
+        name: teams.some((item) => item.name === result.output.name)
+          ? 'Mannschaft mit diesem Namen ist schon angelegt.'
+          : undefined,
+        shortname: teams.some(
+          (item) => item.shortname === result.output.shortname,
+        )
+          ? 'Mannschaft mit diesem Kürzel ist schon angelegt.'
+          : undefined,
+        id: teams.some((item) => item.id === result.output.id)
+          ? 'Mannschaft mit dieser Kennung ist schon angelegt.'
+          : undefined,
+      };
+      const firstDuplicate = (['name', 'shortname', 'id'] as const).find(
+        (name) => duplicateErrors[name],
+      );
+      if (firstDuplicate) {
+        setErrors(duplicateErrors);
+        focusField(firstDuplicate);
+        return;
+      }
+    }
+
+    setErrors({});
     if (editMode) {
       await notify(
-        updateTeam(team).then(() =>
+        updateTeam(result.output).then(() =>
           invalidateCache([{ type: 'collection', name: 'teams' }]),
         ),
-        `${team.name} geändert.`,
+        `${result.output.name} geändert.`,
       );
       endEdit();
     } else {
       await notify(
-        createTeam(team).then(() =>
+        createTeam(result.output).then(() =>
           invalidateCache([{ type: 'collection', name: 'teams' }]),
         ),
-        `${team.name} angelegt`,
+        `${result.output.name} angelegt`,
       );
-      setFocus('name');
-      reset();
+      setTeam(emptyTeam);
+      shortnameEditedRef.current = false;
+      idEditedRef.current = false;
+      requestAnimationFrame(() => nameInputRef.current?.focus());
     }
   }
 
@@ -97,60 +169,61 @@ export default function TeamsView() {
           </button>
           {isFormOpen && (
             <div>
-              <form noValidate={true} onSubmit={handleSubmit(saveTeam)}>
+              <form ref={formRef} action={saveTeam} noValidate={true}>
                 <div className="space-y-4 p-4">
                   <TextField
+                    ref={nameInputRef}
                     autoFocus={true}
                     label="Name"
+                    name="name"
                     required={true}
-                    error={errors.name?.message}
-                    {...register('name', {
-                      required: true,
-                      onBlur: handleNameChange,
-                      validate: {
-                        uniqueName: (name) =>
-                          editMode ||
-                          !teams.some((team) => team.name === name) ||
-                          'Mannschaft mit diesem Namen ist schon angelegt.',
-                      },
-                    })}
+                    value={team.name}
+                    error={errors.name}
+                    onChange={(event) => {
+                      setTeam((current) => ({
+                        ...current,
+                        name: event.target.value,
+                      }));
+                      setErrors({});
+                    }}
+                    onBlur={handleNameChange}
                   />
                   <TextField
                     label="Kürzel"
+                    name="shortname"
                     required={true}
-                    error={errors.shortname?.message}
-                    {...register('shortname', {
-                      required: true,
-                      onBlur: handleShortnameChange,
-                      validate: {
-                        uniqueName: (shortname) =>
-                          editMode ||
-                          !teams.some((p) => p.shortname === shortname) ||
-                          'Mannschaft mit diesem Kürzel ist schon angelegt.',
-                      },
-                    })}
+                    value={team.shortname}
+                    error={errors.shortname}
+                    onChange={(event) => {
+                      shortnameEditedRef.current = true;
+                      setTeam((current) => ({
+                        ...current,
+                        shortname: event.target.value,
+                      }));
+                      setErrors({});
+                    }}
+                    onBlur={handleShortnameChange}
                   />
                   <TextField
                     label="Kennung"
+                    name="id"
                     required={true}
-                    disabled={editMode}
-                    error={errors.id?.message}
-                    {...register('id', {
-                      required: true,
-                      validate: {
-                        uniqueId: (id) =>
-                          editMode ||
-                          !teams.some((team) => team.id === id) ||
-                          'Mannschaft mit dieser Kennung ist schon angelegt.',
-                      },
-                    })}
+                    readOnly={editMode}
+                    value={team.id}
+                    error={errors.id}
+                    onChange={(event) => {
+                      idEditedRef.current = true;
+                      setTeam((current) => ({
+                        ...current,
+                        id: event.target.value,
+                      }));
+                      setErrors({});
+                    }}
                   />
                 </div>
                 <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button onClick={endEdit}>Abbrechen</Button>
-                  <Button variant="primary" type="submit">
-                    Speichern
-                  </Button>
+                  <SaveButton />
                 </div>
               </form>
             </div>

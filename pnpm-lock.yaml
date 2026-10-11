@@ -255,6 +255,9 @@ importers:
       slugify:
         specifier: ^1.6.9
         version: 1.6.9
+      valibot:
+        specifier: catalog:validation
+        version: 1.5.0(typescript@7.0.2)
       zustand:
         specifier: catalog:state
         version: 5.0.15(@types/react@19.3.0)(react@19.3.0)(use-sync-external-store@1.5.0(react@19.3.0))
