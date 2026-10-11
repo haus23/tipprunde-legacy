@@ -1,9 +1,10 @@
-import type { Team } from '@haus23/tipprunde-model';
+import { Field, Form, reset, useFieldArray, useForm } from '@formisch/react';
+import { ResultSchema, type Team } from '@haus23/tipprunde-model';
 import { useEffect, useMemo, useState } from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
+import * as v from 'valibot';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
-import { fieldControlStyles } from '#/components/form/field';
+import TextField from '#/components/form/text-field';
 import RoundTabs from '#/components/round-tabs';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
@@ -13,9 +14,9 @@ import { useTeams } from '#/hooks/master-data/use-teams';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
-type ResultsFormType = {
-  results: { matchId: string; result: string }[];
-};
+const ResultsFormSchema = v.object({
+  results: v.array(ResultSchema),
+});
 
 export default function ResultsView() {
   const { rounds } = useRounds();
@@ -36,32 +37,33 @@ export default function ResultsView() {
     }));
   }, [teams, matches]);
 
-  const {
-    control,
-    handleSubmit,
-    register,
-    reset,
-    formState: { dirtyFields },
-  } = useForm<ResultsFormType>({ defaultValues: { results: [] } });
+  const resultsForm = useForm({
+    schema: ResultsFormSchema,
+    initialInput: { results: [] },
+  });
 
   useEffect(() => {
-    reset({
-      results: matches.map((m) => ({ matchId: m.id, result: m.result })),
+    reset(resultsForm, {
+      initialInput: { results: matches.map((match) => match.result) },
     });
-  }, [matches, reset]);
+  }, [matches, resultsForm]);
 
-  const { fields } = useFieldArray({ control, name: 'results' });
+  const resultFields = useFieldArray(resultsForm, { path: ['results'] });
 
   const { calculateRanking } = useRanking();
 
-  async function saveAndCalculate(data: ResultsFormType) {
-    if (!dirtyFields.results || !currentChampionship) return;
+  async function saveAndCalculate(
+    data: v.InferOutput<typeof ResultsFormSchema>,
+  ) {
+    if (!currentChampionship) return;
 
-    const updateOperations = data.results.flatMap((updates, ix) =>
-      dirtyFields.results?.[ix]?.result
-        ? [updateMatchResult(matches[ix], updates.result)]
+    const updateOperations = data.results.flatMap((result, index) =>
+      result !== matches[index].result
+        ? [updateMatchResult(matches[index], result)]
         : [],
     );
+    if (updateOperations.length === 0) return;
+
     const updateResults = async () => {
       const calculations = await Promise.all(updateOperations);
       await calculateRanking({
@@ -87,7 +89,7 @@ export default function ResultsView() {
           onValueChange={setCurrentRound}
         />
       </Card>
-      <form onSubmit={handleSubmit(saveAndCalculate)}>
+      <Form of={resultsForm} onSubmit={saveAndCalculate}>
         <Card>
           <CardHeader className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -130,9 +132,9 @@ export default function ResultsView() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border bg-card">
-                  {fields.map((field, ix) =>
+                  {resultFields.items.map((fieldId, ix) =>
                     fixtures[ix].roundId === currentRound.id ? (
-                      <tr key={field.id}>
+                      <tr key={fieldId}>
                         <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm">
                           {fixtures[ix].nr}
                         </td>
@@ -149,15 +151,18 @@ export default function ResultsView() {
                           </span>
                         </td>
                         <td className="w-24 py-2 pr-4 pl-2 sm:pr-6 lg:pr-8">
-                          <input
-                            {...register(`results.${ix}.result`)}
-                            type="text"
-                            aria-label={`Ergebnis für Spiel ${fixtures[ix].nr}`}
-                            className={fieldControlStyles({
-                              className:
-                                'ml-auto w-16 text-center font-medium tabular-nums',
-                            })}
-                          />
+                          <Field of={resultsForm} path={['results', ix]}>
+                            {(field) => (
+                              <TextField
+                                {...field.props}
+                                label={`Ergebnis für Spiel ${fixtures[ix].nr}`}
+                                labelClassName="sr-only"
+                                value={field.input ?? ''}
+                                error={field.errors?.[0]}
+                                className="ml-auto w-16 text-center font-medium tabular-nums"
+                              />
+                            )}
+                          </Field>
                         </td>
                       </tr>
                     ) : null,
@@ -167,7 +172,7 @@ export default function ResultsView() {
             </div>
           </CardContent>
         </Card>
-      </form>
+      </Form>
     </div>
   );
 }
