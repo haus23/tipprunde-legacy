@@ -8,9 +8,9 @@ import {
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import Button from '#/components/button';
-import SelectField from '#/components/form/select-field';
+import Select from '#/components/form/select';
 import TextField from '#/components/form/text-field';
 import TextareaField from '#/components/form/textarea-field';
 import AppCard from '#/components/layout/app-card';
@@ -147,29 +147,65 @@ export default function RulesView() {
                     error={errors.description?.message}
                     {...register('description', { required: true })}
                   />
-                  <SelectField
-                    label="Tippregel"
+                  <Controller
                     control={control}
                     name="tipRuleId"
-                    options={tipRules}
+                    render={({ field }) => (
+                      <Select
+                        label="Tippregel"
+                        name={field.name}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        onBlur={field.onBlur}
+                        ref={field.ref}
+                        options={tipRules}
+                      />
+                    )}
                   />
-                  <SelectField
+                  <Controller
                     control={control}
                     name="matchRuleId"
-                    label="Spielregel"
-                    options={matchRules}
+                    render={({ field }) => (
+                      <Select
+                        label="Spielregel"
+                        name={field.name}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        onBlur={field.onBlur}
+                        ref={field.ref}
+                        options={matchRules}
+                      />
+                    )}
                   />
-                  <SelectField
+                  <Controller
                     control={control}
                     name="roundRuleId"
-                    label="Rundenregel"
-                    options={roundRules}
+                    render={({ field }) => (
+                      <Select
+                        label="Rundenregel"
+                        name={field.name}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        onBlur={field.onBlur}
+                        ref={field.ref}
+                        options={roundRules}
+                      />
+                    )}
                   />
-                  <SelectField
+                  <Controller
                     control={control}
                     name="extraQuestionsRuleId"
-                    label="Zusatzfragen"
-                    options={extraQuestionRules}
+                    render={({ field }) => (
+                      <Select
+                        label="Zusatzfragen"
+                        name={field.name}
+                        value={field.value}
+                        onValueChange={field.onChange}
+                        onBlur={field.onBlur}
+                        ref={field.ref}
+                        options={extraQuestionRules}
+                      />
+                    )}
                   />
                 </div>
                 <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">

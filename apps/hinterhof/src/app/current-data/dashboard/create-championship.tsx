@@ -1,8 +1,8 @@
 import type { Championship } from '@haus23/tipprunde-model';
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import Button from '#/components/button';
-import SelectField from '#/components/form/select-field';
+import Select from '#/components/form/select';
 import TextField from '#/components/form/text-field';
 
 import { useChampionships } from '#/hooks/master-data/use-championships';
@@ -111,11 +111,20 @@ export default function CreateChampionshipView() {
                 min="1"
                 {...register('nr')}
               />
-              <SelectField
-                label="Regelwerk"
+              <Controller
                 control={control}
                 name="rulesId"
-                options={rules}
+                render={({ field }) => (
+                  <Select
+                    label="Regelwerk"
+                    name={field.name}
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    onBlur={field.onBlur}
+                    ref={field.ref}
+                    options={rules}
+                  />
+                )}
               />
             </div>
             <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">

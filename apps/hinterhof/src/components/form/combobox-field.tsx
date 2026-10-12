@@ -2,12 +2,6 @@ import { Combobox } from '@base-ui/react/combobox';
 import { cn } from 'cn';
 import { CheckIcon, ChevronsUpDownIcon, XIcon } from 'lucide-react';
 import { useId, useMemo, useRef } from 'react';
-import {
-  type Control,
-  type FieldPathByValue,
-  type FieldValues,
-  useController,
-} from 'react-hook-form';
 import { focusRingInset } from '#/styles/focus';
 import { Field, FieldLabel, fieldControlStyles } from './field';
 import {
@@ -16,31 +10,28 @@ import {
   selectionPopupStyles,
 } from './selection';
 
-type ComboboxFieldProps<
-  T extends FieldValues,
-  TPath extends FieldPathByValue<T, string>,
-  Option extends SelectionOption,
-> = {
-  control: Control<T>;
+type ComboboxFieldProps<Option extends SelectionOption> = {
   filter: (query: string, option: Option) => boolean;
   label: string;
-  name: TPath;
+  name?: string;
+  onBlur?: () => void;
+  onValueChange: (value: string) => void;
   options: readonly Option[];
+  ref?: React.Ref<HTMLInputElement>;
+  value: string;
 };
 
-export default function ComboboxField<
-  T extends FieldValues,
-  TPath extends FieldPathByValue<T, string>,
-  Option extends SelectionOption,
->({
-  control,
+export default function ComboboxField<Option extends SelectionOption>({
   filter,
   label,
   name,
+  onBlur,
+  onValueChange,
   options,
-}: ComboboxFieldProps<T, TPath, Option>) {
-  const { field } = useController({ control, name });
-  const id = `${useId()}-${field.name}`;
+  ref,
+  value,
+}: ComboboxFieldProps<Option>) {
+  const id = `${useId()}-${name ?? 'combobox'}`;
   const highlightedValueRef = useRef<string>(undefined);
   const items = useMemo(() => {
     const normalizedOptions = options.map((option) => ({
@@ -59,11 +50,11 @@ export default function ComboboxField<
     <Field>
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <Combobox.Root
-        name={field.name}
+        name={name}
         items={items}
         autoHighlight
-        value={field.value || null}
-        onValueChange={(value) => field.onChange(value ?? '')}
+        value={value || null}
+        onValueChange={(nextValue) => onValueChange(nextValue ?? '')}
         onItemHighlighted={(value) => {
           highlightedValueRef.current = value;
         }}
@@ -75,11 +66,11 @@ export default function ComboboxField<
         <div className="relative">
           <Combobox.Input
             id={id}
-            ref={field.ref}
-            onBlur={field.onBlur}
+            ref={ref}
+            onBlur={onBlur}
             onKeyDownCapture={(event) => {
               if (event.key === 'Tab' && highlightedValueRef.current) {
-                field.onChange(highlightedValueRef.current);
+                onValueChange(highlightedValueRef.current);
               }
             }}
             className={fieldControlStyles({ className: 'pr-20' })}

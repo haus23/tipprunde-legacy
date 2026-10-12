@@ -1,45 +1,38 @@
 import { useId } from 'react';
-import {
-  type Control,
-  type FieldPathByValue,
-  type FieldValues,
-  useController,
-} from 'react-hook-form';
 import { Field, FieldError, FieldLabel, fieldControlStyles } from './field';
 
-type DateFieldProps<
-  T extends FieldValues,
-  TPath extends FieldPathByValue<T, string>,
-> = {
-  control: Control<T>;
+interface DateFieldProps extends Omit<React.ComponentProps<'input'>, 'type'> {
+  error?: string;
   label: string;
-  name: TPath;
-};
+}
 
-export default function DateField<
-  T extends FieldValues,
-  TPath extends FieldPathByValue<T, string>,
->({ control, label, name }: DateFieldProps<T, TPath>) {
-  const id = `${useId()}-${name}`;
-  const {
-    field: { value, ...field },
-    fieldState: { error },
-  } = useController({ control, name });
-  const errorId = error?.message ? `${id}-error` : undefined;
+export default function DateField({
+  'aria-describedby': ariaDescribedBy,
+  className,
+  error,
+  id: providedId,
+  label,
+  name,
+  ...props
+}: DateFieldProps) {
+  const generatedId = useId();
+  const id = providedId ?? `${generatedId}-${name ?? 'date'}`;
+  const errorId = error ? `${id}-error` : undefined;
+  const describedBy = [ariaDescribedBy, errorId].filter(Boolean).join(' ');
 
   return (
     <Field>
       <FieldLabel htmlFor={id}>{label}</FieldLabel>
       <input
-        {...field}
         id={id}
-        type="date"
-        value={value ?? ''}
-        aria-describedby={errorId}
+        name={name}
+        aria-describedby={describedBy || undefined}
         aria-invalid={error ? true : undefined}
-        className={fieldControlStyles({ invalid: Boolean(error) })}
+        {...props}
+        type="date"
+        className={fieldControlStyles({ className, invalid: Boolean(error) })}
       />
-      {error?.message && <FieldError id={errorId}>{error.message}</FieldError>}
+      {error && <FieldError id={errorId}>{error}</FieldError>}
     </Field>
   );
 }

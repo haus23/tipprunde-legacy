@@ -2,7 +2,7 @@ import type { League, Match, Team } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import Button from '#/components/button';
 import { Card, CardContent, CardFooter } from '#/components/card';
 import ComboboxField from '#/components/form/combobox-field';
@@ -168,40 +168,67 @@ export default function MatchesView() {
                 />
               </div>
               <div className="flex flex-col gap-y-4 sm:flex-row sm:justify-between">
-                <DateField label="Wann?" control={control} name="date" />
-                <ComboboxField
-                  label="Wo?"
+                <DateField label="Wann?" {...register('date')} />
+                <Controller
                   control={control}
                   name="leagueId"
-                  options={leagues}
-                  filter={(query, league) =>
-                    `${league.name} ${league.shortname}`
-                      .toLowerCase()
-                      .includes(query.toLowerCase())
-                  }
+                  render={({ field }) => (
+                    <ComboboxField
+                      label="Wo?"
+                      name={field.name}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      onBlur={field.onBlur}
+                      ref={field.ref}
+                      options={leagues}
+                      filter={(query, league) =>
+                        `${league.name} ${league.shortname}`
+                          .toLowerCase()
+                          .includes(query.toLowerCase())
+                      }
+                    />
+                  )}
                 />
               </div>
-              <ComboboxField
-                label="Wer?"
+              <Controller
                 control={control}
                 name="hometeamId"
-                options={teams}
-                filter={(q, team) =>
-                  `${team.name} ${team.shortname}`
-                    .toLowerCase()
-                    .includes(q.toLowerCase())
-                }
+                render={({ field }) => (
+                  <ComboboxField
+                    label="Wer?"
+                    name={field.name}
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    onBlur={field.onBlur}
+                    ref={field.ref}
+                    options={teams}
+                    filter={(q, team) =>
+                      `${team.name} ${team.shortname}`
+                        .toLowerCase()
+                        .includes(q.toLowerCase())
+                    }
+                  />
+                )}
               />
-              <ComboboxField
-                label="Gegen wen?"
+              <Controller
                 control={control}
                 name="awayteamId"
-                options={teams}
-                filter={(q, team) =>
-                  `${team.name} ${team.shortname}`
-                    .toLowerCase()
-                    .includes(q.toLowerCase())
-                }
+                render={({ field }) => (
+                  <ComboboxField
+                    label="Gegen wen?"
+                    name={field.name}
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    onBlur={field.onBlur}
+                    ref={field.ref}
+                    options={teams}
+                    filter={(q, team) =>
+                      `${team.name} ${team.shortname}`
+                        .toLowerCase()
+                        .includes(q.toLowerCase())
+                    }
+                  />
+                )}
               />
             </CardContent>
             <CardFooter className="justify-end gap-x-4">
