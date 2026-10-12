@@ -17,8 +17,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
+import ResultField from '#/components/form/result-field';
 import Select from '#/components/form/select';
-import TextField from '#/components/form/text-field';
 import RoundTabs from '#/components/round-tabs';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
@@ -314,14 +314,12 @@ export default function TipsView() {
                         <td className="w-24 px-2 py-2 text-center">
                           <Field of={tipsForm} path={['tips', ix, 'tip']}>
                             {(field) => (
-                              <TextField
+                              <ResultField
                                 {...field.props}
                                 data-tip-index={ix}
                                 label={`Tipp für Spiel ${fixtures[ix].nr}`}
-                                labelClassName="sr-only"
                                 value={field.input ?? ''}
                                 error={field.errors?.[0]}
-                                className="w-16 text-center font-medium tabular-nums"
                               />
                             )}
                           </Field>

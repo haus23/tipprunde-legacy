@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
-import TextField from '#/components/form/text-field';
+import ResultField from '#/components/form/result-field';
 import RoundTabs from '#/components/round-tabs';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
@@ -153,13 +153,12 @@ export default function ResultsView() {
                         <td className="w-24 py-2 pr-4 pl-2 sm:pr-6 lg:pr-8">
                           <Field of={resultsForm} path={['results', ix]}>
                             {(field) => (
-                              <TextField
+                              <ResultField
                                 {...field.props}
                                 label={`Ergebnis für Spiel ${fixtures[ix].nr}`}
-                                labelClassName="sr-only"
                                 value={field.input ?? ''}
                                 error={field.errors?.[0]}
-                                className="ml-auto w-16 text-center font-medium tabular-nums"
+                                className="justify-end"
                               />
                             )}
                           </Field>
