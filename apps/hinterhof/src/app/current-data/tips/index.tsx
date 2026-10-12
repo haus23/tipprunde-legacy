@@ -1,7 +1,20 @@
-import type { Member, Team, Tip } from '@haus23/tipprunde-model';
+import {
+  Field,
+  Form,
+  reset,
+  setInput,
+  useFieldArray,
+  useForm,
+} from '@formisch/react';
+import {
+  type Member,
+  resultRegEx,
+  type Team,
+  type Tip,
+} from '@haus23/tipprunde-model';
 import { CheckIcon, ClipboardIcon } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
+import * as v from 'valibot';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
 import Select from '#/components/form/select';
@@ -18,11 +31,18 @@ import { useTeams } from '#/hooks/master-data/use-teams';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
-type TipData = { tipId?: string; tip: string; joker: boolean };
-
-type TipsFormProps = {
-  tips: TipData[];
-};
+const TipsFormSchema = v.object({
+  tips: v.array(
+    v.object({
+      tip: v.pipe(
+        v.string(),
+        v.trim(),
+        v.regex(resultRegEx, 'Ungültiger Tipp.'),
+      ),
+      joker: v.boolean(),
+    }),
+  ),
+});
 
 export default function TipsView() {
   const { rounds } = useRounds();
@@ -61,63 +81,60 @@ export default function TipsView() {
 
   const [player, setPlayer] = useState(players[0]);
 
-  const {
-    control,
-    handleSubmit,
-    register,
-    reset,
-    setValue,
-    formState: { dirtyFields, errors },
-  } = useForm<TipsFormProps>({
-    defaultValues: {
-      tips: new Array(matches.length).fill({ tip: '', joker: false }),
-    },
+  const tipsForm = useForm({
+    schema: TipsFormSchema,
+    initialInput: { tips: [] },
   });
 
   const { tips, createTip, updateTip } = useTips();
 
-  useEffect(() => {
-    const tipsByPlayer = matches.map((m) => {
-      // Existing Tip?
-      const t = tips.find(
-        (t) => t.matchId === m.id && t.playerId === player.id,
-      );
-      let tipFormData: TipData;
-      if (t) {
-        tipFormData = { tipId: t.id, tip: t.tip, joker: t.joker };
-      } else {
-        tipFormData = { tip: '', joker: false };
-      }
-      return tipFormData;
-    });
-    reset({ tips: tipsByPlayer });
-  }, [matches, player, tips, reset]);
+  // Saved tip of the selected player for each match, in match order
+  const playerTips = useMemo(
+    () =>
+      matches.map((match) =>
+        tips.find(
+          (tip) => tip.matchId === match.id && tip.playerId === player.id,
+        ),
+      ),
+    [matches, tips, player],
+  );
 
-  const saveResults = async (data: TipsFormProps) => {
+  useEffect(() => {
+    reset(tipsForm, {
+      initialInput: {
+        tips: playerTips.map((tip) => ({
+          tip: tip?.tip ?? '',
+          joker: tip?.joker ?? false,
+        })),
+      },
+    });
+  }, [playerTips, tipsForm]);
+
+  const submitTips = async (data: v.InferOutput<typeof TipsFormSchema>) => {
     if (!currentChampionship) return;
 
     const saveOperations = matches.flatMap((match, index) => {
-      const dirtyTip = dirtyFields.tips?.[index];
+      const savedTip = playerTips[index];
+      const formTip = data.tips[index];
       if (
         match.roundId !== currentRound.id ||
-        (!dirtyTip?.tip && !dirtyTip?.joker)
+        (formTip.tip === (savedTip?.tip ?? '') &&
+          formTip.joker === (savedTip?.joker ?? false))
       ) {
         return [];
       }
 
-      const formTip = data.tips[index];
       const tip: Omit<Tip, 'id'> = {
         playerId: player.id,
         matchId: match.id,
-        tip: formTip.tip.trim(),
+        tip: formTip.tip,
         joker: formTip.joker,
       };
       return [
-        formTip.tipId
-          ? updateTip({ ...tip, id: formTip.tipId })
-          : createTip(tip),
+        savedTip ? updateTip({ ...tip, id: savedTip.id }) : createTip(tip),
       ];
     });
+    if (saveOperations.length === 0) return;
 
     const saveTips = async () => {
       const savedTips = await Promise.all(saveOperations);
@@ -149,7 +166,7 @@ export default function TipsView() {
     );
   };
 
-  const { fields } = useFieldArray({ control, name: 'tips' });
+  const tipFields = useFieldArray(tipsForm, { path: ['tips'] });
 
   // Handling copy/paste from clipboard
   const handleClipboardData = useCallback(
@@ -185,13 +202,13 @@ export default function TipsView() {
             let t = tips.at(tipIx++);
             if (typeof t !== 'undefined') {
               t = t.trim().replace(/[-.]+/, ':');
-              setValue(`tips.${ix}.tip`, t, { shouldDirty: true });
+              setInput(tipsForm, { path: ['tips', ix, 'tip'], input: t });
             }
           }
         });
       }
     },
-    [setValue, matches, currentRound],
+    [tipsForm, matches, currentRound],
   );
 
   useEffect(() => {
@@ -224,7 +241,7 @@ export default function TipsView() {
           </div>
         </CardContent>
       </Card>
-      <form onSubmit={handleSubmit(saveResults)}>
+      <Form of={tipsForm} onSubmit={submitTips}>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between gap-4">
             <div>
@@ -283,9 +300,9 @@ export default function TipsView() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border bg-card">
-                  {fields.map((field, ix) =>
+                  {tipFields.items.map((fieldId, ix) =>
                     fixtures[ix].roundId === currentRound.id ? (
-                      <tr key={field.id}>
+                      <tr key={fieldId}>
                         <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm">
                           {fixtures[ix].nr}
                         </td>
@@ -302,33 +319,38 @@ export default function TipsView() {
                           </span>
                         </td>
                         <td className="w-24 px-2 py-2 text-center">
-                          <TextField
-                            {...register(`tips.${ix}.tip`, {
-                              pattern: {
-                                value: /\b\d{1,2}:\d{1,2}\b/,
-                                message: 'Ungültiger Tipp.',
-                              },
-                            })}
-                            label={`Tipp für Spiel ${fixtures[ix].nr}`}
-                            labelClassName="sr-only"
-                            error={errors.tips?.[ix]?.tip?.message}
-                            className="w-16 text-center font-medium tabular-nums"
-                          />
+                          <Field of={tipsForm} path={['tips', ix, 'tip']}>
+                            {(field) => (
+                              <TextField
+                                {...field.props}
+                                label={`Tipp für Spiel ${fixtures[ix].nr}`}
+                                labelClassName="sr-only"
+                                value={field.input ?? ''}
+                                error={field.errors?.[0]}
+                                className="w-16 text-center font-medium tabular-nums"
+                              />
+                            )}
+                          </Field>
                         </td>
                         <td className="w-20 pl-2 text-center sm:pl-6 lg:pl-8">
-                          <label className="relative inline-flex h-9 w-9 items-center justify-center rounded-md">
-                            <input
-                              type="checkbox"
-                              {...register(`tips.${ix}.joker`)}
-                              aria-label={`Joker für Spiel ${fixtures[ix].nr}`}
-                              className="peer sr-only"
-                            />
-                            <span className="h-5 w-5 rounded-sm border border-input bg-background shadow-xs transition-colors peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:outline-2 peer-focus-visible:outline-ring peer-focus-visible:outline-offset-2 motion-reduce:transition-none" />
-                            <CheckIcon
-                              className="pointer-events-none absolute h-4 w-4 text-primary-foreground opacity-0 transition-opacity peer-checked:opacity-100 motion-reduce:transition-none"
-                              aria-hidden="true"
-                            />
-                          </label>
+                          <Field of={tipsForm} path={['tips', ix, 'joker']}>
+                            {(field) => (
+                              <label className="relative inline-flex h-9 w-9 items-center justify-center rounded-md">
+                                <input
+                                  {...field.props}
+                                  type="checkbox"
+                                  checked={field.input ?? false}
+                                  aria-label={`Joker für Spiel ${fixtures[ix].nr}`}
+                                  className="peer sr-only"
+                                />
+                                <span className="h-5 w-5 rounded-sm border border-input bg-background shadow-xs transition-colors peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:outline-2 peer-focus-visible:outline-ring peer-focus-visible:outline-offset-2 motion-reduce:transition-none" />
+                                <CheckIcon
+                                  className="pointer-events-none absolute h-4 w-4 text-primary-foreground opacity-0 transition-opacity peer-checked:opacity-100 motion-reduce:transition-none"
+                                  aria-hidden="true"
+                                />
+                              </label>
+                            )}
+                          </Field>
                         </td>
                       </tr>
                     ) : null,
@@ -338,7 +360,7 @@ export default function TipsView() {
             </div>
           </CardContent>
         </Card>
-      </form>
+      </Form>
     </div>
   );
 }
