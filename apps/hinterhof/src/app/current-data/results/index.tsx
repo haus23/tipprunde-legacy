@@ -1,5 +1,5 @@
 import { Field, Form, reset, useFieldArray, useForm } from '@formisch/react';
-import { ResultSchema, type Team } from '@haus23/tipprunde-model';
+import { resultRegEx, type Team } from '@haus23/tipprunde-model';
 import { useEffect, useMemo, useState } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
@@ -15,7 +15,9 @@ import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
 const ResultsFormSchema = v.object({
-  results: v.array(ResultSchema),
+  results: v.array(
+    v.pipe(v.string(), v.trim(), v.regex(resultRegEx, 'Ungültiges Ergebnis.')),
+  ),
 });
 
 export default function ResultsView() {
