@@ -134,11 +134,17 @@ export default function MatchesView() {
   const topRef = useRef<HTMLDivElement>(null);
 
   function beginEdit(match: Match) {
+    // Suggest the date of the preceding match for a match without date
+    const previousMatch = matches.reduce<Match | undefined>(
+      (previous, m) =>
+        m.nr < match.nr && (!previous || m.nr > previous.nr) ? m : previous,
+      undefined,
+    );
     reset(matchForm, {
       initialInput: {
         id: match.id,
         nr: match.nr,
-        date: match.date || date,
+        date: match.date || previousMatch?.date || '',
         leagueId: match.leagueId,
         hometeamId: match.hometeamId,
         awayteamId: match.awayteamId,
