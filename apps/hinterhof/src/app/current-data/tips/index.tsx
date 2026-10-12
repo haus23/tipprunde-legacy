@@ -171,22 +171,16 @@ export default function TipsView() {
   // Handling copy/paste from clipboard
   const handleClipboardData = useCallback(
     async (ev?: ClipboardEvent) => {
-      let inputFieldIx = 0;
+      let startIx = 0;
       let pastedText: string;
       if (ev) {
         ev.preventDefault();
-        // Get index of paste target
+        // Pasting into a tip field fills from that match on
         if (
           ev.target instanceof HTMLInputElement &&
-          ev.target.type === 'text'
+          ev.target.dataset.tipIndex
         ) {
-          const inputFields = ev.target
-            .closest('tbody')
-            ?.querySelectorAll('input[type=text]') as NodeList;
-          const fieldIx = [...inputFields].indexOf(ev.target as Node);
-          if (fieldIx !== -1) {
-            inputFieldIx = fieldIx;
-          }
+          startIx = Number(ev.target.dataset.tipIndex);
         }
         pastedText = ev.clipboardData?.getData('text') ?? '';
       } else {
@@ -196,9 +190,8 @@ export default function TipsView() {
       if (pastedText) {
         const tips = pastedText.split(/\r?\n/);
         let tipIx = 0;
-        let fieldIx = 0;
         matches.forEach((m, ix) => {
-          if (m.roundId === currentRound.id && fieldIx++ >= inputFieldIx) {
+          if (m.roundId === currentRound.id && ix >= startIx) {
             let t = tips.at(tipIx++);
             if (typeof t !== 'undefined') {
               t = t.trim().replace(/[-.]+/, ':');
@@ -323,6 +316,7 @@ export default function TipsView() {
                             {(field) => (
                               <TextField
                                 {...field.props}
+                                data-tip-index={ix}
                                 label={`Tipp für Spiel ${fixtures[ix].nr}`}
                                 labelClassName="sr-only"
                                 value={field.input ?? ''}
