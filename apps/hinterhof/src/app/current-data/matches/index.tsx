@@ -1,8 +1,14 @@
-import type { League, Match, Team } from '@haus23/tipprunde-model';
+import { Field, Form, focus, getInput, reset, useForm } from '@formisch/react';
+import {
+  type League,
+  type Match,
+  MatchDateSchema,
+  type Team,
+} from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import * as v from 'valibot';
 import Button from '#/components/button';
 import { Card, CardContent, CardFooter } from '#/components/card';
 import ComboboxField from '#/components/form/combobox-field';
@@ -18,9 +24,16 @@ import { formatDate } from '#/utils/format-date';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
-type MatchFormData = Omit<Match, 'id' | 'roundId' | 'result' | 'points'> & {
-  id?: string;
-};
+const MatchFormSchema = v.object({
+  id: v.optional(v.string()),
+  nr: v.number(),
+  date: MatchDateSchema,
+  leagueId: v.string(),
+  hometeamId: v.string(),
+  awayteamId: v.string(),
+});
+
+type MatchFormData = v.InferOutput<typeof MatchFormSchema>;
 
 export default function MatchesView() {
   const { leagues } = useLeagues();
@@ -64,7 +77,7 @@ export default function MatchesView() {
     '',
   );
 
-  const initialFormValues: Partial<MatchFormData> = {
+  const initialFormValues: MatchFormData = {
     nr,
     date,
     leagueId: '',
@@ -72,8 +85,10 @@ export default function MatchesView() {
     awayteamId: '',
   };
 
-  const { control, handleSubmit, register, reset, setFocus } =
-    useForm<MatchFormData>({ defaultValues: initialFormValues });
+  const matchForm = useForm({
+    schema: MatchFormSchema,
+    initialInput: initialFormValues,
+  });
 
   async function saveMatch(matchData: MatchFormData) {
     if (!currentChampionship) return;
@@ -109,22 +124,33 @@ export default function MatchesView() {
         ),
         `Spiel ${match.nr} hinzugefügt.`,
       );
-      reset({ ...initialFormValues, date: match.date, nr: ++nr });
-      setFocus('date', { shouldSelect: true });
+      reset(matchForm, {
+        initialInput: { ...initialFormValues, date: match.date, nr: ++nr },
+      });
+      focus(matchForm, { path: ['date'] });
     }
   }
 
   const topRef = useRef<HTMLDivElement>(null);
 
   function beginEdit(match: Match) {
-    reset(match.date ? match : { ...match, date });
+    reset(matchForm, {
+      initialInput: {
+        id: match.id,
+        nr: match.nr,
+        date: match.date || date,
+        leagueId: match.leagueId,
+        hometeamId: match.hometeamId,
+        awayteamId: match.awayteamId,
+      },
+    });
     setEditMode(true);
     setFormOpen(true);
     topRef.current?.scrollIntoView();
   }
 
   function endEdit() {
-    reset(initialFormValues);
+    reset(matchForm, { initialInput: initialFormValues });
     setEditMode(false);
     setFormOpen(false);
   }
@@ -157,29 +183,37 @@ export default function MatchesView() {
           />
         </button>
         {isFormOpen && (
-          <form id="match-form" noValidate onSubmit={handleSubmit(saveMatch)}>
+          <Form id="match-form" of={matchForm} onSubmit={saveMatch}>
             <CardContent className="space-y-4 border-border border-t">
               <div className="flex items-center">
                 <span className="font-semibold text-sm">Nummer</span>
                 <input
                   disabled
+                  readOnly
                   className="w-8 rounded-sm border-transparent bg-transparent p-1 text-center font-semibold text-sm"
-                  {...register('nr')}
+                  value={getInput(matchForm, { path: ['nr'] }) ?? ''}
                 />
               </div>
               <div className="flex flex-col gap-y-4 sm:flex-row sm:justify-between">
-                <DateField label="Wann?" {...register('date')} />
-                <Controller
-                  control={control}
-                  name="leagueId"
-                  render={({ field }) => (
+                <Field of={matchForm} path={['date']}>
+                  {(field) => (
+                    <DateField
+                      {...field.props}
+                      label="Wann?"
+                      value={field.input ?? ''}
+                      error={field.errors?.[0]}
+                    />
+                  )}
+                </Field>
+                <Field of={matchForm} path={['leagueId']}>
+                  {(field) => (
                     <ComboboxField
                       label="Wo?"
-                      name={field.name}
-                      value={field.value}
+                      name={field.props.name}
+                      value={field.input ?? ''}
                       onValueChange={field.onChange}
-                      onBlur={field.onBlur}
-                      ref={field.ref}
+                      onBlur={field.props.onBlur}
+                      ref={field.props.ref}
                       options={leagues}
                       filter={(query, league) =>
                         `${league.name} ${league.shortname}`
@@ -188,19 +222,17 @@ export default function MatchesView() {
                       }
                     />
                   )}
-                />
+                </Field>
               </div>
-              <Controller
-                control={control}
-                name="hometeamId"
-                render={({ field }) => (
+              <Field of={matchForm} path={['hometeamId']}>
+                {(field) => (
                   <ComboboxField
                     label="Wer?"
-                    name={field.name}
-                    value={field.value}
+                    name={field.props.name}
+                    value={field.input ?? ''}
                     onValueChange={field.onChange}
-                    onBlur={field.onBlur}
-                    ref={field.ref}
+                    onBlur={field.props.onBlur}
+                    ref={field.props.ref}
                     options={teams}
                     filter={(q, team) =>
                       `${team.name} ${team.shortname}`
@@ -209,18 +241,16 @@ export default function MatchesView() {
                     }
                   />
                 )}
-              />
-              <Controller
-                control={control}
-                name="awayteamId"
-                render={({ field }) => (
+              </Field>
+              <Field of={matchForm} path={['awayteamId']}>
+                {(field) => (
                   <ComboboxField
                     label="Gegen wen?"
-                    name={field.name}
-                    value={field.value}
+                    name={field.props.name}
+                    value={field.input ?? ''}
                     onValueChange={field.onChange}
-                    onBlur={field.onBlur}
-                    ref={field.ref}
+                    onBlur={field.props.onBlur}
+                    ref={field.props.ref}
                     options={teams}
                     filter={(q, team) =>
                       `${team.name} ${team.shortname}`
@@ -229,7 +259,7 @@ export default function MatchesView() {
                     }
                   />
                 )}
-              />
+              </Field>
             </CardContent>
             <CardFooter className="justify-end gap-x-4">
               <Button type="button" onClick={endEdit}>
@@ -239,7 +269,7 @@ export default function MatchesView() {
                 Speichern
               </Button>
             </CardFooter>
-          </form>
+          </Form>
         )}
       </Card>
       <Card>
