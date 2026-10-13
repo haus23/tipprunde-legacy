@@ -14,11 +14,12 @@ import {
   type RuleSet,
   RuleSetSchema,
   roundRules,
+  slugIdRegEx,
   tipRules,
 } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
 import Select from '#/components/form/select';
@@ -34,7 +35,12 @@ const requiredMessage = 'Bitte ausfüllen.';
 
 const RulesFormSchema = v.object({
   name: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
-  id: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
+  id: v.pipe(
+    v.string(),
+    v.trim(),
+    v.nonEmpty(requiredMessage),
+    v.regex(slugIdRegEx, 'Nur Kleinbuchstaben, Ziffern und Bindestriche.'),
+  ),
   description: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
   tipRuleId: RuleSetSchema.entries.tipRuleId,
   matchRuleId: RuleSetSchema.entries.matchRuleId,
@@ -61,11 +67,13 @@ export default function RulesView() {
   const { rules, createRules, updateRules } = useRules();
   const [isFormOpen, setFormOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const topRef = useRef<HTMLDivElement>(null);
 
   function beginEdit(rules: RuleSet) {
     reset(rulesForm, { initialInput: rules });
     setEditMode(true);
     setFormOpen(true);
+    topRef.current?.scrollIntoView();
   }
 
   function endEdit() {
@@ -122,7 +130,7 @@ export default function RulesView() {
   }
 
   return (
-    <div className="space-y-4">
+    <div ref={topRef} className="space-y-4">
       <h2 className="font-semibold text-2xl">Regelwerke</h2>
       <div className="mt-5">
         <div className="rounded-md bg-white shadow-sm">
