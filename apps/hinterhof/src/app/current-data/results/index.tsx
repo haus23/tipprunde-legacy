@@ -3,8 +3,8 @@ import { resultRegEx, type Team } from '@haus23/tipprunde-model';
 import { useEffect, useMemo } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
-import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
 import ResultField from '#/components/form/result-field';
+import DataCard from '#/components/layout/data-card';
 import RoundNavigator from '#/components/round-navigator';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useCurrentRound } from '#/hooks/current-data/use-current-round';
@@ -82,98 +82,87 @@ export default function ResultsView() {
   }
 
   return (
-    <div className="mt-5 space-y-8">
-      <Card>
-        <CardHeader className="py-3">
-          <RoundNavigator
-            rounds={rounds}
-            value={currentRound}
-            onValueChange={setCurrentRound}
-          />
-        </CardHeader>
-      </Card>
+    <div className="mt-5">
       <Form of={resultsForm} onSubmit={saveAndCalculate}>
-        <Card>
-          <CardHeader className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <CardTitle>Ergebnisse</CardTitle>
-              <p className="mt-1 text-muted-foreground text-sm">
-                Geänderte Ergebnisse speichern und die Tabelle neu berechnen.
-              </p>
-            </div>
-            <Button
-              className="whitespace-nowrap sm:shrink-0"
-              variant="primary"
-              type="submit"
-            >
-              Speichern und berechnen
+        <DataCard
+          title="Ergebnisse"
+          description="Geänderte Ergebnisse speichern und die Tabelle neu berechnen."
+          action={
+            <Button variant="primary" type="submit">
+              Speichern
             </Button>
-          </CardHeader>
-          <CardContent className="p-0 sm:p-0">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-border">
-                <thead className="bg-surface-subtle">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm"
-                    >
-                      Nr
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3.5 text-left font-semibold text-foreground text-sm"
-                    >
-                      Spiel
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3.5 pr-4 pl-2 font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
-                    >
-                      Ergebnis
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border bg-card">
-                  {resultFields.items.map((fieldId, ix) =>
-                    fixtures[ix].roundId === currentRound.id ? (
-                      <tr key={fieldId}>
-                        <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm">
-                          {fixtures[ix].nr}
-                        </td>
-                        <td className="whitespace-nowrap px-2 py-4 text-muted-foreground text-sm">
-                          <span className="hidden lg:inline">
-                            {`${fixtures[ix].hometeam?.name || ''} - ${
-                              fixtures[ix].awayteam?.name || ''
-                            }`.replace(/^ - $/, '')}
-                          </span>
-                          <span className="lg:hidden">
-                            {`${fixtures[ix].hometeam?.shortname || ''} - ${
-                              fixtures[ix].awayteam?.shortname || ''
-                            }`.replace(/^ - $/, '')}
-                          </span>
-                        </td>
-                        <td className="w-24 py-2 pr-4 pl-2 sm:pr-6 lg:pr-8">
-                          <Field of={resultsForm} path={['results', ix]}>
-                            {(field) => (
-                              <ResultField
-                                {...field.props}
-                                label={`Ergebnis für Spiel ${fixtures[ix].nr}`}
-                                value={field.input ?? ''}
-                                error={field.errors?.[0]}
-                                className="justify-end"
-                              />
-                            )}
-                          </Field>
-                        </td>
-                      </tr>
-                    ) : null,
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
+          }
+          toolbar={
+            <RoundNavigator
+              rounds={rounds}
+              value={currentRound}
+              onValueChange={setCurrentRound}
+            />
+          }
+        >
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-border">
+              <thead className="bg-surface-subtle">
+                <tr>
+                  <th
+                    scope="col"
+                    className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm"
+                  >
+                    Nr
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-2 py-3.5 text-left font-semibold text-foreground text-sm"
+                  >
+                    Spiel
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 pr-4 pl-2 font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
+                  >
+                    Ergebnis
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border bg-card">
+                {resultFields.items.map((fieldId, ix) =>
+                  fixtures[ix].roundId === currentRound.id ? (
+                    <tr key={fieldId}>
+                      <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm">
+                        {fixtures[ix].nr}
+                      </td>
+                      <td className="px-2 py-4 text-muted-foreground text-sm">
+                        <span className="hidden lg:inline">
+                          {`${fixtures[ix].hometeam?.name || ''} - ${
+                            fixtures[ix].awayteam?.name || ''
+                          }`.replace(/^ - $/, '')}
+                        </span>
+                        <span className="lg:hidden">
+                          {`${fixtures[ix].hometeam?.shortname || ''} - ${
+                            fixtures[ix].awayteam?.shortname || ''
+                          }`.replace(/^ - $/, '')}
+                        </span>
+                      </td>
+                      <td className="w-24 py-2 pr-4 pl-2 sm:pr-6 lg:pr-8">
+                        <Field of={resultsForm} path={['results', ix]}>
+                          {(field) => (
+                            <ResultField
+                              {...field.props}
+                              label={`Ergebnis für Spiel ${fixtures[ix].nr}`}
+                              value={field.input ?? ''}
+                              error={field.errors?.[0]}
+                              className="justify-end"
+                            />
+                          )}
+                        </Field>
+                      </td>
+                    </tr>
+                  ) : null,
+                )}
+              </tbody>
+            </table>
+          </div>
+        </DataCard>
       </Form>
     </div>
   );

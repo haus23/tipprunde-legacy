@@ -4,7 +4,8 @@ import { cn } from '#/utils/cn';
 import Button from './button';
 
 // No chrome of its own: the surrounding layout decides about card, borders
-// and width. The navigator spreads its controls over the available width.
+// and placement. The navigator only takes the width it needs; the label has a
+// fixed width so the arrows do not move when the round number grows.
 type RoundNavigatorProps = {
   className?: string;
   onValueChange: (round: Round) => void;
@@ -25,7 +26,7 @@ export default function RoundNavigator({
   return (
     <nav
       aria-label="Runden"
-      className={cn('flex items-center justify-between gap-x-4', className)}
+      className={cn('flex w-fit items-center gap-x-3', className)}
     >
       <Button
         size="icon"
@@ -35,7 +36,10 @@ export default function RoundNavigator({
       >
         <ChevronLeftIcon className="size-5" aria-hidden="true" />
       </Button>
-      <p className="font-semibold" aria-live="polite">
+      <p
+        className="min-w-[14ch] text-center font-semibold tabular-nums"
+        aria-live="polite"
+      >
         Runde {value?.nr}
         <span className="font-normal text-muted-foreground">
           {' '}
