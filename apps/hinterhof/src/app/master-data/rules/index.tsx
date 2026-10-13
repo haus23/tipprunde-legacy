@@ -17,7 +17,6 @@ import {
   slugIdRegEx,
   tipRules,
 } from '@haus23/tipprunde-model';
-import { cn } from '#/utils/cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useRef, useState } from 'react';
 import * as v from 'valibot';
@@ -27,6 +26,7 @@ import TextField from '#/components/form/text-field';
 import TextareaField from '#/components/form/textarea-field';
 import AppCard from '#/components/layout/app-card';
 import { useRules } from '#/hooks/master-data/use-rules';
+import { cn } from '#/utils/cn';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';

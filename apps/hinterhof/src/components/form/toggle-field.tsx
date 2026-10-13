@@ -1,5 +1,5 @@
-import { cn } from '#/utils/cn';
 import { useId } from 'react';
+import { cn } from '#/utils/cn';
 
 type ToggleFieldProps = Omit<
   React.ComponentProps<'input'>,

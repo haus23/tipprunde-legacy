@@ -9,7 +9,6 @@ import {
   useForm,
 } from '@formisch/react';
 import { slugIdRegEx, type Team } from '@haus23/tipprunde-model';
-import { cn } from '#/utils/cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useRef, useState } from 'react';
 import * as v from 'valibot';
@@ -17,6 +16,7 @@ import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
 import { useTeams } from '#/hooks/master-data/use-teams';
+import { cn } from '#/utils/cn';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';

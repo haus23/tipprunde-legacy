@@ -1,5 +1,5 @@
-import { cn } from '#/utils/cn';
 import { focusRing } from '#/styles/focus';
+import { cn } from '#/utils/cn';
 
 interface ButtonProps extends React.ComponentProps<'button'> {
   variant?: 'primary' | 'secondary';

@@ -1,6 +1,6 @@
 import { Tooltip } from '@base-ui/react/tooltip';
-import { cn } from '#/utils/cn';
 import { useId } from 'react';
+import { cn } from '#/utils/cn';
 import { fieldControlStyles } from './field';
 
 // Compact input for match results and tips in table rows: the label is for
