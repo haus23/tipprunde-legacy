@@ -1,5 +1,21 @@
 # hinterhof
 
+## 0.9.3
+
+### Patch Changes
+
+- [`bfdd45f`](https://github.com/haus23/tipprunde-legacy/commit/bfdd45f3e696e8e36b7d22f707c45d21158df6cd) - Create and edit matches in a modal dialog instead of the inline form. When creating, the dialog stays open for the next match with its number and the date of the previous one.
+
+- [`3e57a76`](https://github.com/haus23/tipprunde-legacy/commit/3e57a763e3dc4e557b19dfe72e847efb996b89e5) - Show the matches in one card whose header with the new match button and round navigator stays visible while scrolling. The tables of matches, tips and results share the horizontal padding of the card header.
+
+- [`e3b34c4`](https://github.com/haus23/tipprunde-legacy/commit/e3b34c45e06bf9a264154ffd4b774e5cfdc7d0d3) - Show the results in one card whose header with save button and round navigator stays visible while scrolling.
+
+- [`90ac775`](https://github.com/haus23/tipprunde-legacy/commit/90ac7759fb26a99a1a4c2671b03f20d75582269a) - Replace the round tabs in matches, tips and results with a navigator for the previous and next round. The selected round is kept in the URL (`?runde=5`), so it survives reloads and carries over between these pages.
+
+- [`f031063`](https://github.com/haus23/tipprunde-legacy/commit/f031063d03769a4fb7ac33bc09412624e98ec747) - Keep the header with title and save button of the extra points table visible while scrolling.
+
+- [`7e25511`](https://github.com/haus23/tipprunde-legacy/commit/7e255118140472a2bac19b830d9ea92fad8cb07b) - Show the tips in one card whose header with save button, round navigator and player selection stays visible while scrolling.
+
 ## 0.9.2
 
 ### Patch Changes
