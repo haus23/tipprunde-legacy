@@ -1,6 +1,7 @@
+import { Field, Form, reset, useFieldArray, useForm } from '@formisch/react';
 import type { Member } from '@haus23/tipprunde-model';
 import { useEffect, useMemo } from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
+import * as v from 'valibot';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
 import { fieldControlStyles } from '#/components/form/field';
@@ -11,9 +12,9 @@ import { usePlayers } from '#/hooks/master-data/use-players';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
-type ExtraPointsFormType = {
-  extraPoints: { playerId: string; points: number }[];
-};
+const ExtraPointsFormSchema = v.object({
+  extraPoints: v.array(v.string()),
+});
 
 export default function ExtraPointsView() {
   const { players: masterPlayers } = usePlayers();
@@ -33,28 +34,29 @@ export default function ExtraPointsView() {
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [masterPlayers, championshipPlayers]);
 
-  const { control, handleSubmit, register, reset } =
-    useForm<ExtraPointsFormType>({
-      defaultValues: { extraPoints: [] },
-    });
+  const extraPointsForm = useForm({
+    schema: ExtraPointsFormSchema,
+    initialInput: { extraPoints: [] },
+  });
 
   useEffect(() => {
-    reset({
-      extraPoints: players.map((p) => ({
-        playerId: p.id,
-        points: p.extraPoints ?? 0,
-      })),
+    reset(extraPointsForm, {
+      initialInput: {
+        extraPoints: players.map((p) => String(p.extraPoints ?? 0)),
+      },
     });
-  }, [players, reset]);
+  }, [players, extraPointsForm]);
 
-  const { fields } = useFieldArray({ control, name: 'extraPoints' });
+  const extraPointsFields = useFieldArray(extraPointsForm, {
+    path: ['extraPoints'],
+  });
 
-  async function save(data: ExtraPointsFormType) {
+  async function save(data: v.InferOutput<typeof ExtraPointsFormSchema>) {
     if (!currentChampionship) return;
 
     const updatedPlayers = players.map((player, index) => ({
       ...player,
-      extraPoints: Number(data.extraPoints[index].points),
+      extraPoints: Number(data.extraPoints[index]),
     }));
     const saveExtraPoints = async () => {
       await calculateRanking({ players: updatedPlayers });
@@ -71,7 +73,7 @@ export default function ExtraPointsView() {
 
   return (
     <div className="mt-5 flex flex-col space-y-4">
-      <form onSubmit={handleSubmit(save)}>
+      <Form of={extraPointsForm} onSubmit={save}>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between gap-4">
             <div>
@@ -104,22 +106,27 @@ export default function ExtraPointsView() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border bg-card">
-                  {fields.map((field, ix) => (
-                    <tr key={field.id}>
+                  {extraPointsFields.items.map((fieldId, ix) => (
+                    <tr key={fieldId}>
                       <td className="px-4 py-3 font-medium text-sm sm:px-6">
                         {players[ix].name}
                       </td>
                       <td className="px-4 py-2 sm:px-6">
-                        <input
-                          {...register(`extraPoints.${ix}.points`)}
-                          type="text"
-                          inputMode="numeric"
-                          aria-label={`Zusatzpunkte für ${players[ix].name}`}
-                          className={fieldControlStyles({
-                            className:
-                              'ml-auto w-20 text-right font-medium tabular-nums',
-                          })}
-                        />
+                        <Field of={extraPointsForm} path={['extraPoints', ix]}>
+                          {(field) => (
+                            <input
+                              {...field.props}
+                              type="text"
+                              inputMode="numeric"
+                              value={field.input ?? ''}
+                              aria-label={`Zusatzpunkte für ${players[ix].name}`}
+                              className={fieldControlStyles({
+                                className:
+                                  'ml-auto w-20 text-right font-medium tabular-nums',
+                              })}
+                            />
+                          )}
+                        </Field>
                       </td>
                     </tr>
                   ))}
@@ -128,7 +135,7 @@ export default function ExtraPointsView() {
             </div>
           </CardContent>
         </Card>
-      </form>
+      </Form>
     </div>
   );
 }
