@@ -1,5 +1,4 @@
-import { Dialog } from '@base-ui/react/dialog';
-import { Field, Form, focus, getInput, reset, useForm } from '@formisch/react';
+import { Field, focus, getInput, reset, useForm } from '@formisch/react';
 import {
   type League,
   type Match,
@@ -12,6 +11,7 @@ import * as v from 'valibot';
 import Button from '#/components/button';
 import ComboboxField from '#/components/form/combobox-field';
 import DateField from '#/components/form/date-field';
+import FormDialog from '#/components/form-dialog';
 import DataCard from '#/components/layout/data-card';
 import RoundNavigator from '#/components/round-navigator';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
@@ -167,110 +167,95 @@ export default function MatchesView() {
 
   return (
     <div className="mt-5">
-      <Dialog.Root
+      <FormDialog
         open={dialogOpen}
         onOpenChange={(open) => {
           if (!open) closeDialog();
         }}
+        form={matchForm}
+        onSubmit={saveMatch}
+        initialFocus={dateInputRef}
+        title={
+          dialogMode === 'edit'
+            ? `Spiel ${nr} bearbeiten`
+            : `Spiel ${nr} anlegen`
+        }
+        cancelLabel={dialogMode === 'edit' ? 'Abbrechen' : 'Schließen'}
+        submitLabel={dialogMode === 'edit' ? 'Speichern' : 'Anlegen'}
       >
-        <Dialog.Portal>
-          <Dialog.Backdrop className="fixed inset-0 z-40 bg-overlay transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
-          <Dialog.Popup
-            initialFocus={dateInputRef}
-            className="fixed top-[max(1rem,10vh)] left-1/2 z-40 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 rounded-lg border border-border bg-card text-card-foreground shadow-xl transition-[opacity,scale] duration-200 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none"
-          >
-            <Form of={matchForm} onSubmit={saveMatch}>
-              <div className="space-y-4 p-4 sm:p-6">
-                <Dialog.Title className="font-semibold text-lg">
-                  {dialogMode === 'edit'
-                    ? `Spiel ${nr} bearbeiten`
-                    : `Spiel ${nr} anlegen`}
-                </Dialog.Title>
-                <div className="flex flex-col gap-4 sm:flex-row">
-                  <Field of={matchForm} path={['date']}>
-                    {(field) => (
-                      <DateField
-                        {...field.props}
-                        ref={(element) => {
-                          field.props.ref(element);
-                          dateInputRef.current = element;
-                        }}
-                        label="Wann?"
-                        value={field.input ?? ''}
-                        error={field.errors?.[0]}
-                      />
-                    )}
-                  </Field>
-                  <div className="min-w-0 grow">
-                    <Field of={matchForm} path={['leagueId']}>
-                      {(field) => (
-                        <ComboboxField
-                          label="Wo?"
-                          name={field.props.name}
-                          value={field.input ?? ''}
-                          onValueChange={field.onChange}
-                          onBlur={field.props.onBlur}
-                          ref={field.props.ref}
-                          options={leagues}
-                          filter={(query, league) =>
-                            `${league.name} ${league.shortname}`
-                              .toLowerCase()
-                              .includes(query.toLowerCase())
-                          }
-                        />
-                      )}
-                    </Field>
-                  </div>
-                </div>
-                <Field of={matchForm} path={['hometeamId']}>
-                  {(field) => (
-                    <ComboboxField
-                      label="Wer?"
-                      name={field.props.name}
-                      value={field.input ?? ''}
-                      onValueChange={field.onChange}
-                      onBlur={field.props.onBlur}
-                      ref={field.props.ref}
-                      options={teams}
-                      filter={(q, team) =>
-                        `${team.name} ${team.shortname}`
-                          .toLowerCase()
-                          .includes(q.toLowerCase())
-                      }
-                    />
-                  )}
-                </Field>
-                <Field of={matchForm} path={['awayteamId']}>
-                  {(field) => (
-                    <ComboboxField
-                      label="Gegen wen?"
-                      name={field.props.name}
-                      value={field.input ?? ''}
-                      onValueChange={field.onChange}
-                      onBlur={field.props.onBlur}
-                      ref={field.props.ref}
-                      options={teams}
-                      filter={(q, team) =>
-                        `${team.name} ${team.shortname}`
-                          .toLowerCase()
-                          .includes(q.toLowerCase())
-                      }
-                    />
-                  )}
-                </Field>
-              </div>
-              <div className="flex justify-end gap-x-4 rounded-b-lg border-border border-t bg-surface-subtle px-4 py-3 sm:px-6">
-                <Dialog.Close render={<Button />}>
-                  {dialogMode === 'edit' ? 'Abbrechen' : 'Schließen'}
-                </Dialog.Close>
-                <Button variant="primary" type="submit">
-                  {dialogMode === 'edit' ? 'Speichern' : 'Anlegen'}
-                </Button>
-              </div>
-            </Form>
-          </Dialog.Popup>
-        </Dialog.Portal>
-      </Dialog.Root>
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <Field of={matchForm} path={['date']}>
+            {(field) => (
+              <DateField
+                {...field.props}
+                ref={(element) => {
+                  field.props.ref(element);
+                  dateInputRef.current = element;
+                }}
+                label="Wann?"
+                value={field.input ?? ''}
+                error={field.errors?.[0]}
+              />
+            )}
+          </Field>
+          <div className="min-w-0 grow">
+            <Field of={matchForm} path={['leagueId']}>
+              {(field) => (
+                <ComboboxField
+                  label="Wo?"
+                  name={field.props.name}
+                  value={field.input ?? ''}
+                  onValueChange={field.onChange}
+                  onBlur={field.props.onBlur}
+                  ref={field.props.ref}
+                  options={leagues}
+                  filter={(query, league) =>
+                    `${league.name} ${league.shortname}`
+                      .toLowerCase()
+                      .includes(query.toLowerCase())
+                  }
+                />
+              )}
+            </Field>
+          </div>
+        </div>
+        <Field of={matchForm} path={['hometeamId']}>
+          {(field) => (
+            <ComboboxField
+              label="Wer?"
+              name={field.props.name}
+              value={field.input ?? ''}
+              onValueChange={field.onChange}
+              onBlur={field.props.onBlur}
+              ref={field.props.ref}
+              options={teams}
+              filter={(q, team) =>
+                `${team.name} ${team.shortname}`
+                  .toLowerCase()
+                  .includes(q.toLowerCase())
+              }
+            />
+          )}
+        </Field>
+        <Field of={matchForm} path={['awayteamId']}>
+          {(field) => (
+            <ComboboxField
+              label="Gegen wen?"
+              name={field.props.name}
+              value={field.input ?? ''}
+              onValueChange={field.onChange}
+              onBlur={field.props.onBlur}
+              ref={field.props.ref}
+              options={teams}
+              filter={(q, team) =>
+                `${team.name} ${team.shortname}`
+                  .toLowerCase()
+                  .includes(q.toLowerCase())
+              }
+            />
+          )}
+        </Field>
+      </FormDialog>
       <DataCard
         title="Spiele"
         description="Spiele der ausgewählten Runde anlegen und bearbeiten."
