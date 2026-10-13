@@ -1,4 +1,4 @@
-import { cn } from 'cn';
+import { cn } from '#/utils/cn';
 import { CircleAlertIcon } from 'lucide-react';
 import { useId } from 'react';
 import {

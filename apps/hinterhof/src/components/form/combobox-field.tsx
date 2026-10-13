@@ -1,5 +1,5 @@
 import { Combobox } from '@base-ui/react/combobox';
-import { cn } from 'cn';
+import { cn } from '#/utils/cn';
 import { CheckIcon, ChevronsUpDownIcon, XIcon } from 'lucide-react';
 import { useId, useMemo, useRef } from 'react';
 import { focusRingInset } from '#/styles/focus';

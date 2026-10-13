@@ -9,7 +9,7 @@ import {
   useForm,
 } from '@formisch/react';
 import { type Member, slugIdRegEx } from '@haus23/tipprunde-model';
-import { cn } from 'cn';
+import { cn } from '#/utils/cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useRef, useState } from 'react';
 import * as v from 'valibot';

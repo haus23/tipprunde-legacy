@@ -1,5 +1,5 @@
 import { Tooltip } from '@base-ui/react/tooltip';
-import { cn } from 'cn';
+import { cn } from '#/utils/cn';
 import { useId } from 'react';
 import { fieldControlStyles } from './field';
 

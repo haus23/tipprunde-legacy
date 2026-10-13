@@ -1,4 +1,4 @@
-import { cn } from 'cn';
+import { cn } from '#/utils/cn';
 
 export function Field({ className, ...props }: React.ComponentProps<'div'>) {
   return <div className={cn('space-y-1.5', className)} {...props} />;

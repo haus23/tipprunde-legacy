@@ -4,7 +4,6 @@ import type {
   Match,
   Round,
 } from '@haus23/tipprunde-model';
-import { cn } from 'cn';
 import {
   CalendarIcon,
   FolderPlusIcon,
@@ -20,6 +19,7 @@ import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-pl
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRounds } from '#/hooks/current-data/use-rounds';
+import { cn } from '#/utils/cn';
 
 const items: {
   title: string;

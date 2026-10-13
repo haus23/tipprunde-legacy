@@ -1,11 +1,10 @@
 import { Dialog } from '@base-ui/react/dialog';
-import { cn } from 'cn';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { use, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router';
-
 import { ensureMasterData } from '#/state/master-data-store';
 import { focusRing, focusRingOnDark } from '#/styles/focus';
+import { cn } from '#/utils/cn';
 import AppShellNavbar from './app-shell.navbar';
 
 export default function AppShell() {

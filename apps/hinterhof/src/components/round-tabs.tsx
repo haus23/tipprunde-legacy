@@ -1,5 +1,5 @@
 import type { Round } from '@haus23/tipprunde-model';
-import { cn } from 'cn';
+import { cn } from '#/utils/cn';
 import { focusRingInset } from '#/styles/focus';
 import { CardHeader, CardTitle } from './card';
 

@@ -1,5 +1,4 @@
 import type { Member } from '@haus23/tipprunde-model';
-import { cn } from 'cn';
 import { PlusIcon } from 'lucide-react';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
@@ -9,6 +8,7 @@ import { useCurrentChampionship } from '#/hooks/current-data/use-current-champio
 import { useRanking } from '#/hooks/current-data/use-ranking';
 import { useRecalculateChampionship } from '#/hooks/current-data/use-recalculate-championship';
 import { usePlayers } from '#/hooks/master-data/use-players';
+import { cn } from '#/utils/cn';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
