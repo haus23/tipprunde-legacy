@@ -23,9 +23,16 @@ export default function TeamsView() {
         title="Mannschaften / Vereine"
         description="Mannschaften und Vereine anlegen und bearbeiten."
         action={
-          <Button variant="primary" onClick={() => openDialog()}>
-            <PlusIcon className="mr-1.5 -ml-1 size-4" aria-hidden="true" />
-            Neue Mannschaft
+          <Button
+            variant="primary"
+            className="max-sm:w-9 max-sm:px-0"
+            onClick={() => openDialog()}
+          >
+            <PlusIcon
+              className="size-4 sm:mr-1.5 sm:-ml-1"
+              aria-hidden="true"
+            />
+            <span className="max-sm:sr-only">Neue Mannschaft</span>
           </Button>
         }
       >
