@@ -1,7 +1,7 @@
 {
   "name": "@haus23/tipprunde-model",
   "description": "Domain-Modell der Haus23 Tipprunde",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "type": "module",
   "imports": {
     "#model/*": "./src/*.js"

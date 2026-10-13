@@ -1,5 +1,15 @@
 # model
 
+## 1.1.0
+
+### Minor Changes
+
+- [`bc54e1f`](https://github.com/haus23/tipprunde-legacy/commit/bc54e1f7165550f1de748f132c42b126b2efbb37) - Export the championship id pattern as `championshipIdRegEx`.
+
+- [`6c38b7c`](https://github.com/haus23/tipprunde-legacy/commit/6c38b7cdf9197b98a4de2da361ff05b37c94d9ad) - Ranking entries no longer carry `extraPoints`, so a ranking update no longer writes 0 extra points for every player.
+
+- [`cc702b7`](https://github.com/haus23/tipprunde-legacy/commit/cc702b74f519bc50e307e9b38721c9293b0645bb) - Export the slug id pattern as `slugIdRegEx`.
+
 ## 1.0.2
 
 ### Patch Changes

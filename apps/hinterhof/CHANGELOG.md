@@ -1,5 +1,41 @@
 # hinterhof
 
+## 0.9.2
+
+### Patch Changes
+
+- [`822ab0c`](https://github.com/haus23/tipprunde-legacy/commit/822ab0c21ca8350c0d475a068cb1bb6807cc64be) - Show invalid tips and results as a compact marker next to the field with the message in a tooltip, so the error no longer breaks the narrow table fields.
+
+- [`bc54e1f`](https://github.com/haus23/tipprunde-legacy/commit/bc54e1f7165550f1de748f132c42b126b2efbb37) - The form for new championships reports its errors in German and always saves the number as a number.
+
+- [`6c38b7c`](https://github.com/haus23/tipprunde-legacy/commit/6c38b7cdf9197b98a4de2da361ff05b37c94d9ad) - Keep missing extra points empty instead of writing 0 for every player. An empty field removes the extra points of a player, and only whole numbers from 0 are accepted.
+
+- [`ca1e40c`](https://github.com/haus23/tipprunde-legacy/commit/ca1e40c4b920b7b0bd1f68fb1a349f6cb9b97a67) - Upgrade the Firebase web SDK to version 13.
+
+- [`cc702b7`](https://github.com/haus23/tipprunde-legacy/commit/cc702b74f519bc50e307e9b38721c9293b0645bb) - The league form reports empty fields and invalid ids in German instead of the generic English validation messages.
+
+- [`73c3e13`](https://github.com/haus23/tipprunde-legacy/commit/73c3e1377bb187108cd2028b37cc94e061377719) - Show invalid match results with a German message and ignore surrounding whitespace in results.
+
+- [`e521254`](https://github.com/haus23/tipprunde-legacy/commit/e5212548fd9f2eefcc1f9027f20e53874f3b8565) - Suggest the date of the preceding match instead of the latest match date when editing a match without date.
+
+- [`96319bd`](https://github.com/haus23/tipprunde-legacy/commit/96319bd85db3bfad257778f76168b461aab0c20d) - Fill pasted tips from the focused tip field on instead of always from the first match of the round.
+
+- [`7ee0eb1`](https://github.com/haus23/tipprunde-legacy/commit/7ee0eb1892f86f87c6000453b9d5ef6b0d2f8541) - The player form only accepts lowercase letters, digits and hyphens as id, like the league form.
+
+- [`fc26020`](https://github.com/haus23/tipprunde-legacy/commit/fc26020966c9e32abb7a12abbfe94ae424bc2fb4) - The rules form only accepts lowercase letters, digits and hyphens as id, and editing a rule set further down the list scrolls the form into view.
+
+- [`df16da8`](https://github.com/haus23/tipprunde-legacy/commit/df16da831e63f00f03a81478507d942f80d61de9) - Editing a league or player further down the list scrolls the form into view, even when the form is already open.
+
+- [`a3706f5`](https://github.com/haus23/tipprunde-legacy/commit/a3706f577805123df976752d1d6e527fc2479b3e) - New leagues, players, rules and teams appear at their sorted position right away instead of at the end of the list until the next reload.
+
+- [`9feb7db`](https://github.com/haus23/tipprunde-legacy/commit/9feb7db4d5bb5afaf439d57aa0d4d29b6923b4e5) - The team form reports empty fields and invalid ids in German, and editing a team further down the list scrolls the form into view.
+
+- [`3b8e33e`](https://github.com/haus23/tipprunde-legacy/commit/3b8e33e9ee2ef0f5ff28ec379552120171aae5bc) - Validate tips against the shared result format before saving and only save tips that differ from the stored ones.
+
+- [`2072379`](https://github.com/haus23/tipprunde-legacy/commit/207237910e63727bf511cd1566d4034d38c7cb28) - Validate match results against the shared domain schema before saving and recalculating the ranking.
+
+- Updated dependency `@haus23/tipprunde-model` to 1.1.0.
+
 ## 0.9.1
 
 ### Patch Changes
