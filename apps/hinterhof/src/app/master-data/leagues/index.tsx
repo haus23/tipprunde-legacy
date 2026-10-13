@@ -11,7 +11,7 @@ import {
 import { type League, slugIdRegEx } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
@@ -45,11 +45,13 @@ export default function LeaguesView() {
   const { leagues, createLeague, updateLeague } = useLeagues();
   const [isFormOpen, setFormOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const topRef = useRef<HTMLDivElement>(null);
 
   function beginEdit(league: League) {
     reset(leagueForm, { initialInput: league });
     setEditMode(true);
     setFormOpen(true);
+    topRef.current?.scrollIntoView();
   }
 
   function endEdit() {
@@ -133,7 +135,7 @@ export default function LeaguesView() {
   }
 
   return (
-    <div className="space-y-4">
+    <div ref={topRef} className="space-y-4">
       <h2 className="font-semibold text-2xl">Ligen / Runden</h2>
       <div className="mt-5">
         <div className="rounded-md bg-white shadow-sm sm:overflow-hidden">
