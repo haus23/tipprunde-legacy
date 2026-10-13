@@ -16,9 +16,9 @@ import { CheckIcon, ClipboardIcon } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
-import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
 import ResultField from '#/components/form/result-field';
 import Select from '#/components/form/select';
+import DataCard from '#/components/layout/data-card';
 import RoundNavigator from '#/components/round-navigator';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
@@ -209,150 +209,142 @@ export default function TipsView() {
   }, [handleClipboardData]);
 
   return (
-    <div className="mt-5 space-y-8">
-      <Card>
-        <CardHeader className="py-3">
-          <RoundNavigator
-            rounds={rounds}
-            value={currentRound}
-            onValueChange={setCurrentRound}
-          />
-        </CardHeader>
-        <CardContent className="flex items-center gap-x-4">
-          <span className="shrink-0 font-semibold">Tipps von</span>
-          <div className="min-w-0 grow">
-            <Select
-              aria-label="Mitspieler"
-              options={players}
-              value={player.id}
-              onValueChange={(playerId) => {
-                const selectedPlayer = players.find(
-                  ({ id }) => id === playerId,
-                );
-                if (selectedPlayer) setPlayer(selectedPlayer);
-              }}
-            />
-          </div>
-        </CardContent>
-      </Card>
+    <div className="mt-5">
       <Form of={tipsForm} onSubmit={submitTips}>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between gap-4">
-            <div>
-              <CardTitle>Tipps</CardTitle>
-              <p className="mt-1 text-muted-foreground text-sm">
-                Tipps und Joker für den ausgewählten Mitspieler erfassen.
-              </p>
-            </div>
+        <DataCard
+          title="Tipps"
+          description="Tipps und Joker für den ausgewählten Mitspieler erfassen."
+          action={
             <Button variant="primary" type="submit">
               Speichern
             </Button>
-          </CardHeader>
-          <CardContent className="p-0 sm:p-0">
-            <div className="overflow-x-auto pb-4">
-              <table className="min-w-full divide-y divide-border">
-                <thead className="bg-surface-subtle">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm"
-                    >
-                      Nr
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
-                    >
-                      Spiel
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
-                    >
-                      <div className="flex items-center gap-x-2">
-                        <span>Tipp</span>
-                        <Button
-                          size="icon"
-                          className="h-7 w-7 border-transparent bg-transparent shadow-none"
-                          onClick={() => handleClipboardData()}
-                          aria-label="Tipps aus der Zwischenablage einfügen"
-                          title="Tipps aus der Zwischenablage einfügen"
-                        >
-                          <ClipboardIcon
-                            className="h-4 w-4"
-                            aria-hidden="true"
-                          />
-                        </Button>
-                      </div>
-                    </th>
-                    <th
-                      scope="col"
-                      className="py-3.5 pl-2 font-semibold text-foreground text-sm sm:pl-6 lg:pl-8"
-                    >
-                      Joker
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border bg-card">
-                  {tipFields.items.map((fieldId, ix) =>
-                    fixtures[ix].roundId === currentRound.id ? (
-                      <tr key={fieldId}>
-                        <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm">
-                          {fixtures[ix].nr}
-                        </td>
-                        <td className="whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:pr-6 lg:pr-8">
-                          <span className="hidden lg:inline">
-                            {`${fixtures[ix].hometeam?.name || ''} - ${
-                              fixtures[ix].awayteam?.name || ''
-                            }`.replace(/^ - $/, '')}
-                          </span>
-                          <span className="lg:hidden">
-                            {`${fixtures[ix].hometeam?.shortname || ''} - ${
-                              fixtures[ix].awayteam?.shortname || ''
-                            }`.replace(/^ - $/, '')}
-                          </span>
-                        </td>
-                        <td className="w-24 px-2 py-2 text-center">
-                          <Field of={tipsForm} path={['tips', ix, 'tip']}>
-                            {(field) => (
-                              <ResultField
-                                {...field.props}
-                                data-tip-index={ix}
-                                label={`Tipp für Spiel ${fixtures[ix].nr}`}
-                                value={field.input ?? ''}
-                                error={field.errors?.[0]}
-                              />
-                            )}
-                          </Field>
-                        </td>
-                        <td className="w-20 pl-2 text-center sm:pl-6 lg:pl-8">
-                          <Field of={tipsForm} path={['tips', ix, 'joker']}>
-                            {(field) => (
-                              <label className="relative inline-flex h-9 w-9 items-center justify-center rounded-md">
-                                <input
-                                  {...field.props}
-                                  type="checkbox"
-                                  checked={field.input ?? false}
-                                  aria-label={`Joker für Spiel ${fixtures[ix].nr}`}
-                                  className="peer sr-only"
-                                />
-                                <span className="h-5 w-5 rounded-sm border border-input bg-background shadow-xs transition-colors peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:outline-2 peer-focus-visible:outline-ring peer-focus-visible:outline-offset-2 motion-reduce:transition-none" />
-                                <CheckIcon
-                                  className="pointer-events-none absolute h-4 w-4 text-primary-foreground opacity-0 transition-opacity peer-checked:opacity-100 motion-reduce:transition-none"
-                                  aria-hidden="true"
-                                />
-                              </label>
-                            )}
-                          </Field>
-                        </td>
-                      </tr>
-                    ) : null,
-                  )}
-                </tbody>
-              </table>
+          }
+          toolbar={
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+              <RoundNavigator
+                rounds={rounds}
+                value={currentRound}
+                onValueChange={setCurrentRound}
+              />
+              <div className="flex min-w-0 grow basis-64 items-center gap-x-3 sm:max-w-md">
+                <span className="shrink-0 font-semibold">Tipps von</span>
+                <div className="min-w-0 grow">
+                  <Select
+                    aria-label="Mitspieler"
+                    options={players}
+                    value={player.id}
+                    onValueChange={(playerId) => {
+                      const selectedPlayer = players.find(
+                        ({ id }) => id === playerId,
+                      );
+                      if (selectedPlayer) setPlayer(selectedPlayer);
+                    }}
+                  />
+                </div>
+              </div>
             </div>
-          </CardContent>
-        </Card>
+          }
+        >
+          <div className="overflow-x-auto pb-4">
+            <table className="min-w-full divide-y divide-border">
+              <thead className="bg-surface-subtle">
+                <tr>
+                  <th
+                    scope="col"
+                    className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm sm:pl-6"
+                  >
+                    Nr
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
+                  >
+                    Spiel
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
+                  >
+                    <div className="flex items-center gap-x-2">
+                      <span>Tipp</span>
+                      <Button
+                        size="icon"
+                        className="h-7 w-7 border-transparent bg-transparent shadow-none"
+                        onClick={() => handleClipboardData()}
+                        aria-label="Tipps aus der Zwischenablage einfügen"
+                        title="Tipps aus der Zwischenablage einfügen"
+                      >
+                        <ClipboardIcon className="h-4 w-4" aria-hidden="true" />
+                      </Button>
+                    </div>
+                  </th>
+                  <th
+                    scope="col"
+                    className="w-20 py-3.5 pr-4 pl-2 text-center font-semibold text-foreground text-sm sm:pr-6 sm:pl-6 lg:pl-8"
+                  >
+                    Joker
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border bg-card">
+                {tipFields.items.map((fieldId, ix) =>
+                  fixtures[ix].roundId === currentRound.id ? (
+                    <tr key={fieldId}>
+                      <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm sm:pl-6">
+                        {fixtures[ix].nr}
+                      </td>
+                      <td className="py-4 pr-4 pl-2 text-muted-foreground text-sm sm:pr-6 lg:pr-8">
+                        <span className="hidden lg:inline">
+                          {`${fixtures[ix].hometeam?.name || ''} - ${
+                            fixtures[ix].awayteam?.name || ''
+                          }`.replace(/^ - $/, '')}
+                        </span>
+                        <span className="lg:hidden">
+                          {`${fixtures[ix].hometeam?.shortname || ''} - ${
+                            fixtures[ix].awayteam?.shortname || ''
+                          }`.replace(/^ - $/, '')}
+                        </span>
+                      </td>
+                      <td className="w-24 px-2 py-2 text-center">
+                        <Field of={tipsForm} path={['tips', ix, 'tip']}>
+                          {(field) => (
+                            <ResultField
+                              {...field.props}
+                              data-tip-index={ix}
+                              label={`Tipp für Spiel ${fixtures[ix].nr}`}
+                              value={field.input ?? ''}
+                              error={field.errors?.[0]}
+                            />
+                          )}
+                        </Field>
+                      </td>
+                      <td className="w-20 pr-4 pl-2 text-center sm:pr-6 sm:pl-6 lg:pl-8">
+                        <Field of={tipsForm} path={['tips', ix, 'joker']}>
+                          {(field) => (
+                            <label className="relative inline-flex h-9 w-9 items-center justify-center rounded-md">
+                              <input
+                                {...field.props}
+                                type="checkbox"
+                                checked={field.input ?? false}
+                                aria-label={`Joker für Spiel ${fixtures[ix].nr}`}
+                                className="peer sr-only"
+                              />
+                              <span className="h-5 w-5 rounded-sm border border-input bg-background shadow-xs transition-colors peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:outline-2 peer-focus-visible:outline-ring peer-focus-visible:outline-offset-2 motion-reduce:transition-none" />
+                              <CheckIcon
+                                className="pointer-events-none absolute h-4 w-4 text-primary-foreground opacity-0 transition-opacity peer-checked:opacity-100 motion-reduce:transition-none"
+                                aria-hidden="true"
+                              />
+                            </label>
+                          )}
+                        </Field>
+                      </td>
+                    </tr>
+                  ) : null,
+                )}
+              </tbody>
+            </table>
+          </div>
+        </DataCard>
       </Form>
     </div>
   );
