@@ -47,7 +47,7 @@ export default function AppShell() {
       {/* Content with header */}
       <div className="flex flex-col md:pl-64">
         {/* Toggle menu button */}
-        <div className="sticky top-0 z-10 bg-background pt-1 pl-1 sm:pt-3 sm:pl-3 md:hidden">
+        <div className="sticky top-0 z-20 h-(--app-bar-height) bg-background pt-1 pl-1 sm:pt-3 sm:pl-3 md:hidden">
           <Dialog.Trigger
             className={cn(
               focusRing,

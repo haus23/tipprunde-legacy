@@ -3,8 +3,8 @@ import type { Member } from '@haus23/tipprunde-model';
 import { useEffect, useMemo } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
-import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
 import ResultField from '#/components/form/result-field';
+import DataCard from '#/components/layout/data-card';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useRanking } from '#/hooks/current-data/use-ranking';
@@ -92,64 +92,59 @@ export default function ExtraPointsView() {
   return (
     <div className="mt-5 flex flex-col space-y-4">
       <Form of={extraPointsForm} onSubmit={save}>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between gap-4">
-            <div>
-              <CardTitle>Zusatzpunkte</CardTitle>
-              <p className="mt-1 text-muted-foreground text-sm">
-                Punkte aus den Zusatzfragen je Mitspieler erfassen.
-              </p>
-            </div>
+        <DataCard
+          title="Zusatzpunkte"
+          description="Punkte aus den Zusatzfragen je Mitspieler erfassen."
+          action={
             <Button variant="primary" type="submit">
               Speichern
             </Button>
-          </CardHeader>
-          <CardContent className="p-0 sm:p-0">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-border">
-                <thead className="bg-surface-subtle">
-                  <tr>
-                    <th
-                      scope="col"
-                      className="px-4 py-3 text-left font-semibold text-foreground text-sm sm:px-6"
-                    >
-                      Mitspieler
-                    </th>
-                    <th
-                      scope="col"
-                      className="w-28 px-4 py-3 text-right font-semibold text-foreground text-sm sm:px-6"
-                    >
-                      Punkte
-                    </th>
+          }
+        >
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-border">
+              <thead className="bg-surface-subtle">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-4 py-3 text-left font-semibold text-foreground text-sm sm:px-6"
+                  >
+                    Mitspieler
+                  </th>
+                  <th
+                    scope="col"
+                    className="w-28 px-4 py-3 text-right font-semibold text-foreground text-sm sm:px-6"
+                  >
+                    Punkte
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border bg-card">
+                {extraPointsFields.items.map((fieldId, ix) => (
+                  <tr key={fieldId}>
+                    <td className="px-4 py-3 font-medium text-sm sm:px-6">
+                      {players[ix].name}
+                    </td>
+                    <td className="px-4 py-2 sm:px-6">
+                      <Field of={extraPointsForm} path={['extraPoints', ix]}>
+                        {(field) => (
+                          <ResultField
+                            {...field.props}
+                            inputMode="numeric"
+                            label={`Zusatzpunkte für ${players[ix].name}`}
+                            value={field.input ?? ''}
+                            error={field.errors?.[0]}
+                            className="justify-end"
+                          />
+                        )}
+                      </Field>
+                    </td>
                   </tr>
-                </thead>
-                <tbody className="divide-y divide-border bg-card">
-                  {extraPointsFields.items.map((fieldId, ix) => (
-                    <tr key={fieldId}>
-                      <td className="px-4 py-3 font-medium text-sm sm:px-6">
-                        {players[ix].name}
-                      </td>
-                      <td className="px-4 py-2 sm:px-6">
-                        <Field of={extraPointsForm} path={['extraPoints', ix]}>
-                          {(field) => (
-                            <ResultField
-                              {...field.props}
-                              inputMode="numeric"
-                              label={`Zusatzpunkte für ${players[ix].name}`}
-                              value={field.input ?? ''}
-                              error={field.errors?.[0]}
-                              className="justify-end"
-                            />
-                          )}
-                        </Field>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-        </Card>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </DataCard>
       </Form>
     </div>
   );
