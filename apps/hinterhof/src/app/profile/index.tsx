@@ -1,29 +1,43 @@
-import { useForm } from 'react-hook-form';
+import {
+  Form,
+  Field as FormField,
+  isDirty,
+  reset,
+  useForm,
+} from '@formisch/react';
+import * as v from 'valibot';
 
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
-import type { Profile } from '#/firebase/auth';
 import { useProfile } from '#/hooks/use-profile';
 import { notify } from '#/utils/notify';
+
+const ProfileFormSchema = v.object({
+  displayName: v.pipe(
+    v.string(),
+    v.trim(),
+    v.check(
+      (name) => name === '' || name.length >= 3,
+      'Drei Zeichen sollten es schon sein ;-)',
+    ),
+  ),
+});
+
+type ProfileForm = v.InferOutput<typeof ProfileFormSchema>;
 
 export default function ProfileView() {
   const { profile, updateDisplayName } = useProfile();
 
-  const {
-    handleSubmit,
-    register,
-    reset,
-    formState: { isDirty, dirtyFields, errors },
-  } = useForm<Profile>({ defaultValues: profile });
+  const profileForm = useForm({
+    schema: ProfileFormSchema,
+    initialInput: { displayName: profile.displayName ?? '' },
+  });
 
-  async function saveProfile(profile: Profile) {
-    if (dirtyFields.displayName) {
-      await notify(
-        updateDisplayName(profile.displayName || ''),
-        'Dein Name wurde geändert.',
-      );
-      reset(profile);
-    }
+  async function saveProfile({ displayName }: ProfileForm) {
+    if (!isDirty(profileForm, { path: ['displayName'] })) return;
+
+    await notify(updateDisplayName(displayName), 'Dein Name wurde geändert.');
+    reset(profileForm, { initialInput: { displayName } });
   }
 
   return (
@@ -31,35 +45,38 @@ export default function ProfileView() {
       <h2 className="font-semibold text-2xl">Profil</h2>
       <div className="mt-5">
         <div className="rounded-md bg-white shadow-sm">
-          <form onSubmit={handleSubmit(saveProfile)} noValidate>
+          <Form of={profileForm} onSubmit={saveProfile}>
             <div className="space-y-4 p-4">
               <TextField
-                disabled
-                required
+                disabled={true}
+                readOnly={true}
+                required={true}
                 label="Email"
-                {...register('email')}
+                name="email"
+                value={profile.email ?? ''}
               />
-              <TextField
-                label="Name"
-                minLength={3}
-                placeholder="Darf auch leer bleiben"
-                error={errors.displayName?.message}
-                {...register('displayName', {
-                  validate: {
-                    minChars: (name) =>
-                      !name ||
-                      name.trim().length >= 3 ||
-                      'Drei Zeichen sollten es schon sein ;-)',
-                  },
-                })}
-              />
+              <FormField of={profileForm} path={['displayName']}>
+                {(field) => (
+                  <TextField
+                    {...field.props}
+                    label="Name"
+                    placeholder="Darf auch leer bleiben"
+                    value={field.input ?? ''}
+                    error={field.errors?.[0]}
+                  />
+                )}
+              </FormField>
             </div>
             <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
-              <Button disabled={!isDirty} variant="primary" type="submit">
+              <Button
+                disabled={!isDirty(profileForm)}
+                variant="primary"
+                type="submit"
+              >
                 Speichern
               </Button>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     </div>
