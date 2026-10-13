@@ -31,12 +31,17 @@ const initialMasterData: MasterData = {
   teams: [],
 };
 
+// Same order as Firestore returns documents, so new entities do not end up
+// at the bottom until the next full reload.
+const byId = (a: { id: string }, b: { id: string }) =>
+  a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+
 const bindings: Bindings<MasterData> = {
   championships: { path: 'championships', compare: (a, b) => b.nr - a.nr },
-  leagues: { path: 'leagues' },
-  players: { path: 'players' },
-  rules: { path: 'rules' },
-  teams: { path: 'teams' },
+  leagues: { path: 'leagues', compare: byId },
+  players: { path: 'players', compare: byId },
+  rules: { path: 'rules', compare: byId },
+  teams: { path: 'teams', compare: byId },
 };
 
 export const useMasterDataStore = create<MasterData>(() => initialMasterData);
