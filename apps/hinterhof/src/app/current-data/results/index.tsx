@@ -106,7 +106,7 @@ export default function ResultsView() {
                 <tr>
                   <th
                     scope="col"
-                    className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm"
+                    className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm sm:pl-6"
                   >
                     Nr
                   </th>
@@ -118,7 +118,7 @@ export default function ResultsView() {
                   </th>
                   <th
                     scope="col"
-                    className="py-3.5 pr-4 pl-2 font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
+                    className="py-3.5 pr-4 pl-2 font-semibold text-foreground text-sm sm:pr-6"
                   >
                     Ergebnis
                   </th>
@@ -128,7 +128,7 @@ export default function ResultsView() {
                 {resultFields.items.map((fieldId, ix) =>
                   fixtures[ix].roundId === currentRound.id ? (
                     <tr key={fieldId}>
-                      <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm">
+                      <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm sm:pl-6">
                         {fixtures[ix].nr}
                       </td>
                       <td className="px-2 py-4 text-muted-foreground text-sm">
@@ -143,7 +143,7 @@ export default function ResultsView() {
                           }`.replace(/^ - $/, '')}
                         </span>
                       </td>
-                      <td className="w-24 py-2 pr-4 pl-2 sm:pr-6 lg:pr-8">
+                      <td className="w-24 py-2 pr-4 pl-2 sm:pr-6">
                         <Field of={resultsForm} path={['results', ix]}>
                           {(field) => (
                             <ResultField

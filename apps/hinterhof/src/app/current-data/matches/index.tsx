@@ -10,9 +10,9 @@ import { PencilIcon, PlusIcon } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
-import { Card, CardHeader } from '#/components/card';
 import ComboboxField from '#/components/form/combobox-field';
 import DateField from '#/components/form/date-field';
+import DataCard from '#/components/layout/data-card';
 import RoundNavigator from '#/components/round-navigator';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useCurrentRound } from '#/hooks/current-data/use-current-round';
@@ -166,20 +166,7 @@ export default function MatchesView() {
   }
 
   return (
-    <div className="mt-5 space-y-8">
-      <Card>
-        <CardHeader className="flex items-center justify-between gap-4 py-3">
-          <RoundNavigator
-            rounds={rounds}
-            value={currentRound}
-            onValueChange={setCurrentRound}
-          />
-          <Button variant="primary" onClick={beginCreate}>
-            <PlusIcon className="mr-1.5 -ml-1 size-4" aria-hidden="true" />
-            Neues Spiel
-          </Button>
-        </CardHeader>
-      </Card>
+    <div className="mt-5">
       <Dialog.Root
         open={dialogOpen}
         onOpenChange={(open) => {
@@ -284,14 +271,30 @@ export default function MatchesView() {
           </Dialog.Popup>
         </Dialog.Portal>
       </Dialog.Root>
-      <Card>
-        <div className="overflow-x-auto overflow-y-hidden">
+      <DataCard
+        title="Spiele"
+        description="Spiele der ausgewählten Runde anlegen und bearbeiten."
+        action={
+          <Button variant="primary" onClick={beginCreate}>
+            <PlusIcon className="mr-1.5 -ml-1 size-4" aria-hidden="true" />
+            Neues Spiel
+          </Button>
+        }
+        toolbar={
+          <RoundNavigator
+            rounds={rounds}
+            value={currentRound}
+            onValueChange={setCurrentRound}
+          />
+        }
+      >
+        <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-border">
             <thead className="bg-surface-subtle">
               <tr>
                 <th
                   scope="col"
-                  className="py-3.5 pr-2 pl-4 text-left font-semibold text-foreground text-sm"
+                  className="py-3.5 pr-2 pl-4 text-left font-semibold text-foreground text-sm sm:pl-6"
                 >
                   Nr
                 </th>
@@ -313,7 +316,7 @@ export default function MatchesView() {
                 >
                   Spiel
                 </th>
-                <th scope="col" className="py-3.5 pl-2 sm:pl-6 lg:pl-8">
+                <th scope="col" className="py-3.5 pr-4 pl-2 sm:pr-6">
                   <span className="sr-only">Edit</span>
                 </th>
               </tr>
@@ -323,7 +326,7 @@ export default function MatchesView() {
                 .filter((m) => m.roundId === currentRound.id)
                 .map((m) => (
                   <tr key={m.id}>
-                    <td className="whitespace-nowrap py-4 pr-2 pl-4 text-muted-foreground text-sm">
+                    <td className="whitespace-nowrap py-4 pr-2 pl-4 text-muted-foreground text-sm sm:pl-6">
                       {m.nr}
                     </td>
                     <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:table-cell sm:pr-6 lg:pr-8">
@@ -342,7 +345,7 @@ export default function MatchesView() {
                         {leaguesHash[m.leagueId]?.shortname || ''}
                       </span>
                     </td>
-                    <td className="whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:pr-6 lg:pr-8">
+                    <td className="py-4 pr-4 pl-2 text-muted-foreground text-sm sm:pr-6 lg:pr-8">
                       <span className="hidden lg:inline">
                         {`${teamsHash[m.hometeamId]?.name || ''} - ${
                           teamsHash[m.awayteamId]?.name || ''
@@ -354,7 +357,7 @@ export default function MatchesView() {
                         }`.replace(/^ - $/, '')}
                       </span>
                     </td>
-                    <td className="pr-3 text-right">
+                    <td className="py-2 pr-4 pl-2 text-right sm:pr-6">
                       <Button
                         size="icon"
                         aria-label={`Spiel ${m.nr} bearbeiten`}
@@ -368,7 +371,7 @@ export default function MatchesView() {
             </tbody>
           </table>
         </div>
-      </Card>
+      </DataCard>
     </div>
   );
 }
