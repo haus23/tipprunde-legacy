@@ -5,7 +5,6 @@ export type RankingEntry = {
   id: string;
   rank: number;
   points: number;
-  extraPoints: number;
   totalPoints: number;
 };
 
@@ -35,7 +34,6 @@ export function calculateRanking(
       return {
         id: player.id,
         points,
-        extraPoints: player.extraPoints ?? 0,
         totalPoints,
         rank: 0,
       };

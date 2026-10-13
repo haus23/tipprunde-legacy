@@ -55,10 +55,25 @@ export function useChampionshipPlayers() {
     );
   };
 
+  // Replaces the whole player, because a merge cannot remove a field
+  const updateChampionshipPlayerExtraPoints = (
+    player: ChampionshipPlayer,
+    extraPoints: number | undefined,
+  ) => {
+    const { extraPoints: _, ...playerWithoutExtraPoints } = player;
+    return updateEntity(
+      `championships/${currentChampionship?.id}/players`,
+      extraPoints === undefined
+        ? playerWithoutExtraPoints
+        : { ...playerWithoutExtraPoints, extraPoints },
+    );
+  };
+
   return {
     championshipPlayers,
     addChampionshipPlayer,
     updateChampionshipPlayer,
+    updateChampionshipPlayerExtraPoints,
     removeChampionshipPlayerRanking,
   };
 }

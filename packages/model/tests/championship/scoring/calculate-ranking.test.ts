@@ -55,16 +55,15 @@ it('calculates points, totals and competition ranks', () => {
   );
 
   expect(ranking).toEqual([
-    { id: 'player-one', points: 3, extraPoints: 0, totalPoints: 3, rank: 1 },
-    { id: 'player-two', points: 2, extraPoints: 1, totalPoints: 3, rank: 1 },
+    { id: 'player-one', points: 3, totalPoints: 3, rank: 1 },
+    { id: 'player-two', points: 2, totalPoints: 3, rank: 1 },
     {
       id: 'player-three',
       points: 3,
-      extraPoints: 0,
       totalPoints: 3,
       rank: 1,
     },
-    { id: 'player-four', points: 0, extraPoints: 0, totalPoints: 0, rank: 4 },
+    { id: 'player-four', points: 0, totalPoints: 0, rank: 4 },
   ]);
 });
 
@@ -84,8 +83,8 @@ it('creates a zero-point ranking for an evaluated match without tips', () => {
       hasEvaluatedMatches: true,
     }),
   ).toEqual([
-    { id: 'player-one', points: 0, extraPoints: 0, totalPoints: 0, rank: 1 },
-    { id: 'player-two', points: 0, extraPoints: 1, totalPoints: 0, rank: 1 },
+    { id: 'player-one', points: 0, totalPoints: 0, rank: 1 },
+    { id: 'player-two', points: 0, totalPoints: 0, rank: 1 },
   ]);
 });
 
@@ -97,8 +96,8 @@ it('treats missing tip points as not yet contributing to the ranking', () => {
   );
 
   expect(ranking).toEqual([
-    { id: 'player-two', points: 2, extraPoints: 1, totalPoints: 3, rank: 1 },
-    { id: 'player-one', points: 0, extraPoints: 0, totalPoints: 0, rank: 2 },
+    { id: 'player-two', points: 2, totalPoints: 3, rank: 1 },
+    { id: 'player-one', points: 0, totalPoints: 0, rank: 2 },
   ]);
 });
 
@@ -113,7 +112,7 @@ it('excludes unpublished extra points from totals and ranks', () => {
   );
 
   expect(ranking).toEqual([
-    { id: 'player-one', points: 2, extraPoints: 0, totalPoints: 2, rank: 1 },
-    { id: 'player-two', points: 2, extraPoints: 1, totalPoints: 2, rank: 1 },
+    { id: 'player-one', points: 2, totalPoints: 2, rank: 1 },
+    { id: 'player-two', points: 2, totalPoints: 2, rank: 1 },
   ]);
 });

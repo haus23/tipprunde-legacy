@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
-import { fieldControlStyles } from '#/components/form/field';
+import ResultField from '#/components/form/result-field';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useRanking } from '#/hooks/current-data/use-ranking';
@@ -13,12 +13,20 @@ import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 
 const ExtraPointsFormSchema = v.object({
-  extraPoints: v.array(v.string()),
+  extraPoints: v.array(
+    v.pipe(
+      v.string(),
+      v.trim(),
+      v.regex(/^\d*$/, 'Nur ganze Zahlen ab 0.'),
+      v.transform((points) => (points === '' ? undefined : Number(points))),
+    ),
+  ),
 });
 
 export default function ExtraPointsView() {
   const { players: masterPlayers } = usePlayers();
-  const { championshipPlayers } = useChampionshipPlayers();
+  const { championshipPlayers, updateChampionshipPlayerExtraPoints } =
+    useChampionshipPlayers();
   const { currentChampionship } = useCurrentChampionship();
   const { calculateRanking } = useRanking();
 
@@ -42,7 +50,7 @@ export default function ExtraPointsView() {
   useEffect(() => {
     reset(extraPointsForm, {
       initialInput: {
-        extraPoints: players.map((p) => String(p.extraPoints ?? 0)),
+        extraPoints: players.map((p) => p.extraPoints?.toString() ?? ''),
       },
     });
   }, [players, extraPointsForm]);
@@ -54,12 +62,22 @@ export default function ExtraPointsView() {
   async function save(data: v.InferOutput<typeof ExtraPointsFormSchema>) {
     if (!currentChampionship) return;
 
-    const updatedPlayers = players.map((player, index) => ({
-      ...player,
-      extraPoints: Number(data.extraPoints[index]),
-    }));
+    const changedPlayers = championshipPlayers.flatMap((championshipPlayer) => {
+      const index = players.findIndex(({ id }) => id === championshipPlayer.id);
+      const extraPoints = data.extraPoints[index];
+      return extraPoints === championshipPlayer.extraPoints
+        ? []
+        : [{ ...championshipPlayer, extraPoints }];
+    });
+    if (changedPlayers.length === 0) return;
+
     const saveExtraPoints = async () => {
-      await calculateRanking({ players: updatedPlayers });
+      await Promise.all(
+        changedPlayers.map((player) =>
+          updateChampionshipPlayerExtraPoints(player, player.extraPoints),
+        ),
+      );
+      await calculateRanking({ players: changedPlayers });
       await invalidateCache([
         { type: 'championship', id: currentChampionship.id },
       ]);
@@ -114,16 +132,13 @@ export default function ExtraPointsView() {
                       <td className="px-4 py-2 sm:px-6">
                         <Field of={extraPointsForm} path={['extraPoints', ix]}>
                           {(field) => (
-                            <input
+                            <ResultField
                               {...field.props}
-                              type="text"
                               inputMode="numeric"
+                              label={`Zusatzpunkte für ${players[ix].name}`}
                               value={field.input ?? ''}
-                              aria-label={`Zusatzpunkte für ${players[ix].name}`}
-                              className={fieldControlStyles({
-                                className:
-                                  'ml-auto w-20 text-right font-medium tabular-nums',
-                              })}
+                              error={field.errors?.[0]}
+                              className="justify-end"
                             />
                           )}
                         </Field>
