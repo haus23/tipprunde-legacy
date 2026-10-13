@@ -21,4 +21,5 @@ export * from './rules/round';
 export * from './rules/rule-definition';
 export * from './rules/rule-set';
 export * from './rules/tip';
+export { slugIdRegEx } from './shared/id';
 export * from './team/team';

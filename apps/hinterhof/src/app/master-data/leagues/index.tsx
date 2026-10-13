@@ -8,10 +8,11 @@ import {
   setErrors,
   useForm,
 } from '@formisch/react';
-import { type League, LeagueSchema } from '@haus23/tipprunde-model';
+import { type League, slugIdRegEx } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useState } from 'react';
+import * as v from 'valibot';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
@@ -19,13 +20,25 @@ import { useLeagues } from '#/hooks/master-data/use-leagues';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';
-import { trimProps } from '#/utils/trim-props';
+
+const requiredMessage = 'Bitte ausfüllen.';
+
+const LeagueFormSchema = v.object({
+  name: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
+  shortname: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
+  id: v.pipe(
+    v.string(),
+    v.trim(),
+    v.nonEmpty(requiredMessage),
+    v.regex(slugIdRegEx, 'Nur Kleinbuchstaben, Ziffern und Bindestriche.'),
+  ),
+});
 
 const emptyLeague: League = { id: '', name: '', shortname: '' };
 
 export default function LeaguesView() {
   const leagueForm = useForm({
-    schema: LeagueSchema,
+    schema: LeagueFormSchema,
     initialInput: emptyLeague,
   });
 
@@ -99,7 +112,6 @@ export default function LeaguesView() {
       }
     }
 
-    trimProps(league);
     if (editMode) {
       await notify(
         updateLeague(league).then(() =>
