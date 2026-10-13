@@ -1,6 +1,7 @@
+import { Form, Field as FormField, useForm } from '@formisch/react';
 import { useState } from 'react';
-import { type SubmitHandler, useForm } from 'react-hook-form';
 import { Navigate } from 'react-router';
+import * as v from 'valibot';
 
 import AppTitle from '#/components/app-title';
 import Button from '#/components/button';
@@ -8,25 +9,26 @@ import TextField from '#/components/form/text-field';
 import { signIn } from '#/firebase/auth';
 import { useSessionStore } from '#/state/session-store';
 
-type LoginFormType = {
-  email: string;
-  password: string;
-};
+const requiredMessage = 'Bitte ausfüllen.';
+
+const LoginFormSchema = v.object({
+  email: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
+  password: v.pipe(v.string(), v.nonEmpty(requiredMessage)),
+});
 
 export default function Login() {
   const profile = useSessionStore((state) => state.profile);
   const [error, setError] = useState('');
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormType>();
+  const loginForm = useForm({
+    schema: LoginFormSchema,
+    initialInput: { email: '', password: '' },
+  });
 
-  const onSubmit: SubmitHandler<LoginFormType> = ({ email, password }) => {
+  function login({ email, password }: v.InferOutput<typeof LoginFormSchema>) {
     signIn(email, password).catch(() =>
       setError('Email und/oder Passwort falsch!'),
     );
-  };
+  }
 
   return profile ? (
     <Navigate to="/" replace />
@@ -49,25 +51,31 @@ export default function Login() {
               </div>
               <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white px-4 py-8 shadow-sm sm:rounded-lg sm:px-10">
-                  <form
-                    className="space-y-6"
-                    onSubmit={handleSubmit(onSubmit)}
-                    noValidate
-                  >
-                    <TextField
-                      label="Email"
-                      required
-                      type="email"
-                      error={errors.email?.message}
-                      {...register('email', { required: true })}
-                    />
-                    <TextField
-                      label="Passwort"
-                      required
-                      type="password"
-                      error={errors.password?.message}
-                      {...register('password', { required: true })}
-                    />
+                  <Form of={loginForm} onSubmit={login} className="space-y-6">
+                    <FormField of={loginForm} path={['email']}>
+                      {(field) => (
+                        <TextField
+                          {...field.props}
+                          label="Email"
+                          required={true}
+                          type="email"
+                          value={field.input ?? ''}
+                          error={field.errors?.[0]}
+                        />
+                      )}
+                    </FormField>
+                    <FormField of={loginForm} path={['password']}>
+                      {(field) => (
+                        <TextField
+                          {...field.props}
+                          label="Passwort"
+                          required={true}
+                          type="password"
+                          value={field.input ?? ''}
+                          error={field.errors?.[0]}
+                        />
+                      )}
+                    </FormField>
                     <div>
                       <Button
                         variant="primary"
@@ -82,7 +90,7 @@ export default function Login() {
                         <p>{error}</p>
                       </div>
                     )}
-                  </form>
+                  </Form>
                 </div>
               </div>
             </div>
