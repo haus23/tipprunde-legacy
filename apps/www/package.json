@@ -36,7 +36,7 @@
     "@tanstack/router-plugin": "^1.168.40",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
-    "@vitejs/plugin-react": "^6.1.1",
+    "@vitejs/plugin-react": "^6.1.2",
     "tailwindcss": "^4.3.3",
     "typescript": "catalog:",
     "vite": "catalog:toolchain"
