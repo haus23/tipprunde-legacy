@@ -1,5 +1,23 @@
 # hinterhof
 
+## 0.9.4
+
+### Patch Changes
+
+- [`880dd90`](https://github.com/haus23/tipprunde-legacy/commit/880dd90b514ef5374bc7dd240dd09c7c58a5cbe7) - Disable the save button of tips, results and extra points while nothing has changed or a save is running.
+
+- [`05ba570`](https://github.com/haus23/tipprunde-legacy/commit/05ba5700dd2117dec91781ecdbd9857335a6c826) - Create and edit leagues in a dialog. The leagues list uses the data card with a sticky header and the semantic colors.
+
+- [`9141eab`](https://github.com/haus23/tipprunde-legacy/commit/9141eab3675a01a2a1574ce280a184b4050ba77c) - Create and edit players in a dialog. The players list uses the data card with a sticky header and the semantic colors.
+
+- [`1de4dfe`](https://github.com/haus23/tipprunde-legacy/commit/1de4dfe97859c1b71bb9f35910e4d63a5ece7f7e) - Changing the round discards unsaved tips and results, like changing the player already did for tips. Saving only writes the visible round.
+
+- [`56962e0`](https://github.com/haus23/tipprunde-legacy/commit/56962e0a87f0e1cc5e8b3064b47dba31e2bd4625) - Accept `, ; . - _` as separators in tips and results, typed or pasted, and turn them into `:` when leaving the field.
+
+- [`95fbcef`](https://github.com/haus23/tipprunde-legacy/commit/95fbcef3f9fe25235d442a36c493666406fff68a) - Create and edit rule sets in a dialog. The rule sets list uses the data card with a sticky header and the semantic colors, and its second column is labeled "Beschreibung" as it shows the description. Long dialogs scroll inside while title and buttons stay visible.
+
+- [`c518782`](https://github.com/haus23/tipprunde-legacy/commit/c518782a840f5673115fb7ff0d63249f23247ba5) - Create and edit teams in a dialog. The teams list uses the data card with a sticky header and the semantic colors.
+
 ## 0.9.3
 
 ### Patch Changes
