@@ -14,10 +14,11 @@ import {
   UserIcon,
 } from 'lucide-react';
 import { type ElementType, Suspense, use } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useSearchParams } from 'react-router';
 import AppTitle from '#/components/app-title';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { roundParam } from '#/hooks/current-data/use-current-round';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useProfile } from '#/hooks/use-profile';
@@ -28,6 +29,7 @@ type ChampionshipNavLink = {
   to: string;
   icon: ElementType;
   label: string;
+  keepsRound?: boolean;
 };
 
 const currentDataNavLinks: (ChampionshipNavLink & {
@@ -46,12 +48,14 @@ const currentDataNavLinks: (ChampionshipNavLink & {
   },
   {
     to: './spiele',
+    keepsRound: true,
     icon: CalendarIcon,
     label: 'Spiele',
     visible: (_championship, rounds) => rounds.length > 0,
   },
   {
     to: './tipps',
+    keepsRound: true,
     icon: SquarePenIcon,
     label: 'Tipps',
     visible: (_championship, _rounds, matches, players) =>
@@ -59,6 +63,7 @@ const currentDataNavLinks: (ChampionshipNavLink & {
   },
   {
     to: './ergebnisse',
+    keepsRound: true,
     icon: ScaleIcon,
     label: 'Ergebnisse',
     visible: (_championship, _rounds, matches) => matches.length > 0,
@@ -72,9 +77,12 @@ const currentDataNavLinks: (ChampionshipNavLink & {
 ];
 
 function ChampionshipLink({ item }: { item: ChampionshipNavLink }) {
+  const [searchParams] = useSearchParams();
+  const round = item.keepsRound ? searchParams.get(roundParam) : null;
+
   return (
     <NavLink
-      to={item.to}
+      to={round ? `${item.to}?${roundParam}=${round}` : item.to}
       className={({ isActive }) =>
         cn(
           isActive

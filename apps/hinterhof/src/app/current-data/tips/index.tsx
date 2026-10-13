@@ -19,12 +19,12 @@ import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
 import ResultField from '#/components/form/result-field';
 import Select from '#/components/form/select';
-import RoundTabs from '#/components/round-tabs';
+import RoundNavigator from '#/components/round-navigator';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { useCurrentRound } from '#/hooks/current-data/use-current-round';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRanking } from '#/hooks/current-data/use-ranking';
-import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useTips } from '#/hooks/current-data/use-tips';
 import { usePlayers } from '#/hooks/master-data/use-players';
 import { useTeams } from '#/hooks/master-data/use-teams';
@@ -45,8 +45,7 @@ const TipsFormSchema = v.object({
 });
 
 export default function TipsView() {
-  const { rounds } = useRounds();
-  const [currentRound, setCurrentRound] = useState(rounds[rounds.length - 1]);
+  const { rounds, currentRound, setCurrentRound } = useCurrentRound();
 
   const { players: masterPlayers } = usePlayers();
   const { championshipPlayers } = useChampionshipPlayers();
@@ -212,11 +211,13 @@ export default function TipsView() {
   return (
     <div className="mt-5 space-y-8">
       <Card>
-        <RoundTabs
-          rounds={rounds}
-          value={currentRound?.id}
-          onValueChange={setCurrentRound}
-        />
+        <CardHeader className="py-3">
+          <RoundNavigator
+            rounds={rounds}
+            value={currentRound}
+            onValueChange={setCurrentRound}
+          />
+        </CardHeader>
         <CardContent className="flex items-center gap-x-4">
           <span className="shrink-0 font-semibold">Tipps von</span>
           <div className="min-w-0 grow">

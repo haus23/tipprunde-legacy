@@ -1,15 +1,15 @@
 import { Field, Form, reset, useFieldArray, useForm } from '@formisch/react';
 import { resultRegEx, type Team } from '@haus23/tipprunde-model';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
 import ResultField from '#/components/form/result-field';
-import RoundTabs from '#/components/round-tabs';
+import RoundNavigator from '#/components/round-navigator';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { useCurrentRound } from '#/hooks/current-data/use-current-round';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRanking } from '#/hooks/current-data/use-ranking';
-import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useTeams } from '#/hooks/master-data/use-teams';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
@@ -21,8 +21,7 @@ const ResultsFormSchema = v.object({
 });
 
 export default function ResultsView() {
-  const { rounds } = useRounds();
-  const [currentRound, setCurrentRound] = useState(rounds[rounds.length - 1]);
+  const { rounds, currentRound, setCurrentRound } = useCurrentRound();
 
   const { teams } = useTeams();
   const { matches, updateMatchResult } = useMatches();
@@ -85,11 +84,13 @@ export default function ResultsView() {
   return (
     <div className="mt-5 space-y-8">
       <Card>
-        <RoundTabs
-          rounds={rounds}
-          value={currentRound?.id}
-          onValueChange={setCurrentRound}
-        />
+        <CardHeader className="py-3">
+          <RoundNavigator
+            rounds={rounds}
+            value={currentRound}
+            onValueChange={setCurrentRound}
+          />
+        </CardHeader>
       </Card>
       <Form of={resultsForm} onSubmit={saveAndCalculate}>
         <Card>

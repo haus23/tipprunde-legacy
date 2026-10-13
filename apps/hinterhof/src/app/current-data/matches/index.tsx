@@ -5,21 +5,21 @@ import {
   MatchDateSchema,
   type Team,
 } from '@haus23/tipprunde-model';
-import { cn } from '#/utils/cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
-import { Card, CardContent, CardFooter } from '#/components/card';
+import { Card, CardContent, CardFooter, CardHeader } from '#/components/card';
 import ComboboxField from '#/components/form/combobox-field';
 import DateField from '#/components/form/date-field';
-import RoundTabs from '#/components/round-tabs';
+import RoundNavigator from '#/components/round-navigator';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { useCurrentRound } from '#/hooks/current-data/use-current-round';
 import { useMatches } from '#/hooks/current-data/use-matches';
-import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useLeagues } from '#/hooks/master-data/use-leagues';
 import { useTeams } from '#/hooks/master-data/use-teams';
 import { focusRing } from '#/styles/focus';
+import { cn } from '#/utils/cn';
 import { formatDate } from '#/utils/format-date';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
@@ -38,7 +38,7 @@ type MatchFormData = v.InferOutput<typeof MatchFormSchema>;
 export default function MatchesView() {
   const { leagues } = useLeagues();
   const { teams } = useTeams();
-  const { rounds } = useRounds();
+  const { rounds, currentRound, setCurrentRound } = useCurrentRound();
   const { matches, createMatch, updateMatch } = useMatches();
   const { currentChampionship } = useCurrentChampionship();
 
@@ -65,8 +65,6 @@ export default function MatchesView() {
       ),
     [teams],
   );
-
-  const [currentRound, setCurrentRound] = useState(rounds[rounds.length - 1]);
 
   const [isFormOpen, setFormOpen] = useState(matches.length === 0);
   const [editMode, setEditMode] = useState(false);
@@ -164,11 +162,13 @@ export default function MatchesView() {
   return (
     <div ref={topRef} className="mt-5 space-y-8">
       <Card>
-        <RoundTabs
-          rounds={rounds}
-          value={currentRound?.id}
-          onValueChange={setCurrentRound}
-        />
+        <CardHeader className="py-3">
+          <RoundNavigator
+            rounds={rounds}
+            value={currentRound}
+            onValueChange={setCurrentRound}
+          />
+        </CardHeader>
         <button
           type="button"
           onClick={() => setFormOpen(!isFormOpen)}
