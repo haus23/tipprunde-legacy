@@ -8,7 +8,7 @@ import {
   setErrors,
   useForm,
 } from '@formisch/react';
-import type { Member } from '@haus23/tipprunde-model';
+import { type Member, slugIdRegEx } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useRef, useState } from 'react';
@@ -26,7 +26,12 @@ const requiredMessage = 'Bitte ausfüllen.';
 
 const PlayerFormSchema = v.object({
   name: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
-  id: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
+  id: v.pipe(
+    v.string(),
+    v.trim(),
+    v.nonEmpty(requiredMessage),
+    v.regex(slugIdRegEx, 'Nur Kleinbuchstaben, Ziffern und Bindestriche.'),
+  ),
   email: v.pipe(
     v.string(),
     v.trim(),
