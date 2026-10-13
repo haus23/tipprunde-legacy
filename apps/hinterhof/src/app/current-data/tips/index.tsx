@@ -99,6 +99,8 @@ export default function TipsView() {
     [matches, tips, player],
   );
 
+  // Every navigation (round or player) discards unsaved tips, so saving only
+  // ever writes what is visible.
   useEffect(() => {
     reset(tipsForm, {
       initialInput: {
@@ -108,7 +110,7 @@ export default function TipsView() {
         })),
       },
     });
-  }, [playerTips, tipsForm]);
+  }, [playerTips, tipsForm, currentRound.id]);
 
   const submitTips = async (data: v.InferOutput<typeof TipsFormSchema>) => {
     if (!currentChampionship) return;

@@ -50,11 +50,13 @@ export default function ResultsView() {
     initialInput: { results: [] },
   });
 
+  // Changing the round discards unsaved results, so saving only ever writes
+  // what is visible.
   useEffect(() => {
     reset(resultsForm, {
       initialInput: { results: matches.map((match) => match.result) },
     });
-  }, [matches, resultsForm]);
+  }, [matches, resultsForm, currentRound.id]);
 
   const resultFields = useFieldArray(resultsForm, { path: ['results'] });
 
