@@ -15,7 +15,7 @@ type SelectProps<Option extends SelectionOption> = {
   label?: string;
   name?: string;
   onBlur?: () => void;
-  onValueChange: (value: string) => void;
+  onValueChange: (value: Option['id']) => void;
   options: readonly Option[];
   ref?: React.Ref<HTMLButtonElement>;
   value: string;
@@ -39,7 +39,7 @@ export default function Select<Option extends SelectionOption>({
       name={name}
       value={value}
       onValueChange={(nextValue) => {
-        if (nextValue !== null) onValueChange(nextValue);
+        if (nextValue !== null) onValueChange(nextValue as Option['id']);
       }}
     >
       {label && (

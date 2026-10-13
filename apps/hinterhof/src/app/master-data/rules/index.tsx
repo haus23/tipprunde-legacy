@@ -1,14 +1,25 @@
 import {
+  Form,
+  Field as FormField,
+  focus,
+  getInput,
+  isDirty,
+  reset,
+  setErrors,
+  useForm,
+} from '@formisch/react';
+import {
   extraQuestionRules,
   matchRules,
   type RuleSet,
+  RuleSetSchema,
   roundRules,
   tipRules,
 } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import * as v from 'valibot';
 import Button from '#/components/button';
 import Select from '#/components/form/select';
 import TextField from '#/components/form/text-field';
@@ -18,7 +29,18 @@ import { useRules } from '#/hooks/master-data/use-rules';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';
-import { trimProps } from '#/utils/trim-props';
+
+const requiredMessage = 'Bitte ausfüllen.';
+
+const RulesFormSchema = v.object({
+  name: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
+  id: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
+  description: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
+  tipRuleId: RuleSetSchema.entries.tipRuleId,
+  matchRuleId: RuleSetSchema.entries.matchRuleId,
+  roundRuleId: RuleSetSchema.entries.roundRuleId,
+  extraQuestionsRuleId: RuleSetSchema.entries.extraQuestionsRuleId,
+});
 
 const initialFormState: RuleSet = {
   id: '',
@@ -31,16 +53,9 @@ const initialFormState: RuleSet = {
 };
 
 export default function RulesView() {
-  const {
-    control,
-    getValues,
-    handleSubmit,
-    register,
-    reset,
-    setValue,
-    formState: { dirtyFields, errors },
-  } = useForm<RuleSet>({
-    defaultValues: initialFormState,
+  const rulesForm = useForm({
+    schema: RulesFormSchema,
+    initialInput: initialFormState,
   });
 
   const { rules, createRules, updateRules } = useRules();
@@ -48,42 +63,61 @@ export default function RulesView() {
   const [editMode, setEditMode] = useState(false);
 
   function beginEdit(rules: RuleSet) {
-    reset(rules);
+    reset(rulesForm, { initialInput: rules });
     setEditMode(true);
     setFormOpen(true);
   }
 
   function endEdit() {
-    reset(initialFormState);
+    reset(rulesForm, { initialInput: initialFormState });
     setEditMode(false);
     setFormOpen(false);
   }
 
-  async function saveRules(rules: RuleSet) {
-    trimProps(rules);
-
+  async function saveRules(ruleSet: RuleSet) {
     if (!editMode) {
+      const duplicateName = rules.some((item) => item.name === ruleSet.name);
+      const duplicateId = rules.some((item) => item.id === ruleSet.id);
+
+      setErrors(rulesForm, {
+        path: ['name'],
+        errors: duplicateName
+          ? ['Regelwerk mit diesem Namen ist schon angelegt.']
+          : null,
+      });
+      setErrors(rulesForm, {
+        path: ['id'],
+        errors: duplicateId
+          ? ['Regelwerk mit dieser Kennung ist schon angelegt.']
+          : null,
+      });
+
+      if (duplicateName || duplicateId) {
+        focus(rulesForm, { path: duplicateName ? ['name'] : ['id'] });
+        return;
+      }
+
       await notify(
-        createRules(rules).then(() =>
+        createRules(ruleSet).then(() =>
           invalidateCache([{ type: 'collection', name: 'rules' }]),
         ),
-        `${rules.name} angelegt.`,
+        `${ruleSet.name} angelegt.`,
       );
     } else {
       await notify(
-        updateRules(rules).then(() =>
+        updateRules(ruleSet).then(() =>
           invalidateCache([{ type: 'collection', name: 'rules' }]),
         ),
-        `${rules.name} geändert.`,
+        `${ruleSet.name} geändert.`,
       );
     }
     endEdit();
   }
 
   function handleNameChange() {
-    const sluggedName = slug(getValues('name'));
-    if (!editMode && sluggedName && !dirtyFields.id) {
-      setValue('id', sluggedName, { shouldValidate: true });
+    const sluggedName = slug(getInput(rulesForm, { path: ['name'] }) ?? '');
+    if (!editMode && sluggedName && !isDirty(rulesForm, { path: ['id'] })) {
+      reset(rulesForm, { path: ['id'], initialInput: sluggedName });
     }
   }
 
@@ -107,106 +141,96 @@ export default function RulesView() {
           </button>
           {isFormOpen && (
             <div>
-              <form noValidate onSubmit={handleSubmit(saveRules)}>
+              <Form of={rulesForm} onSubmit={saveRules}>
                 <div className="space-y-4 p-4">
-                  <TextField
-                    autoFocus
-                    label="Name"
-                    required
-                    error={errors.name?.message}
-                    {...register('name', {
-                      required: true,
-                      onBlur: handleNameChange,
-                      validate: {
-                        uniqueName: (name) =>
-                          editMode ||
-                          !rules.some((rules) => rules.name === name) ||
-                          'Regelwerk mit diesem Namen ist schon angelegt.',
-                      },
-                    })}
-                  />
-                  <TextField
-                    label="Kennung"
-                    required
-                    disabled={editMode}
-                    error={errors.id?.message}
-                    {...register('id', {
-                      required: true,
-                      validate: {
-                        uniqueId: (id) =>
-                          editMode ||
-                          !rules.some((rules) => rules.id === id) ||
-                          'Regelwerk mit dieser Kennung ist schon angelegt.',
-                      },
-                    })}
-                  />
-                  <TextareaField
-                    label="Beschreibung"
-                    required
-                    rows={4}
-                    error={errors.description?.message}
-                    {...register('description', { required: true })}
-                  />
-                  <Controller
-                    control={control}
-                    name="tipRuleId"
-                    render={({ field }) => (
+                  <FormField of={rulesForm} path={['name']}>
+                    {(field) => (
+                      <TextField
+                        {...field.props}
+                        autoFocus={true}
+                        label="Name"
+                        required={true}
+                        value={field.input ?? ''}
+                        error={field.errors?.[0]}
+                        onBlur={() => {
+                          field.props.onBlur();
+                          handleNameChange();
+                        }}
+                      />
+                    )}
+                  </FormField>
+                  <FormField of={rulesForm} path={['id']}>
+                    {(field) => (
+                      <TextField
+                        {...field.props}
+                        label="Kennung"
+                        required={true}
+                        disabled={editMode}
+                        value={field.input ?? ''}
+                        error={field.errors?.[0]}
+                      />
+                    )}
+                  </FormField>
+                  <FormField of={rulesForm} path={['description']}>
+                    {(field) => (
+                      <TextareaField
+                        {...field.props}
+                        label="Beschreibung"
+                        required={true}
+                        rows={4}
+                        value={field.input ?? ''}
+                        error={field.errors?.[0]}
+                      />
+                    )}
+                  </FormField>
+                  <FormField of={rulesForm} path={['tipRuleId']}>
+                    {(field) => (
                       <Select
                         label="Tippregel"
-                        name={field.name}
-                        value={field.value}
+                        name={field.props.name}
+                        value={field.input ?? ''}
                         onValueChange={field.onChange}
-                        onBlur={field.onBlur}
-                        ref={field.ref}
+                        onBlur={field.props.onBlur}
                         options={tipRules}
                       />
                     )}
-                  />
-                  <Controller
-                    control={control}
-                    name="matchRuleId"
-                    render={({ field }) => (
+                  </FormField>
+                  <FormField of={rulesForm} path={['matchRuleId']}>
+                    {(field) => (
                       <Select
                         label="Spielregel"
-                        name={field.name}
-                        value={field.value}
+                        name={field.props.name}
+                        value={field.input ?? ''}
                         onValueChange={field.onChange}
-                        onBlur={field.onBlur}
-                        ref={field.ref}
+                        onBlur={field.props.onBlur}
                         options={matchRules}
                       />
                     )}
-                  />
-                  <Controller
-                    control={control}
-                    name="roundRuleId"
-                    render={({ field }) => (
+                  </FormField>
+                  <FormField of={rulesForm} path={['roundRuleId']}>
+                    {(field) => (
                       <Select
                         label="Rundenregel"
-                        name={field.name}
-                        value={field.value}
+                        name={field.props.name}
+                        value={field.input ?? ''}
                         onValueChange={field.onChange}
-                        onBlur={field.onBlur}
-                        ref={field.ref}
+                        onBlur={field.props.onBlur}
                         options={roundRules}
                       />
                     )}
-                  />
-                  <Controller
-                    control={control}
-                    name="extraQuestionsRuleId"
-                    render={({ field }) => (
+                  </FormField>
+                  <FormField of={rulesForm} path={['extraQuestionsRuleId']}>
+                    {(field) => (
                       <Select
                         label="Zusatzfragen"
-                        name={field.name}
-                        value={field.value}
+                        name={field.props.name}
+                        value={field.input ?? ''}
                         onValueChange={field.onChange}
-                        onBlur={field.onBlur}
-                        ref={field.ref}
+                        onBlur={field.props.onBlur}
                         options={extraQuestionRules}
                       />
                     )}
-                  />
+                  </FormField>
                 </div>
                 <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button onClick={endEdit}>Abbrechen</Button>
@@ -214,7 +238,7 @@ export default function RulesView() {
                     Speichern
                   </Button>
                 </div>
-              </form>
+              </Form>
             </div>
           )}
         </div>
