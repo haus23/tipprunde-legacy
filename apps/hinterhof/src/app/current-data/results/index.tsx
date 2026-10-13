@@ -19,11 +19,16 @@ import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRanking } from '#/hooks/current-data/use-ranking';
 import { useTeams } from '#/hooks/master-data/use-teams';
 import { invalidateCache } from '#/utils/invalidate-cache';
+import { normalizeResult } from '#/utils/normalize-result';
 import { notify } from '#/utils/notify';
 
 const ResultsFormSchema = v.object({
   results: v.array(
-    v.pipe(v.string(), v.trim(), v.regex(resultRegEx, 'Ungültiges Ergebnis.')),
+    v.pipe(
+      v.string(),
+      v.transform(normalizeResult),
+      v.regex(resultRegEx, 'Ungültiges Ergebnis.'),
+    ),
   ),
 });
 
@@ -162,6 +167,15 @@ export default function ResultsView() {
                             <ResultField
                               {...field.props}
                               label={`Ergebnis für Spiel ${fixtures[ix].nr}`}
+                              onBlur={() => {
+                                const result = normalizeResult(
+                                  field.input ?? '',
+                                );
+                                if (result !== field.input) {
+                                  field.onChange(result);
+                                }
+                                field.props.onBlur();
+                              }}
                               value={field.input ?? ''}
                               error={field.errors?.[0]}
                               className="justify-end"

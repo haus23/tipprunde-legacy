@@ -30,6 +30,7 @@ import { useTips } from '#/hooks/current-data/use-tips';
 import { usePlayers } from '#/hooks/master-data/use-players';
 import { useTeams } from '#/hooks/master-data/use-teams';
 import { invalidateCache } from '#/utils/invalidate-cache';
+import { normalizeResult } from '#/utils/normalize-result';
 import { notify } from '#/utils/notify';
 
 const TipsFormSchema = v.object({
@@ -37,7 +38,7 @@ const TipsFormSchema = v.object({
     v.object({
       tip: v.pipe(
         v.string(),
-        v.trim(),
+        v.transform(normalizeResult),
         v.regex(resultRegEx, 'Ungültiger Tipp.'),
       ),
       joker: v.boolean(),
@@ -196,7 +197,7 @@ export default function TipsView() {
           if (m.roundId === currentRound.id && ix >= startIx) {
             let t = tips.at(tipIx++);
             if (typeof t !== 'undefined') {
-              t = t.trim().replace(/[-.]+/, ':');
+              t = normalizeResult(t);
               setInput(tipsForm, { path: ['tips', ix, 'tip'], input: t });
             }
           }
@@ -318,6 +319,11 @@ export default function TipsView() {
                             <ResultField
                               {...field.props}
                               data-tip-index={ix}
+                              onBlur={() => {
+                                const tip = normalizeResult(field.input ?? '');
+                                if (tip !== field.input) field.onChange(tip);
+                                field.props.onBlur();
+                              }}
                               label={`Tipp für Spiel ${fixtures[ix].nr}`}
                               value={field.input ?? ''}
                               error={field.errors?.[0]}
