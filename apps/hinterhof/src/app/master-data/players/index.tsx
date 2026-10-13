@@ -1,8 +1,18 @@
+import {
+  Form,
+  Field as FormField,
+  focus,
+  getInput,
+  isDirty,
+  reset,
+  setErrors,
+  useForm,
+} from '@formisch/react';
 import type { Member } from '@haus23/tipprunde-model';
 import { cn } from 'cn';
 import { ChevronDownIcon, PencilIcon } from 'lucide-react';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import * as v from 'valibot';
 import Button from '#/components/button';
 import TextField from '#/components/form/text-field';
 import AppCard from '#/components/layout/app-card';
@@ -11,53 +21,86 @@ import { emailValidator } from '#/utils/email-validator';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
 import { slug } from '#/utils/slug';
-import { trimProps } from '#/utils/trim-props';
+
+const requiredMessage = 'Bitte ausfüllen.';
+
+const PlayerFormSchema = v.object({
+  name: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
+  id: v.pipe(v.string(), v.trim(), v.nonEmpty(requiredMessage)),
+  email: v.pipe(
+    v.string(),
+    v.trim(),
+    v.check(
+      (email) => email === '' || emailValidator.test(email),
+      'Keine korrekte Email-Adresse.',
+    ),
+  ),
+});
+
+const emptyPlayer: Member = { id: '', name: '', email: '' };
 
 export default function PlayersView() {
-  const {
-    getValues,
-    handleSubmit,
-    register,
-    reset,
-    setFocus,
-    setValue,
-    formState: { dirtyFields, errors },
-  } = useForm<Member>({ defaultValues: { id: '' } });
+  const playerForm = useForm({
+    schema: PlayerFormSchema,
+    initialInput: emptyPlayer,
+  });
 
   const { players, createPlayer, updatePlayer } = usePlayers();
   const [isFormOpen, setFormOpen] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
   function beginEdit(player: Member) {
-    reset(player);
+    reset(playerForm, {
+      initialInput: { ...player, email: player.email ?? '' },
+    });
     setEditMode(true);
     setFormOpen(true);
   }
 
   function endEdit() {
-    reset({ id: '' });
+    reset(playerForm, { initialInput: emptyPlayer });
     setEditMode(false);
     setFormOpen(false);
   }
 
   function handleNameChange() {
-    const sluggedName = slug(getValues('name'));
-    if (!editMode && sluggedName && !dirtyFields.id) {
-      setValue('id', sluggedName, { shouldValidate: true });
+    const sluggedName = slug(getInput(playerForm, { path: ['name'] }) ?? '');
+    if (!editMode && sluggedName && !isDirty(playerForm, { path: ['id'] })) {
+      reset(playerForm, { path: ['id'], initialInput: sluggedName });
     }
   }
 
   async function savePlayer(player: Member) {
-    trimProps(player);
     if (!editMode) {
+      const duplicateName = players.some((item) => item.name === player.name);
+      const duplicateId = players.some((item) => item.id === player.id);
+
+      setErrors(playerForm, {
+        path: ['name'],
+        errors: duplicateName
+          ? ['Spieler mit diesem Namen ist schon angelegt.']
+          : null,
+      });
+      setErrors(playerForm, {
+        path: ['id'],
+        errors: duplicateId
+          ? ['Spieler mit dieser Kennung ist schon angelegt.']
+          : null,
+      });
+
+      if (duplicateName || duplicateId) {
+        focus(playerForm, { path: duplicateName ? ['name'] : ['id'] });
+        return;
+      }
+
       await notify(
         createPlayer(player).then(() =>
           invalidateCache([{ type: 'collection', name: 'accounts' }]),
         ),
         `${player.name} angelegt.`,
       );
-      setFocus('name');
-      reset();
+      reset(playerForm, { initialInput: emptyPlayer });
+      focus(playerForm, { path: ['name'] });
     } else {
       await notify(
         updatePlayer(player).then(() =>
@@ -89,49 +132,46 @@ export default function PlayersView() {
           </button>
           {isFormOpen && (
             <div>
-              <form noValidate onSubmit={handleSubmit(savePlayer)}>
+              <Form of={playerForm} onSubmit={savePlayer}>
                 <div className="space-y-4 p-4">
-                  <TextField
-                    autoFocus
-                    label="Name"
-                    required
-                    error={errors.name?.message}
-                    {...register('name', {
-                      required: true,
-                      onBlur: handleNameChange,
-                      validate: {
-                        uniqueName: (name) =>
-                          editMode ||
-                          !players.some((player) => player.name === name) ||
-                          'Spieler mit diesem Namen ist schon angelegt.',
-                      },
-                    })}
-                  />
-                  <TextField
-                    label="Kennung"
-                    required
-                    disabled={editMode}
-                    error={errors.id?.message}
-                    {...register('id', {
-                      required: true,
-                      validate: {
-                        uniqueId: (id) =>
-                          editMode ||
-                          !players.some((player) => player.id === id) ||
-                          'Spieler mit dieser Kennung ist schon angelegt.',
-                      },
-                    })}
-                  />
-                  <TextField
-                    label="Email"
-                    error={errors.email?.message}
-                    {...register('email', {
-                      pattern: {
-                        value: emailValidator,
-                        message: 'Keine korrekte Email-Adresse.',
-                      },
-                    })}
-                  />
+                  <FormField of={playerForm} path={['name']}>
+                    {(field) => (
+                      <TextField
+                        {...field.props}
+                        autoFocus={true}
+                        label="Name"
+                        required={true}
+                        value={field.input ?? ''}
+                        error={field.errors?.[0]}
+                        onBlur={() => {
+                          field.props.onBlur();
+                          handleNameChange();
+                        }}
+                      />
+                    )}
+                  </FormField>
+                  <FormField of={playerForm} path={['id']}>
+                    {(field) => (
+                      <TextField
+                        {...field.props}
+                        label="Kennung"
+                        required={true}
+                        disabled={editMode}
+                        value={field.input ?? ''}
+                        error={field.errors?.[0]}
+                      />
+                    )}
+                  </FormField>
+                  <FormField of={playerForm} path={['email']}>
+                    {(field) => (
+                      <TextField
+                        {...field.props}
+                        label="Email"
+                        value={field.input ?? ''}
+                        error={field.errors?.[0]}
+                      />
+                    )}
+                  </FormField>
                 </div>
                 <div className="space-x-4 bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <Button onClick={endEdit}>Abbrechen</Button>
@@ -139,7 +179,7 @@ export default function PlayersView() {
                     Speichern
                   </Button>
                 </div>
-              </form>
+              </Form>
             </div>
           )}
         </div>
