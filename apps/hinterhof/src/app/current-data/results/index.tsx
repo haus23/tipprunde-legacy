@@ -1,4 +1,11 @@
-import { Field, Form, reset, useFieldArray, useForm } from '@formisch/react';
+import {
+  Field,
+  Form,
+  isDirty,
+  reset,
+  useFieldArray,
+  useForm,
+} from '@formisch/react';
 import { resultRegEx, type Team } from '@haus23/tipprunde-model';
 import { useEffect, useMemo } from 'react';
 import * as v from 'valibot';
@@ -88,7 +95,11 @@ export default function ResultsView() {
           title="Ergebnisse"
           description="Geänderte Ergebnisse speichern und die Tabelle neu berechnen."
           action={
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+              disabled={!isDirty(resultsForm) || resultsForm.isSubmitting}
+            >
               Speichern
             </Button>
           }

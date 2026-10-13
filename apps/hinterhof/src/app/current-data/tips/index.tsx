@@ -1,6 +1,7 @@
 import {
   Field,
   Form,
+  isDirty,
   reset,
   setInput,
   useFieldArray,
@@ -215,7 +216,11 @@ export default function TipsView() {
           title="Tipps"
           description="Tipps und Joker für den ausgewählten Mitspieler erfassen."
           action={
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+              disabled={!isDirty(tipsForm) || tipsForm.isSubmitting}
+            >
               Speichern
             </Button>
           }

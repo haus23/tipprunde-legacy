@@ -1,4 +1,11 @@
-import { Field, Form, reset, useFieldArray, useForm } from '@formisch/react';
+import {
+  Field,
+  Form,
+  isDirty,
+  reset,
+  useFieldArray,
+  useForm,
+} from '@formisch/react';
 import type { Member } from '@haus23/tipprunde-model';
 import { useEffect, useMemo } from 'react';
 import * as v from 'valibot';
@@ -96,7 +103,13 @@ export default function ExtraPointsView() {
           title="Zusatzpunkte"
           description="Punkte aus den Zusatzfragen je Mitspieler erfassen."
           action={
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+              disabled={
+                !isDirty(extraPointsForm) || extraPointsForm.isSubmitting
+              }
+            >
               Speichern
             </Button>
           }
