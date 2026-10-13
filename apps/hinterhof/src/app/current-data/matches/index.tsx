@@ -1,3 +1,4 @@
+import { Dialog } from '@base-ui/react/dialog';
 import { Field, Form, focus, getInput, reset, useForm } from '@formisch/react';
 import {
   type League,
@@ -5,11 +6,11 @@ import {
   MatchDateSchema,
   type Team,
 } from '@haus23/tipprunde-model';
-import { ChevronDownIcon, PencilIcon } from 'lucide-react';
+import { PencilIcon, PlusIcon } from 'lucide-react';
 import { useMemo, useRef, useState } from 'react';
 import * as v from 'valibot';
 import Button from '#/components/button';
-import { Card, CardContent, CardFooter, CardHeader } from '#/components/card';
+import { Card, CardHeader } from '#/components/card';
 import ComboboxField from '#/components/form/combobox-field';
 import DateField from '#/components/form/date-field';
 import RoundNavigator from '#/components/round-navigator';
@@ -18,8 +19,6 @@ import { useCurrentRound } from '#/hooks/current-data/use-current-round';
 import { useMatches } from '#/hooks/current-data/use-matches';
 import { useLeagues } from '#/hooks/master-data/use-leagues';
 import { useTeams } from '#/hooks/master-data/use-teams';
-import { focusRing } from '#/styles/focus';
-import { cn } from '#/utils/cn';
 import { formatDate } from '#/utils/format-date';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
@@ -66,18 +65,22 @@ export default function MatchesView() {
     [teams],
   );
 
-  const [isFormOpen, setFormOpen] = useState(matches.length === 0);
-  const [editMode, setEditMode] = useState(false);
+  // The page controls the dialog: creating matches one after another or
+  // editing a single match. The mode outlives closing, so title and buttons
+  // do not switch during the closing animation.
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogMode, setDialogMode] = useState<'create' | 'edit'>('create');
+  const dateInputRef = useRef<HTMLInputElement | null>(null);
 
-  let nr = (matches.at(-1)?.nr || 0) + 1;
-  const date = matches.reduce(
+  const nextNr = (matches.at(-1)?.nr || 0) + 1;
+  const latestDate = matches.reduce(
     (lastDate, match) => (match.date > lastDate ? match.date : lastDate),
     '',
   );
 
-  const initialFormValues: MatchFormData = {
-    nr,
-    date,
+  const emptyMatch: MatchFormData = {
+    nr: nextNr,
+    date: latestDate,
     leagueId: '',
     hometeamId: '',
     awayteamId: '',
@@ -85,51 +88,15 @@ export default function MatchesView() {
 
   const matchForm = useForm({
     schema: MatchFormSchema,
-    initialInput: initialFormValues,
+    initialInput: emptyMatch,
   });
+  const nr = getInput(matchForm, { path: ['nr'] });
 
-  async function saveMatch(matchData: MatchFormData) {
-    if (!currentChampionship) return;
-
-    if (matchData.id) {
-      const match = matches.find(({ id }) => id === matchData.id);
-      if (!match) throw new Error(`Match ${matchData.id} not found`);
-
-      await notify(
-        updateMatch({ ...match, ...matchData, id: matchData.id }).then(() =>
-          invalidateCache([
-            { type: 'championship', id: currentChampionship.id },
-          ]),
-        ),
-        `Spiel ${matchData.nr} geändert.`,
-      );
-      endEdit();
-    } else {
-      const match: Omit<Match, 'id'> = {
-        nr: matchData.nr,
-        date: matchData.date,
-        leagueId: matchData.leagueId,
-        hometeamId: matchData.hometeamId,
-        awayteamId: matchData.awayteamId,
-        roundId: currentRound.id,
-        result: '',
-      };
-      await notify(
-        createMatch(match).then(() =>
-          invalidateCache([
-            { type: 'championship', id: currentChampionship.id },
-          ]),
-        ),
-        `Spiel ${match.nr} hinzugefügt.`,
-      );
-      reset(matchForm, {
-        initialInput: { ...initialFormValues, date: match.date, nr: ++nr },
-      });
-      focus(matchForm, { path: ['date'] });
-    }
+  function beginCreate() {
+    reset(matchForm, { initialInput: emptyMatch });
+    setDialogMode('create');
+    setDialogOpen(true);
   }
-
-  const topRef = useRef<HTMLDivElement>(null);
 
   function beginEdit(match: Match) {
     // Suggest the date of the preceding match for a match without date
@@ -148,136 +115,175 @@ export default function MatchesView() {
         awayteamId: match.awayteamId,
       },
     });
-    setEditMode(true);
-    setFormOpen(true);
-    topRef.current?.scrollIntoView();
+    setDialogMode('edit');
+    setDialogOpen(true);
   }
 
-  function endEdit() {
-    reset(matchForm, { initialInput: initialFormValues });
-    setEditMode(false);
-    setFormOpen(false);
+  function closeDialog() {
+    setDialogOpen(false);
+  }
+
+  async function saveMatch(matchData: MatchFormData) {
+    if (!currentChampionship) return;
+
+    if (matchData.id) {
+      const match = matches.find(({ id }) => id === matchData.id);
+      if (!match) throw new Error(`Match ${matchData.id} not found`);
+
+      await notify(
+        updateMatch({ ...match, ...matchData, id: matchData.id }).then(() =>
+          invalidateCache([
+            { type: 'championship', id: currentChampionship.id },
+          ]),
+        ),
+        `Spiel ${matchData.nr} geändert.`,
+      );
+      closeDialog();
+    } else {
+      const match: Omit<Match, 'id'> = {
+        nr: matchData.nr,
+        date: matchData.date,
+        leagueId: matchData.leagueId,
+        hometeamId: matchData.hometeamId,
+        awayteamId: matchData.awayteamId,
+        roundId: currentRound.id,
+        result: '',
+      };
+      await notify(
+        createMatch(match).then(() =>
+          invalidateCache([
+            { type: 'championship', id: currentChampionship.id },
+          ]),
+        ),
+        `Spiel ${match.nr} hinzugefügt.`,
+      );
+      // Matches are entered one after another: stay open for the next one
+      reset(matchForm, {
+        initialInput: { ...emptyMatch, date: match.date, nr: match.nr + 1 },
+      });
+      focus(matchForm, { path: ['date'] });
+    }
   }
 
   return (
-    <div ref={topRef} className="mt-5 space-y-8">
+    <div className="mt-5 space-y-8">
       <Card>
-        <CardHeader className="py-3">
+        <CardHeader className="flex items-center justify-between gap-4 py-3">
           <RoundNavigator
             rounds={rounds}
             value={currentRound}
             onValueChange={setCurrentRound}
           />
+          <Button variant="primary" onClick={beginCreate}>
+            <PlusIcon className="mr-1.5 -ml-1 size-4" aria-hidden="true" />
+            Neues Spiel
+          </Button>
         </CardHeader>
-        <button
-          type="button"
-          onClick={() => setFormOpen(!isFormOpen)}
-          className={cn(
-            focusRing,
-            'm-2 flex w-[calc(100%-1rem)] items-center justify-between rounded-md px-2 py-1 font-semibold transition-colors hover:bg-accent motion-reduce:transition-none sm:px-4',
-          )}
-          aria-expanded={isFormOpen}
-          aria-controls="match-form"
-        >
-          <span>{editMode ? 'Spiel bearbeiten' : 'Neues Spiel'}</span>
-          <ChevronDownIcon
-            className={cn(
-              'h-5 w-5 transition-transform motion-reduce:transition-none',
-              isFormOpen && 'rotate-180',
-            )}
-            aria-hidden="true"
-          />
-        </button>
-        {isFormOpen && (
-          <Form id="match-form" of={matchForm} onSubmit={saveMatch}>
-            <CardContent className="space-y-4 border-border border-t">
-              <div className="flex items-center">
-                <span className="font-semibold text-sm">Nummer</span>
-                <input
-                  disabled
-                  readOnly
-                  className="w-8 rounded-sm border-transparent bg-transparent p-1 text-center font-semibold text-sm"
-                  value={getInput(matchForm, { path: ['nr'] }) ?? ''}
-                />
-              </div>
-              <div className="flex flex-col gap-y-4 sm:flex-row sm:justify-between">
-                <Field of={matchForm} path={['date']}>
-                  {(field) => (
-                    <DateField
-                      {...field.props}
-                      label="Wann?"
-                      value={field.input ?? ''}
-                      error={field.errors?.[0]}
-                    />
-                  )}
-                </Field>
-                <Field of={matchForm} path={['leagueId']}>
+      </Card>
+      <Dialog.Root
+        open={dialogOpen}
+        onOpenChange={(open) => {
+          if (!open) closeDialog();
+        }}
+      >
+        <Dialog.Portal>
+          <Dialog.Backdrop className="fixed inset-0 z-40 bg-overlay transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
+          <Dialog.Popup
+            initialFocus={dateInputRef}
+            className="fixed top-[max(1rem,10vh)] left-1/2 z-40 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 rounded-lg border border-border bg-card text-card-foreground shadow-xl transition-[opacity,scale] duration-200 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none"
+          >
+            <Form of={matchForm} onSubmit={saveMatch}>
+              <div className="space-y-4 p-4 sm:p-6">
+                <Dialog.Title className="font-semibold text-lg">
+                  {dialogMode === 'edit'
+                    ? `Spiel ${nr} bearbeiten`
+                    : `Spiel ${nr} anlegen`}
+                </Dialog.Title>
+                <div className="flex flex-col gap-4 sm:flex-row">
+                  <Field of={matchForm} path={['date']}>
+                    {(field) => (
+                      <DateField
+                        {...field.props}
+                        ref={(element) => {
+                          field.props.ref(element);
+                          dateInputRef.current = element;
+                        }}
+                        label="Wann?"
+                        value={field.input ?? ''}
+                        error={field.errors?.[0]}
+                      />
+                    )}
+                  </Field>
+                  <div className="min-w-0 grow">
+                    <Field of={matchForm} path={['leagueId']}>
+                      {(field) => (
+                        <ComboboxField
+                          label="Wo?"
+                          name={field.props.name}
+                          value={field.input ?? ''}
+                          onValueChange={field.onChange}
+                          onBlur={field.props.onBlur}
+                          ref={field.props.ref}
+                          options={leagues}
+                          filter={(query, league) =>
+                            `${league.name} ${league.shortname}`
+                              .toLowerCase()
+                              .includes(query.toLowerCase())
+                          }
+                        />
+                      )}
+                    </Field>
+                  </div>
+                </div>
+                <Field of={matchForm} path={['hometeamId']}>
                   {(field) => (
                     <ComboboxField
-                      label="Wo?"
+                      label="Wer?"
                       name={field.props.name}
                       value={field.input ?? ''}
                       onValueChange={field.onChange}
                       onBlur={field.props.onBlur}
                       ref={field.props.ref}
-                      options={leagues}
-                      filter={(query, league) =>
-                        `${league.name} ${league.shortname}`
+                      options={teams}
+                      filter={(q, team) =>
+                        `${team.name} ${team.shortname}`
                           .toLowerCase()
-                          .includes(query.toLowerCase())
+                          .includes(q.toLowerCase())
+                      }
+                    />
+                  )}
+                </Field>
+                <Field of={matchForm} path={['awayteamId']}>
+                  {(field) => (
+                    <ComboboxField
+                      label="Gegen wen?"
+                      name={field.props.name}
+                      value={field.input ?? ''}
+                      onValueChange={field.onChange}
+                      onBlur={field.props.onBlur}
+                      ref={field.props.ref}
+                      options={teams}
+                      filter={(q, team) =>
+                        `${team.name} ${team.shortname}`
+                          .toLowerCase()
+                          .includes(q.toLowerCase())
                       }
                     />
                   )}
                 </Field>
               </div>
-              <Field of={matchForm} path={['hometeamId']}>
-                {(field) => (
-                  <ComboboxField
-                    label="Wer?"
-                    name={field.props.name}
-                    value={field.input ?? ''}
-                    onValueChange={field.onChange}
-                    onBlur={field.props.onBlur}
-                    ref={field.props.ref}
-                    options={teams}
-                    filter={(q, team) =>
-                      `${team.name} ${team.shortname}`
-                        .toLowerCase()
-                        .includes(q.toLowerCase())
-                    }
-                  />
-                )}
-              </Field>
-              <Field of={matchForm} path={['awayteamId']}>
-                {(field) => (
-                  <ComboboxField
-                    label="Gegen wen?"
-                    name={field.props.name}
-                    value={field.input ?? ''}
-                    onValueChange={field.onChange}
-                    onBlur={field.props.onBlur}
-                    ref={field.props.ref}
-                    options={teams}
-                    filter={(q, team) =>
-                      `${team.name} ${team.shortname}`
-                        .toLowerCase()
-                        .includes(q.toLowerCase())
-                    }
-                  />
-                )}
-              </Field>
-            </CardContent>
-            <CardFooter className="justify-end gap-x-4">
-              <Button type="button" onClick={endEdit}>
-                Abbrechen
-              </Button>
-              <Button variant="primary" type="submit">
-                Speichern
-              </Button>
-            </CardFooter>
-          </Form>
-        )}
-      </Card>
+              <div className="flex justify-end gap-x-4 rounded-b-lg border-border border-t bg-surface-subtle px-4 py-3 sm:px-6">
+                <Dialog.Close render={<Button />}>
+                  {dialogMode === 'edit' ? 'Abbrechen' : 'Schließen'}
+                </Dialog.Close>
+                <Button variant="primary" type="submit">
+                  {dialogMode === 'edit' ? 'Speichern' : 'Anlegen'}
+                </Button>
+              </div>
+            </Form>
+          </Dialog.Popup>
+        </Dialog.Portal>
+      </Dialog.Root>
       <Card>
         <div className="overflow-x-auto overflow-y-hidden">
           <table className="min-w-full divide-y divide-border">
