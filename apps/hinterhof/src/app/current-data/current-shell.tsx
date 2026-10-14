@@ -61,13 +61,10 @@ export default function CurrentShell() {
   }
 
   return (
-    <div className="relative">
-      <h2 className="font-semibold text-2xl">{currentChampionship.name}</h2>
-      <Suspense
-        fallback={<p className="mt-4 text-gray-500">Lade Turnier ...</p>}
-      >
-        <CurrentDataOutlet championshipId={currentChampionship.id} />
-      </Suspense>
-    </div>
+    <Suspense
+      fallback={<p className="mt-5 text-muted-foreground">Lade Turnier ...</p>}
+    >
+      <CurrentDataOutlet championshipId={currentChampionship.id} />
+    </Suspense>
   );
 }

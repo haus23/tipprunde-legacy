@@ -1,16 +1,32 @@
 import { Dialog } from '@base-ui/react/dialog';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { use, useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router';
+import { Outlet, useLocation, useMatches, useParams } from 'react-router';
+import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { ensureMasterData } from '#/state/master-data-store';
 import { focusRing, focusRingOnDark } from '#/styles/focus';
 import { cn } from '#/utils/cn';
 import AppShellNavbar from './app-shell.navbar';
 
+// What the page belongs to: the championship on championship pages, else
+// the `context` of the route (e.g. master data), else the app name.
+function useContextTitle() {
+  const { turnier } = useParams();
+  const { currentChampionship } = useCurrentChampionship();
+  const matches = useMatches();
+
+  if (turnier && currentChampionship) return currentChampionship.name;
+  const context = matches
+    .map(({ handle }) => (handle as { context?: string } | undefined)?.context)
+    .findLast(Boolean);
+  return context ?? 'Hinterhof';
+}
+
 export default function AppShell() {
   use(ensureMasterData());
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const contextTitle = useContextTitle();
   useEffect(() => {
     setSidebarOpen(location.key === ''); // Useless, but need to treat the linter
   }, [location]);
@@ -49,8 +65,8 @@ export default function AppShell() {
       </div>
       {/* Content with header */}
       <div className="flex flex-col md:pl-64">
-        {/* Toggle menu button */}
-        <div className="sticky top-0 z-20 h-(--app-bar-height) bg-background pt-1 pl-1 sm:pt-3 sm:pl-3 md:hidden">
+        {/* Mobile app bar: menu button and the context of the page */}
+        <div className="sticky top-0 z-20 flex h-(--app-bar-height) items-center gap-x-3 border-sidebar-border border-b bg-background px-4 sm:px-6 md:hidden">
           <button
             type="button"
             onClick={() => setSidebarOpen(true)}
@@ -58,12 +74,13 @@ export default function AppShell() {
             aria-expanded={sidebarOpen}
             className={cn(
               focusRing,
-              '-mt-0.5 -ml-0.5 inline-flex h-12 w-12 items-center justify-center rounded-md text-muted-foreground hover:text-foreground',
+              '-ml-1.5 inline-flex size-9 shrink-0 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground',
             )}
           >
             <span className="sr-only">Navigation öffnen</span>
-            <MenuIcon className="h-6 w-6" aria-hidden="true" />
+            <MenuIcon className="size-6" aria-hidden="true" />
           </button>
+          <p className="truncate font-semibold">{contextTitle}</p>
         </div>
 
         {/* Content */}

@@ -79,6 +79,7 @@ export default function createAppRoutes(): RouteObject[] {
         },
         {
           path: 'stammdaten',
+          handle: { context: 'Stammdaten' },
           children: [
             {
               path: 'turniere',

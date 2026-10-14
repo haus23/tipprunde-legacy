@@ -95,13 +95,7 @@
   --sidebar-ring: oklch(58.5% 0.233 277.117);
   /* Height of the sticky mobile bar with the menu button; sticky content
      below it starts here. */
-  --app-bar-height: 3.125rem;
-}
-
-@media (width >= 40rem) {
-  :root {
-    --app-bar-height: 3.625rem;
-  }
+  --app-bar-height: 3.5rem;
 }
 
 @layer base {
