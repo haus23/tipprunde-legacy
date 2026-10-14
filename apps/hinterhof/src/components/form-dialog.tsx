@@ -11,7 +11,10 @@ import Button from './button';
 // and submit. The caller controls `open`; Escape, a click on the backdrop and
 // the cancel button request closing via `onOpenChange`. Without
 // `initialFocus` the first field gets the focus. Long forms scroll inside the
-// dialog while title and footer stay visible.
+// dialog while title and footer stay visible. A FormDialog may be rendered
+// inside another one (e.g. a new team from the match dialog): React bubbles
+// the submit of the inner form along the component tree, so the popup stops
+// it before it reaches the outer form.
 
 type FormDialogProps<TSchema extends FormSchema> = {
   cancelLabel?: string;
@@ -42,6 +45,7 @@ export default function FormDialog<TSchema extends FormSchema>({
         <Dialog.Backdrop className="fixed inset-0 z-40 bg-overlay transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
         <Dialog.Popup
           initialFocus={initialFocus}
+          onSubmit={(event) => event.stopPropagation()}
           className="fixed top-[max(1rem,10vh)] left-1/2 z-40 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 rounded-lg border border-border bg-card text-card-foreground shadow-xl transition-[opacity,scale] duration-200 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none"
         >
           <Form

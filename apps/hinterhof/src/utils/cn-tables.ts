@@ -27,9 +27,9 @@ const DZ = (s: string): Int32Array => {
 }
 const GROUP_COUNT = 132
 const customValidatorNames: string[] = []
-const edgeStart = PS(U("B03001300002100032000021200210001020072010020000002010600000022001040200003002020000"))
-const labelStart = PS(U("71614111521111111141511115722331321111225252313111111711667111111163224136443225256"))
-const labelText = "animatebcursordeasefghinsetlemoprstwzasisgorder-brtivideuration-yillexontlterapr-xyidow-cols-yadingftax-bin-lrtxhw-screenhwpacityutline-offsetblrtxyioundedghtng-bcalehizepace-yadowrinkextoprackingnsitionlate-x"
+const edgeStart = PS(U("B0300130000210003200002120021000102007201002000000201060000002200120040200003002020000"))
+const labelStart = PS(U("7161411152111111114151111572233132111122525231311111171166711111116321114136443225256"))
+const labelText = "animatebcursordeasefghinsetlemoprstwzasisgorder-brtivideuration-yillexontlterapr-xyidow-cols-yadingftax-bin-lrtxhw-screenhwpacityutline-offsetblrtxyioundedghtng-brcalehizepace-yadowrinkextoprackingnsitionlate-x"
 // pre-order tree: targets derived from edge counts via subtree sizes
 const edgeTarget = (() => {
     const N = edgeStart.length - 1
@@ -48,17 +48,17 @@ const edgeTarget = (() => {
     }
     return out
 })()
-const nodeGroup = U("0000040678000;00000?q0000000q0F0000000000M0000000000V00000000000abc000ef00000000m000", 1)
+const nodeGroup = U("0000040678000;00000?r0000000r0F0000000000M0000000000V00000000000ab0cd000fg00000000n000", 1)
 // vlists = op-pattern pool + per-list refs; the engine indexes these directly
 const vlistPat = PS(U("2536333233451336"))
 const vlistOps = U("32483250325B:0325B:532542H<32563243258432588328GA8B:032")
-const vlistRef = U("012344402450206788895:::8::;<8:;88885358888888:4==5>5:8?:00:;9")
-const vlistGroup = DZ("002000020020020020020020020200200200202002020020200200200200200200020002000200200020002000002002000200002002002002002002002002002002002002002002002002000200200200200200200200020020020020002020200020000200")
+const vlistRef = U("012344402450206788895:::8::;<8:;88885358888888:4===5>5:8?:00:;9")
+const vlistGroup = DZ("002000020020020020020020020200200200202002020020200200200200200200020002000200200020002000002002000200002002002002002002002002002002002002002002002002000200200200200200200200200020020020020002020200020000200")
 // nodeVlist rebuilt sparse: (anchor deltas, vlist ids)
 const nodeVlist = (() => {
-    const out = new Int32Array(84).fill(-1)
-    const A = DZ("24224222422262224426222242622242222242222222226222442224244222")
-    const V = DZ("02222222222222222222222222222222222222222222222222222222222222")
+    const out = new Int32Array(86).fill(-1)
+    const A = DZ("242242224222622244262222426222422222422222222262242442224244222")
+    const V = DZ("022222222222222222222222222222222222222222222222222222222222222")
     for (let i = 0; i < A.length; i++) out[A[i]!] = V[i]!
     return out
 })()
@@ -70,12 +70,12 @@ const SETS = " block contents flow-root hidden inline inline-block inline-flex i
     }
     return tails
 })
-const AA = DZ("00000000000000000024>826220024426422426222422222642222226424442400244222")
-const AG = DZ("°22222222222222222Ñ2>6222¸2·2222242222220222222222222224222422j?U22222")
-const AS = DZ("0222222222222222222222220222220022E0HGJ2225810004A000000AV0MP2GJ22_b2222")
-const litAnchor = new Int32Array(359)
-const litGroup = new Int32Array(359)
-const litPool = new Int32Array(359)
+const AA = DZ("00000000000000000024>8262200244264224262224222226422222264424442400244222")
+const AG = DZ("²22222222222222222Ó2>6222º2¹22222422222202222222222222242222422j?U22222")
+const AS = DZ("0222222222222222222222220222220022E0HGJ2225810004A000000AV00MP2GJ22_b2222")
+const litAnchor = new Int32Array(368)
+const litGroup = new Int32Array(368)
+const litPool = new Int32Array(368)
 let poolText = ''
 const poolOffsets = new Int32Array(410)
 {
@@ -100,10 +100,10 @@ const poolOffsets = new Int32Array(410)
     }
 }
 // conflict adjacency (engine builds claim bitmask CSR at init)
-const adjGid = DZ("62F4<2F::26284D6<")
-const adjStart = PS(U("::32:44:44>221221"))
-const adjTgt = DZ("Ĕ22222ď11Ė2222222222ıXpu2º¯²222sEµ®2ov:2³1J22221322125¨222222222221262T2J")
-const patGid = U("h")
+const adjGid = DZ("62F4<2F::262284D6<")
+const adjStart = PS(U("::32:44:44>2221221"))
+const adjTgt = DZ("Ĕ22222ď11Ė2222222222ıXrw2¼±´222sG·°2ov:2µ1J22221322125ª22122222222123262T2J")
+const patGid = U("i")
 const patTgt = U("I")
 const postfixLookupGroups = U("³")
 const orderSensitiveModifiers = "* ** after backdrop before details-content file first-letter first-line marker placeholder selection"

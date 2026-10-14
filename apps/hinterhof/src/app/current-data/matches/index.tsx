@@ -1,4 +1,11 @@
-import { Field, focus, getInput, reset, useForm } from '@formisch/react';
+import {
+  Field,
+  focus,
+  getInput,
+  reset,
+  setInput,
+  useForm,
+} from '@formisch/react';
 import {
   type League,
   type Match,
@@ -14,6 +21,8 @@ import DateField from '#/components/form/date-field';
 import FormDialog from '#/components/form-dialog';
 import DataCard from '#/components/layout/data-card';
 import EmptyTableRow from '#/components/layout/empty-table-row';
+import LeagueDialog from '#/components/master-data/league-dialog';
+import TeamDialog from '#/components/master-data/team-dialog';
 import RoundNavigator from '#/components/round-navigator';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useCurrentRound } from '#/hooks/current-data/use-current-round';
@@ -124,6 +133,19 @@ export default function MatchesView() {
     setDialogOpen(false);
   }
 
+  // Missing teams and leagues are created right from the match dialog and
+  // land in the field they were created from.
+  const [teamDialogOpen, setTeamDialogOpen] = useState(false);
+  const [newTeamFor, setNewTeamFor] = useState<'hometeamId' | 'awayteamId'>(
+    'hometeamId',
+  );
+  const [leagueDialogOpen, setLeagueDialogOpen] = useState(false);
+
+  function openTeamDialog(field: 'hometeamId' | 'awayteamId') {
+    setNewTeamFor(field);
+    setTeamDialogOpen(true);
+  }
+
   async function saveMatch(matchData: MatchFormData) {
     if (!currentChampionship || !currentRound) return;
 
@@ -212,6 +234,10 @@ export default function MatchesView() {
                   onBlur={field.props.onBlur}
                   ref={field.props.ref}
                   options={leagues}
+                  create={{
+                    label: 'Neue Liga anlegen',
+                    onCreate: () => setLeagueDialogOpen(true),
+                  }}
                   filter={(query, league) =>
                     `${league.name} ${league.shortname}`
                       .toLowerCase()
@@ -226,6 +252,10 @@ export default function MatchesView() {
           {(field) => (
             <ComboboxField
               label="Wer?"
+              create={{
+                label: 'Neues Team anlegen',
+                onCreate: () => openTeamDialog('hometeamId'),
+              }}
               name={field.props.name}
               value={field.input ?? ''}
               onValueChange={field.onChange}
@@ -244,6 +274,10 @@ export default function MatchesView() {
           {(field) => (
             <ComboboxField
               label="Gegen wen?"
+              create={{
+                label: 'Neues Team anlegen',
+                onCreate: () => openTeamDialog('awayteamId'),
+              }}
               name={field.props.name}
               value={field.input ?? ''}
               onValueChange={field.onChange}
@@ -258,6 +292,21 @@ export default function MatchesView() {
             />
           )}
         </Field>
+        {/* Nested in the match dialog, which stays open meanwhile */}
+        <TeamDialog
+          open={teamDialogOpen}
+          onOpenChange={setTeamDialogOpen}
+          onSaved={(team) =>
+            setInput(matchForm, { path: [newTeamFor], input: team.id })
+          }
+        />
+        <LeagueDialog
+          open={leagueDialogOpen}
+          onOpenChange={setLeagueDialogOpen}
+          onSaved={(league) =>
+            setInput(matchForm, { path: ['leagueId'], input: league.id })
+          }
+        />
       </FormDialog>
       <DataCard
         title="Spiele"
