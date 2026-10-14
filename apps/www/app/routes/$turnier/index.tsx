@@ -38,7 +38,7 @@ function RankingComponent() {
 
   return (
     <div>
-      <div className="mx-2 sm:mx-0">
+      <div className="mx-4 sm:mx-0">
         <h1 className="font-medium text-xl">
           <span className="hidden md:inline">{championship.name} - </span>
           <span>

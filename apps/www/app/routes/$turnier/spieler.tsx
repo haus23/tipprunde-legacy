@@ -54,7 +54,7 @@ function PlayersRoute() {
   if (!player) {
     return (
       <div>
-        <h1 className="mx-2 font-medium text-xl sm:mx-0">Mitspieler</h1>
+        <h1 className="mx-4 font-medium text-xl sm:mx-0">Mitspieler</h1>
         <EmptyView>Noch keine Mitspieler.</EmptyView>
       </div>
     );
@@ -90,7 +90,7 @@ function PlayersComponent({
 
   return (
     <div>
-      <div className="mx-2 flex items-center gap-x-4 sm:mx-0">
+      <div className="mx-4 flex items-center gap-x-4 sm:mx-0">
         <h1 className="font-medium text-xl">
           <span className="hidden sm:inline">{championship.name} - </span>
           <span>Tipps von</span>
@@ -110,7 +110,7 @@ function PlayersComponent({
         <EmptyView>Noch keine Spiele.</EmptyView>
       ) : (
         <>
-          <div className="mx-2 mt-6 text-sm md:mx-auto">
+          <div className="mx-4 mt-6 text-sm md:mx-auto">
             <div className="flex w-full items-center justify-between">
               {player.rank === undefined ? (
                 <p className="font-medium text-muted-foreground">
@@ -206,7 +206,7 @@ function PlayersComponent({
                             <TableHead className="hidden sm:table-cell">
                               Datum
                             </TableHead>
-                            <TableHead className="text-left md:pl-6">
+                            <TableHead className="text-left max-sm:pl-4 md:pl-6">
                               Spiel
                             </TableHead>
                             <TableHead>Ergebnis</TableHead>
@@ -234,7 +234,7 @@ function PlayersComponent({
                                     shortIfCurrent: true,
                                   })}
                                 </TableCell>
-                                <TableCell className="w-full font-medium">
+                                <TableCell className="w-full font-medium max-sm:pl-2">
                                   <Link
                                     to="/$turnier/spiel"
                                     params={{ turnier: championship.id }}

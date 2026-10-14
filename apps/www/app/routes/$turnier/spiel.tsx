@@ -92,7 +92,7 @@ function MatchesRoute() {
   if (!match) {
     return (
       <div>
-        <h1 className="mx-2 font-medium text-xl sm:mx-0">Spiele</h1>
+        <h1 className="mx-4 font-medium text-xl sm:mx-0">Spiele</h1>
         <EmptyView>Noch keine Spiele.</EmptyView>
       </div>
     );
@@ -188,7 +188,7 @@ function MatchesComponent({
 
   return (
     <div>
-      <div className="mx-2 flex items-center gap-x-2 sm:mx-0 sm:gap-x-4">
+      <div className="mx-4 flex items-center gap-x-2 sm:mx-0 sm:gap-x-4">
         <h1 className="font-medium text-xl tracking-tight sm:tracking-normal">
           <span className="hidden sm:inline">{championship.name} - </span>
           <span>Tipps für</span>
@@ -214,7 +214,7 @@ function MatchesComponent({
           }))}
         />
       </div>
-      <div className="mx-2 mt-6 max-w-3xl text-sm md:mx-auto">
+      <div className="mx-4 mt-6 max-w-3xl text-sm md:mx-auto">
         <div className="flex w-full justify-between">
           <div className="space-y-1">
             <p className="font-medium text-xs uppercase">Wann</p>
@@ -265,7 +265,7 @@ function MatchesComponent({
           <TableHeader>
             <TableRow>
               <TableHead
-                className="py-1 text-left"
+                className="py-1 text-left max-sm:first:pl-3"
                 aria-sort={ariaSort('player')}
               >
                 {sortHeader('player', 'Spieler')}
@@ -288,7 +288,7 @@ function MatchesComponent({
                     tip.joker || tip.lonelyHit ? 'bg-highlight' : undefined
                   }
                 >
-                  <TableCell className="w-full">
+                  <TableCell className="w-full max-sm:first:pl-2">
                     <Link
                       className="block py-1"
                       to="/$turnier/spieler"

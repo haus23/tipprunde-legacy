@@ -49,7 +49,10 @@ export function TableRow({ className, ...props }: TableRow.Props) {
 }
 
 // TODO: think about md:px-6
-const tableHeadStyles = 'p-2 font-medium md:px-4';
+// On phones the outer cells keep the page gutter; the table itself stays
+// edge to edge.
+const tableHeadStyles =
+  'p-2 font-medium max-sm:first:pl-4 max-sm:last:pr-4 md:px-4';
 
 namespace TableHead {
   export interface Props extends React.ComponentProps<'th'> {}
@@ -59,7 +62,7 @@ export function TableHead({ className, ...props }: TableHead.Props) {
   return <th className={cn(tableHeadStyles, className)} {...props} />;
 }
 
-const tableCellStyles = 'p-1 md:px-4';
+const tableCellStyles = 'p-1 max-sm:first:pl-4 max-sm:last:pr-4 md:px-4';
 
 namespace TableCell {
   export interface Props extends React.ComponentProps<'td'> {}
