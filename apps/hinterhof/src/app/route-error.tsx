@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { isRouteErrorResponse, useRouteError } from 'react-router';
+import Button from '#/components/button';
+import { Card, CardContent } from '#/components/card';
 
 function errorMessage(error: unknown): string {
   if (isRouteErrorResponse(error)) {
@@ -36,18 +38,18 @@ export default function RouteError() {
   }, [error]);
 
   return (
-    <div role="alert" className="p-8">
-      <h2 className="font-semibold text-xl">
-        Daten konnten nicht geladen werden
-      </h2>
-      <p className="mt-2 text-gray-600">{message}</p>
-      <button
-        type="button"
-        className="mt-4 rounded-md bg-indigo-600 px-3 py-2 text-sm text-white"
-        onClick={() => window.location.reload()}
-      >
-        Neu laden
-      </button>
+    <div role="alert" className="mx-auto max-w-7xl px-4 py-9 sm:px-6 md:px-8">
+      <Card>
+        <CardContent className="space-y-4">
+          <h2 className="font-semibold text-xl">
+            Daten konnten nicht geladen werden
+          </h2>
+          <p className="text-muted-foreground">{message}</p>
+          <Button variant="primary" onClick={() => window.location.reload()}>
+            Neu laden
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   );
 }

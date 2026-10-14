@@ -5,6 +5,7 @@ import * as v from 'valibot';
 
 import AppTitle from '#/components/app-title';
 import Button from '#/components/button';
+import { Card } from '#/components/card';
 import TextField from '#/components/form/text-field';
 import { signIn } from '#/firebase/auth';
 import { useSessionStore } from '#/state/session-store';
@@ -34,7 +35,7 @@ export default function Login() {
     <Navigate to="/" replace />
   ) : (
     <div className="flex flex-col">
-      <div className="flex h-16 shrink-0 bg-white px-4 shadow-sm sm:px-6 md:px-8">
+      <div className="flex h-16 shrink-0 border-border border-b bg-card px-4 sm:px-6 md:px-8">
         <div className="flex flex-1 items-center gap-x-2">
           <AppTitle />
           <h1 className="xs:hidden font-semibold text-2xl">runde.tips</h1>
@@ -45,12 +46,12 @@ export default function Login() {
           <div className="py-4">
             <div className="flex min-h-full flex-col justify-center py-12">
               <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <h2 className="mt-6 text-center font-semibold text-3xl text-gray-900 tracking-tight">
+                <h2 className="mt-6 text-center font-semibold text-3xl text-foreground tracking-tight">
                   Hinterhof
                 </h2>
               </div>
               <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white px-4 py-8 shadow-sm sm:rounded-lg sm:px-10">
+                <Card className="px-4 py-8 sm:px-10">
                   <Form of={loginForm} onSubmit={login} className="space-y-6">
                     <FormField of={loginForm} path={['email']}>
                       {(field) => (
@@ -86,12 +87,12 @@ export default function Login() {
                       </Button>
                     </div>
                     {error && (
-                      <div className="text-center text-red-500">
-                        <p>{error}</p>
-                      </div>
+                      <p role="alert" className="text-center text-destructive">
+                        {error}
+                      </p>
                     )}
                   </Form>
-                </div>
+                </Card>
               </div>
             </div>
           </div>
