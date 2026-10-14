@@ -1,5 +1,19 @@
 # hinterhof
 
+## 1.0.0
+
+### Major Changes
+
+- The legacy release of the @haus23/tipprunde-hinterhof app.
+
+### Minor Changes
+
+- [`24fdee5`](https://github.com/haus23/tipprunde-legacy/commit/24fdee53529d6605dbeb2e14e3524651b95d25f3) - Create missing teams and leagues right from the match dialog: a plus button next to the team and league fields opens the team or league dialog on top, and the new entry is selected in that field.
+
+### Patch Changes
+
+- [`5e72f59`](https://github.com/haus23/tipprunde-legacy/commit/5e72f59b26793d53876ed171894e914f367fd8ff) - Fix endless Firestore requests after a failed load (e.g. switching the championship while offline): the failure is kept and shown on the error page until a reload.
+
 ## 0.10.1
 
 ### Patch Changes
