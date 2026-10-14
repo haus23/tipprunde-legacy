@@ -11,6 +11,7 @@ import {
 import { Link } from '#/components/ui/link';
 import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
+import { Stats } from '#/components/ui/stats';
 import {
   Table,
   TableBody,
@@ -110,48 +111,27 @@ function PlayersComponent({
         <EmptyView>Noch keine Spiele.</EmptyView>
       ) : (
         <>
-          <div className="mx-4 mt-6 text-sm md:mx-auto">
-            <div className="flex w-full items-center justify-between">
-              {player.rank === undefined ? (
-                <p className="font-medium text-muted-foreground">
-                  Noch keine Wertung
-                </p>
-              ) : (
-                <div className="space-y-1">
-                  <p className="font-medium text-muted-foreground text-xs uppercase">
-                    Platz
-                  </p>
-                  <p className="text-center font-semibold">{`${player.rank}.`}</p>
-                </div>
-              )}
-              <div className="space-y-1">
-                <p className="px-4 font-medium text-muted-foreground text-xs uppercase">
-                  Spiele
-                </p>
-                <p className="text-center font-semibold">{`${playedMatches} (${matches.length})`}</p>
-              </div>
-              {player.rank !== undefined && (
-                <>
-                  <div className="space-y-1">
-                    <p className="font-medium text-muted-foreground text-xs uppercase">
-                      Punkte
-                    </p>
-                    <p className="text-center font-semibold">{player.points}</p>
-                  </div>
-                  <div className="space-y-1">
-                    <p className="font-medium text-muted-foreground text-xs uppercase">
-                      Schnitt
-                    </p>
-                    <p className="text-center font-semibold">
-                      {playedMatches && player.points !== undefined
-                        ? (player.points / playedMatches).toFixed(2)
-                        : ''}
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
+          <Stats
+            className="mx-4 mt-6 text-sm sm:mx-0"
+            stats={[
+              {
+                label: 'Platz',
+                value: player.rank === undefined ? '–' : `${player.rank}.`,
+              },
+              {
+                label: 'Spiele',
+                value: `${playedMatches} von ${matches.length}`,
+              },
+              { label: 'Punkte', value: player.points ?? '–' },
+              {
+                label: 'Schnitt',
+                value:
+                  playedMatches && player.points !== undefined
+                    ? (player.points / playedMatches).toFixed(2)
+                    : '–',
+              },
+            ]}
+          />
           <AccordionGroup
             multiple
             defaultValue={[currentRoundId]}

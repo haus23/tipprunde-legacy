@@ -14,6 +14,7 @@ import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
 import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
+import { Stats } from '#/components/ui/stats';
 import {
   Table,
   TableBody,
@@ -217,33 +218,32 @@ function MatchesComponent({
           }))}
         />
       </div>
-      <div className="mx-4 mt-6 max-w-3xl text-sm md:mx-auto">
-        <div className="flex w-full justify-between">
-          <div className="space-y-1">
-            <p className="font-medium text-xs uppercase">Wann</p>
-            <p className="font-semibold text-accent-strong">
-              {formatDate(match.date)}
-            </p>
-          </div>
-          <div className="space-y-1">
-            <p className="font-medium text-xs uppercase">Wo</p>
-            <p className="font-semibold text-accent-strong">
-              {leagues[match.leagueId]?.name}
-            </p>
-          </div>
-          <div className="space-y-1">
-            <p className="font-medium text-xs uppercase">Ergebnis</p>
-            <p className="text-center font-semibold text-accent-strong">
-              {match.result}
-            </p>
-          </div>
-          <div className="space-y-1">
-            <p className="font-medium text-xs uppercase">Punkte</p>
-            <p className="text-center font-semibold text-accent-strong">
-              {match.result ? (match.points ?? 0) : null}
-            </p>
-          </div>
-        </div>
+      <div className="mx-4 mt-6 text-sm sm:mx-0">
+        <Stats
+          stats={[
+            { label: 'Wann', value: formatDate(match.date) || '–' },
+            {
+              label: 'Wo',
+              value: leagues[match.leagueId] ? (
+                <>
+                  <span className="sm:hidden">
+                    {leagues[match.leagueId].shortname}
+                  </span>
+                  <span className="hidden sm:inline">
+                    {leagues[match.leagueId].name}
+                  </span>
+                </>
+              ) : (
+                '–'
+              ),
+            },
+            { label: 'Ergebnis', value: match.result || '–' },
+            {
+              label: 'Punkte',
+              value: match.result ? (match.points ?? 0) : '–',
+            },
+          ]}
+        />
         {rounds.find((r) => r.id === match.roundId)?.isDoubleRound ? (
           <div className="mt-4 flex items-center justify-center gap-x-2 text-muted-foreground">
             <span className="sm:hidden">
