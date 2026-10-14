@@ -1,13 +1,21 @@
 import type { Member } from '@haus23/tipprunde-model';
-import { PlusIcon } from 'lucide-react';
+import { ArrowRightIcon, PlusIcon } from 'lucide-react';
+import { useState } from 'react';
+import { Link } from 'react-router';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
+import RoundDialog from '#/components/current-data/round-dialog';
 import ToggleField from '#/components/form/toggle-field';
+import DataCard from '#/components/layout/data-card';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { roundParam } from '#/hooks/current-data/use-current-round';
+import { useMatches } from '#/hooks/current-data/use-matches';
 import { useRanking } from '#/hooks/current-data/use-ranking';
 import { useRecalculateChampionship } from '#/hooks/current-data/use-recalculate-championship';
+import { useRounds } from '#/hooks/current-data/use-rounds';
 import { usePlayers } from '#/hooks/master-data/use-players';
+import { focusRing } from '#/styles/focus';
 import { cn } from '#/utils/cn';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
@@ -20,6 +28,9 @@ export default function ChampionshipView() {
     useChampionshipPlayers();
   const { recalculateChampionship } = useRecalculateChampionship();
   const { calculateRanking } = useRanking();
+  const { rounds } = useRounds();
+  const { matches } = useMatches();
+  const [roundDialogOpen, setRoundDialogOpen] = useState(false);
 
   function togglePublishedState() {
     if (!currentChampionship) return;
@@ -126,6 +137,89 @@ export default function ChampionshipView() {
           />
         </CardContent>
       </Card>
+      <DataCard
+        title="Runden"
+        description="Runden des Turniers. Spiele werden einer Runde zugeordnet."
+        action={
+          <Button
+            variant="primary"
+            className="max-sm:w-9 max-sm:px-0"
+            onClick={() => setRoundDialogOpen(true)}
+          >
+            <PlusIcon
+              className="size-4 sm:mr-1.5 sm:-ml-1"
+              aria-hidden="true"
+            />
+            <span className="max-sm:sr-only">Neue Runde</span>
+          </Button>
+        }
+      >
+        {rounds.length === 0 ? (
+          <p className="px-4 py-6 text-center text-muted-foreground text-sm sm:px-6">
+            Noch keine Runde angelegt.
+          </p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-border">
+              <thead className="bg-surface-subtle">
+                <tr>
+                  <th
+                    scope="col"
+                    className="py-3.5 pr-2 pl-4 text-left font-semibold text-foreground text-sm sm:pl-6"
+                  >
+                    Runde
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-2 py-3.5 text-right font-semibold text-foreground text-sm"
+                  >
+                    Spiele
+                  </th>
+                  <th scope="col" className="py-3.5 pr-4 pl-2 sm:pr-6">
+                    <span className="sr-only">Spiele öffnen</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border bg-card">
+                {rounds.map((round) => (
+                  <tr key={round.id}>
+                    <td className="py-3 pr-2 pl-4 text-sm sm:pl-6">
+                      <span className="inline-flex items-center gap-x-2">
+                        <span className="font-medium tabular-nums">
+                          Runde {round.nr}
+                        </span>
+                        {round.isDoubleRound && (
+                          <span className="rounded-full bg-primary/10 px-2 py-0.5 font-medium text-primary text-xs">
+                            Doppelte Punkte
+                          </span>
+                        )}
+                      </span>
+                    </td>
+                    <td className="px-2 py-3 text-right text-muted-foreground text-sm tabular-nums">
+                      {matches.filter((m) => m.roundId === round.id).length}
+                    </td>
+                    <td className="py-2 pr-4 pl-2 text-right sm:pr-6">
+                      <Link
+                        to={`../spiele?${roundParam}=${round.nr}`}
+                        relative="path"
+                        aria-label={`Spiele der Runde ${round.nr}`}
+                        title="Spiele der Runde"
+                        className={cn(
+                          focusRing,
+                          'inline-flex size-9 items-center justify-center rounded-md border border-input bg-secondary text-secondary-foreground shadow-xs transition-colors hover:bg-accent hover:text-accent-foreground motion-reduce:transition-none',
+                        )}
+                      >
+                        <ArrowRightIcon className="size-4" aria-hidden="true" />
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </DataCard>
+      <RoundDialog open={roundDialogOpen} onOpenChange={setRoundDialogOpen} />
       <Card>
         <CardHeader>
           <CardTitle>Mitspieler</CardTitle>

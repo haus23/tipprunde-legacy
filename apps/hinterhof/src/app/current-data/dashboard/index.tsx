@@ -5,7 +5,6 @@ import type {
   Round,
 } from '@haus23/tipprunde-model';
 import {
-  CalendarIcon,
   Grid2X2PlusIcon,
   MegaphoneIcon,
   ScaleIcon,
@@ -57,14 +56,6 @@ const items: {
     background: 'bg-teaser-matches',
     route: './spiele',
     visible: (_championship, rounds) => rounds.length > 0,
-  },
-  {
-    title: 'Neue Runde',
-    description: 'Lege eine neue (Monats-) Runde an',
-    icon: CalendarIcon,
-    background: 'bg-teaser-round',
-    route: './neue-runde',
-    visible: (championship) => !!championship,
   },
   {
     title: 'Zusatzpunkte',

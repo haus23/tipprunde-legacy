@@ -63,12 +63,6 @@ export default function createAppRoutes(): RouteObject[] {
                 () => import('./app/current-data/extra-points'),
               ),
             },
-            {
-              path: 'neue-runde',
-              lazy: lazyComponent(
-                () => import('./app/current-data/dashboard/create-round'),
-              ),
-            },
           ],
         },
         {
