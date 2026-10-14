@@ -1,9 +1,9 @@
-import type { Member } from '@haus23/tipprunde-model';
 import { ArrowRightIcon, PlusIcon } from 'lucide-react';
 import { useId, useState } from 'react';
 import { Link } from 'react-router';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
+import ChampionshipPlayerDialog from '#/components/current-data/championship-player-dialog';
 import RoundDialog from '#/components/current-data/round-dialog';
 import ToggleField from '#/components/form/toggle-field';
 import DataCard from '#/components/layout/data-card';
@@ -54,13 +54,13 @@ export default function ChampionshipView() {
   const { players } = usePlayers();
   const { currentChampionship, updateCurrentChampionship } =
     useCurrentChampionship();
-  const { championshipPlayers, addChampionshipPlayer } =
-    useChampionshipPlayers();
+  const { championshipPlayers } = useChampionshipPlayers();
   const { recalculateChampionship } = useRecalculateChampionship();
   const { calculateRanking } = useRanking();
   const { rounds } = useRounds();
   const { matches } = useMatches();
   const [roundDialogOpen, setRoundDialogOpen] = useState(false);
+  const [playerDialogOpen, setPlayerDialogOpen] = useState(false);
   const { rules } = useRules();
   const ruleSet = rules.find(({ id }) => id === currentChampionship?.rulesId);
 
@@ -116,26 +116,10 @@ export default function ChampionshipView() {
 
   const attendingPlayers = championshipPlayers
     .map((cp) => {
-      const player = players.find((p) => p.id === cp.playerId) as Member;
+      const player = players.find((p) => p.id === cp.playerId);
       return { ...cp, player };
     })
     .sort((p1, p2) => p1.nr - p2.nr);
-
-  const remainingPlayers = players.filter(
-    (p) => championshipPlayers.findIndex((cp) => cp.playerId === p.id) === -1,
-  );
-
-  const hasRemainingPlayers = true;
-
-  function addPlayer(id: string, name: string) {
-    if (!currentChampionship) return;
-    notify(
-      addChampionshipPlayer(id).then(() =>
-        invalidateCache([{ type: 'championship', id: currentChampionship.id }]),
-      ),
-      `${name} hinzugefügt.`,
-    );
-  }
 
   function recalculate() {
     notify(
@@ -263,63 +247,66 @@ export default function ChampionshipView() {
         )}
       </DataCard>
       <RoundDialog open={roundDialogOpen} onOpenChange={setRoundDialogOpen} />
-      <Card>
-        <CardHeader>
-          <CardTitle>Mitspieler</CardTitle>
-        </CardHeader>
-        <CardContent className="flex divide-x divide-border p-2 sm:p-4">
-          <div
-            className={cn(
-              hasRemainingPlayers
-                ? 'basis-1/2 pr-2 sm:pr-4'
-                : 'grow justify-self-center',
-            )}
+      <DataCard
+        title="Mitspieler"
+        description="Wer in diesem Turnier mittippt."
+        action={
+          <Button
+            variant="primary"
+            className="max-sm:w-9 max-sm:px-0"
+            onClick={() => setPlayerDialogOpen(true)}
           >
-            <h4 className="text-center font-medium">Wer ist dabei?</h4>
-            <div className="h-full w-full overflow-y-auto">
-              <ul className="relative z-0 mt-2 divide-y divide-border">
-                {attendingPlayers.map((p) => (
-                  <li
-                    className="flex h-11 select-none items-center px-2 sm:px-4"
-                    key={p.id}
+            <PlusIcon
+              className="size-4 sm:mr-1.5 sm:-ml-1"
+              aria-hidden="true"
+            />
+            <span className="max-sm:sr-only">Mitspieler</span>
+          </Button>
+        }
+      >
+        {attendingPlayers.length === 0 ? (
+          <p className="px-4 py-6 text-center text-muted-foreground text-sm sm:px-6">
+            Noch keine Mitspieler.
+          </p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-border">
+              <thead className="bg-surface-subtle">
+                <tr>
+                  <th
+                    scope="col"
+                    className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm sm:pl-6"
                   >
-                    <span className="min-w-0 truncate" title={p.player.name}>
-                      {p.player.name}
-                    </span>
-                  </li>
+                    Nr
+                  </th>
+                  <th
+                    scope="col"
+                    className="py-3.5 pr-4 pl-2 text-left font-semibold text-foreground text-sm sm:pr-6"
+                  >
+                    Name
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border bg-card">
+                {attendingPlayers.map((p) => (
+                  <tr key={p.id}>
+                    <td className="py-3 pr-2 pl-4 text-right text-muted-foreground text-sm tabular-nums sm:pl-6">
+                      {p.nr}
+                    </td>
+                    <td className="py-3 pr-4 pl-2 font-medium text-sm sm:pr-6">
+                      {p.player?.name}
+                    </td>
+                  </tr>
                 ))}
-              </ul>
-            </div>
+              </tbody>
+            </table>
           </div>
-          {hasRemainingPlayers && (
-            <div className="basis-1/2 pl-2 sm:pl-4">
-              <h4 className="text-center font-medium">Wer (noch) nicht?</h4>
-              <div className="h-full w-full overflow-y-auto">
-                <ul className="relative z-0 mt-2 divide-y divide-border">
-                  {remainingPlayers.map((p) => (
-                    <li
-                      className="flex h-11 select-none items-center px-2 sm:px-4"
-                      key={p.id}
-                    >
-                      <Button
-                        size="icon"
-                        className="h-7 w-7 shrink-0 rounded-full"
-                        onClick={() => addPlayer(p.id, p.name)}
-                        aria-label={`${p.name} hinzufügen`}
-                      >
-                        <PlusIcon className="h-4 w-4" aria-hidden="true" />
-                      </Button>
-                      <span className="ml-4 min-w-0 truncate" title={p.name}>
-                        {p.name}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+        )}
+      </DataCard>
+      <ChampionshipPlayerDialog
+        open={playerDialogOpen}
+        onOpenChange={setPlayerDialogOpen}
+      />
       <Card>
         <CardHeader>
           <CardTitle>Wartung</CardTitle>
