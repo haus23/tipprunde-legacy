@@ -4,6 +4,8 @@ import { Suspense, use, useEffect } from 'react';
 import { Navigate, Outlet, useLocation, useParams } from 'react-router';
 
 import NotFound from '#/app/not-found';
+import { Card, CardContent } from '#/components/card';
+import LoadingIndicator from '#/components/loading-indicator';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useMatches } from '#/hooks/current-data/use-matches';
@@ -62,7 +64,13 @@ export default function CurrentShell() {
 
   return (
     <Suspense
-      fallback={<p className="mt-5 text-muted-foreground">Lade Turnier ...</p>}
+      fallback={
+        <Card className="mt-5">
+          <CardContent>
+            <LoadingIndicator message="Lade Turnier …" />
+          </CardContent>
+        </Card>
+      }
     >
       {/* Pages keep their state across URL changes; a new key starts them
           fresh, so forms never mix the old and the new championship. */}
