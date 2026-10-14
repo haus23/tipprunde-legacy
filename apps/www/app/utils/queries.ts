@@ -6,7 +6,6 @@ import {
   ChampionshipPlayersSchema,
   ChampionshipPlayerTipsSchema,
   ChampionshipSchema,
-  MemberSchema,
 } from '@haus23/tipprunde-model';
 import { queryOptions } from '@tanstack/react-query';
 import * as v from 'valibot';
@@ -14,9 +13,21 @@ import * as v from 'valibot';
 const backendHost = import.meta.env.VITE_UNTERBAU_SERVER;
 const baseUrl = `${backendHost}/api/v1`;
 
-async function fetchChampionships() {
-  const response = await fetch(`${baseUrl}/championships`);
-  return v.parse(v.array(ChampionshipSchema), await response.json());
+// Loads and validates a JSON resource of the backend. Failed responses throw
+// instead of being parsed, so the error page shows the real cause.
+async function fetchJson<TSchema extends v.GenericSchema>(
+  path: string,
+  schema: TSchema,
+): Promise<v.InferOutput<TSchema>> {
+  const response = await fetch(`${baseUrl}${path}`);
+  if (!response.ok) {
+    throw new Error(`${response.status} ${response.statusText}: ${path}`);
+  }
+  return v.parse(schema, await response.json());
+}
+
+function fetchChampionships() {
+  return fetchJson('/championships', v.array(ChampionshipSchema));
 }
 
 export const championshipsQuery = () =>
@@ -25,22 +36,11 @@ export const championshipsQuery = () =>
     queryFn: fetchChampionships,
   });
 
-async function fetchAccounts() {
-  const response = await fetch(`${baseUrl}/accounts`);
-  return v.parse(v.array(MemberSchema), await response.json());
-}
-
-export const accountsQuery = () =>
-  queryOptions({
-    queryKey: ['accounts'],
-    queryFn: fetchAccounts,
-  });
-
-async function fetchPlayers(championshipId: string) {
-  const response = await fetch(
-    `${baseUrl}/championships/${championshipId}/players`,
+function fetchPlayers(championshipId: string) {
+  return fetchJson(
+    `/championships/${championshipId}/players`,
+    ChampionshipPlayersSchema,
   );
-  return v.parse(ChampionshipPlayersSchema, await response.json());
 }
 
 export const playersQuery = (championshipId: string) =>
@@ -49,11 +49,11 @@ export const playersQuery = (championshipId: string) =>
     queryFn: () => fetchPlayers(championshipId),
   });
 
-async function fetchMatches(championshipId: string) {
-  const response = await fetch(
-    `${baseUrl}/championships/${championshipId}/matches`,
+function fetchMatches(championshipId: string) {
+  return fetchJson(
+    `/championships/${championshipId}/matches`,
+    ChampionshipMatchesSchema,
   );
-  return v.parse(ChampionshipMatchesSchema, await response.json());
 }
 
 export const matchesQuery = (championshipId: string) =>
@@ -62,12 +62,11 @@ export const matchesQuery = (championshipId: string) =>
     queryFn: () => fetchMatches(championshipId),
   });
 
-async function fetchPlayerTips(championshipId: string, accountId: string) {
-  const query = `?name=${accountId}`;
-
-  const url = `${baseUrl}/championships/${championshipId}/player-tips${query}`;
-  const response = await fetch(url);
-  return v.parse(ChampionshipPlayerTipsSchema, await response.json());
+function fetchPlayerTips(championshipId: string, accountId: string) {
+  return fetchJson(
+    `/championships/${championshipId}/player-tips?name=${encodeURIComponent(accountId)}`,
+    ChampionshipPlayerTipsSchema,
+  );
 }
 
 export const playerTipsQuery = (championshipId: string, accountId: string) =>
@@ -76,12 +75,12 @@ export const playerTipsQuery = (championshipId: string, accountId: string) =>
     queryFn: () => fetchPlayerTips(championshipId, accountId),
   });
 
-async function fetchMatchTips(championshipId: string, nr: number | null) {
+function fetchMatchTips(championshipId: string, nr: number | null) {
   const query = nr ? `?nr=${nr}` : '';
-
-  const url = `${baseUrl}/championships/${championshipId}/match-tips${query}`;
-  const response = await fetch(url);
-  return v.parse(ChampionshipMatchTipsSchema, await response.json());
+  return fetchJson(
+    `/championships/${championshipId}/match-tips${query}`,
+    ChampionshipMatchTipsSchema,
+  );
 }
 
 export const matchTipsQuery = (championshipId: string, nr: number | null) =>
@@ -93,10 +92,10 @@ export const matchTipsQuery = (championshipId: string, nr: number | null) =>
 async function fetchCurrentTips(championship: Championship) {
   if (championship.completed) return [];
 
-  const response = await fetch(
-    `${baseUrl}/championships/${championship.id}/current-tips`,
+  return fetchJson(
+    `/championships/${championship.id}/current-tips`,
+    ChampionshipCurrentTipsSchema,
   );
-  return v.parse(ChampionshipCurrentTipsSchema, await response.json());
 }
 
 export const currentTipsQuery = (championship: Championship) =>

@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RouterProvider, createRouter } from '@tanstack/react-router';
+import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { createRoot } from 'react-dom/client';
 
 export const queryClient = new QueryClient({
@@ -10,7 +10,9 @@ export const queryClient = new QueryClient({
   },
 });
 
+import { ErrorComponent } from './components/app/error';
 import { routeTree } from './routeTree.gen';
+
 const router = createRouter({
   defaultPreload: 'intent',
   routeTree,
@@ -18,6 +20,7 @@ const router = createRouter({
   scrollRestorationBehavior: 'smooth',
   getScrollRestorationKey: (location) => location.pathname,
   context: { queryClient },
+  defaultErrorComponent: ErrorComponent,
 });
 
 declare module '@tanstack/react-router' {
