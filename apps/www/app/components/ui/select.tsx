@@ -73,12 +73,12 @@ export function Select({
         aria-label={ariaLabel}
         className={cn(
           focusVisibleStyles,
-          'inline-flex grow items-center justify-between border border-accent-border bg-primary py-1 pr-2 pl-4 text-primary-foreground transition-colors hover:bg-primary-hover active:brightness-110 md:grow-0 md:basis-3/4 lg:basis-2/3',
+          'inline-flex grow items-center justify-between border border-accent-border bg-background py-1 pr-2 pl-4 font-medium text-foreground transition-colors hover:bg-highlight data-popup-open:bg-highlight md:grow-0 md:basis-3/4 lg:basis-2/3',
         )}
       >
         <BaseSelect.Value />
         <BaseSelect.Icon>
-          <ChevronDownIcon className="size-5" aria-hidden="true" />
+          <ChevronDownIcon className="size-5 text-accent" aria-hidden="true" />
         </BaseSelect.Icon>
       </BaseSelect.Trigger>
       <BaseSelect.Portal>

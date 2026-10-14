@@ -164,16 +164,16 @@ function MatchesComponent({
     return (
       <Button
         onClick={() => toggleSort(column)}
-        className="p-1 text-xs uppercase"
-        variant="primary"
+        className="gap-x-1 p-1 font-medium text-xs uppercase hover:bg-selected"
+        variant="plain"
       >
         <span>{label}</span>
         {direction === 'asc' ? (
-          <ChevronUpIcon className="size-4" />
+          <ChevronUpIcon className="size-4" aria-hidden="true" />
         ) : direction === 'desc' ? (
-          <ChevronDownIcon className="size-4" />
+          <ChevronDownIcon className="size-4" aria-hidden="true" />
         ) : (
-          <ChevronsUpDownIcon className="size-4" />
+          <ChevronsUpDownIcon className="size-4 opacity-50" aria-hidden="true" />
         )}
       </Button>
     );
