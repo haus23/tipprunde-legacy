@@ -1,6 +1,10 @@
 /**
  * Lädt Daten pro Key genau einmal und liefert dafür ein stabiles Promise für
  * React 19 `use()`. Verspätete Antworten alter Keys werden verworfen.
+ * Auch ein Fehler bleibt gemerkt: Jedes erneute Rendern bekommt dasselbe
+ * abgelehnte Promise, statt eine neue Anfrage zu starten (sonst entsteht
+ * bei einem Ladefehler eine Endlosschleife). Neu versucht wird über
+ * `reload`, einen anderen Key oder ein Neuladen der Seite.
  */
 export function loadSource<K, D>(
   load: (key: K) => Promise<D>,
@@ -15,15 +19,9 @@ export function loadSource<K, D>(
       key,
       promise: Promise.resolve(),
     };
-    entry.promise = load(key).then(
-      (data) => {
-        if (current === entry) apply(data, key);
-      },
-      (error: unknown) => {
-        if (current === entry) current = undefined;
-        throw error;
-      },
-    );
+    entry.promise = load(key).then((data) => {
+      if (current === entry) apply(data, key);
+    });
     current = entry;
     return entry.promise;
   }
