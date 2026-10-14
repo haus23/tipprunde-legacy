@@ -1,7 +1,9 @@
 import type { Championship } from '@haus23/tipprunde-model';
+import { championshipIdRegEx } from '@haus23/tipprunde-model';
 import { Suspense, use, useEffect } from 'react';
-import { Navigate, Outlet } from 'react-router';
+import { Outlet, useParams } from 'react-router';
 
+import NotFound from '#/app/not-found';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { ensureCurrentData } from '#/state/current-data-store';
 import { useSessionStore } from '#/state/session-store';
@@ -16,6 +18,7 @@ function CurrentDataOutlet({
 }
 
 export default function CurrentShell() {
+  const { turnier } = useParams();
   const { currentChampionship } = useCurrentChampionship();
   const setCurrentChampionshipId = useSessionStore(
     (state) => state.setCurrentChampionshipId,
@@ -26,8 +29,18 @@ export default function CurrentShell() {
     if (currentChampionship) setCurrentChampionshipId(currentChampionship.id);
   }, [currentChampionship, setCurrentChampionshipId]);
 
-  // Unknown championship in the URL: start over with the latest one
-  if (!currentChampionship) return <Navigate to="/" replace />;
+  // The first path segment can be any unknown page, too
+  if (!currentChampionship) {
+    return (
+      <NotFound
+        message={
+          turnier && championshipIdRegEx.test(turnier)
+            ? `Ein Turnier „${turnier}“ gibt es nicht.`
+            : undefined
+        }
+      />
+    );
+  }
 
   return (
     <div className="relative">

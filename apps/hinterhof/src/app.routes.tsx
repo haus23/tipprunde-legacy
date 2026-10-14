@@ -112,6 +112,10 @@ export default function createAppRoutes(): RouteObject[] {
           path: 'logout',
           lazy: lazyComponent(() => import('./app/logout')),
         },
+        {
+          path: '*',
+          lazy: lazyComponent(() => import('./app/not-found')),
+        },
       ],
     },
   ];
