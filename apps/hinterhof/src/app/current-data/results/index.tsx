@@ -12,6 +12,7 @@ import * as v from 'valibot';
 import Button from '#/components/button';
 import ResultField from '#/components/form/result-field';
 import DataCard from '#/components/layout/data-card';
+import EmptyTableRow from '#/components/layout/empty-table-row';
 import RoundNavigator from '#/components/round-navigator';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useCurrentRound } from '#/hooks/current-data/use-current-round';
@@ -143,6 +144,11 @@ export default function ResultsView() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border bg-card">
+                {!fixtures.some((m) => m.roundId === currentRound?.id) && (
+                  <EmptyTableRow colSpan={3}>
+                    Noch keine Spiele in dieser Runde.
+                  </EmptyTableRow>
+                )}
                 {resultFields.items.map((fieldId, ix) =>
                   // No match for the row while another championship loads
                   fixtures[ix]?.roundId === currentRound?.id ? (

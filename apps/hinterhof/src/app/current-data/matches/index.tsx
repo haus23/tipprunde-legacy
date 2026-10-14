@@ -13,6 +13,7 @@ import ComboboxField from '#/components/form/combobox-field';
 import DateField from '#/components/form/date-field';
 import FormDialog from '#/components/form-dialog';
 import DataCard from '#/components/layout/data-card';
+import EmptyTableRow from '#/components/layout/empty-table-row';
 import RoundNavigator from '#/components/round-navigator';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
 import { useCurrentRound } from '#/hooks/current-data/use-current-round';
@@ -165,6 +166,8 @@ export default function MatchesView() {
     }
   }
 
+  const roundMatches = matches.filter((m) => m.roundId === currentRound?.id);
+
   return (
     <div className="mt-5">
       <FormDialog
@@ -306,53 +309,56 @@ export default function MatchesView() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-border bg-card pr-1">
-              {matches
-                .filter((m) => m.roundId === currentRound?.id)
-                .map((m) => (
-                  <tr key={m.id}>
-                    <td className="whitespace-nowrap py-4 pr-2 pl-4 text-muted-foreground text-sm sm:pl-6">
-                      {m.nr}
-                    </td>
-                    <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:table-cell sm:pr-6 lg:pr-8">
-                      <span className="hidden lg:inline">
-                        {formatDate(m.date)}
-                      </span>
-                      <span className="lg:hidden">
-                        {formatDate(m.date, true)}
-                      </span>
-                    </td>
-                    <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:table-cell sm:pr-6 lg:pr-8">
-                      <span className="hidden lg:inline">
-                        {leaguesHash[m.leagueId]?.name || ''}
-                      </span>
-                      <span className="lg:hidden">
-                        {leaguesHash[m.leagueId]?.shortname || ''}
-                      </span>
-                    </td>
-                    <td className="py-4 pr-4 pl-2 text-muted-foreground text-sm sm:pr-6 lg:pr-8">
-                      <span className="hidden lg:inline">
-                        {`${teamsHash[m.hometeamId]?.name || ''} - ${
-                          teamsHash[m.awayteamId]?.name || ''
-                        }`.replace(/^ - $/, '')}
-                      </span>
-                      <span className="lg:hidden">
-                        {`${teamsHash[m.hometeamId]?.shortname || ''} - ${
-                          teamsHash[m.awayteamId]?.shortname || ''
-                        }`.replace(/^ - $/, '')}
-                      </span>
-                    </td>
-                    <td className="py-2 pr-4 pl-2 text-right sm:pr-6">
-                      <Button
-                        size="icon"
-                        aria-label={`Spiel ${m.nr} bearbeiten`}
-                        onClick={() => beginEdit(m)}
-                      >
-                        <PencilIcon className="h-4 w-4" aria-hidden="true" />
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+            <tbody className="divide-y divide-border bg-card">
+              {roundMatches.length === 0 && (
+                <EmptyTableRow colSpan={5}>
+                  Noch keine Spiele in dieser Runde.
+                </EmptyTableRow>
+              )}
+              {roundMatches.map((m) => (
+                <tr key={m.id}>
+                  <td className="whitespace-nowrap py-4 pr-2 pl-4 text-muted-foreground text-sm sm:pl-6">
+                    {m.nr}
+                  </td>
+                  <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:table-cell sm:pr-6 lg:pr-8">
+                    <span className="hidden lg:inline">
+                      {formatDate(m.date)}
+                    </span>
+                    <span className="lg:hidden">
+                      {formatDate(m.date, true)}
+                    </span>
+                  </td>
+                  <td className="hidden whitespace-nowrap py-4 pr-4 pl-2 text-muted-foreground text-sm sm:table-cell sm:pr-6 lg:pr-8">
+                    <span className="hidden lg:inline">
+                      {leaguesHash[m.leagueId]?.name || ''}
+                    </span>
+                    <span className="lg:hidden">
+                      {leaguesHash[m.leagueId]?.shortname || ''}
+                    </span>
+                  </td>
+                  <td className="py-4 pr-4 pl-2 text-muted-foreground text-sm sm:pr-6 lg:pr-8">
+                    <span className="hidden lg:inline">
+                      {`${teamsHash[m.hometeamId]?.name || ''} - ${
+                        teamsHash[m.awayteamId]?.name || ''
+                      }`.replace(/^ - $/, '')}
+                    </span>
+                    <span className="lg:hidden">
+                      {`${teamsHash[m.hometeamId]?.shortname || ''} - ${
+                        teamsHash[m.awayteamId]?.shortname || ''
+                      }`.replace(/^ - $/, '')}
+                    </span>
+                  </td>
+                  <td className="py-2 pr-4 pl-2 text-right sm:pr-6">
+                    <Button
+                      size="icon"
+                      aria-label={`Spiel ${m.nr} bearbeiten`}
+                      onClick={() => beginEdit(m)}
+                    >
+                      <PencilIcon className="h-4 w-4" aria-hidden="true" />
+                    </Button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

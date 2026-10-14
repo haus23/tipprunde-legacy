@@ -20,6 +20,7 @@ import Button from '#/components/button';
 import ResultField from '#/components/form/result-field';
 import Select from '#/components/form/select';
 import DataCard from '#/components/layout/data-card';
+import EmptyTableRow from '#/components/layout/empty-table-row';
 import RoundNavigator from '#/components/round-navigator';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
@@ -295,6 +296,11 @@ export default function TipsView() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border bg-card">
+                {!fixtures.some((m) => m.roundId === currentRound?.id) && (
+                  <EmptyTableRow colSpan={4}>
+                    Noch keine Spiele in dieser Runde.
+                  </EmptyTableRow>
+                )}
                 {tipFields.items.map((fieldId, ix) =>
                   // No match for the row while another championship loads
                   fixtures[ix]?.roundId === currentRound?.id ? (
