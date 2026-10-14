@@ -120,12 +120,10 @@ function PlayersComponent({
               className="block py-1"
             >
               <span className="hidden md:inline">
-                {teams[row.original.hometeamId]?.name || '(noch offen)'} -
-                {teams[row.original.awayteamId]?.name || '(noch offen)'}
+                {`${teams[row.original.hometeamId]?.name || '(noch offen)'} – ${teams[row.original.awayteamId]?.name || '(noch offen)'}`}
               </span>
               <span className="md:hidden">
-                {teams[row.original.hometeamId]?.shortname || '(noch offen)'} -
-                {teams[row.original.awayteamId]?.shortname || '(noch offen)'}
+                {`${teams[row.original.hometeamId]?.shortname || '(noch offen)'} – ${teams[row.original.awayteamId]?.shortname || '(noch offen)'}`}
               </span>
             </Link>
           ),

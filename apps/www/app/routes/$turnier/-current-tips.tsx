@@ -44,7 +44,7 @@ export function CurrentTips({
               >
                 {!m.hometeam && !m.awayteam
                   ? '(noch offen)'
-                  : `${m.hometeam || '(noch offen)'} - ${m.awayteam || '(noch offen)'}`}
+                  : `${m.hometeam || '(noch offen)'} – ${m.awayteam || '(noch offen)'}`}
               </Link>
               <div
                 className={[
