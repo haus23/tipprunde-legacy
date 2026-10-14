@@ -1,110 +1,54 @@
+import { Popover as BasePopover } from '@base-ui/react/popover';
 import { InfoIcon } from 'lucide-react';
-import { useLayoutEffect, useRef, useState } from 'react';
-import type { PopoverProps } from 'react-aria-components';
-import { OverlayArrow, Popover as _Popover } from 'react-aria-components';
-import { tv } from 'tailwind-variants';
+import { cn } from '#/utils/cn';
+import { focusVisibleStyles } from './_styles';
 
-import { Button } from './button';
-
-const popoverStyles = tv({
-  base: [
-    'group rounded-md border bg-background shadow-md dark:bg-gray-2',
-    'data-[placement=top]:translate-y-1',
-    'data-[placement=bottom]:-translate-y-2 data-[placement=bottom]:mt-0.5',
-    'data-[placement=left]:mr-1.5 data-[placement=left]:translate-x-2',
-    'data-[placement=right]:-translate-x-2 data-[placement=right]:ml-1.5',
-  ],
-});
-const overlayArrowStyles = tv({
-  base: [
-    'block fill-background stroke-1 stroke-gray-6',
-    'group-data-[placement=bottom]:rotate-180',
-    'group-data-[placement=left]:-rotate-90',
-    'group-data-[placement=right]:rotate-90',
-  ],
-});
+// Small info popover behind an icon button. Click, tap and keyboard open it;
+// Escape, a click outside or the trigger close it again.
 
 namespace Popover {
-  export interface Props extends PopoverProps {
-    triggerIcon?: React.ElementType;
-    triggerLabel?: string;
+  export interface Props {
     children: React.ReactNode;
+    offset?: number;
+    triggerIcon?: React.ElementType;
+    triggerLabel: string;
   }
 }
 
 export function Popover({
   children,
+  offset = 6,
   triggerIcon,
   triggerLabel,
-  ...props
 }: Popover.Props) {
   const TriggerIcon = triggerIcon ?? InfoIcon;
 
-  const [isOpen, setOpen] = useState(false);
-
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const popoverRef = useRef<HTMLElement>(null);
-
-  useLayoutEffect(() => {
-    if (isOpen) {
-      function handleOutsideClick(ev: PointerEvent) {
-        if (
-          triggerRef.current &&
-          !triggerRef.current.contains(ev.target as Node) &&
-          popoverRef.current &&
-          !popoverRef.current.contains(ev.target as Node)
-        ) {
-          setOpen(false);
-        }
-      }
-      window.addEventListener('pointerdown', handleOutsideClick, {
-        capture: true,
-      });
-
-      return () => {
-        window.removeEventListener('pointerdown', handleOutsideClick, {
-          capture: true,
-        });
-      };
-    }
-  }, [isOpen]);
-
   return (
-    <>
-      <Button
-        ref={triggerRef}
-        onPress={() => setOpen(!isOpen)}
-        variant="plain"
-        className="p-1.5 text-gray-11"
+    <BasePopover.Root>
+      <BasePopover.Trigger
         aria-label={triggerLabel}
+        className={cn(
+          focusVisibleStyles,
+          'inline-flex items-center justify-center p-1.5 text-gray-11 hover:text-gray-12 data-popup-open:text-accent-11',
+        )}
       >
-        <TriggerIcon className="size-5" />
-      </Button>
-      <_Popover
-        ref={popoverRef}
-        triggerRef={triggerRef}
-        isOpen={isOpen}
-        onOpenChange={setOpen}
-        isNonModal
-        offset={6}
-        placement="top"
-        className={popoverStyles()}
-        {...props}
-      >
-        <OverlayArrow>
-          <svg
-            role="img"
-            aria-label="Arrow pointing to trigger"
-            width={12}
-            height={12}
-            viewBox="0 0 12 12"
-            className={overlayArrowStyles()}
-          >
-            <path d="M0 0 L6 6 L12 0" />
-          </svg>
-        </OverlayArrow>
-        {children}
-      </_Popover>
-    </>
+        <TriggerIcon className="size-5" aria-hidden="true" />
+      </BasePopover.Trigger>
+      <BasePopover.Portal>
+        <BasePopover.Positioner side="top" sideOffset={offset} className="z-20">
+          <BasePopover.Popup className="rounded-md border bg-background text-gray-12 shadow-md outline-hidden transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none dark:bg-gray-2">
+            <BasePopover.Arrow className="data-[side=bottom]:-top-2 data-[side=left]:-right-3 data-[side=top]:-bottom-2 data-[side=right]:-left-3 data-[side=bottom]:rotate-180 data-[side=left]:-rotate-90 data-[side=right]:rotate-90">
+              <svg width={12} height={8} viewBox="0 0 12 8" aria-hidden="true">
+                <path
+                  d="M0 0 L6 6 L12 0"
+                  className="fill-background stroke-gray-6 dark:fill-gray-2"
+                />
+              </svg>
+            </BasePopover.Arrow>
+            {children}
+          </BasePopover.Popup>
+        </BasePopover.Positioner>
+      </BasePopover.Portal>
+    </BasePopover.Root>
   );
 }

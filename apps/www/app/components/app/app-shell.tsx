@@ -47,9 +47,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setChampionshipSelectOpen((prev) => !prev);
-      } else if (e.key === 'Escape') {
-        e.preventDefault();
-        setChampionshipSelectOpen(false);
       }
     };
 
@@ -66,7 +63,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         setChampionshipSelectOpen,
       }}
     >
-      <div className="releative isolate min-h-svh">
+      <div className="relative isolate min-h-svh">
         <AppHeader />
         <AppSidebar />
         <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">

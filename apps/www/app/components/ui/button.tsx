@@ -1,62 +1,43 @@
-import {
-  type ButtonProps,
-  type PressEvent,
-  Button as _Button,
-} from 'react-aria-components';
-import { type VariantProps, tv } from 'tailwind-variants';
-
-import type { RefObject } from 'react';
+import { cn } from '#/utils/cn';
 import { componentHoverStyles, focusVisibleStyles } from './_styles';
 import { useActionContext } from './action-context';
 
-const buttonStyles = tv({
-  base: [
-    focusVisibleStyles,
-    'inline-flex items-center justify-center font-medium text-sm transition-colors',
-    'p-2 font-semibold',
-  ],
-  variants: {
-    variant: {
-      plain: '',
-      primary:
-        'border bg-accent-9 px-4 text-white transition-transform hover:bg-accent-10 active:scale-[0.98]',
-      secondary: '',
-      ghost: componentHoverStyles,
-    },
-  },
-  defaultVariants: {
-    variant: 'primary',
-  },
-});
+const variants = {
+  plain: '',
+  primary:
+    'border bg-accent-9 px-4 text-white transition-transform hover:bg-accent-10 active:scale-[0.98]',
+  secondary: '',
+  ghost: componentHoverStyles,
+};
 
 namespace Button {
-  export interface Props
-    extends ButtonProps,
-      VariantProps<typeof buttonStyles> {
-    className?: string;
-    ref?: RefObject<HTMLButtonElement | null>;
+  export interface Props extends React.ComponentProps<'button'> {
+    variant?: keyof typeof variants;
   }
 }
 
 export function Button({
   className,
-  variant,
-  onPress,
+  variant = 'primary',
+  onClick,
   type = 'button',
   ...props
 }: Button.Props) {
   const ctx = useActionContext();
 
-  function handlePress(e: PressEvent) {
-    onPress?.(e);
-    ctx?.onAction();
-  }
-
   return (
-    <_Button
-      onPress={handlePress}
-      className={buttonStyles({ variant, className })}
+    <button
       type={type}
+      onClick={(event) => {
+        onClick?.(event);
+        ctx?.onAction();
+      }}
+      className={cn(
+        focusVisibleStyles,
+        'inline-flex items-center justify-center p-2 font-semibold text-sm transition-colors',
+        variants[variant],
+        className,
+      )}
       {...props}
     />
   );

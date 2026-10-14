@@ -1,90 +1,93 @@
+import { Accordion as BaseAccordion } from '@base-ui/react/accordion';
 import { ChevronRightIcon } from 'lucide-react';
-import type {
-  ButtonProps,
-  DisclosureGroupProps,
-  DisclosurePanelProps,
-  DisclosureProps,
-} from 'react-aria-components';
-import {
-  Button,
-  Disclosure,
-  DisclosureGroup,
-  DisclosurePanel,
-  Heading,
-} from 'react-aria-components';
-import { tv } from 'tailwind-variants';
-
+import { cn } from '#/utils/cn';
 import { focusVisibleStyles } from './_styles';
 
-const accordionSummaryButtonStyles = tv({
-  base: [
-    focusVisibleStyles,
-    'group border border-accent-7 bg-accent-9 text-[var(--blue-1)] transition-colors hover:bg-accent-10',
-    'flex items-center gap-x-2',
-    'px-2 py-1 max-sm:rounded-none',
-  ],
-});
-
-const accordionDetailsStyles = tv({
-  base: '',
-});
-
 namespace AccordionGroup {
-  export interface Props extends DisclosureGroupProps {}
+  export interface Props {
+    children: React.ReactNode;
+    className?: string;
+    defaultValue?: string[];
+    multiple?: boolean;
+  }
 }
 
-export function AccordionGroup(props: AccordionGroup.Props) {
-  return <DisclosureGroup {...props} />;
+export function AccordionGroup({
+  children,
+  className,
+  defaultValue,
+  multiple,
+}: AccordionGroup.Props) {
+  return (
+    <BaseAccordion.Root
+      multiple={multiple}
+      defaultValue={defaultValue}
+      className={className}
+    >
+      {children}
+    </BaseAccordion.Root>
+  );
 }
 
 namespace Accordion {
-  export interface Props extends DisclosureProps {}
+  export interface Props {
+    children: React.ReactNode;
+    value: string;
+  }
 }
 
-export function Accordion(props: Accordion.Props) {
-  return <Disclosure {...props} />;
+export function Accordion({ children, value }: Accordion.Props) {
+  return <BaseAccordion.Item value={value}>{children}</BaseAccordion.Item>;
 }
 
 namespace AccordionSummary {
-  export interface Props extends ButtonProps {
-    className?: string;
+  export interface Props {
     children: React.ReactNode;
+    className?: string;
   }
 }
 
 export function AccordionSummary({
-  className,
   children,
-  ...props
+  className,
 }: AccordionSummary.Props) {
   return (
-    <Heading level={2} className="flex flex-col">
-      <Button
-        slot="trigger"
-        className={accordionSummaryButtonStyles()}
-        {...props}
+    <BaseAccordion.Header className="flex flex-col">
+      <BaseAccordion.Trigger
+        className={cn(
+          focusVisibleStyles,
+          'group flex items-center gap-x-2 border border-accent-7 bg-accent-9 px-2 py-1 text-[var(--blue-1)] transition-colors hover:bg-accent-10 max-sm:rounded-none',
+        )}
       >
-        <ChevronRightIcon className="size-5 transition-transform group-aria-expanded:rotate-90" />
+        <ChevronRightIcon
+          className="size-5 transition-transform group-data-panel-open:rotate-90 motion-reduce:transition-none"
+          aria-hidden="true"
+        />
         <div className={className}>{children}</div>
-      </Button>
-    </Heading>
+      </BaseAccordion.Trigger>
+    </BaseAccordion.Header>
   );
 }
 
 namespace AccordionDetails {
-  export interface Props extends DisclosurePanelProps {
+  export interface Props {
+    children: React.ReactNode;
     className?: string;
   }
 }
 
 export function AccordionDetails({
+  children,
   className,
-  ...props
 }: AccordionDetails.Props) {
   return (
-    <DisclosurePanel
-      className={accordionDetailsStyles({ className })}
-      {...props}
-    />
+    <BaseAccordion.Panel
+      className={cn(
+        'h-(--accordion-panel-height) overflow-hidden transition-[height,opacity] duration-250 data-ending-style:h-0 data-starting-style:h-0 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none',
+        className,
+      )}
+    >
+      {children}
+    </BaseAccordion.Panel>
   );
 }

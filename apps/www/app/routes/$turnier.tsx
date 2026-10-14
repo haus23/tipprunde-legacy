@@ -1,4 +1,4 @@
-import { Outlet, createFileRoute, notFound } from '@tanstack/react-router';
+import { createFileRoute, notFound, Outlet } from '@tanstack/react-router';
 import { Suspense } from 'react';
 
 import { AppShell } from '#/components/app/app-shell';

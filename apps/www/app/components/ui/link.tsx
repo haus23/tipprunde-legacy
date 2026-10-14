@@ -1,47 +1,28 @@
-import { type LinkProps, Link as _Link } from '@tanstack/react-router';
-import { useFocusRing, useHover } from 'react-aria';
-import { type VariantProps, tv } from 'tailwind-variants';
-
+import { Link as _Link, type LinkProps } from '@tanstack/react-router';
+import { cn } from '#/utils/cn';
 import { componentHoverStyles, focusVisibleStyles } from './_styles';
 import { useActionContext } from './action-context';
 
-const linkStyles = tv({
-  base: [focusVisibleStyles, 'p-2'],
-  variants: {
-    variant: {
-      plain: '',
-      default: 'underline-offset-2 hover:underline',
-      navlink: componentHoverStyles,
-    },
-  },
-  defaultVariants: {
-    variant: 'default',
-  },
-});
+const variants = {
+  plain: '',
+  default: 'underline-offset-2 hover:underline',
+  navlink: componentHoverStyles,
+};
 
 namespace Link {
-  export interface Props extends LinkProps, VariantProps<typeof linkStyles> {
+  export interface Props extends LinkProps {
     className?: string;
+    variant?: keyof typeof variants;
   }
 }
 
-export function Link({ className, variant, ...props }: Link.Props) {
+export function Link({ className, variant = 'default', ...props }: Link.Props) {
   const ctx = useActionContext();
-  const { isFocusVisible, focusProps } = useFocusRing();
-  const { isHovered, hoverProps } = useHover({});
-
-  function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
-    ctx?.onAction();
-  }
 
   return (
     <_Link
-      onClick={handleClick}
-      className={linkStyles({ variant, className })}
-      {...(isFocusVisible && { 'data-focus-visible': true })}
-      {...focusProps}
-      {...(isHovered && { 'data-hovered': true })}
-      {...hoverProps}
+      onClick={() => ctx?.onAction()}
+      className={cn(focusVisibleStyles, 'p-2', variants[variant], className)}
       {...props}
     />
   );

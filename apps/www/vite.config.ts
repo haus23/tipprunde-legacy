@@ -4,6 +4,7 @@ import {
   TanStackRouterVite as tanstackRouter,
 } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
+import { cn } from 'cn/vite';
 import { defineConfig } from 'vite';
 
 const routerConfig = {
@@ -14,19 +15,10 @@ const routerConfig = {
 } satisfies Partial<Config>;
 
 export default defineConfig({
-  plugins: [tanstackRouter(routerConfig), react(), tailwindcss()],
-  build: {
-    rolldownOptions: {
-      output: {
-        codeSplitting: {
-          groups: [
-            {
-              name: 'rac',
-              test: /node_modules[\\/]react-aria(?:-components)?[\\/]/,
-            },
-          ],
-        },
-      },
-    },
-  },
+  plugins: [
+    tanstackRouter(routerConfig),
+    react(),
+    tailwindcss(),
+    cn({ content: ['app/**/*.{ts,tsx}'], out: 'app/utils/cn-tables.ts' }),
+  ],
 });

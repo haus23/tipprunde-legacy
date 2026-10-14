@@ -1,7 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { CheckIcon } from 'lucide-react';
-import type { Key } from 'react-aria-components';
 import * as v from 'valibot';
 import { EmptyView } from '#/components/app/empty-view';
 import {
@@ -11,7 +9,6 @@ import {
   AccordionSummary,
 } from '#/components/ui/accordion';
 import { Link } from '#/components/ui/link';
-import { ListBoxItem } from '#/components/ui/listbox';
 import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
 import {
@@ -75,8 +72,8 @@ function PlayersComponent({
   const navigate = useNavigate({ from: Route.fullPath });
   const { data: players } = useSuspenseQuery(playersQuery(championship.id));
 
-  function selectAccount(key: Key) {
-    navigate({ search: (prev) => ({ ...prev, name: String(key) }) });
+  function selectAccount(accountId: string) {
+    navigate({ search: (prev) => ({ ...prev, name: accountId }) });
   }
 
   const {
@@ -101,22 +98,13 @@ function PlayersComponent({
         <Select
           aria-label="Spielerauswahl"
           name="player"
-          key={player.account.id}
-          defaultSelectedKey={player.account.id}
-          onSelectionChange={selectAccount}
-          items={players}
-        >
-          {(p) => (
-            <ListBoxItem id={p.account.id} textValue={p.account.name}>
-              {({ isSelected }) => (
-                <>
-                  <span>{p.account.name}</span>
-                  {isSelected && <CheckIcon className="size-5" />}
-                </>
-              )}
-            </ListBoxItem>
-          )}
-        </Select>
+          value={player.account.id}
+          onValueChange={selectAccount}
+          options={players.map((p) => ({
+            value: p.account.id,
+            label: p.account.name,
+          }))}
+        />
       </div>
       {matches.length === 0 ? (
         <EmptyView>Noch keine Spiele.</EmptyView>
@@ -163,8 +151,8 @@ function PlayersComponent({
             </div>
           </div>
           <AccordionGroup
-            allowsMultipleExpanded
-            defaultExpandedKeys={[currentRoundId]}
+            multiple
+            defaultValue={[currentRoundId]}
             className="mt-6 flex flex-col gap-y-1"
           >
             {rounds.map((r) => {
@@ -179,7 +167,7 @@ function PlayersComponent({
               );
 
               return (
-                <Accordion id={r.id} key={r.id}>
+                <Accordion value={r.id} key={r.id}>
                   <AccordionSummary className="flex grow items-center justify-between tabular-nums">
                     <div className="justify-self-start">
                       Runde <span>{r.nr}</span>
@@ -205,7 +193,7 @@ function PlayersComponent({
                       </div>
                     )}
                   </AccordionSummary>
-                  <AccordionDetails className="animated-height">
+                  <AccordionDetails>
                     <div className="py-1 text-sm">
                       <Table>
                         <TableHeader>

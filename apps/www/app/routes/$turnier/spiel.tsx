@@ -2,20 +2,16 @@ import type { Tip } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import {
-  CheckIcon,
   ChevronDownIcon,
   ChevronsUpDownIcon,
   ChevronUpIcon,
   TriangleAlertIcon,
 } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import { Collection, type Key } from 'react-aria-components';
 import * as v from 'valibot';
 import { EmptyView } from '#/components/app/empty-view';
 import { Button } from '#/components/ui/button';
-import { Header } from '#/components/ui/header';
 import { Link } from '#/components/ui/link';
-import { ListBoxItem, ListBoxSection } from '#/components/ui/listbox';
 import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
 import {
@@ -113,8 +109,8 @@ function MatchesComponent({
   const championship = useChampionship();
   const navigate = useNavigate({ from: Route.fullPath });
 
-  function selectMatch(key: Key) {
-    navigate({ search: (prev) => ({ ...prev, nr: Number(key) }) });
+  function selectMatch(nr: string) {
+    navigate({ search: (prev) => ({ ...prev, nr: Number(nr) }) });
   }
 
   const { data: players } = useSuspenseQuery(playersQuery(championship.id));
@@ -167,7 +163,7 @@ function MatchesComponent({
     const direction = sort?.column === column ? sort.direction : undefined;
     return (
       <Button
-        onPress={() => toggleSort(column)}
+        onClick={() => toggleSort(column)}
         className="p-1 text-xs uppercase"
         variant="primary"
       >
@@ -200,38 +196,23 @@ function MatchesComponent({
         <Select
           aria-label="Spielauswahl"
           name="match"
-          defaultSelectedKey={match.nr}
-          onSelectionChange={selectMatch}
-          items={rounds}
-        >
-          {(r) => (
-            <ListBoxSection id={r.id}>
-              <Header className="px-1 pt-4 text-gray-11/85 text-sm">
-                Runde {r.nr}
-              </Header>
-              <Collection items={matches.filter((m) => m.roundId === r.id)}>
-                {(m) => {
-                  const matchStr = `${teams[m.hometeamId]?.shortname || '(noch offen)'} – ${teams[m.awayteamId]?.shortname || '(noch offen)'}`;
-                  return (
-                    <ListBoxItem id={m.nr} textValue={matchStr}>
-                      {({ isSelected }) => (
-                        <>
-                          <div className="flex items-center gap-x-2">
-                            <span>{matchStr}</span>
-                            {m.result !== '' && (
-                              <span className="font-semibold text-gray-11/80 text-sm group-[.select-value]:hidden">{`(${m.points ?? 0} Pkt)`}</span>
-                            )}
-                          </div>
-                          {isSelected && <CheckIcon className="size-5" />}
-                        </>
-                      )}
-                    </ListBoxItem>
-                  );
-                }}
-              </Collection>
-            </ListBoxSection>
-          )}
-        </Select>
+          value={String(match.nr)}
+          onValueChange={selectMatch}
+          groups={rounds.map((r) => ({
+            value: r.id,
+            label: `Runde ${r.nr}`,
+            options: matches
+              .filter((m) => m.roundId === r.id)
+              .map((m) => ({
+                value: String(m.nr),
+                label: `${teams[m.hometeamId]?.shortname || '(noch offen)'} – ${teams[m.awayteamId]?.shortname || '(noch offen)'}`,
+                detail:
+                  m.result !== '' ? (
+                    <span className="font-semibold text-gray-11/80 text-sm">{`(${m.points ?? 0} Pkt)`}</span>
+                  ) : undefined,
+              })),
+          }))}
+        />
       </div>
       <div className="mx-2 mt-6 max-w-3xl text-sm md:mx-auto">
         <div className="flex w-full justify-between">

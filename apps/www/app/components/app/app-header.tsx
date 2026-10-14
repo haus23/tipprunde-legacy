@@ -1,6 +1,5 @@
 import { PanelLeftIcon, SearchIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { tv } from 'tailwind-variants';
 
 import { ThemeSelect } from '#/components/app/theme-select';
 import { Logo } from '#/components/logo';
@@ -11,13 +10,11 @@ import { useChampionship } from '#/utils/app/championship';
 import { useAppShell } from './app-shell';
 import { navLinks } from './nav-links';
 
-const headerStyles = tv({
-  base: [
-    'bg-gradient-to-b from-[#ebf2ff] to-[#eef4ff] dark:from-[#182241] dark:to-[#17203a]',
-    'fixed inset-0 z-10 h-16 px-2 font-medium shadow-transparent shadow-xs sm:px-4',
-    '[&:not([data-scroll-state=at-top])]:bg-background [&:not([data-scroll-state=at-top])]:bg-none [&:not([data-scroll-state=at-top])]:shadow-gray-4',
-  ],
-});
+const headerStyles = [
+  'bg-gradient-to-b from-[#ebf2ff] to-[#eef4ff] dark:from-[#182241] dark:to-[#17203a]',
+  'fixed inset-0 z-10 h-16 px-2 font-medium shadow-transparent shadow-xs sm:px-4',
+  '[&:not([data-scroll-state=at-top])]:bg-background [&:not([data-scroll-state=at-top])]:bg-none [&:not([data-scroll-state=at-top])]:shadow-gray-4',
+].join(' ');
 
 type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 
@@ -42,11 +39,11 @@ export function AppHeader() {
   const championship = useChampionship();
 
   return (
-    <header data-scroll-state={scrollState} className={headerStyles()}>
+    <header data-scroll-state={scrollState} className={headerStyles}>
       <div className="flex h-16 justify-between">
         <div className="flex items-center gap-x-2 md:hidden">
           <Button
-            onPress={toggleSidebar}
+            onClick={toggleSidebar}
             variant="ghost"
             className="inline md:hidden"
             aria-label="Sidebar-Toggle"
@@ -83,7 +80,7 @@ export function AppHeader() {
         <div className="flex items-center gap-x-2">
           <div className="hidden items-center gap-x-2 md:flex">
             <Button
-              onPress={() => setChampionshipSelectOpen(true)}
+              onClick={() => setChampionshipSelectOpen(true)}
               variant="ghost"
               className="flex gap-x-1"
               aria-label="Turnier-Auswahl öffnen"

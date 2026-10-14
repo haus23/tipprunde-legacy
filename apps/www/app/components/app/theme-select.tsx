@@ -7,7 +7,7 @@ export function ThemeSelect() {
   return (
     <Button
       type="button"
-      onPress={toggleColorScheme}
+      onClick={toggleColorScheme}
       variant="ghost"
       aria-label="Hell-/Dunkel-Modus umschalten"
       className="overflow-clip"

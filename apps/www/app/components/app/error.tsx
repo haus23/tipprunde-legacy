@@ -1,4 +1,4 @@
-import { type NotFoundRouteProps, isNotFound } from '@tanstack/react-router';
+import { isNotFound, type NotFoundRouteProps } from '@tanstack/react-router';
 import { FrownIcon } from 'lucide-react';
 import { Link } from '../ui/link';
 
