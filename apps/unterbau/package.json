@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@haus23/tipprunde-model": "workspace:^",
-    "@scalar/express-api-reference": "^0.10.28",
+    "@scalar/express-api-reference": "^0.10.29",
     "@valibot/to-json-schema": "^1.8.0",
     "cors": "^2.8.6",
     "express": "^5.3.0",
