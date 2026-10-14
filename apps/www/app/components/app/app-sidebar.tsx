@@ -30,7 +30,7 @@ export function AppSidebar() {
         <Dialog.Backdrop className="fixed inset-0 z-30 bg-background/50 backdrop-blur-[2px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
         <Dialog.Popup
           aria-label="Sidebar-Navigation"
-          className="fixed inset-y-0 left-0 z-30 flex w-64 flex-col justify-between bg-background py-2 font-medium shadow-gray-4 shadow-lg outline-hidden transition-transform duration-200 data-ending-style:-translate-x-full data-starting-style:-translate-x-full motion-reduce:transition-none"
+          className="fixed inset-y-0 left-0 z-30 flex w-64 flex-col justify-between bg-background py-2 font-medium shadow-elevation shadow-lg outline-hidden transition-transform duration-200 data-ending-style:-translate-x-full data-starting-style:-translate-x-full motion-reduce:transition-none"
         >
           <ActionProvider onAction={() => setSidebarOpen(false)}>
             <nav className="flex flex-col gap-x-4">
@@ -52,7 +52,7 @@ export function AppSidebar() {
                     params={link.params}
                     activeOptions={link.activeOptions}
                     variant="navlink"
-                    className="flex items-center gap-x-2 aria-[current]:bg-accent-5 aria-[current]:text-gray-12"
+                    className="flex items-center gap-x-2 aria-[current]:bg-selected aria-[current]:text-foreground"
                   >
                     <link.icon className="size-5" aria-hidden="true" />
                     <span>{link.label}</span>
@@ -62,7 +62,7 @@ export function AppSidebar() {
             </nav>
             <div>
               <div className="flex items-center justify-between px-2">
-                <span className="text-gray-11">Turnierauswahl</span>
+                <span className="text-muted-foreground">Turnierauswahl</span>
                 <Button
                   onClick={() => setChampionshipSelectOpen(true)}
                   variant="ghost"
@@ -73,7 +73,9 @@ export function AppSidebar() {
               </div>
               <Separator className="my-2 border-t" />
               <div className="flex items-center justify-between px-2">
-                <span className="text-gray-11">Hell-/Dunkel-Modus</span>
+                <span className="text-muted-foreground">
+                  Hell-/Dunkel-Modus
+                </span>
                 <ThemeSelect />
               </div>
             </div>

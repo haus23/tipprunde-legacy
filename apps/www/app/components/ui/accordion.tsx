@@ -56,7 +56,7 @@ export function AccordionSummary({
       <BaseAccordion.Trigger
         className={cn(
           focusVisibleStyles,
-          'group flex items-center gap-x-2 border border-accent-7 bg-accent-9 px-2 py-1 text-[var(--blue-1)] transition-colors hover:bg-accent-10 max-sm:rounded-none',
+          'group flex items-center gap-x-2 border border-accent-border bg-primary px-2 py-1 text-primary-foreground transition-colors hover:bg-primary-hover max-sm:rounded-none',
         )}
       >
         <ChevronRightIcon

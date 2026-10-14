@@ -22,7 +22,7 @@ export const Route = createRootRouteWithContext<{
 function RootComponent() {
   return (
     <>
-      <div className="absolute inset-0 h-[480px] bg-gradient-to-b from-accent-4 to-background opacity-60" />
+      <div className="absolute inset-0 h-[480px] bg-gradient-to-b from-highlight to-background opacity-60" />
       <Outlet />
       <TanStackRouterDevtools position="bottom-left" />
       <ReactQueryDevtools buttonPosition="bottom-right" />

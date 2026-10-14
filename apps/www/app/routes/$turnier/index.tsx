@@ -121,7 +121,7 @@ function RankingComponent() {
                     <TableCell>
                       <Suspense
                         fallback={
-                          <div className="p-1.5 text-gray-11">
+                          <div className="p-1.5 text-muted-foreground">
                             <CalendarIcon className="size-5" />
                           </div>
                         }

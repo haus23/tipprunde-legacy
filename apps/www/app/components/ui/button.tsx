@@ -5,7 +5,7 @@ import { useActionContext } from './action-context';
 const variants = {
   plain: '',
   primary:
-    'border bg-accent-9 px-4 text-white transition-transform hover:bg-accent-10 active:scale-[0.98]',
+    'border bg-primary px-4 text-primary-foreground transition-transform hover:bg-primary-hover active:scale-[0.98]',
   secondary: '',
   ghost: componentHoverStyles,
 };

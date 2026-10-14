@@ -35,7 +35,7 @@ function SelectItem({ option }: { option: SelectOption }) {
       value={option.value}
       className={cn(
         componentHoverStyles,
-        'my-1.5 flex select-none items-center justify-between gap-x-4 rounded-sm px-4 py-1.5 outline-hidden data-highlighted:bg-accent-4 data-highlighted:text-gray-12 data-selected:text-accent-11',
+        'my-1.5 flex select-none items-center justify-between gap-x-4 rounded-sm px-4 py-1.5 outline-hidden data-highlighted:bg-highlight data-highlighted:text-foreground data-selected:text-accent',
       )}
     >
       <span className="flex items-center gap-x-2">
@@ -73,7 +73,7 @@ export function Select({
         aria-label={ariaLabel}
         className={cn(
           focusVisibleStyles,
-          'inline-flex grow items-center justify-between border border-accent-7 bg-accent-9 py-1 pr-2 pl-4 text-[var(--blue-1)] transition-colors hover:bg-accent-10 active:brightness-110 md:grow-0 md:basis-3/4 lg:basis-2/3',
+          'inline-flex grow items-center justify-between border border-accent-border bg-primary py-1 pr-2 pl-4 text-primary-foreground transition-colors hover:bg-primary-hover active:brightness-110 md:grow-0 md:basis-3/4 lg:basis-2/3',
         )}
       >
         <BaseSelect.Value />
@@ -89,12 +89,12 @@ export function Select({
           sideOffset={4}
           alignItemWithTrigger={false}
         >
-          <BaseSelect.Popup className="max-h-[min(70svh,var(--available-height))] min-w-(--anchor-width) overflow-y-auto rounded-sm bg-background px-2 outline-hidden ring-1 ring-gray-6">
+          <BaseSelect.Popup className="max-h-[min(70svh,var(--available-height))] min-w-(--anchor-width) overflow-y-auto rounded-sm bg-background px-2 outline-hidden ring-1 ring-border">
             <BaseSelect.List>
               {groups
                 ? groups.map((group) => (
                     <BaseSelect.Group key={group.value}>
-                      <BaseSelect.GroupLabel className="px-1 pt-4 text-gray-11/85 text-sm">
+                      <BaseSelect.GroupLabel className="px-1 pt-4 text-muted-foreground/85 text-sm">
                         {group.label}
                       </BaseSelect.GroupLabel>
                       {group.options.map((option) => (

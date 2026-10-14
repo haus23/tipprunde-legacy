@@ -53,11 +53,9 @@
   --dark-blue-11: #93b4ff;
   --dark-blue-12: #d5e2ff;
 
-  /* Tomato 9 and 11 */
+  /* Tomato 11 */
   --error: #d13415;
   --dark-error: #ff977d;
-  --error-bg: #e54d2e;
-  --dark-error-bg: #e54d2e;
 }
 
 @supports (color: color(display-p3 1 1 1)) {
@@ -112,11 +110,9 @@
       --dark-blue-11: oklch(77.7% 0.1234 266.8);
       --dark-blue-12: oklch(91.1% 0.0428 266.8);
 
-      /* Tomato 9 and 11 */
+      /* Tomato 11 */
       --error: color(display-p3 0.755 0.259 0.152);
       --dark-error: color(display-p3 1 0.585 0.455);
-      --error-bg: color(display-p3 0.831 0.345 0.231);
-      --dark-error-bg: color(display-p3 0.831 0.345 0.231);
     }
   }
 }
@@ -129,34 +125,34 @@
 }
 
 @theme {
+  /* No Tailwind default palette: the Radix scales above are only used
+     through these semantic tokens. */
+  --color-*: initial;
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+
   --color-background: light-dark(#fff, #111);
-  --color-gray-1: light-dark(var(--gray-1), var(--dark-gray-1));
-  --color-gray-2: light-dark(var(--gray-2), var(--dark-gray-2));
-  --color-gray-3: light-dark(var(--gray-3), var(--dark-gray-3));
-  --color-gray-4: light-dark(var(--gray-4), var(--dark-gray-4));
-  --color-gray-5: light-dark(var(--gray-5), var(--dark-gray-5));
-  --color-gray-6: light-dark(var(--gray-6), var(--dark-gray-6));
-  --color-gray-7: light-dark(var(--gray-7), var(--dark-gray-7));
-  --color-gray-8: light-dark(var(--gray-8), var(--dark-gray-8));
-  --color-gray-9: light-dark(var(--gray-9), var(--dark-gray-9));
-  --color-gray-10: light-dark(var(--gray-10), var(--dark-gray-10));
-  --color-gray-11: light-dark(var(--gray-11), var(--dark-gray-11));
-  --color-gray-12: light-dark(var(--gray-12), var(--dark-gray-12));
-  --color-accent-1: light-dark(var(--blue-1), var(--dark-blue-1));
-  --color-accent-2: light-dark(var(--blue-2), var(--dark-blue-2));
-  --color-accent-3: light-dark(var(--blue-3), var(--dark-blue-3));
-  --color-accent-4: light-dark(var(--blue-4), var(--dark-blue-4));
-  --color-accent-5: light-dark(var(--blue-5), var(--dark-blue-5));
-  --color-accent-6: light-dark(var(--blue-6), var(--dark-blue-6));
-  --color-accent-7: light-dark(var(--blue-7), var(--dark-blue-7));
-  --color-accent-8: light-dark(var(--blue-8), var(--dark-blue-8));
-  --color-accent-9: light-dark(var(--blue-9), var(--dark-blue-9));
-  --color-accent-10: light-dark(var(--blue-10), var(--dark-blue-10));
-  --color-accent-11: light-dark(var(--blue-11), var(--dark-blue-11));
-  --color-accent-12: light-dark(var(--blue-12), var(--dark-blue-12));
+  --color-foreground: light-dark(var(--gray-12), var(--dark-gray-12));
+  --color-muted-foreground: light-dark(var(--gray-11), var(--dark-gray-11));
+  --color-border: light-dark(var(--gray-6), var(--dark-gray-6));
+  --color-elevation: light-dark(var(--gray-4), var(--dark-gray-4));
+  --color-popover: light-dark(#fff, var(--dark-gray-2));
+
+  /* Accent (blue) roles */
+  --color-highlight: light-dark(var(--blue-4), var(--dark-blue-4));
+  --color-selected: light-dark(var(--blue-5), var(--dark-blue-5));
+  --color-accent-border: light-dark(var(--blue-7), var(--dark-blue-7));
+  --color-primary: light-dark(var(--blue-9), var(--dark-blue-9));
+  --color-primary-hover: light-dark(var(--blue-10), var(--dark-blue-10));
+  --color-primary-foreground: light-dark(var(--blue-1), var(--blue-1));
+  --color-accent: light-dark(var(--blue-11), var(--dark-blue-11));
+  --color-accent-strong: light-dark(var(--blue-12), var(--dark-blue-12));
+  --color-ring: light-dark(var(--blue-11), var(--dark-blue-11));
+
+  /* Header background while at the top of the page */
+  --color-header-from: light-dark(#ebf2ff, #182241);
+  --color-header-to: light-dark(#eef4ff, #17203a);
+
   --color-error: light-dark(var(--error), var(--dark-error));
-  --color-error-bg: light-dark(var(--error-bg), var(--dark-error-bg));
 }
 
 /*
@@ -168,7 +164,7 @@
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-6, currentColor);
+    border-color: var(--color-border, currentColor);
   }
 
   html {

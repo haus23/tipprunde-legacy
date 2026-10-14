@@ -37,7 +37,7 @@ export function CurrentTips({
                 })}
                 className={[
                   'py-1 pl-2',
-                  (tip?.joker || tip?.lonelyHit) && 'bg-accent-4',
+                  (tip?.joker || tip?.lonelyHit) && 'bg-highlight',
                 ]
                   .filter(Boolean)
                   .join(' ')}
@@ -49,7 +49,7 @@ export function CurrentTips({
               <div
                 className={[
                   'py-1 text-center',
-                  (tip?.joker || tip?.lonelyHit) && 'bg-accent-4',
+                  (tip?.joker || tip?.lonelyHit) && 'bg-highlight',
                 ]
                   .filter(Boolean)
                   .join(' ')}
@@ -59,7 +59,7 @@ export function CurrentTips({
               <div
                 className={[
                   'py-1 text-center',
-                  (tip?.joker || tip?.lonelyHit) && 'bg-accent-4',
+                  (tip?.joker || tip?.lonelyHit) && 'bg-highlight',
                 ]
                   .filter(Boolean)
                   .join(' ')}

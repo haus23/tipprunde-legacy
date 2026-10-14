@@ -11,9 +11,9 @@ import { useAppShell } from './app-shell';
 import { navLinks } from './nav-links';
 
 const headerStyles = [
-  'bg-gradient-to-b from-[#ebf2ff] to-[#eef4ff] dark:from-[#182241] dark:to-[#17203a]',
+  'bg-gradient-to-b from-header-from to-header-to',
   'fixed inset-0 z-10 h-16 px-2 font-medium shadow-transparent shadow-xs sm:px-4',
-  '[&:not([data-scroll-state=at-top])]:bg-background [&:not([data-scroll-state=at-top])]:bg-none [&:not([data-scroll-state=at-top])]:shadow-gray-4',
+  '[&:not([data-scroll-state=at-top])]:bg-background [&:not([data-scroll-state=at-top])]:bg-none [&:not([data-scroll-state=at-top])]:shadow-elevation',
 ].join(' ');
 
 type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
@@ -69,7 +69,7 @@ export function AppHeader() {
                   {...link}
                   to={link.to}
                   variant="navlink"
-                  className="px-4 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-accent-7"
+                  className="px-4 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-accent-border"
                 >
                   {link.label}
                 </Link>

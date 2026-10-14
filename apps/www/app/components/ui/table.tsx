@@ -10,7 +10,7 @@ export function Table({ className, ...props }: Table.Props) {
   return <table className={cn(tableStyles, className)} {...props} />;
 }
 
-const tableHeaderStyles = 'bg-accent-5 text-accent-12 text-xs uppercase';
+const tableHeaderStyles = 'bg-selected text-accent-strong text-xs uppercase';
 
 namespace TableHeader {
   export interface Props extends React.ComponentProps<'thead'> {}

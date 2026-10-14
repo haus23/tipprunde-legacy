@@ -208,7 +208,7 @@ function MatchesComponent({
                 label: `${teams[m.hometeamId]?.shortname || '(noch offen)'} – ${teams[m.awayteamId]?.shortname || '(noch offen)'}`,
                 detail:
                   m.result !== '' ? (
-                    <span className="font-semibold text-gray-11/80 text-sm">{`(${m.points ?? 0} Pkt)`}</span>
+                    <span className="font-semibold text-muted-foreground/80 text-sm">{`(${m.points ?? 0} Pkt)`}</span>
                   ) : undefined,
               })),
           }))}
@@ -218,31 +218,31 @@ function MatchesComponent({
         <div className="flex w-full justify-between">
           <div className="space-y-1">
             <p className="font-medium text-xs uppercase">Wann</p>
-            <p className="font-semibold text-accent-12">
+            <p className="font-semibold text-accent-strong">
               {formatDate(match.date)}
             </p>
           </div>
           <div className="space-y-1">
             <p className="font-medium text-xs uppercase">Wo</p>
-            <p className="font-semibold text-accent-12">
+            <p className="font-semibold text-accent-strong">
               {leagues[match.leagueId]?.name}
             </p>
           </div>
           <div className="space-y-1">
             <p className="font-medium text-xs uppercase">Ergebnis</p>
-            <p className="text-center font-semibold text-accent-12">
+            <p className="text-center font-semibold text-accent-strong">
               {match.result}
             </p>
           </div>
           <div className="space-y-1">
             <p className="font-medium text-xs uppercase">Punkte</p>
-            <p className="text-center font-semibold text-accent-12">
+            <p className="text-center font-semibold text-accent-strong">
               {match.result ? (match.points ?? 0) : null}
             </p>
           </div>
         </div>
         {rounds.find((r) => r.id === match.roundId)?.isDoubleRound ? (
-          <div className="mt-4 flex items-center justify-center gap-x-2 text-gray-11">
+          <div className="mt-4 flex items-center justify-center gap-x-2 text-muted-foreground">
             <span className="sm:hidden">
               <Popover
                 triggerIcon={TriangleAlertIcon}
@@ -285,7 +285,7 @@ function MatchesComponent({
                 <TableRow
                   key={tip.playerId}
                   className={
-                    tip.joker || tip.lonelyHit ? 'bg-accent-4' : undefined
+                    tip.joker || tip.lonelyHit ? 'bg-highlight' : undefined
                   }
                 >
                   <TableCell className="w-full">

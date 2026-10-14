@@ -113,17 +113,19 @@ function PlayersComponent({
           <div className="mx-2 mt-6 text-sm md:mx-auto">
             <div className="flex w-full items-center justify-between">
               {player.rank === undefined ? (
-                <p className="font-medium text-gray-11">Noch keine Wertung</p>
+                <p className="font-medium text-muted-foreground">
+                  Noch keine Wertung
+                </p>
               ) : (
                 <div className="space-y-1">
-                  <p className="font-medium text-gray-11 text-xs uppercase">
+                  <p className="font-medium text-muted-foreground text-xs uppercase">
                     Platz
                   </p>
                   <p className="text-center font-semibold">{`${player.rank}.`}</p>
                 </div>
               )}
               <div className="space-y-1">
-                <p className="px-4 font-medium text-gray-11 text-xs uppercase">
+                <p className="px-4 font-medium text-muted-foreground text-xs uppercase">
                   Spiele
                 </p>
                 <p className="text-center font-semibold">{`${playedMatches} (${matches.length})`}</p>
@@ -131,13 +133,13 @@ function PlayersComponent({
               {player.rank !== undefined && (
                 <>
                   <div className="space-y-1">
-                    <p className="font-medium text-gray-11 text-xs uppercase">
+                    <p className="font-medium text-muted-foreground text-xs uppercase">
                       Punkte
                     </p>
                     <p className="text-center font-semibold">{player.points}</p>
                   </div>
                   <div className="space-y-1">
-                    <p className="font-medium text-gray-11 text-xs uppercase">
+                    <p className="font-medium text-muted-foreground text-xs uppercase">
                       Schnitt
                     </p>
                     <p className="text-center font-semibold">
@@ -220,7 +222,7 @@ function PlayersComponent({
                                 key={match.id}
                                 className={
                                   tip?.joker || tip?.lonelyHit
-                                    ? 'bg-accent-4'
+                                    ? 'bg-highlight'
                                     : undefined
                                 }
                               >

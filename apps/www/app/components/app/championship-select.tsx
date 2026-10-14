@@ -48,7 +48,7 @@ export function ChampionshipSelect() {
         <Dialog.Backdrop className="fixed inset-0 z-30 bg-background/50 backdrop-blur-[2px] transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
         <Dialog.Popup
           aria-label="Turnier-Auswahl"
-          className="fixed inset-4 bottom-auto z-30 mx-auto max-w-lg rounded-md bg-background py-2 font-medium shadow-gray-4 shadow-md outline-hidden ring-1 ring-gray-6 transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none dark:shadow-none"
+          className="fixed inset-4 bottom-auto z-30 mx-auto max-w-lg rounded-md bg-background py-2 font-medium shadow-elevation shadow-md outline-hidden ring-1 ring-border transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none dark:shadow-none"
         >
           <Combobox.Root
             inline
@@ -64,7 +64,7 @@ export function ChampionshipSelect() {
               className="w-full bg-transparent px-6 py-2 outline-hidden"
             />
             <Separator className="mt-2 border-t" />
-            <Combobox.Empty className="px-6 py-4 text-gray-11 empty:p-0">
+            <Combobox.Empty className="px-6 py-4 text-muted-foreground empty:p-0">
               Kein Turnier gefunden.
             </Combobox.Empty>
             <Combobox.List className="mt-2 max-h-[70svh] overflow-y-auto px-2">
@@ -74,7 +74,7 @@ export function ChampionshipSelect() {
                   value={item.id}
                   className={cn(
                     componentHoverStyles,
-                    'my-1.5 flex select-none items-center justify-between rounded-sm px-4 py-1.5 outline-hidden data-highlighted:bg-accent-4 data-highlighted:text-gray-12 data-selected:text-accent-11',
+                    'my-1.5 flex select-none items-center justify-between rounded-sm px-4 py-1.5 outline-hidden data-highlighted:bg-highlight data-highlighted:text-foreground data-selected:text-accent',
                   )}
                 >
                   <span>{item.name}</span>
