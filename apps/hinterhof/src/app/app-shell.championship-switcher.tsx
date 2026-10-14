@@ -3,6 +3,7 @@ import type { Championship } from '@haus23/tipprunde-model';
 import { CheckIcon, ChevronsUpDownIcon, SearchIcon } from 'lucide-react';
 import { useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+import ChampionshipStatus from '#/components/championship-status';
 import { selectionItemStyles } from '#/components/form/selection';
 import { useMasterDataStore } from '#/state/master-data-store';
 import { focusRing } from '#/styles/focus';
@@ -18,25 +19,6 @@ function targetPath(championshipId: Championship['id'], pathname: string) {
   return championshipPages.some(({ path }) => path === page)
     ? `/${championshipId}/${page}`
     : `/${championshipId}`;
-}
-
-// Completed is the normal case for all but the newest championships, so only
-// the open ones carry a marker: a filled dot while running, a hollow one
-// before it is published.
-function ChampionshipStatus({ championship }: { championship: Championship }) {
-  if (championship.completed) return null;
-  const label = championship.published ? 'läuft' : 'nicht veröffentlicht';
-  return (
-    <span
-      title={label}
-      className={cn(
-        'ml-auto size-2 shrink-0 rounded-full border border-current',
-        championship.published && 'bg-current',
-      )}
-    >
-      <span className="sr-only">{label}</span>
-    </span>
-  );
 }
 
 export default function ChampionshipSwitcher({
@@ -110,7 +92,7 @@ export default function ChampionshipSwitcher({
                     <CheckIcon className="size-4" aria-hidden="true" />
                   </Combobox.ItemIndicator>
                   <span className="truncate">{item.name}</span>
-                  <ChampionshipStatus championship={item} />
+                  <ChampionshipStatus championship={item} className="ml-auto" />
                 </Combobox.Item>
               )}
             </Combobox.List>

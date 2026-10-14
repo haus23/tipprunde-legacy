@@ -6,7 +6,6 @@ import type {
 } from '@haus23/tipprunde-model';
 import {
   CalendarIcon,
-  FolderPlusIcon,
   Grid2X2PlusIcon,
   MegaphoneIcon,
   ScaleIcon,
@@ -74,14 +73,6 @@ const items: {
     background: 'bg-teaser-extra-points',
     route: './zusatzpunkte',
     visible: (_championship, _rounds, _matches, players) => players.length > 0,
-  },
-  {
-    title: 'Neues Turnier',
-    description: 'Starte eine neue Liga-Halbserie oder ein Turnier',
-    icon: FolderPlusIcon,
-    background: 'bg-teaser-championship',
-    route: '/neues-turnier',
-    visible: () => true,
   },
 ];
 

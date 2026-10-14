@@ -31,12 +31,6 @@ export default function createAppRoutes(): RouteObject[] {
           lazy: lazyComponent(() => import('./app/start')),
         },
         {
-          path: 'neues-turnier',
-          lazy: lazyComponent(
-            () => import('./app/current-data/dashboard/create-championship'),
-          ),
-        },
-        {
           path: ':turnier',
           ErrorBoundary: RouteError,
           lazy: lazyComponent(() => import('./app/current-data/current-shell')),

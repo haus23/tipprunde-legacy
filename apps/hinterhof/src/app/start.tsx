@@ -3,7 +3,7 @@ import { useMasterDataStore } from '#/state/master-data-store';
 import { useSessionStore } from '#/state/session-store';
 
 // Entry point: continue with the last visited championship, else the latest.
-// Without any championship, start with creating one.
+// Without any championship, start on the championships page to create one.
 export default function Start() {
   const championships = useMasterDataStore((state) => state.championships);
   const lastChampionshipId = useSessionStore(
@@ -15,7 +15,7 @@ export default function Start() {
 
   return (
     <Navigate
-      to={championship ? `/${championship.id}` : '/neues-turnier'}
+      to={championship ? `/${championship.id}` : '/stammdaten/turniere'}
       replace
     />
   );
