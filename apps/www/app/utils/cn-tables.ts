@@ -27,9 +27,9 @@ const DZ = (s: string): Int32Array => {
 }
 const GROUP_COUNT = 137
 const customValidatorNames: string[] = []
-const edgeStart = PS(U("@420013000212000020030002200210002010200520102000002006000000220102005000003010203002001000"))
-const labelStart = PS(U("11111221111119111119;315664411177333311122543252331111171165111111113274545365312152455117"))
-const labelText = "bdfghinlemoprstunderlinewzagorightnessckdrop-blursis-coniclinearradialrderttom-btivide-yurationillontromap-rxyidow-colsdentset-yadingftax-in-txyhw-screenhwpacityriginblrtxyioghtng-offsettateundedcalehadowizepace-ytrokeextorapckingnsformitionlate-xy-offset"
+const edgeStart = PS(U("@320013000212000300030002200210002010200520102000002006000000220102005000003010203002001000"))
+const labelStart = PS(U("1111122111111911111;3156644111977333311122543252331111171165111111113274545365312152455117"))
+const labelText = "bdfghinlemoprstunderlinewzagockdrop-blursis-coniclinearradialrderttom-btecorationivide-yurationillontromap-rxyidow-colsdentset-yadingftax-in-txyhw-screenhwpacityriginblrtxyioghtng-offsettateundedcalehadowizepace-ytrokeextorapckingnsformitionlate-xy-offset"
 // pre-order tree: targets derived from edge counts via subtree sizes
 const edgeTarget = (() => {
     const N = edgeStart.length - 1
@@ -51,13 +51,13 @@ const edgeTarget = (() => {
 const nodeGroup = U("000100030305078000;0000000000t0C000000000000K0000000000000000000[000`00b0000000000lm000000", 1)
 // vlists = op-pattern pool + per-list refs; the engine indexes these directly
 const vlistPat = PS(U("35532634332351566"))
-const vlistOps = U("83248325F@032632325B:0325B:4325532032H<3258432585:0328GA0328B:032")
-const vlistRef = U("0123456678689:9;;387;77;77<=7<;;;84;;;;;;;75>808?7;9@97444778<3")
+const vlistOps = U("83248325F@032632325B:0325B:4325032532H<3258432585:0328GA0328B:032")
+const vlistRef = U("0123456678698:8;;397;77;77<=7<;;;94;;;;;;;75>909?7;8@87444779<3")
 const vlistGroup = DZ("0002000020200100004002002002002000200200200200202002002002002002000200200020002002000200020000020002000020020020020020200200200200200200200200020020020200200200200200200200020020020020020020002020202000200020020000200")
 // nodeVlist rebuilt sparse: (anchor deltas, vlist ids)
 const nodeVlist = (() => {
     const out = new Int32Array(91).fill(-1)
-    const A = DZ("6224224422242422626224224262242222422222222622424222242244242422")
+    const A = DZ("6224224422422422626224224262242222422222222622424222242244242422")
     const V = DZ("0222022222222222222222222222222222222222222222222222222222222222")
     for (let i = 0; i < A.length; i++) out[A[i]!] = V[i]!
     return out

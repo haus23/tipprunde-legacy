@@ -5,7 +5,10 @@ import { useActionContext } from './action-context';
 
 const variants = {
   plain: '',
-  default: 'underline-offset-2 hover:underline',
+  // Always faintly underlined, so links are recognizable on touch devices
+  // too; hover makes the line stronger.
+  default:
+    'underline decoration-border underline-offset-4 transition-colors hover:decoration-current motion-reduce:transition-none',
   navlink: componentHoverStyles,
 };
 
