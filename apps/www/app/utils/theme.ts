@@ -1,32 +1,23 @@
-import * as v from 'valibot';
-import { create } from 'zustand';
+// Two-state color scheme toggle that still follows the system: the page
+// starts with the system scheme (see the script in index.html). A toggle
+// switches to the opposite of what is shown; if that equals the system
+// scheme, the stored choice is removed instead of pinned, so the page
+// follows the system again. Only a toggle clears the choice, never a
+// change of the system.
+// https://lea.verou.me/blog/2026/dark-mode-toggles/#good-two-state-ux
 
-const colorSchemeSchema = v.fallback(v.picklist(['light', 'dark']), 'light');
-type ColorScheme = v.InferOutput<typeof colorSchemeSchema>;
+const storageKey = 'colorScheme';
 
-type ThemeState = {
-  colorScheme: ColorScheme;
-};
+export function toggleColorScheme() {
+  const root = document.documentElement;
+  const dark = !root.classList.contains('dark');
+  const systemDark = matchMedia('(prefers-color-scheme: dark)').matches;
 
-const useThemeStore = create<ThemeState>()(() => {
-  const colorScheme = v.parse(
-    colorSchemeSchema,
-    localStorage.getItem('colorScheme'),
-  );
-  document.documentElement.classList.toggle('dark', colorScheme === 'dark');
-
-  return {
-    colorScheme,
-  };
-});
-
-const setColorScheme = (colorScheme: ColorScheme) => {
-  document.documentElement.classList.toggle('dark', colorScheme === 'dark');
-  localStorage.setItem('colorScheme', colorScheme);
-  useThemeStore.setState({ colorScheme });
-};
-
-export function useTheme() {
-  const colorScheme = useThemeStore((state) => state.colorScheme);
-  return { colorScheme, setColorScheme };
+  try {
+    if (dark === systemDark) localStorage.removeItem(storageKey);
+    else localStorage.setItem(storageKey, dark ? 'dark' : 'light');
+  } catch {
+    // Without storage the choice lasts until the next page load
+  }
+  root.classList.toggle('dark', dark);
 }

@@ -1,10 +1,9 @@
 import type { QueryClient } from '@tanstack/react-query';
-import type { NavigateOptions, ToOptions } from '@tanstack/react-router';
-
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import type { NavigateOptions, ToOptions } from '@tanstack/react-router';
 import {
-  Outlet,
   createRootRouteWithContext,
+  Outlet,
   useRouter,
 } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
@@ -12,7 +11,6 @@ import { RouterProvider } from 'react-aria-components';
 
 import { NotFoundComponent } from '#/components/app/error';
 import { championshipsQuery } from '#/utils/queries';
-import { useTheme } from '#/utils/theme';
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -36,7 +34,6 @@ declare module 'react-aria-components' {
 
 function RootComponent() {
   const router = useRouter();
-  useTheme();
 
   return (
     <RouterProvider
