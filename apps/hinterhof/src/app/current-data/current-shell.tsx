@@ -64,7 +64,12 @@ export default function CurrentShell() {
     <Suspense
       fallback={<p className="mt-5 text-muted-foreground">Lade Turnier ...</p>}
     >
-      <CurrentDataOutlet championshipId={currentChampionship.id} />
+      {/* Pages keep their state across URL changes; a new key starts them
+          fresh, so forms never mix the old and the new championship. */}
+      <CurrentDataOutlet
+        key={currentChampionship.id}
+        championshipId={currentChampionship.id}
+      />
     </Suspense>
   );
 }

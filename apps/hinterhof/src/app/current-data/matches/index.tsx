@@ -124,7 +124,7 @@ export default function MatchesView() {
   }
 
   async function saveMatch(matchData: MatchFormData) {
-    if (!currentChampionship) return;
+    if (!currentChampionship || !currentRound) return;
 
     if (matchData.id) {
       const match = matches.find(({ id }) => id === matchData.id);
@@ -308,7 +308,7 @@ export default function MatchesView() {
             </thead>
             <tbody className="divide-y divide-border bg-card pr-1">
               {matches
-                .filter((m) => m.roundId === currentRound.id)
+                .filter((m) => m.roundId === currentRound?.id)
                 .map((m) => (
                   <tr key={m.id}>
                     <td className="whitespace-nowrap py-4 pr-2 pl-4 text-muted-foreground text-sm sm:pl-6">

@@ -133,27 +133,30 @@ export default function ExtraPointsView() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border bg-card">
-                {extraPointsFields.items.map((fieldId, ix) => (
-                  <tr key={fieldId}>
-                    <td className="px-4 py-3 font-medium text-sm sm:px-6">
-                      {players[ix].name}
-                    </td>
-                    <td className="px-4 py-2 sm:px-6">
-                      <Field of={extraPointsForm} path={['extraPoints', ix]}>
-                        {(field) => (
-                          <ResultField
-                            {...field.props}
-                            inputMode="numeric"
-                            label={`Zusatzpunkte für ${players[ix].name}`}
-                            value={field.input ?? ''}
-                            error={field.errors?.[0]}
-                            className="justify-end"
-                          />
-                        )}
-                      </Field>
-                    </td>
-                  </tr>
-                ))}
+                {extraPointsFields.items.map((fieldId, ix) =>
+                  // No player for the row while another championship loads
+                  players[ix] ? (
+                    <tr key={fieldId}>
+                      <td className="px-4 py-3 font-medium text-sm sm:px-6">
+                        {players[ix].name}
+                      </td>
+                      <td className="px-4 py-2 sm:px-6">
+                        <Field of={extraPointsForm} path={['extraPoints', ix]}>
+                          {(field) => (
+                            <ResultField
+                              {...field.props}
+                              inputMode="numeric"
+                              label={`Zusatzpunkte für ${players[ix].name}`}
+                              value={field.input ?? ''}
+                              error={field.errors?.[0]}
+                              className="justify-end"
+                            />
+                          )}
+                        </Field>
+                      </td>
+                    </tr>
+                  ) : null,
+                )}
               </tbody>
             </table>
           </div>

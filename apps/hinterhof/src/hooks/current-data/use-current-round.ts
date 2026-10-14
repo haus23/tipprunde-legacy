@@ -6,14 +6,14 @@ export const roundParam = 'runde';
 
 // The selected round lives in the URL (?runde=5), so it survives reloads and
 // carries over between matches, tips and results. Without a valid round
-// number the latest round is selected.
+// number the latest round is selected; a championship without rounds has
+// none.
 export function useCurrentRound() {
   const { rounds } = useRounds();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const nr = Number(searchParams.get(roundParam));
-  const currentRound =
-    rounds.find((round) => round.nr === nr) ?? rounds[rounds.length - 1];
+  const currentRound = rounds.find((round) => round.nr === nr) ?? rounds.at(-1);
 
   function setCurrentRound(round: Round) {
     setSearchParams(

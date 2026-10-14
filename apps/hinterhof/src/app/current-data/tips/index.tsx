@@ -111,7 +111,7 @@ export default function TipsView() {
         })),
       },
     });
-  }, [playerTips, tipsForm, currentRound.id]);
+  }, [playerTips, tipsForm, currentRound?.id]);
 
   const submitTips = async (data: v.InferOutput<typeof TipsFormSchema>) => {
     if (!currentChampionship) return;
@@ -120,7 +120,7 @@ export default function TipsView() {
       const savedTip = playerTips[index];
       const formTip = data.tips[index];
       if (
-        match.roundId !== currentRound.id ||
+        match.roundId !== currentRound?.id ||
         (formTip.tip === (savedTip?.tip ?? '') &&
           formTip.joker === (savedTip?.joker ?? false))
       ) {
@@ -194,7 +194,7 @@ export default function TipsView() {
         const tips = pastedText.split(/\r?\n/);
         let tipIx = 0;
         matches.forEach((m, ix) => {
-          if (m.roundId === currentRound.id && ix >= startIx) {
+          if (m.roundId === currentRound?.id && ix >= startIx) {
             let t = tips.at(tipIx++);
             if (typeof t !== 'undefined') {
               t = normalizeResult(t);
@@ -296,7 +296,8 @@ export default function TipsView() {
               </thead>
               <tbody className="divide-y divide-border bg-card">
                 {tipFields.items.map((fieldId, ix) =>
-                  fixtures[ix].roundId === currentRound.id ? (
+                  // No match for the row while another championship loads
+                  fixtures[ix]?.roundId === currentRound?.id ? (
                     <tr key={fieldId}>
                       <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm sm:pl-6">
                         {fixtures[ix].nr}

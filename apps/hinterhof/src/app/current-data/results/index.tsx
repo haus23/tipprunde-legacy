@@ -61,7 +61,7 @@ export default function ResultsView() {
     reset(resultsForm, {
       initialInput: { results: matches.map((match) => match.result) },
     });
-  }, [matches, resultsForm, currentRound.id]);
+  }, [matches, resultsForm, currentRound?.id]);
 
   const resultFields = useFieldArray(resultsForm, { path: ['results'] });
 
@@ -144,7 +144,8 @@ export default function ResultsView() {
               </thead>
               <tbody className="divide-y divide-border bg-card">
                 {resultFields.items.map((fieldId, ix) =>
-                  fixtures[ix].roundId === currentRound.id ? (
+                  // No match for the row while another championship loads
+                  fixtures[ix]?.roundId === currentRound?.id ? (
                     <tr key={fieldId}>
                       <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm sm:pl-6">
                         {fixtures[ix].nr}
