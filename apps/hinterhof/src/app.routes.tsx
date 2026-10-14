@@ -27,6 +27,17 @@ export default function createAppRoutes(): RouteObject[] {
       lazy: lazyComponent(() => import('./app/app-shell')),
       children: [
         {
+          index: true,
+          lazy: lazyComponent(() => import('./app/start')),
+        },
+        {
+          path: 'neues-turnier',
+          lazy: lazyComponent(
+            () => import('./app/current-data/dashboard/create-championship'),
+          ),
+        },
+        {
+          path: ':turnier',
           ErrorBoundary: RouteError,
           lazy: lazyComponent(() => import('./app/current-data/current-shell')),
           children: [
@@ -56,13 +67,6 @@ export default function createAppRoutes(): RouteObject[] {
               path: 'zusatzpunkte',
               lazy: lazyComponent(
                 () => import('./app/current-data/extra-points'),
-              ),
-            },
-            {
-              path: 'neues-turnier',
-              lazy: lazyComponent(
-                () =>
-                  import('./app/current-data/dashboard/create-championship'),
               ),
             },
             {

@@ -102,7 +102,7 @@ export default function CreateChampionshipView() {
       ),
       `${championship.name} angelegt.`,
     );
-    navigate('../turnier');
+    navigate(`/${championship.id}/turnier`);
   }
 
   return (

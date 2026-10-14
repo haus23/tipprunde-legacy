@@ -80,7 +80,7 @@ const items: {
     description: 'Starte eine neue Liga-Halbserie oder ein Turnier',
     icon: FolderPlusIcon,
     background: 'bg-teaser-championship',
-    route: './neues-turnier',
+    route: '/neues-turnier',
     visible: () => true,
   },
 ];

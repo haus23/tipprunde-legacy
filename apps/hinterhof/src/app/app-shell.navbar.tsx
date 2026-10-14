@@ -41,20 +41,20 @@ const currentDataNavLinks: (ChampionshipNavLink & {
   ) => boolean;
 })[] = [
   {
-    to: './turnier',
+    to: 'turnier',
     icon: FolderIcon,
     label: 'Turnier',
     visible: (championship) => !!championship,
   },
   {
-    to: './spiele',
+    to: 'spiele',
     keepsRound: true,
     icon: CalendarIcon,
     label: 'Spiele',
     visible: (_championship, rounds) => rounds.length > 0,
   },
   {
-    to: './tipps',
+    to: 'tipps',
     keepsRound: true,
     icon: SquarePenIcon,
     label: 'Tipps',
@@ -62,27 +62,34 @@ const currentDataNavLinks: (ChampionshipNavLink & {
       matches.length > 0 && players.length > 0,
   },
   {
-    to: './ergebnisse',
+    to: 'ergebnisse',
     keepsRound: true,
     icon: ScaleIcon,
     label: 'Ergebnisse',
     visible: (_championship, _rounds, matches) => matches.length > 0,
   },
   {
-    to: './zusatzpunkte',
+    to: 'zusatzpunkte',
     icon: Grid2X2PlusIcon,
     label: 'Zusatzpunkte',
     visible: (_championship, _rounds, _matches, players) => players.length > 0,
   },
 ];
 
-function ChampionshipLink({ item }: { item: ChampionshipNavLink }) {
+function ChampionshipLink({
+  championshipId,
+  item,
+}: {
+  championshipId: Championship['id'];
+  item: ChampionshipNavLink;
+}) {
   const [searchParams] = useSearchParams();
   const round = item.keepsRound ? searchParams.get(roundParam) : null;
+  const to = `/${championshipId}/${item.to}`;
 
   return (
     <NavLink
-      to={round ? `${item.to}?${roundParam}=${round}` : item.to}
+      to={round ? `${to}?${roundParam}=${round}` : to}
       className={({ isActive }) =>
         cn(
           isActive
@@ -120,11 +127,19 @@ function CurrentDataNavLinks({
   const { championshipPlayers } = useChampionshipPlayers();
   const { matches } = useMatches();
 
+  if (!championship) return null;
+
   return currentDataNavLinks
     .filter((item) =>
       item.visible(championship, rounds, matches, championshipPlayers),
     )
-    .map((item) => <ChampionshipLink key={item.label} item={item} />);
+    .map((item) => (
+      <ChampionshipLink
+        key={item.label}
+        championshipId={championship.id}
+        item={item}
+      />
+    ));
 }
 
 const masterDataNavLinks: {
@@ -166,7 +181,7 @@ export default function AppShellNavbar() {
         <div className="mt-5 flex flex-1 flex-col justify-between gap-y-4">
           <nav className="space-y-1 px-2">
             <NavLink
-              to="."
+              to={championship ? `/${championship.id}` : '/'}
               end
               className={({ isActive }) =>
                 cn(

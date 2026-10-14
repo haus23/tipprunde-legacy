@@ -1,20 +1,23 @@
 import type { Championship } from '@haus23/tipprunde-model';
 import { useCallback } from 'react';
+import { useParams } from 'react-router';
 import { patchEntity } from '#/firebase/write';
 import { useMasterDataStore } from '#/state/master-data-store';
 import { useSessionStore } from '#/state/session-store';
 
+// The championship lives in the URL (/:turnier/...). Routes without it, such
+// as the master data, use the last visited championship, else the latest.
 export function useCurrentChampionship() {
   const championships = useMasterDataStore((state) => state.championships);
-  const currentChampionshipId = useSessionStore(
+  const { turnier } = useParams();
+  const lastChampionshipId = useSessionStore(
     (state) => state.currentChampionshipId,
   );
-  const setCurrentChampionship = useSessionStore(
-    (state) => state.setCurrentChampionship,
-  );
-  const currentChampionship =
-    championships.find(({ id }) => id === currentChampionshipId) ??
-    championships.at(0);
+
+  const currentChampionship = turnier
+    ? championships.find(({ id }) => id === turnier)
+    : (championships.find(({ id }) => id === lastChampionshipId) ??
+      championships.at(0));
 
   const updateCurrentChampionship = useCallback(
     (changes: Partial<Championship>) =>
@@ -24,9 +27,5 @@ export function useCurrentChampionship() {
     [currentChampionship],
   );
 
-  return {
-    currentChampionship,
-    setCurrentChampionship,
-    updateCurrentChampionship,
-  };
+  return { currentChampionship, updateCurrentChampionship };
 }
