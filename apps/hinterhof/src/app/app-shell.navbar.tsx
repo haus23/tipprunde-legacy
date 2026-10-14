@@ -1,19 +1,6 @@
-import type {
-  Championship,
-  ChampionshipPlayer,
-  Match,
-  Round,
-} from '@haus23/tipprunde-model';
-import {
-  CalendarIcon,
-  FolderIcon,
-  Grid2X2PlusIcon,
-  HouseIcon,
-  ScaleIcon,
-  SquarePenIcon,
-  UserIcon,
-} from 'lucide-react';
-import { type ElementType, Suspense, use } from 'react';
+import type { Championship } from '@haus23/tipprunde-model';
+import { HouseIcon, UserIcon } from 'lucide-react';
+import { Suspense, use } from 'react';
 import { Link, NavLink, useSearchParams } from 'react-router';
 import AppTitle from '#/components/app-title';
 import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
@@ -24,68 +11,22 @@ import { useRounds } from '#/hooks/current-data/use-rounds';
 import { useProfile } from '#/hooks/use-profile';
 import { ensureCurrentData } from '#/state/current-data-store';
 import { cn } from '#/utils/cn';
-
-type ChampionshipNavLink = {
-  to: string;
-  icon: ElementType;
-  label: string;
-  keepsRound?: boolean;
-};
-
-const currentDataNavLinks: (ChampionshipNavLink & {
-  visible: (
-    championship: Championship | undefined,
-    rounds: Round[],
-    matches: Match[],
-    players: ChampionshipPlayer[],
-  ) => boolean;
-})[] = [
-  {
-    to: 'turnier',
-    icon: FolderIcon,
-    label: 'Turnier',
-    visible: (championship) => !!championship,
-  },
-  {
-    to: 'spiele',
-    keepsRound: true,
-    icon: CalendarIcon,
-    label: 'Spiele',
-    visible: (_championship, rounds) => rounds.length > 0,
-  },
-  {
-    to: 'tipps',
-    keepsRound: true,
-    icon: SquarePenIcon,
-    label: 'Tipps',
-    visible: (_championship, _rounds, matches, players) =>
-      matches.length > 0 && players.length > 0,
-  },
-  {
-    to: 'ergebnisse',
-    keepsRound: true,
-    icon: ScaleIcon,
-    label: 'Ergebnisse',
-    visible: (_championship, _rounds, matches) => matches.length > 0,
-  },
-  {
-    to: 'zusatzpunkte',
-    icon: Grid2X2PlusIcon,
-    label: 'Zusatzpunkte',
-    visible: (_championship, _rounds, _matches, players) => players.length > 0,
-  },
-];
+import ChampionshipSwitcher from './app-shell.championship-switcher';
+import {
+  type ChampionshipPage,
+  championshipPages,
+} from './current-data/championship-pages';
 
 function ChampionshipLink({
   championshipId,
   item,
 }: {
   championshipId: Championship['id'];
-  item: ChampionshipNavLink;
+  item: ChampionshipPage;
 }) {
   const [searchParams] = useSearchParams();
   const round = item.keepsRound ? searchParams.get(roundParam) : null;
-  const to = `/${championshipId}/${item.to}`;
+  const to = `/${championshipId}/${item.path}`;
 
   return (
     <NavLink
@@ -129,10 +70,8 @@ function CurrentDataNavLinks({
 
   if (!championship) return null;
 
-  return currentDataNavLinks
-    .filter((item) =>
-      item.visible(championship, rounds, matches, championshipPlayers),
-    )
+  return championshipPages
+    .filter((item) => item.available(rounds, matches, championshipPlayers))
     .map((item) => (
       <ChampionshipLink
         key={item.label}
@@ -179,7 +118,12 @@ export default function AppShellNavbar() {
           <AppTitle />
         </div>
         <div className="mt-5 flex flex-1 flex-col justify-between gap-y-4">
-          <nav className="space-y-1 px-2">
+          <nav className="space-y-1 px-2" aria-label="Turnier">
+            {championship && (
+              <div className="pb-2">
+                <ChampionshipSwitcher championship={championship} />
+              </div>
+            )}
             <NavLink
               to={championship ? `/${championship.id}` : '/'}
               end

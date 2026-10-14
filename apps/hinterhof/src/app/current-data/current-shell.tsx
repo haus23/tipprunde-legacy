@@ -1,12 +1,16 @@
 import type { Championship } from '@haus23/tipprunde-model';
 import { championshipIdRegEx } from '@haus23/tipprunde-model';
 import { Suspense, use, useEffect } from 'react';
-import { Outlet, useParams } from 'react-router';
+import { Navigate, Outlet, useLocation, useParams } from 'react-router';
 
 import NotFound from '#/app/not-found';
+import { useChampionshipPlayers } from '#/hooks/current-data/use-championship-players';
 import { useCurrentChampionship } from '#/hooks/current-data/use-current-championship';
+import { useMatches } from '#/hooks/current-data/use-matches';
+import { useRounds } from '#/hooks/current-data/use-rounds';
 import { ensureCurrentData } from '#/state/current-data-store';
 import { useSessionStore } from '#/state/session-store';
+import { championshipPages } from './championship-pages';
 
 function CurrentDataOutlet({
   championshipId,
@@ -14,6 +18,20 @@ function CurrentDataOutlet({
   championshipId: Championship['id'];
 }) {
   use(ensureCurrentData(championshipId));
+  const { pathname } = useLocation();
+  const { rounds } = useRounds();
+  const { matches } = useMatches();
+  const { championshipPlayers } = useChampionshipPlayers();
+
+  // A page without its data yet (e.g. tips without matches, also after
+  // switching the championship) falls back to the dashboard.
+  const page = championshipPages.find(
+    ({ path }) => path === pathname.split('/')[2],
+  );
+  if (page && !page.available(rounds, matches, championshipPlayers)) {
+    return <Navigate to={`/${championshipId}`} replace />;
+  }
+
   return <Outlet />;
 }
 
