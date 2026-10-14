@@ -253,7 +253,7 @@ export default function TipsView() {
             </div>
           }
         >
-          <div className="overflow-x-auto pb-4">
+          <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-border">
               <thead className="bg-surface-subtle">
                 <tr>
