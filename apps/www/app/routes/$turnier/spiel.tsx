@@ -173,7 +173,10 @@ function MatchesComponent({
         ) : direction === 'desc' ? (
           <ChevronDownIcon className="size-4" aria-hidden="true" />
         ) : (
-          <ChevronsUpDownIcon className="size-4 opacity-50" aria-hidden="true" />
+          <ChevronsUpDownIcon
+            className="size-4 opacity-50"
+            aria-hidden="true"
+          />
         )}
       </Button>
     );
@@ -298,20 +301,28 @@ function MatchesComponent({
                       {player?.account.name}
                     </Link>
                   </TableCell>
-                  <TableCell className="relative px-6 text-center tabular-nums md:px-6">
-                    <span>{tip.tip}</span>
-                    {(tip.joker || tip.lonelyHit) && (
-                      <span className="absolute -right-2 -translate-y-1.5">
-                        <Popover offset={4} triggerLabel="Zusatzinfos zum Tipp">
-                          <div className="px-4 py-2">
-                            {tip.joker === true && <p>Joker</p>}
-                            {tip.lonelyHit === true && (
-                              <p>Einziger richtiger Tipp</p>
-                            )}
-                          </div>
-                        </Popover>
+                  <TableCell className="px-6 tabular-nums md:px-6">
+                    {/* Tip centered, the info icon next to it without moving it */}
+                    <div className="grid grid-cols-[1fr_auto_1fr] items-center">
+                      <span />
+                      <span>{tip.tip}</span>
+                      <span className="justify-self-start">
+                        {(tip.joker || tip.lonelyHit) && (
+                          <Popover
+                            offset={4}
+                            triggerLabel="Zusatzinfos zum Tipp"
+                            triggerClassName="-my-1.5"
+                          >
+                            <div className="px-4 py-2">
+                              {tip.joker === true && <p>Joker</p>}
+                              {tip.lonelyHit === true && (
+                                <p>Einziger richtiger Tipp</p>
+                              )}
+                            </div>
+                          </Popover>
+                        )}
                       </span>
-                    )}
+                    </div>
                   </TableCell>
                   <TableCell className="text-center tabular-nums">
                     {matchResult ? tip.points : undefined}

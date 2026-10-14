@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
-import { CalendarIcon } from 'lucide-react';
+import { ClipboardListIcon } from 'lucide-react';
 import { Suspense } from 'react';
 
 import { EmptyView } from '#/components/app/empty-view';
@@ -77,11 +77,7 @@ function RankingComponent() {
                     </span>
                   </TableHead>
                 )}
-                {showCurrentTips && (
-                  <TableHead>
-                    <span className="sr-only">Aktuelle Tips</span>
-                  </TableHead>
-                )}
+                {showCurrentTips && <TableHead>Tipps</TableHead>}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -122,7 +118,10 @@ function RankingComponent() {
                       <Suspense
                         fallback={
                           <div className="p-1.5 text-muted-foreground">
-                            <CalendarIcon className="size-5" />
+                            <ClipboardListIcon
+                              className="size-5"
+                              aria-hidden="true"
+                            />
                           </div>
                         }
                       >

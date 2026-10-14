@@ -10,6 +10,7 @@ namespace Popover {
   export interface Props {
     children: React.ReactNode;
     offset?: number;
+    triggerClassName?: string;
     triggerIcon?: React.ElementType;
     triggerLabel: string;
   }
@@ -18,6 +19,7 @@ namespace Popover {
 export function Popover({
   children,
   offset = 6,
+  triggerClassName,
   triggerIcon,
   triggerLabel,
 }: Popover.Props) {
@@ -29,7 +31,9 @@ export function Popover({
         aria-label={triggerLabel}
         className={cn(
           focusVisibleStyles,
-          'inline-flex items-center justify-center p-1.5 text-muted-foreground hover:text-foreground data-popup-open:text-accent',
+          // The pseudo element enlarges the touch target beyond the icon
+          'relative inline-flex items-center justify-center p-1.5 text-muted-foreground after:absolute after:-inset-x-2 after:-inset-y-1 hover:text-foreground data-popup-open:text-accent',
+          triggerClassName,
         )}
       >
         <TriggerIcon className="size-5" aria-hidden="true" />
