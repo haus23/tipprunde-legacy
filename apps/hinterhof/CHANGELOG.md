@@ -1,5 +1,29 @@
 # hinterhof
 
+## 0.10.0
+
+### Minor Changes
+
+- [`8083fb0`](https://github.com/haus23/tipprunde-legacy/commit/8083fb04190cab2c835f14a7c584348e836f4dc9) - Keep the championship in the URL (`/hr2526/tipps`), so any championship can be opened, reloaded and linked. The start page continues with the last visited championship, else the latest one.
+
+- [`41fb58b`](https://github.com/haus23/tipprunde-legacy/commit/41fb58b9233f37892b3541d1b971d01cfe52ed55) - Drop the dashboard: the championship page is now the start page of a championship at `/hr2526` (instead of `/hr2526/turnier`), and "Turnier" replaces "Dashboard" in the navigation.
+
+- [`adfa5d9`](https://github.com/haus23/tipprunde-legacy/commit/adfa5d952fc6d573458be89a79cdd86de6ede526) - Switch the championship from the navigation. The switcher searches by name or id and marks the running and the unpublished championship; it stays on the same page, or falls back to the dashboard if the other championship has no data for it yet. Opening such a page directly falls back the same way.
+
+### Patch Changes
+
+- [`d1f91e3`](https://github.com/haus23/tipprunde-legacy/commit/d1f91e3364814fc74af94a2ea53312e2966f8d51) - List the championships under Stammdaten → Turniere and create new ones there in a dialog. The dashboard teaser and the separate page for new championships are gone; without any championship the app starts on the championships page.
+
+- [`d998f2d`](https://github.com/haus23/tipprunde-legacy/commit/d998f2dc545768b923ab67166522e72c1d172613) - Give the mobile app bar a bottom border, a smaller menu button with room for its focus ring, and the context of the page: the championship, "Stammdaten" or "Hinterhof". The championship heading above its pages is gone; the switcher shows the championship on desktop.
+
+- [`92516ed`](https://github.com/haus23/tipprunde-legacy/commit/92516eda883fb44741df5070c9ce9c0001ec1205) - Show unknown pages and championships as "Nicht gefunden" inside the app layout, with a link to the current championship, instead of a bare error page.
+
+- [`8356b79`](https://github.com/haus23/tipprunde-legacy/commit/8356b79514682fd6936d0daf612989e27e66e758) - List the rounds on the championship page, with their double points marker, number of matches and a link to their matches, and create new rounds there in a dialog. The separate page for new rounds and its dashboard teaser are gone.
+
+- [`c6e2a8e`](https://github.com/haus23/tipprunde-legacy/commit/c6e2a8e1d535c526e812103a82f94e45f74e0e25) - Restyle the navigation with the sidebar tokens: one look for active, hover and focused entries, icons for the master data, and a profile entry with a separate sign out button ("Abmelden").
+
+- [`e9a5660`](https://github.com/haus23/tipprunde-legacy/commit/e9a5660e76f6e428ff50ebdd222124b3b1c63d20) - Fix switching the championship on the matches, tips, results and extra points pages: pages start fresh for the new championship instead of crashing when it has fewer matches, players or no rounds.
+
 ## 0.9.4
 
 ### Patch Changes
