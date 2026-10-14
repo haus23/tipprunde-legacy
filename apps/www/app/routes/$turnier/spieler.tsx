@@ -1,10 +1,6 @@
-import type { Match } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import type { ColumnDef } from '@tanstack/react-table';
-import { createColumnHelper } from '@tanstack/react-table';
 import { CheckIcon } from 'lucide-react';
-import { useMemo } from 'react';
 import type { Key } from 'react-aria-components';
 import * as v from 'valibot';
 import { EmptyView } from '#/components/app/empty-view';
@@ -14,11 +10,18 @@ import {
   AccordionGroup,
   AccordionSummary,
 } from '#/components/ui/accordion';
-import { DataTable } from '#/components/ui/data-table';
 import { Link } from '#/components/ui/link';
 import { ListBoxItem } from '#/components/ui/listbox';
 import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '#/components/ui/table';
 import { useChampionship } from '#/utils/app/championship';
 import { formatDate } from '#/utils/misc';
 import { matchesQuery, playersQuery, playerTipsQuery } from '#/utils/queries';
@@ -47,8 +50,6 @@ export const Route = createFileRoute('/$turnier/spieler')({
   },
   component: PlayersRoute,
 });
-
-const columnHelper = createColumnHelper<Match>();
 
 function PlayersRoute() {
   const { player } = Route.useLoaderData();
@@ -89,95 +90,6 @@ function PlayersComponent({
   const playedMatches = matches.filter((m) => m.result).length;
   const currentRoundId =
     matches.findLast((m) => m.result)?.roundId || matches.at(0)?.roundId || '';
-
-  const columns = useMemo(
-    () =>
-      [
-        columnHelper.accessor('nr', {
-          header: 'Nr',
-          meta: {
-            cellClasses: 'hidden sm:table-cell',
-            tdClasses: 'text-center tabular-nums',
-          },
-        }),
-        columnHelper.accessor('date', {
-          header: 'Datum',
-          cell: ({ cell }) =>
-            formatDate(cell.getValue(), { shortIfCurrent: true }),
-          meta: {
-            cellClasses: 'hidden sm:table-cell',
-            tdClasses: 'text-center tabular-nums',
-          },
-        }),
-        columnHelper.display({
-          id: 'match',
-          header: 'Spiel',
-          cell: ({ row }) => (
-            <Link
-              to="/$turnier/spiel"
-              params={{ turnier: championship.id }}
-              search={(prev) => ({ ...prev, nr: row.original.nr })}
-              className="block py-1"
-            >
-              <span className="hidden md:inline">
-                {`${teams[row.original.hometeamId]?.name || '(noch offen)'} – ${teams[row.original.awayteamId]?.name || '(noch offen)'}`}
-              </span>
-              <span className="md:hidden">
-                {`${teams[row.original.hometeamId]?.shortname || '(noch offen)'} – ${teams[row.original.awayteamId]?.shortname || '(noch offen)'}`}
-              </span>
-            </Link>
-          ),
-          meta: {
-            thClasses: 'text-left md:pl-6',
-            tdClasses: 'w-full font-medium',
-          },
-        }),
-        columnHelper.accessor('result', {
-          header: 'Ergebnis',
-          meta: {
-            tdClasses: 'text-center tabular-nums',
-          },
-        }),
-        columnHelper.display({
-          id: 'tip',
-          header: 'Tipp',
-          cell: ({ row }) => {
-            const tip = tips.tips[row.original.id];
-            return (
-              <>
-                <span>{tip?.tip}</span>
-                {(tip?.joker || tip?.lonelyHit) && (
-                  <span className="absolute -right-2 -translate-y-1.5">
-                    <Popover offset={4} triggerLabel="Zusatzinfos zum Tipp">
-                      <div className="px-4 py-2">
-                        {tip?.joker === true && <p>Joker</p>}
-                        {tip?.lonelyHit === true && (
-                          <p>Einziger richtiger Tipp</p>
-                        )}
-                      </div>
-                    </Popover>
-                  </span>
-                )}
-              </>
-            );
-          },
-          meta: {
-            cellClasses: 'px-6 md:px-6',
-            tdClasses: 'relative text-center tabular-nums',
-          },
-        }),
-        columnHelper.display({
-          id: 'points',
-          header: 'Punkte',
-          cell: ({ row }) =>
-            row.original.result && (tips.tips[row.original.id]?.points ?? 0),
-          meta: {
-            tdClasses: 'text-center tabular-nums',
-          },
-        }),
-      ] as ColumnDef<Match>[],
-    [championship, teams, tips],
-  );
 
   return (
     <div>
@@ -294,17 +206,92 @@ function PlayersComponent({
                     )}
                   </AccordionSummary>
                   <AccordionDetails className="animated-height">
-                    <DataTable
-                      className="py-1 text-sm"
-                      columns={columns}
-                      data={matchesInRound}
-                      getRowClasses={(row) => {
-                        const tip = tips.tips[row.original.id];
-                        return tip?.joker || tip?.lonelyHit
-                          ? 'bg-accent-4'
-                          : '';
-                      }}
-                    />
+                    <div className="py-1 text-sm">
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead className="hidden sm:table-cell">
+                              Nr
+                            </TableHead>
+                            <TableHead className="hidden sm:table-cell">
+                              Datum
+                            </TableHead>
+                            <TableHead className="text-left md:pl-6">
+                              Spiel
+                            </TableHead>
+                            <TableHead>Ergebnis</TableHead>
+                            <TableHead className="px-6 md:px-6">Tipp</TableHead>
+                            <TableHead>Punkte</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {matchesInRound.map((match) => {
+                            const tip = tips.tips[match.id];
+                            return (
+                              <TableRow
+                                key={match.id}
+                                className={
+                                  tip?.joker || tip?.lonelyHit
+                                    ? 'bg-accent-4'
+                                    : undefined
+                                }
+                              >
+                                <TableCell className="hidden text-center tabular-nums sm:table-cell">
+                                  {match.nr}
+                                </TableCell>
+                                <TableCell className="hidden text-center tabular-nums sm:table-cell">
+                                  {formatDate(match.date, {
+                                    shortIfCurrent: true,
+                                  })}
+                                </TableCell>
+                                <TableCell className="w-full font-medium">
+                                  <Link
+                                    to="/$turnier/spiel"
+                                    params={{ turnier: championship.id }}
+                                    search={(prev) => ({
+                                      ...prev,
+                                      nr: match.nr,
+                                    })}
+                                    className="block py-1"
+                                  >
+                                    <span className="hidden md:inline">
+                                      {`${teams[match.hometeamId]?.name || '(noch offen)'} – ${teams[match.awayteamId]?.name || '(noch offen)'}`}
+                                    </span>
+                                    <span className="md:hidden">
+                                      {`${teams[match.hometeamId]?.shortname || '(noch offen)'} – ${teams[match.awayteamId]?.shortname || '(noch offen)'}`}
+                                    </span>
+                                  </Link>
+                                </TableCell>
+                                <TableCell className="text-center tabular-nums">
+                                  {match.result}
+                                </TableCell>
+                                <TableCell className="relative px-6 text-center tabular-nums md:px-6">
+                                  <span>{tip?.tip}</span>
+                                  {(tip?.joker || tip?.lonelyHit) && (
+                                    <span className="absolute -right-2 -translate-y-1.5">
+                                      <Popover
+                                        offset={4}
+                                        triggerLabel="Zusatzinfos zum Tipp"
+                                      >
+                                        <div className="px-4 py-2">
+                                          {tip?.joker === true && <p>Joker</p>}
+                                          {tip?.lonelyHit === true && (
+                                            <p>Einziger richtiger Tipp</p>
+                                          )}
+                                        </div>
+                                      </Popover>
+                                    </span>
+                                  )}
+                                </TableCell>
+                                <TableCell className="text-center tabular-nums">
+                                  {match.result && (tip?.points ?? 0)}
+                                </TableCell>
+                              </TableRow>
+                            );
+                          })}
+                        </TableBody>
+                      </Table>
+                    </div>
                   </AccordionDetails>
                 </Accordion>
               );

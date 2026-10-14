@@ -17,7 +17,6 @@
     "@haus23/tipprunde-model": "workspace:^",
     "@tanstack/react-query": "^5.104.2",
     "@tanstack/react-router": "^1.170.44",
-    "@tanstack/react-table": "^8.21.3",
     "lucide-react": "catalog:icons",
     "react": "catalog:react",
     "react-aria": "^3.39.0",

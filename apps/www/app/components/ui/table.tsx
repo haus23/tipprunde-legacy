@@ -24,8 +24,9 @@ export function TableHeader({ className, ...props }: TableHeader.Props) {
   return <thead className={tableHeaderStyles({ className })} {...props} />;
 }
 
+// The pseudo element keeps a small gap between header and first row
 const tableBodyStyles = tv({
-  base: 'divide-y',
+  base: "divide-y before:block before:-indent-[9999px] before:leading-[2px] before:content-['@']",
 });
 
 namespace TableBody {
