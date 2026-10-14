@@ -43,7 +43,7 @@ export default function AppShell() {
       </Dialog.Root>
       {/* Static desktop navbar */}
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-        <div className="flex min-h-0 flex-1 flex-col border-gray-200 border-r bg-white">
+        <div className="flex min-h-0 flex-1 flex-col border-sidebar-border border-r bg-sidebar text-sidebar-foreground">
           <AppShellNavbar />
         </div>
       </div>
