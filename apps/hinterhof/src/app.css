@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
+  /* No Tailwind default palette: every color is a semantic token below */
+  --color-*: initial;
   --breakpoint-xs: 380px;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -23,6 +25,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-overlay: var(--overlay);
+  --color-overlay-foreground: var(--overlay-foreground);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -63,6 +66,7 @@
   --input: oklch(87.2% 0.01 258.338);
   --ring: oklch(58.5% 0.233 277.117);
   --overlay: oklch(44.6% 0.03 256.802 / 75%);
+  --overlay-foreground: oklch(1 0 0);
   --sidebar: oklch(1 0 0);
   --sidebar-foreground: oklch(44.6% 0.03 256.802);
   --sidebar-primary: oklch(96.7% 0.003 264.542);

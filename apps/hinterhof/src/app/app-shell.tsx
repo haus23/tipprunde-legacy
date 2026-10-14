@@ -46,7 +46,7 @@ export default function AppShell() {
               <Dialog.Close
                 className={cn(
                   focusRingOnDark,
-                  'flex h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/10',
+                  'flex h-10 w-10 items-center justify-center rounded-full text-overlay-foreground hover:bg-overlay-foreground/10',
                 )}
               >
                 <span className="sr-only">Navigation schließen</span>
