@@ -1,5 +1,23 @@
 # hinterhof
 
+## 0.10.1
+
+### Patch Changes
+
+- [`5a8c4e1`](https://github.com/haus23/tipprunde-legacy/commit/5a8c4e120e9cdce4fafe56b5a0b22af9ed3aa208) - Show the championship name with its id, number and rule set at the top of the championship page, and explain each state switch.
+
+- [`d7892c8`](https://github.com/haus23/tipprunde-legacy/commit/d7892c86e2f62e68e0dd401041d84aaa3d02d355) - List the players of a championship in a data card and add players with a searchable dialog that stays open for the next one, instead of the two long player columns.
+
+- [`02cd732`](https://github.com/haus23/tipprunde-legacy/commit/02cd732d0e8c8e249a15a7f7b06d7efb71bb6ba3) - Show "Noch keine Spiele in dieser Runde." in the matches, tips and results tables of a round without matches instead of an empty table.
+
+- [`9c5dbf8`](https://github.com/haus23/tipprunde-legacy/commit/9c5dbf86988e543c0b07810e242e8849d03d1d3b) - Move the login, the error page and the toggle switch to the semantic colors; the error page uses the card and button components.
+
+- [`6e337f4`](https://github.com/haus23/tipprunde-legacy/commit/6e337f4b53b4b7aec435a18994d3cc4bc37f098c) - Show the loading of a championship as a card with a spinner instead of plain text.
+
+- [`bd09ae3`](https://github.com/haus23/tipprunde-legacy/commit/bd09ae34b7199ab4d0dd86b2c3ae5151a487ae47) - Show the profile in one card with the title in its header, like the other pages.
+
+- [`46ade0f`](https://github.com/haus23/tipprunde-legacy/commit/46ade0f5916c74db6b976b19b254b2c08ae6c501) - Style the toasts with the theme tokens, and keep error toasts a little longer on screen.
+
 ## 0.10.0
 
 ### Minor Changes
