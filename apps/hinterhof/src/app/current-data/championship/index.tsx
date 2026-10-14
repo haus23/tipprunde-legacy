@@ -1,6 +1,6 @@
 import type { Member } from '@haus23/tipprunde-model';
 import { ArrowRightIcon, PlusIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import { Link } from 'react-router';
 import Button from '#/components/button';
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/card';
@@ -15,10 +15,40 @@ import { useRanking } from '#/hooks/current-data/use-ranking';
 import { useRecalculateChampionship } from '#/hooks/current-data/use-recalculate-championship';
 import { useRounds } from '#/hooks/current-data/use-rounds';
 import { usePlayers } from '#/hooks/master-data/use-players';
+import { useRules } from '#/hooks/master-data/use-rules';
 import { focusRing } from '#/styles/focus';
 import { cn } from '#/utils/cn';
 import { invalidateCache } from '#/utils/invalidate-cache';
 import { notify } from '#/utils/notify';
+
+// A state switch with a short explanation of what it changes, indented to
+// the label (switch width plus gap).
+function StateToggle({
+  checked,
+  description,
+  label,
+  onChange,
+}: {
+  checked: boolean;
+  description: string;
+  label: string;
+  onChange: () => void;
+}) {
+  const descriptionId = useId();
+  return (
+    <div className="space-y-1">
+      <ToggleField
+        checked={checked}
+        onChange={onChange}
+        label={label}
+        aria-describedby={descriptionId}
+      />
+      <p id={descriptionId} className="pl-14 text-muted-foreground text-sm">
+        {description}
+      </p>
+    </div>
+  );
+}
 
 export default function ChampionshipView() {
   const { players } = usePlayers();
@@ -31,6 +61,8 @@ export default function ChampionshipView() {
   const { rounds } = useRounds();
   const { matches } = useMatches();
   const [roundDialogOpen, setRoundDialogOpen] = useState(false);
+  const { rules } = useRules();
+  const ruleSet = rules.find(({ id }) => id === currentChampionship?.rulesId);
 
   function togglePublishedState() {
     if (!currentChampionship) return;
@@ -117,23 +149,35 @@ export default function ChampionshipView() {
     <div className="mt-5 flex flex-col space-y-4">
       <Card>
         <CardHeader>
-          <CardTitle>Turnier</CardTitle>
+          <CardTitle>{currentChampionship.name}</CardTitle>
+          <p className="mt-1 text-muted-foreground text-sm">
+            {[
+              currentChampionship.id,
+              `Nr. ${currentChampionship.nr}`,
+              ruleSet?.name,
+            ]
+              .filter(Boolean)
+              .join(' · ')}
+          </p>
         </CardHeader>
-        <CardContent className="flex flex-col items-start gap-y-4">
-          <ToggleField
+        <CardContent className="space-y-5">
+          <StateToggle
             checked={currentChampionship.published}
             onChange={togglePublishedState}
             label="Veröffentlicht"
+            description="Das Turnier ist auf runde.tips sichtbar."
           />
-          <ToggleField
-            checked={currentChampionship.completed}
-            onChange={toggleCompletedState}
-            label="Abgeschlossen"
-          />
-          <ToggleField
+          <StateToggle
             checked={currentChampionship.extraPointsPublished}
             onChange={toggleExtraPointsPublishedState}
             label="Zusatzpunkte veröffentlicht"
+            description="Zusatzpunkte sind sichtbar und zählen in Gesamtpunkten und Rangliste."
+          />
+          <StateToggle
+            checked={currentChampionship.completed}
+            onChange={toggleCompletedState}
+            label="Abgeschlossen"
+            description="Das Turnier ist beendet, aktuelle Tipps werden nicht mehr gezeigt."
           />
         </CardContent>
       </Card>
@@ -280,9 +324,9 @@ export default function ChampionshipView() {
         <CardHeader>
           <CardTitle>Wartung</CardTitle>
         </CardHeader>
-        <CardContent className="flex items-center justify-between gap-x-4">
+        <CardContent className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="font-medium">Turnierwertung neu berechnen</p>
+            <p className="font-medium text-sm">Turnierwertung neu berechnen</p>
             <p className="mt-1 text-muted-foreground text-sm">
               Wertet alle Spiele und Tipps neu aus und aktualisiert die
               Rangliste.
