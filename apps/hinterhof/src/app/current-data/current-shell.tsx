@@ -24,7 +24,7 @@ function CurrentDataOutlet({
   const { championshipPlayers } = useChampionshipPlayers();
 
   // A page without its data yet (e.g. tips without matches, also after
-  // switching the championship) falls back to the dashboard.
+  // switching the championship) falls back to the championship page.
   const page = championshipPages.find(
     ({ path }) => path === pathname.split('/')[2],
   );

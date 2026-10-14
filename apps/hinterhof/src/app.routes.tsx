@@ -37,10 +37,6 @@ export default function createAppRoutes(): RouteObject[] {
           children: [
             {
               index: true,
-              lazy: lazyComponent(() => import('./app/current-data/dashboard')),
-            },
-            {
-              path: 'turnier',
               lazy: lazyComponent(
                 () => import('./app/current-data/championship'),
               ),

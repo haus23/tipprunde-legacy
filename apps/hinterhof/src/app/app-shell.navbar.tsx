@@ -1,6 +1,5 @@
 import type { Championship } from '@haus23/tipprunde-model';
 import {
-  HouseIcon,
   LayersIcon,
   LogOutIcon,
   ScrollTextIcon,
@@ -74,10 +73,11 @@ function ChampionshipNavItems({
   return championshipPages
     .filter((page) => page.available(rounds, matches, championshipPlayers))
     .map((page) => {
-      const to = `/${championship.id}/${page.path}`;
+      const to = `/${championship.id}${page.path && `/${page.path}`}`;
       return (
         <NavItem
           key={page.path}
+          end={page.path === ''}
           to={page.keepsRound && round ? `${to}?${roundParam}=${round}` : to}
           icon={page.icon}
           label={page.label}
@@ -111,12 +111,6 @@ export default function AppShellNavbar() {
                 <ChampionshipSwitcher championship={championship} />
               </div>
             )}
-            <NavItem
-              to={championship ? `/${championship.id}` : '/'}
-              end
-              icon={HouseIcon}
-              label="Dashboard"
-            />
             {championship && (
               <Suspense fallback={null}>
                 <ChampionshipNavItems championship={championship} />

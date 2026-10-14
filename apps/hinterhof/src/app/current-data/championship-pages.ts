@@ -8,8 +8,9 @@ import {
 } from 'lucide-react';
 import type { ElementType } from 'react';
 
-// The pages of a championship (/:turnier/<path>). A page is only available
-// once the championship has the data it works on.
+// The pages of a championship (/:turnier/<path>; the championship page itself
+// is /:turnier). A page is only available once the championship has the data
+// it works on.
 export type ChampionshipPage = {
   path: string;
   icon: ElementType;
@@ -24,7 +25,7 @@ export type ChampionshipPage = {
 
 export const championshipPages: ChampionshipPage[] = [
   {
-    path: 'turnier',
+    path: '',
     icon: FolderIcon,
     label: 'Turnier',
     available: () => true,

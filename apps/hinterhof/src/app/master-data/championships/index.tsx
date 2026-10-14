@@ -97,7 +97,7 @@ export default function ChampionshipsView() {
       <ChampionshipDialog
         open={dialogOpen}
         onOpenChange={setDialogOpen}
-        onSaved={(championship) => navigate(`/${championship.id}/turnier`)}
+        onSaved={(championship) => navigate(`/${championship.id}`)}
       />
     </div>
   );

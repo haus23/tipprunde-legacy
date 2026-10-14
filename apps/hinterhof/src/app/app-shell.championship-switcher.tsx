@@ -12,7 +12,7 @@ import { championshipPages } from './current-data/championship-pages';
 
 // Switches the championship of the championship pages. Stays on the same page
 // (without the round); pages the new championship has no data for yet fall
-// back to its dashboard.
+// back to its championship page.
 
 function targetPath(championshipId: Championship['id'], pathname: string) {
   const page = pathname.split('/')[2];

@@ -200,8 +200,7 @@ export default function ChampionshipView() {
                     </td>
                     <td className="py-2 pr-4 pl-2 text-right sm:pr-6">
                       <Link
-                        to={`../spiele?${roundParam}=${round.nr}`}
-                        relative="path"
+                        to={`/${currentChampionship.id}/spiele?${roundParam}=${round.nr}`}
                         aria-label={`Spiele der Runde ${round.nr}`}
                         title="Spiele der Runde"
                         className={cn(
