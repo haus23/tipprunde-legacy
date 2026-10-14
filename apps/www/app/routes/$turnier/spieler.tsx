@@ -8,21 +8,11 @@ import {
   AccordionGroup,
   AccordionSummary,
 } from '#/components/ui/accordion';
-import { Link } from '#/components/ui/link';
-import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
 import { Stats } from '#/components/ui/stats';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '#/components/ui/table';
 import { useChampionship } from '#/utils/app/championship';
-import { formatDate } from '#/utils/misc';
 import { matchesQuery, playersQuery, playerTipsQuery } from '#/utils/queries';
+import { RoundMatchesTable } from './-round-matches-table';
 
 export const Route = createFileRoute('/$turnier/spieler')({
   validateSearch: v.object({
@@ -176,99 +166,12 @@ function PlayersComponent({
                     )}
                   </AccordionSummary>
                   <AccordionDetails>
-                    <div className="py-1 text-sm">
-                      <Table>
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead className="hidden sm:table-cell">
-                              Nr
-                            </TableHead>
-                            <TableHead className="hidden sm:table-cell">
-                              Datum
-                            </TableHead>
-                            <TableHead className="text-left max-sm:pl-4 md:pl-6">
-                              Spiel
-                            </TableHead>
-                            <TableHead>Ergebnis</TableHead>
-                            <TableHead className="px-6 md:px-6">Tipp</TableHead>
-                            <TableHead>Punkte</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {matchesInRound.map((match) => {
-                            const tip = tips.tips[match.id];
-                            return (
-                              <TableRow
-                                key={match.id}
-                                className={
-                                  tip?.joker || tip?.lonelyHit
-                                    ? 'bg-highlight'
-                                    : undefined
-                                }
-                              >
-                                <TableCell className="hidden text-center tabular-nums sm:table-cell">
-                                  {match.nr}
-                                </TableCell>
-                                <TableCell className="hidden text-center tabular-nums sm:table-cell">
-                                  {formatDate(match.date, {
-                                    shortIfCurrent: true,
-                                  })}
-                                </TableCell>
-                                <TableCell className="w-full font-medium max-sm:pl-2">
-                                  <Link
-                                    to="/$turnier/spiel"
-                                    params={{ turnier: championship.id }}
-                                    search={(prev) => ({
-                                      ...prev,
-                                      nr: match.nr,
-                                    })}
-                                    className="block py-1"
-                                  >
-                                    <span className="hidden md:inline">
-                                      {`${teams[match.hometeamId]?.name || '(noch offen)'} – ${teams[match.awayteamId]?.name || '(noch offen)'}`}
-                                    </span>
-                                    <span className="md:hidden">
-                                      {`${teams[match.hometeamId]?.shortname || '(noch offen)'} – ${teams[match.awayteamId]?.shortname || '(noch offen)'}`}
-                                    </span>
-                                  </Link>
-                                </TableCell>
-                                <TableCell className="text-center tabular-nums">
-                                  {match.result}
-                                </TableCell>
-                                <TableCell className="px-6 tabular-nums md:px-6">
-                                  {/* Tip centered, the info icon next to it without moving it */}
-                                  <div className="grid grid-cols-[1fr_auto_1fr] items-center">
-                                    <span />
-                                    <span>{tip?.tip}</span>
-                                    <span className="justify-self-start">
-                                      {(tip?.joker || tip?.lonelyHit) && (
-                                        <Popover
-                                          offset={4}
-                                          triggerLabel="Zusatzinfos zum Tipp"
-                                          triggerClassName="-my-1.5"
-                                        >
-                                          <div className="px-4 py-2">
-                                            {tip?.joker === true && (
-                                              <p>Joker</p>
-                                            )}
-                                            {tip?.lonelyHit === true && (
-                                              <p>Einziger richtiger Tipp</p>
-                                            )}
-                                          </div>
-                                        </Popover>
-                                      )}
-                                    </span>
-                                  </div>
-                                </TableCell>
-                                <TableCell className="text-center tabular-nums">
-                                  {match.result && (tip?.points ?? 0)}
-                                </TableCell>
-                              </TableRow>
-                            );
-                          })}
-                        </TableBody>
-                      </Table>
-                    </div>
+                    <RoundMatchesTable
+                      championshipId={championship.id}
+                      matches={matchesInRound}
+                      teams={teams}
+                      tips={tips.tips}
+                    />
                   </AccordionDetails>
                 </Accordion>
               );

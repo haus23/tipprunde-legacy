@@ -1,31 +1,17 @@
 import type { Tip } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import {
-  ChevronDownIcon,
-  ChevronsUpDownIcon,
-  ChevronUpIcon,
-  TriangleAlertIcon,
-} from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { TriangleAlertIcon } from 'lucide-react';
+import { useMemo } from 'react';
 import * as v from 'valibot';
 import { EmptyView } from '#/components/app/empty-view';
-import { Button } from '#/components/ui/button';
-import { Link } from '#/components/ui/link';
 import { Popover } from '#/components/ui/popover';
 import { Select } from '#/components/ui/select';
 import { Stats } from '#/components/ui/stats';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '#/components/ui/table';
 import { useChampionship } from '#/utils/app/championship';
 import { formatDate } from '#/utils/misc';
 import { matchesQuery, matchTipsQuery, playersQuery } from '#/utils/queries';
+import { MatchTipsTable } from './-match-tips-table';
 
 export const Route = createFileRoute('/$turnier/spiel')({
   validateSearch: v.object({
@@ -51,41 +37,6 @@ export const Route = createFileRoute('/$turnier/spiel')({
   },
   component: MatchesRoute,
 });
-
-// The tips table sorts by player, tip or points. Like before, a click cycles
-// through the first direction, the opposite one and no sorting.
-type SortColumn = 'player' | 'tip' | 'points';
-type Sort = { column: SortColumn; direction: 'asc' | 'desc' };
-type SortValue = string | number | undefined;
-
-const firstDirection: Record<SortColumn, Sort['direction']> = {
-  player: 'asc',
-  tip: 'asc',
-  points: 'desc',
-};
-
-const sortValues: Record<
-  SortColumn,
-  (tip: Partial<Tip>, playerNames: Map<string, string>) => SortValue
-> = {
-  player: (tip, playerNames) => playerNames.get(tip.playerId ?? ''),
-  tip: (tip) => tip.tip || undefined,
-  points: (tip) => tip.points,
-};
-
-const compare: Record<
-  SortColumn,
-  (a: NonNullable<SortValue>, b: NonNullable<SortValue>) => number
-> = {
-  player: (a, b) => (a < b ? -1 : a > b ? 1 : 0),
-  // Home wins first (by goal difference, then by home goals)
-  tip: (a, b) => {
-    const [aHome, aAway] = String(a).split(':').map(Number);
-    const [bHome, bAway] = String(b).split(':').map(Number);
-    return (aHome - aAway - (bHome - bAway) || aHome - bHome) * -1;
-  },
-  points: (a, b) => Number(a) - Number(b),
-};
 
 function MatchesRoute() {
   const { match } = Route.useLoaderData();
@@ -127,66 +78,6 @@ function MatchesComponent({
     () => players.map((p): Partial<Tip> => tips[p.id] || { playerId: p.id }),
     [players, tips],
   );
-  const playerNames = useMemo(
-    () => new Map(players.map((p) => [p.id, p.account.name])),
-    [players],
-  );
-
-  const [sort, setSort] = useState<Sort | null>(null);
-
-  const sortedTips = useMemo(() => {
-    if (!sort) return matchTips;
-    const value = sortValues[sort.column];
-    const direction = sort.direction === 'asc' ? 1 : -1;
-    return matchTips.toSorted((a, b) => {
-      const valueA = value(a, playerNames);
-      const valueB = value(b, playerNames);
-      // Rows without a value stay at the end in both directions
-      if (valueA === undefined || valueB === undefined) {
-        return valueA === valueB ? 0 : valueA === undefined ? 1 : -1;
-      }
-      return compare[sort.column](valueA, valueB) * direction;
-    });
-  }, [matchTips, playerNames, sort]);
-
-  function toggleSort(column: SortColumn) {
-    const first = firstDirection[column];
-    setSort((prev) =>
-      prev?.column !== column
-        ? { column, direction: first }
-        : prev.direction === first
-          ? { column, direction: first === 'asc' ? 'desc' : 'asc' }
-          : null,
-    );
-  }
-
-  function sortHeader(column: SortColumn, label: string) {
-    const direction = sort?.column === column ? sort.direction : undefined;
-    return (
-      <Button
-        onClick={() => toggleSort(column)}
-        className="gap-x-1 p-1 font-medium text-xs uppercase hover:bg-selected"
-        variant="plain"
-      >
-        <span>{label}</span>
-        {direction === 'asc' ? (
-          <ChevronUpIcon className="size-4" aria-hidden="true" />
-        ) : direction === 'desc' ? (
-          <ChevronDownIcon className="size-4" aria-hidden="true" />
-        ) : (
-          <ChevronsUpDownIcon
-            className="size-4 opacity-50"
-            aria-hidden="true"
-          />
-        )}
-      </Button>
-    );
-  }
-
-  function ariaSort(column: SortColumn) {
-    if (sort?.column !== column) return undefined;
-    return sort.direction === 'asc' ? 'ascending' : 'descending';
-  }
 
   const matchResult = matches.find((m) => m.id === match.id)?.result;
 
@@ -263,76 +154,13 @@ function MatchesComponent({
           </div>
         ) : null}
       </div>
-      <div className="mt-6 text-sm">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead
-                className="py-1 text-left max-sm:first:pl-3"
-                aria-sort={ariaSort('player')}
-              >
-                {sortHeader('player', 'Spieler')}
-              </TableHead>
-              <TableHead className="px-6 md:px-6" aria-sort={ariaSort('tip')}>
-                {sortHeader('tip', 'Tipp')}
-              </TableHead>
-              <TableHead aria-sort={ariaSort('points')}>
-                {sortHeader('points', 'Punkte')}
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {sortedTips.map((tip) => {
-              const player = players.find((p) => p.id === tip.playerId);
-              return (
-                <TableRow
-                  key={tip.playerId}
-                  className={
-                    tip.joker || tip.lonelyHit ? 'bg-highlight' : undefined
-                  }
-                >
-                  <TableCell className="w-full max-sm:first:pl-2">
-                    <Link
-                      className="block py-1"
-                      to="/$turnier/spieler"
-                      params={{ turnier: championship.id }}
-                      search={{ name: player?.account.id }}
-                    >
-                      {player?.account.name}
-                    </Link>
-                  </TableCell>
-                  <TableCell className="px-6 tabular-nums md:px-6">
-                    {/* Tip centered, the info icon next to it without moving it */}
-                    <div className="grid grid-cols-[1fr_auto_1fr] items-center">
-                      <span />
-                      <span>{tip.tip}</span>
-                      <span className="justify-self-start">
-                        {(tip.joker || tip.lonelyHit) && (
-                          <Popover
-                            offset={4}
-                            triggerLabel="Zusatzinfos zum Tipp"
-                            triggerClassName="-my-1.5"
-                          >
-                            <div className="px-4 py-2">
-                              {tip.joker === true && <p>Joker</p>}
-                              {tip.lonelyHit === true && (
-                                <p>Einziger richtiger Tipp</p>
-                              )}
-                            </div>
-                          </Popover>
-                        )}
-                      </span>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-center tabular-nums">
-                    {matchResult ? tip.points : undefined}
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </div>
+      <MatchTipsTable
+        className="mt-6 text-sm"
+        championshipId={championship.id}
+        players={players}
+        showPoints={Boolean(matchResult)}
+        tips={matchTips}
+      />
     </div>
   );
 }
