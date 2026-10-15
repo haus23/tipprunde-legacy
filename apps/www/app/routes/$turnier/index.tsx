@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { noop, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { ClipboardListIcon } from 'lucide-react';
 import { Suspense } from 'react';
@@ -19,7 +19,7 @@ import { CurrentTips } from './-current-tips';
 
 export const Route = createFileRoute('/$turnier/')({
   loader: async ({ context: { queryClient, championship } }) => {
-    queryClient.prefetchQuery(currentTipsQuery(championship));
+    queryClient.query(currentTipsQuery(championship)).catch(noop);
   },
   component: RankingComponent,
 });

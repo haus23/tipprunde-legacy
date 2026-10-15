@@ -1,4 +1,5 @@
 import { championshipIdRegEx } from '@haus23/tipprunde-model';
+import { noop } from '@tanstack/react-query';
 import { createFileRoute, notFound, Outlet } from '@tanstack/react-router';
 import { Suspense } from 'react';
 
@@ -20,8 +21,8 @@ export const Route = createFileRoute('/$turnier')({
     return { championship };
   },
   loader: ({ context: { championship, queryClient } }) => {
-    queryClient.prefetchQuery(playersQuery(championship.id));
-    queryClient.prefetchQuery(matchesQuery(championship.id));
+    queryClient.query(playersQuery(championship.id)).catch(noop);
+    queryClient.query(matchesQuery(championship.id)).catch(noop);
 
     return { championship };
   },

@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { noop, useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import * as v from 'valibot';
 import { EmptyView } from '#/components/app/empty-view';
@@ -22,16 +22,14 @@ export const Route = createFileRoute('/$turnier/spieler')({
     deps: { accountId },
     context: { queryClient, championship },
   }) => {
-    const players = await queryClient.ensureQueryData(
-      playersQuery(championship.id),
-    );
+    const players = await queryClient.query(playersQuery(championship.id));
     const player =
       players.find((p) => p.account.id === accountId) || players[0];
 
     if (player) {
-      queryClient.prefetchQuery(
-        playerTipsQuery(championship.id, player.account.id),
-      );
+      queryClient
+        .query(playerTipsQuery(championship.id, player.account.id))
+        .catch(noop);
     }
     return { player };
   },

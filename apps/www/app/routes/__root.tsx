@@ -11,9 +11,7 @@ export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
   beforeLoad: async ({ context: { queryClient } }) => {
-    const championships = await queryClient.ensureQueryData(
-      championshipsQuery(),
-    );
+    const championships = await queryClient.query(championshipsQuery());
     return { championships };
   },
   component: RootComponent,
