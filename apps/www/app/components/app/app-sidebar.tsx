@@ -1,11 +1,9 @@
 import { Dialog } from '@base-ui/react/dialog';
-import { FoldersIcon } from 'lucide-react';
 import { useEffect } from 'react';
 
 import { ThemeSelect } from '#/components/app/theme-select';
 import { Logo } from '#/components/logo';
 import { ActionProvider } from '#/components/ui/action-context';
-import { Button } from '#/components/ui/button';
 import { Link } from '#/components/ui/link';
 
 import { useChampionship } from '#/utils/app/championship';
@@ -15,8 +13,7 @@ import { navLinks } from './nav-links';
 
 export function AppSidebar() {
   const championship = useChampionship();
-  const { isSidebarOpen, setSidebarOpen, setChampionshipSelectOpen } =
-    useAppShell();
+  const { isSidebarOpen, setSidebarOpen } = useAppShell();
 
   const isMobile = useIsMobile();
   useEffect(() => {
@@ -60,17 +57,6 @@ export function AppSidebar() {
               ))}
             </nav>
             <div>
-              <div className="flex items-center justify-between px-2">
-                <span className="text-muted-foreground">Turnierauswahl</span>
-                <Button
-                  onClick={() => setChampionshipSelectOpen(true)}
-                  variant="ghost"
-                  aria-label="Turnier-Auswahl öffnen"
-                >
-                  <FoldersIcon className="size-5" aria-hidden="true" />
-                </Button>
-              </div>
-              <hr className="my-2" />
               <div className="flex items-center justify-between px-2">
                 <span className="text-muted-foreground">
                   Hell-/Dunkel-Modus

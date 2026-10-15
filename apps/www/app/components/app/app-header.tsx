@@ -1,4 +1,4 @@
-import { PanelLeftIcon, SearchIcon } from 'lucide-react';
+import { PanelLeftIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import { ThemeSelect } from '#/components/app/theme-select';
@@ -8,6 +8,7 @@ import { Link } from '#/components/ui/link';
 import { useChampionship } from '#/utils/app/championship';
 
 import { useAppShell } from './app-shell';
+import { ChampionshipSelect } from './championship-select';
 import { navLinks } from './nav-links';
 
 const headerStyles = [
@@ -19,7 +20,7 @@ const headerStyles = [
 type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 
 export function AppHeader() {
-  const { toggleSidebar, setChampionshipSelectOpen } = useAppShell();
+  const { toggleSidebar } = useAppShell();
 
   const [scrollState, setScrollState] = useState<ScrollState>('at-top');
   useEffect(() => {
@@ -40,18 +41,15 @@ export function AppHeader() {
 
   return (
     <header data-scroll-state={scrollState} className={headerStyles}>
-      <div className="mx-auto flex h-16 max-w-6xl justify-between">
-        <div className="flex items-center gap-x-2 md:hidden">
-          <Button
-            onClick={toggleSidebar}
-            variant="ghost"
-            className="inline md:hidden"
-            aria-label="Sidebar-Toggle"
-          >
-            <PanelLeftIcon className="size-5" />
-          </Button>
-          <h2 className="text-xl">{championship.name}</h2>
-        </div>
+      <div className="mx-auto flex h-16 max-w-6xl items-center gap-x-2">
+        <Button
+          onClick={toggleSidebar}
+          variant="ghost"
+          className="md:hidden"
+          aria-label="Sidebar-Toggle"
+        >
+          <PanelLeftIcon className="size-5" />
+        </Button>
         <nav className="hidden items-center gap-x-4 md:flex">
           <Link
             to="/"
@@ -77,19 +75,10 @@ export function AppHeader() {
             ))}
           </div>
         </nav>
-        <div className="flex items-center gap-x-2">
-          <div className="hidden items-center gap-x-2 md:flex">
-            <Button
-              onClick={() => setChampionshipSelectOpen(true)}
-              variant="ghost"
-              className="flex gap-x-1"
-              aria-label="Turnier-Auswahl öffnen"
-            >
-              <SearchIcon className="size-5" />
-              <span>Turnier</span>
-            </Button>
-            <ThemeSelect />
-          </div>
+        {/* Left next to the menu button on phones, right on larger screens */}
+        <ChampionshipSelect className="text-xl md:ml-auto md:text-base" />
+        <div className="hidden md:block">
+          <ThemeSelect />
         </div>
       </div>
     </header>
