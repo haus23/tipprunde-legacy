@@ -81,10 +81,7 @@ function PlayersComponent({
   return (
     <div>
       <div className="mx-4 flex items-center gap-x-4 sm:mx-0">
-        <h1 className="font-medium text-xl">
-          <span className="hidden sm:inline">{championship.name} - </span>
-          <span>Tipps von</span>
-        </h1>
+        <h1 className="shrink-0 font-medium text-xl">Tipps von</h1>
         <Select
           aria-label="Spielerauswahl"
           name="player"

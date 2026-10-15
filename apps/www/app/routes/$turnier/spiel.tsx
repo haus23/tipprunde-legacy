@@ -83,10 +83,7 @@ function MatchesComponent({
   return (
     <div>
       <div className="mx-4 flex items-center gap-x-2 sm:mx-0 sm:gap-x-4">
-        <h1 className="font-medium text-xl tracking-tight sm:tracking-normal">
-          <span className="hidden sm:inline">{championship.name} - </span>
-          <span>Tipps für</span>
-        </h1>
+        <h1 className="shrink-0 font-medium text-xl">Tipps für</h1>
         <Select
           aria-label="Spielauswahl"
           name="match"

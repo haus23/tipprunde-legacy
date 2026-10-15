@@ -40,14 +40,11 @@ function RankingComponent() {
     <div>
       <div className="mx-4 sm:mx-0">
         <h1 className="font-medium text-xl">
-          <span className="hidden md:inline">{championship.name} - </span>
-          <span>
-            {hasRanking
-              ? championship.completed
-                ? 'Abschlusstabelle'
-                : 'Aktuelle Tabelle'
-              : 'Mitspieler'}
-          </span>
+          {hasRanking
+            ? championship.completed
+              ? 'Abschlusstabelle'
+              : 'Aktuelle Tabelle'
+            : 'Mitspieler'}
         </h1>
       </div>
       <div className="mt-4">
