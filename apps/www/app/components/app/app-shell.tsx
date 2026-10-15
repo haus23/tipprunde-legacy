@@ -1,6 +1,9 @@
 import { createContext, use, useCallback, useEffect, useState } from 'react';
-import { AppHeader } from './app-header';
+import { AppHeader, BareHeader } from './app-header';
 import { AppSidebar } from './app-sidebar';
+import { Backdrop } from './backdrop';
+
+const mainStyles = 'mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8';
 
 type ShellContextType = {
   isSidebarOpen: boolean;
@@ -70,10 +73,22 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="relative min-h-svh">
         <AppHeader />
         <AppSidebar />
-        <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">
-          {children}
-        </main>
+        <main className={mainStyles}>{children}</main>
       </div>
     </ShellContext>
+  );
+}
+
+// Shell without championship data, for errors before they are loaded. It
+// brings its own gradient, as such an error replaces the root component.
+export function BareShell({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <Backdrop />
+      <div className="relative min-h-svh">
+        <BareHeader />
+        <main className={mainStyles}>{children}</main>
+      </div>
+    </>
   );
 }

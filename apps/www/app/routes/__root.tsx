@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
+import { Backdrop } from '#/components/app/backdrop';
 import { NotFoundComponent } from '#/components/app/error';
 import { championshipsQuery } from '#/utils/queries';
 
@@ -22,7 +23,7 @@ export const Route = createRootRouteWithContext<{
 function RootComponent() {
   return (
     <>
-      <div className="absolute inset-0 h-[480px] bg-gradient-to-b from-highlight to-background opacity-60" />
+      <Backdrop />
       <Outlet />
       <TanStackRouterDevtools position="bottom-left" />
       <ReactQueryDevtools buttonPosition="bottom-right" />
