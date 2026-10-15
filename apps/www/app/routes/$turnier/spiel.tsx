@@ -20,8 +20,14 @@ export const Route = createFileRoute('/$turnier/spiel')({
   loader: async ({ deps: { nr }, context: { queryClient, championship } }) => {
     // Wait for the data, so a navigation keeps the previous page until then
     const [matches] = await Promise.all([
-      queryClient.query(matchesQuery(championship.id)),
-      queryClient.query(playersQuery(championship.id)),
+      queryClient.query({
+        ...matchesQuery(championship.id),
+        staleTime: 'static',
+      }),
+      queryClient.query({
+        ...playersQuery(championship.id),
+        staleTime: 'static',
+      }),
     ]);
 
     const match =
@@ -32,7 +38,10 @@ export const Route = createFileRoute('/$turnier/spiel')({
       matches.matches[0];
 
     if (match) {
-      await queryClient.query(matchTipsQuery(championship.id, match.nr));
+      await queryClient.query({
+        ...matchTipsQuery(championship.id, match.nr),
+        staleTime: 'static',
+      });
     }
     return { match };
   },

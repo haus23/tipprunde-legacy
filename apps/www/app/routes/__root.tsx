@@ -12,7 +12,10 @@ export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
 }>()({
   beforeLoad: async ({ context: { queryClient } }) => {
-    const championships = await queryClient.query(championshipsQuery());
+    const championships = await queryClient.query({
+      ...championshipsQuery(),
+      staleTime: 'static',
+    });
     return { championships };
   },
   component: RootComponent,

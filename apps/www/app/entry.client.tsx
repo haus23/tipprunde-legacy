@@ -2,13 +2,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { createRoot } from 'react-dom/client';
 
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 30,
-    },
-  },
-});
+// Data counts as stale right away: pages show cached data and refetch it
+// in the background, e.g. when the window gets focus again. The route
+// loaders take cached data as is (staleTime: 'static'), so navigating
+// to a page seen before is instant.
+export const queryClient = new QueryClient();
 
 import { ErrorComponent } from './components/app/error';
 import { LoadingView } from './components/app/loading';

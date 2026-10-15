@@ -21,8 +21,14 @@ export const Route = createFileRoute('/$turnier/')({
   // Wait for the data, so a navigation keeps the previous page until then
   loader: async ({ context: { queryClient, championship } }) => {
     await Promise.all([
-      queryClient.query(playersQuery(championship.id)),
-      queryClient.query(currentTipsQuery(championship)),
+      queryClient.query({
+        ...playersQuery(championship.id),
+        staleTime: 'static',
+      }),
+      queryClient.query({
+        ...currentTipsQuery(championship),
+        staleTime: 'static',
+      }),
     ]);
   },
   component: RankingComponent,

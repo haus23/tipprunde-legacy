@@ -24,16 +24,23 @@ export const Route = createFileRoute('/$turnier/spieler')({
   }) => {
     // Wait for the data, so a navigation keeps the previous page until then
     const [players] = await Promise.all([
-      queryClient.query(playersQuery(championship.id)),
-      queryClient.query(matchesQuery(championship.id)),
+      queryClient.query({
+        ...playersQuery(championship.id),
+        staleTime: 'static',
+      }),
+      queryClient.query({
+        ...matchesQuery(championship.id),
+        staleTime: 'static',
+      }),
     ]);
     const player =
       players.find((p) => p.account.id === accountId) || players[0];
 
     if (player) {
-      await queryClient.query(
-        playerTipsQuery(championship.id, player.account.id),
-      );
+      await queryClient.query({
+        ...playerTipsQuery(championship.id, player.account.id),
+        staleTime: 'static',
+      });
     }
     return { player };
   },
