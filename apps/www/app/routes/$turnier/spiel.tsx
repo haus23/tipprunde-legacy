@@ -1,11 +1,10 @@
 import type { Tip } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { TriangleAlertIcon } from 'lucide-react';
 import { useMemo } from 'react';
 import * as v from 'valibot';
 import { EmptyView } from '#/components/app/empty-view';
-import { Popover } from '#/components/ui/popover';
+import { Infotip } from '#/components/ui/infotip';
 import { Select } from '#/components/ui/select';
 import { Stats } from '#/components/ui/stats';
 import { useChampionship } from '#/utils/app/championship';
@@ -137,20 +136,13 @@ function MatchesComponent({
         />
         {rounds.find((r) => r.id === match.roundId)?.isDoubleRound ? (
           <div className="mt-4 flex items-center justify-center gap-x-2 text-muted-foreground">
-            <span className="sm:hidden">
-              <Popover
-                triggerIcon={TriangleAlertIcon}
-                triggerLabel="Doppel-Punkte Rundeninfo"
-              >
-                <div className="px-4 py-2">
-                  Alle erzielten Punkte werden verdoppelt.
-                </div>
-              </Popover>
-            </span>
             <span>Das Spiel läuft in einer Doppelrunde.</span>
             <span className="hidden sm:block">
               Alle erzielten Punkte werden verdoppelt.
             </span>
+            <Infotip label="Doppel-Punkte Rundeninfo" className="sm:hidden">
+              Alle erzielten Punkte werden verdoppelt.
+            </Infotip>
           </div>
         ) : null}
       </div>
