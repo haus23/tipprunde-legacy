@@ -40,7 +40,7 @@ export function AppHeader() {
 
   return (
     <header data-scroll-state={scrollState} className={headerStyles}>
-      <div className="flex h-16 justify-between">
+      <div className="mx-auto flex h-16 max-w-6xl justify-between">
         <div className="flex items-center gap-x-2 md:hidden">
           <Button
             onClick={toggleSidebar}
