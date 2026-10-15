@@ -11,6 +11,7 @@ export const queryClient = new QueryClient({
 });
 
 import { ErrorComponent } from './components/app/error';
+import { LoadingView } from './components/app/loading';
 import { routeTree } from './routeTree.gen';
 
 const router = createRouter({
@@ -21,6 +22,8 @@ const router = createRouter({
   getScrollRestorationKey: (location) => location.pathname,
   context: { queryClient },
   defaultErrorComponent: ErrorComponent,
+  // Pages render inside the app shell, so a quiet hint is enough there
+  defaultPendingComponent: LoadingView,
 });
 
 declare module '@tanstack/react-router' {

@@ -5,6 +5,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
 import { Backdrop } from '#/components/app/backdrop';
 import { NotFoundComponent } from '#/components/app/error';
+import { RootPendingComponent } from '#/components/app/loading';
 import { championshipsQuery } from '#/utils/queries';
 
 export const Route = createRootRouteWithContext<{
@@ -16,6 +17,7 @@ export const Route = createRootRouteWithContext<{
   },
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
+  pendingComponent: RootPendingComponent,
 });
 
 function RootComponent() {

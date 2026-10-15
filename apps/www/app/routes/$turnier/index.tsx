@@ -1,4 +1,4 @@
-import { noop, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { ClipboardListIcon } from 'lucide-react';
 import { Suspense } from 'react';
@@ -18,8 +18,12 @@ import { currentTipsQuery, playersQuery } from '#/utils/queries';
 import { CurrentTips } from './-current-tips';
 
 export const Route = createFileRoute('/$turnier/')({
+  // Wait for the data, so a navigation keeps the previous page until then
   loader: async ({ context: { queryClient, championship } }) => {
-    queryClient.query(currentTipsQuery(championship)).catch(noop);
+    await Promise.all([
+      queryClient.query(playersQuery(championship.id)),
+      queryClient.query(currentTipsQuery(championship)),
+    ]);
   },
   component: RankingComponent,
 });

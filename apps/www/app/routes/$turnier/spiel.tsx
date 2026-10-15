@@ -1,5 +1,5 @@
 import type { Tip } from '@haus23/tipprunde-model';
-import { noop, useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useMemo } from 'react';
 import * as v from 'valibot';
@@ -18,7 +18,11 @@ export const Route = createFileRoute('/$turnier/spiel')({
   }),
   loaderDeps: ({ search: { nr } }) => ({ nr }),
   loader: async ({ deps: { nr }, context: { queryClient, championship } }) => {
-    const matches = await queryClient.query(matchesQuery(championship.id));
+    // Wait for the data, so a navigation keeps the previous page until then
+    const [matches] = await Promise.all([
+      queryClient.query(matchesQuery(championship.id)),
+      queryClient.query(playersQuery(championship.id)),
+    ]);
 
     const match =
       matches.matches.find((m) => m.nr === nr) ||
@@ -28,7 +32,7 @@ export const Route = createFileRoute('/$turnier/spiel')({
       matches.matches[0];
 
     if (match) {
-      queryClient.query(matchTipsQuery(championship.id, match.nr)).catch(noop);
+      await queryClient.query(matchTipsQuery(championship.id, match.nr));
     }
     return { match };
   },
