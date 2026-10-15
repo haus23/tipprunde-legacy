@@ -63,7 +63,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         setChampionshipSelectOpen,
       }}
     >
-      <div className="relative isolate min-h-svh">
+      <div className="relative min-h-svh">
         <AppHeader />
         <AppSidebar />
         <main className="mx-auto max-w-5xl pt-20 pb-10 sm:px-6 lg:px-8">

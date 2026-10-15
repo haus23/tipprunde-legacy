@@ -83,7 +83,6 @@ export function Select({
       </BaseSelect.Trigger>
       <BaseSelect.Portal>
         <BaseSelect.Positioner
-          className="z-20"
           side="bottom"
           align="start"
           sideOffset={4}

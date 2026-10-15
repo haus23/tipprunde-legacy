@@ -27,10 +27,10 @@ export function AppSidebar() {
   return (
     <Dialog.Root open={isSidebarOpen} onOpenChange={setSidebarOpen}>
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-0 z-30 bg-background/50 backdrop-blur-[2px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
+        <Dialog.Backdrop className="absolute inset-0 bg-background/50 backdrop-blur-[2px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
         <Dialog.Popup
           aria-label="Sidebar-Navigation"
-          className="fixed inset-y-0 left-0 z-30 flex w-64 flex-col justify-between bg-background py-2 font-medium shadow-elevation shadow-lg outline-hidden transition-transform duration-200 data-ending-style:-translate-x-full data-starting-style:-translate-x-full motion-reduce:transition-none"
+          className="fixed inset-y-0 left-0 flex w-64 flex-col justify-between bg-background py-2 font-medium shadow-elevation shadow-lg outline-hidden transition-transform duration-200 data-ending-style:-translate-x-full data-starting-style:-translate-x-full motion-reduce:transition-none"
         >
           <ActionProvider onAction={() => setSidebarOpen(false)}>
             <nav className="flex flex-col gap-x-4">

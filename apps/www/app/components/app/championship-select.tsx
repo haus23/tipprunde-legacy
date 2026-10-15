@@ -45,10 +45,10 @@ export function ChampionshipSelect() {
       onOpenChange={setChampionshipSelectOpen}
     >
       <Dialog.Portal>
-        <Dialog.Backdrop className="fixed inset-0 z-30 bg-background/50 backdrop-blur-[2px] transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
+        <Dialog.Backdrop className="absolute inset-0 bg-background/50 backdrop-blur-[2px] transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
         <Dialog.Popup
           aria-label="Turnier-Auswahl"
-          className="fixed inset-4 bottom-auto z-30 mx-auto max-w-lg rounded-md bg-background py-2 font-medium shadow-elevation shadow-md outline-hidden ring-1 ring-border transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none dark:shadow-none"
+          className="fixed inset-4 bottom-auto mx-auto max-w-lg rounded-md bg-background py-2 font-medium shadow-elevation shadow-md outline-hidden ring-1 ring-border transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none dark:shadow-none"
         >
           <Combobox.Root
             inline
