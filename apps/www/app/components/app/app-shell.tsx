@@ -37,6 +37,11 @@ export function useAppShell() {
   };
 }
 
+// Whether a component renders inside the app shell.
+export function useIsInAppShell() {
+  return use(ShellContext) !== undefined;
+}
+
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isChampionshipSelectOpen, setChampionshipSelectOpen] = useState(false);
