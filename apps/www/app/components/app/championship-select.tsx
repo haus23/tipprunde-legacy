@@ -53,13 +53,16 @@ export function ChampionshipSelect({ className }: { className?: string }) {
         aria-label={`Turnier: ${championship.name}, wechseln`}
         className={cn(
           focusVisibleStyles,
-          'group flex min-w-0 items-center gap-x-1.5 px-2 py-1 transition-colors hover:text-accent data-popup-open:text-accent',
+          // Same look as the other header items; on phones it is the page
+          // title, so it keeps the full text color there.
+          componentHoverStyles,
+          'group flex min-w-0 items-center gap-x-1.5 p-2 transition-colors data-popup-open:bg-highlight data-popup-open:text-foreground max-md:text-foreground',
           className,
         )}
       >
         <span className="truncate">{championship.name}</span>
         <ChevronDownIcon
-          className="size-5 shrink-0 text-accent transition-transform group-data-popup-open:rotate-180 motion-reduce:transition-none"
+          className="size-5 shrink-0 transition-transform group-data-popup-open:rotate-180 motion-reduce:transition-none"
           aria-hidden="true"
         />
       </Combobox.Trigger>
