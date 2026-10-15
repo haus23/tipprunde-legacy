@@ -170,7 +170,7 @@ export function MatchTipsTable({
                 </TableCell>
                 <TipCell tip={tip} />
                 <TableCell className="text-center tabular-nums">
-                  {showPoints ? tip.points : undefined}
+                  {showPoints && tip.tip ? tip.points : undefined}
                 </TableCell>
               </TableRow>
             );

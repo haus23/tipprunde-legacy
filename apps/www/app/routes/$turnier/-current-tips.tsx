@@ -1,7 +1,7 @@
 import type { ChampionshipPlayerWithAccount } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { ClipboardListIcon } from 'lucide-react';
-
+import { NoTip } from '#/components/app/tip-cell';
 import { Link } from '#/components/ui/link';
 import { Popover } from '#/components/ui/popover';
 import { useChampionship } from '#/utils/app/championship';
@@ -59,17 +59,23 @@ export function CurrentTips({
                     </Link>
                   </td>
                   <td className="px-2 text-center tabular-nums">
-                    {tip?.tip}
-                    {tip?.joker && <span className="sr-only"> (Joker)</span>}
-                    {tip?.lonelyHit && (
-                      <span className="sr-only">
-                        {' '}
-                        (einziger richtiger Tipp)
-                      </span>
+                    {tip?.tip ? (
+                      <>
+                        {tip.tip}
+                        {tip.joker && <span className="sr-only"> (Joker)</span>}
+                        {tip.lonelyHit && (
+                          <span className="sr-only">
+                            {' '}
+                            (einziger richtiger Tipp)
+                          </span>
+                        )}
+                      </>
+                    ) : (
+                      <NoTip />
                     )}
                   </td>
                   <td className="px-3 text-right tabular-nums">
-                    {m.result ? (tip?.points ?? 0) : null}
+                    {m.result && tip?.tip ? (tip.points ?? 0) : null}
                   </td>
                 </tr>
               );

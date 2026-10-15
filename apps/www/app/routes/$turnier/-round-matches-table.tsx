@@ -79,7 +79,7 @@ export function RoundMatchesTable({
                 </TableCell>
                 <TipCell tip={tip} />
                 <TableCell className="text-center tabular-nums">
-                  {match.result && (tip?.points ?? 0)}
+                  {match.result && tip?.tip ? (tip.points ?? 0) : undefined}
                 </TableCell>
               </TableRow>
             );
