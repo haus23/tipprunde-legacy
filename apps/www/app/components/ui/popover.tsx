@@ -18,7 +18,7 @@ namespace Popover {
 
 export function Popover({
   children,
-  offset = 6,
+  offset = 2,
   triggerClassName,
   triggerIcon,
   triggerLabel,
