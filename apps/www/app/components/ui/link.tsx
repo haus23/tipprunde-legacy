@@ -5,10 +5,10 @@ import { useActionContext } from './action-context';
 
 const variants = {
   plain: '',
-  // Always faintly underlined, so links are recognizable on touch devices
-  // too; hover makes the line stronger.
+  // Hover devices: no underline, the accent color on hover. Touch devices
+  // cannot hover, so there an underline marks the link.
   default:
-    'underline decoration-border underline-offset-4 transition-colors hover:decoration-current motion-reduce:transition-none',
+    'transition-colors hover:text-accent motion-reduce:transition-none pointer-coarse:underline pointer-coarse:underline-offset-2',
   navlink: componentHoverStyles,
 };
 
