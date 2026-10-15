@@ -114,18 +114,7 @@ function MatchesComponent({
             { label: 'Wann', value: formatDate(match.date) || '–' },
             {
               label: 'Wo',
-              value: leagues[match.leagueId] ? (
-                <>
-                  <span className="sm:hidden">
-                    {leagues[match.leagueId].shortname}
-                  </span>
-                  <span className="hidden sm:inline">
-                    {leagues[match.leagueId].name}
-                  </span>
-                </>
-              ) : (
-                '–'
-              ),
+              value: leagues[match.leagueId]?.name || '–',
             },
             { label: 'Ergebnis', value: match.result || '–' },
             {
