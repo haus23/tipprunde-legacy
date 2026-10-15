@@ -5,7 +5,6 @@ import { EmptyView } from '#/components/app/empty-view';
 import {
   Accordion,
   AccordionDetails,
-  AccordionGroup,
   AccordionSummary,
 } from '#/components/ui/accordion';
 import { Select } from '#/components/ui/select';
@@ -122,11 +121,7 @@ function PlayersComponent({
               },
             ]}
           />
-          <AccordionGroup
-            multiple
-            defaultValue={[currentRoundId]}
-            className="mt-6 flex flex-col gap-y-1"
-          >
+          <div className="mt-6 flex flex-col gap-y-1">
             {rounds.map((r) => {
               // Calculate round helpder data
               const matchesInRound = matches.filter((m) => m.roundId === r.id);
@@ -139,7 +134,7 @@ function PlayersComponent({
               );
 
               return (
-                <Accordion value={r.id} key={r.id}>
+                <Accordion key={r.id} defaultOpen={r.id === currentRoundId}>
                   <AccordionSummary className="flex grow items-center justify-between tabular-nums">
                     <div className="justify-self-start">
                       Runde <span>{r.nr}</span>
@@ -176,7 +171,7 @@ function PlayersComponent({
                 </Accordion>
               );
             })}
-          </AccordionGroup>
+          </div>
         </>
       )}
     </div>
