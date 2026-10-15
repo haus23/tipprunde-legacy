@@ -1,7 +1,7 @@
 import { Popover as BasePopover } from '@base-ui/react/popover';
 import { InfoIcon } from 'lucide-react';
 import { cn } from '#/utils/cn';
-import { focusVisibleStyles } from './_styles';
+import { focusVisibleStyles, iconTriggerStyles } from './_styles';
 
 // Small info popover behind an icon button. Click, tap and keyboard open it;
 // Escape, a click outside or the trigger close it again.
@@ -29,12 +29,7 @@ export function Popover({
     <BasePopover.Root>
       <BasePopover.Trigger
         aria-label={triggerLabel}
-        className={cn(
-          focusVisibleStyles,
-          // The pseudo element enlarges the touch target beyond the icon
-          'relative inline-flex items-center justify-center p-1.5 text-muted-foreground after:absolute after:-inset-x-2 after:-inset-y-1 hover:text-foreground data-popup-open:text-accent',
-          triggerClassName,
-        )}
+        className={cn(focusVisibleStyles, iconTriggerStyles, triggerClassName)}
       >
         <TriggerIcon className="size-5" aria-hidden="true" />
       </BasePopover.Trigger>

@@ -5,3 +5,8 @@ export const focusVisibleStyles =
 
 export const componentHoverStyles =
   'text-muted-foreground hover:bg-highlight hover:text-foreground';
+
+// Icon button that opens a popup; the pseudo element enlarges the touch
+// target beyond the icon.
+export const iconTriggerStyles =
+  'relative inline-flex items-center justify-center p-1.5 text-muted-foreground after:absolute after:-inset-x-2 after:-inset-y-1 hover:text-foreground data-popup-open:text-accent';
