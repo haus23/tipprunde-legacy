@@ -50,7 +50,7 @@ export function CurrentTips({
                     <Link
                       to="/$turnier/spiel"
                       params={{ turnier: championship.id }}
-                      search={(prev) => ({ ...prev, nr: m.nr })}
+                      search={{ nr: m.nr }}
                       className="block py-1"
                     >
                       {!m.hometeam && !m.awayteam

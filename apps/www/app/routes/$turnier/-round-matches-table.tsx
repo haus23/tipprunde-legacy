@@ -60,10 +60,7 @@ export function RoundMatchesTable({
                   <Link
                     to="/$turnier/spiel"
                     params={{ turnier: championshipId }}
-                    search={(prev) => ({
-                      ...prev,
-                      nr: match.nr,
-                    })}
+                    search={{ nr: match.nr }}
                     className="block py-1"
                   >
                     <span className="hidden md:inline">

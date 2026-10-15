@@ -98,7 +98,7 @@ function RankingComponent() {
                       className="block py-1"
                       to="/$turnier/spieler"
                       params={{ turnier: championship.id }}
-                      search={(prev) => ({ ...prev, name: player.playerId })}
+                      search={{ name: player.playerId }}
                     >
                       {player.account.name}
                     </Link>
