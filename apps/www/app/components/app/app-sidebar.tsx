@@ -1,5 +1,4 @@
 import { Dialog } from '@base-ui/react/dialog';
-import { Separator } from '@base-ui/react/separator';
 import { FoldersIcon } from 'lucide-react';
 import { useEffect } from 'react';
 
@@ -44,7 +43,7 @@ export function AppSidebar() {
                   <span className="text-xl">runde.tips</span>
                 </Link>
               </div>
-              <Separator className="my-2 border-t" />
+              <hr className="my-2" />
               {navLinks(championship.id).map((link) => (
                 <div key={link.to} className="px-2 py-1">
                   <Link
@@ -71,7 +70,7 @@ export function AppSidebar() {
                   <FoldersIcon className="size-5" aria-hidden="true" />
                 </Button>
               </div>
-              <Separator className="my-2 border-t" />
+              <hr className="my-2" />
               <div className="flex items-center justify-between px-2">
                 <span className="text-muted-foreground">
                   Hell-/Dunkel-Modus

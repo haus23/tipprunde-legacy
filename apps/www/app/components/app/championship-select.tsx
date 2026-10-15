@@ -1,6 +1,5 @@
 import { Combobox } from '@base-ui/react/combobox';
 import { Dialog } from '@base-ui/react/dialog';
-import { Separator } from '@base-ui/react/separator';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { CheckIcon } from 'lucide-react';
@@ -63,7 +62,7 @@ export function ChampionshipSelect() {
               aria-label="Turniere durchsuchen"
               className="w-full bg-transparent px-6 py-2 outline-hidden"
             />
-            <Separator className="mt-2 border-t" />
+            <hr className="mt-2" />
             <Combobox.Empty className="px-6 py-4 text-muted-foreground empty:p-0">
               Kein Turnier gefunden.
             </Combobox.Empty>
