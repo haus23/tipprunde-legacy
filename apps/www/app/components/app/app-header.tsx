@@ -77,7 +77,7 @@ export function AppHeader() {
         </nav>
         {/* Left next to the menu button on phones, right on larger screens */}
         <ChampionshipSelect className="text-xl md:ml-auto md:text-base" />
-        <div className="hidden md:block">
+        <div className="max-md:ml-auto">
           <ThemeSelect />
         </div>
       </div>

@@ -1,7 +1,6 @@
 import { Dialog } from '@base-ui/react/dialog';
 import { useEffect } from 'react';
 
-import { ThemeSelect } from '#/components/app/theme-select';
 import { Logo } from '#/components/logo';
 import { ActionProvider } from '#/components/ui/action-context';
 import { Link } from '#/components/ui/link';
@@ -26,7 +25,7 @@ export function AppSidebar() {
         <Dialog.Backdrop className="absolute inset-0 bg-background/50 backdrop-blur-[2px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
         <Dialog.Popup
           aria-label="Sidebar-Navigation"
-          className="fixed inset-y-0 left-0 flex w-64 flex-col justify-between bg-background py-2 font-medium shadow-elevation shadow-lg outline-hidden transition-transform duration-200 data-ending-style:-translate-x-full data-starting-style:-translate-x-full motion-reduce:transition-none"
+          className="fixed inset-y-0 left-0 flex w-64 flex-col bg-background py-2 font-medium shadow-elevation shadow-lg outline-hidden transition-transform duration-200 data-ending-style:-translate-x-full data-starting-style:-translate-x-full motion-reduce:transition-none"
         >
           <ActionProvider onAction={() => setSidebarOpen(false)}>
             <nav className="flex flex-col gap-x-4">
@@ -56,14 +55,6 @@ export function AppSidebar() {
                 </div>
               ))}
             </nav>
-            <div>
-              <div className="flex items-center justify-between px-2">
-                <span className="text-muted-foreground">
-                  Hell-/Dunkel-Modus
-                </span>
-                <ThemeSelect />
-              </div>
-            </div>
           </ActionProvider>
         </Dialog.Popup>
       </Dialog.Portal>
