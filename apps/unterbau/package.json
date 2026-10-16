@@ -20,7 +20,7 @@
     "cors": "^2.8.6",
     "express": "^5.3.0",
     "firebase-admin": "^14.5.0",
-    "unstorage": "^1.17.5",
+    "unstorage": "^1.17.6",
     "valibot": "catalog:validation"
   },
   "devDependencies": {

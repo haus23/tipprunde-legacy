@@ -30,7 +30,7 @@
     "@tailwindcss/vite": "catalog:styling",
     "@tanstack/react-query-devtools": "^5.104.2",
     "@tanstack/react-router-devtools": "^1.167.2",
-    "@tanstack/router-plugin": "^1.168.45",
+    "@tanstack/router-plugin": "^1.168.46",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
     "@vitejs/plugin-react": "catalog:toolchain",
