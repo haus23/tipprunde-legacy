@@ -152,12 +152,7 @@ export function MatchTipsTable({
           {sortedTips.map((tip) => {
             const player = players.find((p) => p.id === tip.playerId);
             return (
-              <TableRow
-                key={tip.playerId}
-                className={
-                  tip.joker || tip.lonelyHit ? 'bg-highlight' : undefined
-                }
-              >
+              <TableRow key={tip.playerId}>
                 <TableCell className="w-full max-sm:first:pl-2">
                   <Link
                     className="block py-1"

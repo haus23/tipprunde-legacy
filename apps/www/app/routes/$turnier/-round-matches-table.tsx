@@ -42,12 +42,7 @@ export function RoundMatchesTable({
           {matchesInRound.map((match) => {
             const tip = tips[match.id];
             return (
-              <TableRow
-                key={match.id}
-                className={
-                  tip?.joker || tip?.lonelyHit ? 'bg-highlight' : undefined
-                }
-              >
+              <TableRow key={match.id}>
                 <TableCell className="hidden text-center tabular-nums sm:table-cell">
                   {match.nr}
                 </TableCell>
