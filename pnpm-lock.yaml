@@ -184,17 +184,30 @@ catalogs:
     react-dom:
       specifier: ^19.3.0
       version: 19.3.0
-  state:
-    zustand:
-      specifier: ^5.0.15
-      version: 5.0.15
+  styling:
+    '@tailwindcss/vite':
+      specifier: ^4.3.3
+      version: 4.3.3
+    cn:
+      specifier: ^0.4.0
+      version: 0.4.0
+    tailwindcss:
+      specifier: ^4.3.3
+      version: 4.3.3
   toolchain:
+    '@vitejs/plugin-react':
+      specifier: ^6.1.2
+      version: 6.1.2
     vite:
       specifier: ^8.3.4
       version: 8.3.4
     vitest:
       specifier: ^5.0.4
       version: 5.0.4
+  ui:
+    '@base-ui/react':
+      specifier: ^1.9.0
+      version: 1.9.0
   validation:
     valibot:
       specifier: ^1.5.0
@@ -220,7 +233,7 @@ importers:
   apps/hinterhof:
     dependencies:
       '@base-ui/react':
-        specifier: ^1.9.0
+        specifier: catalog:ui
         version: 1.9.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@formisch/react':
         specifier: ^1.1.0
@@ -229,7 +242,7 @@ importers:
         specifier: workspace:^
         version: link:../../packages/model
       cn:
-        specifier: ^0.4.0
+        specifier: catalog:styling
         version: 0.4.0
       firebase:
         specifier: ^13.0.0
@@ -256,14 +269,14 @@ importers:
         specifier: catalog:validation
         version: 1.5.0(typescript@7.0.2)
       zustand:
-        specifier: catalog:state
+        specifier: ^5.0.15
         version: 5.0.15(@types/react@19.3.0)(react@19.3.0)(use-sync-external-store@1.5.0(react@19.3.0))
     devDependencies:
       '@haus23/tipprunde-tsconfig':
         specifier: workspace:^
         version: link:../../packages/tsconfig
       '@tailwindcss/vite':
-        specifier: ^4.3.3
+        specifier: catalog:styling
         version: 4.3.3(vite@8.3.4(@types/node@22.15.19)(esbuild@0.28.2)(jiti@2.4.2)(tsx@4.19.4)(yaml@2.9.1))
       '@types/react':
         specifier: catalog:react
@@ -272,10 +285,10 @@ importers:
         specifier: catalog:react
         version: 19.3.0(@types/react@19.3.0)
       '@vitejs/plugin-react':
-        specifier: ^6.1.2
+        specifier: catalog:toolchain
         version: 6.1.2(vite@8.3.4(@types/node@22.15.19)(esbuild@0.28.2)(jiti@2.4.2)(tsx@4.19.4)(yaml@2.9.1))
       tailwindcss:
-        specifier: ^4.3.3
+        specifier: catalog:styling
         version: 4.3.3
       typescript:
         specifier: 'catalog:'
@@ -342,7 +355,7 @@ importers:
   apps/www:
     dependencies:
       '@base-ui/react':
-        specifier: ^1.9.0
+        specifier: catalog:ui
         version: 1.9.0(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@fontsource-variable/geist':
         specifier: ^5.3.0
@@ -357,7 +370,7 @@ importers:
         specifier: ^1.170.44
         version: 1.170.44(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       cn:
-        specifier: ^0.4.0
+        specifier: catalog:styling
         version: 0.4.0
       lucide-react:
         specifier: catalog:icons
@@ -376,7 +389,7 @@ importers:
         specifier: workspace:^
         version: link:../../packages/tsconfig
       '@tailwindcss/vite':
-        specifier: ^4.3.3
+        specifier: catalog:styling
         version: 4.3.3(vite@8.3.4(@types/node@22.15.19)(esbuild@0.28.2)(jiti@2.4.2)(tsx@4.19.4)(yaml@2.9.1))
       '@tanstack/react-query-devtools':
         specifier: ^5.104.2
@@ -394,10 +407,10 @@ importers:
         specifier: catalog:react
         version: 19.3.0(@types/react@19.3.0)
       '@vitejs/plugin-react':
-        specifier: ^6.1.2
+        specifier: catalog:toolchain
         version: 6.1.2(vite@8.3.4(@types/node@22.15.19)(esbuild@0.28.2)(jiti@2.4.2)(tsx@4.19.4)(yaml@2.9.1))
       tailwindcss:
-        specifier: ^4.3.3
+        specifier: catalog:styling
         version: 4.3.3
       typescript:
         specifier: 'catalog:'

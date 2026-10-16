@@ -13,11 +13,16 @@ catalogs:
     '@types/react-dom': ^19.3.0
     react: ^19.3.0
     react-dom: ^19.3.0
-  state:
-    zustand: ^5.0.15
+  styling:
+    '@tailwindcss/vite': ^4.3.3
+    cn: ^0.4.0
+    tailwindcss: ^4.3.3
   toolchain:
+    '@vitejs/plugin-react': ^6.1.2
     vite: ^8.3.4
     vitest: ^5.0.4
+  ui:
+    '@base-ui/react': ^1.9.0
   validation:
     valibot: ^1.5.0
 

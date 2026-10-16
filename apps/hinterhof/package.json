@@ -11,10 +11,10 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@base-ui/react": "^1.9.0",
+    "@base-ui/react": "catalog:ui",
     "@formisch/react": "^1.1.0",
     "@haus23/tipprunde-model": "workspace:^",
-    "cn": "^0.4.0",
+    "cn": "catalog:styling",
     "firebase": "^13.0.0",
     "lucide-react": "catalog:icons",
     "react": "catalog:react",
@@ -23,15 +23,15 @@
     "react-router": "^8.4.0",
     "slugify": "^1.6.9",
     "valibot": "catalog:validation",
-    "zustand": "catalog:state"
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@haus23/tipprunde-tsconfig": "workspace:^",
-    "@tailwindcss/vite": "^4.3.3",
+    "@tailwindcss/vite": "catalog:styling",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
-    "@vitejs/plugin-react": "^6.1.2",
-    "tailwindcss": "^4.3.3",
+    "@vitejs/plugin-react": "catalog:toolchain",
+    "tailwindcss": "catalog:styling",
     "typescript": "catalog:",
     "vite": "catalog:toolchain"
   }
