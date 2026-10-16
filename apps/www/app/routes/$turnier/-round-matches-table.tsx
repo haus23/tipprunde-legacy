@@ -33,9 +33,20 @@ export function RoundMatchesTable({
             <TableHead className="text-left max-sm:pl-4 md:pl-6">
               Spiel
             </TableHead>
-            <TableHead>Ergebnis</TableHead>
+            {/* Short headers on phones leave more room for the pairings */}
+            <TableHead>
+              <span className="sm:hidden" aria-hidden="true">
+                Erg
+              </span>
+              <span className="max-sm:sr-only">Ergebnis</span>
+            </TableHead>
             <TableHead className="px-6 md:px-6">Tipp</TableHead>
-            <TableHead>Punkte</TableHead>
+            <TableHead>
+              <span className="sm:hidden" aria-hidden="true">
+                Pkt
+              </span>
+              <span className="max-sm:sr-only">Punkte</span>
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
