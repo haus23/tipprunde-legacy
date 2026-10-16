@@ -8,7 +8,7 @@
   "fixed": [],
   "linked": [],
   "access": "restricted",
-  "baseBranch": "v1",
+  "baseBranch": "main",
   "privatePackages": { "version": true, "tag": false },
   "updateInternalDependencies": "patch",
   "ignore": []
