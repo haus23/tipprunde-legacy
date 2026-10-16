@@ -27,7 +27,7 @@ export function Infotip({ children, className, label }: Infotip.Props) {
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Positioner side="top">
-          <Popover.Popup className="rounded-sm bg-foreground px-2 py-1 text-background text-sm outline-hidden transition-opacity duration-100 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none">
+          <Popover.Popup className="origin-(--transform-origin) rounded-sm bg-foreground px-2 py-1 text-background text-sm outline-hidden transition-[opacity,scale] duration-125 data-ending-style:scale-[0.97] data-starting-style:scale-[0.97] data-ending-style:opacity-0 data-starting-style:opacity-0 data-ending-style:duration-100 motion-reduce:transition-none">
             {children}
           </Popover.Popup>
         </Popover.Positioner>

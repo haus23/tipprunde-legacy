@@ -7,7 +7,7 @@ export function LoadingView() {
   return (
     <div className="flex items-center justify-center gap-x-2 py-12 text-muted-foreground">
       <LoaderCircleIcon
-        className="size-5 animate-spin motion-reduce:animate-none"
+        className="size-5 animate-[spin_0.7s_linear_infinite] motion-reduce:animate-none"
         aria-hidden="true"
       />
       <span role="status">Lade Daten …</span>

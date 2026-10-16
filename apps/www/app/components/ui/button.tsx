@@ -31,7 +31,7 @@ export function Button({
       }}
       className={cn(
         focusVisibleStyles,
-        'inline-flex items-center justify-center p-2 font-semibold text-sm transition-colors',
+        'inline-flex items-center justify-center p-2 font-semibold text-sm transition-[color,background-color,scale] motion-safe:active:scale-[0.97]',
         variants[variant],
         className,
       )}

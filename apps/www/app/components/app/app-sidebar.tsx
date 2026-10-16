@@ -25,7 +25,7 @@ export function AppSidebar() {
         <Dialog.Backdrop className="absolute inset-0 bg-background/50 backdrop-blur-[2px] transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none" />
         <Dialog.Popup
           aria-label="Menü"
-          className="fixed inset-y-0 left-0 flex w-64 flex-col bg-background py-2 font-medium shadow-elevation shadow-lg outline-hidden transition-transform duration-200 data-ending-style:-translate-x-full data-starting-style:-translate-x-full motion-reduce:transition-none"
+          className="fixed inset-y-0 left-0 flex w-64 flex-col bg-background py-2 font-medium shadow-elevation shadow-lg outline-hidden transition-transform duration-300 ease-drawer data-ending-style:-translate-x-full data-starting-style:-translate-x-full motion-reduce:transition-none"
         >
           <ActionProvider onAction={() => setSidebarOpen(false)}>
             <nav className="flex flex-col gap-x-4">

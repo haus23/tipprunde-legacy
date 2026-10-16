@@ -18,7 +18,7 @@ export function Accordion({ children, defaultOpen }: Accordion.Props) {
     <details
       // Only the initial state; afterwards the browser owns it
       open={defaultOpen}
-      className="group details-content:h-0 details-content:overflow-hidden details-content:opacity-0 details-content:transition-[height,opacity,content-visibility] details-content:transition-discrete details-content:duration-250 [interpolate-size:allow-keywords] open:details-content:h-auto open:details-content:opacity-100 motion-reduce:details-content:transition-none"
+      className="group details-content:h-0 details-content:overflow-hidden details-content:opacity-0 details-content:transition-[height,opacity,content-visibility] details-content:transition-discrete details-content:duration-200 [interpolate-size:allow-keywords] open:details-content:h-auto open:details-content:opacity-100 motion-reduce:details-content:transition-none"
     >
       {children}
     </details>

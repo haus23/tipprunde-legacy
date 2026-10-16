@@ -130,6 +130,10 @@
   --color-*: initial;
   --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
 
+  /* Motion: a strong ease-out for every transition, a drawer curve */
+  --default-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
   --color-background: light-dark(#fff, #111);
   --color-foreground: light-dark(var(--gray-12), var(--dark-gray-12));
   --color-muted-foreground: light-dark(var(--gray-11), var(--dark-gray-11));

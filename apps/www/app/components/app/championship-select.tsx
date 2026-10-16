@@ -70,7 +70,7 @@ export function ChampionshipSelect({ className }: { className?: string }) {
         <Combobox.Positioner align="end" sideOffset={6} collisionPadding={16}>
           <Combobox.Popup
             aria-label="Turnier-Auswahl"
-            className="flex max-h-[min(70svh,var(--available-height))] w-[min(20rem,calc(100vw-2rem))] flex-col rounded-md bg-popover py-2 font-medium text-base shadow-elevation shadow-md outline-hidden ring-1 ring-border transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none dark:shadow-none"
+            className="flex max-h-[min(70svh,var(--available-height))] w-[min(20rem,calc(100vw-2rem))] origin-(--transform-origin) flex-col rounded-md bg-popover py-2 font-medium text-base shadow-elevation shadow-md outline-hidden ring-1 ring-border transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 data-ending-style:duration-100 motion-reduce:transition-none dark:shadow-none"
           >
             <Combobox.Input
               placeholder="Turnier filtern …"
