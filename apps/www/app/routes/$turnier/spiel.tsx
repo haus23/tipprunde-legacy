@@ -67,11 +67,15 @@ export const Route = createFileRoute('/$turnier/spiel')({
 
 function MatchesRoute() {
   const { match } = Route.useLoaderData();
+  const championship = useChampionship();
 
   if (!match) {
     return (
       <div>
-        <h1 className="mx-4 font-medium text-xl sm:mx-0">Spiele</h1>
+        <h1 className="mx-4 font-medium text-xl sm:mx-0">
+          <span className="sr-only">{championship.name}: </span>
+          Spiele
+        </h1>
         <EmptyView>Noch keine Spiele.</EmptyView>
       </div>
     );
@@ -86,6 +90,7 @@ function MatchesComponent({
   match: NonNullable<ReturnType<typeof Route.useLoaderData>['match']>;
 }) {
   const championship = useChampionship();
+  const { pairing } = Route.useLoaderData();
   const navigate = useNavigate({ from: Route.fullPath });
 
   function selectMatch(nr: string) {
@@ -111,7 +116,13 @@ function MatchesComponent({
   return (
     <div>
       <div className="mx-4 flex items-center gap-x-2 sm:mx-0 sm:gap-x-4">
-        <h1 className="shrink-0 font-medium text-xl">Tipps für</h1>
+        {/* Championship and pairing only for screen readers, visually the
+            select shows the match */}
+        <h1 className="shrink-0 font-medium text-xl">
+          <span className="sr-only">{championship.name}: </span>
+          Tipps für
+          <span className="sr-only"> {pairing}</span>
+        </h1>
         <Select
           aria-label="Spielauswahl"
           name="match"
@@ -154,7 +165,7 @@ function MatchesComponent({
             <span className="hidden sm:block">
               Alle erzielten Punkte werden verdoppelt.
             </span>
-            <Infotip label="Doppel-Punkte Rundeninfo" className="sm:hidden">
+            <Infotip label="Info zur Doppelrunde" className="sm:hidden">
               Alle erzielten Punkte werden verdoppelt.
             </Infotip>
           </div>

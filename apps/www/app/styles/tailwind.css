@@ -141,9 +141,6 @@
   --color-highlight: light-dark(var(--blue-4), var(--dark-blue-4));
   --color-selected: light-dark(var(--blue-5), var(--dark-blue-5));
   --color-accent-border: light-dark(var(--blue-7), var(--dark-blue-7));
-  --color-primary: light-dark(var(--blue-9), var(--dark-blue-9));
-  --color-primary-hover: light-dark(var(--blue-10), var(--dark-blue-10));
-  --color-primary-foreground: light-dark(var(--blue-1), var(--blue-1));
   --color-accent: light-dark(var(--blue-11), var(--dark-blue-11));
   --color-accent-strong: light-dark(var(--blue-12), var(--dark-blue-12));
   --color-ring: light-dark(var(--blue-11), var(--dark-blue-11));

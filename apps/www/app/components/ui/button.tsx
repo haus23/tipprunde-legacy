@@ -4,9 +4,6 @@ import { useActionContext } from './action-context';
 
 const variants = {
   plain: '',
-  primary:
-    'border bg-primary px-4 text-primary-foreground transition-transform hover:bg-primary-hover active:scale-[0.98]',
-  secondary: '',
   ghost: componentHoverStyles,
 };
 
@@ -18,7 +15,7 @@ namespace Button {
 
 export function Button({
   className,
-  variant = 'primary',
+  variant = 'plain',
   onClick,
   type = 'button',
   ...props

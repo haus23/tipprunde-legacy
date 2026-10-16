@@ -81,7 +81,7 @@ export function ChampionshipSelect({ className }: { className?: string }) {
             <Combobox.Empty className="px-4 py-3 text-muted-foreground empty:p-0">
               Kein Turnier gefunden.
             </Combobox.Empty>
-            <Combobox.List className="mt-1 overflow-y-auto px-2">
+            <Combobox.List className="mt-1 overflow-y-auto overscroll-contain px-2">
               {(item: (typeof championships)[number]) => (
                 <Combobox.Item
                   key={item.id}

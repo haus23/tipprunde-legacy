@@ -20,7 +20,7 @@ function ErrorView({
     <div className="grid place-items-center py-12">
       <div className="flex flex-col items-center gap-y-4">
         <FrownIcon className="size-40 text-error" aria-hidden="true" />
-        <h1 className="mx-4 text-balance text-center text-3xl leading-snug">
+        <h1 className="mx-4 text-balance text-center text-3xl leading-[1.4]">
           {message}
         </h1>
         {children}

@@ -13,8 +13,14 @@ export function ThemeSelect() {
       className="overflow-clip"
     >
       <div className="relative size-5">
-        <MoonIcon className="absolute inset-0 size-5 origin-[50%_100px] rotate-90 transform transition-transform duration-500 motion-reduce:transition-none dark:rotate-0" />
-        <SunIcon className="absolute inset-0 size-5 origin-[50%_100px] rotate-0 transform transition-transform duration-500 motion-reduce:transition-none dark:-rotate-90" />
+        <MoonIcon
+          data-theme-icon
+          className="absolute inset-0 size-5 origin-[50%_100px] rotate-90 transform transition-transform duration-500 motion-reduce:transition-none dark:rotate-0"
+        />
+        <SunIcon
+          data-theme-icon
+          className="absolute inset-0 size-5 origin-[50%_100px] rotate-0 transform transition-transform duration-500 motion-reduce:transition-none dark:-rotate-90"
+        />
       </div>
     </Button>
   );

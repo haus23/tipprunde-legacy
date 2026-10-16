@@ -62,11 +62,15 @@ export const Route = createFileRoute('/$turnier/spieler')({
 
 function PlayersRoute() {
   const { player } = Route.useLoaderData();
+  const championship = useChampionship();
 
   if (!player) {
     return (
       <div>
-        <h1 className="mx-4 font-medium text-xl sm:mx-0">Mitspieler</h1>
+        <h1 className="mx-4 font-medium text-xl sm:mx-0">
+          <span className="sr-only">{championship.name}: </span>
+          Mitspieler
+        </h1>
         <EmptyView>Noch keine Mitspieler.</EmptyView>
       </div>
     );
@@ -103,7 +107,13 @@ function PlayersComponent({
   return (
     <div>
       <div className="mx-4 flex items-center gap-x-4 sm:mx-0">
-        <h1 className="shrink-0 font-medium text-xl">Tipps von</h1>
+        {/* Championship and player only for screen readers, visually the
+            select shows the player */}
+        <h1 className="shrink-0 font-medium text-xl">
+          <span className="sr-only">{championship.name}: </span>
+          Tipps von
+          <span className="sr-only"> {player.account.name}</span>
+        </h1>
         <Select
           aria-label="Spielerauswahl"
           name="player"
@@ -171,7 +181,8 @@ function PlayersComponent({
                           {pointsInRound}
                         </div>
                         <div className="flex justify-end gap-x-1.5 sm:gap-x-2">
-                          <span>&#x2300;</span>
+                          <span aria-hidden="true">&#x2300;</span>
+                          <span className="sr-only">Schnitt</span>
                           {(pointsInRound / playedMatchesInRoundCount).toFixed(
                             2,
                           )}

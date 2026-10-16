@@ -54,6 +54,7 @@ function RankingComponent() {
     <div>
       <div className="mx-4 sm:mx-0">
         <h1 className="font-medium text-xl">
+          <span className="sr-only">{championship.name}: </span>
           {hasRanking
             ? championship.completed
               ? 'Abschlusstabelle'

@@ -19,5 +19,18 @@ export function toggleColorScheme() {
   } catch {
     // Without storage the choice lasts until the next page load
   }
-  root.classList.toggle('dark', dark);
+  switchWithoutTransitions(() => root.classList.toggle('dark', dark));
+}
+
+// All colors switch at once instead of fading one by one. Only the icons
+// of the toggle keep their transition.
+function switchWithoutTransitions(change: () => void) {
+  const style = document.createElement('style');
+  style.textContent =
+    '*:not([data-theme-icon]) { transition: none !important; }';
+  document.head.append(style);
+  change();
+  // Apply the new colors before transitions are allowed again
+  void getComputedStyle(document.body).color;
+  requestAnimationFrame(() => style.remove());
 }

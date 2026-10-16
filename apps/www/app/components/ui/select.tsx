@@ -88,7 +88,7 @@ export function Select({
           sideOffset={4}
           alignItemWithTrigger={false}
         >
-          <BaseSelect.Popup className="max-h-[min(70svh,var(--available-height))] min-w-(--anchor-width) overflow-y-auto rounded-sm bg-background px-2 outline-hidden ring-1 ring-border">
+          <BaseSelect.Popup className="max-h-[min(70svh,var(--available-height))] min-w-(--anchor-width) overflow-y-auto overscroll-contain rounded-sm bg-background px-2 outline-hidden ring-1 ring-border">
             <BaseSelect.List>
               {groups
                 ? groups.map((group) => (
