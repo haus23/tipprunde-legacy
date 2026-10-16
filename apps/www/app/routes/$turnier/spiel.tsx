@@ -8,6 +8,7 @@ import { Infotip } from '#/components/ui/infotip';
 import { Select } from '#/components/ui/select';
 import { Stats } from '#/components/ui/stats';
 import { useChampionship } from '#/utils/app/championship';
+import { pageTitle } from '#/utils/app/title';
 import { formatDate } from '#/utils/misc';
 import { matchesQuery, matchTipsQuery, playersQuery } from '#/utils/queries';
 import { MatchTipsTable } from './-match-tips-table';
@@ -43,8 +44,24 @@ export const Route = createFileRoute('/$turnier/spiel')({
         staleTime: 'static',
       });
     }
-    return { match };
+    // Pairing for the document title
+    const team = (id: string) => matches.teams[id]?.name || '(noch offen)';
+    const pairing = match
+      ? `${team(match.hometeamId)} – ${team(match.awayteamId)}`
+      : undefined;
+
+    return { match, pairing };
   },
+  head: ({ loaderData, match }) => ({
+    meta: [
+      {
+        title: pageTitle(
+          loaderData?.pairing ? `Tipps für ${loaderData.pairing}` : 'Spiele',
+          match.context.championship.name,
+        ),
+      },
+    ],
+  }),
   component: MatchesRoute,
 });
 

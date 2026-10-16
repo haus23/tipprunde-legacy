@@ -10,6 +10,7 @@ import {
 import { Select } from '#/components/ui/select';
 import { Stats } from '#/components/ui/stats';
 import { useChampionship } from '#/utils/app/championship';
+import { pageTitle } from '#/utils/app/title';
 import { matchesQuery, playersQuery, playerTipsQuery } from '#/utils/queries';
 import { RoundMatchesTable } from './-round-matches-table';
 
@@ -44,6 +45,18 @@ export const Route = createFileRoute('/$turnier/spieler')({
     }
     return { player };
   },
+  head: ({ loaderData, match }) => ({
+    meta: [
+      {
+        title: pageTitle(
+          loaderData?.player
+            ? `Tipps von ${loaderData.player.account.name}`
+            : 'Mitspieler',
+          match.context.championship.name,
+        ),
+      },
+    ],
+  }),
   component: PlayersRoute,
 });
 

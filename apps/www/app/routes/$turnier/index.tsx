@@ -14,10 +14,14 @@ import {
   TableRow,
 } from '#/components/ui/table';
 import { useChampionship } from '#/utils/app/championship';
+import { pageTitle } from '#/utils/app/title';
 import { currentTipsQuery, playersQuery } from '#/utils/queries';
 import { CurrentTips } from './-current-tips';
 
 export const Route = createFileRoute('/$turnier/')({
+  head: ({ match }) => ({
+    meta: [{ title: pageTitle('Tabelle', match.context.championship.name) }],
+  }),
   // Wait for the data, so a navigation keeps the previous page until then
   loader: async ({ context: { queryClient, championship } }) => {
     await Promise.all([

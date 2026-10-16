@@ -1,6 +1,10 @@
 import type { QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { createRootRouteWithContext, Outlet } from '@tanstack/react-router';
+import {
+  createRootRouteWithContext,
+  HeadContent,
+  Outlet,
+} from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
 import { Backdrop } from '#/components/app/backdrop';
@@ -18,6 +22,7 @@ export const Route = createRootRouteWithContext<{
     });
     return { championships };
   },
+  head: () => ({ meta: [{ title: 'runde.tips' }] }),
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   pendingComponent: RootPendingComponent,
@@ -26,6 +31,7 @@ export const Route = createRootRouteWithContext<{
 function RootComponent() {
   return (
     <>
+      <HeadContent />
       <Backdrop />
       <Outlet />
       <TanStackRouterDevtools position="bottom-left" />

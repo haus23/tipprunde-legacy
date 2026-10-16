@@ -81,7 +81,7 @@ export function AppHeader() {
         onClick={toggleSidebar}
         variant="ghost"
         className="md:hidden"
-        aria-label="Sidebar-Toggle"
+        aria-label="Menü öffnen"
       >
         <PanelLeftIcon className="size-5" />
       </Button>
@@ -95,7 +95,7 @@ export function AppHeader() {
                 {...link}
                 to={link.to}
                 variant="navlink"
-                className="px-4 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-accent-border"
+                className="px-4 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-accent"
               >
                 {link.label}
               </Link>
