@@ -62,7 +62,8 @@ export function TableHead({ className, ...props }: TableHead.Props) {
   return <th className={cn(tableHeadStyles, className)} {...props} />;
 }
 
-const tableCellStyles = 'p-1 max-sm:first:pl-4 max-sm:last:pr-4 md:px-4';
+const tableCellStyles =
+  'px-1 py-1.25 max-sm:first:pl-4 max-sm:last:pr-4 md:px-4';
 
 namespace TableCell {
   export interface Props extends React.ComponentProps<'td'> {}
