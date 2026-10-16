@@ -1,11 +1,10 @@
 import type { ChampionshipPlayerWithAccount } from '@haus23/tipprunde-model';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { ClipboardListIcon } from 'lucide-react';
+import { ClipboardListIcon, InfoIcon } from 'lucide-react';
 import { NoTip } from '#/components/app/tip-cell';
 import { Link } from '#/components/ui/link';
 import { Popover } from '#/components/ui/popover';
 import { useChampionship } from '#/utils/app/championship';
-import { cn } from '#/utils/cn';
 import { currentTipsQuery } from '#/utils/queries';
 
 // The tips of a player for the current matches, behind an icon in the
@@ -42,10 +41,7 @@ export function CurrentTips({
               const tip = m.tips[player.id];
               const highlighted = tip?.joker || tip?.lonelyHit;
               return (
-                <tr
-                  key={m.matchId}
-                  className={cn(highlighted && 'bg-highlight')}
-                >
+                <tr key={m.matchId}>
                   <td className="py-0.5 pl-1">
                     <Link
                       to="/$turnier/spiel"
@@ -58,10 +54,17 @@ export function CurrentTips({
                         : `${m.hometeam || '(noch offen)'} – ${m.awayteam || '(noch offen)'}`}
                     </Link>
                   </td>
-                  <td className="px-2 text-center tabular-nums">
+                  <td className="px-5 text-center tabular-nums">
                     {tip?.tip ? (
-                      <>
+                      // The icon hangs right of the tip, out of the flow
+                      <span className="relative">
                         {tip.tip}
+                        {highlighted && (
+                          <InfoIcon
+                            className="absolute top-1/2 left-full ml-1.5 size-4 -translate-y-1/2 text-muted-foreground"
+                            aria-hidden="true"
+                          />
+                        )}
                         {tip.joker && <span className="sr-only"> (Joker)</span>}
                         {tip.lonelyHit && (
                           <span className="sr-only">
@@ -69,7 +72,7 @@ export function CurrentTips({
                             (einziger richtiger Tipp)
                           </span>
                         )}
-                      </>
+                      </span>
                     ) : (
                       <NoTip />
                     )}
@@ -84,8 +87,8 @@ export function CurrentTips({
         </table>
         {hasHighlights && (
           <p className="border-t px-3 py-2 text-muted-foreground text-xs">
-            <span
-              className="mr-1.5 inline-block size-2.5 rounded-sm bg-highlight align-middle ring-1 ring-accent-border"
+            <InfoIcon
+              className="mr-1.5 inline-block size-4 align-middle"
               aria-hidden="true"
             />
             Joker oder einziger richtiger Tipp

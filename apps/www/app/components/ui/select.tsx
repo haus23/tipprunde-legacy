@@ -93,7 +93,7 @@ export function Select({
               {groups
                 ? groups.map((group) => (
                     <BaseSelect.Group key={group.value}>
-                      <BaseSelect.GroupLabel className="px-1 pt-4 text-muted-foreground/85 text-sm">
+                      <BaseSelect.GroupLabel className="px-1 pt-4 text-muted-foreground text-sm">
                         {group.label}
                       </BaseSelect.GroupLabel>
                       {group.options.map((option) => (

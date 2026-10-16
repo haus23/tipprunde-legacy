@@ -169,6 +169,8 @@
 
   html {
     scrollbar-width: none;
+    /* Keep focused and scrolled-to elements below the fixed header (h-16) */
+    scroll-padding-top: 4rem;
   }
 
   body::-webkit-scrollbar {
