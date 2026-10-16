@@ -1,5 +1,81 @@
 # www
 
+## 1.0.0
+
+### Major Changes
+
+- The legacy release of the @haus23/tipprunde-www app.
+
+### Patch Changes
+
+- [`7b21ca3`](https://github.com/haus23/tipprunde-legacy/commit/7b21ca31404d66fab38cb2d763f485b2764443d9) - Smaller accessibility and polish fixes: page headings name the championship and the shown player or match for screen readers, the average sign reads as "Schnitt", the theme switches without fading colors, scrolling at the end of a list no longer scrolls the page, and smoother text rendering
+
+- [`722e11f`](https://github.com/haus23/tipprunde-legacy/commit/722e11f46a8d5119e18ef0eadbdcc07a79ff8d6b) - Each page has its own document title, the active menu item is marked with a clearly visible line, and the menu button and menu are named in German for screen readers
+
+- [`276f847`](https://github.com/haus23/tipprunde-legacy/commit/276f84795418613586497381fea112fd4d5f4cd8) - Accessibility: keyboard focus no longer hides under the header, the theme icon respects reduced motion, current tips mark a joker with an icon instead of color only, and the round headers in the match select have enough contrast
+
+- [`ff4977c`](https://github.com/haus23/tipprunde-legacy/commit/ff4977c98b34799a967000067727b0e4ac65f889) - Rebuild the interactive parts (selects, popovers, round accordion, sidebar and championship search) on Base UI instead of React Aria. Popovers open by click, tap and keyboard alike, and the app loads less JavaScript.
+
+- [`c837be8`](https://github.com/haus23/tipprunde-legacy/commit/c837be89e90970cfe0e52f47a9f1bc1ab1085e4f) - Calmer blue surfaces: the round accordions, the player and match selection and the sort buttons of the tips table use light accent backgrounds instead of solid blue.
+
+- [`442bece`](https://github.com/haus23/tipprunde-legacy/commit/442bece0657fe3e630c60ea4164c7d9f53235cc0) - Rows with a joker or the only correct tip no longer get a background, the info icon marks them
+
+- [`7f54db1`](https://github.com/haus23/tipprunde-legacy/commit/7f54db1c3793ab75563b479691fab01586c7b9f4) - The current championship in the header opens the championship list with a filter field, on phones right at the top
+
+- [`93ec461`](https://github.com/haus23/tipprunde-legacy/commit/93ec461278e08e44d4ead05e5d34dd0568dbbb4a) - Links to a player or a match no longer carry over the query parameters of the current page
+
+- [`bc6220d`](https://github.com/haus23/tipprunde-legacy/commit/bc6220df2d828e1417bfd16b242cf90f6bda38d5) - Rework the current tips in the ranking: the column is labeled "Tipps" with a list icon, and the popover shows a title, a small table and a legend for highlighted tips. Info icons next to tips sit beside the centered tip and have a larger touch target.
+
+- [`f9ef57a`](https://github.com/haus23/tipprunde-legacy/commit/f9ef57a6e11460cab7de7f4510560eb93b970dd9) - Double round hint as an infotip on phones
+
+- [`44ad5e1`](https://github.com/haus23/tipprunde-legacy/commit/44ad5e155ea134e939d16fc2d31f8962fee05e0a) - The main font loads with the page, so the first text no longer flashes in a fallback font
+
+- [`3b0cd14`](https://github.com/haus23/tipprunde-legacy/commit/3b0cd14c96776ea7c8d9cce26193ea84e721d491) - Fresher data: pages seen before show right away and update in the background, also when coming back to the window, instead of keeping data for 30 minutes
+
+- [`845c3d6`](https://github.com/haus23/tipprunde-legacy/commit/845c3d66b7f2d7d6ed6e2d1cae768069efb4121b) - The header row keeps a maximum width on wide screens
+
+- [`bc2e772`](https://github.com/haus23/tipprunde-legacy/commit/bc2e772beb9926d8ce0e7c12c1b564ae749d0f1c) - Tip infos as a slim infotip that also opens on hover
+
+- [`29a2f3c`](https://github.com/haus23/tipprunde-legacy/commit/29a2f3c538eccba57e160bb7a6fec24302b7988a) - Links in tables turn to the accent color on hover; on touch devices, which cannot hover, they are underlined.
+
+- [`89e0fea`](https://github.com/haus23/tipprunde-legacy/commit/89e0fea9133214827a3baacde37c11b5b7f9d5bf) - Load error pages keep a header and the gradient, with the message at the top like on the not found page and a quiet offer to reload instead of a prominent button
+
+- [`7fe3f04`](https://github.com/haus23/tipprunde-legacy/commit/7fe3f046c52917ce6f2ffa80e482d100aefcb292) - Show a friendly error page with a reload button when data cannot be loaded, instead of failing on the response parsing.
+
+- [`cd87525`](https://github.com/haus23/tipprunde-legacy/commit/cd87525944184b14d1dba61d3dae1ac73340a6ff) - Key figures as a 2×2 grid on phones; the match page shows the full competition name
+
+- [`b27282e`](https://github.com/haus23/tipprunde-legacy/commit/b27282e4fd4a998aed10c494666826e577051b9d) - A missing tip shows a muted dash and no points
+
+- [`ce1de4d`](https://github.com/haus23/tipprunde-legacy/commit/ce1de4dc064aed1b449f340adc2021d3a9792b36) - On phones, headings, figures and the outer table columns keep a consistent gutter to the screen edge; tables and round bars still run edge to edge and the font sizes stay the same.
+
+- [`696d3df`](https://github.com/haus23/tipprunde-legacy/commit/696d3df231cc089de19f13e996db36bb44072886) - Motion polish: a crisper easing everywhere, popups grow out of their trigger, the player and match selects fade in like the other popups, buttons give a subtle press feedback, a smoother menu drawer and a faster loading spinner
+
+- [`6641ad1`](https://github.com/haus23/tipprunde-legacy/commit/6641ad1f4041fd6739e71c372f93a3381d50cbf6) - Rounds on the player page are native disclosures; find in page also searches closed rounds
+
+- [`42e7916`](https://github.com/haus23/tipprunde-legacy/commit/42e7916d5a8a256c0367a207111cda6ca336bcb6) - No more splash screen: pages wait for their data and switch in one step, also when picking a player or a match; a quiet loading hint shows only when loading takes longer
+
+- [`111f275`](https://github.com/haus23/tipprunde-legacy/commit/111f275d8a5710deaf122e5c54e0e7492041e354) - Not found pages: a clear message for an unknown page or championship, inside the usual layout with the latest championship, and excluded from search engines
+
+- [`53ed38f`](https://github.com/haus23/tipprunde-legacy/commit/53ed38f6d363d4c1c681617e80423710435d2255) - Write match pairings consistently as "Deutschland – Serbien"; the player page missed the space after the dash.
+
+- [`24067a5`](https://github.com/haus23/tipprunde-legacy/commit/24067a522cd3620949e9eb640c219b29295cf66f) - Current tips popover sits closer to its icon
+
+- [`ecf405f`](https://github.com/haus23/tipprunde-legacy/commit/ecf405f16f4aac87c7f070665fb2428c35502b89) - Page headings without the championship name, which the header shows now; no more wrapping label in front of the selects
+
+- [`575aa1c`](https://github.com/haus23/tipprunde-legacy/commit/575aa1c700f6707bd36c63f2f1914e433bd793df) - Short column headers on phones ("Erg", "Pkt") in the player's match table, so fewer pairings wrap
+
+- [`3f8f826`](https://github.com/haus23/tipprunde-legacy/commit/3f8f82675376d4ddd23424fcf44512aaed378299) - Popups always above the page; backdrops cover the whole screen in iOS Safari
+
+- [`616639b`](https://github.com/haus23/tipprunde-legacy/commit/616639b59791d8ca2d7b3e282b1769e6f638df32) - Show the key figures on the player and match pages in a compact framed row; the player page reads "42 von 54" games, and phones show the league short name.
+
+- [`8361e15`](https://github.com/haus23/tipprunde-legacy/commit/8361e1546aa5224f89212e263676bb683a6de761) - The championship switcher looks and behaves like the other header items
+
+- [`48d0f2c`](https://github.com/haus23/tipprunde-legacy/commit/48d0f2cc2cacf3086dc5b7cf0eac28dfab47b49d) - Table rows are slightly taller for a bit more air
+
+- [`4559568`](https://github.com/haus23/tipprunde-legacy/commit/4559568259df4581c61bd1fc4fd1eba669b7fad3) - Follow the system color scheme until the visitor toggles it. Toggling back to the system scheme forgets the choice again, and the scheme is set before the first paint, so dark pages no longer flash light.
+
+- [`b37d52e`](https://github.com/haus23/tipprunde-legacy/commit/b37d52e514b01409f7efec54c1b10bc090538e1c) - The light/dark toggle sits in the header on phones too, instead of at the bottom of the menu
+
 ## 0.22.25
 
 ### Patch Changes
