@@ -10,6 +10,7 @@ import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { Backdrop } from '#/components/app/backdrop';
 import { NotFoundComponent } from '#/components/app/error';
 import { RootPendingComponent } from '#/components/app/loading';
+import { useDropStaticTitle } from '#/utils/app/title';
 import { championshipsQuery } from '#/utils/queries';
 
 export const Route = createRootRouteWithContext<{
@@ -29,6 +30,7 @@ export const Route = createRootRouteWithContext<{
 });
 
 function RootComponent() {
+  useDropStaticTitle();
   return (
     <>
       <HeadContent />

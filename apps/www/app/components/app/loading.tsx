@@ -1,4 +1,5 @@
 import { LoaderCircleIcon } from 'lucide-react';
+import { useDropStaticTitle } from '#/utils/app/title';
 import { BareShell } from './app-shell';
 
 // Quiet loading hint at the top of the page content.
@@ -17,8 +18,11 @@ export function LoadingView() {
 // Shown by the root route while the championships load (first visit, slow
 // network). There is no app shell yet, so it brings the bare shell.
 export function RootPendingComponent() {
+  useDropStaticTitle();
   return (
     <BareShell>
+      {/* The routes' titles are not known yet */}
+      <title>runde.tips</title>
       <LoadingView />
     </BareShell>
   );

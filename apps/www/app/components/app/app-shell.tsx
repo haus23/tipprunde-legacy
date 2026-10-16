@@ -1,4 +1,6 @@
+import { HeadContent } from '@tanstack/react-router';
 import { createContext, use, useCallback, useEffect, useState } from 'react';
+import { useDropStaticTitle } from '#/utils/app/title';
 import { AppHeader, BareHeader } from './app-header';
 import { AppSidebar } from './app-sidebar';
 import { Backdrop } from './backdrop';
@@ -82,8 +84,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 // Shell without championship data, for errors before they are loaded. It
 // brings its own gradient, as such an error replaces the root component.
 export function BareShell({ children }: { children: React.ReactNode }) {
+  useDropStaticTitle();
   return (
     <>
+      <HeadContent />
       <Backdrop />
       <div className="relative min-h-svh">
         <BareHeader />
