@@ -1,7 +1,10 @@
 import { DeviceMetricsReportSchema } from '@haus23/tipprunde-model';
 import { Router } from 'express';
 import * as v from 'valibot';
-import { recordDeviceVisit } from '#app/lib/device-metrics.ts';
+import {
+  type DeviceVisitResult,
+  recordDeviceVisit,
+} from '#app/lib/device-metrics.ts';
 
 export const metricsRouter = Router();
 
@@ -24,18 +27,38 @@ function isAllowedOrigin(origin: string | undefined): origin is string {
 const newDeviceLimit = 50;
 const newDeviceWindow = 60 * 60 * 1000;
 let newDevices: number[] = [];
+let reservedSlots = 0;
 
-// Only checks the limit: Firestore may run a transaction more than once, so
-// a new device is counted after it got stored.
-function hasRoomForNewDevice() {
-  const now = Date.now();
-  newDevices = newDevices.filter((time) => now - time < newDeviceWindow);
-  return newDevices.length < newDeviceLimit;
+/**
+ * A slot for one request that may add a device. It gets reserved on the
+ * first check, so concurrent requests cannot all pass the limit, and later
+ * checks of a retried Firestore transaction get the same answer.
+ */
+function newDeviceSlot() {
+  let reserved: boolean | undefined;
+
+  return {
+    canAdd() {
+      if (reserved === undefined) {
+        const now = Date.now();
+        newDevices = newDevices.filter((time) => now - time < newDeviceWindow);
+        reserved = newDevices.length + reservedSlots < newDeviceLimit;
+        if (reserved) reservedSlots++;
+      }
+      return reserved;
+    },
+    release(created: boolean) {
+      if (!reserved) return;
+      reservedSlots--;
+      if (created) newDevices.push(Date.now());
+    },
+  };
 }
 
 /** Forgets the new devices counted so far, for tests. */
 export function resetNewDeviceLimit() {
   newDevices = [];
+  reservedSlots = 0;
 }
 
 metricsRouter.post('/device', async (req, res) => {
@@ -51,12 +74,13 @@ metricsRouter.post('/device', async (req, res) => {
     return;
   }
 
-  const result = await recordDeviceVisit(
-    report.output,
-    origin,
-    hasRoomForNewDevice,
-  );
-  if (result === 'created') newDevices.push(Date.now());
+  const slot = newDeviceSlot();
+  let result: DeviceVisitResult | undefined;
+  try {
+    result = await recordDeviceVisit(report.output, origin, slot.canAdd);
+  } finally {
+    slot.release(result === 'created');
+  }
   if (result === 'rejected') {
     res.status(429).json({ status: 429, error: 'Too Many Requests' });
     return;

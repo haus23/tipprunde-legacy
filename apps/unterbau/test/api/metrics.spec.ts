@@ -98,3 +98,41 @@ it('counts only stored new devices against the cap', async () => {
   );
   expect((await report().send(deviceReport)).status).toBe(204);
 });
+
+it('reserves slots for concurrent new devices', async () => {
+  // All requests check the limit before any device is stored
+  const stored: (() => void)[] = [];
+  recordDeviceVisit.mockImplementation(async (_report, _origin, canAdd) =>
+    canAdd()
+      ? new Promise((resolve) => stored.push(() => resolve('created')))
+      : 'rejected',
+  );
+
+  const responses = Array.from({ length: 60 }, () =>
+    report()
+      .send(deviceReport)
+      .then((response) => response.status),
+  );
+  await vi.waitFor(() => expect(stored).toHaveLength(50));
+  for (const store of stored) store();
+
+  const statuses = await Promise.all(responses);
+  expect(statuses.filter((status) => status === 204)).toHaveLength(50);
+  expect(statuses.filter((status) => status === 429)).toHaveLength(10);
+});
+
+it('frees the slot when storing a new device fails', async () => {
+  vi.spyOn(console, 'error').mockImplementation(() => {});
+  recordDeviceVisit.mockImplementation(async (_report, _origin, canAdd) => {
+    canAdd();
+    throw new Error('Firestore unavailable');
+  });
+  for (let i = 0; i < 50; i++) {
+    expect((await report().send(deviceReport)).status).toBe(500);
+  }
+
+  recordDeviceVisit.mockImplementation(async (_report, _origin, canAdd) =>
+    canAdd() ? 'created' : 'rejected',
+  );
+  expect((await report().send(deviceReport)).status).toBe(204);
+});
