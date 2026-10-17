@@ -20,6 +20,7 @@ it('delivers the public OpenAPI document', async () => {
   expect(response.body.openapi).toBe('3.1.1');
   expect(Object.keys(response.body.paths)).toHaveLength(10);
   expect(response.body.paths).not.toHaveProperty('/api/cache/invalidate');
+  expect(response.body.paths).not.toHaveProperty('/api/metrics/device');
 });
 
 it('delivers the API documentation', async () => {

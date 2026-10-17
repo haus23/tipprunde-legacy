@@ -4,6 +4,7 @@ import express from 'express';
 
 import { cacheRouter } from './api/cache.ts';
 import { docsHandler, openApiHandler } from './api/docs.ts';
+import { metricsRouter } from './api/metrics.ts';
 import { router } from './api/v1/_router.ts';
 import { ValidationError } from './lib/util/validation-error.ts';
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.get('/openapi.json', openApiHandler);
 app.get('/docs', docsHandler);
 app.use('/api/cache', cacheRouter);
+app.use('/api/metrics', metricsRouter);
 app.use('/api/v1', router);
 
 // Not Found Handler

@@ -92,6 +92,30 @@ Der Token wird mit Firebase Admin geprüft. Zusätzlich muss seine Nutzer-UID in
 `CACHE_INVALIDATION_ALLOWED_UIDS` enthalten sein. Die Antwort enthält die
 tatsächlich entfernten Cache-Schlüssel.
 
+## Gerätedaten
+
+Die WWW-Anwendung kann einmal pro Sitzung die Eigenschaften des Geräts melden:
+Bildschirm- und Fenstergrößen, Eingabearten, Nutzereinstellungen wie
+Farbschema oder reduzierte Bewegung, Anzeige, Sprache und User-Agent. Das
+Schema dazu liegt im Model-Paket (`contracts/api/device-metrics`). Der
+Endpunkt gehört nicht zur öffentlichen OpenAPI-Beschreibung:
+
+```text
+POST /api/metrics/device
+```
+
+Der Unterbau speichert je Gerät ein Dokument in der Firestore-Collection
+`device-metrics`, mit dem letzten Bericht, Herkunft, erstem und letztem Besuch
+und der Zahl der Besuche. Der Bericht ist öffentlich, wird aber nur von
+`runde.tips`, `www.runde.tips`, den Cloudflare-Vorschauen `main` und
+`device-metrics` sowie `localhost` angenommen. Anfragen pro IP begrenzt eine
+Rate-Limiting-Regel bei Cloudflare; zusätzlich nimmt der Unterbau höchstens 50
+neue Geräte pro Stunde an.
+
+Der Hinterhof liest die Collection direkt aus Firestore. Die Security Rules
+erlauben dort nur das Lesen; geschrieben wird ausschließlich über den
+Unterbau.
+
 ## Konfiguration
 
 Der Server benötigt folgende Umgebungsvariablen:
