@@ -14,6 +14,7 @@
     "@base-ui/react": "catalog:ui",
     "@formisch/react": "^1.1.0",
     "@haus23/tipprunde-model": "workspace:^",
+    "bowser": "^2.14.1",
     "cn": "catalog:styling",
     "firebase": "^13.0.0",
     "lucide-react": "catalog:icons",

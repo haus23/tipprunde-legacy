@@ -90,6 +90,16 @@ export default function createAppRoutes(): RouteObject[] {
           ],
         },
         {
+          path: 'auswertung',
+          handle: { context: 'Auswertung' },
+          children: [
+            {
+              path: 'geraete',
+              lazy: lazyComponent(() => import('./app/analytics/devices')),
+            },
+          ],
+        },
+        {
           path: 'profil',
           lazy: lazyComponent(() => import('./app/profile')),
         },

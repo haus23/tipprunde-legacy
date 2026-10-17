@@ -2,6 +2,7 @@ import type { Championship } from '@haus23/tipprunde-model';
 import {
   LayersIcon,
   LogOutIcon,
+  MonitorSmartphoneIcon,
   ScrollTextIcon,
   ShieldIcon,
   TrophyIcon,
@@ -94,6 +95,14 @@ const masterDataItems = [
   { to: '/stammdaten/regelwerke', icon: ScrollTextIcon, label: 'Regelwerke' },
 ];
 
+const analyticsItems = [
+  {
+    to: '/auswertung/geraete',
+    icon: MonitorSmartphoneIcon,
+    label: 'Geräte',
+  },
+];
+
 export default function AppShellNavbar() {
   const { profile } = useProfile();
   const { currentChampionship: championship } = useCurrentChampionship();
@@ -117,19 +126,34 @@ export default function AppShellNavbar() {
               </Suspense>
             )}
           </nav>
-          <nav className="px-2" aria-labelledby="master-data-heading">
-            <h2
-              id="master-data-heading"
-              className="mb-2 border-sidebar-border border-b px-2 pb-2 font-medium text-sidebar-foreground/70 text-xs uppercase tracking-wide"
-            >
-              Stammdaten
-            </h2>
-            <div className="space-y-1">
-              {masterDataItems.map((item) => (
-                <NavItem key={item.to} {...item} />
-              ))}
-            </div>
-          </nav>
+          <div className="space-y-6">
+            <nav className="px-2" aria-labelledby="master-data-heading">
+              <h2
+                id="master-data-heading"
+                className="mb-2 border-sidebar-border border-b px-2 pb-2 font-medium text-sidebar-foreground/70 text-xs uppercase tracking-wide"
+              >
+                Stammdaten
+              </h2>
+              <div className="space-y-1">
+                {masterDataItems.map((item) => (
+                  <NavItem key={item.to} {...item} />
+                ))}
+              </div>
+            </nav>
+            <nav className="px-2" aria-labelledby="analytics-heading">
+              <h2
+                id="analytics-heading"
+                className="mb-2 border-sidebar-border border-b px-2 pb-2 font-medium text-sidebar-foreground/70 text-xs uppercase tracking-wide"
+              >
+                Auswertung
+              </h2>
+              <div className="space-y-1">
+                {analyticsItems.map((item) => (
+                  <NavItem key={item.to} {...item} />
+                ))}
+              </div>
+            </nav>
+          </div>
         </div>
       </div>
       {profile && (
