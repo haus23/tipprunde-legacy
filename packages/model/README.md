@@ -98,6 +98,10 @@ Der Unterbau validiert aus Firestore geladene Dokumente und die daraus
 erzeugten Antworten gegen diese Schemas. Damit teilen Server und Client
 denselben Vertrag.
 
+`contracts/api/device-metrics` beschreibt die Gerätedaten: den Bericht, den
+die WWW-Anwendung einmal pro Sitzung sendet, und das Firestore-Dokument je
+Gerät, das der Hinterhof auswertet.
+
 ### Regelwerke
 
 Der Bereich `rules` enthält das gespeicherte `RuleSet` und die unterstützten

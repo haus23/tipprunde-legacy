@@ -12,6 +12,7 @@ export * from './contracts/api/championship/match-tips';
 export * from './contracts/api/championship/matches';
 export * from './contracts/api/championship/player-tips';
 export * from './contracts/api/championship/players';
+export * from './contracts/api/device-metrics';
 export * from './league/league';
 export * from './member/member';
 export * from './primitives';
