@@ -9,12 +9,12 @@ export type DeviceVisitResult = 'created' | 'updated' | 'rejected';
 
 /**
  * Stores the latest report of a device and counts the visit. A device seen
- * for the first time is only stored when `allowNewDevice` agrees.
+ * for the first time is only stored when `canAddDevice` agrees.
  */
 export async function recordDeviceVisit(
   { deviceId, ...report }: DeviceMetricsReport,
   origin: string,
-  allowNewDevice: () => boolean,
+  canAddDevice: () => boolean,
 ): Promise<DeviceVisitResult> {
   const ref = collection().doc(deviceId);
 
@@ -31,7 +31,7 @@ export async function recordDeviceVisit(
       transaction.set(ref, visit, { merge: true });
       return 'updated';
     }
-    if (!allowNewDevice()) return 'rejected';
+    if (!canAddDevice()) return 'rejected';
 
     transaction.set(ref, {
       ...visit,

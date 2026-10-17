@@ -25,12 +25,12 @@ const newDeviceLimit = 50;
 const newDeviceWindow = 60 * 60 * 1000;
 let newDevices: number[] = [];
 
-function allowNewDevice() {
+// Only checks the limit: Firestore may run a transaction more than once, so
+// a new device is counted after it got stored.
+function hasRoomForNewDevice() {
   const now = Date.now();
   newDevices = newDevices.filter((time) => now - time < newDeviceWindow);
-  if (newDevices.length >= newDeviceLimit) return false;
-  newDevices.push(now);
-  return true;
+  return newDevices.length < newDeviceLimit;
 }
 
 /** Forgets the new devices counted so far, for tests. */
@@ -51,7 +51,12 @@ metricsRouter.post('/device', async (req, res) => {
     return;
   }
 
-  const result = await recordDeviceVisit(report.output, origin, allowNewDevice);
+  const result = await recordDeviceVisit(
+    report.output,
+    origin,
+    hasRoomForNewDevice,
+  );
+  if (result === 'created') newDevices.push(Date.now());
   if (result === 'rejected') {
     res.status(429).json({ status: 429, error: 'Too Many Requests' });
     return;

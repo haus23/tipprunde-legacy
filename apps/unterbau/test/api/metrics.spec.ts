@@ -70,8 +70,8 @@ it('rejects an invalid device report', async () => {
 });
 
 it('caps the number of new devices per hour', async () => {
-  recordDeviceVisit.mockImplementation(async (_report, _origin, allow) =>
-    allow() ? 'created' : 'rejected',
+  recordDeviceVisit.mockImplementation(async (_report, _origin, canAdd) =>
+    canAdd() ? 'created' : 'rejected',
   );
 
   for (let i = 0; i < 50; i++) {
@@ -80,4 +80,21 @@ it('caps the number of new devices per hour', async () => {
   const response = await report().send(deviceReport);
 
   expect(response.status).toBe(429);
+});
+
+it('counts only stored new devices against the cap', async () => {
+  // A retried transaction asks more than once, an update does not count
+  recordDeviceVisit.mockImplementation(async (_report, _origin, canAdd) => {
+    canAdd();
+    canAdd();
+    return 'updated';
+  });
+  for (let i = 0; i < 60; i++) {
+    expect((await report().send(deviceReport)).status).toBe(204);
+  }
+
+  recordDeviceVisit.mockImplementation(async (_report, _origin, canAdd) =>
+    canAdd() ? 'created' : 'rejected',
+  );
+  expect((await report().send(deviceReport)).status).toBe(204);
 });

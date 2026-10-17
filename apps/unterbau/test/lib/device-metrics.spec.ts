@@ -60,12 +60,12 @@ it('does not store a new device beyond the limit', async () => {
 
 it('updates a known device without asking the limit', async () => {
   documents.set(deviceId, {});
-  const allowNewDevice = vi.fn(() => false);
+  const canAddDevice = vi.fn(() => false);
 
-  const result = await recordDeviceVisit(deviceReport, origin, allowNewDevice);
+  const result = await recordDeviceVisit(deviceReport, origin, canAddDevice);
 
   expect(result).toBe('updated');
-  expect(allowNewDevice).not.toHaveBeenCalled();
+  expect(canAddDevice).not.toHaveBeenCalled();
   expect(writes[0]).toMatchObject({ id: deviceId, merge: true });
   expect(writes[0].data).not.toHaveProperty('firstSeen');
 });
