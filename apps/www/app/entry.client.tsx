@@ -33,6 +33,11 @@ declare module '@tanstack/react-router' {
 const container = document.getElementById('root');
 if (!container) throw Error('Missing root element!');
 
+// Device metrics: without the flag the module is left out of the build
+if (import.meta.env.VITE_DEVICE_METRICS === 'on') {
+  import('./utils/app/device-metrics').then((module) => module.reportDevice());
+}
+
 createRoot(container).render(
   <QueryClientProvider client={queryClient}>
     <RouterProvider router={router} />

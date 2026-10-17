@@ -7,6 +7,8 @@ import react from '@vitejs/plugin-react';
 import { cn } from 'cn/vite';
 import { defineConfig } from 'vite';
 
+import { version } from './package.json';
+
 const routerConfig = {
   target: 'react',
   autoCodeSplitting: true,
@@ -15,6 +17,9 @@ const routerConfig = {
 } satisfies Partial<Config>;
 
 export default defineConfig({
+  define: {
+    'import.meta.env.VITE_APP_VERSION': JSON.stringify(version),
+  },
   plugins: [
     tanstackRouter(routerConfig),
     react(),
