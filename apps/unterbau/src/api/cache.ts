@@ -1,10 +1,7 @@
 import { ChampionshipIdSchema } from '@haus23/tipprunde-model';
-import type { RequestHandler } from 'express';
 import { Router } from 'express';
-import { getAuth } from 'firebase-admin/auth';
 import * as v from 'valibot';
-import { env } from '#app/env.ts';
-import { app } from '#app/lib/firebase/app.ts';
+import { requireAdmin } from '#app/lib/auth/require-admin.ts';
 import { storage } from '#app/lib/storage.ts';
 
 export const cacheRouter = Router();
@@ -29,31 +26,6 @@ type CacheInvalidationTarget = v.InferOutput<
   typeof CacheInvalidationTargetSchema
 >;
 
-const allowedUids = new Set(env.CACHE_INVALIDATION_ALLOWED_UIDS);
-
-const requireAuthorizedUser: RequestHandler = async (req, res, next) => {
-  const authorization = req.get('authorization');
-  const match = authorization?.match(/^Bearer (.+)$/);
-
-  if (!match) {
-    res.status(401).json({ status: 401, error: 'Authentication required' });
-    return;
-  }
-
-  try {
-    const token = await getAuth(app).verifyIdToken(match[1]);
-    if (!allowedUids.has(token.uid)) {
-      res.status(403).json({ status: 403, error: 'Forbidden' });
-      return;
-    }
-  } catch {
-    res.status(401).json({ status: 401, error: 'Authentication required' });
-    return;
-  }
-
-  next();
-};
-
 function getCacheKeys(target: CacheInvalidationTarget): string[] {
   switch (target.type) {
     case 'championships':
@@ -68,7 +40,7 @@ function getCacheKeys(target: CacheInvalidationTarget): string[] {
   }
 }
 
-cacheRouter.post('/invalidate', requireAuthorizedUser, async (req, res) => {
+cacheRouter.post('/invalidate', requireAdmin, async (req, res) => {
   const request = v.safeParse(CacheInvalidationSchema, req.body);
   if (!request.success) {
     res.status(400).json({
