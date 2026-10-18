@@ -1,5 +1,11 @@
 # model
 
+## 1.2.0
+
+### Minor Changes
+
+- [`2af1675`](https://github.com/haus23/tipprunde-legacy/commit/2af167590da428bfbd8a1de1b9a4ec821d80920c) - Add the device metrics contract: the report of the www app and the stored device record.
+
 ## 1.1.0
 
 ### Minor Changes

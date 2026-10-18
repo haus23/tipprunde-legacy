@@ -1,5 +1,16 @@
 # hinterhof
 
+## 1.1.0
+
+### Minor Changes
+
+- [`1969e80`](https://github.com/haus23/tipprunde-legacy/commit/1969e801ba103618ae1694f10aa32be102b54eb6) - Add an analytics page with the device metrics of the www app.
+
+### Patch Changes
+
+- Updated dependencies [[`2af1675`](https://github.com/haus23/tipprunde-legacy/commit/2af167590da428bfbd8a1de1b9a4ec821d80920c)]:
+  - @haus23/tipprunde-model@1.2.0
+
 ## 1.0.0
 
 ### Major Changes

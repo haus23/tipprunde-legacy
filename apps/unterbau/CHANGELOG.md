@@ -1,5 +1,16 @@
 # unterbau
 
+## 1.1.0
+
+### Minor Changes
+
+- [`311481e`](https://github.com/haus23/tipprunde-legacy/commit/311481ee4af30491d3b28cb1e8586f8769b306b3) - Record device metrics of the www app in Firestore.
+
+### Patch Changes
+
+- Updated dependencies [[`2af1675`](https://github.com/haus23/tipprunde-legacy/commit/2af167590da428bfbd8a1de1b9a4ec821d80920c)]:
+  - @haus23/tipprunde-model@1.2.0
+
 ## 1.0.1
 
 ### Patch Changes

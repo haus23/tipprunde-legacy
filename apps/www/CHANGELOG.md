@@ -1,5 +1,16 @@
 # www
 
+## 1.1.0
+
+### Minor Changes
+
+- [`d7ebcaa`](https://github.com/haus23/tipprunde-legacy/commit/d7ebcaab54dfdc2e436faf93cec0ddab2ea67259) - Report device metrics once per session, when built with VITE_DEVICE_METRICS=on.
+
+### Patch Changes
+
+- Updated dependencies [[`2af1675`](https://github.com/haus23/tipprunde-legacy/commit/2af167590da428bfbd8a1de1b9a4ec821d80920c)]:
+  - @haus23/tipprunde-model@1.2.0
+
 ## 1.0.0
 
 ### Major Changes
