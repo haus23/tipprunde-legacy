@@ -14,7 +14,6 @@ export const metricsRouter = Router();
 const allowedOrigins = new Set([
   'https://runde.tips',
   'https://www.runde.tips',
-  'https://main.tipprunde-www.pages.dev',
 ]);
 const localhost = /^http:\/\/localhost(:\d+)?$/;
 

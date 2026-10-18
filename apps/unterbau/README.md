@@ -107,10 +107,9 @@ POST /api/metrics/device
 Der Unterbau speichert je Gerät ein Dokument in der Firestore-Collection
 `device-metrics`, mit dem letzten Bericht, Herkunft, erstem und letztem Besuch
 und der Zahl der Besuche. Der Bericht ist öffentlich, wird aber nur von
-`runde.tips`, `www.runde.tips`, der Cloudflare-Adresse
-`main.tipprunde-www.pages.dev` sowie `localhost` angenommen. Anfragen pro IP begrenzt eine
-Rate-Limiting-Regel bei Cloudflare; zusätzlich nimmt der Unterbau höchstens 50
-neue Geräte pro Stunde an. Berichte von Bots wie dem Googlebot, der die Seite
+`runde.tips`, `www.runde.tips` und `localhost` angenommen. Anfragen pro IP
+begrenzt eine Rate-Limiting-Regel bei Cloudflare; zusätzlich nimmt der
+Unterbau höchstens 50 neue Geräte pro Stunde an. Berichte von Bots wie dem Googlebot, der die Seite
 mit JavaScript rendert, werden angenommen, aber nicht gespeichert.
 
 Der Hinterhof liest die Collection direkt aus Firestore. Die Security Rules

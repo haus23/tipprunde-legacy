@@ -23,7 +23,6 @@ const report = (origin = 'https://www.runde.tips') =>
 it.each([
   'https://runde.tips',
   'https://www.runde.tips',
-  'https://main.tipprunde-www.pages.dev',
   'http://localhost:5173',
 ])('records a device report from %s', async (origin) => {
   const response = await report(origin).send(deviceReport);
@@ -38,6 +37,7 @@ it.each([
 
 it.each([
   'https://evil.example',
+  'https://main.tipprunde-www.pages.dev',
   'https://device-metrics.tipprunde-www.pages.dev',
   'https://www.runde.tips.evil.example',
   'http://localhost.evil.example',
