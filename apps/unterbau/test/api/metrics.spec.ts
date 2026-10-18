@@ -68,6 +68,20 @@ it('rejects an invalid device report', async () => {
   expect(recordDeviceVisit).not.toHaveBeenCalled();
 });
 
+it('does not store reports of bots', async () => {
+  const response = await report().send({
+    ...deviceReport,
+    environment: {
+      ...deviceReport.environment,
+      userAgent:
+        'Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.52 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+    },
+  });
+
+  expect(response.status).toBe(204);
+  expect(recordDeviceVisit).not.toHaveBeenCalled();
+});
+
 it('caps the number of new devices per hour', async () => {
   recordDeviceVisit.mockImplementation(async (_report, _origin, canAdd) =>
     canAdd() ? 'created' : 'rejected',

@@ -5,6 +5,7 @@ import {
   type DeviceVisitResult,
   recordDeviceVisit,
 } from '#app/lib/device-metrics.ts';
+import { isBot } from '#app/lib/util/is-bot.ts';
 
 export const metricsRouter = Router();
 
@@ -70,6 +71,12 @@ metricsRouter.post('/device', async (req, res) => {
   const report = v.safeParse(DeviceMetricsReportSchema, req.body);
   if (!report.success) {
     res.status(400).json({ status: 400, error: 'Invalid device report' });
+    return;
+  }
+
+  // Accepted, but not stored: bots are no devices of visitors
+  if (isBot(report.output.environment.userAgent)) {
+    res.status(204).end();
     return;
   }
 
