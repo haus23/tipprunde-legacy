@@ -46,10 +46,9 @@ export type OriginFilter = (typeof originOptions)[number]['id'];
 const productionOrigins = new Set([
   'https://runde.tips',
   'https://www.runde.tips',
-  'https://main.tipprunde-www.pages.dev',
 ]);
 
-// Former preview origins only show up under all origins
+// Former Cloudflare origins only show up under all origins
 function originGroup(origin: string): OriginFilter | 'other' {
   if (productionOrigins.has(origin)) return 'production';
   if (origin.startsWith('http://localhost')) return 'local';
