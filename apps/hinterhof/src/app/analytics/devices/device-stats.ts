@@ -38,7 +38,6 @@ export function withUserAgent(device: DeviceMetrics): Device {
 
 export const originOptions = [
   { id: 'production', name: 'Produktion' },
-  { id: 'preview', name: 'Vorschau' },
   { id: 'local', name: 'Lokal' },
   { id: 'all', name: 'Alle Herkünfte' },
 ] as const;
@@ -50,10 +49,11 @@ const productionOrigins = new Set([
   'https://main.tipprunde-www.pages.dev',
 ]);
 
-function originGroup(origin: string): Exclude<OriginFilter, 'all'> {
+// Former preview origins only show up under all origins
+function originGroup(origin: string): OriginFilter | 'other' {
   if (productionOrigins.has(origin)) return 'production';
   if (origin.startsWith('http://localhost')) return 'local';
-  return 'preview';
+  return 'other';
 }
 
 export const periodOptions = [
