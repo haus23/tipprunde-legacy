@@ -107,8 +107,8 @@ POST /api/metrics/device
 Der Unterbau speichert je Gerät ein Dokument in der Firestore-Collection
 `device-metrics`, mit dem letzten Bericht, Herkunft, erstem und letztem Besuch
 und der Zahl der Besuche. Der Bericht ist öffentlich, wird aber nur von
-`runde.tips`, `www.runde.tips`, den Cloudflare-Vorschauen `main` und
-`device-metrics` sowie `localhost` angenommen. Anfragen pro IP begrenzt eine
+`runde.tips`, `www.runde.tips`, der Cloudflare-Adresse
+`main.tipprunde-www.pages.dev` sowie `localhost` angenommen. Anfragen pro IP begrenzt eine
 Rate-Limiting-Regel bei Cloudflare; zusätzlich nimmt der Unterbau höchstens 50
 neue Geräte pro Stunde an.
 
