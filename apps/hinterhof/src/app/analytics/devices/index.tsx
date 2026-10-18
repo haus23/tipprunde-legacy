@@ -24,6 +24,7 @@ import {
   periodOptions,
   pixelRatio,
   platformLabel,
+  portraitWidth,
   widthBucket,
   withUserAgent,
 } from './device-stats';
@@ -40,6 +41,8 @@ type Section = {
     title: string;
     value: (device: Device) => string | null;
     compare?: (a: string, b: string) => number;
+    /** Counts only these devices; the shares refer to them. */
+    only?: (device: Device) => boolean;
   }[];
 };
 
@@ -47,6 +50,12 @@ const sections: Section[] = [
   {
     title: 'Größen',
     charts: [
+      {
+        title: 'Handys: Breite im Hochformat',
+        value: (d) => `${portraitWidth(d)} px`,
+        compare: byNumber,
+        only: (d) => portraitWidth(d) < 640,
+      },
       {
         title: 'Fensterbreite',
         value: (d) => widthBucket(d.viewport.width),
@@ -185,6 +194,9 @@ function DistributionChart({
       <figcaption className="font-medium text-foreground text-sm">
         {title}
       </figcaption>
+      {rows.length === 0 && (
+        <p className="mt-2 text-muted-foreground text-sm">Keine Geräte</p>
+      )}
       <ul className="mt-2 space-y-1.5">
         {rows.map((row) => (
           <li
@@ -359,14 +371,19 @@ function DevicesView() {
                   {section.title}
                 </h4>
                 <div className="mt-4 grid gap-x-10 gap-y-6 lg:grid-cols-2">
-                  {section.charts.map((chart) => (
-                    <DistributionChart
-                      key={chart.title}
-                      title={chart.title}
-                      total={total}
-                      rows={distribution(devices, chart.value, chart.compare)}
-                    />
-                  ))}
+                  {section.charts.map((chart) => {
+                    const counted = chart.only
+                      ? devices.filter(chart.only)
+                      : devices;
+                    return (
+                      <DistributionChart
+                        key={chart.title}
+                        title={chart.title}
+                        total={counted.length}
+                        rows={distribution(counted, chart.value, chart.compare)}
+                      />
+                    );
+                  })}
                 </div>
               </section>
             ))}

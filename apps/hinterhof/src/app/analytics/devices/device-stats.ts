@@ -113,9 +113,16 @@ export function distribution(
 export const byNumber = (a: string, b: string) =>
   Number.parseFloat(a) - Number.parseFloat(b);
 
-/** Widths grouped by the Tailwind breakpoints the www app is built with. */
+/**
+ * Widths grouped by the Tailwind breakpoints the www app is built with.
+ * Below sm the steps follow common phone widths: 320, 360, 375, 390/393.
+ */
 export const widthBuckets = [
-  '< 640 px',
+  '< 360 px',
+  '360–374 px',
+  '375–389 px',
+  '390–411 px',
+  '412–639 px',
   '640–767 px (sm)',
   '768–1023 px (md)',
   '1024–1279 px (lg)',
@@ -130,9 +137,14 @@ export const byWidthBucket = (a: string, b: string) =>
 type WidthBucket = (typeof widthBuckets)[number];
 
 export function widthBucket(width: number): WidthBucket {
-  const limits = [640, 768, 1024, 1280, 1536];
+  const limits = [360, 375, 390, 412, 640, 768, 1024, 1280, 1536];
   const index = limits.findIndex((limit) => width < limit);
   return widthBuckets[index === -1 ? limits.length : index];
+}
+
+/** CSS width of the device held upright, independent of its orientation. */
+export function portraitWidth(device: Device) {
+  return Math.min(device.screen.width, device.screen.height);
 }
 
 export function pixelRatio(ratio: number) {
