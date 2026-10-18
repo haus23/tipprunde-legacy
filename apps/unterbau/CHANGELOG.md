@@ -1,5 +1,13 @@
 # unterbau
 
+## 1.1.1
+
+### Patch Changes
+
+- [`ef0156c`](https://github.com/haus23/tipprunde-legacy/commit/ef0156c7d333bcad38699f2fe28ba1185935365c) - Do not store device reports of bots like Googlebot.
+
+- [`d217266`](https://github.com/haus23/tipprunde-legacy/commit/d2172660b9d8202dacde68a05df6854bd908e39c) - Stop accepting device reports from Cloudflare Pages addresses; only runde.tips and localhost remain.
+
 ## 1.1.0
 
 ### Minor Changes

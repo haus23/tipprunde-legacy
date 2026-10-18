@@ -1,5 +1,11 @@
 # hinterhof
 
+## 1.2.0
+
+### Minor Changes
+
+- [`1718ac4`](https://github.com/haus23/tipprunde-legacy/commit/1718ac44fe1befd89f5d2dff50887019cd0b8cd4) - Show phone widths in detail: exact portrait widths and finer width steps below 640 px. The preview origin filter is gone.
+
 ## 1.1.0
 
 ### Minor Changes
