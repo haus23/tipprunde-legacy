@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react';
 import { cn } from 'cn/vite';
 import { defineConfig } from 'vite';
 
-import { version } from './package.json';
+import pkg from './package.json' with { type: 'json' };
 
 const routerConfig = {
   target: 'react',
@@ -18,7 +18,7 @@ const routerConfig = {
 
 export default defineConfig({
   define: {
-    'import.meta.env.VITE_APP_VERSION': JSON.stringify(version),
+    'import.meta.env.VITE_APP_VERSION': JSON.stringify(pkg.version),
   },
   plugins: [
     tanstackRouter(routerConfig),
