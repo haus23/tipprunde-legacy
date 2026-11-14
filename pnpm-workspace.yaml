@@ -35,3 +35,7 @@ allowBuilds:
   '@firebase/util': true
   esbuild: true
   protobufjs: true
+
+permissions:
+  '@tanstack/router-plugin':
+    skills: true
