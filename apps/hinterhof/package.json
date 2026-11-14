@@ -1,6 +1,6 @@
 {
   "name": "@haus23/tipprunde-hinterhof",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "type": "module",
   "imports": {
     "#/*": "./src/*.js"

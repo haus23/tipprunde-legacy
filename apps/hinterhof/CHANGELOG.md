@@ -1,5 +1,11 @@
 # hinterhof
 
+## 1.2.1
+
+### Patch Changes
+
+- [`c43d2db`](https://github.com/haus23/tipprunde-legacy/commit/c43d2dbc78f8b58f9528dc10599315ba9c4f09dd) - Move the button for pasting tips into the sticky toolbar, next to the player selection.
+
 ## 1.2.0
 
 ### Minor Changes
