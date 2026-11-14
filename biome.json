@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.15/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.6.7/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -7,24 +7,33 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!**/routeTree.gen.ts", "!**/cn-tables.ts"]
+    "includes": [
+      "**",
+      "!**/routeTree.gen.ts",
+      "!**/cn-tables.ts",
+      "!**/CHANGELOG.md",
+      "!pnpm-workspace.yaml"
+    ]
   },
   "formatter": {
     "enabled": true,
     "indentStyle": "space"
   },
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
   "linter": {
     "enabled": true,
     "rules": {
       "preset": "recommended",
       "nursery": {
-        "useSortedClasses": {
+        "useTailwindSortedClasses": {
           "level": "info",
-          "fix": "safe",
-          "options": {
-            "functions": ["tv"]
-          }
+          "fix": "safe"
         }
       }
     }
@@ -37,6 +46,11 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single"
+    }
+  },
+  "markdown": {
+    "parser": {
+      "frontmatter": true
     }
   }
 }

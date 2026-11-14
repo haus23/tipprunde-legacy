@@ -27,18 +27,18 @@ erfolgen durch den Hinterhof.
 Die öffentliche API ist nur lesend und liegt unter `/api/v1`. Sie umfasst die
 Stammdaten sowie die für Frontend-Ansichten aufbereiteten Turnierdaten.
 
-| Ressource | Beschreibung |
-| --- | --- |
-| `/api/v1/accounts` | Mitglieder der Tipprunde |
-| `/api/v1/championships` | veröffentlichte Turniere |
-| `/api/v1/leagues` | Ligen |
-| `/api/v1/rules` | Regelwerke |
-| `/api/v1/teams` | Teams |
-| `/api/v1/championships/{id}/players` | Teilnehmer und Ranking eines Turniers |
-| `/api/v1/championships/{id}/matches` | Runden, Spiele und verwendete Stammdaten |
+| Ressource                                 | Beschreibung                               |
+| ----------------------------------------- | ------------------------------------------ |
+| `/api/v1/accounts`                        | Mitglieder der Tipprunde                   |
+| `/api/v1/championships`                   | veröffentlichte Turniere                   |
+| `/api/v1/leagues`                         | Ligen                                      |
+| `/api/v1/rules`                           | Regelwerke                                 |
+| `/api/v1/teams`                           | Teams                                      |
+| `/api/v1/championships/{id}/players`      | Teilnehmer und Ranking eines Turniers      |
+| `/api/v1/championships/{id}/matches`      | Runden, Spiele und verwendete Stammdaten   |
 | `/api/v1/championships/{id}/current-tips` | aktueller Ausschnitt aus Spielen und Tipps |
-| `/api/v1/championships/{id}/player-tips` | Tipps eines Teilnehmers |
-| `/api/v1/championships/{id}/match-tips` | Tipps eines Spiels |
+| `/api/v1/championships/{id}/player-tips`  | Tipps eines Teilnehmers                    |
+| `/api/v1/championships/{id}/match-tips`   | Tipps eines Spiels                         |
 
 Die vollständigen Parameter, Statuscodes und Antwortmodelle sind in der
 integrierten API-Dokumentation beschrieben:
@@ -120,13 +120,13 @@ Unterbau.
 
 Der Server benötigt folgende Umgebungsvariablen:
 
-| Variable | Bedeutung |
-| --- | --- |
-| `PORT` | HTTP-Port des Express-Servers |
-| `MAX_AGE` | Lebensdauer regulärer Cache-Einträge in Sekunden |
-| `FIREBASE_PROJECT_ID` | Firebase-Projekt-ID |
-| `FIREBASE_CLIENT_EMAIL` | Client-E-Mail des Firebase-Service-Accounts |
-| `FIREBASE_PRIVATE_KEY` | privater PEM-Schlüssel des Service-Accounts |
+| Variable                          | Bedeutung                                                           |
+| --------------------------------- | ------------------------------------------------------------------- |
+| `PORT`                            | HTTP-Port des Express-Servers                                       |
+| `MAX_AGE`                         | Lebensdauer regulärer Cache-Einträge in Sekunden                    |
+| `FIREBASE_PROJECT_ID`             | Firebase-Projekt-ID                                                 |
+| `FIREBASE_CLIENT_EMAIL`           | Client-E-Mail des Firebase-Service-Accounts                         |
+| `FIREBASE_PRIVATE_KEY`            | privater PEM-Schlüssel des Service-Accounts                         |
 | `CACHE_INVALIDATION_ALLOWED_UIDS` | kommaseparierte Firebase-Auth-UIDs der berechtigten Administratoren |
 
 Die Konfiguration wird beim Start mit Valibot geprüft. Der Server startet nicht
