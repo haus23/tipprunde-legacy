@@ -250,6 +250,16 @@ export default function TipsView() {
                     }}
                   />
                 </div>
+                {/* In the sticky toolbar, so it stays at hand while scrolling */}
+                <Button
+                  size="icon"
+                  className="shrink-0"
+                  onClick={() => handleClipboardData()}
+                  aria-label="Tipps aus der Zwischenablage einfügen"
+                  title="Tipps aus der Zwischenablage einfügen"
+                >
+                  <ClipboardIcon className="size-4" aria-hidden="true" />
+                </Button>
               </div>
             </div>
           }
@@ -274,18 +284,7 @@ export default function TipsView() {
                     scope="col"
                     className="px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
                   >
-                    <div className="flex items-center gap-x-2">
-                      <span>Tipp</span>
-                      <Button
-                        size="icon"
-                        className="h-7 w-7 border-transparent bg-transparent shadow-none"
-                        onClick={() => handleClipboardData()}
-                        aria-label="Tipps aus der Zwischenablage einfügen"
-                        title="Tipps aus der Zwischenablage einfügen"
-                      >
-                        <ClipboardIcon className="h-4 w-4" aria-hidden="true" />
-                      </Button>
-                    </div>
+                    Tipp
                   </th>
                   <th
                     scope="col"
