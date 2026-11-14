@@ -84,6 +84,7 @@ export default function MatchesView() {
 
   const nextNr = (matches.at(-1)?.nr || 0) + 1;
   const latestDate = matches.reduce(
+    // biome-ignore lint/complexity/useMathMinMax: dates are ISO strings, Math.max would turn them into NaN
     (lastDate, match) => (match.date > lastDate ? match.date : lastDate),
     '',
   );

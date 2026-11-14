@@ -70,7 +70,7 @@ export default function ChampionshipDialog({
   const { championships, createChampionship } = useChampionships();
   const { rules } = useRules();
 
-  const lastNr = championships.reduce((max, c) => (c.nr > max ? c.nr : max), 0);
+  const lastNr = championships.reduce((max, c) => Math.max(c.nr, max), 0);
   const emptyChampionship: Championship = {
     id: '',
     name: '',

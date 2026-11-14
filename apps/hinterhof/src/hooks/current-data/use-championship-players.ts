@@ -13,10 +13,7 @@ export function useChampionshipPlayers() {
     (state) => state.championshipPlayers,
   );
 
-  const lastNr = championshipPlayers.reduce(
-    (nr, p) => (p.nr > nr ? p.nr : nr),
-    0,
-  );
+  const lastNr = championshipPlayers.reduce((nr, p) => Math.max(p.nr, nr), 0);
 
   const addChampionshipPlayer = (playerId: string) => {
     const championshipPlayer: Omit<ChampionshipPlayer, 'id'> = {
