@@ -28,6 +28,9 @@ catalogs:
 
 autoDedupe: true
 
+lockfile:
+  includeResolutionSettings: true
+
 allowBuilds:
   '@firebase/util': true
   esbuild: true
