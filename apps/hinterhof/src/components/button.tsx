@@ -19,7 +19,7 @@ export default function Button({
       type={type}
       className={cn(
         focusRing,
-        'inline-flex h-9 items-center justify-center rounded-md border font-medium text-sm shadow-xs transition-colors disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none',
+        'inline-flex h-9 items-center justify-center rounded-md border text-sm font-medium shadow-xs transition-colors disabled:pointer-events-none disabled:opacity-50 motion-reduce:transition-none',
         variant === 'primary'
           ? 'border-primary bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80'
           : 'border-input bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground active:bg-muted',

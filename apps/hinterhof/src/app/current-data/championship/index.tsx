@@ -43,7 +43,7 @@ function StateToggle({
         label={label}
         aria-describedby={descriptionId}
       />
-      <p id={descriptionId} className="pl-14 text-muted-foreground text-sm">
+      <p id={descriptionId} className="pl-14 text-sm text-muted-foreground">
         {description}
       </p>
     </div>
@@ -134,7 +134,7 @@ export default function ChampionshipView() {
       <Card>
         <CardHeader>
           <CardTitle>{currentChampionship.name}</CardTitle>
-          <p className="mt-1 text-muted-foreground text-sm">
+          <p className="mt-1 text-sm text-muted-foreground">
             {[
               currentChampionship.id,
               `Nr. ${currentChampionship.nr}`,
@@ -183,7 +183,7 @@ export default function ChampionshipView() {
         }
       >
         {rounds.length === 0 ? (
-          <p className="px-4 py-6 text-center text-muted-foreground text-sm sm:px-6">
+          <p className="px-4 py-6 text-center text-sm text-muted-foreground sm:px-6">
             Noch keine Runde angelegt.
           </p>
         ) : (
@@ -193,13 +193,13 @@ export default function ChampionshipView() {
                 <tr>
                   <th
                     scope="col"
-                    className="py-3.5 pr-2 pl-4 text-left font-semibold text-foreground text-sm sm:pl-6"
+                    className="py-3.5 pr-2 pl-4 text-left text-sm font-semibold text-foreground sm:pl-6"
                   >
                     Runde
                   </th>
                   <th
                     scope="col"
-                    className="px-2 py-3.5 text-right font-semibold text-foreground text-sm"
+                    className="px-2 py-3.5 text-right text-sm font-semibold text-foreground"
                   >
                     Spiele
                   </th>
@@ -217,13 +217,13 @@ export default function ChampionshipView() {
                           Runde {round.nr}
                         </span>
                         {round.isDoubleRound && (
-                          <span className="rounded-full bg-primary/10 px-2 py-0.5 font-medium text-primary text-xs">
+                          <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
                             Doppelte Punkte
                           </span>
                         )}
                       </span>
                     </td>
-                    <td className="px-2 py-3 text-right text-muted-foreground text-sm tabular-nums">
+                    <td className="px-2 py-3 text-right text-sm text-muted-foreground tabular-nums">
                       {matches.filter((m) => m.roundId === round.id).length}
                     </td>
                     <td className="py-2 pr-4 pl-2 text-right sm:pr-6">
@@ -265,7 +265,7 @@ export default function ChampionshipView() {
         }
       >
         {attendingPlayers.length === 0 ? (
-          <p className="px-4 py-6 text-center text-muted-foreground text-sm sm:px-6">
+          <p className="px-4 py-6 text-center text-sm text-muted-foreground sm:px-6">
             Noch keine Mitspieler.
           </p>
         ) : (
@@ -275,13 +275,13 @@ export default function ChampionshipView() {
                 <tr>
                   <th
                     scope="col"
-                    className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm sm:pl-6"
+                    className="w-12 py-3.5 pr-2 pl-4 text-right text-sm font-semibold text-foreground sm:pl-6"
                   >
                     Nr
                   </th>
                   <th
                     scope="col"
-                    className="py-3.5 pr-4 pl-2 text-left font-semibold text-foreground text-sm sm:pr-6"
+                    className="py-3.5 pr-4 pl-2 text-left text-sm font-semibold text-foreground sm:pr-6"
                   >
                     Name
                   </th>
@@ -290,10 +290,10 @@ export default function ChampionshipView() {
               <tbody className="divide-y divide-border bg-card">
                 {attendingPlayers.map((p) => (
                   <tr key={p.id}>
-                    <td className="py-3 pr-2 pl-4 text-right text-muted-foreground text-sm tabular-nums sm:pl-6">
+                    <td className="py-3 pr-2 pl-4 text-right text-sm text-muted-foreground tabular-nums sm:pl-6">
                       {p.nr}
                     </td>
-                    <td className="py-3 pr-4 pl-2 font-medium text-sm sm:pr-6">
+                    <td className="py-3 pr-4 pl-2 text-sm font-medium sm:pr-6">
                       {p.player?.name}
                     </td>
                   </tr>
@@ -313,8 +313,8 @@ export default function ChampionshipView() {
         </CardHeader>
         <CardContent className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="font-medium text-sm">Turnierwertung neu berechnen</p>
-            <p className="mt-1 text-muted-foreground text-sm">
+            <p className="text-sm font-medium">Turnierwertung neu berechnen</p>
+            <p className="mt-1 text-sm text-muted-foreground">
               Wertet alle Spiele und Tipps neu aus und aktualisiert die
               Rangliste.
             </p>

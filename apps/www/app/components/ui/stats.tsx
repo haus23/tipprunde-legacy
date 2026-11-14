@@ -25,12 +25,12 @@ export function Stats({
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="min-w-0 nth-[n+3]:border-t px-2 py-2 text-center even:border-l sm:nth-[n+3]:border-t-0 sm:not-first:border-l"
+          className="min-w-0 px-2 py-2 text-center even:border-l nth-[n+3]:border-t sm:not-first:border-l sm:nth-[n+3]:border-t-0"
         >
-          <dt className="font-medium text-muted-foreground text-xs uppercase">
+          <dt className="text-xs font-medium text-muted-foreground uppercase">
             {stat.label}
           </dt>
-          <dd className="wrap-break-word mt-0.5 font-semibold text-accent-strong tabular-nums">
+          <dd className="mt-0.5 font-semibold wrap-break-word text-accent-strong tabular-nums">
             {stat.value}
           </dd>
         </div>

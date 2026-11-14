@@ -55,7 +55,7 @@ export default function ChampionshipSwitcher({
         aria-label="Turnier wechseln"
         className={cn(
           focusRing,
-          'flex w-full items-center justify-between gap-2 rounded-md border border-input bg-background px-3 py-2 text-left font-semibold text-sm shadow-xs hover:bg-accent data-popup-open:border-ring',
+          'flex w-full items-center justify-between gap-2 rounded-md border border-input bg-background px-3 py-2 text-left text-sm font-semibold shadow-xs hover:bg-accent data-popup-open:border-ring',
         )}
       >
         <span className="truncate">{championship.name}</span>
@@ -67,7 +67,7 @@ export default function ChampionshipSwitcher({
       <Combobox.Portal>
         <Combobox.Positioner className="z-50" sideOffset={4} align="start">
           <Combobox.Popup className="w-(--anchor-width) min-w-64 overflow-hidden rounded-md border border-border bg-popover text-popover-foreground shadow-lg outline-hidden">
-            <div className="flex items-center gap-2 border-border border-b px-3">
+            <div className="flex items-center gap-2 border-b border-border px-3">
               <SearchIcon
                 className="size-4 shrink-0 text-muted-foreground"
                 aria-hidden="true"
@@ -78,7 +78,7 @@ export default function ChampionshipSwitcher({
                 className="h-10 w-full bg-transparent text-sm outline-hidden placeholder:text-muted-foreground"
               />
             </div>
-            <Combobox.Empty className="p-3 text-muted-foreground text-sm">
+            <Combobox.Empty className="p-3 text-sm text-muted-foreground">
               Kein Turnier gefunden.
             </Combobox.Empty>
             <Combobox.List className="max-h-[min(20rem,var(--available-height))] overflow-y-auto overscroll-contain p-1">

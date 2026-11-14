@@ -18,7 +18,7 @@ export function CardHeader({
 }: React.ComponentProps<'div'>) {
   return (
     <div
-      className={cn('border-border border-b px-4 py-5 sm:px-6', className)}
+      className={cn('border-b border-border px-4 py-5 sm:px-6', className)}
       {...props}
     />
   );
@@ -26,7 +26,7 @@ export function CardHeader({
 
 export function CardTitle({ className, ...props }: React.ComponentProps<'h3'>) {
   return (
-    <h3 className={cn('font-medium text-lg leading-6', className)} {...props} />
+    <h3 className={cn('text-lg leading-6 font-medium', className)} {...props} />
   );
 }
 
@@ -44,7 +44,7 @@ export function CardFooter({
   return (
     <div
       className={cn(
-        'flex items-center border-border border-t bg-surface-subtle px-4 py-3 sm:px-6',
+        'flex items-center border-t border-border bg-surface-subtle px-4 py-3 sm:px-6',
         className,
       )}
       {...props}

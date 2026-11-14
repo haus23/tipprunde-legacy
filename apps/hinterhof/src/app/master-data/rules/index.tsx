@@ -42,13 +42,13 @@ export default function RulesView() {
               <tr>
                 <th
                   scope="col"
-                  className="py-3.5 pr-2 pl-4 text-left font-semibold text-foreground text-sm sm:pl-6"
+                  className="py-3.5 pr-2 pl-4 text-left text-sm font-semibold text-foreground sm:pl-6"
                 >
                   Name
                 </th>
                 <th
                   scope="col"
-                  className="hidden px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:table-cell"
+                  className="hidden px-2 py-3.5 text-left text-sm font-semibold text-foreground sm:table-cell"
                 >
                   Beschreibung
                 </th>
@@ -60,10 +60,10 @@ export default function RulesView() {
             <tbody className="divide-y divide-border bg-card">
               {rules.map((ruleSet) => (
                 <tr key={ruleSet.id}>
-                  <td className="py-4 pr-2 pl-4 text-muted-foreground text-sm sm:pl-6">
+                  <td className="py-4 pr-2 pl-4 text-sm text-muted-foreground sm:pl-6">
                     {ruleSet.name}
                   </td>
-                  <td className="hidden px-2 py-4 text-muted-foreground text-sm sm:table-cell">
+                  <td className="hidden px-2 py-4 text-sm text-muted-foreground sm:table-cell">
                     {ruleSet.description}
                   </td>
                   <td className="py-2 pr-4 pl-2 text-right sm:pr-6">

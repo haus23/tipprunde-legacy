@@ -46,20 +46,20 @@ export default function FormDialog<TSchema extends FormSchema>({
         <Dialog.Popup
           initialFocus={initialFocus}
           onSubmit={(event) => event.stopPropagation()}
-          className="fixed top-[max(1rem,10vh)] left-1/2 z-40 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 rounded-lg border border-border bg-card text-card-foreground shadow-xl transition-[opacity,scale] duration-200 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 motion-reduce:transition-none"
+          className="fixed top-[max(1rem,10vh)] left-1/2 z-40 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 rounded-lg border border-border bg-card text-card-foreground shadow-xl transition-[opacity,scale] duration-200 data-ending-style:scale-95 data-ending-style:opacity-0 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none"
         >
           <Form
             of={form}
             onSubmit={onSubmit}
             className="flex max-h-[calc(100dvh-max(2rem,20vh))] flex-col"
           >
-            <Dialog.Title className="px-4 pt-4 font-semibold text-lg sm:px-6 sm:pt-6">
+            <Dialog.Title className="px-4 pt-4 text-lg font-semibold sm:px-6 sm:pt-6">
               {title}
             </Dialog.Title>
             <div className="space-y-4 overflow-y-auto p-4 sm:p-6">
               {children}
             </div>
-            <div className="flex shrink-0 justify-end gap-x-4 rounded-b-lg border-border border-t bg-surface-subtle px-4 py-3 sm:px-6">
+            <div className="flex shrink-0 justify-end gap-x-4 rounded-b-lg border-t border-border bg-surface-subtle px-4 py-3 sm:px-6">
               <Dialog.Close render={<Button />}>{cancelLabel}</Dialog.Close>
               <Button variant="primary" type="submit">
                 {submitLabel}

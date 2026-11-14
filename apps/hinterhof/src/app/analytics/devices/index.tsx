@@ -191,11 +191,11 @@ function DistributionChart({
 }) {
   return (
     <figure>
-      <figcaption className="font-medium text-foreground text-sm">
+      <figcaption className="text-sm font-medium text-foreground">
         {title}
       </figcaption>
       {rows.length === 0 && (
-        <p className="mt-2 text-muted-foreground text-sm">Keine Geräte</p>
+        <p className="mt-2 text-sm text-muted-foreground">Keine Geräte</p>
       )}
       <ul className="mt-2 space-y-1.5">
         {rows.map((row) => (
@@ -214,7 +214,7 @@ function DistributionChart({
             </span>
             <span className="text-right text-foreground tabular-nums">
               {row.count}
-              <span className="ml-1.5 text-muted-foreground text-xs">
+              <span className="ml-1.5 text-xs text-muted-foreground">
                 {percent.format(row.count / total)}
               </span>
             </span>
@@ -228,8 +228,8 @@ function DistributionChart({
 function KeyFigure({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-md border border-border bg-surface-subtle px-4 py-3">
-      <dt className="text-muted-foreground text-sm">{label}</dt>
-      <dd className="mt-1 font-semibold text-2xl text-foreground tabular-nums">
+      <dt className="text-sm text-muted-foreground">{label}</dt>
+      <dd className="mt-1 text-2xl font-semibold text-foreground tabular-nums">
         {value}
       </dd>
     </div>
@@ -246,7 +246,7 @@ function RecentDevices({ devices }: { devices: Device[] }) {
       <table className="min-w-full divide-y divide-border">
         <caption className="sr-only">Zuletzt gesehene Geräte</caption>
         <thead className="bg-surface-subtle">
-          <tr className="text-left font-semibold text-foreground text-sm">
+          <tr className="text-left text-sm font-semibold text-foreground">
             <th scope="col" className="py-3.5 pr-2 pl-4 sm:pl-6">
               Zuletzt
             </th>
@@ -264,10 +264,10 @@ function RecentDevices({ devices }: { devices: Device[] }) {
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-border bg-card text-muted-foreground text-sm">
+        <tbody className="divide-y divide-border bg-card text-sm text-muted-foreground">
           {recent.map((device) => (
             <tr key={device.id}>
-              <td className="whitespace-nowrap py-3 pr-2 pl-4 tabular-nums sm:pl-6">
+              <td className="py-3 pr-2 pl-4 whitespace-nowrap tabular-nums sm:pl-6">
                 {dateTime.format(device.lastSeen)}
               </td>
               <td className="px-2 py-3">
@@ -275,10 +275,10 @@ function RecentDevices({ devices }: { devices: Device[] }) {
                   .filter(Boolean)
                   .join(' · ')}
               </td>
-              <td className="hidden whitespace-nowrap px-2 py-3 tabular-nums sm:table-cell">
+              <td className="hidden px-2 py-3 whitespace-nowrap tabular-nums sm:table-cell">
                 {device.viewport.width} × {device.viewport.height}
               </td>
-              <td className="hidden whitespace-nowrap px-2 py-3 tabular-nums md:table-cell">
+              <td className="hidden px-2 py-3 whitespace-nowrap tabular-nums md:table-cell">
                 {device.screen.width} × {device.screen.height} @
                 {pixelRatio(device.devicePixelRatio)}
               </td>
@@ -347,7 +347,7 @@ function DevicesView() {
       }
     >
       {total === 0 ? (
-        <p className="px-4 py-6 text-muted-foreground text-sm sm:px-6">
+        <p className="px-4 py-6 text-sm text-muted-foreground sm:px-6">
           Keine Geräte für diese Auswahl.
         </p>
       ) : (
@@ -367,7 +367,7 @@ function DevicesView() {
             </dl>
             {sections.map((section) => (
               <section key={section.title}>
-                <h4 className="border-border border-b pb-2 font-semibold text-foreground">
+                <h4 className="border-b border-border pb-2 font-semibold text-foreground">
                   {section.title}
                 </h4>
                 <div className="mt-4 grid gap-x-10 gap-y-6 lg:grid-cols-2">

@@ -35,10 +35,10 @@ export default function Login() {
     <Navigate to="/" replace />
   ) : (
     <div className="flex flex-col">
-      <div className="flex h-16 shrink-0 border-border border-b bg-card px-4 sm:px-6 md:px-8">
+      <div className="flex h-16 shrink-0 border-b border-border bg-card px-4 sm:px-6 md:px-8">
         <div className="flex flex-1 items-center gap-x-2">
           <AppTitle />
-          <h1 className="xs:hidden font-semibold text-2xl">runde.tips</h1>
+          <h1 className="text-2xl font-semibold xs:hidden">runde.tips</h1>
         </div>
       </div>
       <main className="flex-1">
@@ -46,7 +46,7 @@ export default function Login() {
           <div className="py-4">
             <div className="flex min-h-full flex-col justify-center py-12">
               <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <h2 className="mt-6 text-center font-semibold text-3xl text-foreground tracking-tight">
+                <h2 className="mt-6 text-center text-3xl font-semibold tracking-tight text-foreground">
                   Hinterhof
                 </h2>
               </div>

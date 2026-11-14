@@ -22,12 +22,12 @@ export default function DataCard({
 }: DataCardProps) {
   return (
     <Card>
-      <div className="sticky top-(--app-bar-height) z-10 border-border border-b bg-card md:top-0">
+      <div className="sticky top-(--app-bar-height) z-10 border-b border-border bg-card md:top-0">
         <div className="flex items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="min-w-0">
             <CardTitle>{title}</CardTitle>
             {description && (
-              <p className="mt-1 text-muted-foreground text-sm">
+              <p className="mt-1 text-sm text-muted-foreground">
                 {description}
               </p>
             )}
@@ -35,7 +35,7 @@ export default function DataCard({
           {action && <div className="shrink-0">{action}</div>}
         </div>
         {toolbar && (
-          <div className="border-border border-t px-4 py-3 sm:px-6">
+          <div className="border-t border-border px-4 py-3 sm:px-6">
             {toolbar}
           </div>
         )}

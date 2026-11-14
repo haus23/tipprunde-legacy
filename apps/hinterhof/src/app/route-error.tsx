@@ -41,7 +41,7 @@ export default function RouteError() {
     <div role="alert" className="mx-auto max-w-7xl px-4 py-9 sm:px-6 md:px-8">
       <Card>
         <CardContent className="space-y-4">
-          <h2 className="font-semibold text-xl">
+          <h2 className="text-xl font-semibold">
             Daten konnten nicht geladen werden
           </h2>
           <p className="text-muted-foreground">{message}</p>

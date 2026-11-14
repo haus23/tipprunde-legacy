@@ -72,7 +72,7 @@ function MatchesRoute() {
   if (!match) {
     return (
       <div>
-        <h1 className="mx-4 font-medium text-xl sm:mx-0">
+        <h1 className="mx-4 text-xl font-medium sm:mx-0">
           <span className="sr-only">{championship.name}: </span>
           Spiele
         </h1>
@@ -118,7 +118,7 @@ function MatchesComponent({
       <div className="mx-4 flex items-center gap-x-2 sm:mx-0 sm:gap-x-4">
         {/* Championship and pairing only for screen readers, visually the
             select shows the match */}
-        <h1 className="shrink-0 font-medium text-xl">
+        <h1 className="shrink-0 text-xl font-medium">
           <span className="sr-only">{championship.name}: </span>
           Tipps für
           <span className="sr-only"> {pairing}</span>
@@ -138,7 +138,7 @@ function MatchesComponent({
                 label: `${teams[m.hometeamId]?.shortname || '(noch offen)'} – ${teams[m.awayteamId]?.shortname || '(noch offen)'}`,
                 detail:
                   m.result !== '' ? (
-                    <span className="font-semibold text-muted-foreground/80 text-sm">{`(${m.points ?? 0} Pkt)`}</span>
+                    <span className="text-sm font-semibold text-muted-foreground/80">{`(${m.points ?? 0} Pkt)`}</span>
                   ) : undefined,
               })),
           }))}

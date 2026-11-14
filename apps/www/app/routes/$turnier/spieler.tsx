@@ -67,7 +67,7 @@ function PlayersRoute() {
   if (!player) {
     return (
       <div>
-        <h1 className="mx-4 font-medium text-xl sm:mx-0">
+        <h1 className="mx-4 text-xl font-medium sm:mx-0">
           <span className="sr-only">{championship.name}: </span>
           Mitspieler
         </h1>
@@ -109,7 +109,7 @@ function PlayersComponent({
       <div className="mx-4 flex items-center gap-x-4 sm:mx-0">
         {/* Championship and player only for screen readers, visually the
             select shows the player */}
-        <h1 className="shrink-0 font-medium text-xl">
+        <h1 className="shrink-0 text-xl font-medium">
           <span className="sr-only">{championship.name}: </span>
           Tipps von
           <span className="sr-only"> {player.account.name}</span>

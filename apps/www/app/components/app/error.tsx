@@ -20,7 +20,7 @@ function ErrorView({
     <div className="grid place-items-center py-12">
       <div className="flex flex-col items-center gap-y-4">
         <FrownIcon className="size-40 text-error" aria-hidden="true" />
-        <h1 className="mx-4 text-balance text-center text-3xl leading-[1.4]">
+        <h1 className="mx-4 text-center text-3xl leading-[1.4] text-balance">
           {message}
         </h1>
         {children}
@@ -60,7 +60,7 @@ export function ErrorComponent({ error }: ErrorComponentProps) {
 
   const content = (
     <ErrorView message="Hoppla, die Daten konnten nicht geladen werden.">
-      <p className="mx-4 max-w-md text-balance text-center text-lg text-muted-foreground">
+      <p className="mx-4 max-w-md text-center text-lg text-balance text-muted-foreground">
         Du kannst es mit{' '}
         <button
           type="button"

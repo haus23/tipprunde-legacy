@@ -119,7 +119,7 @@ export default function ComboboxField<Option extends SelectionOption>({
         <Combobox.Portal>
           <Combobox.Positioner className="z-50" sideOffset={4} align="start">
             <Combobox.Popup className={selectionPopupStyles}>
-              <Combobox.Empty className="p-2 text-muted-foreground text-sm">
+              <Combobox.Empty className="p-2 text-sm text-muted-foreground">
                 Kein Eintrag gefunden.
               </Combobox.Empty>
               <Combobox.List>

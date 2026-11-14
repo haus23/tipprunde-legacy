@@ -12,13 +12,13 @@ export default function NotFound({
   return (
     <Card className="mt-5">
       <CardContent className="space-y-4">
-        <h2 className="font-semibold text-xl">Nicht gefunden</h2>
+        <h2 className="text-xl font-semibold">Nicht gefunden</h2>
         <p className="text-muted-foreground">{message}</p>
         <Link
           to="/"
           className={cn(
             focusRing,
-            'inline-flex h-9 items-center rounded-md border border-primary bg-primary px-4 font-medium text-primary-foreground text-sm shadow-xs hover:bg-primary/90',
+            'inline-flex h-9 items-center rounded-md border border-primary bg-primary px-4 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90',
           )}
         >
           Zum aktuellen Turnier

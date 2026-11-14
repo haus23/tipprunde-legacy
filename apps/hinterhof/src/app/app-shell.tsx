@@ -59,14 +59,14 @@ export default function AppShell() {
       </Dialog.Root>
       {/* Static desktop navbar */}
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-        <div className="flex min-h-0 flex-1 flex-col border-sidebar-border border-r bg-sidebar text-sidebar-foreground">
+        <div className="flex min-h-0 flex-1 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground">
           <AppShellNavbar />
         </div>
       </div>
       {/* Content with header */}
       <div className="flex flex-col md:pl-64">
         {/* Mobile app bar: menu button and the context of the page */}
-        <div className="sticky top-0 z-20 flex h-(--app-bar-height) items-center gap-x-3 border-sidebar-border border-b bg-background px-4 sm:px-6 md:hidden">
+        <div className="sticky top-0 z-20 flex h-(--app-bar-height) items-center gap-x-3 border-b border-sidebar-border bg-background px-4 sm:px-6 md:hidden">
           <button
             type="button"
             onClick={() => setSidebarOpen(true)}

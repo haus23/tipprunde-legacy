@@ -35,7 +35,7 @@ function SelectItem({ option }: { option: SelectOption }) {
       value={option.value}
       className={cn(
         componentHoverStyles,
-        'my-1.5 flex select-none items-center justify-between gap-x-4 rounded-sm px-4 py-1.5 outline-hidden data-highlighted:bg-highlight data-highlighted:text-foreground data-selected:text-accent',
+        'my-1.5 flex items-center justify-between gap-x-4 rounded-sm px-4 py-1.5 outline-hidden select-none data-highlighted:bg-highlight data-highlighted:text-foreground data-selected:text-accent',
       )}
     >
       <span className="flex items-center gap-x-2">
@@ -88,12 +88,12 @@ export function Select({
           sideOffset={4}
           alignItemWithTrigger={false}
         >
-          <BaseSelect.Popup className="max-h-[min(70svh,var(--available-height))] min-w-(--anchor-width) origin-(--transform-origin) overflow-y-auto overscroll-contain rounded-sm bg-background px-2 outline-hidden ring-1 ring-border transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 data-ending-style:duration-100 motion-reduce:transition-none">
+          <BaseSelect.Popup className="max-h-[min(70svh,var(--available-height))] min-w-(--anchor-width) origin-(--transform-origin) overflow-y-auto overscroll-contain rounded-sm bg-background px-2 ring-1 ring-border outline-hidden transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-ending-style:duration-100 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
             <BaseSelect.List>
               {groups
                 ? groups.map((group) => (
                     <BaseSelect.Group key={group.value}>
-                      <BaseSelect.GroupLabel className="px-1 pt-4 text-muted-foreground text-sm">
+                      <BaseSelect.GroupLabel className="px-1 pt-4 text-sm text-muted-foreground">
                         {group.label}
                       </BaseSelect.GroupLabel>
                       {group.options.map((option) => (

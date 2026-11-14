@@ -10,7 +10,7 @@ export default function EmptyTableRow({
     <tr>
       <td
         colSpan={colSpan}
-        className="px-4 py-6 text-center text-muted-foreground text-sm sm:px-6"
+        className="px-4 py-6 text-center text-sm text-muted-foreground sm:px-6"
       >
         {children}
       </td>

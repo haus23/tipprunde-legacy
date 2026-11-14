@@ -43,7 +43,7 @@ function NavItem({
       className={({ isActive }) =>
         cn(
           focusRingInset,
-          'group flex items-center gap-x-3 rounded-md px-2 py-2 font-medium text-sm transition-colors motion-reduce:transition-none',
+          'group flex items-center gap-x-3 rounded-md px-2 py-2 text-sm font-medium transition-colors motion-reduce:transition-none',
           isActive
             ? 'bg-sidebar-primary text-sidebar-primary-foreground'
             : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
@@ -130,7 +130,7 @@ export default function AppShellNavbar() {
             <nav className="px-2" aria-labelledby="master-data-heading">
               <h2
                 id="master-data-heading"
-                className="mb-2 border-sidebar-border border-b px-2 pb-2 font-medium text-sidebar-foreground/70 text-xs uppercase tracking-wide"
+                className="mb-2 border-b border-sidebar-border px-2 pb-2 text-xs font-medium tracking-wide text-sidebar-foreground/70 uppercase"
               >
                 Stammdaten
               </h2>
@@ -143,7 +143,7 @@ export default function AppShellNavbar() {
             <nav className="px-2" aria-labelledby="analytics-heading">
               <h2
                 id="analytics-heading"
-                className="mb-2 border-sidebar-border border-b px-2 pb-2 font-medium text-sidebar-foreground/70 text-xs uppercase tracking-wide"
+                className="mb-2 border-b border-sidebar-border px-2 pb-2 text-xs font-medium tracking-wide text-sidebar-foreground/70 uppercase"
               >
                 Auswertung
               </h2>
@@ -157,7 +157,7 @@ export default function AppShellNavbar() {
         </div>
       </div>
       {profile && (
-        <div className="flex shrink-0 items-center gap-x-1 border-sidebar-border border-t p-2">
+        <div className="flex shrink-0 items-center gap-x-1 border-t border-sidebar-border p-2">
           <NavLink
             to="/profil"
             className={({ isActive }) =>
@@ -183,7 +183,7 @@ export default function AppShellNavbar() {
               />
             )}
             <span className="min-w-0">
-              <span className="block truncate font-medium text-sm">
+              <span className="block truncate text-sm font-medium">
                 {profile.displayName || profile.email}
               </span>
               <span className="block text-xs opacity-70">Profil</span>

@@ -106,7 +106,7 @@ export function MatchTipsTable({
     return (
       <Button
         onClick={() => toggleSort(column)}
-        className="gap-x-1 p-1 font-medium text-xs uppercase hover:bg-selected"
+        className="gap-x-1 p-1 text-xs font-medium uppercase hover:bg-selected"
         variant="plain"
       >
         <span>{label}</span>

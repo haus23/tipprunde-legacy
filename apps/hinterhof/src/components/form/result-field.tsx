@@ -66,7 +66,7 @@ export default function ResultField({
       </Tooltip.Trigger>
       <Tooltip.Portal>
         <Tooltip.Positioner className="z-50" side="top" sideOffset={6}>
-          <Tooltip.Popup className="rounded-md border border-destructive/40 bg-popover px-2 py-1 text-destructive text-sm shadow-md">
+          <Tooltip.Popup className="rounded-md border border-destructive/40 bg-popover px-2 py-1 text-sm text-destructive shadow-md">
             {error}
           </Tooltip.Popup>
         </Tooltip.Positioner>

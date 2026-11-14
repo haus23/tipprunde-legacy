@@ -125,19 +125,19 @@ export default function ResultsView() {
                 <tr>
                   <th
                     scope="col"
-                    className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm sm:pl-6"
+                    className="w-12 py-3.5 pr-2 pl-4 text-right text-sm font-semibold text-foreground sm:pl-6"
                   >
                     Nr
                   </th>
                   <th
                     scope="col"
-                    className="px-2 py-3.5 text-left font-semibold text-foreground text-sm"
+                    className="px-2 py-3.5 text-left text-sm font-semibold text-foreground"
                   >
                     Spiel
                   </th>
                   <th
                     scope="col"
-                    className="py-3.5 pr-4 pl-2 font-semibold text-foreground text-sm sm:pr-6"
+                    className="py-3.5 pr-4 pl-2 text-sm font-semibold text-foreground sm:pr-6"
                   >
                     Ergebnis
                   </th>
@@ -153,10 +153,10 @@ export default function ResultsView() {
                   // No match for the row while another championship loads
                   fixtures[ix]?.roundId === currentRound?.id ? (
                     <tr key={fieldId}>
-                      <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm sm:pl-6">
+                      <td className="py-4 pr-2 pl-4 text-right text-sm whitespace-nowrap text-muted-foreground sm:pl-6">
                         {fixtures[ix].nr}
                       </td>
-                      <td className="px-2 py-4 text-muted-foreground text-sm">
+                      <td className="px-2 py-4 text-sm text-muted-foreground">
                         <span className="hidden lg:inline">
                           {`${fixtures[ix].hometeam?.name || ''} - ${
                             fixtures[ix].awayteam?.name || ''

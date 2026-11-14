@@ -18,7 +18,7 @@ export function Accordion({ children, defaultOpen }: Accordion.Props) {
     <details
       // Only the initial state; afterwards the browser owns it
       open={defaultOpen}
-      className="group details-content:h-0 details-content:overflow-hidden details-content:opacity-0 details-content:transition-[height,opacity,content-visibility] details-content:transition-discrete details-content:duration-200 [interpolate-size:allow-keywords] open:details-content:h-auto open:details-content:opacity-100 motion-reduce:details-content:transition-none"
+      className="group [interpolate-size:allow-keywords] details-content:h-0 details-content:overflow-hidden details-content:opacity-0 details-content:transition-[height,opacity,content-visibility] details-content:transition-discrete details-content:duration-200 open:details-content:h-auto open:details-content:opacity-100 motion-reduce:details-content:transition-none"
     >
       {children}
     </details>
@@ -40,7 +40,7 @@ export function AccordionSummary({
     <summary
       className={cn(
         focusVisibleStyles,
-        'flex cursor-default list-none items-center gap-x-2 border border-accent-border/60 bg-highlight px-2 py-1 text-accent-strong transition-colors hover:bg-selected group-open:bg-selected max-sm:rounded-none max-sm:px-4 [&::-webkit-details-marker]:hidden',
+        'flex cursor-default list-none items-center gap-x-2 border border-accent-border/60 bg-highlight px-2 py-1 text-accent-strong transition-colors group-open:bg-selected hover:bg-selected max-sm:rounded-none max-sm:px-4 [&::-webkit-details-marker]:hidden',
       )}
     >
       <ChevronRightIcon

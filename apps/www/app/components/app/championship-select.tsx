@@ -70,7 +70,7 @@ export function ChampionshipSelect({ className }: { className?: string }) {
         <Combobox.Positioner align="end" sideOffset={6} collisionPadding={16}>
           <Combobox.Popup
             aria-label="Turnier-Auswahl"
-            className="flex max-h-[min(70svh,var(--available-height))] w-[min(20rem,calc(100vw-2rem))] origin-(--transform-origin) flex-col rounded-md bg-popover py-2 font-medium text-base shadow-elevation shadow-md outline-hidden ring-1 ring-border transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 data-ending-style:duration-100 motion-reduce:transition-none dark:shadow-none"
+            className="flex max-h-[min(70svh,var(--available-height))] w-[min(20rem,calc(100vw-2rem))] origin-(--transform-origin) flex-col rounded-md bg-popover py-2 text-base font-medium shadow-md ring-1 shadow-elevation ring-border outline-hidden transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-ending-style:duration-100 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none dark:shadow-none"
           >
             <Combobox.Input
               placeholder="Turnier filtern …"
@@ -88,7 +88,7 @@ export function ChampionshipSelect({ className }: { className?: string }) {
                   value={item.id}
                   className={cn(
                     componentHoverStyles,
-                    'my-1 flex select-none items-center justify-between rounded-sm px-2 py-1.5 outline-hidden data-highlighted:bg-highlight data-highlighted:text-foreground data-selected:text-accent',
+                    'my-1 flex items-center justify-between rounded-sm px-2 py-1.5 outline-hidden select-none data-highlighted:bg-highlight data-highlighted:text-foreground data-selected:text-accent',
                   )}
                 >
                   <span>{item.name}</span>

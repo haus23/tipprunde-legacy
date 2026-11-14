@@ -12,11 +12,11 @@ export default function SplashScreen({ message }: SplashScreenProps) {
         role="status"
         aria-live="polite"
       >
-        <span className="font-semibold text-4xl tracking-tight">
+        <span className="text-4xl font-semibold tracking-tight">
           runde.tips
         </span>
         <Logo className="w-48 text-brand sm:w-64" />
-        <p className="min-h-7 w-full font-medium text-lg text-muted-foreground">
+        <p className="min-h-7 w-full text-lg font-medium text-muted-foreground">
           {message}
         </p>
       </div>

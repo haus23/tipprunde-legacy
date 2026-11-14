@@ -53,7 +53,7 @@ export default function ProfileView() {
         <Form of={profileForm} onSubmit={saveProfile}>
           <CardHeader>
             <CardTitle>Profil</CardTitle>
-            <p className="mt-1 text-muted-foreground text-sm">
+            <p className="mt-1 text-sm text-muted-foreground">
               Dein Name in der Navigation. Die Email lässt sich hier nicht
               ändern.
             </p>

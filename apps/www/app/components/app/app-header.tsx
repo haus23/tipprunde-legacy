@@ -95,7 +95,7 @@ export function AppHeader() {
                 {...link}
                 to={link.to}
                 variant="navlink"
-                className="px-4 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-transparent after:border-b-2 aria-[current]:after:border-accent"
+                className="px-4 transition-colors after:absolute after:bottom-1 after:left-0 after:block after:w-full after:border-b-2 after:border-transparent aria-[current]:after:border-accent"
               >
                 {link.label}
               </Link>

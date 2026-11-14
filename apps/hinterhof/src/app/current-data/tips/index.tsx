@@ -270,25 +270,25 @@ export default function TipsView() {
                 <tr>
                   <th
                     scope="col"
-                    className="w-12 py-3.5 pr-2 pl-4 text-right font-semibold text-foreground text-sm sm:pl-6"
+                    className="w-12 py-3.5 pr-2 pl-4 text-right text-sm font-semibold text-foreground sm:pl-6"
                   >
                     Nr
                   </th>
                   <th
                     scope="col"
-                    className="px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
+                    className="px-2 py-3.5 text-left text-sm font-semibold text-foreground sm:pr-6 lg:pr-8"
                   >
                     Spiel
                   </th>
                   <th
                     scope="col"
-                    className="px-2 py-3.5 text-left font-semibold text-foreground text-sm sm:pr-6 lg:pr-8"
+                    className="px-2 py-3.5 text-left text-sm font-semibold text-foreground sm:pr-6 lg:pr-8"
                   >
                     Tipp
                   </th>
                   <th
                     scope="col"
-                    className="w-20 py-3.5 pr-4 pl-2 text-center font-semibold text-foreground text-sm sm:pr-6 sm:pl-6 lg:pl-8"
+                    className="w-20 py-3.5 pr-4 pl-2 text-center text-sm font-semibold text-foreground sm:pr-6 sm:pl-6 lg:pl-8"
                   >
                     Joker
                   </th>
@@ -304,10 +304,10 @@ export default function TipsView() {
                   // No match for the row while another championship loads
                   fixtures[ix]?.roundId === currentRound?.id ? (
                     <tr key={fieldId}>
-                      <td className="whitespace-nowrap py-4 pr-2 pl-4 text-right text-muted-foreground text-sm sm:pl-6">
+                      <td className="py-4 pr-2 pl-4 text-right text-sm whitespace-nowrap text-muted-foreground sm:pl-6">
                         {fixtures[ix].nr}
                       </td>
-                      <td className="py-4 pr-4 pl-2 text-muted-foreground text-sm sm:pr-6 lg:pr-8">
+                      <td className="py-4 pr-4 pl-2 text-sm text-muted-foreground sm:pr-6 lg:pr-8">
                         <span className="hidden lg:inline">
                           {`${fixtures[ix].hometeam?.name || ''} - ${
                             fixtures[ix].awayteam?.name || ''
@@ -348,7 +348,7 @@ export default function TipsView() {
                                 aria-label={`Joker für Spiel ${fixtures[ix].nr}`}
                                 className="peer sr-only"
                               />
-                              <span className="h-5 w-5 rounded-sm border border-input bg-background shadow-xs transition-colors peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:outline-2 peer-focus-visible:outline-ring peer-focus-visible:outline-offset-2 motion-reduce:transition-none" />
+                              <span className="h-5 w-5 rounded-sm border border-input bg-background shadow-xs transition-colors peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring motion-reduce:transition-none" />
                               <CheckIcon
                                 className="pointer-events-none absolute h-4 w-4 text-primary-foreground opacity-0 transition-opacity peer-checked:opacity-100 motion-reduce:transition-none"
                                 aria-hidden="true"

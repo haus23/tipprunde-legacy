@@ -19,7 +19,7 @@ export function FieldLabel({
   return (
     <label
       htmlFor={htmlFor}
-      className={cn('block font-medium text-foreground text-sm', className)}
+      className={cn('block text-sm font-medium text-foreground', className)}
       {...props}
     >
       {children}
@@ -38,12 +38,12 @@ export function FieldDescription({
   ...props
 }: React.ComponentProps<'p'>) {
   return (
-    <p className={cn('text-muted-foreground text-sm', className)} {...props} />
+    <p className={cn('text-sm text-muted-foreground', className)} {...props} />
   );
 }
 
 export function FieldError({ className, ...props }: React.ComponentProps<'p'>) {
-  return <p className={cn('text-destructive text-sm', className)} {...props} />;
+  return <p className={cn('text-sm text-destructive', className)} {...props} />;
 }
 
 export function fieldControlStyles({
@@ -54,7 +54,7 @@ export function fieldControlStyles({
   invalid?: boolean;
 } = {}) {
   return cn(
-    'block w-full rounded-md border bg-background px-3 py-2 text-foreground shadow-xs transition-colors placeholder:text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground read-only:bg-surface-subtle motion-reduce:transition-none sm:text-sm',
+    'block w-full rounded-md border bg-background px-3 py-2 text-foreground shadow-xs transition-colors placeholder:text-muted-foreground read-only:bg-surface-subtle focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground motion-reduce:transition-none sm:text-sm',
     invalid
       ? 'border-destructive text-destructive focus-visible:outline-destructive'
       : 'border-input focus-visible:border-ring focus-visible:outline-ring',

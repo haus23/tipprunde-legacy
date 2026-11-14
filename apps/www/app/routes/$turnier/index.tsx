@@ -53,7 +53,7 @@ function RankingComponent() {
   return (
     <div>
       <div className="mx-4 sm:mx-0">
-        <h1 className="font-medium text-xl">
+        <h1 className="text-xl font-medium">
           <span className="sr-only">{championship.name}: </span>
           {hasRanking
             ? championship.completed

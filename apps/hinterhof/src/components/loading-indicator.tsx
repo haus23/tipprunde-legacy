@@ -14,7 +14,7 @@ export default function LoadingIndicator({
     <p
       role="status"
       className={cn(
-        'flex items-center gap-x-2 text-muted-foreground text-sm',
+        'flex items-center gap-x-2 text-sm text-muted-foreground',
         className,
       )}
     >

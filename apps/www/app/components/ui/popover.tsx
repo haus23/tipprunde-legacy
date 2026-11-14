@@ -35,8 +35,8 @@ export function Popover({
       </BasePopover.Trigger>
       <BasePopover.Portal>
         <BasePopover.Positioner side="top" sideOffset={offset}>
-          <BasePopover.Popup className="origin-(--transform-origin) rounded-md border bg-popover text-foreground shadow-md outline-hidden transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-starting-style:scale-95 data-ending-style:opacity-0 data-starting-style:opacity-0 data-ending-style:duration-100 motion-reduce:transition-none">
-            <BasePopover.Arrow className="data-[side=bottom]:-top-2 data-[side=left]:-right-3 data-[side=top]:-bottom-2 data-[side=right]:-left-3 data-[side=bottom]:rotate-180 data-[side=left]:-rotate-90 data-[side=right]:rotate-90">
+          <BasePopover.Popup className="origin-(--transform-origin) rounded-md border bg-popover text-foreground shadow-md outline-hidden transition-[opacity,scale] duration-150 data-ending-style:scale-95 data-ending-style:opacity-0 data-ending-style:duration-100 data-starting-style:scale-95 data-starting-style:opacity-0 motion-reduce:transition-none">
+            <BasePopover.Arrow className="data-[side=bottom]:-top-2 data-[side=bottom]:rotate-180 data-[side=left]:-right-3 data-[side=left]:-rotate-90 data-[side=right]:-left-3 data-[side=right]:rotate-90 data-[side=top]:-bottom-2">
               <svg width={12} height={8} viewBox="0 0 12 8" aria-hidden="true">
                 <path
                   d="M0 0 L6 6 L12 0"

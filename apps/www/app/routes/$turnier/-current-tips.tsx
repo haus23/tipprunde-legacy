@@ -29,7 +29,7 @@ export function CurrentTips({
       <div className="w-72 max-w-[calc(100vw-2rem)] text-sm">
         <p className="border-b px-3 py-2 font-medium">{title}</p>
         <table className="w-full">
-          <thead className="text-muted-foreground text-xs uppercase">
+          <thead className="text-xs text-muted-foreground uppercase">
             <tr>
               <th className="px-3 pt-2 pb-1 text-left font-medium">Spiel</th>
               <th className="px-2 pt-2 pb-1 font-medium">Tipp</th>
@@ -86,7 +86,7 @@ export function CurrentTips({
           </tbody>
         </table>
         {hasHighlights && (
-          <p className="border-t px-3 py-2 text-muted-foreground text-xs">
+          <p className="border-t px-3 py-2 text-xs text-muted-foreground">
             <InfoIcon
               className="mr-1.5 inline-block size-4 align-middle"
               aria-hidden="true"

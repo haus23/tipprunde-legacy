@@ -120,13 +120,13 @@ export default function ExtraPointsView() {
                 <tr>
                   <th
                     scope="col"
-                    className="px-4 py-3 text-left font-semibold text-foreground text-sm sm:px-6"
+                    className="px-4 py-3 text-left text-sm font-semibold text-foreground sm:px-6"
                   >
                     Mitspieler
                   </th>
                   <th
                     scope="col"
-                    className="w-28 px-4 py-3 text-right font-semibold text-foreground text-sm sm:px-6"
+                    className="w-28 px-4 py-3 text-right text-sm font-semibold text-foreground sm:px-6"
                   >
                     Punkte
                   </th>
@@ -137,7 +137,7 @@ export default function ExtraPointsView() {
                   // No player for the row while another championship loads
                   players[ix] ? (
                     <tr key={fieldId}>
-                      <td className="px-4 py-3 font-medium text-sm sm:px-6">
+                      <td className="px-4 py-3 text-sm font-medium sm:px-6">
                         {players[ix].name}
                       </td>
                       <td className="px-4 py-2 sm:px-6">
